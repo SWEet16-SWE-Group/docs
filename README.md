@@ -1,6 +1,6 @@
 # Documentazione SWEet16
 
-Documentazione interna, esterna e verbali del gruppo
+Documentazione interna, esterna e verbali del gruppo 16
 
 Ingegneria del Software - Gruppo SWEet16
 
@@ -10,14 +10,14 @@ Università degli Studi di Padova
 
 ## Componenti del Gruppo
 
-| Nominativo           |
-| --------------------|
-| Alberto Cinel        |
-| Bilal El Moutaren    |
-| Alberto Michelazzo   |
-| Alex Scantamburlo    |
-| Iulius Signorelli    |
-| Giovanni Zuliani     |
+| Nominativo           | Matricola           |
+| -------------------------------------------|
+| Alberto Cinel        | 1142833             |
+| Bilal El Moutaren    | 2053470             |
+| Alberto Michelazzo   | 2010007	        |
+| Alex Scantamburlo    | 2042326             |
+| Iulius Signorelli    | 2012434             |
+| Giovanni Zuliani     | 595900              |
 
 E-mail: sweet16.unipd@gmail.com
 
