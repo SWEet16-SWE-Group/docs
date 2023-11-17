@@ -46,20 +46,33 @@ $richieste = array_filter($richieste,function ($obj) use($u) { return property_e
   <head>
   </head>
   <body>
+    <p> sei l'utente <?php echo $u ; ?> </p>
+    <p>gli altri utenti sono :</p>
+    <ul>
+      <?php
+  foreach($users as $user){
+    echo "<a href='./?u=$user'><li>$user</li></a>";
+  }
+      ?>
+  </ul>
+    <p> ============================================================================================= </p>
     <form action=./ method=post>
-        <input type=radio name=risotrante value='Pizzeria'              ><label for='Pizzeria'            >Pizzeria            </label><br>
-        <input type=radio name=risotrante value='Pizzeria napoletana'   ><label for='Pizzeria napoletana' >Pizzeria napoletana </label><br>
-        <input type=radio name=risotrante value='Pizzeria romana'       ><label for='Pizzeria romana'     >Pizzeria romana     </label><br>
-        <input type=radio name=risotrante value='Pizzeria new york'     ><label for='Pizzeria new york'   >Pizzeria new york   </label><br>
-        <input type=radio name=risotrante value='carne'                 ><label for='carne'               >carne               </label><br>
-        <input type=radio name=risotrante value='vegano'                ><label for='vegano'              >vegano              </label><br>
+        <label> Ristoranti </label><br/>
+        <input type=radio name=risotrante value='Pizzeria'           ><label for='Pizzeria'           >Pizzeria            </label><br>
+        <input type=radio name=risotrante value='Pizzeria napoletana'><label for='Pizzeria napoletana'>Pizzeria napoletana </label><br>
+        <input type=radio name=risotrante value='Pizzeria romana'    ><label for='Pizzeria romana'    >Pizzeria romana     </label><br>
+        <input type=radio name=risotrante value='Pizzeria new york'  ><label for='Pizzeria new york'  >Pizzeria new york   </label><br>
+        <input type=radio name=risotrante value='carne'              ><label for='carne'              >carne               </label><br>
+        <input type=radio name=risotrante value='vegano'             ><label for='vegano'             >vegano              </label><br>
+        <br/><label> Data </label><br/>
       <input type=datetime-local name=orario><br>
         <?php echo "<input type=text name=author style='display:none;' value=$u>";?>
+        <br/><label> Amici da invitare </label><br/>
       <?php
       foreach(array_values($users) as $k => $user){
         echo "<input type=checkbox name=$user value=$user><label for='$user'>$user</label><br>";
       }
-      ?>
+      ?><br/>
       <input type=submit>
       </form>
 
