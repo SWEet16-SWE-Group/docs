@@ -28,7 +28,11 @@ if(array_key_exists($user_key,$_GET) && in_array($_GET[$user_key],$users)){
 }else{
   echo "<html><body>";
   echo "<p>utente invalido</p>";
-  echo "<p>gli utenti validi sono " . json_encode($users) . "</p>";
+  echo "<p>gli utenti validi sono : <ul>";
+  foreach($users as $user){
+    echo "<a href='./?u=$user'><li>$user</li></a>";
+  }
+  echo "</ul>";
   echo "</body></html>";
   die;
 }
