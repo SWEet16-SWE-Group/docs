@@ -20,13 +20,21 @@ services:
 
   php:
     build:
-      context: ./
+      context: ./PHP
       dockerfile: Dockerfile
-    container_name: easymeal-container
+    container_name: php-server
     ports:
       - "8888:80"
     volumes:
-      - ./src:/var/www/html
+      - ./PHP/src:/var/www/html
     depends_on:
       mysql:
         condition: service_healthy
+        
+  nextjs:
+    container_name: nextjs-server
+    image: docker-react-i
+    build:
+      context: ./nextjs
+    ports:
+      - "3000:3000"
