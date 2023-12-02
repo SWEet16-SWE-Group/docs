@@ -31,10 +31,24 @@ services:
       mysql:
         condition: service_healthy
         
-  nextjs:
-    container_name: nextjs-server
+  react:
+    container_name: react-server
     image: docker-react-i
     build:
-      context: ./nextjs
+      context: ./react
     ports:
       - "3000:3000"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - "8080:80"
+
