@@ -36,6 +36,9 @@ services:
     image: docker-react-i
     build:
       context: ./react
+    # volumes:
+    #   - ./react:/app
+    working_dir: /app
     ports:
       - "3000:3000"
 
