@@ -31,16 +31,16 @@ services:
       mysql:
         condition: service_healthy
         
-  react:
-    container_name: react-server
-    image: docker-react-i
-    build:
-      context: ./react
-    # volumes:
-    #   - ./react:/app
-    working_dir: /app
-    ports:
-      - "3000:3000"
+  # react:
+  #   container_name: react-server
+  #   image: docker-react-i
+  #   build:
+  #     context: ./react
+  #   volumes:
+  #     - ./react:/app
+  #   working_dir: /app
+  #   ports:
+  #     - "3000:3000"
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
