@@ -1,15 +1,17 @@
-//import {BrowserRouter, Routes, Route, Link} from 'react-router-dom';
-
 import './App.css';
 
-import ListRist from './components/list-rist';
 import Navbar from './components/navbar.js';
+import ListRistoranti from './components/list_ristoranti.js';
+import SignInCliente from './components/new_cliente.js';
+import UpdateCliente from './components/edit_cliente.js';
 
 function App() {
   return (
     <>
     <Navbar />
-    <ListRist />
+    <ListRistoranti />
+    <SignInCliente />
+    <UpdateCliente />
     </>
   );
 }
