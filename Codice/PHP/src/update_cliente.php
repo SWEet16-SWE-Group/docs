@@ -8,13 +8,13 @@ include "./conn.php";
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if(isset($data['username']) && $data['email'] && $data['password'])
+if(isset($data['id_cliente']) && isset($data['username']) && isset($data['email']) && isset($data['password']))
 {
     $id = $data['id_cliente'];
     $username = $data['username'];
     $email = $data['email'];
     $password = $data['password'];
 
-    $res = $conn->execute_query("UPDATE cliente SET Username = '$username', Email = '$email', Password = '$password')");
+    $res = $conn->execute_query("UPDATE cliente SET Username = '$username', Email = '$email', Password = '$password' WHERE ID_cliente = '$id'");
 }
 ?>

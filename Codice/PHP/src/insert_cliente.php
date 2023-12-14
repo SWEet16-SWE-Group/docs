@@ -8,7 +8,7 @@ include "./conn.php";
 
 $data = json_decode(file_get_contents('php://input'), true);
 
-if(isset($data['username']) && $data['email'] && $data['password'])
+if(isset($data['username']) && isset($data['email']) && isset($data['password']))
 {
     $username = $data['username'];
     $email = $data['email'];
