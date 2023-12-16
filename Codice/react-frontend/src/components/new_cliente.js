@@ -21,12 +21,6 @@ class SignInCliente extends Component {
   
       axios
         .post("http://localhost:8888/insert_cliente.php", { username, password, email })
-        .then((response) => {
-          console.log(response);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
     };
 
     render()
@@ -34,7 +28,7 @@ class SignInCliente extends Component {
       const { username, password, email } = this.state;
       return (
         <div className="container-fluid d-flex justify-content-center">
-        <form className="form-group" onSubmit={this.handleSubmit}>
+        <form className="form-group col-4" onSubmit={this.handleSubmit}>
         <h1 className="mt-4 d-flex justify-content-center">INSERT</h1>
           <div>
             <label htmlFor="username">Inserisci un nome utente:</label>
