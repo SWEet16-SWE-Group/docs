@@ -5,9 +5,12 @@
 
     include "./conn.php";
 
-    $res = $conn->execute_query("SELECT * FROM cliente WHERE ID_cliente = 21");
-    $row = mysqli_fetch_assoc($res); 
-    $res1=array($row);
+    $res = $conn->execute_query("SELECT * FROM cliente");
+    $res1=array();
+    while ($row = mysqli_fetch_assoc($res)) 
+    {
+        array_push($res1, $row);
+    }
 
     $decoded=json_encode($res1);
 

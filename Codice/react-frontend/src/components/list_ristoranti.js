@@ -7,16 +7,15 @@ class ListRistoranti extends Component {
     }
     
     componentDidMount() {
-      const url = 'http://localhost:8888/select_ristorante_1.php'
-      axios.get(url).then(response =>
+      axios.get('http://localhost:8888/select_multiple_ristorante.php').then(response =>
         this.setState({ ristoranti: response.data }));
     }
 
     render() {
         return (
-            <div className="container-fluid">
+            <div className="container-fluid my-5 pt-5">
              <div className="col-xs-8">
-             <h1 className="mt-4 d-flex justify-content-center">SELECT</h1>
+             <h1 className="d-flex justify-content-center">SELECT</h1>
              <table className="table table-striped">
                <thead className="thead-light">
                 <tr>

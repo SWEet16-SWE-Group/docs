@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class ClientUpdate extends Component {
+class UpdateCliente extends Component {
   constructor() {
     super();
     this.state = {
@@ -10,7 +10,7 @@ class ClientUpdate extends Component {
   }
     
     componentDidMount() {  
-      axios.get("http://localhost:8888/select_cliente.php").then(response => {
+      axios.get("http://localhost:8888/select_single_cliente.php").then(response => {
         this.setState({ cliente: response.data });
       });
       }
@@ -33,7 +33,7 @@ class ClientUpdate extends Component {
         render() 
         {
             return (
-                <div className="container-fluid d-flex justify-content-center">
+                <div className="container-fluid d-flex justify-content-center mb-5">
                    {this.state.cliente.map((rs, index) => (
                     <form key={index} className="form-group col-4" onSubmit={this.handleSubmit}>
                         <h1 className="mt-4 d-flex justify-content-center">REAL TIME UPDATE</h1>
@@ -56,4 +56,4 @@ class ClientUpdate extends Component {
           }
       }
       
-export default ClientUpdate;
+export default UpdateCliente;

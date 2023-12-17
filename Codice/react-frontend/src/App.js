@@ -3,7 +3,8 @@ import './App.css';
 import Navbar from './components/navbar.js';
 import ListRistoranti from './components/list_ristoranti.js';
 import SignInCliente from './components/new_cliente.js';
-import ClientUpdate from './components/edit_cliente.js';
+import UpdateCliente from './components/edit_cliente.js';
+import RemoveCliente from './components/remove_cliente.js';
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
     <Navbar />
     <ListRistoranti />
     <SignInCliente />
-    <ClientUpdate />
+    <UpdateCliente />
+    <RemoveCliente />
     </>
   );
 }
