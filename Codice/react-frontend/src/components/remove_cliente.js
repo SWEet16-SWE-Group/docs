@@ -17,8 +17,6 @@ class RemoveCliente extends Component {
             
       handleDelete = (id) => (event) => {
 
-        console.log(id);
-
         const item = this.state.cliente[id].ID_cliente;
         const remove = [
           {
@@ -30,8 +28,7 @@ class RemoveCliente extends Component {
         axios
           .post("http://localhost:8888/delete_cliente.php", remove[0]);
 
-        const updatedrows = this.state.cliente.filter(cliente => cliente[id] !== id);
-        this.setState({ cliente : updatedrows})
+        this.setState({ cliente : this.state.cliente.filter(cliente => cliente.ID_cliente !== item)})
       };
       
       render() {
