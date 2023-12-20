@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 
 class RemoveCliente extends Component {
@@ -55,7 +56,7 @@ class RemoveCliente extends Component {
                    <td>{rs.Password}</td>
                    <td>
                     <form className="form-group col-4" onSubmit={this.handleDelete(index)}>
-                        <button type="submit" className="btn btn-outline-danger w-100">Elimina</button>
+                        <button type="submit" className="btn btn-outline-danger">Elimina</button>
                     </form>
                    </td>
                  </tr>
