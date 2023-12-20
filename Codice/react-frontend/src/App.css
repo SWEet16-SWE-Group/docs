@@ -1,3 +1,8 @@
+.margin-top
+{
+  margin-top: 100px;
+}
+
 .carousel-control-prev-icon, 
 .carousel-control-next-icon,
 .carousel-indicators
@@ -8,8 +13,10 @@
 .carousel-control-prev
 {
   justify-content: start !important;
+  width: 5% !important;
 }
 .carousel-control-next
 {
   justify-content: end !important;
+  width: 5% !important;
 }
