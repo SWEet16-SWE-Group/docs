@@ -8,10 +8,13 @@ class FormPrenotazione extends Component {
     this.state = {
       ristoranti: [],
       ristorantifiltrati: [],
-      cerca: ""
+      ristoranteselezionato: [],
+      cerca: "",
+      page: 0
     };
     this.filterList = this.filterList.bind(this);
-    this.onChange = this.onChange.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
@@ -19,7 +22,11 @@ class FormPrenotazione extends Component {
       this.setState({ ristoranti: response.data}));
   }
 
-  onChange(event) {
+  handleSelect = (selectedPage) => {
+    this.setState({ page: selectedPage });
+  };
+
+  handleSearch(event) {
     const cerca = event.target.value.toLowerCase();
     this.setState({ cerca }, () => this.filterList());
   }
@@ -34,20 +41,35 @@ class FormPrenotazione extends Component {
     this.setState({ ristorantifiltrati: ristoranti });
   }
 
-  render() {
+  handleInputChange = (event) => { 
+    let id = event.target.value;
+    this.state.ristoranteselezionato[0] = this.state.ristoranti[id];
+    document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
+  }
 
+  render() {
+    const { page } = this.state;
+    if(page === 0)
+    {
+      document.getElementsByClassName("carousel-control-prev")[0].style.display="none";
+      document.getElementsByClassName("carousel-control-next")[0].style.display="none";
+    }
+    if(page === 1)
+    {
+      document.getElementsByClassName("carousel-control-prev")[0].style.display="flex";
+      document.getElementsByClassName("carousel-control-next")[0].style.display="none";
+    }
     return (
         <form>
-        <Carousel className="container-fluid p-auto w-75 border rounded margin-top" autoPlay={false} interval={null} controls={true} indicators={true}>
-    
+        <Carousel activeIndex={page} onSelect={this.handleSelect} className="container-fluid p-auto w-75 border rounded margin-top" style={{height : "500px"}} autoPlay={false} interval={null} controls={true} indicators={false}>
           <Carousel.Item>
             <h1 className="my-4 d-flex justify-content-center">PRENOTAZIONE</h1>
                             <div className="m-5">
                               <label htmlFor="ricerca">Trova un ristorante:</label>
-                              <input type="text" className="form-control mb-3" name="ricerca" id="ricerca" placeholder="Cerca" value={this.state.cerca} onChange={this.onChange}/>
+                              <input type="text" className="form-control mb-3" name="ricerca" id="ricerca" placeholder="Cerca" value={this.state.cerca} onChange={this.handleSearch}/>
                               {this.state.ristorantifiltrati.map((rs, index) => (
                               <div key={index}>
-                                <input type="radio" className="mb-2 mr-1" id={rs.Ragione_sociale + "_seleziona"} name="seleziona_rist" value={rs.Ragione_sociale} /> <label htmlFor={rs.Ragione_sociale + "_seleziona"}>{rs.Ragione_sociale}</label>
+                                <input type="radio" className="mb-2 mr-1" id={rs.Ragione_sociale + "_seleziona"} name="seleziona_rist" value={index} onClick={this.handleInputChange}/> <label htmlFor={rs.Ragione_sociale + "_seleziona"}>{rs.Ragione_sociale}</label>
                               </div>
                               ))}
                             </div>
@@ -70,6 +92,8 @@ class FormPrenotazione extends Component {
           </Carousel>
         </form>
       );
+
+
     }
 }
     

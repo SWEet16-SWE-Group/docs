@@ -5,7 +5,7 @@
 
     include "./conn.php";
 
-    $res = $conn->execute_query("SELECT * FROM cliente WHERE ID_cliente = 30");
+    $res = $conn->execute_query("SELECT * FROM cliente WHERE ID_cliente = 1");
     $row = mysqli_fetch_assoc($res); 
     $res1=array($row);
 

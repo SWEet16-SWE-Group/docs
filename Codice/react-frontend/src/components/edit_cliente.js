@@ -35,7 +35,7 @@ class UpdateCliente extends Component {
             return (
                 <div className="container-fluid d-flex justify-content-center mb-5">
                    {this.state.cliente.map((rs, index) => (
-                    <form key={index} className="form-group col-4" onSubmit={this.handleSubmit}>
+                    <form key={index} className="form-group col-4">
                         <h1 className="mt-4 d-flex justify-content-center">REAL TIME UPDATE</h1>
                             <div>
                             <label htmlFor="username">Modifica nome utente:</label>
