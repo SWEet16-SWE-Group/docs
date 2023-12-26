@@ -34,11 +34,6 @@ class FormPrenotazione extends Component {
       this.setState({ ristoranti: response.data}));
   }
 
-  componentDidMount2() {
-    axios.get('http://localhost:8888/select_multiple_ristorante.php').then(response =>
-      this.setState({ ristoranti: response.data}));
-  }
-
   handleSelect = (selectedPage) => {
     this.setState({ page: selectedPage });
   };
@@ -123,7 +118,7 @@ class FormPrenotazione extends Component {
     document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
     this.state.page2compiled = true;
     
-    const id =  this.state.ristoranteselezionato[0].ID_Ristorante;
+    const id =  this.state.ristoranteselezionato[0].ID_ristorante;
     const data =  this.state.data;
     const oraa =  this.state.orarioarrivo;
     const orap =  this.state.orariopartenza;
@@ -138,15 +133,12 @@ class FormPrenotazione extends Component {
       } 
     ]
     event.preventDefault();
-
-    axios
+    
+     axios
       .post("http://localhost:8888/select_multiple_tavolo.php", tavolo[0])
-
-    axios
-      .get('http://localhost:8888/select_multiple_tavolo.php').then(response =>
-      this.setState({ tavoli: response.data}));
-
-      console.log(this.state.tavoli);
+      .then(response => {
+        this.setState({ tavoli: response.data});
+    })       
 
     }
   }
@@ -229,7 +221,6 @@ class FormPrenotazione extends Component {
                  <th>Numero posti</th>
                  <th>Giorno</th>
                  <th>Orario di occupazione</th>
-                 <th></th>
                 </tr>
                </thead>
                <tbody>
@@ -239,11 +230,6 @@ class FormPrenotazione extends Component {
                    <td>{rs.Num_posti}</td>
                    <td>{rs.Data_prenotazione}</td>
                    <td>{rs.Orario_arrivo} - {rs.Orario_partenza}</td>
-                   <td>
-                    <form className="form-group col-4">
-                        <button type="submit" className="btn btn-outline-danger">Elimina</button>
-                    </form>
-                   </td>
                  </tr>
                  ))}
                </tbody>

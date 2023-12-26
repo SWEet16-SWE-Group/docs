@@ -13,19 +13,22 @@ if(isset($data['id_ristorante']))
     $id = $data['id_ristorante'];
     $num = $data['num_posti'];
     $date = $data['giorno'];
-    $oraa = $data['orario_arrivo'];
-    $orap = $data['orario_partenza'];
+    $orario_arrivo = $data['orario_arrivo'];
+    $orario_partenza = $data['orario_partenza'];
 
-    $res = $conn->execute_query("SELECT * FROM tavolo WHERE Id_ristorante = $id AND Num_posti = $num AND Data_prenotazione = '$date'");
-    $res1=array();
-    while ($row = mysqli_fetch_assoc($res)) 
-    {
-        array_push($res1, $row);
+    $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ? AND Data_prenotazione = ?");
+    $stmt->bind_param("iss", $id, $num, $date);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    $res1 = array();
+
+    while ($row = $result->fetch_assoc()) {
+        $res1[] = $row;
     }
 
-    $decoded=json_encode($res1);
+    echo json_encode($res1);
 
-    echo $decoded;
 }
 
 ?>
