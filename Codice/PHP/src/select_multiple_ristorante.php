@@ -5,7 +5,7 @@
 
     include "./conn.php";
 
-    $res = $conn->execute_query("SELECT ID_Ristorante, Ragione_sociale, Indirizzo, CAP, Citta, Provincia FROM ristorante");
+    $res = $conn->execute_query("SELECT * FROM ristorante");
     $res1=array();
     while ($row = mysqli_fetch_assoc($res)) 
     {
