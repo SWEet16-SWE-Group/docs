@@ -13,8 +13,6 @@ if(isset($data['id_ristorante']))
     $id = $data['id_ristorante'];
     $num = $data['num_posti'];
     $date = $data['giorno'];
-    $orario_arrivo = $data['orario_arrivo'];
-    $orario_partenza = $data['orario_partenza'];
 
     $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ? AND Data_prenotazione = ?");
     $stmt->bind_param("iss", $id, $num, $date);
