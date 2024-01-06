@@ -18,6 +18,14 @@ if(isset($data['id_ristorante']))
     $stmt->bind_param("iss", $id, $num, $date);
     $stmt->execute();
     $result = $stmt->get_result();
+
+    if($result->num_rows === 0)
+    {
+        $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ?");
+        $stmt->bind_param("is", $id, $num);
+        $stmt->execute();
+        $result = $stmt->get_result();
+    }
     
     $res1 = array();
 

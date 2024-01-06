@@ -6,7 +6,10 @@ class FormPrenotazione extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cliente: [],
+      prenotazione: [],
+      altriclienti: [],
+      clientifiltrati: [],
+      clienteselezionato: [],
       ristoranti: [],
       ristorantifiltrati: [],
       ristoranteselezionato: [],
@@ -14,6 +17,7 @@ class FormPrenotazione extends Component {
       tavoloselezionato: [],
       orari: [],
       cerca: "",
+      cerca2: "",
       numeropersone: "",
       data: "",
       orarioarrivo: "",
@@ -27,7 +31,9 @@ class FormPrenotazione extends Component {
       page4compiled: false,
     };
     this.filterList = this.filterList.bind(this);
+    this.filterList2 = this.filterList2.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
+    this.handleSearch2 = this.handleSearch2.bind(this);
     this.handleRadioChange = this.handleRadioChange.bind(this);
     this.handleRadio2Change = this.handleRadio2Change.bind(this);
     this.FasciaChange = this.FasciaChange.bind(this);
@@ -36,13 +42,15 @@ class FormPrenotazione extends Component {
     this.handleTimeAClick = this.handleTimeAClick.bind(this);
     this.handleTimePClick = this.handleTimePClick.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleInviteClick = this.handleInviteClick.bind(this);
   }
 
   componentDidMount() {
     axios.get('http://localhost:8888/select_multiple_ristorante.php').then(response =>
       this.setState({ ristoranti: response.data}));
+
     axios.get('http://localhost:8888/select_single_cliente.php').then(response =>
-      this.setState({ cliente: response.data}));
+      this.setState({ clienteselezionato: response.data}));
   }
 
 
@@ -58,10 +66,10 @@ class FormPrenotazione extends Component {
     ]
     
      axios
-      .post("http://localhost:8888/select_multiple_tavolo.php", tavolo[0])
-      .then(response => {
+      .post("http://localhost:8888/select_multiple_tavolo.php", tavolo[0]).then(response => 
+      {
         this.setState({ tavoli: response.data});
-    }) 
+      }) 
     }
 
   }
@@ -91,6 +99,22 @@ class FormPrenotazione extends Component {
     this.state.ristoranteselezionato[0] = this.state.ristoranti[id];
     this.state.page0compiled = true;
     document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
+  }
+
+  handleSearch2 = (event) => {
+    const cerca2 = event.target.value.toLowerCase();
+    this.setState({ cerca2 }, () => this.filterList2());
+  }
+
+  filterList2() {
+    let clienti = this.state.altriclienti;
+    let cerca2 = this.state.cerca2;
+
+    clienti = clienti.filter(function(clienti) {
+      if(cerca2!=="")
+        return clienti.Username.toLowerCase().indexOf(cerca2) !== -1;
+    });
+    this.setState({ clientifiltrati: clienti });
   }
 
   handleDateChange = (event) => { 
@@ -271,7 +295,7 @@ class FormPrenotazione extends Component {
       }))
       const ok = tavoliValues.every((tavolo) => tavolo.isBetween);
 
-      if(ok===false || this.state.tavoli.length===0)
+      if(ok===false)
       {
         const tavoloValido = tavoliValues.find((tavolo) => !tavolo.isBetween);
         if(tavoloValido)
@@ -334,9 +358,14 @@ class FormPrenotazione extends Component {
   };
 
   compareAfterOrari = (orario, index) => {
-    const { orarioarrivo } = this.state;
+    const { tavoli } = this.state;
 
-      const ok = this.checkTimeAfter(orarioarrivo, orario);
+      const tavoliValues = tavoli.map((tavolo) => ({
+        tavoloArrivo: tavolo.Orario_arrivo,
+        tavoloPartenza: tavolo.Orario_partenza,
+        isBetween: this.checkTimeAfter(tavolo.Orario_arrivo, tavolo.Orario_partenza, orario)
+      }))
+      const ok = tavoliValues.every((tavolo) => tavolo.isBetween);
 
       if(ok===false || this.state.tavoli.length===0)
       { 
@@ -386,21 +415,25 @@ class FormPrenotazione extends Component {
     }
   };
 
-  checkTimeAfter = (arrivo, orario) => {
+  
+  checkTimeAfter = (arrivo, partenza, orario) => {
     const arrivoTime = new Date(`2000-01-01 ${arrivo}`);
+    const partenzaTime = new Date(`2000-01-01 ${partenza}`);
     const orarioTime = new Date(`2000-01-01 ${orario}`);
 
-    return orarioTime <= arrivoTime;   
+    return orarioTime >= arrivoTime && orarioTime <= partenzaTime.setMinutes(+15);    
   };
+  
 
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const cliente = this.state.cliente[0].ID_cliente;
+    const cliente = this.state.clienteselezionato[0].ID_cliente;
     const tavolo = this.state.tavoloselezionato[0].ID_tavolo;
     const ristorante = this.state.ristoranteselezionato[0].ID_ristorante;
     const numero = this.state.numeropersone;
-    const username = this.state.cliente[0].Username;
+    const username = this.state.clienteselezionato[0].Username;
+    const codice = username + "#" + tavolo;
     const data = this.state.data;
     const inizio = this.state.orarioarrivo;
     const fine = this.state.orariopartenza;
@@ -412,6 +445,7 @@ class FormPrenotazione extends Component {
       id_cliente : cliente,
       id_tavolo : tavolo,
       id_ristorante : ristorante,
+      codice_prenotazione: codice,
       numero_persone : numero,
       partecipanti : username,
       giorno : data,
@@ -423,8 +457,35 @@ class FormPrenotazione extends Component {
     ]
 
     axios
-      .post("http://localhost:8888/insert_prenotazione.php", insert[0])
+      .post("http://localhost:8888/insert_prenotazione.php", insert[0]).then(response => 
+      {
+        this.setState({ prenotazione: response.data});
+      })
+    
+    let id_cliente=this.state.clienteselezionato[0].ID_cliente;
+    axios.post('http://localhost:8888/select_multiple_exeption_cliente.php', {id_cliente}).then(response =>
+    {        
+      this.setState({ altriclienti: response.data});
+    }) 
+
+    document.getElementById("form-prenotazione").style.display="none";
+    document.getElementById("form-invito").classList.remove("d-none");
+    document.getElementById("form-invito").style.display="flex";
   };
+
+  handleInviteClick = (index) => (event) => { 
+    let nome = event.target.value;
+    let lista = this.state.prenotazione[0].Partecipanti + "," + nome;
+    let id_prenotazione=this.state.prenotazione[0].ID_prenotazione;
+    axios.post('http://localhost:8888/update_prenotazione.php', {id_prenotazione, lista})
+    document.getElementById("invito" + index).setAttribute("disabled","disabled");
+    document.getElementById("invito" + index).innerHTML = 'Invitato';
+
+    const reducedArr = [...this.state.altriclienti];
+    reducedArr.splice(index, 1);
+    this.setState({altriclienti: reducedArr})
+
+  }
 
 
   render() {
@@ -465,16 +526,17 @@ class FormPrenotazione extends Component {
         }
     }
     return (
-        <form onSubmit={this.handleSubmit}>
-        <Carousel activeIndex={page} onSelect={this.handleSelect} className="container-fluid p-auto w-75 border rounded border-2 margin-top h-auto" autoPlay={false} interval={null} controls={true} indicators={false}>
+        <>
+        <form id="form-prenotazione" onSubmit={this.handleSubmit}>
+        <Carousel activeIndex={page} onSelect={this.handleSelect} className="container-fluid p-auto w-75 border rounded border-2 margin-top h-auto" autoPlay={false} interval={null} controls={true} indicators={false} >
           <Carousel.Item>
             <h1 className="my-4 d-flex justify-content-center">PRENOTAZIONE</h1>
                             <div className="m-5">
                               <label htmlFor="ricerca">Trova un ristorante:</label>
-                              <input type="text" className="form-control mb-3" name="ricerca" id="ricerca" placeholder="Cerca" value={this.state.cerca} onChange={this.handleSearch}/>
+                              <input type="text" className="form-control mb-3" name="ricerca_rist" id="ricerca_rist" placeholder="Cerca" value={this.state.cerca} onChange={this.handleSearch}/>
                               {this.state.ristorantifiltrati.map((rs, index) => (
                               <div key={index}>
-                                <input type="radio" className="mb-2 mr-1" id="seleziona_rist" name="seleziona_rist" value={index} onClick={this.handleRadioChange}/> <label htmlFor="seleziona_rist" className="text-break">{rs.Ragione_sociale + ", " + rs.Citta}</label>
+                                <input type="radio" className="form-check-input mb-2 mr-1" id="seleziona_rist" name="seleziona_rist" value={index} onClick={this.handleRadioChange}/> <label htmlFor="seleziona_rist" className="text-break">{rs.Ragione_sociale + ", " + rs.Citta}</label>
                               </div>
                               ))}
                             </div>
@@ -491,10 +553,10 @@ class FormPrenotazione extends Component {
                                   <div key={index}>
                                     <label htmlFor="fascia">Seleziona una fascia oraria:</label>
                                     <div>
-                                      <input type="radio" className="mb-2 mr-1" id="fascia" name="fascia" value="pranzo" onClick={this.handleRadio2Change}/> <span>Pranzo ({rs.Orario_apertura_mat} - {rs.Orario_chiusura_mat})</span>
+                                      <input type="radio" className="form-check-input mb-2 mr-1" id="fascia" name="fascia" value="pranzo" onClick={this.handleRadio2Change}/> <span>Pranzo ({rs.Orario_apertura_mat} - {rs.Orario_chiusura_mat})</span>
                                     </div>
                                     <div>
-                                      <input type="radio" className="mb-2 mr-1" id="fascia" name="fascia" value="cena" onClick={this.handleRadio2Change}/> <span>Cena ({rs.Orario_apertura_pom} - {rs.Orario_chiusura_pom})</span>
+                                      <input type="radio" className="form-check-input mb-2 mr-1" id="fascia" name="fascia" value="cena" onClick={this.handleRadio2Change}/> <span>Cena ({rs.Orario_apertura_pom} - {rs.Orario_chiusura_pom})</span>
                                     </div>
                                   </div>
                                 ))}
@@ -545,6 +607,25 @@ class FormPrenotazione extends Component {
           </Carousel.Item>
           </Carousel>
         </form>
+
+        <form id="form-invito" className="d-none">
+           <div className="container-fluid p-auto w-75 border rounded border-2 margin-top h-auto">
+           <h1 className="my-4 text-center text-success">PRENOTAZIONE EFFETTUATA CON SUCCESSO</h1>
+           {this.state.prenotazione.map((rs, index) => (
+              <h5 key={index} className="my-2 text-center">Il tuo codice di prenotazione è: {rs.Codice}</h5>
+            ))}
+            <div className="m-5">
+              <label htmlFor="ricerca_cliente">Invita un altro utente a partecipare:</label>
+              <input type="text" className="form-control mb-3" name="ricerca_cliente" id="ricerca_cliente" placeholder="Cerca" value={this.state.cerca2} onChange={this.handleSearch2}/>
+              {this.state.clientifiltrati.map((rs, index) => (
+                <div key={index}>
+                  <button id={"invito"+index} name={"invito"+index} type="button" className="btn btn-outline-primary m-2" value={rs.Username} onClick={this.handleInviteClick(index)}>Invita</button> <label htmlFor={"invito"+index} className="text-break">{rs.Username}</label>
+                </div>
+              ))}
+            </div>
+           </div>
+        </form>
+      </>
       );
     }
 }
