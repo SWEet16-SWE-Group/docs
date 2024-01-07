@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    main {
+      display: grid;
+      grid-template-columns: auto auto;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .accettata {
+      background-color: #00FF0088;
+    }
+
+    .rifiutata {
+      background-color: #FF000088;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Dashboard ristoratori</h1>
+  <header>
+    <h2>Prenotazioni</h2>
+  </header>
+  <main>
+    <nav>
+      <h3>pending</h3>
+      <ul>
+        <li>
+          <p>prenotazione 4 | data-ora | n. persone | cliente | etc</p><button
+            onclick='accetta(this)'>Accetta</button><button onclick='rifiuta(this)'>Rifiuta</button>
+        </li>
+        <li>
+          <p>prenotazione 5 | data-ora | n. persone | cliente | etc</p><button
+            onclick='accetta(this)'>Accetta</button><button onclick='rifiuta(this)'>Rifiuta</button>
+        </li>
+        <li>
+          <p>prenotazione 6 | data-ora | n. persone | cliente | etc</p><button
+            onclick='accetta(this)'>Accetta</button><button onclick='rifiuta(this)'>Rifiuta</button>
+        </li>
+        <li>
+          <p>prenotazione 7 | data-ora | n. persone | cliente | etc</p><button
+            onclick='accetta(this)'>Accetta</button><button onclick='rifiuta(this)'>Rifiuta</button>
+        </li>
+        <li>
+          <p>prenotazione 9 | data-ora | n. persone | cliente | etc</p><button
+            onclick='accetta(this)'>Accetta</button><button onclick='rifiuta(this)'>Rifiuta</button>
+        </li>
+      </ul>
+    </nav>
+    <div>
+      <nav>
+        <h3>Accettate</h3>
+        <ul id='accettate'>
+          <li>
+            <p>prenotazione 1 | data-ora | n. persone | ristorante | etc</p>
+          </li>
+          <li>
+            <p>prenotazione 8 | data-ora | n. persone | ristorante | etc</p>
+          </li>
+        </ul>
+      </nav>
+      <nav>
+        <h3>Rifiutate</h3>
+        <ul id='rifiutate'>
+          <li>
+            <p>prenotazione 2 | data-ora | n. persone | ristorante | etc</p>
+          </li>
+          <li>
+            <p>prenotazione 3 | data-ora | n. persone | ristorante | etc</p>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </main>
+</body>
+
+</html>
+
+<script>
+
+  function move(list, elem) {
+    const line = elem.parentNode;
+    const prenotazione = line.children[0];
+    line.parentNode.removeChild(line);
+    const li = document.createElement('li');
+    li.appendChild(prenotazione);
+    list.appendChild(li);
+  }
+
+  const accetta = move.bind(null, document.getElementById('accettate'));
+  const rifiuta = move.bind(null, document.getElementById('rifiutate'));
+
+</script>
