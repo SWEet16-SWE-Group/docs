@@ -88,16 +88,20 @@ class FormPrenotazione extends Component {
     let cerca = this.state.cerca;
 
     ristoranti = ristoranti.filter(function(ristoranti) {
-      if(cerca!=="")
-        return ristoranti.Ragione_sociale.toLowerCase().indexOf(cerca) !== -1;
+        return cerca !== "" && ristoranti.Ragione_sociale.toLowerCase().indexOf(cerca) !== -1;
     });
     this.setState({ ristorantifiltrati: ristoranti });
   }
 
   handleRadioChange = (event) => { 
     let id = event.target.value;
-    this.state.ristoranteselezionato[0] = this.state.ristoranti[id];
-    this.state.page0compiled = true;
+    let nuovoRistoranteSelezionato = [...this.state.ristoranteselezionato];
+    nuovoRistoranteSelezionato[0] = this.state.ristoranti[id];
+  
+    this.setState({
+      ristoranteselezionato: nuovoRistoranteSelezionato,
+      page0compiled: true
+    });
     document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
   }
 
@@ -111,23 +115,22 @@ class FormPrenotazione extends Component {
     let cerca2 = this.state.cerca2;
 
     clienti = clienti.filter(function(clienti) {
-      if(cerca2!=="")
-        return clienti.Username.toLowerCase().indexOf(cerca2) !== -1;
+      return cerca2 !== "" && clienti.Username.toLowerCase().indexOf(cerca2) !== -1;
     });
     this.setState({ clientifiltrati: clienti });
   }
 
   handleDateChange = (event) => { 
     let data = event.target.value;
-    this.state.data = data;
+    this.setState({data: data});
     if(this.state.fascia !== "") 
     {
-      this.state.page1compiled=true;
+      this.setState({page1compiled: true});
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
     }
     else
     {
-      this.state.page1compiled=false;
+      this.setState({page1compiled: false});
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
     }
 
@@ -138,16 +141,18 @@ class FormPrenotazione extends Component {
   }
 
   handleRadio2Change = (event) => { 
-    this.state.fascia=event.target.value;
-    this.FasciaChange();
+    let fascia = event.target.value;
+    this.setState({ fascia: fascia }, () => {
+      this.FasciaChange();
+    });
     if(this.state.data !== "") 
     {
-      this.state.page1compiled=true;
+      this.setState({page1compiled: true});
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
     }
     else
     {
-      this.state.page1compiled=false;
+      this.setState({page1compiled: false});
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
     }
   }
@@ -156,10 +161,10 @@ class FormPrenotazione extends Component {
   handleTimeAClick = (event) => { 
     let oraa = event.target.value;
     let id = event.target.id;
-    this.state.orarioarrivo = oraa;
+    this.setState({orarioarrivo: oraa});
     if(oraa !== "")
     {
-      this.state.page3compiled=true;
+      this.setState({page3compiled: true});
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
       if(document.getElementsByClassName("arrivo")[0])
       {
@@ -171,7 +176,7 @@ class FormPrenotazione extends Component {
     }
     else
     {
-      this.state.page3compiled=false;
+      this.setState({page3compiled: false});
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
     }
   }
@@ -179,10 +184,10 @@ class FormPrenotazione extends Component {
   handleTimePClick = (event) => { 
     let orap = event.target.value;
     let id = event.target.id;
-    this.state.orariopartenza = orap;
+    this.setState({orariopartenza: orap});
     if(orap !== "")
     {
-      this.state.page4compiled=true;
+      this.setState({page4compiled: true});
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
       if(document.getElementsByClassName("partenza")[0])
       {
@@ -194,7 +199,7 @@ class FormPrenotazione extends Component {
     }
     else
     {
-      this.state.page4compiled=false;
+      this.setState({page4compiled: false});
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
     }
   }
@@ -270,13 +275,13 @@ class FormPrenotazione extends Component {
     if(num==="")
     {
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
-      this.state.page2compiled = false;
+      this.setState({page2compiled: false});
     }
     else
     {
-      this.state.numeropersone = num;
+      this.setState({numeropersone: num});
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
-      this.state.page2compiled = true;
+      this.setState({page2compiled: true});
 
       event.preventDefault();
 
@@ -358,16 +363,17 @@ class FormPrenotazione extends Component {
   };
 
   compareAfterOrari = (orario, index) => {
-    const { tavoli } = this.state;
+    const { tavoli, orarioarrivo } = this.state;
 
       const tavoliValues = tavoli.map((tavolo) => ({
         tavoloArrivo: tavolo.Orario_arrivo,
         tavoloPartenza: tavolo.Orario_partenza,
-        isBetween: this.checkTimeAfter(tavolo.Orario_arrivo, tavolo.Orario_partenza, orario)
+        isBetween: this.checkTimeOverlap2(tavolo.Orario_arrivo, tavolo.Orario_partenza, orario)
       }))
       const ok = tavoliValues.every((tavolo) => tavolo.isBetween);
+      const ok2 = this.checkTimeAfter(orarioarrivo, orario);
 
-      if(ok===false || this.state.tavoli.length===0)
+      if(ok===false && ok2===false)
       { 
         if(index===0)
         {
@@ -415,8 +421,15 @@ class FormPrenotazione extends Component {
     }
   };
 
+    checkTimeAfter = (arrivo, orario) => {
+      const arrivoTime = new Date(`2000-01-01 ${arrivo}`);
+      const orarioTime = new Date(`2000-01-01 ${orario}`);
   
-  checkTimeAfter = (arrivo, partenza, orario) => {
+      return orarioTime <= arrivoTime;     
+    };
+
+  
+  checkTimeOverlap2 = (arrivo, partenza, orario) => {
     const arrivoTime = new Date(`2000-01-01 ${arrivo}`);
     const partenzaTime = new Date(`2000-01-01 ${partenza}`);
     const orarioTime = new Date(`2000-01-01 ${orario}`);
