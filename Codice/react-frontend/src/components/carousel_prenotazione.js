@@ -29,6 +29,8 @@ class FormPrenotazione extends Component {
       page2compiled: false,
       page3compiled: false,
       page4compiled: false,
+      carousel: true,
+      invito: false
     };
     this.filterList = this.filterList.bind(this);
     this.filterList2 = this.filterList2.bind(this);
@@ -204,70 +206,64 @@ class FormPrenotazione extends Component {
     }
   }
 
-  FasciaChange()
-  {
-    this.state.orari.length=0;
-    if(this.state.fascia==="pranzo")
-    {
+  FasciaChange() {
+    const nuoviOrari = [];
+  
+    if (this.state.fascia === "pranzo") {
       let apertura = this.state.ristoranteselezionato[0].Orario_apertura_mat;
       let chiusura = this.state.ristoranteselezionato[0].Orario_chiusura_mat;
-
-      let aperturaParts = apertura.split(":");    
-      let chiusuraParts = chiusura.split(":");  
-
+  
+      let aperturaParts = apertura.split(":");
+      let chiusuraParts = chiusura.split(":");
+  
       let a = new Date();
       let c = new Date();
-
-      a.setHours(+aperturaParts[0]);    
-      a.setMinutes(+aperturaParts[1]); 
-
-      c.setHours(+chiusuraParts[0]);    
+  
+      a.setHours(+aperturaParts[0]);
+      a.setMinutes(+aperturaParts[1]);
+  
+      c.setHours(+chiusuraParts[0]);
       c.setMinutes(+chiusuraParts[1]);
-    
-      
-      while((a.getHours()<=c.getHours()))
-      {
-        let item=a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
-        this.state.orari.push(item);
-        a.setMinutes(a.getMinutes()+15);
+  
+      while (a.getHours() <= c.getHours()) {
+        let item = a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
+        nuoviOrari.push(item);
+        a.setMinutes(a.getMinutes() + 15);
       }
-      while((a.getMinutes()<=c.getMinutes()))
-      {
-        let item=a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
-        this.state.orari.push(item);
-        a.setMinutes(a.getMinutes()+15,0,0);
+      while (a.getMinutes() <= c.getMinutes()) {
+        let item = a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
+        nuoviOrari.push(item);
+        a.setMinutes(a.getMinutes() + 15, 0, 0);
       }
-    }
-    else if(this.state.fascia==="cena")
-    {
+    } else if (this.state.fascia === "cena") {
       let apertura = this.state.ristoranteselezionato[0].Orario_apertura_pom;
       let chiusura = this.state.ristoranteselezionato[0].Orario_chiusura_pom;
-
-      let aperturaParts = apertura.split(":");    
-      let chiusuraParts = chiusura.split(":");  
-
+  
+      let aperturaParts = apertura.split(":");
+      let chiusuraParts = chiusura.split(":");
+  
       let a = new Date();
       let c = new Date();
-
-      a.setHours(+aperturaParts[0]);    
-      a.setMinutes(+aperturaParts[1]); 
-
-      c.setHours(+chiusuraParts[0]);    
+  
+      a.setHours(+aperturaParts[0]);
+      a.setMinutes(+aperturaParts[1]);
+  
+      c.setHours(+chiusuraParts[0]);
       c.setMinutes(+chiusuraParts[1]);
-      
-      while((a.getHours()<=c.getHours()))
-      {
-        let item=a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
-        this.state.orari.push(item);
-        a.setMinutes(a.getMinutes()+15);
+  
+      while (a.getHours() <= c.getHours()) {
+        let item = a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
+        nuoviOrari.push(item);
+        a.setMinutes(a.getMinutes() + 15);
       }
-      while((a.getMinutes()<=c.getMinutes()))
-      {
-        let item=a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
-        this.state.orari.push(item);
-        a.setMinutes(a.getMinutes()+15,0,0);
+      while (a.getMinutes() <= c.getMinutes()) {
+        let item = a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
+        nuoviOrari.push(item);
+        a.setMinutes(a.getMinutes() + 15, 0, 0);
       }
     }
+  
+    this.setState({orari: nuoviOrari});
   }
 
   handleNumberChange = (event) => {
@@ -481,9 +477,8 @@ class FormPrenotazione extends Component {
       this.setState({ altriclienti: response.data});
     }) 
 
-    document.getElementById("form-prenotazione").style.display="none";
-    document.getElementById("form-invito").classList.remove("d-none");
-    document.getElementById("form-invito").style.display="flex";
+    this.setState({carousel: false, invito: true});
+
   };
 
   handleInviteClick = (index) => (event) => { 
@@ -540,6 +535,7 @@ class FormPrenotazione extends Component {
     }
     return (
         <>
+        {this.state.carousel && (
         <form id="form-prenotazione" onSubmit={this.handleSubmit}>
         <Carousel activeIndex={page} onSelect={this.handleSelect} className="container-fluid p-auto w-75 border rounded border-2 margin-top h-auto" autoPlay={false} interval={null} controls={true} indicators={false} >
           <Carousel.Item>
@@ -620,8 +616,10 @@ class FormPrenotazione extends Component {
           </Carousel.Item>
           </Carousel>
         </form>
+        )}
 
-        <form id="form-invito" className="d-none">
+      {this.state.invito && (
+        <div id="form-invito">
            <div className="container-fluid p-auto w-75 border rounded border-2 margin-top h-auto">
            <h1 className="my-4 text-center text-success">PRENOTAZIONE EFFETTUATA CON SUCCESSO</h1>
            {this.state.prenotazione.map((rs, index) => (
@@ -637,7 +635,8 @@ class FormPrenotazione extends Component {
               ))}
             </div>
            </div>
-        </form>
+        </div>
+        )}
       </>
       );
     }
