@@ -30,7 +30,8 @@ class FormPrenotazione extends Component {
       page3compiled: false,
       page4compiled: false,
       carousel: true,
-      invito: false
+      invito: false,
+      orarioArrivoSelezionato: false,
     };
     this.filterList = this.filterList.bind(this);
     this.filterList2 = this.filterList2.bind(this);
@@ -90,20 +91,16 @@ class FormPrenotazione extends Component {
     let cerca = this.state.cerca;
 
     ristoranti = ristoranti.filter(function(ristoranti) {
-        return cerca !== "" && ristoranti.Ragione_sociale.toLowerCase().indexOf(cerca) !== -1;
+      if(cerca!=="")
+        return ristoranti.Ragione_sociale.toLowerCase().indexOf(cerca) !== -1;
     });
     this.setState({ ristorantifiltrati: ristoranti });
   }
 
   handleRadioChange = (event) => { 
     let id = event.target.value;
-    let nuovoRistoranteSelezionato = [...this.state.ristoranteselezionato];
-    nuovoRistoranteSelezionato[0] = this.state.ristoranti[id];
-  
-    this.setState({
-      ristoranteselezionato: nuovoRistoranteSelezionato,
-      page0compiled: true
-    });
+    this.state.ristoranteselezionato[0] = this.state.ristoranti[id];
+    this.state.page0compiled = true;
     document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
   }
 
@@ -117,22 +114,23 @@ class FormPrenotazione extends Component {
     let cerca2 = this.state.cerca2;
 
     clienti = clienti.filter(function(clienti) {
-      return cerca2 !== "" && clienti.Username.toLowerCase().indexOf(cerca2) !== -1;
+      if(cerca2!=="")
+        return clienti.Username.toLowerCase().indexOf(cerca2) !== -1;
     });
     this.setState({ clientifiltrati: clienti });
   }
 
   handleDateChange = (event) => { 
     let data = event.target.value;
-    this.setState({data: data});
+    this.state.data = data;
     if(this.state.fascia !== "") 
     {
-      this.setState({page1compiled: true});
+      this.state.page1compiled=true;
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
     }
     else
     {
-      this.setState({page1compiled: false});
+      this.state.page1compiled=false;
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
     }
 
@@ -143,18 +141,16 @@ class FormPrenotazione extends Component {
   }
 
   handleRadio2Change = (event) => { 
-    let fascia = event.target.value;
-    this.setState({ fascia: fascia }, () => {
-      this.FasciaChange();
-    });
+    this.state.fascia=event.target.value;
+    this.FasciaChange();
     if(this.state.data !== "") 
     {
-      this.setState({page1compiled: true});
+      this.state.page1compiled=true;
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
     }
     else
     {
-      this.setState({page1compiled: false});
+      this.state.page1compiled=false;
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
     }
   }
@@ -163,10 +159,11 @@ class FormPrenotazione extends Component {
   handleTimeAClick = (event) => { 
     let oraa = event.target.value;
     let id = event.target.id;
-    this.setState({orarioarrivo: oraa});
+    this.state.orarioarrivo = oraa;
     if(oraa !== "")
     {
-      this.setState({page3compiled: true});
+      this.setState({ orarioArrivoSelezionato: true });
+      this.state.page3compiled=true;
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
       if(document.getElementsByClassName("arrivo")[0])
       {
@@ -178,7 +175,8 @@ class FormPrenotazione extends Component {
     }
     else
     {
-      this.setState({page3compiled: false});
+      this.setState({ orarioArrivoSelezionato: false });
+      this.state.page3compiled=false;
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
     }
   }
@@ -186,10 +184,10 @@ class FormPrenotazione extends Component {
   handleTimePClick = (event) => { 
     let orap = event.target.value;
     let id = event.target.id;
-    this.setState({orariopartenza: orap});
+    this.state.orariopartenza = orap;
     if(orap !== "")
     {
-      this.setState({page4compiled: true});
+      this.state.page4compiled=true;
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
       if(document.getElementsByClassName("partenza")[0])
       {
@@ -201,69 +199,76 @@ class FormPrenotazione extends Component {
     }
     else
     {
-      this.setState({page4compiled: false});
+      
+      this.state.page4compiled=false;
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
     }
   }
 
-  FasciaChange() {
-    const nuoviOrari = [];
-  
-    if (this.state.fascia === "pranzo") {
+  FasciaChange()
+  {
+    this.state.orari.length=0;
+    if(this.state.fascia==="pranzo")
+    {
       let apertura = this.state.ristoranteselezionato[0].Orario_apertura_mat;
       let chiusura = this.state.ristoranteselezionato[0].Orario_chiusura_mat;
-  
-      let aperturaParts = apertura.split(":");
-      let chiusuraParts = chiusura.split(":");
-  
+
+      let aperturaParts = apertura.split(":");    
+      let chiusuraParts = chiusura.split(":");  
+
       let a = new Date();
       let c = new Date();
-  
-      a.setHours(+aperturaParts[0]);
-      a.setMinutes(+aperturaParts[1]);
-  
-      c.setHours(+chiusuraParts[0]);
+
+      a.setHours(+aperturaParts[0]);    
+      a.setMinutes(+aperturaParts[1]); 
+
+      c.setHours(+chiusuraParts[0]);    
       c.setMinutes(+chiusuraParts[1]);
-  
-      while (a.getHours() <= c.getHours()) {
-        let item = a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
-        nuoviOrari.push(item);
-        a.setMinutes(a.getMinutes() + 15);
+    
+      
+      while((a.getHours()!==c.getHours()))
+      {
+        let item=a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
+        this.state.orari.push(item);
+        a.setMinutes(a.getMinutes()+15);
       }
-      while (a.getMinutes() <= c.getMinutes()) {
-        let item = a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
-        nuoviOrari.push(item);
-        a.setMinutes(a.getMinutes() + 15, 0, 0);
-      }
-    } else if (this.state.fascia === "cena") {
-      let apertura = this.state.ristoranteselezionato[0].Orario_apertura_pom;
-      let chiusura = this.state.ristoranteselezionato[0].Orario_chiusura_pom;
-  
-      let aperturaParts = apertura.split(":");
-      let chiusuraParts = chiusura.split(":");
-  
-      let a = new Date();
-      let c = new Date();
-  
-      a.setHours(+aperturaParts[0]);
-      a.setMinutes(+aperturaParts[1]);
-  
-      c.setHours(+chiusuraParts[0]);
-      c.setMinutes(+chiusuraParts[1]);
-  
-      while (a.getHours() <= c.getHours()) {
-        let item = a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
-        nuoviOrari.push(item);
-        a.setMinutes(a.getMinutes() + 15);
-      }
-      while (a.getMinutes() <= c.getMinutes()) {
-        let item = a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
-        nuoviOrari.push(item);
-        a.setMinutes(a.getMinutes() + 15, 0, 0);
+      while((a.getMinutes()<=c.getMinutes()))
+      {
+        let item=a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
+        this.state.orari.push(item);
+        a.setMinutes(a.getMinutes()+15,0,0);
       }
     }
-  
-    this.setState({orari: nuoviOrari});
+    else if(this.state.fascia==="cena")
+    {
+      let apertura = this.state.ristoranteselezionato[0].Orario_apertura_pom;
+      let chiusura = this.state.ristoranteselezionato[0].Orario_chiusura_pom;
+
+      let aperturaParts = apertura.split(":");    
+      let chiusuraParts = chiusura.split(":");  
+
+      let a = new Date();
+      let c = new Date();
+
+      a.setHours(+aperturaParts[0]);    
+      a.setMinutes(+aperturaParts[1]); 
+
+      c.setHours(+chiusuraParts[0]);    
+      c.setMinutes(+chiusuraParts[1]);
+      
+      while((a.getHours()!==c.getHours()))
+      {
+        let item=a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
+        this.state.orari.push(item);
+        a.setMinutes(a.getMinutes()+15);
+      }
+      while((a.getMinutes()<=c.getMinutes()))
+      {
+        let item=a.getHours() + ":" + (a.getMinutes() === 0 ? "00" : a.getMinutes());
+        this.state.orari.push(item);
+        a.setMinutes(a.getMinutes()+15,0,0);
+      }
+    }
   }
 
   handleNumberChange = (event) => {
@@ -271,13 +276,13 @@ class FormPrenotazione extends Component {
     if(num==="")
     {
       document.getElementsByClassName("carousel-control-next")[0].style.display="none";
-      this.setState({page2compiled: false});
+      this.state.page2compiled = false;
     }
     else
     {
-      this.setState({numeropersone: num});
+      this.state.numeropersone = num;
       document.getElementsByClassName("carousel-control-next")[0].style.display="flex";
-      this.setState({page2compiled: true});
+      this.state.page2compiled = true;
 
       event.preventDefault();
 
@@ -288,6 +293,8 @@ class FormPrenotazione extends Component {
 
   compareAllOrari = (orario, index) => {
     const { tavoli } = this.state;
+
+    console.log(tavoli);
 
       const tavoliValues = tavoli.map((tavolo) => ({
         tavoloArrivo: tavolo.Orario_arrivo,
@@ -351,6 +358,7 @@ class FormPrenotazione extends Component {
   };
 
   checkTimeOverlap = (arrivo, partenza, orario) => {
+
     const arrivoTime = new Date(`2000-01-01 ${arrivo}`);
     const partenzaTime = new Date(`2000-01-01 ${partenza}`);
     const orarioTime = new Date(`2000-01-01 ${orario}`);
@@ -359,17 +367,26 @@ class FormPrenotazione extends Component {
   };
 
   compareAfterOrari = (orario, index) => {
-    const { tavoli, orarioarrivo } = this.state;
+    const { tavoli, orarioarrivo, ristoranteselezionato, fascia } = this.state;
+
+    let fine="";
+    if(fascia==="pranzo")
+    {
+      fine=ristoranteselezionato[0].Orario_chiusura_mat;
+    }
+    else
+    {
+      fine=ristoranteselezionato[0].Orario_chiusura_pom;
+    }
 
       const tavoliValues = tavoli.map((tavolo) => ({
         tavoloArrivo: tavolo.Orario_arrivo,
         tavoloPartenza: tavolo.Orario_partenza,
-        isBetween: this.checkTimeOverlap2(tavolo.Orario_arrivo, tavolo.Orario_partenza, orario)
+        isBetween: this.checkTimeOverlap2(tavolo.Orario_arrivo, tavolo.Orario_partenza, orarioarrivo, fine, orario)
       }))
       const ok = tavoliValues.every((tavolo) => tavolo.isBetween);
-      const ok2 = this.checkTimeAfter(orarioarrivo, orario);
 
-      if(ok===false && ok2===false)
+      if(ok===true)
       { 
         if(index===0)
         {
@@ -416,21 +433,27 @@ class FormPrenotazione extends Component {
         }
     }
   };
-
-    checkTimeAfter = (arrivo, orario) => {
-      const arrivoTime = new Date(`2000-01-01 ${arrivo}`);
-      const orarioTime = new Date(`2000-01-01 ${orario}`);
   
-      return orarioTime <= arrivoTime;     
-    };
-
-  
-  checkTimeOverlap2 = (arrivo, partenza, orario) => {
+  checkTimeOverlap2 = (arrivo, partenza, orarioArrivo, fine, orario) => {
     const arrivoTime = new Date(`2000-01-01 ${arrivo}`);
     const partenzaTime = new Date(`2000-01-01 ${partenza}`);
+    const orarioArrivoTime = new Date(`2000-01-01 ${orarioArrivo}`);
+    const fineTime = new Date(`2000-01-01 ${fine}`);
     const orarioTime = new Date(`2000-01-01 ${orario}`);
 
-    return orarioTime >= arrivoTime && orarioTime <= partenzaTime.setMinutes(+15);    
+    if(orarioTime > orarioArrivoTime && orarioTime <= arrivoTime)
+    {
+      return true;
+    }
+    else if(orarioTime > orarioArrivoTime && orarioTime <= fineTime && partenzaTime <= orarioArrivoTime)
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+
   };
   
 
@@ -596,7 +619,7 @@ class FormPrenotazione extends Component {
                 <h3 className="my-4">Seleziona l'orario di partenza</h3>
                   {this.state.orari.map((rs, index) => (
                       <span key={index} className="form-group">
-                          {this.compareAfterOrari(rs, index)}
+                          {this.state.orarioArrivoSelezionato && this.compareAfterOrari(rs, index)}
                       </span>
                   ))}
                 </div>

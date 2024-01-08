@@ -21,7 +21,7 @@ if(isset($data['id_ristorante']))
 
     if($result->num_rows === 0)
     {
-        $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ?");
+        $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ? AND Data_prenotazione IS NULL");
         $stmt->bind_param("is", $id, $num);
         $stmt->execute();
         $result = $stmt->get_result();
