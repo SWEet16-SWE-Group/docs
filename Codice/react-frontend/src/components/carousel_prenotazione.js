@@ -294,8 +294,6 @@ class FormPrenotazione extends Component {
   compareAllOrari = (orario, index) => {
     const { tavoli } = this.state;
 
-    console.log(tavoli);
-
       const tavoliValues = tavoli.map((tavolo) => ({
         tavoloArrivo: tavolo.Orario_arrivo,
         tavoloPartenza: tavolo.Orario_partenza,
