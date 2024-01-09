@@ -14,7 +14,7 @@ if(isset($data['id_ristorante']))
     $num = $data['num_posti'];
     $date = $data['giorno'];
 
-    $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ? AND Data_prenotazione = ?");
+    $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ? AND (Data_prenotazione = ? OR Data_prenotazione IS NULL)");
     $stmt->bind_param("iss", $id, $num, $date);
     $stmt->execute();
     $result = $stmt->get_result();
