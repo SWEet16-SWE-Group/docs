@@ -35,13 +35,13 @@ class Navbar extends Component {
                 <div className="container-fluid mx-auto col-3 text-start">
                   {pageName === "Dashboard Cliente" && (
                     <>
-                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard Cliente</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
                       <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Form Prenotazione")}>Prenotazione</Link>
                     </>
                   )}
                   {pageName === "Form Prenotazione" && (
                     <>
-                      <Link to="/dashboard_cliente" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Cliente")}>Dashboard Cliente</Link>
+                      <Link to="/dashboard_cliente" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Cliente")}>Dashboard</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
                     </>
                   )}
