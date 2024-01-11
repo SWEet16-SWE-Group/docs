@@ -11,9 +11,8 @@ class FormPrenotazione extends Component {
       clienteselezionato: [],
       ristoranti: [],
       ristoranteselezionato: [],
-      tavoli: [],
       tavoloselezionato: [],
-      numeropersone: "",
+      postidisponibili: "",
       data: "",
       orarioarrivo: "",
       orariopartenza: "",
@@ -21,7 +20,6 @@ class FormPrenotazione extends Component {
       completo: false
     };
     this.handleRadioChange = this.handleRadioChange.bind(this);
-    this.handleNumberChange = this.handleNumberChange.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeAChange = this.handleTimeAChange.bind(this);
     this.handleTimePChange = this.handleTimePChange.bind(this);
@@ -46,46 +44,40 @@ class FormPrenotazione extends Component {
 
   }
 
-  componentSendData(){
-    if((this.state.numeropersone !== "") && (this.state.ristoranteselezionato[0].ID_ristorante !== ""))
-    {
-    const tavolo = [
-      {
-      id_ristorante : this.state.ristoranteselezionato[0].ID_ristorante,
-      num_posti : this.state.numeropersone,
-      } 
-    ]
-
-     axios
-      .post("http://localhost:8888/select_limit_multiple_tavolo.php", tavolo[0]).then(response => 
-      {
-        this.setState({ tavoloselezionato: response.data});
-      }) 
-    }
-
-  }
-
   handleRadioChange = (event) => { 
-    let id = event.target.value;
-    const nuovoRistoranteSelezionato = [this.state.ristoranti[id]];
+    let id_ristorante = event.target.value;
+    const nuovoRistoranteSelezionato = [this.state.ristoranti[id_ristorante]];
 
-    this.setState({ristoranteselezionato: nuovoRistoranteSelezionato,});
+    this.setState({ristoranteselezionato: nuovoRistoranteSelezionato,}, () => {  
+       axios
+        .post("http://localhost:8888/select_limit_single_tavolo.php", {id_ristorante}).then(response => 
+        {
+          const tavolo=response.data;
+          if(this.state.partecipanti.length!==0)
+          {
+            let numeropartecipanti=this.state.partecipanti.length;
+            this.setState({ tavoloselezionato: tavolo, postidisponibili: tavolo[0].Num_posti-numeropartecipanti-1 });
+          }
+          else
+          {
+            this.setState({ tavoloselezionato: response.data, postidisponibili: tavolo[0].Num_posti-1});
+          }
+        }) 
+    });
   }
 
   handleCheckboxChange = (event) => {
     const nome = event.target.value;
     const { partecipanti } = this.state;
   
-    if (partecipanti.includes(nome)) 
-    {
-      this.setState({partecipanti: partecipanti.filter((username) => username !== nome),});
-    } 
-    else 
-    {
-      this.setState({partecipanti: [...partecipanti, nome],});
+    if (partecipanti.includes(nome)) {
+      let numero = this.state.postidisponibili + 1;
+      this.setState({postidisponibili: numero, partecipanti: partecipanti.filter((username) => username !== nome)});
+    } else {
+      let numero = this.state.postidisponibili - 1;
+      this.setState({postidisponibili: numero,partecipanti: [...partecipanti, nome]});
     }
   };
-
   handleDateChange = (event) => { 
     this.setState({data: event.target.value });
 
@@ -99,13 +91,6 @@ class FormPrenotazione extends Component {
     this.setState({orariopartenza: event.target.value });
   }
 
-  handleNumberChange = (event) => {
-    this.setState({numeropersone: event.target.value}, () => {
-      this.componentSendData();
-      console.log(this.state);
-    });
-  }
-
   handleSubmit = (event) => {
 
     event.preventDefault();
@@ -113,7 +98,7 @@ class FormPrenotazione extends Component {
     const cliente = this.state.clienteselezionato[0].ID_cliente;
     const tavolo = this.state.tavoloselezionato[0].ID_tavolo;
     const ristorante = this.state.ristoranteselezionato[0].ID_ristorante;
-    const numero = this.state.numeropersone;
+    const numero = this.state.partecipanti.length+1;
     const username = this.state.clienteselezionato[0].Username;
     const codice = username + "#" + tavolo;
     const data = this.state.data;
@@ -121,7 +106,7 @@ class FormPrenotazione extends Component {
     const fine = this.state.orariopartenza;
     const cod_tavolo = this.state.tavoloselezionato[0].Codice;
     const posti_tavolo = this.state.tavoloselezionato[0].Num_posti;
-    const invitati = username + ',' + this.state.partecipanti.join(', ')
+    const invitati = username + ', ' + this.state.partecipanti.join(', ')
 
     const insert = [
       {
@@ -158,18 +143,21 @@ class FormPrenotazione extends Component {
                   <label htmlFor="ricerca">Seleziona un ristorante:</label>
                   {this.state.ristoranti.map((rs, index) => (
                       <div key={index}>
-                          <input type="radio" className="form-check-input mb-2 mr-1" id="seleziona_rist" name="seleziona_rist" value={index} onClick={this.handleRadioChange}/> <label htmlFor="seleziona_rist" className="text-break">{rs.Ragione_sociale + ", " + rs.Citta}</label>
+                          <input type="radio" className="form-check-input mb-2 mr-1" id="seleziona_rist" name="seleziona_rist" value={rs.ID_ristorante} onClick={this.handleRadioChange}/> <label htmlFor="seleziona_rist" className="text-break">{rs.Ragione_sociale + ", " + rs.Citta}</label>
                       </div>
                   ))}
               </div>
               <div className="m-5 col-4">
-              <label htmlFor="ricerca_cliente">Invita un altro utente:</label>
+              <label htmlFor="ricerca_cliente">Invita un utente:</label>
               {this.state.altriclienti.map((rs, index) => (
                 <div key={index}>
-                    <input type="checkbox" className="form-check-input mb-2 mr-1" id="invita_utenti" name="invita_utenti" value={rs.Username} onClick={this.handleCheckboxChange}/> <label htmlFor="invita_utenti" className="text-break">{rs.Username}</label>
+                    <input type="checkbox" className="form-check-input mb-2 mr-1" id="invita_utenti" name="invita_utenti" value={rs.Username} disabled={this.state.ristoranteselezionato.length===0 || (this.state.postidisponibili===0 && !this.state.partecipanti.includes(rs.Username))} onChange={this.handleCheckboxChange}/> <label htmlFor="invita_utenti" className="text-break">{rs.Username}</label>
                 </div>
               ))}
-            </div>
+                <div className="mt-1">
+                  <span>Numero posti disponibili: {this.state.postidisponibili}</span>
+                </div>
+              </div>
             </div>
             <div className="row mx-auto justify-content-between">
                 <div className="m-5 col-4">
@@ -183,22 +171,17 @@ class FormPrenotazione extends Component {
                     <input type="time" className="form-control" name="orario_arrivo" id="orario_arrivo" onChange={this.handleTimePChange} />
                 </div>
             </div>
-            <div className="m-5">
-                <label htmlFor="num_persone">Seleziona il numero di persone:</label>
-                <input type="number" className="form-control" name="num_persone" id="num_persone" min="1" onChange={this.handleNumberChange} />
-            </div>
-            {this.state.tavoloselezionato[0] && this.state.data && this.state.orarioarrivo && this.state.orariopartenza && this.state.numeropersone && (
+            {this.state.tavoloselezionato[0] && this.state.data && this.state.orarioarrivo && this.state.orariopartenza && this.state.postidisponibili>=0 && (
             <div className="container-fluid my-4 text-center">
-                  <h3 className="my-4">Informazioni prenotazione</h3>
+                  <h3 className="my-4">Riepilogo prenotazione</h3>
                   {this.state.ristoranteselezionato.map((rs, index) => (
                   <h5 key={index} className="my-2">Ristorante: {rs.Ragione_sociale}, {rs.Indirizzo}, {rs.CAP} {rs.Citta} </h5>
                   ))}
                   <h5 className="my-3">Data: {this.state.data}</h5>
                   <h5 className="my-3">Orari: {this.state.orarioarrivo} - {this.state.orariopartenza}</h5>
-                  <h5 className="my-3">Numero di persone: {this.state.numeropersone}</h5>
-                  {this.state.tavoloselezionato.map((rs, index) => (
-                  <h5 key={index} className="my-2">Codice tavolo: {rs.Codice}</h5>
-                  ))}
+                  <h5 className="my-3">Numero di persone: {this.state.partecipanti.length-1}</h5>
+                  <h5 className="my-3">Partecipanti: {this.state.clienteselezionato[0].Username + "," + this.state.partecipanti}</h5>
+                  <h5 className="my-2">Codice tavolo: {this.state.tavoloselezionato[0].Codice}</h5>
                   <button type="submit" className="btn btn-primary btn-lg w-100 mt-3">PRENOTA</button>
             </div>
             )}
