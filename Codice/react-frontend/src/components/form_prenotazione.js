@@ -45,8 +45,9 @@ class FormPrenotazione extends Component {
   }
 
   handleRadioChange = (event) => { 
-    let id_ristorante = event.target.value;
-    const nuovoRistoranteSelezionato = [this.state.ristoranti[id_ristorante]];
+    let id = event.target.value;
+    const nuovoRistoranteSelezionato = [this.state.ristoranti[id]];
+    const id_ristorante = nuovoRistoranteSelezionato[0].ID_ristorante;
 
     this.setState({ristoranteselezionato: nuovoRistoranteSelezionato,}, () => {  
        axios
@@ -143,7 +144,7 @@ class FormPrenotazione extends Component {
                   <label htmlFor="ricerca">Seleziona un ristorante:</label>
                   {this.state.ristoranti.map((rs, index) => (
                       <div key={index}>
-                          <input type="radio" className="form-check-input mb-2 mr-1" id="seleziona_rist" name="seleziona_rist" value={rs.ID_ristorante} onClick={this.handleRadioChange}/> <label htmlFor="seleziona_rist" className="text-break">{rs.Ragione_sociale + ", " + rs.Citta}</label>
+                          <input type="radio" className="form-check-input mb-2 mr-1" id="seleziona_rist" name="seleziona_rist" value={index} onClick={this.handleRadioChange}/> <label htmlFor="seleziona_rist" className="text-break">{rs.Ragione_sociale + ", " + rs.Citta}</label>
                       </div>
                   ))}
               </div>
@@ -171,15 +172,16 @@ class FormPrenotazione extends Component {
                     <input type="time" className="form-control" name="orario_arrivo" id="orario_arrivo" onChange={this.handleTimePChange} />
                 </div>
             </div>
-            {this.state.tavoloselezionato[0] && this.state.data && this.state.orarioarrivo && this.state.orariopartenza && this.state.postidisponibili>=0 && (
+            {this.state.tavoloselezionato[0] && this.state.tavoloselezionato[0] && this.state.data && this.state.orarioarrivo && this.state.orariopartenza && this.state.postidisponibili>=0 && (
             <div className="container-fluid my-4 text-center">
+              <hr />
                   <h3 className="my-4">Riepilogo prenotazione</h3>
                   {this.state.ristoranteselezionato.map((rs, index) => (
                   <h5 key={index} className="my-2">Ristorante: {rs.Ragione_sociale}, {rs.Indirizzo}, {rs.CAP} {rs.Citta} </h5>
                   ))}
                   <h5 className="my-3">Data: {this.state.data}</h5>
                   <h5 className="my-3">Orari: {this.state.orarioarrivo} - {this.state.orariopartenza}</h5>
-                  <h5 className="my-3">Numero di persone: {this.state.partecipanti.length-1}</h5>
+                  <h5 className="my-3">Numero di persone: {this.state.partecipanti.length+1}</h5>
                   <h5 className="my-3">Partecipanti: {this.state.clienteselezionato[0].Username + "," + this.state.partecipanti}</h5>
                   <h5 className="my-2">Codice tavolo: {this.state.tavoloselezionato[0].Codice}</h5>
                   <button type="submit" className="btn btn-primary btn-lg w-100 mt-3">PRENOTA</button>
