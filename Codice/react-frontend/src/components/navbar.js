@@ -41,7 +41,7 @@ class Navbar extends Component {
                   )}
                   {pageName === "Form Prenotazione" && (
                     <>
-                      <Link to="/dashboard_cliente" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Cliente")}>Dashboard</Link>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Cliente")}>Dashboard</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
                     </>
                   )}
