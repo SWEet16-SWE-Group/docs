@@ -1,4 +1,4 @@
-Eseguire i seguenti comandi all'interno della cartella
+#Eseguire i seguenti comandi all'interno della cartella
 
 #Installazione moduli node
 npm install 
@@ -11,3 +11,5 @@ npm install react-bootstrap
 
 #Installazione axios
 npm install axios
+
+npm start
