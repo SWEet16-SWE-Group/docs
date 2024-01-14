@@ -12,20 +12,11 @@ if(isset($data['id_ristorante']))
 {
     $id = $data['id_ristorante'];
     $num = $data['num_posti'];
-    $date = $data['giorno'];
 
-    $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ? AND (Data_prenotazione = ? OR Data_prenotazione IS NULL)");
-    $stmt->bind_param("iss", $id, $num, $date);
+    $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ? AND Data_prenotazione IS NULL LIMIT 1");
+    $stmt->bind_param("is", $id, $num);
     $stmt->execute();
     $result = $stmt->get_result();
-
-    if($result->num_rows === 0)
-    {
-        $stmt = $conn->prepare("SELECT * FROM tavolo WHERE Id_ristorante = ? AND Num_posti = ? AND Data_prenotazione IS NULL");
-        $stmt->bind_param("is", $id, $num);
-        $stmt->execute();
-        $result = $stmt->get_result();
-    }
     
     $res1 = array();
 
@@ -34,7 +25,6 @@ if(isset($data['id_ristorante']))
     }
 
     echo json_encode($res1);
-
 }
 
 ?>
