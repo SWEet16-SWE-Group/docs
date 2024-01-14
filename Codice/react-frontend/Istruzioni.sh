@@ -12,4 +12,5 @@ npm install react-bootstrap
 #Installazione axios
 npm install axios
 
+#Per eseguire
 npm start

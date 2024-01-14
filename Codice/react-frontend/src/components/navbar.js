@@ -1,34 +1,65 @@
 import React, { Component } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 import axios from 'axios';
 
 class Navbar extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
+      pageName : "Dashboard Cliente",
       cliente : []
     }
+    this.handlePage = this.handlePage.bind(this);
   }
     
-    componentDidMount() {  
+    componentDidMount() 
+    {  
       axios.get("http://localhost:8888/select_single_cliente.php").then(response => {
         this.setState({ cliente: response.data });
       });
-      }
+    }
+
+    handlePage = (selectedPage) => {
+      this.setState({ pageName: selectedPage });
+    };
 
 
       render() 
       {
+        const {pageName} = this.state;
+
           return (
-              <nav className="navbar navbar-dark bg-dark fixed-top">
-                {this.state.cliente.map((rs, index) => (
-                    <div key={index} className="container-fluid d-flex justify-content-between">
-                        <div className="navbar-brand h1">Menu</div>
-                        <div className="navbar-brand h1">Easymeal</div>
-                        <div className="navbar-brand h1">{rs.Username}</div>
-                    </div>
-                ))}
-                </nav>
-            );
+             pageName !== "Login" && (
+              <>
+              <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+                <div className="container-fluid mx-auto col-3 text-start">
+                  {pageName === "Dashboard Cliente" && (
+                    <>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
+                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Form Prenotazione")}>Prenotazione</Link>
+                    </>
+                  )}
+                  {pageName === "Form Prenotazione" && (
+                    <>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Cliente")}>Dashboard</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
+                    </>
+                  )}
+                  <Link to="/login" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Login")}>Logout</Link>
+                </div>
+
+                <h1 className="mx-auto col-3 text-center fst-italic fw-lighter">Easymeal</h1>
+                
+                  {this.state.cliente.map((rs, index) => (
+                    
+                    <h5 key={index} className="fw-normal mx-auto col-3 text-end">{rs.Username}</h5>
+                  ))}
+              </nav>
+
+            <Outlet />
+            </>
+            )
+          );
         }
 }
           

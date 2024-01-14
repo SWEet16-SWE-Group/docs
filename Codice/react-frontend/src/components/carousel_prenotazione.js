@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Carousel } from 'react-bootstrap';
 import axios from 'axios';
 
-class FormPrenotazione extends Component {
+class CarouselPrenotazione extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -663,4 +663,4 @@ class FormPrenotazione extends Component {
     }
 }
     
-export default FormPrenotazione;
+export default CarouselPrenotazione;
