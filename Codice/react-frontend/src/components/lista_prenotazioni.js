@@ -13,7 +13,7 @@ class ListaPrenotazioni extends Component {
     };
   }
 
-  UNSAFE_componentWillMount() {
+  componentDidMount() {
     let id_cliente = -1;
     if (localStorage && localStorage.getItem('idc')) {
         id_cliente = JSON.parse(localStorage.getItem('idc'))
@@ -59,7 +59,6 @@ render() {
         {this.state.submittedOrdinazione && (
         <Navigate to="/ordinazione"
         />)}
-
       <form>
             <h1 className="my-4 d-flex justify-content-center">Lista prenotazioni cliente: {this.state.cliente.map((rs, index) => (<div key={index}>{rs.Username}</div>))} </h1>
             <div>

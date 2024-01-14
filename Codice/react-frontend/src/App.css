@@ -20,3 +20,79 @@
   justify-content: end !important;
   width: 5% !important;
 }
+
+.dashboard-cli-active
+{
+  background-color: green;
+}
+
+.back{
+  margin-right: 20px;
+}
+.attive {
+  margin-top: 20px;
+  width: 46%;
+  height: 30px;
+  margin-left: 10px;
+  float:left;
+}
+
+.scadute {
+  margin-top: 20px;
+  width: 46%;
+  height: 30px;
+  float:right;
+}
+
+.rifiutate {
+  margin-top: 10px;
+  width: 46%;
+  height: 30px;
+  float:right;
+  margin-left:200px;
+}
+
+.table-attive {
+  margin-top: 1px;
+  border: 1px solid black;
+  width: 46%;
+  height: 30px;
+  margin-left: 10px;
+  float:left;
+}
+
+.table-scadute {
+  margin-top: 1px;
+  border: 1px solid black;
+  width: 46%;
+  height: 30px;
+  float: right;
+  margin-right: 20px;
+}
+
+.table-rifiutate {
+  margin-top: 1px;
+  border: 1px solid black;
+  width: 46%;
+  height: 30px;
+  float: right;
+  margin-right: 20px;
+  margin-left: 200px;
+}
+
+.login-clienti{
+  margin-top: 20px;
+  width: 40%;
+  height: 30px;
+  margin-left: 25%;
+  float:left;
+}
+
+.login-ristoratori{
+  margin-top: 20px;
+  /*width: 40%;*/
+  height: 30px;
+  margin-right: 20%;
+  float:right;
+}
+
