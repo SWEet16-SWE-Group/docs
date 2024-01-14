@@ -71,7 +71,7 @@ class DashboardClienti extends Component {
           <Navigate to="/login"
           />)}
         {this.state.submittedPrenotazione && (
-          <Navigate to="/prenotazione"
+          <Navigate to="/form_prenotazione"
           />)}
           <br></br>
           <h1 className="my-5 d-flex justify-content-center">Lista prenotazioni cliente: {this.state.cliente.map((rs, index) => (<div key={index}>{rs.Username}</div>))} </h1>
