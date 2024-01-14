@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Creato il: Gen 07, 2024 alle 12:13
--- Versione del server: 8.2.0
--- Versione PHP: 8.2.8
+-- Generation Time: Jan 14, 2024 at 04:39 PM
+-- Server version: 8.2.0
+-- PHP Version: 8.2.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -21,10 +21,14 @@ SET time_zone = "+00:00";
 -- Database: `easymeal`
 --
 
+DROP DATABASE IF EXISTS `easymeal`;
+CREATE DATABASE `easymeal`;
+USE `easymeal`;
+
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `cliente`
+-- Table structure for table `cliente`
 --
 
 CREATE TABLE `cliente` (
@@ -36,7 +40,7 @@ CREATE TABLE `cliente` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Dump dei dati per la tabella `cliente`
+-- Dumping data for table `cliente`
 --
 
 INSERT INTO `cliente` (`ID_cliente`, `Username`, `Email`, `Password`, `Orario_creazione`) VALUES
@@ -49,7 +53,7 @@ INSERT INTO `cliente` (`ID_cliente`, `Username`, `Email`, `Password`, `Orario_cr
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `commento`
+-- Table structure for table `commento`
 --
 
 CREATE TABLE `commento` (
@@ -63,7 +67,7 @@ CREATE TABLE `commento` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `ordine`
+-- Table structure for table `ordine`
 --
 
 CREATE TABLE `ordine` (
@@ -83,7 +87,7 @@ CREATE TABLE `ordine` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `pagamento`
+-- Table structure for table `pagamento`
 --
 
 CREATE TABLE `pagamento` (
@@ -101,7 +105,7 @@ CREATE TABLE `pagamento` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `prenotazione`
+-- Table structure for table `prenotazione`
 --
 
 CREATE TABLE `prenotazione` (
@@ -115,13 +119,29 @@ CREATE TABLE `prenotazione` (
   `Data_prenotazione` date NOT NULL,
   `Orario_arrivo` time NOT NULL,
   `Orario_partenza` time NOT NULL,
-  `Orario_prenotazione` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `Orario_prenotazione` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `Stato` tinyint(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `prenotazione`
+--
+
+INSERT INTO `prenotazione` (`ID_prenotazione`, `Id_cliente`, `Id_tavolo`, `Id_ristorante`, `Codice`, `Num_persone`, `Partecipanti`, `Data_prenotazione`, `Orario_arrivo`, `Orario_partenza`, `Orario_prenotazione`, `Stato`) VALUES
+(39, 1, 4, 1, '', 5, 'Lollo,Pasta', '2024-01-11', '19:00:00', '21:00:00', '2024-01-10 21:42:23', 1),
+(40, 1, 4, 1, '', 5, 'Pappa,Pasta', '2024-01-15', '19:00:00', '21:00:00', '2024-01-10 21:42:23', NULL),
+(41, 1, 4, 1, '', 5, 'Albero,Patata,Pasta', '2024-01-12', '19:00:00', '21:00:00', '2024-01-10 21:42:23', 0),
+(42, 1, 4, 1, '', 5, 'Biscotto,Pasta,Lollo', '2024-01-10', '19:00:00', '21:00:00', '2024-01-10 21:42:23', NULL),
+(43, 1, 4, 2, '', 5, 'Pappa,Pasta', '2024-01-10', '19:00:00', '21:00:00', '2024-01-10 21:42:23', NULL),
+(44, 1, 4, 3, '', 5, 'Pappa,Pasta', '2024-01-10', '19:00:00', '21:00:00', '2024-01-10 21:42:23', NULL),
+(45, 1, 4, 3, '', 5, 'Pappa,Pasta', '2024-01-13', '19:00:00', '21:00:00', '2024-01-10 21:42:23', NULL),
+(46, 1, 4, 1, '', 5, 'Biscotto,Pasta,Lollo', '2024-01-14', '19:00:00', '21:00:00', '2024-01-10 21:42:23', 0),
+(47, 1, 4, 1, '', 5, 'Pappa,Pasta', '2024-01-15', '19:00:00', '21:00:00', '2024-01-10 21:42:23', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `prodotto`
+-- Table structure for table `prodotto`
 --
 
 CREATE TABLE `prodotto` (
@@ -149,7 +169,7 @@ CREATE TABLE `prodotto` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `registro_cliente`
+-- Table structure for table `registro_cliente`
 --
 
 CREATE TABLE `registro_cliente` (
@@ -161,7 +181,7 @@ CREATE TABLE `registro_cliente` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `registro_utente`
+-- Table structure for table `registro_utente`
 --
 
 CREATE TABLE `registro_utente` (
@@ -173,7 +193,7 @@ CREATE TABLE `registro_utente` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `ristorante`
+-- Table structure for table `ristorante`
 --
 
 CREATE TABLE `ristorante` (
@@ -197,7 +217,7 @@ CREATE TABLE `ristorante` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Dump dei dati per la tabella `ristorante`
+-- Dumping data for table `ristorante`
 --
 
 INSERT INTO `ristorante` (`ID_ristorante`, `Ragione_sociale`, `Indirizzo`, `CAP`, `Citta`, `Provincia`, `Partita_iva`, `Telefono`, `Email`, `Sito_internet`, `Classificazione`, `Descrizione`, `Coperto`, `Orario_apertura_mat`, `Orario_chiusura_mat`, `Orario_apertura_pom`, `Orario_chiusura_pom`) VALUES
@@ -208,7 +228,7 @@ INSERT INTO `ristorante` (`ID_ristorante`, `Ragione_sociale`, `Indirizzo`, `CAP`
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `tavolo`
+-- Table structure for table `tavolo`
 --
 
 CREATE TABLE `tavolo` (
@@ -222,7 +242,7 @@ CREATE TABLE `tavolo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Dump dei dati per la tabella `tavolo`
+-- Dumping data for table `tavolo`
 --
 
 INSERT INTO `tavolo` (`ID_tavolo`, `Codice`, `Num_posti`, `Data_prenotazione`, `Orario_arrivo`, `Orario_partenza`, `Id_ristorante`) VALUES
@@ -239,7 +259,7 @@ INSERT INTO `tavolo` (`ID_tavolo`, `Codice`, `Num_posti`, `Data_prenotazione`, `
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `utente`
+-- Table structure for table `utente`
 --
 
 CREATE TABLE `utente` (
@@ -255,7 +275,7 @@ CREATE TABLE `utente` (
 -- --------------------------------------------------------
 
 --
--- Struttura della tabella `voto`
+-- Table structure for table `voto`
 --
 
 CREATE TABLE `voto` (
@@ -267,17 +287,17 @@ CREATE TABLE `voto` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_unicode_ci;
 
 --
--- Indici per le tabelle scaricate
+-- Indexes for dumped tables
 --
 
 --
--- Indici per le tabelle `cliente`
+-- Indexes for table `cliente`
 --
 ALTER TABLE `cliente`
   ADD PRIMARY KEY (`ID_cliente`);
 
 --
--- Indici per le tabelle `commento`
+-- Indexes for table `commento`
 --
 ALTER TABLE `commento`
   ADD PRIMARY KEY (`ID_commento`),
@@ -285,7 +305,7 @@ ALTER TABLE `commento`
   ADD KEY `commento_prodotto` (`Id_prodotto`) USING BTREE;
 
 --
--- Indici per le tabelle `ordine`
+-- Indexes for table `ordine`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`ID_ordine`),
@@ -295,7 +315,7 @@ ALTER TABLE `ordine`
   ADD KEY `ordine_prodotto` (`Id_prodotto`) USING BTREE;
 
 --
--- Indici per le tabelle `pagamento`
+-- Indexes for table `pagamento`
 --
 ALTER TABLE `pagamento`
   ADD PRIMARY KEY (`ID_pagamento`),
@@ -304,7 +324,7 @@ ALTER TABLE `pagamento`
   ADD KEY `pagamento_ristorante` (`Id_ristorante`) USING BTREE;
 
 --
--- Indici per le tabelle `prenotazione`
+-- Indexes for table `prenotazione`
 --
 ALTER TABLE `prenotazione`
   ADD PRIMARY KEY (`ID_prenotazione`),
@@ -313,48 +333,48 @@ ALTER TABLE `prenotazione`
   ADD KEY `Prenotazione_ristorante` (`Id_ristorante`);
 
 --
--- Indici per le tabelle `prodotto`
+-- Indexes for table `prodotto`
 --
 ALTER TABLE `prodotto`
   ADD PRIMARY KEY (`ID_prodotto`),
   ADD KEY `prodotto_ristorante` (`Id_ristorante`) USING BTREE;
 
 --
--- Indici per le tabelle `registro_cliente`
+-- Indexes for table `registro_cliente`
 --
 ALTER TABLE `registro_cliente`
   ADD PRIMARY KEY (`ID_accesso_cliente`),
   ADD KEY `registro_cliente` (`Id_cliente`);
 
 --
--- Indici per le tabelle `registro_utente`
+-- Indexes for table `registro_utente`
 --
 ALTER TABLE `registro_utente`
   ADD PRIMARY KEY (`ID_accesso_utente`),
   ADD KEY `registro_utente` (`Id_utente`);
 
 --
--- Indici per le tabelle `ristorante`
+-- Indexes for table `ristorante`
 --
 ALTER TABLE `ristorante`
   ADD PRIMARY KEY (`ID_ristorante`);
 
 --
--- Indici per le tabelle `tavolo`
+-- Indexes for table `tavolo`
 --
 ALTER TABLE `tavolo`
   ADD PRIMARY KEY (`ID_tavolo`),
   ADD KEY `tavolo_ristorante` (`Id_ristorante`);
 
 --
--- Indici per le tabelle `utente`
+-- Indexes for table `utente`
 --
 ALTER TABLE `utente`
   ADD PRIMARY KEY (`ID_utente`),
   ADD KEY `utente_ristorante` (`Id_ristorante`);
 
 --
--- Indici per le tabelle `voto`
+-- Indexes for table `voto`
 --
 ALTER TABLE `voto`
   ADD PRIMARY KEY (`ID_voto`),
@@ -362,94 +382,94 @@ ALTER TABLE `voto`
   ADD KEY `voto_cliente` (`Id_cliente`) USING BTREE;
 
 --
--- AUTO_INCREMENT per le tabelle scaricate
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT per la tabella `cliente`
+-- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
   MODIFY `ID_cliente` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT per la tabella `commento`
+-- AUTO_INCREMENT for table `commento`
 --
 ALTER TABLE `commento`
   MODIFY `ID_commento` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `ordine`
+-- AUTO_INCREMENT for table `ordine`
 --
 ALTER TABLE `ordine`
   MODIFY `ID_ordine` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `pagamento`
+-- AUTO_INCREMENT for table `pagamento`
 --
 ALTER TABLE `pagamento`
   MODIFY `ID_pagamento` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `prenotazione`
+-- AUTO_INCREMENT for table `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `ID_prenotazione` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `ID_prenotazione` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT per la tabella `prodotto`
+-- AUTO_INCREMENT for table `prodotto`
 --
 ALTER TABLE `prodotto`
   MODIFY `ID_prodotto` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `registro_cliente`
+-- AUTO_INCREMENT for table `registro_cliente`
 --
 ALTER TABLE `registro_cliente`
   MODIFY `ID_accesso_cliente` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `registro_utente`
+-- AUTO_INCREMENT for table `registro_utente`
 --
 ALTER TABLE `registro_utente`
   MODIFY `ID_accesso_utente` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `ristorante`
+-- AUTO_INCREMENT for table `ristorante`
 --
 ALTER TABLE `ristorante`
   MODIFY `ID_ristorante` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT per la tabella `tavolo`
+-- AUTO_INCREMENT for table `tavolo`
 --
 ALTER TABLE `tavolo`
   MODIFY `ID_tavolo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
--- AUTO_INCREMENT per la tabella `utente`
+-- AUTO_INCREMENT for table `utente`
 --
 ALTER TABLE `utente`
   MODIFY `ID_utente` int NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT per la tabella `voto`
+-- AUTO_INCREMENT for table `voto`
 --
 ALTER TABLE `voto`
   MODIFY `ID_voto` int NOT NULL AUTO_INCREMENT;
 
 --
--- Limiti per le tabelle scaricate
+-- Constraints for dumped tables
 --
 
 --
--- Limiti per la tabella `commento`
+-- Constraints for table `commento`
 --
 ALTER TABLE `commento`
   ADD CONSTRAINT `commento_cliente` FOREIGN KEY (`Id_cliente`) REFERENCES `cliente` (`ID_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `commento_prodotto` FOREIGN KEY (`Id_prodotto`) REFERENCES `prodotto` (`ID_prodotto`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `ordine`
+-- Constraints for table `ordine`
 --
 ALTER TABLE `ordine`
   ADD CONSTRAINT `ordine_cliente` FOREIGN KEY (`Id_cliente`) REFERENCES `cliente` (`ID_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -457,7 +477,7 @@ ALTER TABLE `ordine`
   ADD CONSTRAINT `ordine_ristorante` FOREIGN KEY (`Id_ristorante`) REFERENCES `ristorante` (`ID_ristorante`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `pagamento`
+-- Constraints for table `pagamento`
 --
 ALTER TABLE `pagamento`
   ADD CONSTRAINT `pagamento_cliente` FOREIGN KEY (`Id_cliente`) REFERENCES `cliente` (`ID_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -465,7 +485,7 @@ ALTER TABLE `pagamento`
   ADD CONSTRAINT `pagamento_ristorante` FOREIGN KEY (`Id_ristorante`) REFERENCES `ristorante` (`ID_ristorante`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `prenotazione`
+-- Constraints for table `prenotazione`
 --
 ALTER TABLE `prenotazione`
   ADD CONSTRAINT `Prenotazione_cliente` FOREIGN KEY (`Id_cliente`) REFERENCES `cliente` (`ID_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -473,37 +493,37 @@ ALTER TABLE `prenotazione`
   ADD CONSTRAINT `Prenotazione_tavolo` FOREIGN KEY (`Id_tavolo`) REFERENCES `tavolo` (`ID_tavolo`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `prodotto`
+-- Constraints for table `prodotto`
 --
 ALTER TABLE `prodotto`
   ADD CONSTRAINT `prodotto_ristorante` FOREIGN KEY (`Id_ristorante`) REFERENCES `ristorante` (`ID_ristorante`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `registro_cliente`
+-- Constraints for table `registro_cliente`
 --
 ALTER TABLE `registro_cliente`
   ADD CONSTRAINT `registro_cliente` FOREIGN KEY (`Id_cliente`) REFERENCES `cliente` (`ID_cliente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `registro_utente`
+-- Constraints for table `registro_utente`
 --
 ALTER TABLE `registro_utente`
   ADD CONSTRAINT `registro_utente` FOREIGN KEY (`Id_utente`) REFERENCES `utente` (`ID_utente`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `tavolo`
+-- Constraints for table `tavolo`
 --
 ALTER TABLE `tavolo`
   ADD CONSTRAINT `tavolo_ristorante` FOREIGN KEY (`Id_ristorante`) REFERENCES `ristorante` (`ID_ristorante`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `utente`
+-- Constraints for table `utente`
 --
 ALTER TABLE `utente`
   ADD CONSTRAINT `utente_ristorante` FOREIGN KEY (`Id_ristorante`) REFERENCES `ristorante` (`ID_ristorante`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Limiti per la tabella `voto`
+-- Constraints for table `voto`
 --
 ALTER TABLE `voto`
   ADD CONSTRAINT `voto_cliente` FOREIGN KEY (`Id_cliente`) REFERENCES `cliente` (`ID_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -511,7 +531,7 @@ ALTER TABLE `voto`
 
 DELIMITER $$
 --
--- Eventi
+-- Events
 --
 CREATE DEFINER=`root`@`%` EVENT `Delete_tavolo` ON SCHEDULE EVERY 1 HOUR STARTS '2024-01-06 16:03:34' ENDS '2034-01-06 16:03:34' ON COMPLETION NOT PRESERVE ENABLE DO DELETE FROM tavolo WHERE Data_prenotazione <= CURRENT_DATE AND Orario_partenza < CURRENT_TIME$$
 
