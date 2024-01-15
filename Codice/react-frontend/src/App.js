@@ -1,8 +1,8 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import Login from './components/login';
 import Navbar from './components/navbar';
-import DashboardClienti from './components/dashboard_clienti';
-import DashboardRistoratori from './components/dashboard_ristoratori';
+import DashboardClienti from './components/dashboard_clienti.js';
+import DashboardRistoratori from './components/dashboard_ristoratori.js';
 import FormPrenotazione from './components/form_prenotazione.js';
 import './App.css';
 

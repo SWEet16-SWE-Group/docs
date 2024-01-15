@@ -6,7 +6,8 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageName : "Dashboard Cliente",
+      pageName : "Login",
+      idCliente: "",
       cliente : []
     }
     this.handlePage = this.handlePage.bind(this);
@@ -14,6 +15,13 @@ class Navbar extends Component {
     
     componentDidMount() 
     {  
+      let id_cliente=-1;
+      if (localStorage && localStorage.getItem('idc')) 
+      {
+         id_cliente = JSON.parse(localStorage.getItem('idc'));
+         this.setState({ idCliente: id_cliente });
+      }
+
       axios.get("http://localhost:8888/select_single_cliente.php").then(response => {
         this.setState({ cliente: response.data });
       });
@@ -23,17 +31,16 @@ class Navbar extends Component {
       this.setState({ pageName: selectedPage });
     };
 
-
       render() 
       {
-        const {pageName} = this.state;
-
+        const {pageName } = this.state;
+      
           return (
              pageName !== "Login" && (
               <>
               <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div className="container-fluid mx-auto col-3 text-start">
-                  {pageName === "Dashboard Cliente" && (
+                  {pageName === "Dashboard Clienti" && (
                     <>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
                       <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Form Prenotazione")}>Prenotazione</Link>
@@ -41,7 +48,7 @@ class Navbar extends Component {
                   )}
                   {pageName === "Form Prenotazione" && (
                     <>
-                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Cliente")}>Dashboard</Link>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Clienti")}>Dashboard</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
                     </>
                   )}

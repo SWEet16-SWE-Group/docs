@@ -66,7 +66,6 @@ class DashboardClienti extends Component {
   render() {
     return (
       <div>
-        <form>
         {this.state.submittedBack && (
           <Navigate to="/login"
           />)}
@@ -103,8 +102,6 @@ class DashboardClienti extends Component {
               ))}
             </tbody>
           </table>
-        </form>
-        <form>
           <table className="table-scadute">
             <thead>
               <tr style={{ background: this.getColorHeader() }} >
@@ -127,7 +124,6 @@ class DashboardClienti extends Component {
               ))}
             </tbody>
           </table>
-        </form>
       </div>
     );
   }
