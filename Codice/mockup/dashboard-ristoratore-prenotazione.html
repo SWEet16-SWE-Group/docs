@@ -2,25 +2,14 @@
 <html>
 
 <head>
-  <style>
-    main {
-      display: flex;
-      flex-direction: column;
-      gap: 60px;
-    }
-
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-  </style>
 </head>
 
 <body>
   <h1>Dettagli prenotazione</h1>
   <main>
-    <form>
+    <form action="dashboard-ristoratore.html">
+      <input type="submit" value="Accetta">
+      <input type="submit" value="Rifiuta">
       <fieldset disabled>
         <fieldset>
           <p>pizza margherita</p>
@@ -61,20 +50,22 @@
           <div><input checked type="checkbox">pepe </div>
         </fieldset>
       </fieldset>
+      <div>
+        <h2>Inventario ingredienti</h2>
+        <ul>
+          <li>2: pomodoro</li>
+          <li>2: mozzarella</li>
+          <li>1: basilico</li>
+          <li>2: spaghetti</li>
+          <li>2: uovo </li>
+          <li>2: guanciale</li>
+          <li>1: pecorino</li>
+          <li>2: pepe </li>
+        </ul>
+      </div>
+      <input type="submit" value="Accetta">
+      <input type="submit" value="Rifiuta">
     </form>
-    <div>
-      <h2>Inventario ingredienti</h2>
-      <ul>
-        <li>2: pomodoro</li>
-        <li>2: mozzarella</li>
-        <li>1: basilico</li>
-        <li>2: spaghetti</li>
-        <li>2: uovo </li>
-        <li>2: guanciale</li>
-        <li>1: pecorino</li>
-        <li>2: pepe </li>
-      </ul>
-    </div>
   </main>
 </body>
 
