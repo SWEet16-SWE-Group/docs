@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    main {
+      display: flex;
+      flex-direction: column;
+      gap: 60px;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Ordinazione</h1>
+  <main>
+    <form action="dashboard-cliente.html">
+      <fieldset>
+        <h2>Cliente 1</h2>
+        <fieldset>
+          <p>pizza margherita</p>
+          <div><input checked type="checkbox">pomodoro</div>
+          <div><input checked type="checkbox">mozzarella</div>
+          <div><input checked type="checkbox">basilico</div>
+        </fieldset>
+        <fieldset>
+          <p>pizza margherita</p>
+          <div><input type="checkbox">pomodoro</div>
+          <div><input type="checkbox">mozzarella</div>
+          <div><input type="checkbox">basilico</div>
+        </fieldset>
+        <fieldset>
+          <p>carbonara</p>
+          <div><input checked type="checkbox">spaghetti</div>
+          <div><input checked type="checkbox">uovo </div>
+          <div><input checked type="checkbox">guanciale</div>
+          <div><input checked type="checkbox">pecorino</div>
+          <div><input checked type="checkbox">pepe </div>
+        </fieldset>
+        <input type="submit" value="salva">
+        <input type="submit" value="conferma">
+      </fieldset>
+    </form>
+    <form>
+      <fieldset disabled>
+        <h2>Cliente 3 (In attesa)</h2>
+        <fieldset>
+          <p>pizza margherita</p>
+          <div><input checked type="checkbox">pomodoro</div>
+          <div><input checked type="checkbox">mozzarella</div>
+          <div><input checked type="checkbox">basilico</div>
+        </fieldset>
+      </fieldset>
+    </form>
+    <form>
+      <fieldset disabled>
+        <h2>Cliente 2 (Confermato)</h2>
+        <fieldset>
+          <p>carbonara</p>
+          <div><input checked type="checkbox">spaghetti</div>
+          <div><input checked type="checkbox">uovo </div>
+          <div><input checked type="checkbox">guanciale</div>
+          <div><input checked type="checkbox">pecorino</div>
+          <div><input checked type="checkbox">pepe </div>
+        </fieldset>
+      </fieldset>
+    </form>
+  </main>
+</body>
+
+</html>
