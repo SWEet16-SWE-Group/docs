@@ -22,7 +22,7 @@
   width: 5% !important;
 }
 
-.dashboard-cli-active
+.width-95
 {
-  background-color: green;
+  width: 95% !important;
 }

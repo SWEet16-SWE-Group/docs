@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Navbar from './navbar';
+
 class FormPrenotazione extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +43,7 @@ class FormPrenotazione extends Component {
       }
     ]
 
-    axios.post("http://localhost:8888/select_cliente.php ", ricerca_cliente[0], { headers: { 'Content-Type': 'application/json' } }).then(response =>
+    axios.post("http://localhost:8888/select_cliente.php ", ricerca_cliente[0]).then(response =>
       this.setState({ clienteselezionato: response.data }, () => {
         let id_cliente = this.state.clienteselezionato[0].ID_cliente;
         axios.post('http://localhost:8888/select_multiple_exeption_cliente.php', { id_cliente }).then(response => {
@@ -142,6 +144,7 @@ class FormPrenotazione extends Component {
 
     return (
       <>
+        <Navbar key="navbar-key" />
         {this.state.form && (
           <form id="form-prenotazione" className="container-fluid p-auto w-75 border rounded border-2 margin-tb h-auto" onSubmit={this.handleSubmit}>
             <h1 className="my-4 d-flex justify-content-center">PRENOTAZIONE</h1>

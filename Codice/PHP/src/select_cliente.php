@@ -6,15 +6,16 @@
     include "./conn.php";
 
     $data = json_decode(file_get_contents('php://input'), true);
-    
-{
-    $id_cliente = $data["id_cliente"];
 
-    $res = $conn->execute_query("SELECT * FROM cliente WHERE ID_cliente = $id_cliente");
-    $row = mysqli_fetch_assoc($res); 
-    $res1=array($row);
+    if(isset($data["id_cliente"]))
+    {
+        $id_cliente = $data["id_cliente"];
 
-   echo json_encode($res1);
-}
+        $res = $conn->execute_query("SELECT * FROM cliente WHERE ID_cliente = $id_cliente");
+        $row = mysqli_fetch_assoc($res); 
+        $res1=array($row);
+
+    echo json_encode($res1);
+    }
 
 ?>

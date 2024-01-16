@@ -6,11 +6,9 @@ class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageName : "Login",
       idCliente: "",
       cliente : []
     }
-    this.handlePage = this.handlePage.bind(this);
   }
     
     componentDidMount() 
@@ -22,37 +20,38 @@ class Navbar extends Component {
          this.setState({ idCliente: id_cliente });
       }
 
-      axios.get("http://localhost:8888/select_single_cliente.php").then(response => {
+      axios.post("http://localhost:8888/select_cliente.php", {id_cliente}).then(response => {
         this.setState({ cliente: response.data });
       });
     }
 
-    handlePage = (selectedPage) => {
-      this.setState({ pageName: selectedPage });
-    };
-
       render() 
       {
-        const {pageName } = this.state;
+        let pageName=window.location.pathname;
       
           return (
-             pageName !== "Login" && (
+             pageName !== "/login" && (
               <>
               <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div className="container-fluid mx-auto col-3 text-start">
-                  {pageName === "Dashboard Clienti" && (
+                  {pageName === "/dashboardristoratori" && (
                     <>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
-                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Form Prenotazione")}>Prenotazione</Link>
                     </>
                   )}
-                  {pageName === "Form Prenotazione" && (
+                  {pageName === "/dashboardclienti" && (
                     <>
-                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Clienti")}>Dashboard</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
+                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                    </>
+                  )}
+                  {pageName === "/form_prenotazione" && (
+                    <>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
                     </>
                   )}
-                  <Link to="/login" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Login")}>Logout</Link>
+                  <Link to="/login" className="text-decoration-none link-secondary mx-3">Logout</Link>
                 </div>
 
                 <h1 className="mx-auto col-3 text-center fst-italic fw-lighter">Easymeal</h1>
