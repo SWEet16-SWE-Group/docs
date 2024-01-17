@@ -14,7 +14,14 @@ class Navbar extends Component {
     
     componentDidMount() 
     {  
-      axios.get("http://localhost:8888/select_single_cliente.php").then(response => {
+      let id_cliente=1;
+      if (localStorage && localStorage.getItem('idc')) 
+      {
+         id_cliente = JSON.parse(localStorage.getItem('idc'));
+         this.setState({ idCliente: id_cliente });
+      }
+
+      axios.post("http://localhost:8888/select_cliente.php", {id_cliente}).then(response => {
         this.setState({ cliente: response.data });
       });
     }
@@ -29,7 +36,7 @@ class Navbar extends Component {
         const {pageName} = this.state;
 
           return (
-             pageName !== "Login" && (
+             (pageName !== "/login" && pageName !== "/")  && (
               <>
               <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div className="container-fluid mx-auto col-3 text-start">
@@ -48,6 +55,18 @@ class Navbar extends Component {
 <<<<<<< Updated upstream
                   <Link to="/login" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Login")}>Logout</Link>
 =======
+                  {pageName === "/ordinazione" && (
+                    <>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
+                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                    </>
+                  )}
+                  {pageName === "/form_prenotazione" && (
+                    <>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
+                    </>
+                  )}
                   {pageName === "/ordinazione" && (
                     <>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>

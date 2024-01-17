@@ -34,40 +34,27 @@ class MenuPietanze extends Component {
   }
 
   render() {
-    console.log(this.state);
 
     return (
         
       <>
         <Navbar key="navbar-key" />
-            <div className="card-deck">
-            <div className="card">
+        <div className="container-fluid p-auto width-95 margin-tb h-auto">
+          <div className="row gx-0 d-flex justify-content-center">
             {this.state.pietanze.map((rs, index) => (
-              <img key={index} className="card-img-top" src = {`data:image/jpeg;base64,${rs.Immagine}`} alt="Card image cap" />
+            <div key={index} className="card m-5 col-3">
+                <img className="card-img-top h-50" src ={`data:image/jpeg;base64,${rs.Immagine}`} alt={rs.Nome_Immagine}/>
+              <div className="card-body text-center">
+                <h5 className="card-title">{rs.Nome}</h5>
+                <p className="card-text">{rs.Descrizione}</p>
+                <h6 className="card-text">€{rs.Prezzo}</h6>
+              </div>
+                <button type="button" className="btn btn-primary btn-lg m-2">DETTAGLI</button>
+                <button type="button" className="btn btn-primary btn-lg m-2">AGGIUNGI</button>
+            </div>
             ))}
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-            <div className="card">
-              <img className="card-img-top" src="..." alt="Card image cap" />
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
-            <div className="card">
-              <img className="card-img-top" src="..." alt="Card image cap" />
-              <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-                <p className="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
-              </div>
-            </div>
           </div>
+        </div>
       </>
 
     );

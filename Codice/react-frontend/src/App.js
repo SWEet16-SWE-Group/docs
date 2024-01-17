@@ -10,11 +10,7 @@ import './App.css';
 function App() {
     return (
     <div className="App">
-<<<<<<< Updated upstream
-      <Navbar />
-=======
-      <MenuPietanze />
->>>>>>> Stashed changes
+      <MenuPietanze/>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
