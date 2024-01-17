@@ -30,7 +30,7 @@ class Navbar extends Component {
         let pageName=window.location.pathname;
       
           return (
-             pageName !== "/login" && (
+             (pageName !== "/login" && pageName !== "/")  && (
               <>
               <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div className="container-fluid mx-auto col-3 text-start">
@@ -49,6 +49,12 @@ class Navbar extends Component {
                     <>
                       <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
+                    </>
+                  )}
+                  {pageName === "/ordinazione" && (
+                    <>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
+                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
                     </>
                   )}
                   <Link to="/login" className="text-decoration-none link-secondary mx-3">Logout</Link>

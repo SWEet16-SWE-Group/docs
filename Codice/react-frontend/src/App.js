@@ -1,13 +1,15 @@
 import { Route, Routes } from 'react-router-dom';
 import Login from './components/login';
-import DashboardClienti from './components/dashboard_clienti.js';
-import DashboardRistoratori from './components/dashboard_ristoratori.js';
+import DashboardClienti from './components/dashboard_clienti';
+import DashboardRistoratori from './components/dashboard_ristoratori';
 import FormPrenotazione from './components/form_prenotazione.js';
+import MenuPietanze from './components/menu_pietanze.js';
 import './App.css';
 
 function App() {
     return (
     <div className="App">
+      <MenuPietanze/>
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
