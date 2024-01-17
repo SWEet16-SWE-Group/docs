@@ -4,12 +4,17 @@ import Navbar from './components/navbar';
 import DashboardClienti from './components/dashboard_clienti';
 import DashboardRistoratori from './components/dashboard_ristoratori';
 import FormPrenotazione from './components/form_prenotazione.js';
+import MenuPietanze from './components/menu_pietanze.js';
 import './App.css';
 
 function App() {
     return (
     <div className="App">
+<<<<<<< Updated upstream
       <Navbar />
+=======
+      <MenuPietanze />
+>>>>>>> Stashed changes
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />

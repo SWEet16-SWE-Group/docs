@@ -45,7 +45,17 @@ class Navbar extends Component {
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
                     </>
                   )}
+<<<<<<< Updated upstream
                   <Link to="/login" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Login")}>Logout</Link>
+=======
+                  {pageName === "/ordinazione" && (
+                    <>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
+                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                    </>
+                  )}
+                  <Link to="/login" className="text-decoration-none link-secondary mx-3">Logout</Link>
+>>>>>>> Stashed changes
                 </div>
 
                 <h1 className="mx-auto col-3 text-center fst-italic fw-lighter">Easymeal</h1>
