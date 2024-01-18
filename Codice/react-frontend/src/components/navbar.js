@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Navbar extends Component {
@@ -42,19 +42,22 @@ class Navbar extends Component {
                   {pageName === "/dashboardclienti" && (
                     <>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
-                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="/ordinazione" className="text-decoration-none link-secondary mx-3">Ordinazione</Link>
                     </>
                   )}
-                  {pageName === "/form_prenotazione" && (
+                  {pageName === "/formprenotazione" && (
                     <>
                       <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
+                      <Link to="/ordinazione" className="text-decoration-none link-secondary mx-3">Ordinazione</Link>
                     </>
                   )}
-                  {pageName === "/ordinazione" && (
+                  {(pageName === "/ordinazione" || pageName.split('/')[1] === "dettagli") && (
                     <>
-                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
-                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Ordinazione</Link>
                     </>
                   )}
                   <Link to="/login" className="text-decoration-none link-secondary mx-3">Logout</Link>
@@ -67,8 +70,6 @@ class Navbar extends Component {
                     <h5 key={index} className="fw-normal mx-auto col-3 text-end">{rs.Username}</h5>
                   ))}
               </nav>
-
-            <Outlet />
             </>
             )
           );
