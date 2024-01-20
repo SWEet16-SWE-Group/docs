@@ -88,6 +88,7 @@ class FormPrenotazione extends Component {
       this.setState({ postidisponibili: numero, partecipanti: [...partecipanti, nome] });
     }
   };
+  
   handleDateChange = (event) => {
     this.setState({ data: event.target.value });
 

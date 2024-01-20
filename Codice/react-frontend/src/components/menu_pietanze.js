@@ -10,7 +10,7 @@ class MenuPietanze extends Component {
     this.state = {
       prenotazione: [],
       pietanze: [],
-      quantita: 1
+      quantita: []
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNumberChange = this.handleNumberChange.bind(this);
@@ -40,10 +40,14 @@ class MenuPietanze extends Component {
       }))
   }
 
-  handleNumberChange = (event) => {
-    let numero = event.target.value;
-    this.setState({quantita: numero});
-  }
+  handleNumberChange = (index) => (event) => {
+    const { value } = event.target;
+    this.setState((prevState) => {
+      const updatedQuantita = [...prevState.quantita];
+      updatedQuantita[index] = { porzioni: value };
+      return { quantita: updatedQuantita };
+    });
+  };
 
   handleSubmit = (index) => (event) => {
 
@@ -53,7 +57,7 @@ class MenuPietanze extends Component {
     const tavolo = this.state.prenotazione[0].Id_tavolo;
     const ristorante = this.state.prenotazione[0].Id_ristorante;
     const prodotto = this.state.pietanze[index].ID_prodotto;
-    const porzioni = this.state.quantita;
+    const porzioni = this.state.quantita[index] ? this.state.quantita[index].porzioni : 1;
     const tot = this.state.pietanze[index].Prezzo * porzioni;
 
 
@@ -73,13 +77,12 @@ class MenuPietanze extends Component {
         console.log( response.data );
       })
 
-      console.log(insert[0]);
   };
 
   render() {
 
     return (
-        
+
       <>
         <Navbar key="navbar-key" />
         {this.state.prenotazione[0]===null && (
@@ -94,12 +97,12 @@ class MenuPietanze extends Component {
                 <h5 className="card-title">{rs.Nome}</h5>
                 <p className="card-text">{rs.Descrizione}</p>
                 <div className="row justify-content-center mb-3">
-                  <input type="number" className="form-control w-25 text-center" name={"quantita" + rs.Nome} id={"quantita" + rs.Nome} min="1" defaultValue="1" onChange={this.handleNumberChange}/>
+                  <input type="number" className="form-control w-25 text-center" name={"quantita" + rs.Nome} id={"quantita" + rs.Nome} min="1" defaultValue="1" onChange={this.handleNumberChange(index)}/>
                 </div>
                 <h6 className="card-text">€{rs.Prezzo}</h6>
               </div>
                 <Link to={`/dettagli/${rs.ID_prodotto}`} className="btn btn-outline-primary btn-outline btn-lg m-2">DETTAGLI</Link>
-                <button type="submit" className="btn btn-primary btn-lg m-2">AGGIUNGI</button>
+                <button type="submit" className="btn btn-primary btn-lg m-2">ORDINA</button>
             </form>
             ))}
           </div>

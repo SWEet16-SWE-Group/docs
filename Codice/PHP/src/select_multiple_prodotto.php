@@ -12,7 +12,7 @@
     {
         $id = $data['id_ristorante'];
 
-        $res = $conn->execute_query("SELECT * FROM prodotto WHERE Id_ristorante = '$id'");
+        $res = $conn->execute_query("SELECT * FROM prodotto WHERE Id_ristorante = '$id' ORDER BY Categoria");
         $res1=array();
         while ($row = mysqli_fetch_assoc($res)) 
         {
