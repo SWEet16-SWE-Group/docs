@@ -17,18 +17,10 @@ class MenuPietanze extends Component {
   }
 
   componentDidMount() {
-    let id_cliente = -1;
-    let utente = "";
-    if (localStorage && localStorage.getItem('idc')) { id_cliente = JSON.parse(localStorage.getItem('idc')) }
-    if (localStorage && localStorage.getItem('idu')) { utente = JSON.parse(localStorage.getItem('idu')) }
-    const ricerca_ristorante = [
-      {
-        id_cliente: id_cliente,
-        username: utente,
-      }
-    ]
+    let pathname = window.location.pathname;
+    let id_prenotazione = pathname.split('/')[2];
 
-    axios.post("http://localhost:8888/select_prenotazione_utente.php ", ricerca_ristorante[0]).then(response =>
+    axios.post("http://localhost:8888/select_prenotazione.php ", { id_prenotazione }).then(response =>
       this.setState({ prenotazione: response.data }, () => {
       if(this.state.prenotazione[0]!==null)
       {
@@ -89,6 +81,11 @@ class MenuPietanze extends Component {
           <h1 className="margin-tb text-center">Nessuna prenotazione trovata</h1>
         )}
         <div className="container-fluid p-auto width-95 margin-tb h-auto">
+        {this.state.prenotazione.length !== 0 && this.state.prenotazione.map((rs, index) => (
+            <div key={index} className="mt-5 d-flex justify-content-center">
+                <Link to={`/ordinazioni/${rs.ID_prenotazione}`} className="btn btn-outline-primary btn-outline btn-lg w-100 m-2">TORNA ALLE ORDINAZIONI</Link>
+            </div>
+          ))}
           <div className="row gx-0 d-flex justify-content-center">
             {this.state.pietanze.map((rs, index) => (
             <form key={index} className="card m-5 col-lg-3 col-sm-6" onSubmit={this.handleSubmit(index)}>
@@ -102,10 +99,15 @@ class MenuPietanze extends Component {
                 <h6 className="card-text">€{rs.Prezzo}</h6>
               </div>
                 <Link to={`/dettagli/${rs.ID_prodotto}`} className="btn btn-outline-primary btn-outline btn-lg m-2">DETTAGLI</Link>
-                <button type="submit" className="btn btn-primary btn-lg m-2">ORDINA</button>
+                <button type="submit" className="btn btn-primary btn-lg m-2">AGGIUNGI</button>
             </form>
             ))}
           </div>
+          {this.state.prenotazione.length !== 0 && this.state.prenotazione.map((rs, index) => (
+            <div key={index} className="mt-5 d-flex justify-content-center">
+                <Link to={`/ordinazioni/${rs.ID_prenotazione}`} className="btn btn-outline-primary btn-outline btn-lg w-100 m-2">TORNA ALLE ORDINAZIONI</Link>
+            </div>
+          ))}
         </div>
       </>
 

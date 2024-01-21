@@ -123,11 +123,13 @@ class DettagliPietanza extends Component {
             </div>
             ))}
           
-          <div className="mt-5 d-flex justify-content-center">
-                  <Link to={`/ordinazione`} className="btn btn-outline-primary btn-outline btn-lg w-100 m-2">INDIETRO</Link>
-                </div>
+          {this.state.prenotazione.length !== 0 && this.state.prenotazione.map((rs, index) => (
+            <div key={index} className="mt-5 d-flex justify-content-center">
+                <Link to={`/menu/${rs.ID_prenotazione}`} className="btn btn-outline-primary btn-outline btn-lg w-100 m-2">TORNA AL MENU</Link>
+            </div>
+          ))}
                 <div className="d-flex justify-content-center">
-                  <button type="submit" className="btn btn-primary btn-lg w-100 m-2">ORDINA</button>
+                  <button type="submit" className="btn btn-primary btn-lg w-100 m-2">AGGIUNGI</button>
                 </div>
                 </form>
         </div>

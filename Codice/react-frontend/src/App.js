@@ -5,6 +5,7 @@ import DashboardRistoratori from './components/dashboard_ristoratori';
 import FormPrenotazione from './components/form_prenotazione.js';
 import MenuPietanze from './components/menu_pietanze.js';
 import DettagliPietanza from './components/dettagli_pietanza.js';
+import ListaOrdinazioni from './components/ordinazioni.js';
 import './App.css';
 
 
@@ -17,8 +18,9 @@ function App() {
           <Route path="/dashboardclienti" element={<DashboardClienti />} />
           <Route path="/dashboardristoratori" element={<DashboardRistoratori />} />
           <Route path="/formprenotazione" element={<FormPrenotazione />} />
-          <Route path="/ordinazione" element={<MenuPietanze />} />
+          <Route path="/menu/:id" element={<MenuPietanze />} />
           <Route path="/dettagli/:id" element={<DettagliPietanza />} />
+          <Route path="/ordinazioni/:id" element={<ListaOrdinazioni />} />
         </Routes>
     </div>
   );

@@ -43,23 +43,29 @@ class Navbar extends Component {
                     <>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
                       <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
-                      <Link to="/ordinazione" className="text-decoration-none link-secondary mx-3">Ordinazione</Link>
                     </>
                   )}
                   {pageName === "/formprenotazione" && (
                     <>
                       <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
-                      <Link to="/ordinazione" className="text-decoration-none link-secondary mx-3">Ordinazione</Link>
                     </>
-                  )}
-                  {(pageName === "/ordinazione" || pageName.split('/')[1] === "dettagli") && (
+                  )} 
+                  {(pageName.split('/')[1] === "menu" || pageName.split('/')[1] === "dettagli") && (
                     <>
                       <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
                       <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Ordinazione</Link>
                     </>
                   )}
+                  {(pageName.split('/')[1] === "ordinazioni") && (
+                    <>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Ordinazioni</Link>
+                    </>
+                  )}
+
                   <Link to="/login" className="text-decoration-none link-secondary mx-3">Logout</Link>
                 </div>
 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "../App.css"
 
@@ -60,7 +61,7 @@ class DashboardClienti extends Component {
             ))} 
           </h1>
           <div className="row mb-5 mx-3">
-            <div className="col-5" >
+            <div className="col-6" >
               <h3 className="attive text-center mb-4"> Attive</h3>
               <table className="table-attive table">
                 <thead className="thead-dark">
@@ -70,6 +71,7 @@ class DashboardClienti extends Component {
                     <th>N. persone</th>
                     <th>Giorno</th>
                     <th>Orario</th>
+                    <th></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -80,12 +82,15 @@ class DashboardClienti extends Component {
                       <td>{rs.Num_persone}</td>
                       <td>{rs.Data_prenotazione}</td>
                       <td>{rs.Orario_arrivo} - {rs.Orario_partenza}</td>
+                      <td>
+                        {this.getColor(rs.Stato)==="table-success" && (<Link to={`/ordinazioni/${rs.ID_prenotazione}`} className="btn btn-primary btn-sm m-2">ORDINA</Link>)}
+                      </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
           </div>
-          <div className="col-2"></div>
+          <div className="col-1"></div>
             <div className="col-5" >
               <h3 className="scadute text-center mb-4"> Scadute</h3>
               <table className="table-scadute table">
