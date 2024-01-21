@@ -51,7 +51,6 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
-    restart: always
     ports:
       - "8080:80"
 
