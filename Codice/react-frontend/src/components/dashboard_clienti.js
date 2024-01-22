@@ -56,7 +56,7 @@ class DashboardClienti extends Component {
       <Navbar key="navbar-key" />
       <div className="container-fluid p-auto border width-95 rounded border-2 margin-tb h-auto">
           <h1 className="my-5 d-flex justify-content-center">LISTA PRENOTAZIONI CLIENTE: 
-            {this.state.cliente.map((rs, index) => (
+            {this.state.cliente && this.state.cliente.map((rs, index) => (
               <div className="mx-3" key={index}>{rs.Username}</div>
             ))} 
           </h1>
@@ -83,7 +83,7 @@ class DashboardClienti extends Component {
                       <td>{rs.Data_prenotazione}</td>
                       <td>{rs.Orario_arrivo} - {rs.Orario_partenza}</td>
                       <td>
-                        {this.getColor(rs.Stato)==="table-success" && (<Link to={`/ordinazioni/${rs.ID_prenotazione}`} className="btn btn-primary btn-sm m-2">ORDINA</Link>)}
+                        {!this.getColor(rs.Stato) && (<Link to={`/ordinazioni/${rs.ID_prenotazione}`} className="btn btn-primary btn-sm m-2">ORDINA</Link>)}
                       </td>
                     </tr>
                   ))}

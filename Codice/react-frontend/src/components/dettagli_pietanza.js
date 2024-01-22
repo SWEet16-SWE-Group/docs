@@ -94,7 +94,7 @@ class DettagliPietanza extends Component {
         <Navbar key="navbar-key" />
         <div className="container-fluid p-auto w-75 border rounded border-2 margin-tb gx-0">
           <form className="row gx-0 d-flex justify-content-center" onSubmit={this.handleSubmit}>
-            {this.state.pietanza.map((rs, index) => (
+            {this.state.pietanza && this.state.pietanza.map((rs, index) => (
             <div key={index}>
                 <img className="card-img-top h-50" src ={`data:image/jpeg;base64,${rs.Immagine}`} alt={rs.Nome_Immagine}/>
               <div className="mt-5">

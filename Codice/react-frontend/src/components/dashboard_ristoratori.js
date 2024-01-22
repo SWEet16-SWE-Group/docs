@@ -97,7 +97,7 @@ class DashboardRistoratori extends Component {
       <Navbar key="navbar-key" />
       <div className="container-fluid p-auto border width-95 rounded border-2 margin-tb h-auto">
         <h1 className="my-5 d-flex justify-content-center">LISTA PRENOTAZIONI RISTORANTE: 
-        {this.state.ristorante.map((rs, index) => (
+        {this.state.ristorante && this.state.ristorante.map((rs, index) => (
           <div className="mx-3" key={index}>{rs.Ragione_sociale}</div>
           ))} 
         </h1>

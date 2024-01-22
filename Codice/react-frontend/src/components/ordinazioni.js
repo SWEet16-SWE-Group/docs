@@ -66,6 +66,14 @@ class DettagliPietanza extends Component {
 
   render() {
 
+    const ordinazioniPerUtente = {};
+    this.state.altreordinazioni.forEach((rs) => {
+      if (!ordinazioniPerUtente[rs.Username]) {
+        ordinazioniPerUtente[rs.Username] = [];
+      }
+      ordinazioniPerUtente[rs.Username].push(rs);
+    });
+
     return (
       <>
         <Navbar key="navbar-key" />
@@ -75,25 +83,30 @@ class DettagliPietanza extends Component {
             <table className="table-attive table">
               <thead className="thead-dark">
                 <tr>
-                  <th>Pietanza</th>
-                  <th>Quantità</th>
-                  <th>Ingredienti Rimossi</th>
-                  <th>Totale</th>
-                  <th>Orario</th>
+                  <th className="col-3">Pietanza</th>
+                  <th className="col-1">Quantità</th>
+                  <th className="col-3">Ingredienti Rimossi</th>
+                  <th className="col-1">Totale</th>
+                  <th className="col-2">Orario</th>
                   <th>
-                    <button type="button" className="btn btn-primary btn-sm" onClick={this.handleConferma} disabled={this.state.confermato}>CONFERMA</button>
+                  {!this.state.confermato && (
+                    <button type="button" className="btn btn-primary btn-sm" onClick={this.handleConferma}>CONFERMA</button>
+                  )}
+                  {this.state.confermato && (
+                    <button type="button" className="btn btn-primary btn-sm" onClick={this.handleConferma} disabled>CONFERMATO</button>
+                  )}
                   </th>
                 </tr>
               </thead>
               <tbody>
                 {this.state.ordinazione.length !== 0 && this.state.ordinazione.map((rs, index) => (
                   <tr key={index} >
-                    <td>{rs.Nome}</td>
-                    <td>{rs.Quantita}</td>
-                    <td>{rs.Ingredienti_rimossi===null ? "Nessuno" : rs.Ingredienti_rimossi}</td>
-                    <td>€{rs.Totale}</td>
-                    <td>{rs.Orario}</td>
-                    <td>{rs.Conferma===1 ? "Confermato" : "Da confermare"}</td>
+                    <td className="col-3">{rs.Nome}</td>
+                    <td className="col-1">{rs.Quantita}</td>
+                    <td className="col-3">{rs.Ingredienti_rimossi===null ? "Nessuno" : rs.Ingredienti_rimossi}</td>
+                    <td className="col-1">€{rs.Totale}</td>
+                    <td className="col-2">{rs.Orario}</td>
+                    <td className="col-2"></td>
                   </tr>
                 ))}
               </tbody>
@@ -106,37 +119,41 @@ class DettagliPietanza extends Component {
           ))}
         </div>
 
-        <div className="container-fluid p-auto w-75 border rounded border-2 margin-tb gx-0">
-          <div className="row mb-5 mx-3">
-            <h3 className="attive text-center my-4">ALTRI ORDINI</h3>
+        {Object.entries(ordinazioniPerUtente).map(([username, ordinazioniUtente], index) => (
+          <div key={index} className="container-fluid p-auto w-75 border rounded border-2 margin-tb gx-0">
+            <div className="row mb-5 mx-3">
+            <h3 className="attive text-center my-4">{username}</h3>
             <table className="table-attive table">
               <thead className="thead-dark">
                 <tr>
-                  <th>Cliente</th>
-                  <th>Pietanza</th>
-                  <th>Quantità</th>
-                  <th>Ingredienti Rimossi</th>
-                  <th>Totale</th>
-                  <th>Orario</th>
-                  <th>Stato</th>
+                  <th className="col-3">Pietanza</th>
+                  <th className="col-1">Quantità</th>
+                  <th className="col-3">Ingredienti Rimossi</th>
+                  <th className="col-1">Totale</th>
+                  <th className="col-2">Orario</th>
+                  {this.state.prenotazione.length !== 0 && this.state.prenotazione.map((rs, index) => (
+                    <th key={index} className={rs.Stato === 1 ? "text-success" : "text-secondary"}>
+                      {rs.Stato === 1 ? "CONFERMATO" : "DA CONFERMARE"}
+                    </th>
+                  ))}
                 </tr>
               </thead>
               <tbody>
-                {this.state.altreordinazioni.length !== 0 && this.state.altreordinazioni.map((rs, index) => (
-                  <tr key={index} >
-                    <td>{rs.Username}</td>
-                    <td>{rs.Nome}</td>
-                    <td>{rs.Quantita}</td>
-                    <td>{rs.Ingredienti_rimossi===null ? "Nessuno" : rs.Ingredienti_rimossi}</td>
-                    <td>€{rs.Totale}</td>
-                    <td>{rs.Orario}</td>
-                    <td>{rs.Conferma===1 ? "Confermato" : "Da confermare"}</td>
+                {ordinazioniUtente.map((rs, index) => (
+                  <tr key={index}>
+                    <td  className="col-3">{rs.Nome}</td>
+                    <td  className="col-1">{rs.Quantita}</td>
+                    <td  className="col-3">{rs.Ingredienti_rimossi === null ? "Nessuno" : rs.Ingredienti_rimossi}</td>
+                    <td  className="col-1">€{rs.Totale}</td>
+                    <td  className="col-2">{rs.Orario}</td>
+                    <td></td>
                   </tr>
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
-        </div>
+        ))}
       </>
     );
   }

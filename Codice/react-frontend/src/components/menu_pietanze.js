@@ -87,7 +87,7 @@ class MenuPietanze extends Component {
             </div>
           ))}
           <div className="row gx-0 d-flex justify-content-center">
-            {this.state.pietanze.map((rs, index) => (
+            {this.state.pietanze && this.state.pietanze.map((rs, index) => (
             <form key={index} className="card m-5 col-lg-3 col-sm-6" onSubmit={this.handleSubmit(index)}>
                 <img className="card-img-top h-50" src ={`data:image/jpeg;base64,${rs.Immagine}`} alt={rs.Nome_Immagine}/>
               <div className="card-body text-center">

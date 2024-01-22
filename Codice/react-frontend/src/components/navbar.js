@@ -71,7 +71,7 @@ class Navbar extends Component {
 
                 <h1 className="mx-auto col-3 text-center fst-italic fw-lighter">Easymeal</h1>
                 
-                  {this.state.cliente.map((rs, index) => (
+                  {this.state.cliente && this.state.cliente.map((rs, index) => (
                     
                     <h5 key={index} className="fw-normal mx-auto col-3 text-end">{rs.Username}</h5>
                   ))}
