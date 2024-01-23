@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import "../App.css";
 
@@ -112,6 +113,7 @@ class DashboardRistoratori extends Component {
                   <th>Giorno</th>
                   <th>Orario</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -127,6 +129,9 @@ class DashboardRistoratori extends Component {
                         <button type="button" className="btn btn-outline-success btn-sm mx-2" onClick={this.handlePrenotazione(1, index)}>Accetta</button>
                         <button type="button" className="btn btn-outline-danger btn-sm mx-2" onClick={this.handlePrenotazione(0, index)}>Rifiuta</button>
                       </div>
+                    </td>
+                    <td>
+                      <Link to={`/dettagliprenotazione/${rs.ID_prenotazione}`} className="btn btn-primary btn-sm">Dettagli</Link>
                     </td>
                   </tr>
                 ))}
@@ -145,6 +150,7 @@ class DashboardRistoratori extends Component {
                   <th>Giorno</th>
                   <th>Orario</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -159,6 +165,9 @@ class DashboardRistoratori extends Component {
                       <div className="form-group col-1">
                         <button type="button" className="btn btn-outline-primary btn-sm" onClick={this.handleRipristinaAccettate(index)}>Ripristina</button>
                       </div>
+                    </td>
+                    <td>
+                      <Link to={`/dettagliprenotazione/${rs.ID_prenotazione}`} className="btn btn-primary btn-sm">Dettagli</Link>
                     </td>
                   </tr>
                 ))}
@@ -176,6 +185,7 @@ class DashboardRistoratori extends Component {
                   <th>Giorno</th>
                   <th>Orario</th>
                   <th></th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -190,6 +200,9 @@ class DashboardRistoratori extends Component {
                       <div className="form-group col-1" onClick={this.handleRipristinaRifiutate(index)}>
                         <button type="button" className="btn btn-outline-primary btn-sm">Ripristina</button>
                       </div>
+                    </td>
+                    <td>
+                      <Link to={`/dettagliprenotazione/${rs.ID_prenotazione}`} className="btn btn-primary btn-sm">Dettagli</Link>
                     </td>
                   </tr>
                 ))}
