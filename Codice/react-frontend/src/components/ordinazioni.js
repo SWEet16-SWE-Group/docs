@@ -23,6 +23,7 @@ class DettagliPietanza extends Component {
     let id_prenotazione = pathname.split('/')[2];
     let id_cliente = -1;
     let utente = "";
+    localStorage.setItem('idp', id_prenotazione);
     if (localStorage && localStorage.getItem('idc')) { id_cliente = JSON.parse(localStorage.getItem('idc')) }
     if (localStorage && localStorage.getItem('idu')) { utente = JSON.parse(localStorage.getItem('idu')) }
 
@@ -112,11 +113,9 @@ class DettagliPietanza extends Component {
               </tbody>
             </table>
           </div>
-          {this.state.prenotazione.length !== 0 && this.state.prenotazione.map((rs, index) => (
-            <div key={index} className="mt-5 d-flex justify-content-center">
-                <Link to={`/menu/${rs.ID_prenotazione}`} className="btn btn-outline-primary btn-outline btn-lg w-100 m-2">ORDINA DAL MENU</Link>
+            <div className="mt-5 d-flex justify-content-center">
+                <Link to="/menu" className="btn btn-primary btn-lg w-100 m-2">ORDINA DAL MENU</Link>
             </div>
-          ))}
         </div>
 
         {Object.entries(ordinazioniPerUtente).map(([username, ordinazioniUtente], index) => (

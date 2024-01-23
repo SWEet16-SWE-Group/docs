@@ -22,18 +22,10 @@ class DettagliPietanza extends Component {
    componentDidMount() {
     let pathname = window.location.pathname;
     let id_prodotto = pathname.split('/')[2];
-    let id_cliente = -1;
-    let utente = "";
-    if (localStorage && localStorage.getItem('idc')) { id_cliente = JSON.parse(localStorage.getItem('idc')) }
-    if (localStorage && localStorage.getItem('idu')) { utente = JSON.parse(localStorage.getItem('idu')) }
-    const ricerca_ristorante = [
-      {
-        id_cliente: id_cliente,
-        username: utente,
-      }
-    ]
+    let id_prenotazione = -1;
+    if (localStorage && localStorage.getItem('idp')) { id_prenotazione = JSON.parse(localStorage.getItem('idp')) }
 
-    axios.post("http://localhost:8888/select_prenotazione_utente.php ", ricerca_ristorante[0]).then(response =>
+    axios.post("http://localhost:8888/select_prenotazione.php ", {id_prenotazione}).then(response =>
       this.setState({ prenotazione: response.data }))
     axios.post('http://localhost:8888/select_single_prodotto.php', { id_prodotto }).then(response => {
         const ingredientiArray=response.data[0].Ingredienti.split(',').map(ingrediente => ingrediente.trim())
@@ -122,12 +114,10 @@ class DettagliPietanza extends Component {
               </div>
             </div>
             ))}
-          
-          {this.state.prenotazione.length !== 0 && this.state.prenotazione.map((rs, index) => (
-            <div key={index} className="mt-5 d-flex justify-content-center">
-                <Link to={`/menu/${rs.ID_prenotazione}`} className="btn btn-outline-primary btn-outline btn-lg w-100 m-2">TORNA AL MENU</Link>
+
+            <div className="mt-5 d-flex justify-content-center">
+                <Link to="/menu" className="btn btn-outline-primary btn-outline btn-lg w-100 m-2">TORNA AL MENU</Link>
             </div>
-          ))}
                 <div className="d-flex justify-content-center">
                   <button type="submit" className="btn btn-primary btn-lg w-100 m-2">AGGIUNGI</button>
                 </div>

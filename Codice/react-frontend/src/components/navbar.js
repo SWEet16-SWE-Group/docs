@@ -34,9 +34,15 @@ class Navbar extends Component {
               <>
               <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div className="container-fluid mx-auto col-3 text-start">
-                  {(pageName === "/dashboardristoratori" || pageName.split('/')[1] === "dettagliprenotazione") && (
+                  {pageName === "/dashboardristoratori" && (
                     <>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
+                    </>
+                  )}
+                    {pageName.split('/')[1] === "dettagliprenotazione" && (
+                    <>
+                      <Link to="/dashboardristoratori" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dettagli</Link>
                     </>
                   )}
                   {pageName === "/dashboardclienti" && (
@@ -51,11 +57,19 @@ class Navbar extends Component {
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
                     </>
                   )} 
-                  {(pageName.split('/')[1] === "menu" || pageName.split('/')[1] === "dettaglipietanza") && (
+                  {pageName === "/menu" && (
                     <>
                       <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
                       <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Ordinazione</Link>
+                    </>
+                  )}
+                  {pageName.split('/')[1] === "dettaglipietanza" && (
+                    <>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="/menu" className="text-decoration-none link-secondary mx-3">Ordinazione</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dettagli</Link>
                     </>
                   )}
                   {(pageName.split('/')[1] === "ordinazioni") && (

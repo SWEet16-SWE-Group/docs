@@ -15,7 +15,7 @@ class DettagliPrenotazione extends Component {
         quantita: 1
     };
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.rimuoviRimossi = this.rimuoviRimossi.bind(this);
+    this.rimuoviParole = this.rimuoviParole.bind(this);
    }
 
    componentDidMount() {
@@ -27,7 +27,7 @@ class DettagliPrenotazione extends Component {
         if(this.state.prenotazione[0]!==null)
         {
           axios.post('http://localhost:8888/select_multiple_ordine_confermato.php', { id_prenotazione }).then(response => {
-            let ingredientiArray = response.data.map(item => {
+              let ingredientiArray = response.data.map(item => {
                 if (item.Ingredienti !== null) 
                 {
                   return item.Ingredienti.split(',').map(ingrediente => ingrediente.trim());
@@ -37,7 +37,7 @@ class DettagliPrenotazione extends Component {
                   return [];
                 }
               });
-            let rimossiArray = response.data.map(item => {
+              let rimossiArray = response.data.map(item => {
                 if (item.Ingredienti_rimossi !== null) 
                 {
                   return item.Ingredienti_rimossi.split(',').map(rimosso => rimosso.trim());
@@ -47,19 +47,26 @@ class DettagliPrenotazione extends Component {
                   return [];
                 }
               });
-            this.setState({ ordinazioni: response.data, ingredienti: ingredientiArray, rimossi: rimossiArray})
+            this.setState({ ordinazioni: response.data, ingredienti: ingredientiArray, rimossi: rimossiArray}, () => {
+              this.rimuoviParole();
+            })
             })
         }
     }))
   }
 
-  rimuoviRimossi(index) {
-    const { Ingredienti, Rimossi } = this.state;
-  
-    const nuoviIngredienti = Ingredienti[index].filter(ingrediente => !Rimossi[index].includes(ingrediente));
-  
-    return nuoviIngredienti;
-  }
+  rimuoviParole = () => {
+    const { ingredienti, rimossi } = this.state;
+
+    const nuovoArrayIngredienti = ingredienti.map((ingredientiAttuali, index) => {
+      const rimossiAttuali = rimossi[index];
+
+      const nuoviIngredienti = ingredientiAttuali.filter(parola => !rimossiAttuali.includes(parola));
+      return nuoviIngredienti.join(", ");
+    });
+
+    this.setState({ ingredienti: nuovoArrayIngredienti });
+  };
 
   handleSubmit = (event) => {
 
@@ -93,25 +100,20 @@ class DettagliPrenotazione extends Component {
 
   render() {
 
-    console.log(this.state)
-
     return (
       <>
       <Navbar key="navbar-key" />
       <div className="container-fluid p-auto border width-95 rounded border-2 margin-tb h-auto">
+      {this.state.prenotazione.length !== 0 && this.state.prenotazione.map((rs, index) => (
+            <div key={index} className="mt-5 d-flex justify-content-center">
+                <Link to={`/dashboardristoratori`} className="btn btn-outline-primary btn-outline btn-lg w-100 m-2">TORNA ALLE PRENOTAZIONI</Link>
+            </div>
+          ))}
           <h1 className="my-5 d-flex justify-content-center">PRENOTAZIONE NUMERO: 
             {this.state.prenotazione && this.state.prenotazione.map((rs, index) => (
               <div className="mx-3" key={index}>{rs.ID_prenotazione}</div>
             ))} 
           </h1>
-          <div className="row my-5">
-            <div className="col-6">
-                <button type="submit" className="btn btn-outline-success btn-lg w-100 my-2">ACCETTA</button>
-            </div>
-            <div className="col-6">
-                <button type="submit" className="btn btn-outline-danger btn-lg w-100 my-2">RIFIUTA</button>
-            </div>
-        </div>
           <div className="row mb-5 mx-3">
             <div className="col-12" >
               <table className="table-attive table">
@@ -124,21 +126,29 @@ class DettagliPrenotazione extends Component {
                     <th>Orario</th>
                     <th>Cliente</th>
                   </tr>
-                  {this.state.ordinazioni.length !== 0 && this.state.ordinazioni.map((rs, index) => (
-                  <tr key={index} >
-                    <td>{rs.Nome}</td>
-                    <td>{rs.Quantita}</td>
-                    <td>{rs.Ingredienti_rimossi.length>0 ? rs.Ingredienti_rimossi : "Nessuno"}</td>
-                    <td>{this.rimuoviRimossi(index)}</td>
-                    <td>{rs.Orario}</td>
-                    <td>{rs.Username}</td>
-                  </tr>
-                ))}
                 </thead>
                 <tbody>
+                  {this.state.ordinazioni.length !== 0 && this.state.ordinazioni.map((rs, index) => (
+                    <tr key={index} >
+                      <td>{rs.Nome}</td>
+                      <td>{rs.Quantita}</td>
+                      <td>{rs.Ingredienti_rimossi ? rs.Ingredienti_rimossi : "Nessuno"}</td>
+                      <td>{this.state.ingredienti[index]}</td>
+                      <td>{rs.Orario}</td>
+                      <td>{rs.Username}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
           </div>
+        </div>
+        <div className="row my-5">
+            <div className="col-6">
+                <button type="submit" className="btn btn-outline-success btn-lg w-100 my-2">ACCETTA</button>
+            </div>
+            <div className="col-6">
+                <button type="submit" className="btn btn-outline-danger btn-lg w-100 my-2">RIFIUTA</button>
+            </div>
         </div>
       </div>
       </>

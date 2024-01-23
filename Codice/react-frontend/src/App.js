@@ -19,7 +19,7 @@ function App() {
           <Route path="/dashboardclienti" element={<DashboardClienti />} />
           <Route path="/dashboardristoratori" element={<DashboardRistoratori />} />
           <Route path="/formprenotazione" element={<FormPrenotazione />} />
-          <Route path="/menu/:id" element={<MenuPietanze />} />
+          <Route path="/menu" element={<MenuPietanze />} />
           <Route path="/dettaglipietanza/:id" element={<DettagliPietanza />} />
           <Route path="/dettagliprenotazione/:id" element={<DettagliPrenotazione />} />
           <Route path="/ordinazioni/:id" element={<ListaOrdinazioni />} />
