@@ -80,7 +80,7 @@ class Navbar extends Component {
                     </>
                   )}
 
-                  <Link to="/login" className="text-decoration-none link-secondary mx-3">Logout</Link>
+                  <Link to="/login" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Login")}>Logout</Link>
                 </div>
 
                 <h1 className="mx-auto col-3 text-center fst-italic fw-lighter">Easymeal</h1>
