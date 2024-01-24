@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pageName : "Dashboard Cliente",
+      idCliente: "",
       cliente : []
     }
-    this.handlePage = this.handlePage.bind(this);
   }
     
     componentDidMount() 
     {  
-      let id_cliente=1;
+      let id_cliente=-1;
       if (localStorage && localStorage.getItem('idc')) 
       {
          id_cliente = JSON.parse(localStorage.getItem('idc'));
@@ -26,66 +25,71 @@ class Navbar extends Component {
       });
     }
 
-    handlePage = (selectedPage) => {
-      this.setState({ pageName: selectedPage });
-    };
-
-
       render() 
       {
-        const {pageName} = this.state;
-
+        let pageName=window.location.pathname;
+      
           return (
              (pageName !== "/login" && pageName !== "/")  && (
               <>
               <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
                 <div className="container-fluid mx-auto col-3 text-start">
-                  {pageName === "Dashboard Cliente" && (
+                  {pageName === "/dashboardristoratori" && (
                     <>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
-                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Form Prenotazione")}>Prenotazione</Link>
                     </>
                   )}
-                  {pageName === "Form Prenotazione" && (
+                    {pageName.split('/')[1] === "dettagliprenotazione" && (
                     <>
-                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Dashboard Cliente")}>Dashboard</Link>
-                      <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
+                      <Link to="/dashboardristoratori" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dettagli</Link>
                     </>
                   )}
-<<<<<<< Updated upstream
-                  <Link to="/login" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Login")}>Logout</Link>
-=======
-                  {pageName === "/ordinazione" && (
+                  {pageName === "/dashboardclienti" && (
                     <>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
-                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
                     </>
                   )}
-                  {pageName === "/form_prenotazione" && (
+                  {pageName === "/formprenotazione" && (
                     <>
                       <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
                       <Link to="#" className="text-decoration-none link-primary mx-3">Prenotazione</Link>
                     </>
-                  )}
-                  {pageName === "/ordinazione" && (
+                  )} 
+                  {pageName === "/menu" && (
                     <>
-                      <Link to="#" className="text-decoration-none link-primary mx-3">Dashboard</Link>
-                      <Link to="/form_prenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Ordinazione</Link>
                     </>
                   )}
-                  <Link to="/login" className="text-decoration-none link-secondary mx-3">Logout</Link>
->>>>>>> Stashed changes
+                  {pageName.split('/')[1] === "dettaglipietanza" && (
+                    <>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="/menu" className="text-decoration-none link-secondary mx-3">Ordinazione</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Dettagli</Link>
+                    </>
+                  )}
+                  {(pageName.split('/')[1] === "ordinazioni") && (
+                    <>
+                      <Link to="/dashboardclienti" className="text-decoration-none link-secondary mx-3">Dashboard</Link>
+                      <Link to="/formprenotazione" className="text-decoration-none link-secondary mx-3">Prenotazione</Link>
+                      <Link to="#" className="text-decoration-none link-primary mx-3">Ordinazioni</Link>
+                    </>
+                  )}
+
+                  <Link to="/login" className="text-decoration-none link-secondary mx-3" onClick={() =>this.handlePage("Login")}>Logout</Link>
                 </div>
 
                 <h1 className="mx-auto col-3 text-center fst-italic fw-lighter">Easymeal</h1>
                 
-                  {this.state.cliente.map((rs, index) => (
+                  {this.state.cliente && this.state.cliente.map((rs, index) => (
                     
                     <h5 key={index} className="fw-normal mx-auto col-3 text-end">{rs.Username}</h5>
                   ))}
               </nav>
-
-            <Outlet />
             </>
             )
           );

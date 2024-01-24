@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import Navbar from './navbar';
+
 class FormPrenotazione extends Component {
   constructor(props) {
     super(props);
@@ -41,7 +43,7 @@ class FormPrenotazione extends Component {
       }
     ]
 
-    axios.post("http://localhost:8888/select_cliente.php ", ricerca_cliente[0], { headers: { 'Content-Type': 'application/json' } }).then(response =>
+    axios.post("http://localhost:8888/select_cliente.php ", ricerca_cliente[0]).then(response =>
       this.setState({ clienteselezionato: response.data }, () => {
         let id_cliente = this.state.clienteselezionato[0].ID_cliente;
         axios.post('http://localhost:8888/select_multiple_exeption_cliente.php', { id_cliente }).then(response => {
@@ -86,6 +88,7 @@ class FormPrenotazione extends Component {
       this.setState({ postidisponibili: numero, partecipanti: [...partecipanti, nome] });
     }
   };
+  
   handleDateChange = (event) => {
     this.setState({ data: event.target.value });
 
@@ -142,13 +145,14 @@ class FormPrenotazione extends Component {
 
     return (
       <>
+        <Navbar key="navbar-key" />
         {this.state.form && (
           <form id="form-prenotazione" className="container-fluid p-auto w-75 border rounded border-2 margin-tb h-auto" onSubmit={this.handleSubmit}>
             <h1 className="my-4 d-flex justify-content-center">PRENOTAZIONE</h1>
             <div className="row mx-auto justify-content-between">
               <div className="m-5 col-4">
                 <label htmlFor="ricerca">Seleziona un ristorante:</label>
-                {this.state.ristoranti.map((rs, index) => (
+                {this.state.ristoranti && this.state.ristoranti.map((rs, index) => (
                   <div key={index}>
                     <input type="radio" className="form-check-input mb-2 mr-1" id="seleziona_rist" name="seleziona_rist" value={index} onClick={this.handleRadioChange} /> <label htmlFor="seleziona_rist" className="text-break">{rs.Ragione_sociale + ", " + rs.Citta}</label>
                   </div>
@@ -156,7 +160,7 @@ class FormPrenotazione extends Component {
               </div>
               <div className="m-5 col-4">
                 <label htmlFor="ricerca_cliente">Invita un utente:</label>
-                {this.state.altriclienti.map((rs, index) => (
+                {this.state.altriclienti && this.state.altriclienti.map((rs, index) => (
                   <div key={index}>
                     <input type="checkbox" className="form-check-input mb-2 mr-1" id="invita_utenti" name="invita_utenti" value={rs.Username} disabled={this.state.ristoranteselezionato.length === 0 || (this.state.postidisponibili === 0 && !this.state.partecipanti.includes(rs.Username))} onChange={this.handleCheckboxChange} /> <label htmlFor="invita_utenti" className="text-break">{rs.Username}</label>
                   </div>
@@ -182,7 +186,7 @@ class FormPrenotazione extends Component {
               <div className="container-fluid my-4 text-center">
                 <hr />
                 <h3 className="my-4">Riepilogo prenotazione</h3>
-                {this.state.ristoranteselezionato.map((rs, index) => (
+                {this.state.ristoranteselezionato && this.state.ristoranteselezionato.map((rs, index) => (
                   <h5 key={index} className="my-2">Ristorante: {rs.Ragione_sociale}, {rs.Indirizzo}, {rs.CAP} {rs.Citta} </h5>
                 ))}
                 <h5 className="my-3">Data: {this.state.data}</h5>
@@ -200,7 +204,7 @@ class FormPrenotazione extends Component {
           <div id="form-invito">
             <div className="container-fluid p-auto w-75 border rounded border-2 margin-tb h-auto">
               <h1 className="my-4 text-center text-success">PRENOTAZIONE EFFETTUATA CON SUCCESSO</h1>
-              {this.state.prenotazione.map((rs, index) => (
+              {this.state.prenotazione && this.state.prenotazione.map((rs, index) => (
                 <h5 key={index} className="my-5 text-center">Il tuo codice di prenotazione è: {rs.Codice}</h5>
               ))}
             </div>

@@ -13,7 +13,7 @@
         $username = $data["username"];
         $oggi = date("Y-m-d");
         
-        $res = $conn->execute_query("SELECT * FROM prenotazione WHERE Data_prenotazione = '$oggi' AND (Id_cliente = '$id_cliente' OR Partecipanti LIKE '%$username%') AND Stato = 1");
+        $res = $conn->execute_query("SELECT * FROM prenotazione WHERE Data_prenotazione = '$oggi' AND (Id_cliente = '$id_cliente' OR Partecipanti LIKE '%$username%') AND Stato = 1 LIMIT 1");
         $row = mysqli_fetch_assoc($res); 
         $res1=array($row);
 

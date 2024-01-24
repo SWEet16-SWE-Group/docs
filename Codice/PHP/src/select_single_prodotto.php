@@ -2,17 +2,16 @@
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, OPTIONS, PUT, DELETE");
     header("Access-Control-Allow-Headers: Content-Disposition, Content-Type, Content-Length, Accept-Encoding");
-    header('Content-Type: application/json');
 
     include "./conn.php";
 
     $data = json_decode(file_get_contents('php://input'), true);
 
-    if(isset($data['id_ristorante']))
+    if(isset($data["id_prodotto"]))
     {
-        $id = $data['id_ristorante'];
+        $id_prodotto = $data["id_prodotto"];
 
-        $res = $conn->execute_query("SELECT * FROM prodotto WHERE Id_ristorante = '$id' ORDER BY Categoria");
+        $res = $conn->execute_query("SELECT * FROM prodotto WHERE ID_prodotto = $id_prodotto");
         $res1=array();
         while ($row = mysqli_fetch_assoc($res)) 
         {
