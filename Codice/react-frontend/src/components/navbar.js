@@ -7,22 +7,33 @@ class Navbar extends Component {
     super(props);
     this.state = {
       idCliente: "",
-      cliente : []
+      cliente : [],
+      idRistorante: "",
+      ristorante : []
     }
   }
     
     componentDidMount() 
     {  
       let id_cliente=-1;
-      if (localStorage && localStorage.getItem('idc')) 
+      let id_ristorante=-1;
+      if(localStorage && localStorage.getItem('idc')) 
       {
          id_cliente = JSON.parse(localStorage.getItem('idc'));
          this.setState({ idCliente: id_cliente });
+         axios.post("http://localhost:8888/select_cliente.php", {id_cliente}).then(response => {
+          this.setState({ cliente: response.data });
+        });
+      }
+      else if(localStorage && localStorage.getItem('idr')) 
+      {
+          id_ristorante = JSON.parse(localStorage.getItem('idr'));
+         this.setState({ idRistorante: id_ristorante });
+         axios.post("http://localhost:8888/select_ristorante.php", {id_ristorante}).then(response => {
+          this.setState({ ristorante: response.data });
+        });
       }
 
-      axios.post("http://localhost:8888/select_cliente.php", {id_cliente}).then(response => {
-        this.setState({ cliente: response.data });
-      });
     }
 
       render() 
@@ -88,6 +99,10 @@ class Navbar extends Component {
                   {this.state.cliente && this.state.cliente.map((rs, index) => (
                     
                     <h5 key={index} className="fw-normal mx-auto col-3 text-end">{rs.Username}</h5>
+                  ))}
+                  {this.state.ristorante && this.state.ristorante.map((rs, index) => (
+                    
+                    <h5 key={index} className="fw-normal mx-auto col-3 text-end">{rs.Ragione_sociale}</h5>
                   ))}
               </nav>
             </>

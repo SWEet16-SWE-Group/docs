@@ -54,8 +54,7 @@ class DettagliPietanza extends Component {
     event.preventDefault();
 
     const cliente = JSON.parse(localStorage.getItem('idc'));
-    const tavolo = this.state.prenotazione[0].Id_tavolo;
-    const ristorante = this.state.prenotazione[0].Id_ristorante;
+    const prenotazione = this.state.prenotazione[0].ID_prenotazione;
     const prodotto = this.state.pietanza[0].ID_prodotto;
     const porzioni = this.state.quantita;
     const tot = this.state.pietanza[0].Prezzo * porzioni;
@@ -65,8 +64,7 @@ class DettagliPietanza extends Component {
     const insert = [
       {
         id_cliente: cliente,
-        id_tavolo: tavolo,
-        id_ristorante: ristorante,
+        id_prenotazione: prenotazione,
         id_prodotto: prodotto,
         quantita: porzioni,
         totale: tot,

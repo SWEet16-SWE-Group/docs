@@ -19,6 +19,27 @@ class Login extends Component {
 
     componentDidMount() {
 
+        if(localStorage && localStorage.getItem('idc'))
+        {
+            localStorage.removeItem('idc');
+        }
+        if(localStorage && localStorage.getItem('idu'))
+        {
+            localStorage.removeItem('idu');
+        }
+        if(localStorage && localStorage.getItem('idr'))
+        {
+            localStorage.removeItem('idr');
+        }
+        if(localStorage && localStorage.getItem('idp'))
+        {
+            localStorage.removeItem('idp');
+        }
+        if(localStorage && localStorage.getItem('confermato'))
+        {
+            localStorage.removeItem('confermato');
+        }
+
         axios.post("http://localhost:8888/select_multiple_cliente.php").then(response => {
             this.setState({ clienti: response.data });
         })
