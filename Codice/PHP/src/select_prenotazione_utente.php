@@ -7,11 +7,13 @@
 
     $data = json_decode(file_get_contents('php://input'), true);
     
-    if(isset($data["id_ristorante"]))
+    if(isset($data["id_cliente"]))
     {
-        $id_ristorante = $data["id_ristorante"];
+        $id_cliente = $data["id_cliente"];
+        $username = $data["username"];
+        $oggi = date("Y-m-d");
         
-        $res = $conn->execute_query("SELECT * FROM ristorante WHERE ID_ristorante = $id_ristorante");
+        $res = $conn->execute_query("SELECT * FROM prenotazione WHERE Data_prenotazione = '$oggi' AND (Id_cliente = '$id_cliente' OR Partecipanti LIKE '%$username%') AND Stato = 1 LIMIT 1");
         $row = mysqli_fetch_assoc($res); 
         $res1=array($row);
 

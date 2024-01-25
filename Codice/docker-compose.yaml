@@ -2,13 +2,13 @@ version: '3.8'
 
 services:
   mysql:
-    image: mysql:latest
+    image: mysql
     container_name: mysql-server
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: easymeal
       MYSQL_PASSWORD: root
-    command: --init-file /docker-entrypoint-initdb.d/easymeal.sql
+      command: --init-file /docker-entrypoint-initdb.d/easymeal.sql
     volumes:
       - ./sql/easymeal.sql:/docker-entrypoint-initdb.d/easymeal.sql
     healthcheck:
@@ -52,7 +52,6 @@ services:
       PMA_HOST: mysql
       PMA_PORT: 3306
       PMA_ARBITRARY: 1
-    restart: always
     ports:
       - "8080:80"
 

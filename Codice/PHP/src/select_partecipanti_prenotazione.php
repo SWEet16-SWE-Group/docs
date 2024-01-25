@@ -7,21 +7,22 @@
 
     $data = json_decode(file_get_contents('php://input'), true);
     
-{
-    $id_prenotazione = $data["id_prenotazione"];
-    
-    $stmt = $conn->prepare("SELECT * FROM `partecipanti` WHERE Id_prenotazione = ?");
-    $stmt->bind_param("s", $id_prenotazione);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    $res1 = array();
+    if(isset($data["id_prenotazione"]))
+    {
+        $id_prenotazione = $data["id_prenotazione"];
+        
+        $stmt = $conn->prepare("SELECT * FROM `partecipanti` WHERE Id_prenotazione = ?");
+        $stmt->bind_param("s", $id_prenotazione);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        $res1 = array();
 
-    while ($row = $result->fetch_assoc()) {
-        $res1[] = $row;
+        while ($row = $result->fetch_assoc()) {
+            $res1[] = $row;
+        }
+        echo json_encode($res1);
+
     }
-    echo json_encode($res1);
-
-}
 
 ?>

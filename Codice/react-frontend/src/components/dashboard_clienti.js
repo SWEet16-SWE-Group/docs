@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { Navigate } from "react-router-dom";
 import "../App.css"
+
+import Navbar from "./navbar";
 
 class DashboardClienti extends Component {
   constructor(props) {
@@ -11,10 +13,7 @@ class DashboardClienti extends Component {
       scadute: [],
       ristorante: [],
       cliente: [],
-      submittedBack: false,
-      submittedPrenotazione: false,
     };
-    this.handleBack = this.handleBack.bind(this);
   }
 
   componentDidMount() {
@@ -31,104 +30,95 @@ class DashboardClienti extends Component {
       }
     ]
 
-    axios.post("http://localhost:8888/select_cliente.php ", ricerca_cliente[0], { headers: { 'Content-Type': 'application/json' } }).then(response => {
+    axios.post("http://localhost:8888/select_cliente.php ", ricerca_cliente[0]).then(response => {
       this.setState({ cliente: response.data });
     })
 
-    axios.post("http://localhost:8888/select_prenotazioni_cliente.php ", ricerca_cliente[0], { headers: { 'Content-Type': 'application/json' } }).then(response => {
+    axios.post("http://localhost:8888/select_prenotazioni_cliente.php ", ricerca_cliente[0]).then(response => {
       this.setState({ prenotazioni: response.data });
     })
 
-    axios.post("http://localhost:8888/select_prenotazioni_cliente_scadute.php ", ricerca_cliente[0], { headers: { 'Content-Type': 'application/json' } }).then(response => {
+    axios.post("http://localhost:8888/select_prenotazioni_cliente_scadute.php ", ricerca_cliente[0]).then(response => {
       this.setState({ scadute: response.data });
     })
 
   }
 
   getColor = (stato) => {
-    if (stato === 0) return 'red';
-    if (stato === 1) return 'green';
-    return 'white';
+    if (stato === 0) return 'table-danger';
+    if (stato === 1) return 'table-success';
+    else return;
   };
-
-  getColorHeader = () => {
-    return 'gray';
-  };
-
-  handleBack = () => (event) => {
-    this.setState({ submittedBack: true });
-  }
-
-  handlePrenotazione = () => (event) => {
-    this.setState({ submittedPrenotazione: true });
-  }
 
   render() {
     return (
-      <div>
-        <form>
-        {this.state.submittedBack && (
-          <Navigate to="/login"
-          />)}
-        {this.state.submittedPrenotazione && (
-          <Navigate to="/form_prenotazione"
-          />)}
-          <br></br>
-          <h1 className="my-5 d-flex justify-content-center">Lista prenotazioni cliente: {this.state.cliente.map((rs, index) => (<div key={index}>{rs.Username}</div>))} </h1>
-          <div>
-            <button onClick={this.handleBack()} type="button" className="btn-partecipanti btn btn-outline-primary back">Back</button>
-            <button onClick={this.handlePrenotazione()} type="button" className="btn-partecipanti btn btn-outline-primary">Nuova prenotazione</button>
+      <>
+      <Navbar key="navbar-key" />
+      <div className="container-fluid p-auto border width-95 rounded border-2 margin-tb h-auto">
+          <h1 className="my-5 d-flex justify-content-center">LISTA PRENOTAZIONI CLIENTE: 
+            {this.state.cliente && this.state.cliente.map((rs, index) => (
+              <div className="mx-3" key={index}>{rs.Username}</div>
+            ))} 
+          </h1>
+          <div className="row mb-5 mx-3">
+            <div className="col-6" >
+              <h3 className="attive text-center mb-4"> Attive</h3>
+              <table className="table-attive table">
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Prenotazione</th>
+                    <th>Ristorante</th>
+                    <th>N. persone</th>
+                    <th>Giorno</th>
+                    <th>Orario</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.prenotazioni.length !== 0 && this.state.prenotazioni.map((rs, index) => (
+                    <tr className={this.getColor(rs.Stato)} key={index} >
+                      <td>{rs.ID_prenotazione}</td>
+                      <td>{rs.Ragione_sociale}</td>
+                      <td>{rs.Num_persone}</td>
+                      <td>{rs.Data_prenotazione}</td>
+                      <td>{rs.Orario_arrivo} - {rs.Orario_partenza}</td>
+                      <td>
+                        {!this.getColor(rs.Stato) && (<Link to={`/ordinazioni/${rs.ID_prenotazione}`} className="btn btn-primary btn-sm m-2">ORDINA</Link>)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
           </div>
-          <h3 className="attive"> Attive</h3>
-          <h3 className="scadute"> Scadute</h3>
-          <table className="table-attive">
-            <thead>
-              <tr style={{ background: this.getColorHeader() }} >
-                <th>Prenotazione</th>
-                <th>Ristorante</th>
-                <th>N. persone</th>
-                <th>Giorno</th>
-                <th>Orario</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.prenotazioni.length !== 0 && this.state.prenotazioni.map((rs, index) => (
-                <tr style={{ background: this.getColor(rs.Stato) }} key={index} >
-                  <td>{rs.ID_prenotazione}</td>
-                  <td>{rs.Ragione_sociale}</td>
-                  <td>{rs.Num_persone}</td>
-                  <td>{rs.Data_prenotazione}</td>
-                  <td>{rs.Orario_arrivo} - {rs.Orario_partenza}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </form>
-        <form>
-          <table className="table-scadute">
-            <thead>
-              <tr style={{ background: this.getColorHeader() }} >
-                <th>Prenotazione</th>
-                <th>Ristorante</th>
-                <th>N. persone</th>
-                <th>Giorno</th>
-                <th>Orario</th>
-              </tr>
-            </thead>
-            <tbody>
-              {this.state.scadute.length !== 0 && this.state.scadute.map((rs, index) => (
-                <tr style={{ background: this.getColor(rs.Stato) }} key={index} >
-                  <td>{rs.ID_prenotazione}</td>
-                  <td>{rs.Ragione_sociale}</td>
-                  <td>{rs.Num_persone}</td>
-                  <td>{rs.Data_prenotazione}</td>
-                  <td>{rs.Orario_arrivo} - {rs.Orario_partenza}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </form>
+          <div className="col-1"></div>
+            <div className="col-5" >
+              <h3 className="scadute text-center mb-4"> Scadute</h3>
+              <table className="table-scadute table">
+                <thead className="thead-dark">
+                  <tr>
+                    <th>Prenotazione</th>
+                    <th>Ristorante</th>
+                    <th>N. persone</th>
+                    <th>Giorno</th>
+                    <th>Orario</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {this.state.scadute.length !== 0 && this.state.scadute.map((rs, index) => (
+                    <tr className={this.getColor(rs.Stato)} key={index} >
+                      <td>{rs.ID_prenotazione}</td>
+                      <td>{rs.Ragione_sociale}</td>
+                      <td>{rs.Num_persone}</td>
+                      <td>{rs.Data_prenotazione}</td>
+                      <td>{rs.Orario_arrivo} - {rs.Orario_partenza}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+          </div>
+        </div>
       </div>
+      </>
     );
   }
 }
