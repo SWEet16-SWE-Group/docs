@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: mysql:3306
--- Creato il: Gen 21, 2024 alle 17:57
+-- Creato il: Gen 25, 2024 alle 08:38
 -- Versione del server: 8.2.0
 -- Versione PHP: 8.2.8
 
@@ -20,6 +20,10 @@ SET time_zone = "+00:00";
 --
 -- Database: `easymeal`
 --
+
+DROP DATABASE IF EXISTS `easymeal`;
+CREATE DATABASE `easymeal`;
+USE `easymeal`;
 
 -- --------------------------------------------------------
 
@@ -70,6 +74,8 @@ CREATE TABLE `ordine` (
   `ID_ordine` int NOT NULL,
   `Id_cliente` int NOT NULL,
   `Id_prodotto` int NOT NULL,
+  `Id_tavolo` int DEFAULT NULL,
+  `Id_ristorante` int DEFAULT NULL,
   `Id_prenotazione` int NOT NULL,
   `Orario` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `Quantita` int NOT NULL DEFAULT '1',
@@ -84,13 +90,21 @@ CREATE TABLE `ordine` (
 -- Dump dei dati per la tabella `ordine`
 --
 
-INSERT INTO `ordine` (`ID_ordine`, `Id_cliente`, `Id_prodotto`, `Id_prenotazione`, `Orario`, `Quantita`, `Totale`, `Ingredienti_rimossi`, `Conferma`, `Pagamento`, `Preparazione`) VALUES
-(14, 2, 5, 48, '2024-01-19 17:52:46', 1, 2.50, NULL, 0, 'Non pagato', 'Da fare'),
-(15, 1, 6, 48, '2024-01-19 17:52:48', 1, 3.00, NULL, 1, 'Non pagato', 'Da fare'),
-(16, 2, 4, 48, '2024-01-19 18:14:40', 1, 2.50, NULL, 0, 'Non pagato', 'Da fare'),
-(17, 3, 8, 48, '2024-01-20 00:07:27', 2, 17.00, NULL, 0, 'Non pagato', 'Da fare'),
-(21, 2, 7, 48, '2024-01-20 13:04:27', 1, 8.00, 'sale, aglio', 0, 'Non pagato', 'Da fare'),
-(22, 1, 4, 48, '2024-01-21 13:07:52', 2, 5.00, NULL, 1, 'Non pagato', 'Da fare');
+INSERT INTO `ordine` (`ID_ordine`, `Id_cliente`, `Id_prodotto`, `Id_tavolo`, `Id_ristorante`, `Id_prenotazione`, `Orario`, `Quantita`, `Totale`, `Ingredienti_rimossi`, `Conferma`, `Pagamento`, `Preparazione`) VALUES
+(14, 1, 5, 2, 2, 50, '2024-01-19 17:52:46', 1, 2.50, NULL, 0, 'Non pagato', 'Da fare'),
+(15, 1, 6, 2, 2, 50, '2024-01-19 17:52:48', 1, 3.00, NULL, 0, 'Non pagato', 'Da fare'),
+(16, 1, 4, 2, 2, 50, '2024-01-19 18:14:40', 1, 2.50, NULL, 0, 'Non pagato', 'Da fare'),
+(17, 1, 8, 2, 2, 50, '2024-01-20 00:07:27', 2, 17.00, NULL, 0, 'Non pagato', 'Da fare'),
+(21, 1, 7, 2, 2, 50, '2024-01-20 13:04:27', 1, 8.00, 'sale, aglio', 0, 'Non pagato', 'Da fare'),
+(22, 1, 4, 2, 2, 50, '2024-01-21 13:07:52', 2, 5.00, NULL, 0, 'Non pagato', 'Da fare'),
+(23, 1, 4, NULL, NULL, 60, '2024-01-25 08:34:19', 1, 2.50, NULL, 1, 'Non pagato', 'Da fare'),
+(24, 1, 4, NULL, NULL, 60, '2024-01-25 08:34:21', 1, 2.50, NULL, 1, 'Non pagato', 'Da fare'),
+(25, 1, 4, NULL, NULL, 60, '2024-01-25 08:34:21', 1, 2.50, NULL, 1, 'Non pagato', 'Da fare'),
+(26, 1, 4, NULL, NULL, 60, '2024-01-25 08:34:22', 1, 2.50, NULL, 1, 'Non pagato', 'Da fare'),
+(27, 1, 4, NULL, NULL, 60, '2024-01-25 08:34:22', 1, 2.50, NULL, 1, 'Non pagato', 'Da fare'),
+(28, 1, 4, NULL, NULL, 60, '2024-01-25 08:34:22', 1, 2.50, NULL, 1, 'Non pagato', 'Da fare'),
+(29, 1, 4, NULL, NULL, 60, '2024-01-25 08:34:22', 1, 2.50, NULL, 1, 'Non pagato', 'Da fare'),
+(30, 1, 4, NULL, NULL, 60, '2024-01-25 08:34:22', 1, 2.50, NULL, 1, 'Non pagato', 'Da fare');
 
 -- --------------------------------------------------------
 
@@ -136,10 +150,18 @@ CREATE TABLE `prenotazione` (
 --
 
 INSERT INTO `prenotazione` (`ID_prenotazione`, `Id_cliente`, `Id_tavolo`, `Id_ristorante`, `Codice`, `Num_persone`, `Partecipanti`, `Data_prenotazione`, `Orario_arrivo`, `Orario_partenza`, `Orario_prenotazione`, `Stato`) VALUES
-(48, 1, 2, 2, 'Pasta#2', 4, 'Pasta,Albero, Patata', '2024-01-21', '19:45:00', '20:45:00', '2024-01-09 19:48:42', 1),
-(50, 1, 2, 1, 'Pasta#2', 4, 'Pasta,Patata, Lollo', '2024-01-20', '22:48:00', '23:49:00', '2024-01-10 18:45:24', 1),
-(51, 1, 2, 1, 'Pasta#2', 4, 'Pasta,Albero', '2024-01-25', '22:46:00', '23:46:00', '2024-01-10 18:46:13', NULL),
-(53, 1, 3, 2, 'Pasta#3', 4, 'Pasta, Albero, Patata, Biscotto', '2024-01-26', '20:40:00', '21:40:00', '2024-01-11 16:40:25', 1);
+(48, 1, 2, 2, 'Pasta#2', 4, 'Pasta,Albero', '2024-01-21', '19:45:00', '20:45:00', '2024-01-09 19:48:42', 0),
+(50, 1, 2, 1, 'Pasta#2', 4, 'Pasta,Patata, Lollo', '2024-01-20', '22:48:00', '23:49:00', '2024-01-10 18:45:24', 0),
+(51, 1, 2, 1, 'Pasta#2', 4, 'Pasta,Albero', '2024-01-25', '22:46:00', '23:46:00', '2024-01-10 18:46:13', 0),
+(53, 1, 3, 2, 'Pasta#3', 4, 'Pasta, Albero, Patata, Biscotto', '2024-01-26', '20:40:00', '21:40:00', '2024-01-11 16:40:25', 0),
+(54, 3, 6, 2, 'Patata#6', 2, 'Patata, Albero', '2025-02-25', '20:49:00', '03:49:00', '2024-01-24 21:48:19', 0),
+(55, 1, 3, 1, 'Pasta#3', 4, 'Pasta, Albero, Lollo, Biscotto', '2025-02-28', '23:51:00', '23:51:00', '2024-01-24 21:50:20', 0),
+(56, 1, 3, 1, 'Pasta#3', 2, 'Pasta, Albero', '2026-02-27', '23:55:00', '23:58:00', '2024-01-24 21:54:35', NULL),
+(57, 1, 3, 1, 'Pasta#3', 2, 'Pasta, Albero', '2025-02-26', '01:57:00', '23:57:00', '2024-01-24 21:56:54', NULL),
+(58, 1, 3, 1, 'Pasta#3', 1, 'Pasta, ', '2024-01-21', '01:02:00', '03:01:00', '2024-01-24 22:00:21', NULL),
+(59, 2, 3, 1, 'Albero#3', 2, 'Albero, Pasta', '2025-02-26', '11:04:00', '16:03:00', '2024-01-25 08:02:48', NULL),
+(60, 1, 6, 2, 'Pasta#6', 1, 'Pasta, ', '2025-02-27', '12:09:00', '16:08:00', '2024-01-25 08:05:17', NULL),
+(61, 1, 9, 3, 'Pasta#9', 2, 'Pasta, Albero', '2026-02-26', '10:07:00', '10:08:00', '2024-01-25 08:06:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -299,10 +321,14 @@ INSERT INTO `tavolo` (`ID_tavolo`, `Codice`, `Num_posti`, `Data_prenotazione`, `
 (7, 'R001', 2, NULL, NULL, NULL, 3),
 (8, 'R002', 4, NULL, NULL, NULL, 3),
 (9, 'R003', 6, NULL, NULL, NULL, 3),
-(56, 'P002', 4, '2024-01-21', '19:00:00', '19:30:00', 1),
-(57, 'P002', 4, '2024-01-21', '21:00:00', '21:30:00', 1),
 (67, 'P003', 4, '2024-01-21', '21:37:00', '22:37:00', 2),
-(68, 'P003', 4, '2024-01-21', '20:40:00', '21:40:00', 2);
+(69, 'G003', 5, '2025-02-25', '20:49:00', '03:49:00', 2),
+(70, 'P003', 4, '2025-02-28', '23:51:00', '23:51:00', 1),
+(71, 'P003', 4, '2026-02-27', '23:55:00', '23:58:00', 1),
+(72, 'P003', 4, '2025-02-26', '01:57:00', '23:57:00', 1),
+(74, 'P003', 4, '2025-02-26', '11:04:00', '16:03:00', 1),
+(75, 'G003', 5, '2025-02-27', '12:09:00', '16:08:00', 2),
+(76, 'R003', 6, '2026-02-26', '10:07:00', '10:08:00', 3);
 
 -- --------------------------------------------------------
 
@@ -357,8 +383,10 @@ ALTER TABLE `commento`
 --
 ALTER TABLE `ordine`
   ADD PRIMARY KEY (`ID_ordine`),
+  ADD KEY `ordine_ristorante` (`Id_ristorante`),
   ADD KEY `ordine_cliente` (`Id_cliente`),
   ADD KEY `ordine_prodotto` (`Id_prodotto`) USING BTREE,
+  ADD KEY `Id_tavolo` (`Id_tavolo`),
   ADD KEY `Id_prenotazione` (`Id_prenotazione`);
 
 --
@@ -448,7 +476,7 @@ ALTER TABLE `commento`
 -- AUTO_INCREMENT per la tabella `ordine`
 --
 ALTER TABLE `ordine`
-  MODIFY `ID_ordine` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `ID_ordine` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT per la tabella `pagamento`
@@ -460,7 +488,7 @@ ALTER TABLE `pagamento`
 -- AUTO_INCREMENT per la tabella `prenotazione`
 --
 ALTER TABLE `prenotazione`
-  MODIFY `ID_prenotazione` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
+  MODIFY `ID_prenotazione` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
 
 --
 -- AUTO_INCREMENT per la tabella `prodotto`
@@ -490,7 +518,7 @@ ALTER TABLE `ristorante`
 -- AUTO_INCREMENT per la tabella `tavolo`
 --
 ALTER TABLE `tavolo`
-  MODIFY `ID_tavolo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
+  MODIFY `ID_tavolo` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT per la tabella `utente`
@@ -521,7 +549,8 @@ ALTER TABLE `commento`
 ALTER TABLE `ordine`
   ADD CONSTRAINT `ordine_cliente` FOREIGN KEY (`Id_cliente`) REFERENCES `cliente` (`ID_cliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ordine_prenotazione` FOREIGN KEY (`Id_prenotazione`) REFERENCES `prenotazione` (`ID_prenotazione`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `ordine_prodotto` FOREIGN KEY (`Id_prodotto`) REFERENCES `prodotto` (`ID_prodotto`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `ordine_prodotto` FOREIGN KEY (`Id_prodotto`) REFERENCES `prodotto` (`ID_prodotto`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `ordine_ristorante` FOREIGN KEY (`Id_ristorante`) REFERENCES `ristorante` (`ID_ristorante`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limiti per la tabella `pagamento`
