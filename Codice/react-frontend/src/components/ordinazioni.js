@@ -81,6 +81,8 @@ class DettagliPietanza extends Component {
         <div className="container-fluid p-auto w-75 border rounded border-2 margin-tb gx-0">
           <div className="row mb-5 mx-3">
             <h3 className="attive text-center my-4">I TUOI ORDINI</h3>
+            {this.state.ordinazione[0] && (
+              <>
             <table className="table-attive table">
               <thead className="thead-dark">
                 <tr>
@@ -112,6 +114,8 @@ class DettagliPietanza extends Component {
                 ))}
               </tbody>
             </table>
+            </>
+            )}
           </div>
             <div className="mt-5 d-flex justify-content-center">
                 <Link to="/menu" className="btn btn-primary btn-lg w-100 m-2">ORDINA DAL MENU</Link>

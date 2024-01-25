@@ -17,7 +17,7 @@ class MenuPietanze extends Component {
   }
 
   componentDidMount() {
-    let id_prenotazione = 0;
+    let id_prenotazione = -1;
     if (localStorage && localStorage.getItem('idp')) { id_prenotazione = JSON.parse(localStorage.getItem('idp')) }
 
     axios.post("http://localhost:8888/select_prenotazione.php ", { id_prenotazione }).then(response =>
@@ -46,9 +46,8 @@ class MenuPietanze extends Component {
     event.preventDefault();
 
     const cliente = JSON.parse(localStorage.getItem('idc'));
-    const tavolo = this.state.prenotazione[0].Id_tavolo;
-    const ristorante = this.state.prenotazione[0].Id_ristorante;
     const prodotto = this.state.pietanze[index].ID_prodotto;
+    const prenotazione = this.state.prenotazione[0].ID_prenotazione;
     const porzioni = this.state.quantita[index] ? this.state.quantita[index].porzioni : 1;
     const tot = this.state.pietanze[index].Prezzo * porzioni;
 
@@ -56,19 +55,17 @@ class MenuPietanze extends Component {
     const insert = [
       {
         id_cliente: cliente,
-        id_tavolo: tavolo,
-        id_ristorante: ristorante,
         id_prodotto: prodotto,
+        id_prenotazione: prenotazione,
         quantita: porzioni,
         totale: tot
       }
     ]
 
     axios
-      .post("http://localhost:8888/insert_ordine.php", insert[0]).then(response => {
-        console.log( response.data );
-      })
-
+      .post("http://localhost:8888/insert_ordine.php", insert[0]).then( response => {
+        console.log(response.data);
+  })
   };
 
   render() {
