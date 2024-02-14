@@ -1,0 +1,351 @@
+Registro modifiche:
+03/01 alberto m conclusione stesura sezione 2 ed inizio stesura sezione 3
+02/01 alberto m. inizio stesura sezione 2 (processi primari)
+23/11 alberto m. stesura sezione 1
+
+
+
+Introduzione
+
+Scopo del documento
+
+Il presente documento si pone lo scopo di individuare e definire le best pratices (G) e il way of working (G) del progetto che ogni componente del gruppo SWEet16 si impegna a rispettare durante l’intero svolgimento del progetto Easy Meal.
+In questo modo si cercherà di garantire omogeneità e coesione in ogni aspetto del suddetto.
+
+
+Scopo del prodotto
+
+Lo scopo dell’applicazione è creare una piattaforma che permetta di gestire e semplificare il processo di prenotazione (G) di tavoli all’interno dei ristoranti.
+Sarà inoltre possibile anticipare l’esperienza culinaria visionando prima il menù ed andare ad effettuare la propria ordinazione (G) prima di arrivare al ristorante.
+Il prodotto offre inoltre un’esperienza di ordine collaborativa e coinvolgente, permettendo di condividere la propria ordinazione con amici ed, in caso di dubbi, interagire direttamente con lo staff del ristorante.
+
+L’idea è una piattaforma SaaS (Software as a Service), in cui i saranno presenti due tipi di utenti:
+clienti (G): utente registrato all’interno dell’applicazione, può cercare ristoranti, effettuare prenotazioni, ordinazione e inserire feedback e recensioni.
+ristoratori (G): utente registrato all’interno dell’applicazione, può gestire uno o più ristoranti, controllando le prenotazioni, gli ordini e i menù del/i ristorante/i.
+
+La piattaforma dovrà essere alternativamente disponibile attraverso una webapp(G) accessibile da qualsiasi dispositivo oppure tramite dispositivo mobile, attraverso dispositivo iOS(G) oppure Android(G).
+
+Glossario
+
+Al fine di evitare possibili ambiguità relative al linguaggio utilizzato nei documenti, viene fornito il documento Glossario v1.0.0, nel quale sono contenute le definizioni di termini aventi uno specifico significato.
+Tali termini sono marcati con una G ad apice della parola.
+
+
+
+
+
+
+Maturità del Documento
+
+
+Il presente documento è redatto con un approccio incrementale al fine di poter trattare nuove o ricorrenti questioni in modo rapido ed efficiente, sulla base di decisioni concordate tra tutti i membri del gruppo. 
+Non può pertanto essere considerato definitivo nella sua attuale versione.
+
+
+
+Riferimenti
+
+Riferimenti normativi
+
+Regolamento del progetto didattico:
+https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/PD2.pdf
+Capitolato d’appalto (G) C3 - Easy Meal:
+https://www.math.unipd.it/~tullio/IS-1/2023/Progetto/C3.pdf
+
+Riferimenti informativi
+
+Slide T3 - Corso di Ingegneria del Software – Il ciclo di vita del SW https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T03.pdf
+ ● Slide T06 - Progettazione Software: https://www.math.unipd.it/~tullio/IS-1/2023/Dispense/T6.pdf
+● Slide T14 - Verifica e Validazione: introduzione: 
+● Slide T14 - Verifica e Validazione: analisi statica: 
+● Slide T14 - Verifica e Validazione: analisi dinamica: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Processi primari
+
+Fornitura
+
+Scopo
+
+Questa sezione ha lo scopo di elencare tutte le metriche, gli strumenti e i documenti utilizzati al fine di realizzare il processo di fornitura
+
+Aspettative
+
+Le aspettative nell’applicazione del processo di fornitura sono:
+
+Avere una chiara struttura dei documenti;
+Definire in modo chiaro di tempi di lavoro;
+Chiarire eventuali dubbi e stabilire vincoli con il proponente.
+
+Descrizione
+
+Il processo di fornitura determina ogni compito, attività e risorse necessarie al corretto svolgimento del progetto.
+Tale processo verrà avviato solo in seguito ad un’attenta analisi preliminare delle richieste del proponente, seguito da uno studio di fattibilità delle menzionate richieste e concluso dalla definizione di accordo contrattuale con la proponente.
+
+Proponente
+
+Il team si è accordato con il proponente per avere un continuo riscontro sul prosieguo del progetto,  organizzando periodicamente incontri e mantenendosi in contatto asincrono tramite un gruppo Telegram(G). 
+Questo ci permetterà di poter chiarire eventuali dubbi, ed avere un riscontro sulla documentazione redatta, oltre che alla verifica dei verbali esterni.
+
+
+Documenti
+
+Piano di Progetto
+
+Il Piano di Progetto verrà redatto durante tutta la durata del progetto, ed andrà a costituire uno strumento utile alla pianificazione di tutte le attività da svolgere, le risorse necessarie e la scadenza del progetto stesso.
+é un documento ufficiale soggetto a versionamento ed approvazione, che viene utilizzato per descrivere in modo chiaro e conciso gli obiettivi di progetto e gli elementi necessari per il loro compimento; è diviso nelle seguenti parti: 
+
+
+Analisi dei rischi: analisi delle difficoltà che potrebbero venire a crearsi durante il progetto, e metodologie per evitare queste problematiche che potrebbero causare rallentamenti;
+Modello di sviluppo;
+Pianificazione: definizione dei periodi per le attività di progetto da svolgere;
+Preventivo: riepilogo del prospetto economico ed orario totale, diviso per ogni fase;
+Consuntivo di periodo: tracciamento dell’andamento rispetto al preventivo;
+Attualizzazione dei rischi.
+
+
+Piano di Qualifica
+
+Il Piano di Qualifica rappresenta i compiti e le attività relative al progetto che dovranno essere svolto dal Verificatore, contiene le metriche e le misure necessarie a garantire la qualità del prodotto e dei processi.
+Nello specifico, esso è formato dalle seguenti parti:
+Qualità di processo;
+Qualità di prodotto;
+Test e specifiche;
+Resoconto attività di verifica.
+
+
+
+
+
+Sviluppo
+
+Scopo
+
+Lo scopo del processo di sviluppo è quello di descrivere i compiti e le attività da svolgere per la codifica del prodotto software richiesto. In questa sezione vengono dunque descritte le attività, le norme e le convenzioni adottate per questo processo.
+
+Aspettative
+
+Le aspettative della corretta applicazione del processo di sviluppo sono:
+Realizzare un prodotto finale conforme alle richieste del proponente, come dettagliato dall’Analisi dei Requisiti.
+Determinare vincoli tecnologici;
+Determinare gli obiettivi di sviluppo;
+Determinare vincoli di design.
+
+Descrizione
+
+Il processo di sviluppo contiene le attività e i compiti dello sviluppatore, tra cui le attività per l’Analisi dei Requisiti, la progettazione, la codifica ed i strumenti utilizzati.
+
+
+Analisi dei Requisiti
+
+
+L’analisi dei requisiti è l’attività preliminare che permette di individuare, a partire da un approfondito studio del capitolato, i requisiti diretti ed indiretti, impliciti ed espliciti che il proponente richiede per la realizzazione del prodotto, ed i vari casi d’uso del prodotto stesso.
+In questa attività è importante suddividere il problema iniziale in requisiti quanto più elementari possibile, andando a facilitare il lavoro durante la fase di sviluppo.
+
+Requisiti
+
+I requisiti vengono raccolti da diverse fonti quali:
+Lettura dettagliata del capitolato;
+Confronto interno tra i membri del gruppo;
+Confronto con il proponente;
+Analisi dei casi d’uso.
+
+
+Denominazione e legenda
+
+Struttura casi d’uso
+
+I casi d’uso esprimono un comportamento od un modo di utilizzare il prodotto.
+Vengono descritti graficamente mediante l’ausilio di diagrammi UML(G).
+Ciascun caso d’uso è costituito da:
+Codice identificativo;
+Attore Primario;
+Precondizioni;
+Postcondizioni;
+Scenario principale;
+Generalizzazione (se esistono);
+Estensioni (se esistono).
+
+Denominazione casi d’uso
+
+Ciascun caso d’uso viene classificato univocamente mediante l’utilizzo del seguente schema:
+	
+	UC[Numero caso d’uso] . [Sottocaso d’uso] - [Titolo caso d’uso]
+dove:
+UC: acronimo di “Use Case”;
+Numero caso d’uso: numero associato al caso d’uso principale;
+Sottocaso d’uso: numero associato al sottocaso del caso d’uso principale;
+Titolo caso d’uso: Titolo assegnato al caso d’uso
+
+
+
+Struttura requisiti
+
+I requisiti individuati nell’Analisi dei Requisiti sono stati strutturati nel modo seguente:
+
+Codice;
+Descrizione: descrizione sintetica ed esplicativa;
+Classificazione in:
+- Requisito obbligatorio;
+- Requisito facoltativo;
+- Requisito desiderabile (ma non obbligatorio).
+      -    	Fonte: l’origine del requisito;
+
+Denominazione requisiti
+
+Ogni requisito è identificato univocamente secondo lo seguente schema:
+
+	R [Tipo] . [Codice]
+dove:
+Tipo: indica la tipologia del Requisito e può assumere:
+F: requisiti funzionali;
+Q: requisiti di qualità;
+S: requisiti di sistema;
+P: requisiti prestazionali e di sicurezza.
+Codice: numero identificativo incrementale e univoco in base alle tipologia di Requisito. Può presentare dei sotto casi.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Progettazione
+ 
+Scopo
+La fase di progettazione ha lo scopo di definire le linee essenziali della struttura del progetto in funzione dei requisiti individuati durante la fase di analisi, specificati nell’Analisi dei Requisiti.
+Questa attività viene svolta dai progettisti che si occupano di specificare le funzionalità dei sottosistemi, per riuscire a implementare tutti i requisiti specificati.
+ 
+Aspettative
+Questa fase del ciclo di vita del software ha le seguenti aspettative:
+-          Realizzazione di tutti i requisiti in specifiche dettagliate che vanno a coprire tutti gli aspetti del sistema;
+-          Creazione di una demo prototipale del sistema, detta Proof of Concept (G);
+-          Approvazione del passaggio alla fase di sviluppo.
+ 
+Requirements & Technology Baseline (RTB)
+Questa fase fissa i requisiti che il fornitore si impegna a soddisfare, in accordo con il proponente.
+Vengono motivate le tecnologie, i framework (G) e le librerie che verranno utilizzate per la realizzazione del prodotto.
+Documenti utili a tal fine sono:
+ 
+-          Norme di Progetto;
+-          Piano di Progetto;
+-          Piano di Qualifica;
+-          Verbali interni ed esterni;
+-          Glossario.
+ 
+Escludendo i verbali, i documenti sopracitati vanno mantenuti e migliorati nelle fasi successive.
+ 
+Product Baseline (PB)
+Questa fase illustra le linee guida architetturali del progetto.
+Oltre al miglioramento dei documenti dell’RTB, a questi si aggiungeranno i seguenti:
+-          Manuale utente;
+-          Manuale sviluppatore;
+-          Specifica tecnica (non sono sicuro di questa);
+-          Verbali interni ed esterni di periodo.
+ 
+
+Codifica
+ 
+Scopo
+L’attività di codifica ha lo scopo di concretizzare la progettazione con la programmazione del software vero e proprio. Questa verrà effettuata dai membri del gruppo con il ruolo di Programmatore.
+ 
+Aspettative
+Le aspettative per questa fase sono le seguenti:
+-          Completare lo sviluppo del prodotto finale rispettando le richieste ed i requisiti concordati con il proponente;
+-          Il codice generato dovrà essere di facile lettura e rispettare le norme di stile esposte più in basso.
+ 
+Stile della codifica
+-          Indentazione:
+-          Parentesi: ad es. stessa riga di dichiarazione o una riga sotto?
+-          Metodi: nomi dei metodi, maiuscola minuscola ecc.
+-          Classi:
+-          Variabili:
+-          Costanti:
+-          Univocità dei nomi: tutti i costrutti dovranno avere nomi univoci e significativi;
+-          Commenti:
+-          File:
+ 
+Strumenti
+Strumenti per la codifica:
+-          React
+-          Php
+-          Node.js
+-          Ecc..
+ 
+ 
+ 
+Strumenti di supporto alla codifica:
+-          VS Code
+-          Docker
+-          Tutti gli strumenti utili a testing
+ 
+ 
+
+
+
+
+
+
+
+
+
+Processi di supporto
+ 
+Documentazione
+Scopo
+Scopo di questa sezione è quello di normare la documentazione software, ovvero l’informazione scritta che accompagna un software, utile a descrivere il prodotto alle persone che lo sviluppano, lo distribuiscono e lo utilizzano.
+Intende in questo modo facilitare i membri del team durante lo sviluppo, tenendo traccia e documentando tutti i processi e attività, andando anche a facilitare la manutenzione migliorando la qualità del prodotto finale.
+ 
+Aspettative
+Le aspettative sono:
+-          Avere delle regole chiare e concise per la stesura di un documento;
+-          Delineare una struttura valida e comune per tutti i documenti.
+ 
+Ciclo di vita del documento
+Le fasi del ciclo di vita(G) del documento sono le seguenti:
+1.       Bozza: viene creata la bozza e la struttura del documento;
+2.       Redazione: fase di stesura del documento divisa tra i membri del gruppo utilizzando il versionamento;
+3.       Verifica: ogni sezione del documento è soggetto ad un processo di revisione correttiva da parte di uno o più verificatori;
+4.       Approvazione: il Responsabile di progetto, una volta che il documento è stato completato e verificato nella sua interezza, lo approva per il rilascio.
+ 
+Template
+Il team di sviluppo ha deciso di realizzare un template mediante LaTeX in modo da avere una struttura uniforme per tutte le pagine di tutti i documenti, in modo da potersi concentrare nella stesura degli stessi, senza badare alla parte grafica.
+In particolare il template definisce la prima pagina, il registro delle modifiche e la presentazione del documento.
+ 
+ 
+
+
+
