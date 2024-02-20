@@ -54,7 +54,7 @@ Al fine di poter fornire una corretta intrepretazione e realizzazione del prodot
     \begin{itemize}
         \item UC: acronimo di "Use Case";
         \item Numero: numero associato al caso d'uso principale;
-        \item Sottocaso d'uso: numero associato al sottocaso d'uso (se presente);
+        \item Sottocaso d'uso: numero associato al sottocaso d'uso (opzionale);
         \item Titolo: titolo assegnato al caso d'uso.
     \end{itemize}
     
@@ -69,11 +69,27 @@ Al fine di poter fornire una corretta intrepretazione e realizzazione del prodot
                                         \item Requisito obbligatorio;
                                         \item Requisito facoltativo;
                                         \item Requisito desiderabile;
-                                    
-         
         \end{itemize}
         \item Fonte: l'origine del requisito.
     \end{itemize}
 
     \subsubsubsubsection{Denominazione dei Requisiti}
+
+    Ogni requisito è identificato univocamente secondo il seguente schema:
+        \begin{center}
+            \large{\textbf{R[Tipo].[Codice].[SottoCodice]}}
+        \end{center}
+    Dove:
+    \begin{itemize}
+        \item Tipo: indica la tipologia del Requisito e può assumere: \begin{itemize}
+            \item F: requisito funzionale;
+            \item Q: requisito di qualità;
+            \item S: requisito di sistema;
+            \item P: requisito prestazionale e di sicurezza;
+        \end{itemize}
+
+        \item Codice: numero identificativo univoco ed incrementale in base alla tipologia di requisito;
+        \item SottoCodice: numero associato al sottorequisito (opzionale).
+      
+    \end{itemize}
  
