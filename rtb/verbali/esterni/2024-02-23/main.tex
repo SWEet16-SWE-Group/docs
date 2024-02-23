@@ -9,6 +9,9 @@
 \usepackage{colortbl} 
 \usepackage{tabularray}
 \usepackage[italian]{babel}
+\definecolor{darkgreen}{RGB}{18,94,40}
+\definecolor{lightgreen}{RGB}{179,255,179}
+\definecolor{moregreen}{RGB}{153,255,143}
 
  \geometry{
  a4paper,
@@ -49,8 +52,9 @@ Anno Accademico 2023/2024
 
 \begin{center}
 \begin{Huge}
-        \textbf{Verbale esterno} \\
+        \textbf{Verbale Esterno} \\
         \vspace{4mm}
+        \textbf{20 Febbraio 2024}
         
 \end{Huge}
 
@@ -96,5 +100,34 @@ row{1}={bg=black,fg=white}
 \pagebreak
 \tableofcontents
 \pagebreak 
+
+\section{Partecipanti}
+Di seguito i nomi dei partecipanti con le rispettive matricole: \\
+\vspace{5mm}
+
+\begin{table}[h]
+\begin{tblr}{
+colspec={X[5cm]X[5cm]},
+row{odd}={bg=moregreen},
+row{even}={bg=lightgreen},
+row{1}={bg=darkgreen,fg=white}
+}
+    Nome & Matricola \\
+    Alberto Cinel & 1142833 \\
+    Alex Scantamburlo & 2042326 \\
+    Giovanni Zuliani & 595900 
+\end{tblr}
+\end{table}
+
+Ha inoltre partecipato il Sig. Alessandro Staffolani, rappresentante di \textit{Imola Informatica}.
+
+\vspace{10pt}
+
+\textbf{Inizio incontro:} Ore 14:30 \newline
+\textbf{Fine incontro:} Ore 15:00  \newline
+
+\pagebreak
+
+\section{Sintesi dell'incontro}
 
 \end{document}
