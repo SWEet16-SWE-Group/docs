@@ -1,16 +1,22 @@
 \subsection{Progettazione}
 
 \subsubsection{Descrizione, scopo ed aspettative}
-La fase di progettazione ha lo scopo di definire le linee essenziali della struttura del progetto in funzione dei requisiti individuati durante la fase di analisi e specificati nell’Analisi dei Requisiti.
-Questa attività viene svolta dai progettisti che si occupano di specificare le funzionalità dei sottosistemi, per riuscire a implementare tutti i requisiti specificati.
+La fase di progettazione ha lo scopo di definire le linee essenziali della struttura del progetto in funzione dei requisiti individuati durante la fase di analisi e specificati nell’Analisi dei Requisiti. \\
+Questa attività viene svolta dai progettisti che si occupano di specificare le funzionalità dei sottosistemi, per riuscire a implementare tutti i requisiti specificati all'interno di un unico sistema.
 
-L'obiettivo che il gruppo si pone durante questa fase del ciclo di vita del software sono:
+Gli obiettivi che il gruppo si pone durante questa fase del ciclo di vita del software sono:
 \begin{itemize}
     \item Trasformazione di tutti i requisiti in specifiche dettagliate che vadano a coprire tutti gli aspetti del sistema;
     \item Creazione di una demo propotipale del sistema per testare le tecnologie e la loro compatibilita, detta Proof of Concept$^{G}$ (da qui in poi "PoC");
     \item Approvazione del passaggio alla fase di sviluppo;
 \end{itemize}
 
-\subsubsection{Requirements \& Technology Baseline (RTB)}
-
-\subsubsection{Product Baseline (PB)}
+Questo processo può essere suddiviso in tre fasi distinte:
+\begin{enumerate}
+    \item Design dell'interfaccia: in questa fase si procede ad un alto livello di astrazione rispetto al funzionamento interno del sistema.\\
+          L'attenzione è focalizzata sulle tecnologie che verranno utilizzate nella fase di sviluppo software, l'obiettivo di questa fase è la codifica del sopracitato PoC$^{G}$; 
+    \item Progettazione architettonica: in questa fase si definisce la struttura generale del sistema, andando ad ignorare i dettagli interni dei componenti principali. \\
+          Vengono inoltre definiti i test di integrazione;
+    \item Progettazione dettagliata: in questa fase si vanno a specificare i dettagli di tutti i componenti del prodotto e le specifiche architteturali. \\
+          Vengono definiti i diagrammi delle classi e i test di unità per ogni componente del prodotto.
+\end{enumerate}
