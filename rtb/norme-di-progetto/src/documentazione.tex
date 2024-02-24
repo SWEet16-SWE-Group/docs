@@ -1,49 +1,145 @@
 \subsection{Documentazione}
 
-\subsubsection{Descrizione, scopo ed aspettative}
+\subsubsection{Scopo}
+Lo scopo di questo documento è fornire uno standard da seguire durante il processo di documentazione.
 
 \subsubsection{Ciclo di vita del documento}
+Tappe fondamentali del ciclo di vita di ogni documento sono:
+  \begin{itemize}
+    \item Creazione: Creazione del documento partendo da un template.
+    \item Strutturazione: Creazione di file distinti rappresentanti le singole sezioni dell'indice dei contenuti.
+    \item Stesura: Fase di scrittura dei contenuti nei documenti. Può essere fatta da uno o più redattori, lavorando
+      asincronicamente su diverse sezioni.
+    \item Verifica: Una volta che una sezione viene completata entra in fase di verifica, dove uno o più verificatori
+      confermeranno le modifiche o rilasceranno dei commenti di correzione, in questo secondo caso il documento torna
+      nella fase di stesura.
+    \item Approvazione: Rilascio del documento.
+  \end{itemize}
+  Le prime due fasi sono svolte da tutti i membri del gruppo mentre la terza è affidata esclusivamente al responsabile.
 
 \subsubsection{Template}
+È stato deciso di utilizzare un template LaTeX % TODO marcare latex con il glossario e con il suo font
+come base di partenza per la stesura di ogni documento.
 
 \subsubsection{Documenti prodotti}
+I documenti prodotti si possono suddividere in due macrosezioni.
 
-    \subsubsubsection{Formali}
+    \subsubsubsection{Esterni}
+    Di interesse principale per il proponente e i committenti.
+    \begin{itemize}
+      \item Analisi dei requisiti.
+      \item Piano di progetto.
+      \item Piano di qualifica.
+      \item Verbali esterni.
+    \end{itemize}
 
-    \subsubsubsection{Informali}
+    \subsubsubsection{Interni}
+    Di interesse principale solo per membri del gruppo.
+    \begin{itemize}
+      \item Norme di progetto.
+      \item Verbali interni.
+    \end{itemize}
+
 
 \subsubsection{Struttura del documento}
 
         \subsubsubsection{Prima pagina}
+        La prima pagina di ogni documento dovrà contenere:
+        \begin{itemize}
+          \item Logo di Unipd accompagnato dal nome dell'università, corso di laurea, materia e anno accademico.
+          \item Logo del gruppo SWEet16 accompagnato dal nome del gruppo e la rispettiva mail.
+          \item Titolo del documento.
+          \item Informazioni aggiuntive:
+          \begin{itemize}
+            \item Redattori
+            \item Verificicatori
+            \item Destinatari
+            \item Versione
+          \end{itemize}
+        \end{itemize}
 
-        \subsubsubsection{Registro delle modifiche - Changelog}
+        % \subsubsubsection{Registro delle modifiche - Changelog}
+        % lo fa già github in automatico, non ci serve, possiamo toglierlo
 
         \subsubsubsection{Indice}
+        Ogni documento presenta un indice di navigazione allo scopo di facilitare quest'ultima e
+        dare un'aspettativa di ciò che esso contiene.
 
         %\subsubsubsection{Piè di Pagina} si può pensare di aggiungere un piè di pagina ai documenti
 
         \subsubsubsection{Verbali}
+        I verbali sono documenti informali non troppo diversi dagli altri documenti, con l'unica differenza
+        di non essere soggetti a versionamento.
+        La prima pagina è la stessa fornita da template.
+        Il resto della struttura è divisa in due:
+        \begin{itemize}
+          \item Partecipanti
+          \begin{itemize}
+            \item Tabella dei partecipanti che possono essere i da due a tutti i membri del gruppo più il proponente
+            \item Orario di inizio e fine
+          \end{itemize}
+          \item Sintesi ed elaborazione dell'incontro
+        \end{itemize}
 
 \subsubsection{Norme tipografiche}
 
     \subsubsubsection{Nome del file}
+    Il nome di ogni file inizia con la prima lettera maiuscola, tutte le altre minuscole.
+    Segue poi dal numero di versione composto da una 'v' e tre numeri separati da un '.'.
+    Per i verbali il nome del documento sarà semplicemente la data cui si è tenuto nel formato
+    AAAA/MM/GG.
 
     \subsubsubsection{Stile del testo}
+    \begin{itemize}
+    % TODO da riempire in un secondo momento
+    \item TODO
+    \end{itemize}
 
     \subsubsubsection{Glossario}
+    % TODO da ricontrollare anche questo che ho visto c'è anche nell'introduzione
+    Il Glossario è un documento che contiene tutte le parole ritenute ambigue date il contesto del progetto.
+
+    I termini presenti sono separati in sezioni indicanti la loro prima lettera, in ordine alfabetico, affiancati
+    da una breve descrizione del significato con cui sono usati e eventuali sinonimi.
+    La definizione di questi ultimi non ne sarà riportata all'interno.
+
+    I termini e i loro eventuali sinonimi riporteranno una 'G' in apice all'interno dei documenti. La G sarà
+    presente solo nella prima occorrenza di quella parola in quel documento.
 
     \subsubsubsection{Altre norme tipografiche}
+    \begin{itemize}
+    \item Data in formato AAAA/MM/GG
+    % TODO aggiungere altre se ci sono
+    \end{itemize}
 
 \subsubsection{Elementi grafici}
 
     \subsubsubsection{Immagini}
+    Le immagini vanno centrate orizzontalmente nella pagina e devono rispettare i margini previsti dal foglio qual ora
+    fossero molto grandi.
+    Grafici, diagrammi o schemi contano come immagini.
 
     \subsubsubsection{Tabelle}
+    Le tabelle devono occupare tutta la larghezza del foglio indipendentemente dal numero di colonne.
+    Inoltre per tabelle troppo grandi, queste vanno spezzate su più pagine e l'intestazione deve essere ripetuta
+    per ognuno dei seguenti pezzi.
+    Le righe devono essere a colori alternati per facilitarne la lettura.
 
 \subsubsection{Strumenti}
 
-    \subsubsubsection{Google Docs}
+    \subsubsubsection{GitHub}
+    Piattaforma di condivisione di codice, già utilizzata per la produzione del software, si presta
+    molto bene anche per la produzione della documentazione data la scelta di utilizzare LaTex.
+    L'ITS e il meccanismo di versionamento permettono di tener traccia delle modifiche apportate nel tempo
+    in modo automatico e con un enorme quantità di informazioni utili.
+    % ^ praticamente la stessa cosa del registro delle modifiche ma per i sigma gigachad
 
     \subsubsubsection{LaTeX WorkShop}
+    Estensione per VSCode e fork vari che solleva dal redattore l'impegno di compilare il documento, concedendo un workflow più simile
+    a quello what you see is what get ma con il vantaggio di rimanere compilato da sorgente.
+    L'estensione è poi configurata in sinergia con Git (quindi anche GitHub) per ignorare la presenza di eventuali artefatti binari
+    risultati dalla compilazione.
 
-    \subsubsubsection{UML}
+    \subsubsubsection{StarUML}
+    Applicazione desktop scelta per la produzione di diagrammi UML (sia delle classi e che dei casi d'uso) dato il suo essere
+    multipiattaforma.
