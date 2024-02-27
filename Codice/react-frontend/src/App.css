@@ -1,0 +1,28 @@
+.margin-tb
+{
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.carousel-control-prev-icon, 
+.carousel-control-next-icon,
+.carousel-indicators
+{
+  filter: invert(1);
+}
+
+.carousel-control-prev
+{
+  justify-content: start !important;
+  width: 5% !important;
+}
+.carousel-control-next
+{
+  justify-content: end !important;
+  width: 5% !important;
+}
+
+.width-95
+{
+  width: 95% !important;
+}

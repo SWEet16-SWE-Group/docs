@@ -1,0 +1,57 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql
+    container_name: mysql-server
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: easymeal
+      MYSQL_PASSWORD: root
+      command: --init-file /docker-entrypoint-initdb.d/easymeal.sql
+    volumes:
+      - ./sql/easymeal.sql:/docker-entrypoint-initdb.d/easymeal.sql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+    ports:
+      - "3306:3306"
+
+  php:
+    build:
+      context: ./PHP
+      dockerfile: Dockerfile
+    container_name: php-server
+    ports:
+      - "8888:80"
+    volumes:
+      - ./PHP/src:/var/www/html
+    depends_on:
+      mysql:
+        condition: service_healthy
+        
+  # react:
+  #   container_name: react-server
+  #   image: docker-react-i
+  #   build:
+  #     context: ./react
+  #   volumes:
+  #     - ./react:/app
+  #   working_dir: /app
+  #   ports:
+  #     - "3000:3000"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    links:
+      - mysql
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    ports:
+      - "8080:80"
+
