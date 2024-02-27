@@ -2,4 +2,260 @@
 \subsection{Scopo}
 \subsection{Struttura dei casi d'uso}
 \subsection{Attori}
+
 \subsection{Lista dei casi d'uso}
+
+\textbf{UC-1: Registrazione account}
+\begin{itemize}
+    \item \textbf{Attore principale: }utente non registrato.
+    \item \textbf{Precondizioni: }l'utente è connesso al sistema.
+    \item \textbf{Postcondizioni: }l'account dell'utente e le informazioni ad esso collegate, sono registrati nel sistema.
+    \item \textbf{Scenario principale:} 
+        \begin{itemize}
+            \item L'utente sceglie l'opzione di registrazione di un account;
+            \item Il sistema presenta all'utente un form con due campi da compilare,uno per la password
+            e uno per l'indirizzo di posta elettronica;
+            \item L'utente compila i due campi;
+            \item L'utente effettua il submit del form;
+            \item Il sistema comunica all'utente che la registrazione è andata 
+            a buon fine.
+        \end{itemize}
+\end{itemize}
+
+\textbf{UCE-1.1: Campo mancante}
+\begin{itemize}
+    \item \textbf{Attore principale}
+    \item \textbf{Precondizioni}
+    \item \textbf{Postcondizioni}
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item Al momento del submit del form,uno dei campi risulta non compilato;
+        \item Il sistema presenta all'utente un nuovo form da compilare,richiedendo che 
+        entrambi i campi siano non vuoti.
+    \end{itemize}
+\end{itemize}
+
+\textbf{UC-1.2: Email già registrata nel sistema}
+
+\textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item L'email presente nella form al momento del submit risulta già presente nel sistema;
+        \item Il sistema presenta all'utente un nuovo form da compilare,richiedendo che venga inserita
+        una nuova email essendo quella precedente già registrata in esso.
+    \end{itemize}
+
+\break
+
+\textbf{UC-3: Modifica account }
+\begin{itemize}
+    \item \textbf{Attore principale:} utente autenticato.
+    \item \textbf{Precondizioni:} l'utente è autenticato all'interno del sistema.
+    \item \textbf{Postcondizioni:} le modifiche fatte alle informazioni dell'account dell'utente sono
+    salvate dal sistema.
+    \item \textbf{Scenario principale:}
+        \begin{itemize}
+            \item L'utente seleziona l'opzione di modifica dei dati del suo account;
+            \item L'utente può scegliere se modificare sia la password che l'email o solo una
+            di esse;
+            \item L'utente inserisce la nuova email;
+            \item L'utente inserisca la nuova password;
+            \item L'utente conferma le modifiche fatte;
+            \item Il sistema comunica all'utente che la modifica è avvenuta con successo.
+        \end{itemize}
+\end{itemize}
+
+\textbf{UC-4: Logout}
+\begin{itemize}
+    \item \textbf{Attore principale:} utente autenticato.
+    \item \textbf{Precondizioni:} l'utente è autenticato presso il sistema.
+    \item \textbf{Postcondizioni:} l'utente non è più autenticato all'interno del sistema.
+    \item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item L'utente seleziona l'opzione di logout;
+        \item Il sistema chiede all'utente la conferma della scelta;
+        \item L'utente conferma la scelta;
+        \item Il sistema re-indirizza l'utente alla pagina di autenticazione.
+    \end{itemize}
+\end{itemize}
+
+\textbf{UC-5: Creazione profilo}
+\begin{itemize}
+    \item \textbf{Attore principale:} utente autenticato.
+    \item \textbf{Precondizioni:} l'utente è connesso al sistema e sta visualizzando la lista dei suoi profili.
+    \item \textbf{Postcondizioni:} il profilo creato dall'utente,insieme a tutte le relative informazioni,
+    è salvato dal sistema nella lista dei profili dell'utente.
+    \item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item L'utente selezione l'opzione di creazione di un nuovo profilo;
+        \item Il sistema chiede all'utente di scegliere se creare un profilo di tipo cliente
+        o ristoratore;
+        \item L'utente sceglie la tipologia di profilo;
+        \item L'utente inserisce i dati necessari per la creazione del profilo scelto;
+        \item L'utente sceglie l'opzione di conferma dei dati inseriti;
+        \item Il sistema comunica all'utente che la creazione del profilo è avvenuta con successo;
+        \item L'utente visualizza la lista dei suoi profili,ove è stato aggiunto il profilo appena creato.
+    \end{itemize}
+\end{itemize}
+
+\textbf{UC-6: Creazione profilo cliente}
+\begin{itemize}
+    \item \textbf{Attore principale:} utente autenticato.
+    \item \textbf{Precondizioni:} l'utente è autenticato presso il sistema e sta visualizzando
+    la lista dei suoi profili.
+    \item \textbf{Postcondizioni:} il profilo "cliente" viene salvato dal sistema nella lista dei profili 
+    dell'utente.
+    \item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item L'utente selezione l'opzione di creazione di un nuovo profilo;
+        \item Il sistema chiede all'utente di scegliere se creare un profilo di tipo cliente
+        o ristoratore;
+        \item L'utente sceglie la tipologia "cliente";
+        \item L'utente inserisce i seguenti dati:
+        \begin{itemize}
+            \item Il nome;
+            \item Il cognome;
+            \item Lo username;
+            \item Le eventuali allergie ed intolleranze;
+        \end{itemize}
+        \item L'utente sceglie l'opzione di conferma dei dati inseriti;
+        \item Il sistema comunica all'utente che la creazione del profilo è avvenuta con successo;
+        \item L'utente visualizza la lista dei suoi profili,ove è stato aggiunto il profilo appena creato.
+    \end{itemize}
+\end{itemize}
+
+\textbf{UC-7: Creazione profilo ristoratore}
+\begin{itemize}
+    \item \textbf{Attore principale:} utente autenticato.
+    \item \textbf{Precondizioni:} l'utente è autenticato presso il sistema e sta visualizzando la lista dei suoi profili.
+    \item \textbf{Postcondizioni:} il profilo-ristoratore appena creato è salvato nella lista dei profili dell'utente.
+    \item \textbf{Scenario principale:}
+    \begin{itemize}
+        \item L'utente selezione l'opzione di creazione di un nuovo profilo;
+        \item Il sistema chiede all'utente di scegliere se creare un profilo di tipo cliente
+        o ristoratore;
+        \item L'utente sceglie la tipologia "ristoratore";
+        \item L'utente inserisce i seguenti dati:
+        \begin{itemize}
+            \item il nome del ristorante;
+            \item l'indirizzo;
+            \item il recapito telefonico;
+            \item il numero di coperti disponibili;
+            \item l'elenco delle tipologie di cucine proposte.
+        \end{itemize}
+        \item L'utente sceglie l'opzione di conferma dei dati inseriti;
+        \item Il sistema comunica all'utente che la creazione del profilo è avvenuta con successo;
+        \item L'utente visualizza la lista dei suoi profili,ove è stato aggiunto il profilo appena creato.
+    \end{itemize}
+\end{itemize}
+
+\textbf{UC-8: Cancellazione profilo}
+\begin{itemize}
+\item \textbf{Attore principale:} utente autenticato.
+\item \textbf{Precondizioni:} l'utente è autenticato presso il sistema e sta visualizzando la lista dei suoi profili.
+\item \textbf{Postcondizioni:} il profilo eliminato è rimosso dalla lista dei profili dell'utente.
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item L'utente selezione l'opzione di eliminazione di un profilo;
+    \item Il sistema chiede all'utente di scegliere quale profilo eliminare;
+    \item L'utente sceglie il profilo;
+    \item L'utente sceglie l'opzione di conferma ;
+    \item Il sistema comunica all'utente che la distruzione del profilo è avvenuta con successo;
+    \item L'utente visualizza la lista dei suoi profili dalla quale è stato rimosso il profilo appena creato.
+\end{itemize}
+\end{itemize}
+
+\textbf{UC-9: Selezione profilo}
+\begin{itemize}
+\item \textbf{Attore principale:} utente autenticato.
+\item \textbf{Precondizioni:} l'utente sta visualizzando la lista dei suoi profili.
+\item \textbf{Postcondizioni:} l'utente visualizza ?
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{itemize}
+
+\textbf{UC-10: Modifica profilo}
+\begin{itemize}
+\item \textbf{Attore principale:} utente autenticato.
+\item \textbf{Precondizioni:} l'utente ha selezionato un profilo del suo account.
+\item \textbf{Postcondizioni:} le eventuali modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item L'utente seleziona l'opzione di modifica del profilo;
+    \item 
+\end{itemize}
+\end{itemize}
+
+\textbf{UC-11: Modifica profilo cliente}
+\begin{itemize}
+\item \textbf{Attore principale:} 
+\item \textbf{Precondizioni:} 
+\item \textbf{Postcondizioni:} 
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{itemize}
+
+\textbf{UC-12: Modifica profilo ristoratore}
+\begin{itemize}
+\item \textbf{Attore principale:} 
+\item \textbf{Precondizioni:} 
+\item \textbf{Postcondizioni:} 
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{itemize}
+
+\textbf{UC-13: Login}
+\begin{itemize}
+\item \textbf{Attore principale:} utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente è autenticato presso il sistema.
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item L'utente sceglie l'opzione di autenticazione;
+    \item L'utente inserisce la sua password;
+    \item l'utente inserisce la sua email;
+    \item L'utente conferma i dati inseriti al sistema;
+    \item Il sistema verifica l'esistenza di un account con i suddetti dati;
+    \item L'utente visualizza la lista dei profili afferenti al suo account.
+\end{itemize}
+\end{itemize}
+
+\textbf{UCE-13: Credenziali non valide}
+\begin{itemize}
+\item \textbf{Attore principale:}
+\item \textbf{Precondizioni:} 
+\item \textbf{Postcondizioni:} 
+\item \textbf{Scenario secondario:}
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{itemize}
+
+\textbf{UC}
+\begin{itemize}
+\item \textbf{Attore principale:}
+\item \textbf{Precondizioni:} 
+\item \textbf{Postcondizioni:} 
+\item \textbf{Scenario secondario:}
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{itemize}
+
+\textbf{UC}
+\begin{itemize}
+\item \textbf{Attore principale:}
+\item \textbf{Precondizioni:} 
+\item \textbf{Postcondizioni:} 
+\item \textbf{Scenario secondario:}
+\begin{itemize}
+    \item 
+\end{itemize}
+\end{itemize}
+
+
