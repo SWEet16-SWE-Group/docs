@@ -239,13 +239,32 @@
 
 \textbf{UC-13: Modifica profilo ristoratore}
 \begin{itemize}
-\item \textbf{Attore principale:} 
-\item \textbf{Precondizioni:} 
-\item \textbf{Postcondizioni:} 
+\item \textbf{Attore principale:} utente autenticato.
+\item \textbf{Precondizioni:} l'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
+\item \textbf{Postcondizioni:} le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item 
+    \item L'utente seleziona l'opzione di modifica del profilo;
+    \item L'utente seleziona il profilo ristoratore da modificare;
+    \item L'utente visualizza i campi-dati modificabili del profilo;
+        \begin{itemize}
+            \item il nome del ristorante;
+            \item l'indirizzo;
+            \item il recapito telefonico;
+            \item il numero di coperti disponibili;
+            \item l'elenco delle tipologie di cucine proposte.
+        \end{itemize}
+    \item L'utente modifica uno o più dei campi-dati;
+    \item L'utente conferma al sistema la o le modifiche effettuate;
+    \item Il sistema comunica all'utente che la modifica è avvenuta con successo.
+    \item L'utente visualizza la lista dei suoi profili.
 \end{enumerate}
+        \item \textbf{Estensioni:}
+        \begin{itemize}
+                \item UCE7.1-Campo mancante;
+                \item UCE7.2-Recapito telefonico già presente;
+                \item UCE7.3-Indirizzo già presente.
+        \end{itemize}
 \end{itemize}
 
 \textbf{UC14-Logout dal profilo}
