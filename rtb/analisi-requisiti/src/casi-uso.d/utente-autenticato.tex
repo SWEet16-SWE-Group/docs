@@ -5,13 +5,13 @@
     \item \textbf{Precondizioni: }L'utente ha effettuato il login o registrazione;
     \item \textbf{Postcondizioni: }L'account ha modificato con successo uno o più attributi dell'account;
     \item \textbf{Scenario principale:} 
-        \begin{itemize}
+        \begin{enumerate}
             \item L'utente sceglie l'opzione di modificare l'account;
             \item Il sistema presenta all'utente un form con due campi precompilati, uno per la mail e uno per la password;
             \item L'utente modifica uno dei campi o entrambi;
             \item L'utente effettua il submit del form;
             \item Il sistema comunica all'utente che la modifica è andata a buon fine;
-        \end{itemize}
+        \end{enumerate}
 \end{itemize}
 
 \textbf{UC4 - Logout}
@@ -20,8 +20,24 @@
     \item \textbf{Precondizioni: }L'utente ha effettuato il login o registrazione;
     \item \textbf{Postcondizioni: }L'utente non è più riconosciuto dal sistema;
     \item \textbf{Scenario principale:} 
-        \begin{itemize}
+        \begin{enumerate}
             \item L'utente sceglie l'opzione di logout;
             \item L'utente viene reindirizzato alla home del sito;
-        \end{itemize}
+        \end{enumerate}
+\end{itemize}
+
+\textbf{UC5 - Creazione profilo}
+\begin{itemize}
+    \item \textbf{Attore principale: }Utente autenticato;
+    \item \textbf{Precondizioni: }L'utente ha effettuato il login o registrazione;
+    \item \textbf{Postcondizioni: }L'utente possiede un profilo con cui accedere alle funzionalità fulcro del sistema;
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item L'utente sceglie l'opzione di creazione di un profilo;
+            \item Il sistema presenta un form a seconda che il tipo di profilo scelto sia Cliente o Ristoratore;
+            \item L'utente riempe il form;
+            \item L'utente fa il submit del form;
+            \item Il sistema valida la correttezza dei dati;
+              % TODO finire dopo
+        \end{enumerate}
 \end{itemize}
