@@ -32,3 +32,25 @@
 \end{itemize}
 \end{itemize}
 
+\textbf{UC35-Visualizzazione lista prenotazioni}
+\begin{itemize}
+\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Precondizioni:} 
+\begin{itemize}
+        \item L'utente è connesso al sistema.
+\end{itemize}
+\item \textbf{Postcondizioni:} l'utente ristoratore visualizza la lista delle prenotazioni (in qualsiasi stato esse si trovino) attraverso una vista a calendario, suddivise per giorno.
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item Il sistema mostra una vista a calendario e per ogni giorno l'utente può consultare:
+    \begin{itemize}
+        \item La lista delle prenotazioni di quel particolare giorno;
+        \item La lista degli ingredienti necessari per tale giorno (si veda UC35.1).
+    \end{itemize}
+    \item Il sistema mostra la lista delle prenotazioni inerente ad un giorno nei seguenti modi:
+    \begin{itemize}
+        \item Di default, vengono mostrate come prime le prenotazioni nello stato "Accettata";
+        \item L'utente può inoltre applicare un filtro in base allo stato prenotazione.
+    \end{itemize}
+\end{itemize}
+\end{itemize}
