@@ -19,31 +19,32 @@
             \item L'utente effettua il submit del form;
             \item Il sistema comunica all'utente che la registrazione è andata 
             a buon fine.
+            \item Il cliente visualizza un profilo di tipo cliente creato di default dal sistema.
         \end{itemize}
 \end{itemize}
-
+    
 \textbf{UCE-1.1: Campo mancante}
 \begin{itemize}
-    \item \textbf{Attore principale}
-    \item \textbf{Precondizioni}
-    \item \textbf{Postcondizioni}
+    \item \textbf{Descrizione: }per effettuare la registrazione,devono essere inseriti un valore per la password che per l'email.
     \item \textbf{Scenario alternativo:}
     \begin{itemize}
-        \item Al momento del submit del form,uno dei campi risulta non compilato;
-        \item Il sistema presenta all'utente un nuovo form da compilare,richiedendo che 
-        entrambi i campi siano non vuoti.
+        \item Al momento della conferma,il sistema rileva che uno dei campi (od entrambi) risulta non compilato;
+        \item Il sistema comunica la natura dell'errore all'utente;
+        \item Il cliente visualizza i campi della password e della email;se è stato precedentemente inserito un valore in uno
+        dei due campi,esso è presente.
     \end{itemize}
 \end{itemize}
 
 \textbf{UC-1.2: Email già registrata nel sistema}
-
-\textbf{Scenario alternativo:}
+\begin{itemize}
+    \item \textbf{Descrizione: }l'utente non può registrare un account inserendo una email già usata da un altro utente.
+    \item \textbf{Scenario alternativo:}
     \begin{itemize}
-        \item L'email presente nella form al momento del submit risulta già presente nel sistema;
-        \item Il sistema presenta all'utente un nuovo form da compilare,richiedendo che venga inserita
-        una nuova email essendo quella precedente già registrata in esso.
+        \item L'email inserita dall'utente al momento della registrazione risulta già presente nel sistema;
+        \item Il sistema comunica la natura dell'errore all'utente;
+        \item Il cliente è reindirizzato alla homepage di registrazione.
     \end{itemize}
-
+\end{itemize}
 \break
 
 \textbf{UC-3: Modifica account }
@@ -148,6 +149,46 @@
     \end{itemize}
 \end{itemize}
 
+\textbf{UCE-7.1: Campo mancante}
+\begin{itemize}
+    \item \textbf{Descrizione: }al momento della conferma dei dati inseriti,nessun campo relativo al ristorante può essere vuoto.
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item Il sistema verifica che l'utente non ha inserito i valori relativi ad uno o più campi di
+        compilazione;
+        \item Il sistema comunica l'errore all'utente ,specificandone la natura;
+        \item L'utente visualizza tutti i campi relativi alla creazione del profilo; sono presenti i dati inseriti preceden.
+    \end{itemize}
+\end{itemize}
+
+\textbf{UCE-7.2: Recapito telefonico già presente}
+\begin{itemize}
+    \item \textbf{Descrizione: }nel sistema non possono essere presenti ristoranti, afferenti allo stesso ristoratore
+    o a diversi ristoratori, con lo stesso recapito telefonico.
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item Il sistema rileva che è già stato registrato un ristorante con lo stesso recapito telefonico
+        inserito dall'utente;
+        \item Il sistema comunica all'utente la necessità di modificare il recapito telefonico;
+        \item L'utente visualizza i campi con i valori da lui precedentemente inseriti, escluso quello relativo al recapito telefonico
+        essendo da ricompilare con un nuovo valore.
+    \end{itemize}
+\end{itemize}
+
+\textbf{UCE-7.3: Indirizzo già presente}
+\begin{itemize}
+    \item \textbf{Descrizione: }nel sistema non possono essere presenti ristoranti, afferenti allo stesso ristoratore
+    o a diversi ristoratori, con lo stesso indirizzo.
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item Il sistema rileva che è già stato registrato un ristorante con lo stesso indirizzo
+        inserito dall'utente;
+        \item Il sistema comunica all'utente la necessità di modificare l'indirizzo;
+        \item L'utente visualizza i campi con i valori da lui precedentemente inseriti, escluso quello relativo al'indirizzo
+        essendo da ricompilare con un nuovo valore.
+    \end{itemize}
+\end{itemize}
+
 \textbf{UC-8: Cancellazione profilo}
 \begin{itemize}
 \item \textbf{Attore principale:} utente autenticato.
@@ -164,30 +205,54 @@
 \end{itemize}
 \end{itemize}
 
-\textbf{UC-9: Selezione profilo}
+\textbf{UC-9: Selezione profilo cliente}
 \begin{itemize}
 \item \textbf{Attore principale:} utente autenticato.
-\item \textbf{Precondizioni:} l'utente sta visualizzando la lista dei suoi profili.
-\item \textbf{Postcondizioni:} l'utente visualizza ?
+\item \textbf{Precondizioni:} l'utente è autenticato presso il sistema.
+\item \textbf{Postcondizioni:} l'utente visualizza le informazioni relative al profilo cliente selezionato.
 \item \textbf{Scenario principale:}
 \begin{itemize}
-    \item 
+    \item L'utente sta visualizzando la lista dei suoi profili;
+    \item L'utente seleziona un profilo di tipo cliente;
+    \item L'utente visualizza una lista casuale di ristoranti scelti dal sistema.
 \end{itemize}
 \end{itemize}
 
-\textbf{UC-10: Modifica profilo}
+\textbf{UC-10: Selezione profilo ristoratore}
 \begin{itemize}
 \item \textbf{Attore principale:} utente autenticato.
-\item \textbf{Precondizioni:} l'utente ha selezionato un profilo del suo account.
-\item \textbf{Postcondizioni:} le eventuali modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
+\item \textbf{Precondizioni:} l'utente è autenticato presso il sistema e possiede una profilo ristoratore.
+\item \textbf{Postcondizioni:} l'utente visualizza le informazioni relative al profilo selezionato.
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item L'utente sta visualizzando la lista dei suoi profili;
+    \item L'utente seleziona un profilo di tipo ristoratore;
+    \item L'utente visualizza la dashboard relativa al ristorante del profilo selezionato.
+\end{itemize}
+\end{itemize}
+
+\textbf{UC-11: Modifica profilo }
+\begin{itemize}
+\item \textbf{Attore principale:} utente autenticato.
+\item \textbf{Precondizioni:} l'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
+\item \textbf{Postcondizioni:} le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
 \item \textbf{Scenario principale:}
 \begin{itemize}
     \item L'utente seleziona l'opzione di modifica del profilo;
-    \item 
+    \item L'utente seleziona il profilo da modificare;
+    \item L'utente visualizza i campi-dati modificabili del profilo;
+    \item L'utente modifica uno o più dei campi-dati;
+    \item L'utente conferma al sistema la o le modifiche effettuate;
+    \item Il sistema comunica all'utente che la modifica è avvenuta con successo.
+    \item L'utente visualizza la lista dei suoi profili.
 \end{itemize}
 \end{itemize}
 
-\textbf{UC-11: Modifica profilo cliente}
+%Nella descrizione dei casi d'uso di creazione e modifica dei profili cliente e ristoratore
+%è ovviamente sempre presente la fase di compilazione dei vari campi, con anche relativi errori come
+%recapito già presente ,ecc...che sia da scrivere un sottocaso d'uso "compilazione form" tipo comune a 
+%casi d'uso veri e propri?
+\textbf{UC-12: Modifica profilo cliente}
 \begin{itemize}
 \item \textbf{Attore principale:} 
 \item \textbf{Precondizioni:} 
@@ -198,7 +263,7 @@
 \end{itemize}
 \end{itemize}
 
-\textbf{UC-12: Modifica profilo ristoratore}
+\textbf{UC-13: Modifica profilo ristoratore}
 \begin{itemize}
 \item \textbf{Attore principale:} 
 \item \textbf{Precondizioni:} 
@@ -209,7 +274,7 @@
 \end{itemize}
 \end{itemize}
 
-\textbf{UC-13: Login}
+\textbf{UC-14: Login}
 \begin{itemize}
 \item \textbf{Attore principale:} utente non riconosciuto.
 \item \textbf{Precondizioni:} l'utente è connesso al sistema.
@@ -225,26 +290,21 @@
 \end{itemize}
 \end{itemize}
 
-\textbf{UCE-13: Credenziali non valide}
+\textbf{UCE-14.1 : Email non corretta}
+\textbf{Scenario secondario:}
 \begin{itemize}
-\item \textbf{Attore principale:}
-\item \textbf{Precondizioni:} 
-\item \textbf{Postcondizioni:} 
-\item \textbf{Scenario secondario:}
-\begin{itemize}
-    \item 
-\end{itemize}
+    \item Dopo la conferma dei dati inseriti dall'utente,il sistema verifica 
+    che l' email non è presente a sistema;
+    \item Il sistema comunica l'errore all'utente,specificando l'incorrettezza dell'
+    email.
 \end{itemize}
 
-\textbf{UC}
+\textbf{UCE-14.2 : Email e password non compatibili}
+\textbf{Scenario secondario:}
 \begin{itemize}
-\item \textbf{Attore principale:}
-\item \textbf{Precondizioni:} 
-\item \textbf{Postcondizioni:} 
-\item \textbf{Scenario secondario:}
-\begin{itemize}
-    \item 
-\end{itemize}
+    \item Dopo la conferma dei dati inseriti dall'utente,il sistema verifica la presenza della email
+    inserita ma che la password non è quella ad essa collegata;
+    \item Il sistema comunica l'errore all'utente,specificando all'utente l'incorrettezza della password.
 \end{itemize}
 
 \textbf{UC}
