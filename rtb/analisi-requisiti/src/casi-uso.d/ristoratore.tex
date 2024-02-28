@@ -39,7 +39,7 @@
 \begin{itemize}
         \item L'utente è connesso al sistema.
 \end{itemize}
-\item \textbf{Postcondizioni:} l'utente ristoratore visualizza la lista delle prenotazioni (in qualsiasi stato esse si trovino) attraverso una vista a calendario, suddivise per giorno.
+\item \textbf{Postcondizioni:} l'utente visualizza la lista delle prenotazioni (in qualsiasi stato esse si trovino) attraverso una vista a calendario, suddivise per giorno.
 \item \textbf{Scenario principale:}
 \begin{itemize}
     \item Il sistema mostra una vista a calendario e per ogni giorno l'utente può consultare:
@@ -52,5 +52,20 @@
         \item Di default, vengono mostrate come prime le prenotazioni nello stato "Accettata";
         \item L'utente può inoltre applicare un filtro in base allo stato prenotazione.
     \end{itemize}
+\end{itemize}
+\end{itemize}
+
+\textbf{UC35.1-Visualizzazione dettagli ingredienti giornata}
+\begin{itemize}
+\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Precondizioni:} 
+\begin{itemize}
+        \item L'utente si trova nella sezione "Visualizzazione lista prenotazioni" (vedi UC35).
+\end{itemize}
+\item \textbf{Postcondizioni:} l'utente visualizza la lista degli ingredienti.
+\item \textbf{Scenario principale:}
+\begin{itemize}
+    \item Il sistema mostra la vista degli ingredienti relativi alla giornata, relativamente alle prenotazioni nello stato "Accettata";
+    \item L'utente visualizza la lista degli ingredienti.
 \end{itemize}
 \end{itemize}
