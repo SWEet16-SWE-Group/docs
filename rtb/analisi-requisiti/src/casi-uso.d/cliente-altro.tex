@@ -1,4 +1,3 @@
-
 \textbf{UC-}
 \begin{itemize}
 \item \textbf{Attore principale:}
@@ -7,6 +6,29 @@
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC28-Pagamento in app}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Attore secondario:} Processore di pagamenti.
+\item \textbf{Precondizioni:} Il cliente deve avere una prenotazione accettata dal ristoratore che abbia superato il
+  limite temporale di modifica degli ordini.
+\item \textbf{Postcondizioni:} Il cliente ha pagato con successo.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente accede all'app per pagare in anticipo;
+    \item Il cliente apre la prenotazione che vuole pagare;
+    \item Il cliente clicca sul tasto paga;
+    \item Il sistema mostra un form con un menù a tendina chiedente il metodo di pagamento
+      (Carta di credito, carta di debito, Paypal, etc);
+    \item Il cliente clicca sul tipo desiderato;
+      % non ... io non ... non so cosa dire
+    \item Il sistema crea un richiesta di pagamento tramite il metodo desiderato e 
+      apre una scheda dove il cliente può pagare;
+    \item Il cliente paga;
+    \item Il sistema riceve la conferma del pagamento e reindirizza il cliente alla pagina di visualizzazione della singola prenotazione;
 \end{enumerate}
 \end{itemize}
 
@@ -62,3 +84,4 @@
 \end{itemize}
 
 % TODO forse;  mettere UC48-Visualizzazione messaggio in chat 
+% si potrebbe mettere un link all'uc48 che è rilevante
