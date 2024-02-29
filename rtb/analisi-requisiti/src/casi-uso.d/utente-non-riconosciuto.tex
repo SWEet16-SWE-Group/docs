@@ -201,3 +201,76 @@ nella data da lui selezionata.
     nella data selezionata .
 \end{enumerate}
 \end{itemize}
+
+\textbf{U18-Visualizzazione ristorante}
+\begin{itemize}
+\item \textbf{Attore principale:} utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema e sta visualizzando una lista di ristoranti.
+\item \textbf{Postcondizioni:} l'utente visualizza le informazioni relative al ristorante selezionato.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona dalla lista che sta visualizzando un ristorante;
+    \item L'utente visualizza le informazioni relative al ristorante, cioè:
+    \begin{itemize}
+        \item Il nome;
+        \item il recapito telefonico;
+        \item L'indirizzo;
+        \item gli orari di servizio;
+        \item la/le tipologie di cucine offerte;
+        \item la valutazione media.
+    \end{itemize}
+    \item L'utente può scegliere di visualizzare il menù completo (vedi UC18.1-Visualizzazione menù);
+    \item L'utente può scegliere di visualizzare le recensioni rilasciate da altri utenti (vedi UC18.2-Visualizzazione recensioni).
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC18.1-Visualizzazione menù}
+\begin{itemize}
+\item \textbf{Attore principale:} utente non riconosciuto.
+\item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni di un ristorante.
+\item \textbf{Postcondizioni:} L'utente visualizza il menù del ristorante.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di visualizzazione del menù del ristorante;
+    \item L'utente visualizza la lista completa delle pietanze presenti nel menù;
+    \item L'utente può effettuare la ricerca per nome di una pietanza (vedi UC18.1.1-Ricerca pietanza);
+    \item L'utente può visualizzare i dettagli relativi ad una singola pietanza presente
+     nel menù (vedi UC18.1.2-Visualizzazione pietanza).
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC18.1.1-Ricerca pietanza}
+\begin{itemize}
+\item \textbf{Attore principale:} utente non riconosciuto.
+\item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista delle pietanze corrispondenti ai parametri di ricerca.
+\item \textbf{Scenario principale:}
+% che sia il caso di aggiungere l'estensione nel caso la ricerca non dia nessun risultato?
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di una pietanza ;
+    \item L'utente può effettuare la ricerca per nome;
+    \item L'utente può effettuare la ricerca selezionando gli allergeni che non vuole 
+    siano presenti nelle pietanze del menù;
+    \item L'utente dà la conferma ed effettua la ricerca;
+    \item L'utente visualizza la lista delle pietanze corrispondenti ai criteri di ricerca.
+\end{enumerate}
+\end{itemize}
+
+
+
+\textbf{UC18.1.2-Visualizzazione pietanza}
+\begin{itemize}
+\item \textbf{Attore principale:} utente non riconosciuto.
+\item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
+\item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative alla pietanza selezionata.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona una pietanza in particolare, presente nel menù che sta visualizzando;
+    \item L'utente visualizza le seguenti informazioni ad essa relativa:
+    \begin{itemize}
+        \item La lista degli ingredienti in essa presenti;
+        \item La lista degli allergeni;
+        \item Il prezzo.
+    \end{itemize}
+\end{enumerate}
+\end{itemize}
