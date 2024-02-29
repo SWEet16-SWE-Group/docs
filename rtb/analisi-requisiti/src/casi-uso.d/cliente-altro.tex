@@ -23,12 +23,39 @@
 \end{enumerate}
 \end{itemize}
 
+\textbf{UC27-Selezione modalità di divisione del conto}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} Il cliente deve avere una prenotazione accettata dal ristoratore che abbia superato il
+  limite temporale di modifica degli ordini.
+\item \textbf{Postcondizioni:} Il conto viene diviso a seconda della modalità scelta.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente clicca sulla selezione della modalità di divisione del conto;
+    \item Il cliente clicca sceglie se pagamento equo o proporzionale;
+    \item Il cliente viene reindirizzato visualizzazione del conto di ogni cliente.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UCE27-Errore selezione già effettuata}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Descrizione:} Uno solo dei clienti può effettuare la selezione della modalità di divisione del conto.
+  il primo che preme, sceglie per tutti.
+\item \textbf{Scenario alternativo:}
+\begin{enumerate}
+    \item Il cliente clicca sulla selezione della modalità di divisione del conto;
+    \item Il sistema mostra un messaggio di errore pertinente;
+    \item Il cliente viene reindirizzato visualizzazione del conto di ogni cliente.
+\end{enumerate}
+\end{itemize}
+
 \textbf{UC28-Pagamento in app}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Attore secondario:} Processore di pagamenti.
 \item \textbf{Precondizioni:} Il cliente deve avere una prenotazione accettata dal ristoratore che abbia superato il
-  limite temporale di modifica degli ordini.
+  limite temporale di modifica degli ordini ed è stata scelta la modalità di divisione del conto.
 \item \textbf{Postcondizioni:} Il cliente ha pagato con successo.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
