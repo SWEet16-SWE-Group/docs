@@ -1,8 +1,105 @@
 
 \section{Qualità di prodotto}
+\subsection{Scopo}
+Facendo riferimento allo standard ISO/IEC 9126:2001, vengono di seguito riportate le caratteristiche che il prodotto deve avere per essere considerato di qualità.
+Vengono inoltre riportate le relative metriche atte a definire un metodo di valutazione del prodotto finale.
+
 \subsection{Usabilità}
+Creazione di un prodotto che sia semplice da usare e di facile comprensione nel suo utilizzo da parte di ogni utente.
+L'obiettivo è quindi quello di fornire una user experience di elevata qualità.
+\subsubsection{Metriche}
+\textbf{TA- Tempo Apprendimento}:\\ Tempo necessario all'utente per apprendere l'utilizzo del prodotto \\
+\textbf{NP- Numero Passi}:\\ Numero di passi necessari per raggiungere lo scopo voluto \\
+\textbf{TE- Tempo Esplorazione}:\\ Tempo spesso nell'esplorazione del prodotto \\
+\textbf{NE - Numero Errori}:\\ Numero di errori commessi dall'utente prima di raggiungere lo scopo voluto \\
+
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        TA & Tempo Apprendimento & 10 minuti & 5 minuti \\
+        NP & Numero Passi & 20 click & 10 click \\
+        TE & Tempo Esplorazione & 5 minuti & 3 minuti \\
+        NE & NUmero Errori & 5 & 0 \\
+        \hline
+     \end{tblr}
+    \caption{Metriche e obiettivi}
+    \label{tab:1}
+\end{table}
+
+
 \subsection{Manutenibilità}
+Facilità di apportare modifiche al prodotto, che sia riusabile e aperto a miglioramenti.
+\subsubsection{Metriche}
+\subsubsection{Obiettivi}
+
 \subsection{Affidabilità}
+Prodotto che sia sempre disponibile, che sia in grado di svolgere le funzionalità implementate e che sia tollerante agli errori.
+\subsubsection{Metriche}
+\subsubsection{Obiettivi}
+
+\subsection{Efficienza}
+Prodotto che fornisca e soddisfi gli obiettivi prefissati con il minor utilizzo di risorse possibile.
+\subsubsection{Metriche}
+\subsubsection{Obiettivi}
+
 \subsection{Funzionalità}
+Soddisfare tutti i requisiti richiesti e descritti all'interno dell'Analisi dei Requisiti v1.0.0.
+\subsubsection{Metriche}
+\textbf{QPR-RC}: Requirements Coverage \\
+Indica la percentuale dei requisiti soddisfatti. Per il calcolo del valore accettato si considerano solo i requisiti obbligatori.\\
+Formula valore accettato:
+$$RC_{obb} = \frac{NR_{os}}{NR_{ot}} \cdot 100$$
+
+\begin{itemize}
+\item $RC_{obb}$ : Requirements Coverage obbligatori;
+\item $NR_{os}$ : numero di requisiti obbligatori soddisfatti;
+\item $NR_{ot}$ : numero di requisiti obbligatori totali;
+\end{itemize}
+
+Formula valore ideale:
+$$RC_{i} = \frac{NR_{s}}{NR_{t}} \cdot 100$$
+
+\begin{itemize}
+\item $RC_{i}$ : Requirements Coverage ideali;
+\item $NR_{s}$ : numero di requisiti ideali soddisfatti;
+\item $NR_{t}$ : numero di requisiti ideali totali;
+\end{itemize}
+
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-RC & Requirements Coverage & 100\% $RC_{obb}$ & 100\% $RC_{i}$ \\
+        \hline
+     \end{tblr}
+    \caption{Metriche e obiettivi}
+    \label{tab:2}
+\end{table}
+
+\subsection{Compatibilità}
+Prodotto accessibile al maggior numero di utenti possibile, garantendo la compatibilità con i browser più diffusi.
+\subsubsection{Metriche}
+\subsubsection{Obiettivi}
+
+\subsection{Portabilità}
+Capacità del software di essere portato da un ambiente di sviluppo ad un altro.
+\subsubsection{Metriche}
+\subsubsection{Obiettivi}
+
 \subsection{Documentazione}
+I documenti dovranno essere di facile comprensione, corretti ortograficamente e sintatticamente.
+\subsubsection{Metriche}
+\subsubsection{Obiettivi}
+
 
