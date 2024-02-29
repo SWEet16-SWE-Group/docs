@@ -35,10 +35,7 @@
 \textbf{UC35-Visualizzazione lista prenotazioni}
 \begin{itemize}
 \item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} 
-\begin{itemize}
-        \item L'utente è connesso al sistema.
-\end{itemize}
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} l'utente visualizza la lista delle prenotazioni (in qualsiasi stato esse si trovino) attraverso una vista a calendario, suddivise per giorno.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
@@ -58,14 +55,32 @@
 \textbf{UC35.1-Visualizzazione dettagli ingredienti giornata}
 \begin{itemize}
 \item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} 
-\begin{itemize}
-        \item L'utente si trova nella sezione "Visualizzazione lista prenotazioni" (vedi UC35).
-\end{itemize}
+\item \textbf{Precondizioni:} l'utente si trova nella sezione "Visualizzazione lista prenotazioni" (vedi UC35).
 \item \textbf{Postcondizioni:} l'utente visualizza la lista degli ingredienti.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema mostra la vista degli ingredienti relativi alla giornata, relativamente alle prenotazioni nello stato "Accettata";
     \item L'utente visualizza la lista degli ingredienti.
 \end{enumerate}
+\end{itemize}
+
+\textbf{UC36-Visualizzazione singola prenotazione}
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item L'utente si trova nella sezione "Visualizzazione lista prenotazioni" (vedi UC35);
+        \item L'utente seleziona una prenotazione da visualizzare.
+    \end{itemize}
+    \item \textbf{Postcondizioni:} l'utente visualizza le informazioni dettagliate della singola prenotazione.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema mostra i dettagli e le informazioni relative alla prenotazione selezionata dall'utente:
+        \begin{itemize}
+            \item Nome e Cognome della persona che ha effettuato la prenotazione;
+            \item Giorno e orario della prenotazione;
+            \item Numero di persone;
+            \item Stato della prenotazione.
+        \end{itemize}
+    \end{enumerate}
 \end{itemize}
