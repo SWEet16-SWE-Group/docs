@@ -118,3 +118,22 @@
         \end{itemize}
     \end{enumerate}
 \end{itemize}
+
+\textbf{UC36.3-Visualizzazione lista Clienti}  % non sono sicuro di questo nome
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item L'utente si trova nella sezione "Visualizzazione singola prenotazione" (vedi UC36);
+        \item L'utente seleziona "Lista clienti".
+    \end{itemize}
+    \item \textbf{Postcondizioni:} l'utente visualizza la lista dei clienti collegati alla singola prenotazione.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente visualizza la lista dei clienti collegati a questa prenotazione nei seguenti modi:
+        \begin{itemize}
+            \item Di default, vengono mostrati per primi i clienti le cui ordinazioni sono nello stato "Confermata";
+            \item L'utente può inoltre applicare un filtro in base allo stato dell'ordinazione del cliente.
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}
