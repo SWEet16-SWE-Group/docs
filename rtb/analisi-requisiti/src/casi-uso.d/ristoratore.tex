@@ -70,7 +70,7 @@
     \item \textbf{Precondizioni:} 
     \begin{itemize}
         \item L'utente si trova nella sezione "Visualizzazione lista prenotazioni" (vedi UC35);
-        \item L'utente seleziona una prenotazione da visualizzare.
+        \item L'utente seleziona una prenotazione da visualizzare in dettaglio.
     \end{itemize}
     \item \textbf{Postcondizioni:} l'utente visualizza le informazioni dettagliate della singola prenotazione.
     \item \textbf{Scenario principale:}
@@ -81,6 +81,40 @@
             \item Giorno e orario della prenotazione;
             \item Numero di persone;
             \item Stato della prenotazione.
+        \end{itemize}
+    \end{enumerate}
+\end{itemize}
+
+\textbf{UC36.1-Visualizzazione lista totale degli ingredienti}
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item L'utente si trova nella sezione "Visualizzazione singola prenotazione" (vedi UC36);
+        \item L'utente seleziona "Lista ingredienti per questa prenotazione".
+    \end{itemize}
+    \item \textbf{Postcondizioni:} l'utente visualizza la lista degli ingredienti per la singola prenotazione.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente visualizza la lista degli ingredienti che servono per completare quella prenotazione, ogni ingrediente ha una sua quantità espressa in grammi.
+    \end{enumerate}
+\end{itemize}
+
+\textbf{UC36.2-Visualizzazione lista ordinazioni attuali}
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item L'utente si trova nella sezione "Visualizzazione singola prenotazione" (vedi UC36);
+        \item L'utente seleziona "Ordinazioni per questa prenotazione".
+    \end{itemize}
+    \item \textbf{Postcondizioni:} l'utente visualizza la lista delle ordinazioni per la singola prenotazione.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente visualizza la lista delle ordinazioni che sono state effettuate dai clienti collegati a questa prenotazione nei seguenti modi:
+        \begin{itemize}
+            \item Di default, vengono mostrate come prime le ordinazioni nello stato "Confermata";
+            \item L'utente può inoltre applicare un filtro in base allo stato dell'ordinazione.
         \end{itemize}
     \end{enumerate}
 \end{itemize}
