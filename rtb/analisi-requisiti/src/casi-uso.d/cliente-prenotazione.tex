@@ -69,4 +69,21 @@
     \end{enumerate}
 \end{itemize}
 
+\textbf{UC22-Cancellazione prenotazione}
+\begin{itemize}
+    \item \textbf{Attore principale: } cliente.
+    \item \textbf{Precondizioni: }il cliente sta visualizzando le informazioni di una singola prenotazione
+    e c'è una differenza di almeno 48 ore tra il datetime in cui il cliente fa la richiesta di cancellazione e quello della prenotazione.
+    \item \textbf{Postcondizioni: }la prenotazione è stata cancellata e non è più presente nella lista di prenotazioni
+    del cliente.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item Il cliente seleziona l'opzione di cancellazione della prenotazione;
+            \item Il cliente dà la conferma ed effettua la cancellazione;
+            \item Il sistema notifica il ristoratore dell'avvenuta cancellazione;
+            \item Il cliente visualizza la lista delle sue prenotazioni aggiornata,priva di quella appena
+            cancellata.
+        \end{enumerate}
+\end{itemize}
+
         
