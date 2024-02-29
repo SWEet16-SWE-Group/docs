@@ -4,7 +4,7 @@
     \item \textbf{Precondizioni: }l'utente è connesso al sistema.
     \item \textbf{Postcondizioni: }l'account dell'utente e le informazioni ad esso collegate, sono registrati nel sistema.
     \item \textbf{Scenario principale:} 
-        \begin{itemize}
+        \begin{enumerate}
             \item L'utente sceglie l'opzione di registrazione di un account;
             \item Il sistema chiede all'utente di inserire una email ed una password;
             \item L'utente inserisce l'email e la password;
@@ -12,7 +12,7 @@
             \item Il sistema comunica all'utente che la registrazione è andata 
             a buon fine.
             \item Il cliente visualizza un profilo di tipo cliente creato di default dal sistema,il cui username è l'email dell'account appena registrato.
-        \end{itemize}
+        \end{enumerate}
     \item \textbf{Estensioni:}
         \begin{itemize}
                 \item UCE1.1-Campo mancante;
@@ -24,12 +24,12 @@
 \begin{itemize}
     \item \textbf{Descrizione: }per effettuare la registrazione,devono essere inseriti un valore per la password che per l'email.
     \item \textbf{Scenario alternativo:}
-    \begin{itemize}
+    \begin{enumerate}
         \item Al momento della conferma,il sistema rileva che uno dei campi (od entrambi) risulta non compilato;
         \item Il sistema comunica la natura dell'errore all'utente;
         \item Il cliente visualizza i campi della password e della email;se è stato precedentemente inserito un valore in uno
         dei due campi,esso è presente.
-    \end{itemize}
+    \end{enumerate}
 \end{itemize}
 
 \textbf{UC1.2-Email già registrata nel sistema}
@@ -43,3 +43,33 @@
     \end{itemize}
 \end{itemize}
 \break
+
+\textbf{UC2-Login}
+\begin{itemize}
+\item \textbf{Attore principale:} utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente è autenticato presso il sistema.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente sceglie l'opzione di autenticazione;
+    \item L'utente inserisce la sua password;
+    \item l'utente inserisce la sua email;
+    \item L'utente conferma i dati inseriti al sistema;
+    \item Il sistema verifica l'esistenza di un account con i suddetti dati;
+    \item L'utente visualizza la lista dei profili afferenti al suo account.
+\end{enumerate}
+    \item \textbf{Estensione: }UCE2-Credenziali non corrette.
+\end{itemize}
+
+\textbf{UCE2-Credenziali non corrette}
+\textbf{Descrizione: }il login può non andare a buon fine se l'email inserita dall'utente è errata
+o ,nel caso sia presente un account registrato con la suddetta email, se la password inserita non è quella
+ad essa associata; per questioni di sicurezza, all'utente viene notificato un errore generico.
+\textbf{Scenario secondario:}
+\begin{enumerate}
+    \item Dopo la conferma dei dati inseriti dall'utente,il sistema verifica 
+    che l' email non è presente a sistema;
+    \item Il sistema comunica all'utente che le credenziali inserite non sono corrette;
+    \item L'utente può riprovare ad effettuareil login ,inserendo di nuovo l'email e la password.
+    email.
+\end{enumerate}
