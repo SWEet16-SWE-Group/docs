@@ -30,4 +30,43 @@
             
             \item L'utente visualizza la lista delle sue prenotazioni;
         \end{enumerate}
-    \end{itemize}
+\end{itemize}
+
+\textbf{UC21-Visualizzazione singola prenotazione}
+\begin{itemize}
+    \item \textbf{Attore principale: } cliente.
+    \item \textbf{Precondizioni: }il cliente sta visualizzando la lista delle sue prenotazioni.
+    \item \textbf{Postcondizioni: }il cliente visualizza le informazioni relative ad una singola prenotazione.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item L'utente seleziona una prenotazione in particolare;
+            \item L'utente visualizza la lista delle informazioni relative alla prenotazione selezionata:
+            \begin{itemize}
+                \item Il nome del ristorante;
+                \item L'indirizzo del ristorante;
+                \item L'orario;
+                \item Il numero di persone ;
+                \item Lo stato della prenotazione (se è in attesa di conferma da parte del ristoratore
+                o se è già stata confermata).
+            \end{itemize}
+        \end{enumerate}
+    \item \textbf{Estensione: }UCE21-Prenotazione rifiutata
+\end{itemize}
+
+        %L'estensione avviene in seguito all'UC34 del ristoratore, ma credo che dobbiamo tenere la notazione
+        %UCE che usiamo per le estensioni ? 
+\textbf{UCE21-Prenotazione rifiutata}
+\begin{itemize}
+    \item \textbf{Descrizione: }se il ristoratore rifiuta una delle prenotazioni del cliente in attesa di conferma,
+    mentre quest'ultimo sta visualizzando la lista delle sue prenotazioni, il cliente si accorge del rifiuto quando
+    seleziona la suddetta prenotazione.
+    \item \textbf{Scenario alternativo: }
+    \begin{enumerate}
+        \item Il cliente seleziona una prenotazione rifiutata mentre sta visualizzando la lista 
+        delle sue prenotazioni;
+        \item Il sistema comunica un messaggio di errore al cliente,dicendogli che la prenotazione selezionata 
+        è stata rifiutata e che non è più possibile visualizzarne le informazioni.
+    \end{enumerate}
+\end{itemize}
+
+        
