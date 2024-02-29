@@ -73,3 +73,118 @@ ad essa associata; per questioni di sicurezza, all'utente viene notificato un er
     \item L'utente può riprovare ad effettuareil login ,inserendo di nuovo l'email e la password.
     email.
 \end{enumerate}
+
+\textbf{UC17-Ricerca ristorante}
+\begin{itemize}
+\item \textbf{Attore principale:}utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti corrispondenti ai criteri inseriti
+dell'utente.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente può effettuare la ricerca inserendo uno o più parametri ,corrispondenti
+    ai seguenti criteri:
+    \begin{itemize}
+        \item Il nome del ristorante (vedi UC17.1-Ricerca per nome);
+        \item La città del ristorante (vedi UC17.2-Ricerca per città);
+        \item La valutazione media del ristorante (vedi UC17.3-Ricerca per valutazione);
+        \item La tipologia di cucina (vedi UC17.4-Ricerca per tipologia di cucina);
+        \item L orario (vedi UC17.5-Ricerca ristorante per orario) ;
+        \item La data (vedi UC17.6-Ricerca ristorante per data); 
+    \end{itemize}
+    \item L'utente conferma il o i valori inseriti ed effettua la ricerca;
+    \item L'utente visualizza la lista dei ristoranti che rispettano i criteri da lui inseriti.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.1-Ricerca ristorante per nome}
+\begin{itemize}
+\item \textbf{Attore principale:}utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti corrispondenti 
+alla ricerca per nome da lui inserito.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente inserisce il nome secondo il quale effettuare la ricerca;
+    \item L'utente conferma il valore inserito ed effettua la ricerca;
+    \item L'utente visualizza la lista dei ristoranti corrispondenti al nome da lui inserito.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.2-Ricerca ristorante per città}
+\begin{itemize}
+\item \textbf{Attore principale:}utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti corrispondenti alla città da lui inserita.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente inserisce la città come parametro di ricerca;
+    \item L'utente dà la conferma ed effettua la ricerca;
+    \item L'utente visualizza la lista dei ristoranti corrispondenti alla città inserita.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.3-Ricerca ristorante per valutazione}
+\begin{itemize}
+\item \textbf{Attore principale:}utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti la cui valutazione è maggiore o uguale alla
+valutazione da lui inserita.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente inserisce il valore della valutazione che desidera;
+    \item L'utente conferma il valore inserito ed effettua la ricerca;
+    \item  L'utente visualizza la lista dei ristoranti con valutazione maggiore o uguale a quella da lui inserita.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.4-Ricerca ristorante per tipologia di cucina}
+\begin{itemize}
+\item \textbf{Attore principale:}utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti che offrono la tipologia di cucina
+da lui inserita.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente seleziona la tipologia di cucina alla quale è interessato;
+    \item L'utente conferma la scelta ed effettua la ricerca; 
+    \item L'utente visualizza la lista dei ristoranti che offrono la cucina da egli cercata.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.5-Ricerca ristorante per orario}
+\begin{itemize}
+\item \textbf{Attore principale:}utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario 
+da lui scelto.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente seleziona l'orario ;
+    \item L'utente dà la conferma ed effettua la ricerca;
+    \item L'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario da lui
+    selezionato.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.6-Ricerca ristorante per data}
+\begin{itemize}
+\item \textbf{Attore principale:}utente non riconosciuto.
+\item \textbf{Precondizioni:} l'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti che hanno posti disponibili
+nella data da lui selezionata.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente seleziona la data;
+    \item L'utente dà la conferma ed effettua la ricerca;
+    \item L'utente visualizza la lista dei ristoranti che hanno posti disponibili
+    nella data selezionata .
+\end{enumerate}
+\end{itemize}
