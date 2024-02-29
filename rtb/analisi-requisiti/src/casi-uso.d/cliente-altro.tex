@@ -25,10 +25,26 @@
       (Carta di credito, carta di debito, Paypal, etc);
     \item Il cliente clicca sul tipo desiderato;
       % non ... io non ... non so cosa dire
+      % ci sto provando davvero
     \item Il sistema crea un richiesta di pagamento tramite il metodo desiderato e 
       apre una scheda dove il cliente può pagare;
     \item Il cliente paga;
     \item Il sistema riceve la conferma del pagamento e reindirizza il cliente alla pagina di visualizzazione della singola prenotazione;
+\end{enumerate}
+    \item \textbf{Estensioni:}
+        \begin{itemize}
+                \item UCE28-Errore di pagamento.
+        \end{itemize}
+\end{itemize}
+
+\textbf{UCE28-Errore di pagamento}
+\begin{itemize}
+\item \textbf{Descrizione: } Il processore di pagamento ha dato un errore.
+\item \textbf{Scenario alternativo:}
+\begin{enumerate}
+    \item Al momento di ricezione della conferma viene ottenuto un errore;
+    \item Il sistema comunica la natura dell'errore all'utente;
+    \item Il cliente visualizza il form della selezione del tipo di pagamento desiderato.
 \end{enumerate}
 \end{itemize}
 
