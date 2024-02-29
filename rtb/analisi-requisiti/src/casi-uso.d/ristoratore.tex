@@ -373,7 +373,7 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema vede che è stata confermata un'ordinazione dal cliente;
-    \item Il sistema invia al ristoratore relativo alla conferma dell'ordinazione una notifica.
+    \item Il sistema invia al ristoratore relativo alla conferma dell'ordinazione una notifica;
     \item L'utente visualizza la notifica relativa alla conferma dell'ordinazione.
 \end{enumerate}
 \end{itemize}
@@ -386,7 +386,48 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema vede che è stata annullata una prenotazione dal cliente;
-    \item Il sistema invia al ristoratore relativo all'annullamento della prenotazione una notifica.
+    \item Il sistema invia al ristoratore relativo all'annullamento della prenotazione una notifica;
     \item L'utente visualizza la notifica relativa all'annullamento della prenotazione.
 \end{enumerate}
 \end{itemize}
+
+\textbf{UC45-Visualizzazione notifica nuova prenotazione in arrivo}
+\begin{itemize}
+\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Precondizioni:} Il cliente ha effettuato una prenotazione (si veda UC19).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa alla prenotazione di un tavolo.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il sistema vede che è stata effettuata una prenotazione dal cliente;
+    \item Il sistema invia al ristoratore relativo alla prenotazione una notifica;
+    \item L'utente visualizza la notifica relativa alla prenotazione.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC46-Visualizzazione notifica cliente ha lasciato una recensione}
+\begin{itemize}
+\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Precondizioni:} Il cliente ha lasciato una recensione (si veda UC29).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa alla recensione.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il sistema vede che è stata lasciata una recensione dal cliente;
+    \item Il sistema invia al ristoratore relativo alla recensione una notifica;
+    \item L'utente visualizza la notifica relativa alla recensione.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC47-Visualizzazione notifica cliente ha pagato in app}
+\begin{itemize}
+\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Precondizioni:} Il cliente ha pagato un'ordinazione in app (si veda UC28).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa al pagamento in app.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il sistema vede che è stata pagata un'ordinazione dal cliente;
+    \item Il sistema invia al ristoratore relativo al pagamento una notifica;
+    \item L'utente visualizza la notifica relativa al pagamento.
+\end{enumerate}
+\end{itemize}
+
+
