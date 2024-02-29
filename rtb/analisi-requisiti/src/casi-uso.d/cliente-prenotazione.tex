@@ -99,6 +99,39 @@
             %Come ad esempio si fa con il link delle repo di git hub;
             %Non so se aggiungere dettagli ,tipo condivisione del link su servizio di messaggistica,
             %che però teoricamente è fuori dal sistema;è anche vero che il sistema può gestire come su telegram
-            %o whatsapp fino alla scelta del servizio di messagistica per la condivisione di un contenuto.
+            %o whatsapp fino alla scelta del servizio di messaggistica per la condivisione di un contenuto.
         \end{enumerate}
 \end{itemize}
+
+\textbf{UC24-Accettazione di invito di partecipazione ad una prenotazione}
+\begin{itemize}
+    \item \textbf{Attore principale: } utente non riconosciuto.
+    \item \textbf{Precondizioni: }l'utente possiede il link per partecipare ad una prenotazione.
+    \item \textbf{Postcondizioni: }la prenotazione è salvata nella lista delle prenotazioni dell'utente.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item L'utente seleziona il link di partecipazione alla prenotazione;
+            \item L'utente effettua il login per accedere al sistema;
+            \item L'utente seleziona il profilo cliente con il quale partecipare alla prenotazione;
+            \item L'utente visualizza la prenotazione alla quale è stato invitato nella lista delle sue
+            prenotazioni.
+        \end{enumerate}
+        \item \textbf{Estensione: }UCE24-Raggiunto numero massimo di partecipanti
+    \end{itemize}
+
+\textbf{UCE24-Raggiunto numero massimo di partecipanti}
+\begin{itemize}
+    \item \textbf{Descrizione: }possono accedere alla prenotazione tramite il link di
+    invito un numero massimo di utenti uguale al numero di partecipanti indicato al momento della
+    prenotazione.
+    \item \textbf{Scenario alternativo: }
+    \begin{enumerate}
+        \item L'utente riconosciuto seleziona il profilo con il quale partecipare alla prenotazione;
+        \item Il sistema notifica all'utente un messaggio di errore,in cui gli comunica che è stato
+        già raggiunto il numero massimo di partecipanti ;
+        %Forse l'estensione può terminare anche con il messaggio di errore.
+        \item L'utente visualizza la sua lista di prenotazioni senza la prenotazione alla quale voleva
+        partecipare.
+    \end{enumerate}
+\end{itemize}
+
