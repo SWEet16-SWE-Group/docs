@@ -1,1 +1,63 @@
-A
+\textbf{UC25-Creazione ordinazione}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} 
+\begin{itemize}
+    \item L'utente ha effettuato l'accesso al sistema.
+    \item L'utente ha effettuato una prenotazione (si veda UC19);
+    \item L'utente è nella sezione di riepilogo di una prenotazione singola (si veda UC22) e la prenotazione deve essere nello stato "Accettata" (si veda UC33).
+\end{itemize}
+\item \textbf{Postcondizioni:} L'utente ha ordinato le pietanze relative alla prenotazione.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente visualizza la sua ordinazione se già confermata e le ordinazioni già effettuate e confermate dagli altri utenti facenti parte della prenotazione;
+    \item L'utente può aggiungere una pietanza al proprio ordine (si veda UC25.1);
+    \item L'utente può modificare una pietanza già aggiunta al prorio ordine (si veda UC25.2);
+    \item L'utente può confermare la sua ordinazione (si veda UC25.3);
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC25.1-Aggiungi pietanza}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} L'utente sta effettuando un'ordinazione (si veda UC25).
+\item \textbf{Postcondizioni:} L'utente ha aggiunto una o più pietanze alla propria ordinazione.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente visualizza la lista di pietanze (si veda UC25.1.1);
+    \item Il cliente può visualizzare il dettaglio di una singola pietanza (UC25.1.2);
+    \item Il cliente può fare una ricerca tra le pietanze (si veda UC25.1.3);
+    \item Il cliente dopo aver selezionato una o più pietanze conferma la selezione;
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC25.1.1-Visualizza lista pietanza}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} L'utente sta aggiungendo una pietanza al suo ordine (si veda UC25.1).
+\item \textbf{Postcondizioni:} L'utente ha selezionato una o più pietanze.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente visualizza la lista di pietanze del ristorante
+    \item Il cliente può visualizzare il dettaglio di una singola pietanza (UC25.1.2);
+    \item Il cliente può fare una ricerca tra le pietanze (si veda UC25.1.3);
+    \item Il cliente dopo aver selezionato una o più pietanze conferma la selezione;
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
+\end{enumerate}
+\end{itemize}
+
+
+\textbf{UC26-Annullamento ordinazione}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} È stata fatta almeno un'ordinazione.
+\item \textbf{Postcondizioni:} L'ordinazione selezionata è stata annullata.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente ha ordinato un insieme di pietanze che non desidera più;
+    \item Il cliente clicca sull'ordinazione;
+    \item Il cliente clicca sul bottone annulla;
+    \item Il sistema rimuove le pietanze dell'ordinazione;
+\end{enumerate}
+\end{itemize}
