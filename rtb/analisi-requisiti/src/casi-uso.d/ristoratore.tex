@@ -283,7 +283,23 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
         \item L'utente compila il seguente form contenente le informazioni relative alla pietanza:
         \begin{itemize}
             \item Il nome dell'ingrediente;
-            \item Opzionalmente seleziona gli allergeni contenuti all'interno di quell'ingrediente.
+            \item Opzionalmente seleziona gli allergeni contenuti all'interno di quell'ingrediente (si veda UC38.1.1).
+        \end{itemize}
+        \item Il sistema aggiorna la lista degli ingredienti con il nuovo ingrediente inserito dall'utente.
+    \end{enumerate}
+\end{itemize}
+
+\textbf{UC38.1-Nuovo ingrediente}  
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione della lista ingredienti (si veda UC38).
+    \item \textbf{Postcondizioni:} l'utente ha inserito un nuovo ingrediente nella lista.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente compila il seguente form contenente le informazioni relative alla pietanza:
+        \begin{itemize}
+            \item Il nome dell'ingrediente;
+            \item Opzionalmente seleziona gli allergeni contenuti all'interno di quell'ingrediente (si veda UC38.1.1).
         \end{itemize}
         \item Il sistema aggiorna la lista degli ingredienti con il nuovo ingrediente inserito dall'utente.
     \end{enumerate}
@@ -298,5 +314,53 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
     \begin{enumerate}
         \item L'utente elimina un ingrediente dalla lista di ingredienti.
         \item Il sistema aggiorna la lista con l'eliminazione dell'ingrediente.
+    \end{enumerate}
+\end{itemize}
+
+%% inserire uc39 una volta che alex ha fatto l'uc18.2
+
+\textbf{UC40-Gestione pagamento conto}  
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36).
+    \item \textbf{Postcondizioni:} l'utente può gestire il pagamento del conto.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema mostra gli ordini o le persone che hanno pagato o non pagato, mettendo per prime quelle segnate come non pagate;
+        \item L'utente può selezionare un ordine o una persona e segnarla come pagata;
+        \item Il sistema aggiorna lo stato dell'ordine o della persona a "Pagato".
+    \end{enumerate}
+    \item \textbf{Generalizzazioni:}
+        \begin{itemize}
+            \item UC41-Pagamento equo;
+            \item UC42-Pagamento proporzionale.
+        \end{itemize}
+\end{itemize}
+
+\textbf{UC40-Gestione pagamento equo}  
+\begin{itemize}
+    \item \textbf{Descrizione:} pagamento equo del totale di tutti gli ordini, ovvero "alla romana".
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36).
+    \item \textbf{Postcondizioni:} l'utente può gestire il pagamento equo del conto.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema mostra le persone che hanno pagato o non pagato, mettendo per prime quelle che non hanno ancora pagato;
+        \item L'utente può selezionare una persona e segnarla come pagata;
+        \item Il sistema aggiorna lo stato della persona a "Pagato".
+    \end{enumerate}
+\end{itemize}
+
+\textbf{UC41-Gestione pagamento proporzionale}  
+\begin{itemize}
+    \item \textbf{Descrizione:} pagamento proporzionale degli ordini, ovvero ognuno paga per quello che ha ordinato.
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36).
+    \item \textbf{Postcondizioni:} l'utente può gestire il pagamento proporzionale del conto.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item Il sistema mostra gli ordini pagati o non pagati, mettendo per primi quelli ancora non pagati;
+        \item L'utente può selezionare un ordina e segnarlo come pagato;
+        \item Il sistema aggiorna lo stato dell'ordine a "Pagato".
     \end{enumerate}
 \end{itemize}
