@@ -1,37 +1,8 @@
-\documentclass[a4paper, 11pt]{article}
-\usepackage{graphicx} % Required for inserting images
-\usepackage{amsmath}
-\usepackage{geometry}
-\usepackage{hyperref}
-\usepackage{setspace}
-\usepackage{array}
-\usepackage[usenames,dvipsnames]{xcolor}
-\usepackage{colortbl} 
-\usepackage{tabularray}
-\usepackage[italian]{babel}
-\definecolor{darkgreen}{RGB}{18,94,40}
-\definecolor{lightgreen}{RGB}{179,255,179}
-\definecolor{moregreen}{RGB}{153,255,143}
-
- \geometry{
- a4paper,
- left=25mm,
- right=25mm,
- top=20mm,
- bottom=20mm,
- }
-
-\setlength{\parskip}{1em}
-\setlength{\parindent}{0pt}
-\graphicspath{{../../../media/}}
-
-\begin{document}
-
 \section{Test}
 
 Nella seguente sezione verranno espresse in maniera dettagliata le varie metodologie di test, gli
 obiettivi del testing e i criteri di successo utilizzati durante lo sviluppo del prodotto.
-Il gruppo SWEet16, durante lo sviluppo dell' RTB, ha eseguito esclusivamente un'unica tipologia di test sui vari componenti utilizzati nella programmazione del PoC. Per perseguire la correttezza del prodotto e facilitare la fase di validazione, la verifica è stata svolta in parallelo allo sviluppo (Modello a \(V^{G}\)).
+Il gruppo SWEet16, durante lo sviluppo dell' RTB, ha eseguito esclusivamente un'unica tipologia di test sui vari componenti utilizzati nella programmazione del PoC. Per perseguire la correttezza del prodotto e facilitare la fase di validazione, la verifica è stata svolta in parallelo allo sviluppo (Modello a V$^{G}$).
 I test dovranno essere resi il più automatici possibile, per evitare che la fase di testing rallenti la
 produzione.
 
@@ -64,12 +35,12 @@ Inoltre, i \textit{test di integrazione} possono essere utilizzati per verificar
 I \textit{test di sistema} vengono utilizzati per verificare il funzionamento del software come sistema
 completo, inclusi tutti i componenti e le interfacce con gli altri sistemi. I test di sistema hanno lo
 scopo di verificare che il software soddisfi i requisiti prestabiliti e che sia pronto per essere messo in
-produzione. In particolare, questa tipologia di test mira a soddisfare tutti i requisiti funzionali e la maggior parte dei requisiti non funzionali, compresi aspetti relativi all’usabilità, sicurezza,
+produzione. In particolare, questa tipologia di test mira a soddisfare tutti i requisiti funzionali e la maggior parte di quelli non funzionali, compresi aspetti relativi all’usabilità, sicurezza,
 performance e vulnerabilità.
 
 \subsubsection{Test di accettazione}
 
-I \textit{test di accettazione} sono un tipo di test che viene utilizzato per verificare che il software soddisfi irequisiti prestabiliti dal capitolato e che sia pronto per essere consegnato al committente o messo in produzione.
+I \textit{test di accettazione} sono un tipo di test che viene utilizzato per verificare che il software soddisfi i requisiti prestabiliti dal capitolato e che sia pronto per essere consegnato al committente o messo in produzione.
 Vengono svolti alla presenza del committente e mirano a soddisfare pienamente i requisiti,
 accertandosi di avere un prodotto funzionante e soddisfacente le aspettative progettuali iniziali.
 
@@ -111,7 +82,33 @@ row{1}={bg=black,fg=white},
         \hline
         TU9 & Si verifica che il componente ListaOrdinazioni venga renderizzato correttamente & Superato \\
         \hline
-  
+        TU10 & Si verifica che il componente DashboardClienti visualizzi correttamente le prenotazioni del cliente & Superato \\
+        \hline 
+        TU11 & Si verifica che il componente DashboardRistoratori visualizzi correttamente le prenotazioni del ristorante e permetta la loro gestione & Superato \\
+        \hline
+        TU12 & Si verifica che il componente DettagliPietanza visualizzi correttamente tutti i dettagli della pietanza e permetta l'ordinazione con l'eventuale rimozione di ingredienti & Superato \\
+        \hline
+        TU13 & Si verifica che il componente DettagliPrenotazione visualizzi correttamente i dettagli di ciascuna prenotazione e ne permetta la gestione  & Superato \\
+        \hline
+        TU14 & Si verifica che il componente FormPrenotazione contsenta correttamente di effettuare una prenotazione & Superato \\
+        \hline
+        TU15 & Si verifica che il componente MenuPietanze visualizzi correttamente tutto il menù e permette l'ordinazione di ciascuna pietanza & Superato \\
+        \hline
 \end{tblr}
 
-\end{document}
+\pagebreak
+
+\begin{tblr}{
+colspec={|X[2.5cm, halign=c]|X[9cm, halign=c]|X[3.5cm, halign=c]|},
+row{odd}={bg=white},
+row{even}={bg=white},
+}
+        \hline
+        TU16 & Si verifica che il componente Navbar visualizzi correttamente la pagina attuale, le altre pagine e il nome dell'utente o del ristoratore loggato & Superato \\
+        \hline
+        TU17 & Si verifica che il componente Login permetta correttamente di effettuare l'accesso tramite cliente o ristoratore & Superato \\
+        \hline
+        TU18 & Si verifica che il componente ListaOrdinazioni visualizzi correttamente le ordinazioni confermate e l'inventario degli ingredienti & Superato \\
+        \hline
+  
+\end{tblr}
