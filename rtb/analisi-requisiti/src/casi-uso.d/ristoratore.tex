@@ -170,3 +170,52 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
         \end{itemize}
     \end{enumerate}
 \end{itemize}
+
+\textbf{UC37.1-Nuova pietanza}  
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} l'utente ha inserito una nuova pietanza al menù.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente compila il seguente form contenente le informazioni relative alla pietanza:
+        \begin{itemize}
+            \item Il nome della pietanza;
+            \item Seleziona gli ingredienti che compongono la pietanza dalla lista degli ingredienti, con la loro quantità espressa in grammi (si veda UC38 per la creazione di tale lista);
+            \item Seleziona la sezione del menù a cui questo piatto appartiene.
+        \end{itemize}
+        \item Il sistema aggiorna il menù con la nuova pietanza inserita dall'utente.
+    \end{enumerate}
+\end{itemize}
+
+\textbf{UC37.2-Modifica pietanza}  
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} l'utente ha modificato una pietanza al menù.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente modifica il seguente form contenente le informazioni relative alla pietanza:
+        \begin{itemize}
+            \item Il nome della pietanza;
+            \item Seleziona gli ingredienti che compongono la pietanza dalla lista degli ingredienti, con la loro quantità espressa in grammi (si veda UC38 per la creazione di tale lista);
+            \item Seleziona la sezione del menù a cui questo piatto appartiene.
+        \end{itemize}
+        \item Il sistema aggiorna il menù con le modifiche apportate alla pietanza dall'utente.
+    \end{enumerate}
+\end{itemize}
+% aggiungere UCE 37.2 alcuni campi non sono stati inseriti?
+
+\textbf{UC37.3-Rimuovi pietanza}  
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} l'utente ha rimosso una pietanza al menù.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente elimina una pietanza dal menù.
+        \item Il sistema aggiorna il menù con l'eliminazione della pietanza.
+    \end{enumerate}
+\end{itemize}
+
+
