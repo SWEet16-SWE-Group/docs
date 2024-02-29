@@ -174,7 +174,7 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
 \textbf{UC37.1-Nuova pietanza}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione del menù (si veda UC37).
     \item \textbf{Postcondizioni:} l'utente ha inserito una nuova pietanza al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -191,7 +191,7 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
 \textbf{UC37.2-Modifica pietanza}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione del menù (si veda UC37).
     \item \textbf{Postcondizioni:} l'utente ha modificato una pietanza al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -209,7 +209,7 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
 \textbf{UC37.3-Rimuovi pietanza}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione del menù (si veda UC37).
     \item \textbf{Postcondizioni:} l'utente ha rimosso una pietanza al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -222,7 +222,7 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
 \textbf{UC37.4-Nuova sezione menù}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione del menù (si veda UC37).
     \item \textbf{Postcondizioni:} l'utente ha inserito una nuova sezione al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -234,7 +234,7 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
 \textbf{UC37.5-Modifica sezione menù}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione del menù (si veda UC37).
     \item \textbf{Postcondizioni:} l'utente ha modificato una sezione al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -247,7 +247,7 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
 \textbf{UC37.6-Rimuovi sezione menù}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} l'utente si trova nelle sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione del menù (si veda UC37).
     \item \textbf{Postcondizioni:} l'utente ha rimosso una sezione del menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -267,9 +267,36 @@ Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4
     \begin{enumerate}
         \item L'utente può eseguire le seguenti operazioni all'interno della modifica della lista degli ingredienti:
         \begin{itemize}
-           \item Aggiungere un nuovo ingrediente alla lsita (si veda UC38.1);
-           \item Rimuovere un ingrediente preesistente (si veda UC38.2).
+           \item Aggiungere un nuovo ingrediente alla lista (si veda UC38.1);
+           \item Rimuovere un ingrediente preesistente dalla lista (si veda UC38.2).
         \end{itemize}
     \end{enumerate}
 \end{itemize}
 
+\textbf{UC38.1-Nuovo ingrediente}  
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione della lista ingredienti (si veda UC38).
+    \item \textbf{Postcondizioni:} l'utente ha inserito un nuovo ingrediente nella lista.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente compila il seguente form contenente le informazioni relative alla pietanza:
+        \begin{itemize}
+            \item Il nome dell'ingrediente;
+            \item Opzionalmente seleziona gli allergeni contenuti all'interno di quell'ingrediente.
+        \end{itemize}
+        \item Il sistema aggiorna la lista degli ingredienti con il nuovo ingrediente inserito dall'utente.
+    \end{enumerate}
+\end{itemize}
+
+\textbf{UC37.2-Rimuovi ingrediente}  
+\begin{itemize}
+    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Precondizioni:} l'utente si trova nella sezione di gestione della lista ingredienti (si veda UC38).
+    \item \textbf{Postcondizioni:} l'utente ha rimosso un ingrediente dalla lista.
+    \item \textbf{Scenario principale:}
+    \begin{enumerate}
+        \item L'utente elimina un ingrediente dalla lista di ingredienti.
+        \item Il sistema aggiorna la lista con l'eliminazione dell'ingrediente.
+    \end{enumerate}
+\end{itemize}
