@@ -1,1 +1,45 @@
-D
+\textbf{UC1-Registrazione account}
+\begin{itemize}
+    \item \textbf{Attore principale: }utente non riconosciuto.
+    \item \textbf{Precondizioni: }l'utente è connesso al sistema.
+    \item \textbf{Postcondizioni: }l'account dell'utente e le informazioni ad esso collegate, sono registrati nel sistema.
+    \item \textbf{Scenario principale:} 
+        \begin{itemize}
+            \item L'utente sceglie l'opzione di registrazione di un account;
+            \item Il sistema chiede all'utente di inserire una email ed una password;
+            \item L'utente inserisce l'email e la password;
+            \item L'utente conferma i valori inseriti;
+            \item Il sistema comunica all'utente che la registrazione è andata 
+            a buon fine.
+            \item Il cliente visualizza un profilo di tipo cliente creato di default dal sistema,il cui username è l'email dell'account appena registrato.
+        \end{itemize}
+    \item \textbf{Estensioni:}
+        \begin{itemize}
+                \item UCE1.1-Campo mancante;
+                \item UC1.2-Email già registrata nel sistema.
+        \end{itemize}
+\end{itemize}
+    
+\textbf{UCE1.1-Campo mancante}
+\begin{itemize}
+    \item \textbf{Descrizione: }per effettuare la registrazione,devono essere inseriti un valore per la password che per l'email.
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item Al momento della conferma,il sistema rileva che uno dei campi (od entrambi) risulta non compilato;
+        \item Il sistema comunica la natura dell'errore all'utente;
+        \item Il cliente visualizza i campi della password e della email;se è stato precedentemente inserito un valore in uno
+        dei due campi,esso è presente.
+    \end{itemize}
+\end{itemize}
+
+\textbf{UC1.2-Email già registrata nel sistema}
+\begin{itemize}
+    \item \textbf{Descrizione: }l'utente non può registrare un account inserendo una email già usata da un altro utente.
+    \item \textbf{Scenario alternativo:}
+    \begin{itemize}
+        \item L'email inserita dall'utente al momento della registrazione risulta già presente nel sistema;
+        \item Il sistema comunica la natura dell'errore all'utente;
+        \item Il cliente è reindirizzato alla homepage di registrazione.
+    \end{itemize}
+\end{itemize}
+\break
