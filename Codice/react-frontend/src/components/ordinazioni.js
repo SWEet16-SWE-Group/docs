@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import Navbar from './navbar';
 
-class DettagliPietanza extends Component {
+class ListaOrdinazioni extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -162,4 +162,4 @@ class DettagliPietanza extends Component {
   }
 }
 
-export default DettagliPietanza;
+export default ListaOrdinazioni;
