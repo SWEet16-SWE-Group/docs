@@ -10,7 +10,7 @@
     \item Il cliente preme il bottone di avvio della chat.
     \item Il sistema crea la chat.
     \item Viene visualizzato un bottone di apertura della chat al posto dell'avvio chat.
-    \item Diventa possibile comunicare bidirezionalmente tra il/i cliente/clienti e il ristoratore. 
+    \item Diventa possibile comunicare bidirezionalmente tra il/i cliente/clienti e il ristoratore.
 \end{enumerate}
 \end{itemize}
 
@@ -30,11 +30,14 @@
 \textbf{UC50.1-Invio messaggio}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente / Ristoratore
-\item \textbf{Precondizioni:}
-\item \textbf{Postcondizioni:}
+\item \textbf{Precondizioni:} È stata aperta la chat.
+\item \textbf{Postcondizioni:} È stato inviato il messaggio.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item
+    \item L'attore principale scrive il messaggio nella barra di testo messa a disposizione.
+    \item L'attore preme il bottone di invio.
+    \item Il messaggio viene salvato nel database in forma criptata.
+    \item Il/i destinatario/destinatari ricevono i messaggi.
 \end{enumerate}
 \end{itemize}
 
