@@ -43,3 +43,20 @@
     \item Al cliente compare una bolla contentente il nuovo stato della prenotazione.
 \end{enumerate}
 \end{itemize}
+
+\textbf{UC32-Visualizzazione notifica accettazione invito da parte di altri utenti}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} Il cliente ha una prenotazione attiva e ha condiviso il link di invito tramite terze parti.
+\item \textbf{Postcondizioni:} Il cliente visualizza una bolla con il nome del profilo di chi ha accettato l'invito.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente mittente copia il link fornito per invitare altri profili alla propria prenotazione e lo diffonde tramite
+      servizi di terze parti;
+    \item Un destinatario del link lo clicca;
+    \item Il sistema chiede il login caso l'utente destinatario non sia già loggato;
+    \item Il sistema i profili cliente disponibili con cui aggiungersi alla prenotazione;
+    \item L'utente destinatario seleziona un profilo;
+    \item Al cliente mittente compare una bolla contentente il nuovo profilo aggiuntosi alla prenotazione.
+\end{enumerate}
+\end{itemize}
