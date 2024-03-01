@@ -299,7 +299,6 @@
 \end{itemize}
 
 
-
 \textbf{UC38.2-Rimuovi ingrediente}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
@@ -324,7 +323,8 @@
     \begin{enumerate}
         \item Il sistema mostra gli ordini o le persone che hanno pagato o non pagato, mettendo per prime quelle segnate come non pagate;
         \item Il ristoratore può selezionare un ordine o una persona e segnarla come pagata;
-        \item Il sistema aggiorna lo stato dell'ordine o della persona a "Pagato".
+        \item Il sistema aggiorna lo stato dell'ordine o della persona a "Pagato";
+        \item Quando tutte le ordinazioni o persone hanno pagato allora la prenotazione va nello stato "Pagata".
     \end{enumerate}
     \item \textbf{Generalizzazioni:}
         \begin{itemize}
@@ -343,7 +343,8 @@
     \begin{enumerate}
         \item Il sistema mostra le persone che hanno pagato o non pagato, mettendo per prime quelle che non hanno ancora pagato;
         \item Il ristoratore può selezionare una persona e segnarla come pagata;
-        \item Il sistema aggiorna lo stato della persona a "Pagato".
+        \item Il sistema aggiorna lo stato della persona a "Pagato";
+        \item Quando tutte le persone hanno pagato allora la prenotazione va nello stato "Pagata".
     \end{enumerate}
 \end{itemize}
 
@@ -358,6 +359,8 @@
         \item Il sistema mostra gli ordini pagati o non pagati, mettendo per primi quelli ancora non pagati;
         \item Il ristoratore può selezionare un ordina e segnarlo come pagato;
         \item Il sistema aggiorna lo stato dell'ordine a "Pagato".
+        \item Quando tutte le persone hanno pagato allora la prenotazione va nello stato "Pagata".
+
     \end{enumerate}
 \end{itemize}
 
