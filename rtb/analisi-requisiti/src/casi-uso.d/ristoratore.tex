@@ -75,7 +75,7 @@
         \item Il ristoratore seleziona una prenotazione da visualizzare in dettaglio.
         \item Il sistema mostra i dettagli e le informazioni relative alla prenotazione selezionata dal ristoratore:
         \begin{itemize}
-            \item Nome e Cognome della persona che ha effettuato la prenotazione;
+            \item Username del profilo che ha effettuato la prenotazione;
             \item Giorno e orario della prenotazione;
             \item Numero di persone;
             \item Stato della prenotazione;
@@ -271,7 +271,7 @@
         \item Il ristoratore può eseguire le seguenti operazioni:
         \begin{itemize}
            \item Aggiungere un nuovo ingrediente alla lista (si veda UC38.1);
-           \item Rimuovere un ingrediente esistente dalla lista (si veda UC38.2).
+           \item Rimuovere un ingrediente presente nella lista (si veda UC38.2).
         \end{itemize}
     \item Il ristoratore conferma le modifiche apportate alla lista degli ingredienti;
     \item Il sistema aggiorna la lista degli ingredienti;
@@ -290,13 +290,15 @@
         \item Il ristoratore compila il seguente form contenente le informazioni relative alla pietanza:
         \begin{itemize}
             \item Il nome dell'ingrediente;
-            \item Opzionalmente seleziona gli allergeni contenuti all'interno di quell'ingrediente (si veda UC38.1.1).
+            \item Opzionalmente seleziona gli allergeni contenuti all'interno di quell'ingrediente da una lista fornita dal sistema.
         \end{itemize}
         \item Il ristoratore conferma la creazione di un nuovo ingrediente;
         \item Il sistema aggiorna la lista degli ingredienti con il nuovo ingrediente;
         \item Il ristoratore viene reindirizzato alla schermata di modifica della lista ingredienti (si veda UC38).
     \end{enumerate}
 \end{itemize}
+
+
 
 \textbf{UC38.2-Rimuovi ingrediente}  
 \begin{itemize}
@@ -368,7 +370,7 @@
 \begin{enumerate}
     \item Il sistema vede che è stata confermata un'ordinazione dal cliente;
     \item Il sistema invia al ristoratore relativo alla conferma dell'ordinazione una notifica;
-    \item Il ristoratore visualizza la notifica relativa alla conferma dell'ordinazione.
+    \item Il ristoratore visualizza la notifica relativa all'ordinazione.
 \end{enumerate}
 \end{itemize}
 
@@ -414,7 +416,7 @@
 \textbf{UC47-Visualizzazione notifica cliente ha pagato in app}
 \begin{itemize}
 \item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il cliente ha pagato un'ordinazione in app (si veda UC28).
+\item \textbf{Precondizioni:} il cliente ha effettuato un pagamento in app (si veda UC28).
 \item \textbf{Postcondizioni:} il ristoratore visualizza una notifica relativa al pagamento in app.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
