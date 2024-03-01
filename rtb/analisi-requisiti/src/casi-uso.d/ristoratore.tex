@@ -4,7 +4,7 @@
 \item \textbf{Attore principale:} ristoratore.
 \item \textbf{Precondizioni:} 
 \begin{itemize}
-        \item Il ristoratore è connesso al sistema e sta visualizzando il dettaglio di una singola prenotazione (vedi UC36-Visualizzazione singola prenotazione);
+        \item Il ristoratore è connesso al sistema e sta visualizzando il dettaglio di una singola prenotazione (si veda UC36-Visualizzazione singola prenotazione);
         \item La prenotazione è nello stato "In attesa".
 \end{itemize}
 \item \textbf{Postcondizioni:} lo stato della prenotazione diventa "Accettata".
@@ -20,7 +20,7 @@
 \item \textbf{Attore principale:} ristoratore.
 \item \textbf{Precondizioni:} 
 \begin{itemize}
-        \item Il ristoratore è connesso al sistema e sta visualizzando il dettaglio di una singola prenotazione (vedi UC36-Visualizzazione singola prenotazione);
+        \item Il ristoratore è connesso al sistema e sta visualizzando il dettaglio di una singola prenotazione (si veda UC36-Visualizzazione singola prenotazione);
         \item La prenotazione è nello stato "In attesa".
 \end{itemize}
 \item \textbf{Postcondizioni:} lo stato della prenotazione diventa "Rifiutata".
@@ -56,7 +56,7 @@
 \textbf{UC35.1-Visualizzazione dettagli ingredienti giornata}
 \begin{itemize}
 \item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (vedi UC35).
+\item \textbf{Precondizioni:} il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (si veda UC35).
 \item \textbf{Postcondizioni:} il ristoratore visualizza la lista degli ingredienti.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
@@ -68,20 +68,20 @@
 \textbf{UC36-Visualizzazione singola prenotazione}
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} 
-    \begin{itemize}
-        \item Il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (vedi UC35);
-        \item Il ristoratore seleziona una prenotazione da visualizzare in dettaglio.
-    \end{itemize}
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (si veda UC35);
     \item \textbf{Postcondizioni:} il ristoratore visualizza le informazioni dettagliate della singola prenotazione.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema mostra i dettagli e le informazioni relative alla prenotazione selezionata dalIl ristoratore:
+        \item Il ristoratore seleziona una prenotazione da visualizzare in dettaglio.
+        \item Il sistema mostra i dettagli e le informazioni relative alla prenotazione selezionata dal ristoratore:
         \begin{itemize}
             \item Nome e Cognome della persona che ha effettuato la prenotazione;
             \item Giorno e orario della prenotazione;
             \item Numero di persone;
-            \item Stato della prenotazione.
+            \item Stato della prenotazione;
+            \item Lista totale degli ingredienti per la ordinazione (si veda UC36.1);
+            \item Lista delle ordinazioni attuali, sia confermate che non (si veda UC36.2);
+            \item Lista dei clienti facenti parte della prenotazione (si veda UC36.3).
         \end{itemize}
     \end{enumerate}
 \end{itemize}
@@ -91,7 +91,7 @@
     \item \textbf{Attore principale:} ristoratore.
     \item \textbf{Precondizioni:} 
     \begin{itemize}
-        \item Il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (vedi UC36);
+        \item Il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (si veda UC36);
         \item Il ristoratore seleziona "Lista ingredienti per questa prenotazione".
     \end{itemize}
     \item \textbf{Postcondizioni:} il ristoratore visualizza la lista degli ingredienti per la singola prenotazione.
@@ -104,14 +104,11 @@
 \textbf{UC36.2-Visualizzazione lista ordinazioni attuali}
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} 
-    \begin{itemize}
-        \item Il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (vedi UC36);
-        \item Il ristoratore seleziona "Ordinazioni per questa prenotazione".
-    \end{itemize}
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (si veda UC36).
     \item \textbf{Postcondizioni:} il ristoratore visualizza la lista delle ordinazioni per la singola prenotazione.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
+        \item Il ristoratore seleziona l'opzione "Ordinazioni per questa prenotazione";
         \item Il ristoratore visualizza la lista delle ordinazioni che sono state effettuate dai clienti collegati a questa prenotazione nei seguenti modi:
         \begin{itemize}
             \item Di default, vengono mostrate come prime le ordinazioni nello stato "Confermata";
@@ -120,12 +117,12 @@
     \end{enumerate}
 \end{itemize}
 
-\textbf{UC36.3-Visualizzazione lista Clienti}  % non sono sicuro di questo nome
+\textbf{UC36.3-Visualizzazione lista Clienti}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
     \item \textbf{Precondizioni:} 
     \begin{itemize}
-        \item Il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (vedi UC36);
+        \item Il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (si veda UC36);
         \item Il ristoratore seleziona "Lista clienti".
     \end{itemize}
     \item \textbf{Postcondizioni:} il ristoratore visualizza la lista dei clienti collegati alla singola prenotazione.
@@ -139,18 +136,9 @@
     \end{enumerate}
 \end{itemize}
 
-
-\iffalse %commento
-    \textbf{UC36.4-Visualizzazione lista Clienti}  % non sono sicuro di questo nome
-\begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} 
-    \item \textbf{Postcondizioni:} il ristoratore visualizza la lista dei clienti collegati alla singola prenotazione.
-    \item \textbf{Scenario principale:}
-\end{itemize}
-
-Non sono sicuro di questa perché a mio parere c'è molta somiglianza tra uc36.4 e uc40
-\fi %fine commento
+% ho deciso di mia spontanea volontà che l'UC36.4 non serve, perché sarebbe un duplicato del caso d'uso UC40. 
+% SHo preferito mettere che nella vista della prenotazione singola lo stato della stessa passa da "accettata" a "pagata" una volta che tutti gli ordini 
+%della prenotazione sono stati pagati
 
 
 \textbf{UC37-Modifica menù}  
