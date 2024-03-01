@@ -160,9 +160,9 @@ da lui inserita.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
-    \item L'utente seleziona la tipologia di cucina alla quale è interessato;
+    \item L'utente seleziona una o più tipologie di cucina alla quale è interessato;
     \item Il sistema filtra la lista di ristoranti secondo il criterio inserito; 
-    \item L'utente visualizza la lista dei ristoranti che offrono la cucina da egli cercata.
+    \item L'utente visualizza la lista dei ristoranti che offrono la/e tipologia/e di cucina da egli cercata.
 \end{enumerate}
 \end{itemize}
 
@@ -205,8 +205,8 @@ nella data da lui selezionata.
 \item \textbf{Postcondizioni:} l'utente visualizza le informazioni relative al ristorante selezionato.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item L'utente seleziona dalla lista che sta visualizzando un ristorante;
-    \item L'utente visualizza le informazioni relative al ristorante, cioè:
+    \item L'utente seleziona un ristorante dalla lista che sta visualizzando ;
+    \item L'utente visualizza le informazioni relative al ristorante :
     \begin{itemize}
         \item Il nome;
         \item il recapito telefonico;
@@ -229,7 +229,7 @@ nella data da lui selezionata.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di visualizzazione del menù del ristorante;
     \item L'utente visualizza la lista completa delle pietanze presenti nel menù;
-    \item L'utente può effettuare la ricerca per nome di una pietanza (vedi UC18.1.1-Ricerca pietanza);
+    \item L'utente può effettuare la ricerca di una pietanza (vedi UC18.1.1-Ricerca pietanza);
     \item L'utente può visualizzare i dettagli relativi ad una singola pietanza presente
      nel menù (vedi UC18.1.2-Visualizzazione pietanza).
 \end{enumerate}
@@ -241,13 +241,12 @@ nella data da lui selezionata.
 \item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista delle pietanze corrispondenti ai parametri di ricerca.
 \item \textbf{Scenario principale:}
-% che sia il caso di aggiungere l'estensione nel caso la ricerca non dia nessun risultato?
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di una pietanza ;
     \item L'utente può effettuare la ricerca per nome;
     \item L'utente può effettuare la ricerca selezionando gli allergeni che non vuole 
     siano presenti nelle pietanze del menù;
-    \item L'utente dà la conferma ed effettua la ricerca;
+    \item Il sistema filtra la lista delle pietanze secondo i parametri inseriti;
     \item L'utente visualizza la lista delle pietanze corrispondenti ai criteri di ricerca.
 \end{enumerate}
 \end{itemize}
@@ -275,13 +274,12 @@ nella data da lui selezionata.
 \begin{itemize}
 \item \textbf{Attore principale:} utente non riconosciuto / cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni relative ad un ristorante.
-\item \textbf{Postcondizioni:} L'utente visualizza le ultime 5 recensioni fatte in ordine temporale da altri utenti.
+\item \textbf{Postcondizioni:} L'utente visualizza le ultime 5 recensioni fatte in ordine temporale decrescente da altri utenti.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di visualizzazione delle recensioni fatte da altri utenti
     sulla loro esperienza presso il ristorante;
-    \item Di default, il sistema presenta una lista con le ultime 10 recensioni fatte andando a ritroso nel tempo,
-    se presenti 10 o più recensioni ;
+    \item Di default,se presenti più di 5 recensioni, il sistema ne presenta una lista con le ultime 5 fatte in ordine temporale decrescente;
     \item L'utente visualizza le suddette recensioni ,corredate dalle seguenti informazioni:
     \begin{itemize}
         \item Un voto da 1 a 5 sul menù;
