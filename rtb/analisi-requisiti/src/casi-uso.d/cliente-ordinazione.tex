@@ -104,7 +104,7 @@
     \item Il cliente sta effettuando un'ordinazione (si veda UC25);
     \item Il cliente ha aggiunto una o più pietanza alla propria ordinazione (si veda UC25.1).
 \end{itemize}
-\item \textbf{Postcondizioni:} Il cliente ha modificato una pietanza della propria ordinazione.
+\item \textbf{Postcondizioni:} Il cliente ha modificato una pietanza.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il cliente vede la lista delle pietanze da lui ordinate (si veda UC25.1);
@@ -116,7 +116,7 @@
         \item Aggiungere un ingrediente alla pietanza (si veda UC25.2.3);
         \item Rimuovere un ingrediente dalla pietanza (si veda UC25.2.4);
     \end{itemize}
-    \item Il cliente dopo modificato la pietanza conferma le sue modifiche;
+    \item Il cliente dopo aver modificato la pietanza conferma le sue modifiche;
     \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
 \end{enumerate}
 \end{itemize}
@@ -129,11 +129,11 @@
     \item Il cliente sta effettuando un'ordinazione (si veda UC25);
     \item Il cliente sta effettuando una modifica ad una pietanza ordinata (si veda UC25.2).
 \end{itemize}
-\item \textbf{Postcondizioni:} Il cliente ha modificato la quantità di una pietanza della propria ordinazione.
+\item \textbf{Postcondizioni:} Il cliente ha modificato la quantità di una pietanza.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il cliente modifica la quantità della pietanza già ordinata, questo numero non può essere minore di 1.
-    \item Il cliente dopo modificato quantità della pietanza conferma le sue modifiche;
+    \item Il cliente dopo aver modificato la quantità della pietanza conferma le modifiche;
     \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
     \item Il cliente viene reindirizzato alla schermata di modifica pietanza ordinata (si veda UC25.2).
 \end{enumerate}
@@ -147,11 +147,49 @@
     \item Il cliente sta effettuando un'ordinazione (si veda UC25);
     \item Il cliente sta effettuando una modifica ad una pietanza ordinata (si veda UC25.2).
 \end{itemize}
-\item \textbf{Postcondizioni:} Il cliente ha eliminato una pietanza dalla propria ordinazione.
+\item \textbf{Postcondizioni:} Il cliente ha eliminato una pietanza.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente seleziona l'opzione di eliminazione della pietanza.
-    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
+    \item Il cliente seleziona l'opzione di eliminazione della pietanza;
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
+    \item Il cliente viene reindirizzato alla schermata di modifica pietanza ordinata (si veda UC25.2).
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC25.2.3-Aggiungi ingrediente}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} 
+\begin{itemize}
+    \item Il cliente sta effettuando un'ordinazione (si veda UC25);
+    \item Il cliente sta effettuando una modifica ad una pietanza ordinata (si veda UC25.2).
+\end{itemize}
+\item \textbf{Postcondizioni:} Il cliente ha aggiunto uno o più ingredienti ad una pietanza.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente seleziona l'opzione di aggiunta ingredienti della pietanza;
+    \item Il cliente seleziona gli ingredienti che desidera aggiungere alla pietanza dalla lista definita dal ristoratore (si veda UC38);
+    \item Il cliente conferma le aggiunte di ingredienti alla pietanza;
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
+    \item Il cliente viene reindirizzato alla schermata di modifica pietanza ordinata (si veda UC25.2).
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC25.2.4-Rimuovi ingrediente}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} 
+\begin{itemize}
+    \item Il cliente sta effettuando un'ordinazione (si veda UC25);
+    \item Il cliente sta effettuando una modifica ad una pietanza ordinata (si veda UC25.2).
+\end{itemize}
+\item \textbf{Postcondizioni:} Il cliente ha rimosso uno o più ingredienti da una pietanza.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente seleziona l'opzione di rimozione ingredienti dalla pietanza;
+    \item Il cliente seleziona gli ingredienti che desidera rimuovere dalla pietanza;
+    \item Il cliente conferma la rimozione degli ingredienti;
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
     \item Il cliente viene reindirizzato alla schermata di modifica pietanza ordinata (si veda UC25.2).
 \end{enumerate}
 \end{itemize}
@@ -159,13 +197,13 @@
 \textbf{UC26-Annullamento ordinazione}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} È stata fatta almeno un'ordinazione.
+\item \textbf{Precondizioni:} Il cliente ha effettuato almeno un'ordinazione (si veda UC25).
 \item \textbf{Postcondizioni:} L'ordinazione selezionata è stata annullata.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il cliente ha ordinato un insieme di pietanze che non desidera più;
-    \item Il cliente clicca sull'ordinazione;
-    \item Il cliente clicca sul bottone annulla;
+    \item Il cliente seleziona un'ordinazione;
+    \item Il cliente seleziona l'opzione di annullamento dell'ordinazione;
     \item Il sistema rimuove le pietanze dell'ordinazione;
 \end{enumerate}
 \end{itemize}
