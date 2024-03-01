@@ -197,13 +197,18 @@
 \textbf{UC26-Annullamento ordinazione}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} Il cliente ha effettuato almeno un'ordinazione (si veda UC25).
+\item \textbf{Precondizioni:} 
+\begin{itemize}
+    \item Il cliente ha effettuato l'accesso al sistema;
+    \item Il cliente ha effettuato una prenotazione (si veda UC19);
+    \item Il cliente è nella sezione di riepilogo di una prenotazione singola (si veda UC22) e la prenotazione deve essere nello stato "Accettata" (si veda UC33).
+\end{itemize}
 \item \textbf{Postcondizioni:} L'ordinazione selezionata è stata annullata.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il cliente ha ordinato un insieme di pietanze che non desidera più;
     \item Il cliente seleziona un'ordinazione;
     \item Il cliente seleziona l'opzione di annullamento dell'ordinazione;
-    \item Il sistema rimuove le pietanze dell'ordinazione;
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
 \end{enumerate}
 \end{itemize}
