@@ -11,7 +11,7 @@
             \item L'utente conferma i valori inseriti;
             \item Il sistema comunica all'utente che la registrazione è andata 
             a buon fine.
-            \item Il cliente visualizza un profilo di tipo cliente creato di default dal sistema,il cui username è l'email dell'account appena registrato.
+            \item Il cliente visualizza un profilo di tipo cliente creato di default dal sistema.
         \end{enumerate}
     \item \textbf{Estensioni:}
         \begin{itemize}
@@ -25,10 +25,9 @@
     \item \textbf{Descrizione: }per effettuare la registrazione,devono essere inseriti un valore per la password che per l'email.
     \item \textbf{Scenario alternativo:}
     \begin{enumerate}
-        \item Al momento della conferma,il sistema rileva che uno dei campi (od entrambi) risulta non compilato;
+        \item Al momento della conferma,il sistema rileva che uno dei campi (o entrambi) risulta non compilato;
         \item Il sistema comunica la natura dell'errore all'utente;
-        \item Il cliente visualizza i campi della password e della email;se è stato precedentemente inserito un valore in uno
-        dei due campi,esso è presente.
+        \item L'utente visualizza i campi di mail e password con i valori inseriti precedentemente.
     \end{enumerate}
 \end{itemize}
 
@@ -39,7 +38,7 @@
     \begin{itemize}
         \item L'email inserita dall'utente al momento della registrazione risulta già presente nel sistema;
         \item Il sistema comunica la natura dell'errore all'utente;
-        \item Il cliente è reindirizzato alla homepage di registrazione.
+        \item L'utente è reindirizzato alla homepage di registrazione.
     \end{itemize}
 \end{itemize}
 \break
@@ -51,7 +50,7 @@
 \item \textbf{Postcondizioni:} l'utente è autenticato presso il sistema.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item L'utente sceglie l'opzione di autenticazione;
+    \item L'utente sceglie l'opzione di login;
     \item L'utente inserisce la sua password;
     \item l'utente inserisce la sua email;
     \item L'utente conferma i dati inseriti al sistema;
@@ -62,15 +61,14 @@
 \end{itemize}
 
 \textbf{UCE2-Credenziali non corrette}
-\textbf{Descrizione: }il login può non andare a buon fine se l'email inserita dall'utente è errata
-o ,nel caso sia presente un account registrato con la suddetta email, se la password inserita non è quella
-ad essa associata; per questioni di sicurezza, all'utente viene notificato un errore generico.
+\textbf{Descrizione: }il login può non andare a buon fine se l'email inserita dall'utente non è registrata 
+o la password non è corretta; per questioni di sicurezza, all'utente viene notificato un errore generico.
 \textbf{Scenario secondario:}
 \begin{enumerate}
     \item Dopo la conferma dei dati inseriti dall'utente,il sistema verifica 
-    che l' email non è presente a sistema;
+    che l' email non è presente nel sistema o che la password associata non è corretta;
     \item Il sistema comunica all'utente che le credenziali inserite non sono corrette;
-    \item L'utente può riprovare ad effettuareil login ,inserendo di nuovo l'email e la password.
+    \item L'utente può riprovare ad effettuare il login ,inserendo di nuovo l'email e la password.
 \end{enumerate}
 
 \textbf{UC16-Visualizzazione lista ristoranti}
@@ -79,7 +77,6 @@ ad essa associata; per questioni di sicurezza, all'utente viene notificato un er
 \item \textbf{Precondizioni:} l'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} l'utente visualizza una lista di ristoranti.
 \item \textbf{Scenario principale:}
-%Da aggiungere qualche step allo scenario principale?
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di visualizzazione di una lista di ristoranti;
     \item L'utente visualizza una lista di ristoranti,ordinati secondo la loro valutazione media.
@@ -105,7 +102,7 @@ dell'utente.
         \item L orario (vedi UC17.5-Ricerca ristorante per orario) ;
         \item La data (vedi UC17.6-Ricerca ristorante per data); 
     \end{itemize}
-    \item L'utente conferma il o i valori inseriti ed effettua la ricerca;
+    \item  Il sistema filtra la lista di ristoranti secondo i criteri inseriti;
     \item L'utente visualizza la lista dei ristoranti che rispettano i criteri da lui inseriti.
 \end{enumerate}
 \end{itemize}
@@ -120,7 +117,7 @@ alla ricerca per nome da lui inserito.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
     \item L'utente inserisce il nome secondo il quale effettuare la ricerca;
-    \item L'utente conferma il valore inserito ed effettua la ricerca;
+    \item  Il sistema filtra la lista di ristoranti secondo il criterio inserito;
     \item L'utente visualizza la lista dei ristoranti corrispondenti al nome da lui inserito.
 \end{enumerate}
 \end{itemize}
@@ -134,7 +131,7 @@ alla ricerca per nome da lui inserito.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
     \item L'utente inserisce la città come parametro di ricerca;
-    \item L'utente dà la conferma ed effettua la ricerca;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
     \item L'utente visualizza la lista dei ristoranti corrispondenti alla città inserita.
 \end{enumerate}
 \end{itemize}
@@ -149,7 +146,7 @@ valutazione da lui inserita.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
     \item L'utente inserisce il valore della valutazione che desidera;
-    \item L'utente conferma il valore inserito ed effettua la ricerca;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
     \item  L'utente visualizza la lista dei ristoranti con valutazione maggiore o uguale a quella da lui inserita.
 \end{enumerate}
 \end{itemize}
@@ -164,7 +161,7 @@ da lui inserita.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
     \item L'utente seleziona la tipologia di cucina alla quale è interessato;
-    \item L'utente conferma la scelta ed effettua la ricerca; 
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito; 
     \item L'utente visualizza la lista dei ristoranti che offrono la cucina da egli cercata.
 \end{enumerate}
 \end{itemize}
@@ -179,7 +176,7 @@ da lui scelto.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
     \item L'utente seleziona l'orario ;
-    \item L'utente dà la conferma ed effettua la ricerca;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
     \item L'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario da lui
     selezionato.
 \end{enumerate}
@@ -195,7 +192,7 @@ nella data da lui selezionata.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
     \item L'utente seleziona la data;
-    \item L'utente dà la conferma ed effettua la ricerca;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
     \item L'utente visualizza la lista dei ristoranti che hanno posti disponibili
     nella data selezionata .
 \end{enumerate}
