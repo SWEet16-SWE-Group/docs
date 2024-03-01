@@ -145,10 +145,11 @@
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
     \item \textbf{Precondizioni:} il ristoratore ha effettuato l'accesso al sistema.
-    \item \textbf{Postcondizioni:} il ristoratore gestisce il menù del proprio ristorante.
+    \item \textbf{Postcondizioni:} le modifiche apportate al menù sono salvate.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore può eseguire le seguenti operazioni all'interno della modifica del menù:
+        \item Il ristoratore visualizza le pietanze contenute nel menù del ristorante;
+        \item Il ristoratore può eseguire le seguenti operazioni di modifica:
         \begin{itemize}
            \item Aggiungere una nuova pietanza al menù (si veda UC37.1);
            \item Modificare una pietanza preesistente (si veda UC37.2);
@@ -157,53 +158,61 @@
            \item Modificare una sezione del menù (si veda UC37.5);
            \item Rimuovere una sezione dal menù (si veda UC37.6);
         \end{itemize}
+        \item Il ristoratore dopo aver apportato modifiche al menù le conferma;
+        \item Il sistema aggiorna le informazioni sul menù del ristorante;
     \end{enumerate}
 \end{itemize}
 
 \textbf{UC37.1-Nuova pietanza}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
     \item \textbf{Postcondizioni:} il ristoratore ha inserito una nuova pietanza al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore compila il seguente form contenente le informazioni relative alla pietanza:
+        \item Il ristoratore seleziona l'opzione di creazione di una nuova pietanza;
+        \item Il ristoratore inserisce le informazioni relative alla pietanza:
         \begin{itemize}
             \item Il nome della pietanza;
             \item Seleziona gli ingredienti che compongono la pietanza dalla lista degli ingredienti, con la loro quantità espressa in grammi (si veda UC38 per la creazione di tale lista);
             \item Seleziona la sezione del menù a cui questo piatto appartiene.
         \end{itemize}
-        \item Il sistema aggiorna il menù con la nuova pietanza inserita dalIl ristoratore.
+        \item Il ristoratore conferma l'aggiunta di una nuova pietanza al menù;
+        \item Il sistema aggiorna il menù con la nuova pietanza;
+        \item Il ristoratore viene reindirizzato alla schermata di modifica menù (si veda UC37).
     \end{enumerate}
 \end{itemize}
 
 \textbf{UC37.2-Modifica pietanza}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
     \item \textbf{Postcondizioni:} il ristoratore ha modificato una pietanza al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore modifica il seguente form contenente le informazioni relative alla pietanza:
+        \item Il ristoratore seleziona l'opzione di modifica di una pietanza;
+        \item Il ristoratore modifica le informazioni relative alla pietanza:
         \begin{itemize}
             \item Il nome della pietanza;
             \item Seleziona gli ingredienti che compongono la pietanza dalla lista degli ingredienti, con la loro quantità espressa in grammi (si veda UC38 per la creazione di tale lista);
             \item Seleziona la sezione del menù a cui questo piatto appartiene.
         \end{itemize}
-        \item Il sistema aggiorna il menù con le modifiche apportate alla pietanza dalIl ristoratore.
+        \item Il ristoratore conferma le modifiche della pietanza;
+        \item Il sistema aggiorna il menù con le modifiche apportate alla pietanza;
+        \item Il ristoratore viene reindirizzato alla schermata di modifica menù (si veda UC37).
     \end{enumerate}
 \end{itemize}
-% aggiungere UCE 37.2 alcuni campi non sono stati inseriti?
 
 \textbf{UC37.3-Rimuovi pietanza}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione del menù (si veda UC37).
-    \item \textbf{Postcondizioni:} il ristoratore ha rimosso una pietanza al menù.
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} La pietanza non è più presente nel menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore elimina una pietanza dal menù.
+        \item Il ristoratore seleziona l'opzione di eliminazione di una pietanza;
         \item Il sistema aggiorna il menù con l'eliminazione della pietanza.
+        \item Il ristoratore viene reindirizzato alla schermata di modifica menù (si veda UC37).
     \end{enumerate}
 \end{itemize}
 
@@ -211,36 +220,40 @@
 \textbf{UC37.4-Nuova sezione menù}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
     \item \textbf{Postcondizioni:} il ristoratore ha inserito una nuova sezione al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore inserisce una nuova sezione al menù.
-        \item Il sistema aggiorna il menù con la nuova seziona inserita dalIl ristoratore.
+        \item Il ristoratore seleziona l'opzione di creazione di una sezione;
+        \item Il ristoratore inserisce il nome della nuova sezione;
+        \item Il ristoratore conferma l'aggiunta di una nuova sezione al menù;
+        \item Il sistema aggiorna il menù con la nuova seziona inserita.
     \end{enumerate}
 \end{itemize}
 
 \textbf{UC37.5-Modifica sezione menù}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione del menù (si veda UC37).
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
     \item \textbf{Postcondizioni:} il ristoratore ha modificato una sezione al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore modifica una sezione del menù.
-        \item Il sistema aggiorna il menù con la sezione modificata dalIl ristoratore.
+        \item Il ristoratore seleziona l'opzione di creazione di una sezione;
+        \item Il ristoratore modifica il nome della sezione;
+        \item Il ristoratore conferma le modifiche apportate alla sezione;
+        \item Il sistema aggiorna il menù con la sezione modificata dal ristoratore.
     \end{enumerate}
 \end{itemize}
-% aggiungere UCE 37.5 alcuni campi non sono stati inseriti?
+
 
 \textbf{UC37.6-Rimuovi sezione menù}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione del menù (si veda UC37).
-    \item \textbf{Postcondizioni:} il ristoratore ha rimosso una sezione del menù.
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} La sezione non è più presente nel menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore elimina una sezione dal menù.
+        \item Il ristoratore seleziona l'opzione di eliminazione di una sezione;
         \item Il sistema aggiorna il menù con l'eliminazione della sezione.
     \end{enumerate}
 \end{itemize}
@@ -251,58 +264,50 @@
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
     \item \textbf{Precondizioni:} il ristoratore ha effettuato l'accesso al sistema.
-    \item \textbf{Postcondizioni:} il ristoratore gestisce la lista degli ingredienti del suo ristorante.
+    \item \textbf{Postcondizioni:} Le modifiche apportate sono state salvate.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore può eseguire le seguenti operazioni all'interno della modifica della lista degli ingredienti:
+        \item Il ristoratore visualizza la lista degli ingredienti del ristorante;
+        \item Il ristoratore può eseguire le seguenti operazioni:
         \begin{itemize}
            \item Aggiungere un nuovo ingrediente alla lista (si veda UC38.1);
-           \item Rimuovere un ingrediente preesistente dalla lista (si veda UC38.2).
+           \item Rimuovere un ingrediente esistente dalla lista (si veda UC38.2).
         \end{itemize}
+    \item Il ristoratore conferma le modifiche apportate alla lista degli ingredienti;
+    \item Il sistema aggiorna la lista degli ingredienti;
+    \item Il ristoratore viene reindirizzato alla dashboard.
     \end{enumerate}
 \end{itemize}
 
 \textbf{UC38.1-Nuovo ingrediente}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione della lista ingredienti (si veda UC38).
-    \item \textbf{Postcondizioni:} il ristoratore ha inserito un nuovo ingrediente nella lista.
+    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica della lista ingredienti (si veda UC38).
+    \item \textbf{Postcondizioni:} viene inserito un nuovo ingrediente nella lista degli ingredienti.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
+        \item Il ristoratore seleziona l'opzione di creazione di un nuovo ingrediente;
         \item Il ristoratore compila il seguente form contenente le informazioni relative alla pietanza:
         \begin{itemize}
             \item Il nome dell'ingrediente;
             \item Opzionalmente seleziona gli allergeni contenuti all'interno di quell'ingrediente (si veda UC38.1.1).
         \end{itemize}
-        \item Il sistema aggiorna la lista degli ingredienti con il nuovo ingrediente inserito dalIl ristoratore.
+        \item Il ristoratore conferma la creazione di un nuovo ingrediente;
+        \item Il sistema aggiorna la lista degli ingredienti con il nuovo ingrediente;
+        \item Il ristoratore viene reindirizzato alla schermata di modifica della lista ingredienti (si veda UC38).
     \end{enumerate}
 \end{itemize}
 
-\textbf{UC38.1-Nuovo ingrediente}  
+\textbf{UC38.2-Rimuovi ingrediente}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
     \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione della lista ingredienti (si veda UC38).
-    \item \textbf{Postcondizioni:} il ristoratore ha inserito un nuovo ingrediente nella lista.
+    \item \textbf{Postcondizioni:} l'ingrediente viene rimosso dalla lista degli ingredienti.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il ristoratore compila il seguente form contenente le informazioni relative alla pietanza:
-        \begin{itemize}
-            \item Il nome dell'ingrediente;
-            \item Opzionalmente seleziona gli allergeni contenuti all'interno di quell'ingrediente (si veda UC38.1.1).
-        \end{itemize}
-        \item Il sistema aggiorna la lista degli ingredienti con il nuovo ingrediente inserito dalIl ristoratore.
-    \end{enumerate}
-\end{itemize}
-
-\textbf{UC37.2-Rimuovi ingrediente}  
-\begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione della lista ingredienti (si veda UC38).
-    \item \textbf{Postcondizioni:} il ristoratore ha rimosso un ingrediente dalla lista.
-    \item \textbf{Scenario principale:}
-    \begin{enumerate}
-        \item Il ristoratore elimina un ingrediente dalla lista di ingredienti.
-        \item Il sistema aggiorna la lista con l'eliminazione dell'ingrediente.
+        \item Il ristoratore seleziona l'opzione di eliminazione un ingrediente;
+        \item Il sistema aggiorna la lista con l'eliminazione dell'ingrediente;
+        \item Il ristoratore viene reindirizzato alla schermata di modifica della lista ingredienti (si veda UC38).
     \end{enumerate}
 \end{itemize}
 
