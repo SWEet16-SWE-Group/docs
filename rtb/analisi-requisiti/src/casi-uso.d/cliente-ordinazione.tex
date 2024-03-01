@@ -3,49 +3,101 @@
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Precondizioni:} 
 \begin{itemize}
-    \item L'utente ha effettuato l'accesso al sistema.
-    \item L'utente ha effettuato una prenotazione (si veda UC19);
-    \item L'utente è nella sezione di riepilogo di una prenotazione singola (si veda UC22) e la prenotazione deve essere nello stato "Accettata" (si veda UC33).
+    \item Il cliente ha effettuato l'accesso al sistema;
+    \item Il cliente ha effettuato una prenotazione (si veda UC19);
+    \item Il cliente è nella sezione di riepilogo di una prenotazione singola (si veda UC22) e la prenotazione deve essere nello stato "Accettata" (si veda UC33).
 \end{itemize}
-\item \textbf{Postcondizioni:} L'utente ha ordinato le pietanze relative alla prenotazione.
+\item \textbf{Postcondizioni:} Il cliente ha ordinato le pietanze relative alla prenotazione.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item L'utente visualizza la sua ordinazione se già confermata e le ordinazioni già effettuate e confermate dagli altri utenti facenti parte della prenotazione;
-    \item L'utente può aggiungere una pietanza al proprio ordine (si veda UC25.1);
-    \item L'utente può modificare una pietanza già aggiunta al prorio ordine (si veda UC25.2);
-    \item L'utente può confermare la sua ordinazione (si veda UC25.3);
+    \item Il cliente visualizza la sua ordinazione se già confermata, e le ordinazioni già effettuate e confermate dagli altri utenti facenti parte della prenotazione;
+    \item Il cliente può aggiungere una pietanza al proprio ordine (si veda UC25.1);
+    \item Il cliente può modificare una pietanza già aggiunta al prorio ordine (si veda UC25.2);
+    \item Il cliente può confermare la sua ordinazione (si veda UC25.3);
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC25.1-Aggiungi pietanza}
+\textbf{UC25.1-Visualizza lista pietanze}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} L'utente sta effettuando un'ordinazione (si veda UC25).
-\item \textbf{Postcondizioni:} L'utente ha aggiunto una o più pietanze alla propria ordinazione.
+\item \textbf{Precondizioni:} Il cliente sta effettuando un'ordinazione (si veda UC25).
+\item \textbf{Postcondizioni:} Il cliente ha aggiunto una o più pietanze alla propria ordinazione.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente visualizza la lista di pietanze (si veda UC25.1.1);
-    \item Il cliente può visualizzare il dettaglio di una singola pietanza (UC25.1.2);
-    \item Il cliente può fare una ricerca tra le pietanze (si veda UC25.1.3);
+    \item Il cliente vede la lista delle pietanze del ristoratore presso il quale sta effettuando l'ordinazione;
+    \item Il cliente può visualizzare il dettaglio di una singola pietanza (UC25.1.1);
+    \item Il cliente può fare una ricerca tra le pietanze (si veda UC25.1.1);
     \item Il cliente dopo aver selezionato una o più pietanze conferma la selezione;
     \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC25.1.1-Visualizza lista pietanza}
+\textbf{UC25.1.1-Visualizza pietanza singola}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} L'utente sta aggiungendo una pietanza al suo ordine (si veda UC25.1).
-\item \textbf{Postcondizioni:} L'utente ha selezionato una o più pietanze.
+\item \textbf{Precondizioni:} il cliente sta visualizzando la lista delle pietanza (si veda UC25.1);
+\item \textbf{Postcondizioni:} Il cliente visualizza il dettaglio di una singola pietanza del menù.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente visualizza la lista di pietanze del ristorante
-    \item Il cliente può visualizzare il dettaglio di una singola pietanza (UC25.1.2);
-    \item Il cliente può fare una ricerca tra le pietanze (si veda UC25.1.3);
-    \item Il cliente dopo aver selezionato una o più pietanze conferma la selezione;
-    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
+    \item Il cliente premere su una pietanza del menù;
+    \item Il cliente visualizza il dettaglio di una pietanza ovvero le seguenti informazioni:
+    \begin{itemize}
+        \item Il nome della pietanza;
+        \item Gli ingredienti che compongono la pietanza e la loro quantità;
+        \item Gli eventuali allergeni contenuti nella pietanza;
+        \item Il prezzo della pietanza.
+    \end{itemize}
 \end{enumerate}
 \end{itemize}
+
+\textbf{UC25.1.2-Ricerca pietanza}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:}  Il cliente sta visualizzando la lista delle pietanza (si veda UC25.1).
+\item \textbf{Postcondizioni:} Il cliente visualizza la lista delle pietanze corrispondenti ai criteri da lui inseriti.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente seleziona la funzionalità di ricerca di un ristorante;
+    \item Il cliente può effettuare la ricerca inserendo uno o più parametri, corrispondenti ai seguenti criteri:
+    \begin{itemize}
+        \item Il nome della pietanza (si veda UC25.1.2.1);
+        \item Per allergeni non contenuti all'interno della pietanza (si veda UC25.1.2.2).
+    \end{itemize}
+    \item Il sistema filtra la lista di pietanze secondo i criteri inseriti;
+    \item Il cliente visualizza la lista di pietanze che rispettano i criteri da lui inseriti.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC25.1.2.1-Ricerca pietanza per nome}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:}  Il cliente sta visualizzando la lista delle pietanza (si veda UC25.1).
+\item \textbf{Postcondizioni:} Il cliente visualizza la lista delle pietanze corrispondenti alla ricerca per nome da lui inserito.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente seleziona la funzionalità di ricerca di un ristorante;
+    \item Il cliente inserisce il testo che deve essere contenuto nel nome;
+    \item Il sistema filtra la lista di pietanze secondo il nome inserito;
+    \item Il cliente visualizza la lista di pietanze corrispondenti al nome da lui inserito.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC25.1.2.1-Ricerca pietanza per allergeni}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:}  Il cliente sta visualizzando la lista delle pietanza (si veda UC25.1).
+\item \textbf{Postcondizioni:} Il cliente visualizza la lista delle pietanze non contenenti gli allergeni da lui selezionati.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente seleziona la funzionalità di ricerca di un ristorante;
+    \item Il cliente seleziona gli allergeni, di default sono selezionati gli allergeni da lui indicati in fase di creazione del profilo (si veda UC6);
+    \item Il sistema filtra la lista di pietanze escludendo quelle che contengono gli allergeni selezionati;
+    \item Il cliente visualizza la lista di pietanze non contenenti gli allergeni da lui selezionati.
+\end{enumerate}
+\end{itemize}
+
+
+
 
 
 \textbf{UC26-Annullamento ordinazione}
