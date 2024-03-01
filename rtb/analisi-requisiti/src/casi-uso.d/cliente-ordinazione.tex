@@ -5,15 +5,17 @@
 \begin{itemize}
     \item Il cliente ha effettuato l'accesso al sistema;
     \item Il cliente ha effettuato una prenotazione (si veda UC19);
-    \item Il cliente è nella sezione di riepilogo di una prenotazione singola (si veda UC22) e la prenotazione deve essere nello stato "Accettata" (si veda UC33).
+    \item Il cliente è nella sezione di riepilogo di una prenotazione singola (si veda UC22);
+    \item La prenotazione è nello stato "Accettata" (si veda UC33).
 \end{itemize}
 \item \textbf{Postcondizioni:} Il cliente ha ordinato le pietanze relative alla prenotazione.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente visualizza la sua ordinazione se già confermata, e le ordinazioni già effettuate e confermate dagli altri utenti facenti parte della prenotazione;
+    \item Il cliente visualizza la sua ordinazione se già confermata, le ordinazioni già effettuate e confermate dagli altri utenti facenti parte della prenotazione;
     \item Il cliente può aggiungere una pietanza al proprio ordine (si veda UC25.1);
     \item Il cliente può modificare una pietanza già aggiunta al prorio ordine (si veda UC25.2);
-    \item Il cliente può confermare la sua ordinazione (si veda UC25.3);
+    \item Il cliente confermare la sua ordinazione (si veda UC25.3);
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
 \end{enumerate}
 \end{itemize}
 
@@ -102,7 +104,7 @@
 \item \textbf{Precondizioni:} 
 \begin{itemize}
     \item Il cliente sta effettuando un'ordinazione (si veda UC25);
-    \item Il cliente ha aggiunto una o più pietanza alla propria ordinazione (si veda UC25.1).
+    \item Il cliente ha aggiunto una o più pietanze alla propria ordinazione (si veda UC25.1).
 \end{itemize}
 \item \textbf{Postcondizioni:} Il cliente ha modificato una pietanza.
 \item \textbf{Scenario principale:}
@@ -193,6 +195,16 @@
     \item Il cliente viene reindirizzato alla schermata di modifica pietanza ordinata (si veda UC25.2).
 \end{enumerate}
 \end{itemize}
+
+\textbf{UC25.3-Conferma ordinazione}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} 
+\begin{itemize}
+    \item Il cliente seleziona conferma la sua ordinazione.
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
+\end{itemize}
+
 
 \textbf{UC26-Annullamento ordinazione}
 \begin{itemize}
