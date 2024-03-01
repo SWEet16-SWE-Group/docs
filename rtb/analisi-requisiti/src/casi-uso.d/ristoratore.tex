@@ -7,7 +7,7 @@
         \item Il ristoratore è connesso al sistema e sta visualizzando il dettaglio di una singola prenotazione (vedi UC36-Visualizzazione singola prenotazione);
         \item La prenotazione è nello stato "In attesa".
 \end{itemize}
-\item \textbf{Postcondizioni:} il ristoratore accetta la prenotazione.
+\item \textbf{Postcondizioni:} lo stato della prenotazione diventa "Accettata".
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il ristoratore seleziona l'opzione di accettazione della prenotazione;
@@ -23,7 +23,7 @@
         \item Il ristoratore è connesso al sistema e sta visualizzando il dettaglio di una singola prenotazione (vedi UC36-Visualizzazione singola prenotazione);
         \item La prenotazione è nello stato "In attesa".
 \end{itemize}
-\item \textbf{Postcondizioni:} il ristoratore rifiuta la prenotazione.
+\item \textbf{Postcondizioni:} lo stato della prenotazione diventa "Rifiutata".
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il ristoratore seleziona l'opzione di rifiuto della prenotazione;
@@ -39,7 +39,8 @@
 \item \textbf{Postcondizioni:} il ristoratore visualizza la lista delle prenotazioni (in qualsiasi stato esse si trovino) attraverso una vista a calendario, suddivise per giorno.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il sistema mostra una vista a calendario e per ogni giorno il ristoratore può consultare:
+    \item Il sistema mostra le prenotazioni raggruppate per giorno.
+    \item Per ogni giorno il ristoratore può consultare:
     \begin{itemize}
         \item La lista delle prenotazioni di quel particolare giorno;
         \item La lista degli ingredienti necessari per tale giorno (si veda UC35.1).
@@ -47,7 +48,7 @@
     \item Il sistema mostra la lista delle prenotazioni inerente ad un giorno nei seguenti modi:
     \begin{itemize}
         \item Di default, vengono mostrate come prime le prenotazioni nello stato "Accettata";
-        \item Il ristoratore può inoltre applicare un filtro in base allo stato prenotazione.
+        \item Il ristoratore può inoltre applicare un filtro in base allo stato della prenotazione.
     \end{itemize}
 \end{enumerate}
 \end{itemize}
