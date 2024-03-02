@@ -3,7 +3,6 @@
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Precondizioni:} 
 \begin{itemize}
-    \item Il cliente ha effettuato l'accesso al sistema;
     \item Il cliente ha effettuato una prenotazione (si veda UC19);
     \item Il cliente è nella sezione di riepilogo di una prenotazione singola (si veda UC22);
     \item La prenotazione è nello stato "Accettata" (si veda UC33);
@@ -15,7 +14,8 @@
     \item Il cliente visualizza la sua ordinazione se già confermata, visualizza inoltre le ordinazioni già effettuate e confermate dagli altri utenti facenti parte della prenotazione;
     \item Il cliente può aggiungere una pietanza al proprio ordine (si veda UC25.1);
     \item Il cliente può modificare una pietanza già aggiunta al proprio ordine (si veda UC25.2);
-    \item Il cliente conferma la sua ordinazione (si veda UC25.3);
+    \item Il cliente può rimuovere una pietanza dal proprio ordine (si veda UC25.3);
+    \item Il cliente conferma la sua ordinazione (si veda UC25.4);
     \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
 \end{enumerate}
 \end{itemize}
@@ -29,7 +29,7 @@
 \begin{enumerate}
     \item Il cliente vede la lista delle pietanze del ristorante presso il quale sta effettuando l'ordinazione;
     \item Il cliente può visualizzare il dettaglio di una singola pietanza (UC25.1.1);
-    \item Il cliente può fare una ricerca tra le pietanze (si veda UC25.1.1);
+    \item Il cliente può fare una ricerca tra le pietanze (si veda UC25.1.2);
     \item Il cliente dopo aver selezionato una o più pietanze conferma;
     \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
 \end{enumerate}
@@ -78,7 +78,7 @@
 \item \textbf{Postcondizioni:} Il cliente visualizza la lista delle pietanze corrispondenti alla ricerca per nome da lui inserito.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente seleziona la funzionalità di ricerca di un ristorante;
+    \item Il cliente seleziona la funzionalità di ricerca di una pietanza;
     \item Il cliente inserisce il testo che deve essere contenuto nel nome;
     \item Il sistema filtra la lista di pietanze secondo il nome inserito;
     \item Il cliente visualizza la lista di pietanze corrispondenti al nome da lui inserito.
@@ -92,7 +92,7 @@
 \item \textbf{Postcondizioni:} Il cliente visualizza la lista delle pietanze non contenenti gli allergeni da lui selezionati.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente seleziona la funzionalità di ricerca di un ristorante;
+    \item Il cliente seleziona la funzionalità di ricerca di una pietanza;
     \item Il cliente seleziona gli allergeni, di default sono selezionati gli allergeni da lui indicati in fase di creazione del profilo (si veda UC6);
     \item Il sistema filtra la lista di pietanze escludendo quelle che contengono gli allergeni selezionati;
     \item Il cliente visualizza la lista di pietanze non contenenti gli allergeni da lui selezionati.
@@ -120,7 +120,8 @@
         \item Rimuovere un ingrediente dalla pietanza (si veda UC25.2.4);
     \end{itemize}
     \item Il cliente dopo aver modificato la pietanza conferma le sue modifiche;
-    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente.
+    \item Il sistema aggiorna le informazioni sulle pietanza dell'ordinazione del cliente;
+    \item Il cliente viene reindirizzato alla schermata di creazione ordinazione con le modifiche effettuate alla pietanza (si veda UC25).
 \end{enumerate}
 \end{itemize}
 
@@ -142,24 +143,7 @@
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC25.2.2-Rimuovi pietanza}
-\begin{itemize}
-\item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} 
-\begin{itemize}
-    \item Il cliente sta effettuando un'ordinazione (si veda UC25);
-    \item Il cliente sta effettuando una modifica ad una pietanza ordinata (si veda UC25.2).
-\end{itemize}
-\item \textbf{Postcondizioni:} Il cliente ha eliminato una pietanza.
-\item \textbf{Scenario principale:}
-\begin{enumerate}
-    \item Il cliente seleziona l'opzione di eliminazione della pietanza;
-    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
-    \item Il cliente viene reindirizzato alla schermata di modifica pietanza ordinata (si veda UC25.2).
-\end{enumerate}
-\end{itemize}
-
-\textbf{UC25.2.3-Aggiungi ingrediente}
+\textbf{UC25.2.2-Aggiungi ingrediente}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Precondizioni:} 
@@ -178,7 +162,7 @@
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC25.2.4-Rimuovi ingrediente}
+\textbf{UC25.2.3-Rimuovi ingrediente}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Precondizioni:} 
@@ -197,7 +181,24 @@
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC25.3-Conferma ordinazione}
+\textbf{UC25.3-Rimuovi pietanza}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} 
+\begin{itemize}
+    \item Il cliente sta effettuando un'ordinazione (si veda UC25);
+    \item Il cliente ha aggiunto una o più pietanze alla propria ordinazione (si veda UC25.1).
+\end{itemize}
+\item \textbf{Postcondizioni:} Il cliente ha eliminato una pietanza.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente seleziona l'opzione di eliminazione della pietanza;
+    \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
+    \item Il cliente viene reindirizzato alla schermata di modifica pietanza ordinata (si veda UC25.2).
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC25.4-Conferma ordinazione}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Precondizioni:} 
@@ -220,7 +221,6 @@
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Precondizioni:} 
 \begin{itemize}
-    \item Il cliente ha effettuato l'accesso al sistema;
     \item Il cliente ha effettuato una prenotazione (si veda UC19);
     \item Il cliente è nella sezione di riepilogo di una prenotazione singola (si veda UC22) e la prenotazione è nello stato "Accettata" (si veda UC33);
     \item Il cliente può effettuare l'operazione fino a 48 ore prima dell'orario di prenotazione.
@@ -231,5 +231,6 @@
     \item Il cliente ha confermato un'ordinazione (si veda UC25.3);
     \item Il cliente seleziona l'opzione di annullamento dell'ordinazione;
     \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
+    \item Il cliente viene reindirizzato alla pagina di riepilogo prenotazione priva dell'ordinazione cancellata (si veda UC22).
 \end{enumerate}
 \end{itemize}
