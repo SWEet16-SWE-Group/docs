@@ -338,6 +338,7 @@
     \begin{itemize}
         \item Il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36);
         \item Un cliente ha selezionato la modalità di divisione del conto (si veda UC27).
+    \end{itemize}
     \item \textbf{Postcondizioni:} Rispettando la modalità di divisione del conto, una parte o il totale del conto della prenotazione è segnato come pagato.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -385,9 +386,8 @@
     \begin{enumerate}
         \item Il sistema mostra le ordinazioni nello stato "Pagato" e "Non pagato", elencando per prime quelle nello stato "Non pagato";
         \item Il ristoratore può selezionare una o più ordinazioni e segnarle come pagate;
-        \item Il sistema aggiorna lo stato delle ordinazioni a "Pagato".
+        \item Il sistema aggiorna lo stato delle ordinazioni a "Pagato";
         \item Quando tutte le ordinazioni sono segnate come pagate allora la prenotazione va nello stato "Pagato".
-
     \end{enumerate}
 \end{itemize}
 
