@@ -17,8 +17,12 @@
 \textbf{UC27-Selezione modalità di divisione del conto}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} Il cliente deve avere una prenotazione accettata dal ristoratore che abbia superato il
-  limite temporale di modifica degli ordini.
+\item \textbf{Precondizioni:} Il cliente deve avere:
+  \begin{itemize}
+    \item Una prenotazione accettata dal ristoratore;
+    \item Limite temporale di modifica degli ordini deve essere stato superato;
+    \item Deve essere stata scelta la modalità di divisione del conto.
+  \begin{end}
 \item \textbf{Postcondizioni:} Il conto viene diviso a seconda della modalità scelta.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
