@@ -334,11 +334,14 @@
 \textbf{UC40-Gestione pagamento conto}  
 \begin{itemize}
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36).
-    \item \textbf{Postcondizioni:} il ristoratore può gestire il pagamento del conto.
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item Il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36);
+        \item Un cliente ha selezionato la modalità di divisione del conto (si veda UC27).
+    \item \textbf{Postcondizioni:} Rispettando la modalità di divisione del conto, una parte o il totale del conto della prenotazione è segnato come pagato.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema mostra gli ordini o le persone che hanno pagato o non pagato, mettendo per prime quelle segnate come non pagate;
+        \item Il sistema mostra gli ordini o le persone nello stato "Pagato" e "Non pagato", elencando per prime quelle nello stato "Non pagato";
         \item Il ristoratore può selezionare un ordine o una persona e segnarla come pagata;
         \item Il sistema aggiorna lo stato dell'ordine o della persona a "Pagato";
         \item Quando tutte le ordinazioni o persone hanno pagato allora la prenotazione va nello stato "Pagata".
@@ -354,29 +357,36 @@
 \begin{itemize}
     \item \textbf{Descrizione:} pagamento equo del totale di tutti gli ordini, ovvero "alla romana".
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36).
-    \item \textbf{Postcondizioni:} il ristoratore può gestire il pagamento equo del conto.
+    \item \textbf{Precondizioni:} 
+    \begin{itemize}
+        \item Il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36);
+        \item Un cliente ha selezionato la modalità di divisione del conto equa (si veda UC27).
+    \end{itemize}
+    \item \textbf{Postcondizioni:} Il o i profili selezionati sono segnati come pagati.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema mostra le persone che hanno pagato o non pagato, mettendo per prime quelle che non hanno ancora pagato;
-        \item Il ristoratore può selezionare una persona e segnarla come pagata;
-        \item Il sistema aggiorna lo stato della persona a "Pagato";
+        \item Il sistema mostra le persone nello stato "Pagato" e "Non pagato", elencando per prime quelle nello stato "Non pagato";
+        \item Il ristoratore può selezionare una persona o più persone e segnarle come pagate;
+        \item Il sistema aggiorna lo stato delle persone a "Pagato";
         \item Quando tutte le persone hanno pagato allora la prenotazione va nello stato "Pagata".
     \end{enumerate}
 \end{itemize}
 
 \textbf{UC42-Gestione pagamento proporzionale}  
 \begin{itemize}
-    \item \textbf{Descrizione:} pagamento proporzionale degli ordini, ovvero ognuno paga per quello che ha ordinato.
+    \item \textbf{Descrizione:} pagamento proporzionale delle ordinazioni, ovvero i clienti selezionano gli ordini che vogliono pagare (anche di altri clienti).
     \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36).
-    \item \textbf{Postcondizioni:} il ristoratore può gestire il pagamento proporzionale del conto.
+    \begin{itemize}
+        \item Il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36);
+        \item Un cliente ha selezionato la modalità di divisione del conto proporzionale (si veda UC27).
+    \end{itemize}
+    \item \textbf{Postcondizioni:} Una o più ordinazioni selezionate sono segnate come pagate.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
-        \item Il sistema mostra gli ordini pagati o non pagati, mettendo per primi quelli ancora non pagati;
-        \item Il ristoratore può selezionare un ordine e segnarlo come pagato;
-        \item Il sistema aggiorna lo stato dell'ordine a "Pagato".
-        \item Quando tutte le persone hanno pagato allora la prenotazione va nello stato "Pagata".
+        \item Il sistema mostra le ordinazioni nello stato "Pagato" e "Non pagato", elencando per prime quelle nello stato "Non pagato";
+        \item Il ristoratore può selezionare una o più ordinazioni e segnarle come pagate;
+        \item Il sistema aggiorna lo stato delle ordinazioni a "Pagato".
+        \item Quando tutte le ordinazioni sono segnate come pagate allora la prenotazione va nello stato "Pagato".
 
     \end{enumerate}
 \end{itemize}
