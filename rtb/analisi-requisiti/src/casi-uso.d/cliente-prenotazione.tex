@@ -1,1 +1,139 @@
-E
+\textbf{UC19-Prenotazione di un tavolo}
+\begin{itemize}
+    \item \textbf{Attore principale: }Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di un ristorante.
+    \item \textbf{Postcondizioni: }La prenotazione è salvata nella lista delle prenotazioni del cliente.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item Il cliente seleziona la funzionalità di richiesta di una nuova prenotazione;
+            \item Il sistema illustra i giorni in cui è possibile effettuare la richiesta;
+            \item Il cliente seleziona il giorno di calendario;
+            \item Il sistema illustra le fasce orarie disponibili;
+            \item Il cliente seleziona l'orario;
+            \item Il cliente inserisce il numero di persone che parteciperanno alla prenotazione;
+            \item Il cliente dà la conferma ed effettua la richiesta;
+            \item il cliente visualizza la lista delle sue prenotazioni,ove è presente la prenotazione appena
+            effettuata.
+        \end{enumerate}
+\end{itemize}
+
+\textbf{UC20-Visualizzazione lista prenotazioni}
+\begin{itemize}
+    \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando le sue informazioni personali.
+    \item \textbf{Postcondizioni: }Il cliente visualizza la lista delle sue prenotazioni.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item L'utente seleziona la funzionalità di visualizzazione delle sue prenotazioni;
+            \item L'utente visualizza la lista delle sue prenotazioni divise in due sezioni:
+              \begin{itemize}
+                \item Attive: prenotazioni future negli stati "In attesa" o "Accettata";
+                \item Scadute: prenotazioni passate o nello stato di "Rifiutata";
+              \end{itemize}
+        \end{enumerate}
+\end{itemize}
+
+\textbf{UC21-Visualizzazione singola prenotazione}
+\begin{itemize}
+    \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando la lista delle sue prenotazioni.
+    \item \textbf{Postcondizioni: }Il cliente visualizza le informazioni relative ad una singola prenotazione.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item L'utente seleziona una prenotazione in particolare;
+            \item L'utente visualizza la lista delle informazioni relative alla prenotazione selezionata:
+            \begin{itemize}
+                \item Il nome del ristorante;
+                \item L'indirizzo del ristorante;
+                \item L'orario;
+                \item Il numero di persone ;
+                \item Lo stato della prenotazione (se è in attesa di conferma da parte del ristoratore
+                o se è già stata confermata).
+            \item Il cliente può andare a generare il link per la condivisione della prenotazione (si veda UC23).
+            \end{itemize}
+        \end{enumerate}
+    \item \textbf{Estensione: }UCE21-Prenotazione rifiutata
+\end{itemize}
+
+        %L'estensione avviene in seguito all'UC34 del ristoratore, ma credo che dobbiamo tenere la notazione
+        %UCE che usiamo per le estensioni ? 
+\textbf{UCE21-Prenotazione rifiutata}
+\begin{itemize}
+    \item \textbf{Descrizione: }Se il ristoratore rifiuta una delle prenotazioni del cliente in attesa di conferma,
+    mentre quest'ultimo sta visualizzando la lista delle sue prenotazioni, il cliente si accorge del rifiuto quando
+    seleziona la suddetta prenotazione.
+    \item \textbf{Scenario alternativo: }
+    \begin{enumerate}
+        \item Il cliente seleziona una prenotazione rifiutata mentre sta visualizzando la lista 
+        delle sue prenotazioni;
+        \item Il sistema comunica un messaggio di errore al cliente,dicendogli che la prenotazione selezionata 
+        è stata rifiutata e che non è più possibile visualizzarne le informazioni.
+    \end{enumerate}
+\end{itemize}
+
+\textbf{UC22-Cancellazione prenotazione}
+\begin{itemize}
+    \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di una singola prenotazione
+    e c'è una differenza di almeno 48 ore tra il datetime in cui il cliente fa la richiesta di cancellazione e quello della prenotazione.
+    \item \textbf{Postcondizioni: }La prenotazione è stata cancellata e non è più presente nella lista di prenotazioni
+    del cliente.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item Il cliente seleziona l'opzione di cancellazione della prenotazione;
+            \item Il cliente dà la conferma ed effettua la cancellazione;
+            \item Il sistema notifica il ristoratore dell'avvenuta cancellazione;
+            \item Il cliente visualizza la lista delle sue prenotazioni aggiornata,priva di quella appena
+            cancellata.
+        \end{enumerate}
+\end{itemize}
+
+\textbf{UC23-Condivisione della prenotazione}
+\begin{itemize}
+    \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di una sua singola prenotazione (si veda UC21).
+    \item \textbf{Postcondizioni: }Il cliente ha una copia testuale del link relativo alla prenotazione.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item L'utente seleziona la funzionalità di condivione del link afferente alla prenotazione;
+            \item Il sistema genera il link relativo alla prenotazione;
+            \item Il cliente selezione l'opzione di copia testuale del link.
+            %Come ad esempio si fa con il link delle repo di git hub;
+            %Non so se aggiungere dettagli ,tipo condivisione del link su servizio di messaggistica,
+            %che però teoricamente è fuori dal sistema;è anche vero che il sistema può gestire come su telegram
+            %o whatsapp fino alla scelta del servizio di messaggistica per la condivisione di un contenuto.
+        \end{enumerate}
+\end{itemize}
+
+\textbf{UC24-Accettazione di invito di partecipazione ad una prenotazione}
+\begin{itemize}
+    \item \textbf{Attore principale: } Utente non riconosciuto.
+    \item \textbf{Precondizioni: }L'utente possiede il link per partecipare ad una prenotazione.
+    \item \textbf{Postcondizioni: }La prenotazione è salvata nella lista delle prenotazioni dell'utente.
+    \item \textbf{Scenario principale:} 
+        \begin{enumerate}
+            \item L'utente seleziona il link di partecipazione alla prenotazione;
+            \item L'utente effettua il login per accedere al sistema;
+            \item L'utente seleziona il profilo cliente con il quale partecipare alla prenotazione;
+            \item L'utente visualizza la prenotazione alla quale è stato invitato nella lista delle sue
+            prenotazioni.
+        \end{enumerate}
+        \item \textbf{Estensione: }UCE24-Raggiunto numero massimo di partecipanti
+    \end{itemize}
+
+\textbf{UCE24-Raggiunto numero massimo di partecipanti}
+\begin{itemize}
+    \item \textbf{Descrizione: }Possono accedere alla prenotazione tramite il link di
+    invito un numero massimo di utenti uguale al numero di partecipanti indicato al momento della
+    prenotazione.
+    \item \textbf{Scenario alternativo: }
+    \begin{enumerate}
+        \item L'utente riconosciuto seleziona il profilo con il quale partecipare alla prenotazione;
+        \item Il sistema notifica all'utente un messaggio di errore,in cui gli comunica che è stato
+        già raggiunto il numero massimo di partecipanti ;
+        %Forse l'estensione può terminare anche con il messaggio di errore.
+        \item L'utente visualizza la sua lista di prenotazioni senza la prenotazione alla quale voleva
+        partecipare.
+    \end{enumerate}
+\end{itemize}
+
