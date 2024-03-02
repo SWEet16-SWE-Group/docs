@@ -220,14 +220,12 @@
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Precondizioni:} 
 \begin{itemize}
-    \item Il cliente ha effettuato una prenotazione (si veda UC19);
-    \item Il cliente è nella sezione di riepilogo di una prenotazione singola (si veda UC22) e la prenotazione è nello stato "Accettata" (si veda UC33);
+    \item Il cliente ha confermato un'ordinazione (si veda UC25.3);
     \item Il cliente può effettuare l'operazione fino a 48 ore prima dell'orario di prenotazione.
 \end{itemize}
 \item \textbf{Postcondizioni:} L'ordinazione selezionata è stata annullata.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente ha confermato un'ordinazione (si veda UC25.3);
     \item Il cliente seleziona l'opzione di annullamento dell'ordinazione;
     \item Il sistema aggiorna le informazioni sull'ordinazione del cliente;
     \item Il cliente viene reindirizzato alla pagina di riepilogo prenotazione priva dell'ordinazione cancellata (si veda UC22).
