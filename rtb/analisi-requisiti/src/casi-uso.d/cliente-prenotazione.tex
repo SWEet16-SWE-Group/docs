@@ -1,8 +1,8 @@
-\textbf{UC19-Prenotazione}
+\textbf{UC19-Prenotazione di un tavolo}
 \begin{itemize}
-    \item \textbf{Attore principale: }cliente.
-    \item \textbf{Precondizioni: }il cliente sta visualizzando le informazioni di un ristorante.
-    \item \textbf{Postcondizioni: }la prenotazione è salvata nella lista delle prenotazioni del cliente.
+    \item \textbf{Attore principale: }Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di un ristorante.
+    \item \textbf{Postcondizioni: }La prenotazione è salvata nella lista delle prenotazioni del cliente.
     \item \textbf{Scenario principale:} 
         \begin{enumerate}
             \item Il cliente seleziona la funzionalità di richiesta di una nuova prenotazione;
@@ -21,9 +21,9 @@
 %ci sta aggiungere un'estensione se non ci sono prenotazioni?tipo "il sistema comunica al cliente che la lista è vuota"
 \textbf{UC20-Visualizzazione lista prenotazioni}
 \begin{itemize}
-    \item \textbf{Attore principale: } cliente.
-    \item \textbf{Precondizioni: }il cliente sta visualizzando le sue informazioni personali.
-    \item \textbf{Postcondizioni: }il cliente visualizza la lista delle sue prenotazioni.
+    \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando le sue informazioni personali.
+    \item \textbf{Postcondizioni: }Il cliente visualizza la lista delle sue prenotazioni.
     \item \textbf{Scenario principale:} 
         \begin{enumerate}
             \item L'utente seleziona la funzionalità di visualizzazione delle sue prenotazioni;
@@ -34,9 +34,9 @@
 
 \textbf{UC21-Visualizzazione singola prenotazione}
 \begin{itemize}
-    \item \textbf{Attore principale: } cliente.
-    \item \textbf{Precondizioni: }il cliente sta visualizzando la lista delle sue prenotazioni.
-    \item \textbf{Postcondizioni: }il cliente visualizza le informazioni relative ad una singola prenotazione.
+    \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando la lista delle sue prenotazioni.
+    \item \textbf{Postcondizioni: }Il cliente visualizza le informazioni relative ad una singola prenotazione.
     \item \textbf{Scenario principale:} 
         \begin{enumerate}
             \item L'utente seleziona una prenotazione in particolare;
@@ -57,7 +57,7 @@
         %UCE che usiamo per le estensioni ? 
 \textbf{UCE21-Prenotazione rifiutata}
 \begin{itemize}
-    \item \textbf{Descrizione: }se il ristoratore rifiuta una delle prenotazioni del cliente in attesa di conferma,
+    \item \textbf{Descrizione: }Se il ristoratore rifiuta una delle prenotazioni del cliente in attesa di conferma,
     mentre quest'ultimo sta visualizzando la lista delle sue prenotazioni, il cliente si accorge del rifiuto quando
     seleziona la suddetta prenotazione.
     \item \textbf{Scenario alternativo: }
@@ -71,10 +71,10 @@
 
 \textbf{UC22-Cancellazione prenotazione}
 \begin{itemize}
-    \item \textbf{Attore principale: } cliente.
-    \item \textbf{Precondizioni: }il cliente sta visualizzando le informazioni di una singola prenotazione
+    \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di una singola prenotazione
     e c'è una differenza di almeno 48 ore tra il datetime in cui il cliente fa la richiesta di cancellazione e quello della prenotazione.
-    \item \textbf{Postcondizioni: }la prenotazione è stata cancellata e non è più presente nella lista di prenotazioni
+    \item \textbf{Postcondizioni: }La prenotazione è stata cancellata e non è più presente nella lista di prenotazioni
     del cliente.
     \item \textbf{Scenario principale:} 
         \begin{enumerate}
@@ -88,14 +88,14 @@
 
 \textbf{UC23-Condivisione della prenotazione}
 \begin{itemize}
-    \item \textbf{Attore principale: } cliente.
-    \item \textbf{Precondizioni: }il cliente sta visualizzando le informazioni di una sua singola prenotazione (si veda UC22).
-    \item \textbf{Postcondizioni: }il cliente ha una copia testuale del link relativo alla prenotazione.
+    \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di una sua singola prenotazione (si veda UC22).
+    \item \textbf{Postcondizioni: }Il cliente ha una copia testuale del link relativo alla prenotazione.
     \item \textbf{Scenario principale:} 
         \begin{enumerate}
             \item L'utente seleziona la funzionalità di condivione del link afferente alla prenotazione;
             \item Il sistema genera il link relativo alla prenotazione;
-            \item il cliente selezione l'opzione di copia testuale del link.
+            \item Il cliente selezione l'opzione di copia testuale del link.
             %Come ad esempio si fa con il link delle repo di git hub;
             %Non so se aggiungere dettagli ,tipo condivisione del link su servizio di messaggistica,
             %che però teoricamente è fuori dal sistema;è anche vero che il sistema può gestire come su telegram
@@ -105,9 +105,9 @@
 
 \textbf{UC24-Accettazione di invito di partecipazione ad una prenotazione}
 \begin{itemize}
-    \item \textbf{Attore principale: } utente non riconosciuto.
-    \item \textbf{Precondizioni: }l'utente possiede il link per partecipare ad una prenotazione.
-    \item \textbf{Postcondizioni: }la prenotazione è salvata nella lista delle prenotazioni dell'utente.
+    \item \textbf{Attore principale: } Utente non riconosciuto.
+    \item \textbf{Precondizioni: }L'utente possiede il link per partecipare ad una prenotazione.
+    \item \textbf{Postcondizioni: }La prenotazione è salvata nella lista delle prenotazioni dell'utente.
     \item \textbf{Scenario principale:} 
         \begin{enumerate}
             \item L'utente seleziona il link di partecipazione alla prenotazione;
@@ -121,7 +121,7 @@
 
 \textbf{UCE24-Raggiunto numero massimo di partecipanti}
 \begin{itemize}
-    \item \textbf{Descrizione: }possono accedere alla prenotazione tramite il link di
+    \item \textbf{Descrizione: }Possono accedere alla prenotazione tramite il link di
     invito un numero massimo di utenti uguale al numero di partecipanti indicato al momento della
     prenotazione.
     \item \textbf{Scenario alternativo: }
