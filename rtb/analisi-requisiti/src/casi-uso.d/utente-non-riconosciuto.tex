@@ -1,8 +1,8 @@
 \textbf{UC1-Registrazione account}
 \begin{itemize}
-    \item \textbf{Attore principale: }utente non riconosciuto.
-    \item \textbf{Precondizioni: }l'utente è connesso al sistema.
-    \item \textbf{Postcondizioni: }l'account dell'utente e le informazioni ad esso collegate, sono registrati nel sistema.
+    \item \textbf{Attore principale: }Utente non riconosciuto.
+    \item \textbf{Precondizioni: }L'utente è connesso al sistema.
+    \item \textbf{Postcondizioni: }L'account dell'utente e le informazioni ad esso collegate, sono registrati nel sistema.
     \item \textbf{Scenario principale:} 
         \begin{enumerate}
             \item L'utente sceglie l'opzione di registrazione di un account;
@@ -22,7 +22,7 @@
     
 \textbf{UCE1.1-Campo mancante}
 \begin{itemize}
-    \item \textbf{Descrizione: }per effettuare la registrazione,devono essere inseriti un valore per la password che per l'email.
+    \item \textbf{Descrizione: }Per effettuare la registrazione,deve essere inserito un valore sia per la password che per l'email.
     \item \textbf{Scenario alternativo:}
     \begin{enumerate}
         \item Al momento della conferma,il sistema rileva che uno dei campi (o entrambi) risulta non compilato;
@@ -33,10 +33,11 @@
 
 \textbf{UC1.2-Email già registrata nel sistema}
 \begin{itemize}
-    \item \textbf{Descrizione: }l'utente non può registrare un account inserendo una email già usata da un altro utente.
+    \item \textbf{Descrizione: }L'utente non può registrare un account inserendo una email già usata da un altro utente.
     \item \textbf{Scenario alternativo:}
     \begin{itemize}
-        \item L'email inserita dall'utente al momento della registrazione risulta già presente nel sistema;
+        \item L'email inserita dall'utente al momento della registrazione risulta associata ad un
+        account già registrato nel sistema;
         \item Il sistema comunica la natura dell'errore all'utente;
         \item L'utente è reindirizzato alla homepage di registrazione.
     \end{itemize}
@@ -45,9 +46,9 @@
 
 \textbf{UC2-Login}
 \begin{itemize}
-\item \textbf{Attore principale:} utente non riconosciuto.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente è autenticato presso il sistema.
+\item \textbf{Attore principale:} Utente non riconosciuto.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente è autenticato presso il sistema.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente sceglie l'opzione di login;
@@ -61,7 +62,7 @@
 \end{itemize}
 
 \textbf{UCE2-Credenziali non corrette}
-\textbf{Descrizione: }il login può non andare a buon fine se l'email inserita dall'utente non è registrata 
+\textbf{Descrizione: }Il login può non andare a buon fine se l'email inserita dall'utente non è registrata 
 o la password non è corretta; per questioni di sicurezza, all'utente viene notificato un errore generico.
 \textbf{Scenario secondario:}
 \begin{enumerate}
@@ -73,21 +74,21 @@ o la password non è corretta; per questioni di sicurezza, all'utente viene noti
 
 \textbf{UC16-Visualizzazione lista ristoranti}
 \begin{itemize}
-\item \textbf{Attore principale:} utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza una lista di ristoranti.
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza una lista di ristoranti.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di visualizzazione di una lista di ristoranti;
-    \item L'utente visualizza una lista di ristoranti,ordinati secondo la loro valutazione media.
+    \item L'utente visualizza una lista di ristoranti,ordinati secondo la loro valutazione media in ordine decrescente.
 \end{enumerate}
 \end{itemize}
 
 \textbf{UC17-Ricerca ristorante}
 \begin{itemize}
-\item \textbf{Attore principale:}utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti corrispondenti ai criteri inseriti
+\item \textbf{Attore principale:}U non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti ai criteri inseriti
 dell'utente.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
@@ -99,7 +100,7 @@ dell'utente.
         \item La città del ristorante (vedi UC17.2-Ricerca per città);
         \item La valutazione media del ristorante (vedi UC17.3-Ricerca per valutazione);
         \item La tipologia di cucina (vedi UC17.4-Ricerca per tipologia di cucina);
-        \item L orario (vedi UC17.5-Ricerca ristorante per orario) ;
+        \item L' orario (vedi UC17.5-Ricerca ristorante per orario) ;
         \item La data (vedi UC17.6-Ricerca ristorante per data); 
     \end{itemize}
     \item  Il sistema filtra la lista di ristoranti secondo i criteri inseriti;
@@ -109,9 +110,9 @@ dell'utente.
 
 \textbf{UC17.1-Ricerca ristorante per nome}
 \begin{itemize}
-\item \textbf{Attore principale:}utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti corrispondenti 
+\item \textbf{Attore principale:}uìUtente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti 
 alla ricerca per nome da lui inserito.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
@@ -124,9 +125,9 @@ alla ricerca per nome da lui inserito.
 
 \textbf{UC17.2-Ricerca ristorante per città}
 \begin{itemize}
-\item \textbf{Attore principale:}utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti corrispondenti alla città da lui inserita.
+\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti alla città da lui inserita.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
@@ -138,9 +139,9 @@ alla ricerca per nome da lui inserito.
 
 \textbf{UC17.3-Ricerca ristorante per valutazione}
 \begin{itemize}
-\item \textbf{Attore principale:}utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti la cui valutazione è maggiore o uguale alla
+\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti la cui valutazione è maggiore o uguale alla
 valutazione da lui inserita.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
@@ -153,9 +154,9 @@ valutazione da lui inserita.
 
 \textbf{UC17.4-Ricerca ristorante per tipologia di cucina}
 \begin{itemize}
-\item \textbf{Attore principale:}utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti che offrono la tipologia di cucina
+\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che offrono la tipologia di cucina
 da lui inserita.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
@@ -168,9 +169,9 @@ da lui inserita.
 
 \textbf{UC17.5-Ricerca ristorante per orario}
 \begin{itemize}
-\item \textbf{Attore principale:}utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario 
+\item \textbf{Attore principale: }Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario 
 da lui scelto.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
@@ -184,9 +185,9 @@ da lui scelto.
 
 \textbf{UC17.6-Ricerca ristorante per data}
 \begin{itemize}
-\item \textbf{Attore principale:}utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza la lista dei ristoranti che hanno posti disponibili
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che hanno posti disponibili
 nella data da lui selezionata.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
@@ -200,9 +201,9 @@ nella data da lui selezionata.
 
 \textbf{U18-Visualizzazione ristorante}
 \begin{itemize}
-\item \textbf{Attore principale:} utente non riconosciuto / cliente.
-\item \textbf{Precondizioni:} l'utente è connesso al sistema e sta visualizzando una lista di ristoranti.
-\item \textbf{Postcondizioni:} l'utente visualizza le informazioni relative al ristorante selezionato.
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema e sta visualizzando una lista di ristoranti.
+\item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative al ristorante selezionato.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona un ristorante dalla lista che sta visualizzando ;
@@ -222,7 +223,7 @@ nella data da lui selezionata.
 
 \textbf{UC18.1-Visualizzazione menù}
 \begin{itemize}
-\item \textbf{Attore principale:} utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni di un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza il menù del ristorante.
 \item \textbf{Scenario principale:}
@@ -237,7 +238,7 @@ nella data da lui selezionata.
 
 \textbf{UC18.1.1-Ricerca pietanza}
 \begin{itemize}
-\item \textbf{Attore principale:} utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista delle pietanze corrispondenti ai parametri di ricerca.
 \item \textbf{Scenario principale:}
@@ -256,7 +257,7 @@ nella data da lui selezionata.
 
 \textbf{UC18.1.2-Visualizzazione pietanza}
 \begin{itemize}
-\item \textbf{Attore principale:} utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative alla pietanza selezionata.
 \item \textbf{Scenario principale:}
@@ -273,7 +274,7 @@ nella data da lui selezionata.
 
 \textbf{UC18.2-Visualizzazione recensioni}
 \begin{itemize}
-\item \textbf{Attore principale:} utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni relative ad un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza le ultime 5 recensioni fatte in ordine temporale decrescente da altri utenti.
 \item \textbf{Scenario principale:}
