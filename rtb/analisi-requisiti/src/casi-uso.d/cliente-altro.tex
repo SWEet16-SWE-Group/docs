@@ -46,8 +46,13 @@
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
 \item \textbf{Attore secondario:} Processore di pagamenti.
-\item \textbf{Precondizioni:} Il cliente deve avere una prenotazione accettata dal ristoratore che abbia superato il
-  limite temporale di modifica degli ordini ed è stata scelta la modalità di divisione del conto.
+\item \textbf{Precondizioni:} Il cliente deve avere:
+  \begin{itemize}
+    \item Una prenotazione accettata dal ristoratore;
+    \item Limite temporale di modifica degli ordini deve essere stato superato;
+    \item Deve essere stata fatta almeno una ordinazione;
+    \item Deve essere stata scelta la modalità di divisione del conto.
+  \begin{end}
 \item \textbf{Postcondizioni:} Il cliente ha pagato con successo.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
