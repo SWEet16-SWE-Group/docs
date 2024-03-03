@@ -243,12 +243,27 @@ nella data da lui selezionata.
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item L'utente seleziona la funzionalità di visualizzazione delle sue prenotazioni;
-            \item L'utente visualizza la lista delle sue prenotazioni divise in due sezioni:
+            \item L'utente può filtrare le prenotazioni tramite dei parametri (si veda UC15);
+            \item L'utente può selezionare una prenotazione singola per vederne il dettaglio (si veda UC21).
+        \end{enumerate}
+\end{itemize}
+
+\subsubsection{UC15-Filtra prenotazioni}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} Il cliente sta visualizzando la lista delle sue prenotazioni.
+\item \textbf{Postcondizioni:} Il cliente visualizza la lista delle prenotazioni corrispondenti ai parametri di filtraggio.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente seleziona l'opzione di filtraggio delle prenotazioni.
+    \item Il cliente può filtrare le prenotazioni secondo due parametri:
               \begin{itemize}
                 \item Attive: prenotazioni future negli stati "In attesa" o "Accettata";
                 \item Scadute: prenotazioni passate o nello stato di "Rifiutata";
               \end{itemize}
-        \end{enumerate}
+    \item Il sistema filtra la lista di prenotazioni secondo il parametro selezionato;
+    \item Il cliente visualizza la lista di prenotazioni corrispondenti al parametro da lui selezionato. 
+\end{enumerate}
 \end{itemize}
 
 \subsubsection{UC21-Visualizzazione singola prenotazione}
