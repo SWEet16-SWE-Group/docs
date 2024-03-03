@@ -109,6 +109,23 @@
 \end{enumerate}
 \end{itemize}
 
+\subsubsection{UC31-Visualizzazione notifica ricezione messaggio in chat}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:}
+\begin{itemize}
+    \item Il cliente ha avviato la chat con il ristoratore (si veda UC49);
+    \item Il ristoratore ha inviato un messaggio al cliente (si veda UC50.1).
+\end{itemize}
+\item \textbf{Postcondizioni:} il cliente visualizza una notifica relativa alla ricezione di un messaggio in chat.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il sistema vede che è stato inviato un messaggio dal ristoratore;
+    \item Il sistema invia al cliente una notifica relativa al messaggio ;
+    \item Il cliente visualizza la notifica relativa al messaggio.
+\end{enumerate}
+\end{itemize}
+
 \subsubsection{UC32-Visualizzazione notifica accettazione invito da parte di altri utenti}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
