@@ -1,3 +1,221 @@
+\subsubsection{UC16-Visualizzazione lista ristoranti}
+\begin{itemize}
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza una lista di ristoranti.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di visualizzazione di una lista di ristoranti;
+    \item L'utente visualizza una lista di ristoranti,ordinati secondo la loro valutazione media in ordine decrescente.
+\end{enumerate}
+\end{itemize}
+
+\subsubsection{UC17-Ricerca ristorante}
+\begin{itemize}
+\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti ai criteri inseriti
+dell'utente.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente può effettuare la ricerca inserendo uno o più parametri ,corrispondenti
+    ai seguenti criteri:
+    \begin{itemize}
+        \item Il nome del ristorante (vedi UC17.1-Ricerca per nome);
+        \item La città del ristorante (vedi UC17.2-Ricerca per città);
+        \item La valutazione media del ristorante (vedi UC17.3-Ricerca per valutazione);
+        \item La tipologia di cucina (vedi UC17.4-Ricerca per tipologia di cucina);
+        \item L'orario (vedi UC17.5-Ricerca ristorante per orario) ;
+        \item La data (vedi UC17.6-Ricerca ristorante per data); 
+    \end{itemize}
+    \item  Il sistema filtra la lista di ristoranti secondo i criteri inseriti;
+    \item L'utente visualizza la lista dei ristoranti che rispettano i criteri da lui inseriti.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.1-Ricerca ristorante per nome}
+\begin{itemize}
+\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti 
+alla ricerca per nome da lui inserito.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente inserisce il testo che deve essere contenuto nel nome; 
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
+    \item L'utente visualizza la lista dei ristoranti corrispondenti al nome da lui inserito.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.2-Ricerca ristorante per città}
+\begin{itemize}
+\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti alla città da lui inserita.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente inserisce la città come parametro di ricerca;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
+    \item L'utente visualizza la lista dei ristoranti corrispondenti alla città inserita.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.3-Ricerca ristorante per valutazione}
+\begin{itemize}
+\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti la cui valutazione è maggiore o uguale alla
+valutazione da lui inserita.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente inserisce il valore della valutazione che desidera;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
+    \item L'utente visualizza la lista dei ristoranti con valutazione maggiore o uguale a quella da lui inserita.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.4-Ricerca ristorante per tipologia di cucina}
+\begin{itemize}
+\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che offrono la tipologia di cucina
+da lui inserita.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente seleziona una o più tipologie di cucina alle quali è interessato;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito; 
+    \item L'utente visualizza la lista dei ristoranti che offrono la/e tipologia/e di cucina da egli cercata.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.5-Ricerca ristorante per orario}
+\begin{itemize}
+\item \textbf{Attore principale: }Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario 
+da lui scelto.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente seleziona l'orario ;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
+    \item L'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario da lui
+    selezionato.
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC17.6-Ricerca ristorante per data}
+\begin{itemize}
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che hanno posti disponibili
+nella data da lui selezionata.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di un ristorante;
+    \item L'utente seleziona la data;
+    \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
+    \item L'utente visualizza la lista dei ristoranti che hanno posti disponibili
+    nella data selezionata .
+\end{enumerate}
+\end{itemize}
+
+\textbf{U18-Visualizzazione ristorante}
+\begin{itemize}
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente è connesso al sistema e sta visualizzando una lista di ristoranti.
+\item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative al ristorante selezionato.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona un ristorante dalla lista che sta visualizzando ;
+    \item L'utente visualizza le informazioni relative al ristorante :
+    \begin{itemize}
+        \item Il nome;
+        \item il recapito telefonico;
+        \item L'indirizzo;
+        \item gli orari di servizio;
+        \item la/le tipologie di cucine offerte;
+        \item la valutazione media.
+    \end{itemize}
+    \item L'utente può scegliere di visualizzare il menù completo (vedi UC18.1-Visualizzazione menù);
+    \item L'utente può scegliere di visualizzare le recensioni rilasciate da altri utenti (vedi UC18.2-Visualizzazione recensioni).
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC18.1-Visualizzazione menù}
+\begin{itemize}
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni di un ristorante.
+\item \textbf{Postcondizioni:} L'utente visualizza il menù del ristorante.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di visualizzazione del menù del ristorante;
+    \item L'utente visualizza la lista completa delle pietanze presenti nel menù;
+    \item L'utente può effettuare la ricerca di una pietanza (vedi UC18.1.1-Ricerca pietanza);
+    \item L'utente può visualizzare i dettagli relativi ad una singola pietanza presente
+     nel menù (vedi UC18.1.2-Visualizzazione pietanza).
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC18.1.1-Ricerca pietanza}
+\begin{itemize}
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
+\item \textbf{Postcondizioni:} L'utente visualizza la lista delle pietanze corrispondenti ai parametri di ricerca.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di ricerca di una pietanza ;
+    \item L'utente può effettuare la ricerca per nome;
+    \item L'utente può effettuare la ricerca selezionando gli allergeni che non vuole 
+    siano presenti nelle pietanze del menù;
+    \item Il sistema filtra la lista delle pietanze secondo i parametri inseriti;
+    \item L'utente visualizza la lista delle pietanze corrispondenti ai criteri di ricerca
+    (la lista eventualmente può essere vuota).
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC18.1.2-Visualizzazione pietanza}
+\begin{itemize}
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
+\item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative alla pietanza selezionata.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona una pietanza in particolare, presente nel menù che sta visualizzando;
+    \item L'utente visualizza le seguenti informazioni ad essa relativa:
+    \begin{itemize}
+        \item La lista degli ingredienti in essa presenti;
+        \item La lista degli allergeni;
+        \item Il prezzo.
+    \end{itemize}
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC18.2-Visualizzazione recensioni}
+\begin{itemize}
+\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni relative ad un ristorante.
+\item \textbf{Postcondizioni:} L'utente visualizza le ultime 5 recensioni fatte in ordine temporale decrescente da altri utenti.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona la funzionalità di visualizzazione delle recensioni fatte da altri utenti
+    sulla loro esperienza presso il ristorante;
+    \item Di default,se presenti più di 5 recensioni, il sistema ne presenta una lista con le ultime 5 fatte in ordine temporale decrescente;
+    \item L'utente visualizza le suddette recensioni ,corredate dalle seguenti informazioni:
+    \begin{itemize}
+        \item Un voto da 1 a 5 sul menù;
+        \item Un voto da 1 a 5 sul servizio;
+        \item Un voto da 1 a 5 sul prezzo;
+        \item Un eventuale commento testuale.
+    \end{itemize}
+\end{enumerate}
+\end{itemize}
+
 \subsubsection{UC19-Prenotazione di un tavolo}
 \begin{itemize}
     \item \textbf{Attore principale: }Cliente.
