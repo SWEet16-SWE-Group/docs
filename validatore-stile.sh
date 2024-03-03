@@ -13,13 +13,18 @@ function items_capital(){
     grep -e '[0-9]*: \\item [^A-Z]' | grep -e '[0-9]*: \\item \\textbf{[^A-Z].*}'
   }
 
-  cat $1 | grep_padded '\\item' | remove_capital
+  cat $1 | grep_padded '\\item' | remove_capital | add_message_file "Maiuscola dopo item" $1
 }
 
 # controllo che ':' sia seguito da una maiuscola
 function colon_capital(){
   function delete_url(){
-    perl -pe 's/\\url{.*?}//'
+    perl -pe 's/\\url{.*?}//
+    ; s/\\href{.*?}//
+    ; s/Ore\s*\d*:\d*\s*//
+    ; s/\\textbf{Inizio incontro:}//
+    ; s/\\textbf{Fine incontro:}//
+    '
   }
 
   cat $1 | delete_url | grep_padded ':[^a-zA-Z]*[a-z]' | add_message_file "Maiuscola dopo i due punti" $1
