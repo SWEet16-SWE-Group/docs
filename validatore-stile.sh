@@ -19,11 +19,9 @@ function items_capital(){
 # controllo che ':' sia seguito da una maiuscola
 function colon_capital(){
   function delete_url(){
-    perl -pe 's/\\url{.*?}//
-    ; s/\\href{.*?}//
+    perl -pe 's/\\(url|href){.*?}//
     ; s/Ore\s*\d*:\d*\s*//
-    ; s/\\textbf{Inizio incontro:}//
-    ; s/\\textbf{Fine incontro:}//
+    ; s/\\textbf{(Inizio|Fine) incontro:}//
     '
   }
 
