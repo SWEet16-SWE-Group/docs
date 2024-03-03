@@ -10,7 +10,7 @@ function add_message_file(){
 # controllo che '\item' sia seguito da una maiuscola
 function items_capital(){
   function remove_capital () {
-    grep -e '[0-9]*: \\item [^A-Z]' | grep -e '[0-9]*: \\item \\textbf{[^A-Z].*}'
+    grep -vE '\\item (|\\textbf{)[A-Z]'
   }
 
   cat $1 | grep_padded '\\item' | remove_capital | add_message_file "Maiuscola dopo item" $1
