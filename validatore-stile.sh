@@ -30,3 +30,16 @@ function colon_capital(){
 
 items_capital $*
 colon_capital $*
+exit
+
+echo "Attenzione pericolo sostituzione regex inplace"
+
+function pericolo_search_replace(){
+  perl -i -pe 's/(\S)[ \t]+/\1 /g
+  ; s/\\item ([a-z])/\\item \U\1/
+  ; s/\\item \\textbf{([a-z])/\\item \\textbf{\U\1/
+  ;
+  ' $1
+}
+
+pericolo_search_replace $*
