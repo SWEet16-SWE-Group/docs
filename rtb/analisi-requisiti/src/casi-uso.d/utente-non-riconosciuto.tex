@@ -3,13 +3,13 @@
     \item \textbf{Attore principale: }Utente non riconosciuto.
     \item \textbf{Precondizioni: }L'utente è connesso al sistema.
     \item \textbf{Postcondizioni: }L'account dell'utente e le informazioni ad esso collegate, sono registrati nel sistema.
-    \item \textbf{Scenario principale:} 
+    \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item L'utente sceglie l'opzione di registrazione di un account;
             \item Il sistema chiede all'utente di inserire una email ed una password;
             \item L'utente inserisce l'email e la password;
             \item L'utente conferma i valori inseriti;
-            \item Il sistema comunica all'utente che la registrazione è andata 
+            \item Il sistema comunica all'utente che la registrazione è andata
             a buon fine.
             \item Il cliente visualizza un profilo di tipo cliente creato di default dal sistema.
         \end{enumerate}
@@ -19,7 +19,7 @@
                 \item UC1.2-Email già registrata nel sistema.
         \end{itemize}
 \end{itemize}
-    
+
 \textbf{UCE1.1-Campo mancante}
 \begin{itemize}
     \item \textbf{Descrizione: }Per effettuare la registrazione,deve essere inserito un valore sia per la password che per l'email.
@@ -62,11 +62,11 @@
 \end{itemize}
 
 \subsubsection{UCE2-Credenziali non corrette}
-\textbf{Descrizione: }Il login può non andare a buon fine se l'email inserita dall'utente non è registrata 
+\textbf{Descrizione: }Il login può non andare a buon fine se l'email inserita dall'utente non è registrata
 o la password non è corretta; per questioni di sicurezza, all'utente viene notificato un errore generico.
 \textbf{Scenario secondario:}
 \begin{enumerate}
-    \item Dopo la conferma dei dati inseriti dall'utente,il sistema verifica 
+    \item Dopo la conferma dei dati inseriti dall'utente,il sistema verifica
     che l'email non è presente nel sistema o che la password associata non è corretta;
     \item Il sistema comunica all'utente che le credenziali inserite non sono corrette;
     \item L'utente può riprovare ad effettuare il login ,inserendo di nuovo l'email e la password.
