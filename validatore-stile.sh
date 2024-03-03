@@ -28,17 +28,18 @@ function colon_capital(){
   cat $1 | delete_url | grep_padded ':[^a-zA-Z]*[a-z]' | add_message_file "Maiuscola dopo i due punti" $1
 }
 
-items_capital $*
-colon_capital $*
-exit
+# items_capital $*
+# colon_capital $*
+# exit
 
 echo "Attenzione pericolo sostituzione regex inplace"
 
 function pericolo_search_replace(){
   perl -i -pe 's/(\S)[ \t]+/\1 /g
+  ; s/\s*\n/\n/
   ; s/\\item ([a-z])/\\item \U\1/
   ; s/\\item \\textbf{([a-z])/\\item \\textbf{\U\1/
-  ;
+  ; s/:([^\w\d]*)([a-z])/:\1\U\2/
   ' $1
 }
 
