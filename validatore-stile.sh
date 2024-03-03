@@ -45,6 +45,10 @@ function pericolo_search_replace(){
   ; s/\\item ([a-z])/\\item \U\1/                     # dopo item
   ; s/\\item \\textbf{([a-z])/\\item \\textbf{\U\1/   # dopo item in textbf
   ; s/:([^\w\d]*)([a-z])/:\1\U\2/                     # dopo : preservando caratteri in mezzo
+
+  # elenchi ; .
+  # TODO pulire il testo bianco prima della ; o .
+  # TODO verificare che solo l ultimo item abbia il . e quelli prima abbiano ;
   ' $1
 }
 
