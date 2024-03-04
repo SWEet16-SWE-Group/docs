@@ -187,7 +187,7 @@
 \begin{itemize}
 \item \textbf{Attore principale:} Utente autenticato.
 \item \textbf{Precondizioni:} L'utente è autenticato presso il sistema e possiede una profilo ristoratore.
-\item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative al profilo selezionato.
+\item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative al profilo ristoratore selezionato.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente sta visualizzando la lista dei suoi profili;
@@ -220,7 +220,7 @@
 
 \subsubsection{UC12-Modifica profilo cliente}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente autenticato.
+\item \textbf{Attore principale:} Utente autenticato / Cliente.
 \item \textbf{Precondizioni:} L'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
 \item \textbf{Postcondizioni:} Le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
 \item \textbf{Scenario principale:}
@@ -243,7 +243,7 @@
 
 \subsubsection{UC13-Modifica profilo ristoratore}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente autenticato.
+\item \textbf{Attore principale:} Utente autenticato / Ristoratore.
 \item \textbf{Precondizioni:} L'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
 \item \textbf{Postcondizioni:} Le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
 \item \textbf{Scenario principale:}
@@ -274,14 +274,14 @@
 
 \subsubsection{UC14-Logout dal profilo}
 \begin{itemize}
-\item \textbf{Attore principale:} Cliente/ristoratore.
+\item \textbf{Attore principale:} Cliente / Ristoratore.
 \item \textbf{Precondizioni:} L'utente ha selezionato uno dei profili afferenti al suo account.
 \item \textbf{Postcondizioni:} L'utente è indirizzato alla pagina di selezione del profilo.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona l'opzione di logout dal profilo precedentemente selezionato;
     \item Il sistema chiede la conferma all'utente della volontà di tornare alla scelta dei profili;
-    \item Il cliente conferma la scelta;
-    \item Il cliente visualizza la lista dei profili del suo account, potendone selezionare uno.
+    \item L'utente conferma la scelta;
+    \item L'utente visualizza la lista dei profili del suo account, potendone selezionare uno.
 \end{enumerate}
 \end{itemize}
