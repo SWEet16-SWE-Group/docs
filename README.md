@@ -1,24 +1,23 @@
-# Documentazione SWEet16
+# Come eseguire
 
-Documentazione interna, esterna e verbali del gruppo 16
+## Prerequisiti
 
-Ingegneria del Software - Gruppo SWEet16
+1. Avere installato docker e docker-compose sul proprio sistema
 
-Corso di Laurea in Informatica - A.A.: 2023/2024
+## Esecuzione
 
-Università degli Studi di Padova
+1. Entrare nella cartella Codice/
+2. Eseguire
+```shell
+  docker-compose up
+```
 
-## Componenti del Gruppo
+Se tutto è andato correttamente, in automatico verrà aperto il browser predefinito dal sistema sulla home del sito.
 
-| Nominativo           | Matricola               |
-| :------------------: | :----------------------:|
-| Alberto Cinel        | 1142833                 |
-| Bilal El Moutaren    | 2053470                 |
-| Alberto Michelazzo   | 2010007	               |
-| Alex Scantamburlo    | 2042326                 |
-| Iulius Signorelli    | 2012434                 |
-| Giovanni Zuliani     | 595900                  |
+## Info varie
 
-E-mail: sweet16.unipd@gmail.com
-
-
+- I servizi seguenti si trovano in esecuzione sulle porte seguenti:
+  - React: 3000: L'interfaccia utente
+  - Apache: 8888: Il controller per permettere all'utente di interagire con il DB
+  - MySQL: 3306: Database
+  - PHPMyAdmin: 8080: Servizio opzionale, scelto in fase di sviluppo per velocizzare la parte di codifica
