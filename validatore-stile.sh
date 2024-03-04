@@ -43,9 +43,8 @@ function pericolo_search_replace(){
   ; s/\s*\n/\n/           # testo bianco a fine riga
 
   # maiuscole
-  ; s/\\item ([a-z])/\\item \U\1/                     # dopo item
-  ; s/\\item \\textbf{([a-z])/\\item \\textbf{\U\1/   # dopo item in textbf
-  ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/                     # dopo : preservando caratteri in mezzo
+  ; s/\\item (\\textbf{)?([a-z])/\\item \1\U\2/                     # dopo item, preservando textbf
+  ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/   # dopo : preservando caratteri in mezzo e escludendo url e href
 
   # elenchi ; .
   ; s/(\S) +([;:,.])/\1\2/g         # rimozione spazi prima di [:,.;]
