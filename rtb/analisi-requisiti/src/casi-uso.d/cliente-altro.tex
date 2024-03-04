@@ -1,19 +1,4 @@
 
-% forse questo non era da mettere qui ma ormai c'è
-\subsubsection{UC26-Annullamento ordinazione}
-\begin{itemize}
-\item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} Il cliente ha effettuato almeno un'ordinazione.
-\item \textbf{Postcondizioni:} L'ordinazione selezionata è stata annullata.
-\item \textbf{Scenario principale:}
-\begin{enumerate}
-    \item Il cliente ha un'ordinazione che non desidera più;
-    \item Il cliente seleziona sull'ordinazione;
-    \item Il cliente seleziona l'opzione di annullamento;
-    \item Il sistema rimuove le pietanze dell'ordinazione;
-\end{enumerate}
-\end{itemize}
-
 \subsubsection{UC27-Selezione modalità di divisione del conto}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
@@ -30,7 +15,6 @@
     \item Il cliente clicca sulla selezione della modalità di divisione del conto;
     \item Il cliente clicca sceglie se pagamento equo o proporzionale;
     \item Il cliente viene reindirizzato alla visualizzazione della singola prenotazione.
-      % errata corrige, la pagina di singola prenotazione fa anche da visualizzazione del conto (?)
 \end{enumerate}
 \end{itemize}
 
@@ -124,6 +108,23 @@
 \end{enumerate}
 \end{itemize}
 
+\subsubsection{UC31-Visualizzazione notifica ricezione messaggio in chat}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:}
+\begin{itemize}
+    \item Il cliente ha avviato la chat con il ristoratore (si veda UC49);
+    \item Il ristoratore ha inviato un messaggio al cliente (si veda UC50.1).
+\end{itemize}
+\item \textbf{Postcondizioni:} Il cliente visualizza una notifica relativa alla ricezione di un messaggio in chat.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il sistema vede che è stato inviato un messaggio dal ristoratore;
+    \item Il sistema invia al cliente una notifica relativa al messaggio;
+    \item Il cliente visualizza la notifica relativa al messaggio.
+\end{enumerate}
+\end{itemize}
+
 \subsubsection{UC32-Visualizzazione notifica accettazione invito da parte di altri utenti}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
@@ -137,6 +138,3 @@
     \item Al cliente mittente compare una notifica contentente il nuovo profilo aggiuntosi alla prenotazione.
 \end{enumerate}
 \end{itemize}
-
-% TODO forse;  mettere UC48-Visualizzazione messaggio in chat
-% si potrebbe mettere un link all'uc48 che è rilevante
