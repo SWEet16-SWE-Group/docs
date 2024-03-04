@@ -12,7 +12,19 @@
   docker-compose up
 ```
 
-Se tutto è andato correttamente, in automatico verrà aperto il browser predefinito dal sistema sulla home del sito.
+Se tutto è andato correttamente, dopo circa 2 minuti, sul terminale comparirà un messaggio di successo simile a quello qui sotto.
+```
+react-server  | 
+react-server  | Compiled successfully!
+react-server  | 
+react-server  | You can now view react-frontend in the browser.
+react-server  | 
+react-server  |   Local:            http://localhost:3000
+react-server  |   On Your Network:  http://172.18.0.2:3000
+react-server  | 
+```
+
+A questo punto è possibile interagire con l'appicazione aprendo il proprio browser all'indirizzo: http://localhost:3000 .
 
 ## Info varie
 
