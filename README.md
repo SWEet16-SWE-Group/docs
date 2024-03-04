@@ -17,7 +17,7 @@ Se tutto è andato correttamente, in automatico verrà aperto il browser predefi
 ## Info varie
 
 - I servizi seguenti si trovano in esecuzione sulle porte seguenti:
-  - React: 3000:
-  - Apache (PHP): 8888
-  - MySQL: 3306
-  - PHPMyAdmin: 8080
+  - React: 3000: L'interfaccia utente
+  - Apache: 8888: Il controller per permettere all'utente di interagire con il DB
+  - MySQL: 3306: Database
+  - PHPMyAdmin: 8080: Servizio opzionale, scelto in fase di sviluppo per velocizzare la parte di codifica
