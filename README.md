@@ -22,3 +22,7 @@ Università degli Studi di Padova
 E-mail: sweet16.unipd@gmail.com
 
 
+## Come eseguire
+
+1. Entrare nella cartella Codice
+2. Eseguire docker-compose up
