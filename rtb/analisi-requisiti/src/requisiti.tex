@@ -3,12 +3,14 @@ In seguito allo studio del documento di capitolato,ai colloqui avuti con il prop
 brainstorming fra i membri del gruppo e all'analisi degli casi d'uso,sono stati individuati molteplici requisiti 
 che verranno di seguito elencati , suddivisi in due categorie :
 \begin{itemize}
-    \item Requisiti funzionali,i quali sono strettamente legati alle funzionalità che il prodotto deve offrire agli utenti,
-    al modo in cui il prodotto deve reagire a determinati input e al modo in cui deve comportarsi in determinate situazioni;
-    \item Requisiti non funzionali,i quali rappresentano dei vincoli che il prodotto deve rispettare,legati ai molteplici 
-    aspetti che caratterizzano il comportamento di un prodotto software ,come ad es. la scalabilità,la sicurezza, la performance .
+    \item Requisiti funzionali: sono strettamente legati alle funzionalità che il prodotto deve offrire agli utenti,
+    al modo in cui il prodotto deve reagire a determinati input, agli output che deve produrre e al suo comportamento in determinate situazioni;
+    \item Requisiti non funzionali: rappresentano i vincoli che il prodotto deve rispettare,legati alle caratteristiche tipiche di
+    ogni prodotto software ,come ad es. la scalabilità,la sicurezza, la performance .
 \end{itemize}
 \subsection{Requisiti funzionali}
+I requisiti di seguito elencati presentano un codice identificativo univoco,il quale indica se il relativo requisito è
+obbligatorio (RFO), facoltativo (RFD) o desiderabile (RFD), una breve descrizione e lo scenario d'uso di riferimento.
 \begin{center}
     \begin{longtblr}{
         colspec={|X[1.5cm]|X[12cm]|X[2.5cm]|},
@@ -158,4 +160,36 @@ che verranno di seguito elencati , suddivisi in due categorie :
     \end{longtblr}
     \end{center}
 \subsection{Requisiti non funzionali}
+I requisiti non funzionali presentano anch'essi un codice identificativo univoco, che indica se il 
+relativo requisito é obbligatorio (RNFO), desiderabile (RNFD) o facoltativo (RNOF); vengono inoltre indicati
+esplicitamente la caratteristica del prodotto che il requisito tratta e la fonte d'ispirazione di quest'ultimo.
+\begin{center}
+    \begin{tblr}[X]{
+        cols={|X[1.5cm]|X[1.5cm]|X[8cm]|X[2.5cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray}
+        }
+        \hline 
+        \textbf{Codice} \textbf{Caratteristica} & \textbf{Descrizione} & \textbf{Fonte}\\
+        \hline 
+        RNFO1 & Portabilità & Il prodotto deve essere una web resposive app , quindi poter essere eseguito su tutti i principali browser, quali Chrome, Firefox, Microsof Edge
+        e Safari; deve offrire all'utente un'esperienza  coerente e piacevole su qualsiasi dispositivo, garantendo che il contenuto e le funzionalità siano accessibili
+         e ben visualizzati indipendentemente dalle dimensioni dello schermo & Capitolato\\
+         \hline 
+         RNFO2 & Testabilità & Il prodotto deve presentare un design che faciliti il testing, essendo richiesta dal 
+         proponente una copertura di test del codice maggiore o uguale all' 80 per cento  & Capitolato\\
+         \hline 
+         RNFD3 & Sicurezza & Le comunicazioni tra il cliente e il server devono essere crittografate, data la natura sensibile dei dati 
+         inseriti dagli utenti & Capitolato\\
+         \hline
+         RNFO4 & Sicurezza & Viene implementato un sistema di autenticazione e autorizzazione per controllare l'accesso ai dati
+         degli utenti tramite l'utilizzo di protocolli di autenticazione & Capitolato\\
+         RNFD5 & Privacy & Viene richiesto all' utente un esplicito permesso per memorizzare i messaggi delle sue chat & Capitolato \\
+         \hline 
+         RNFF6 & Usabilità & L'app deve essere intuitiva e facile da usare , con un'interfaccia utente chiara e accessibile 
+         che faciliti la navigazione e l'interazione; l'utente deve poterusufruire di tutte le funzionalità già al primo
+         utilizzo & Brainstorming interno \\
+         \hline
+    \end{tblr}
+\end{center}P
 
