@@ -37,9 +37,10 @@ echo "Attenzione pericolo sostituzione regex inplace"
 function pericolo_search_replace(){
   perl -i -pe '
   # rimozione del rumore
-    s/\r\n/\n/g          # carriage return
-  ; s/(\S)[ \t]+/\1 /g   # compressione di tanti spazi in uno esclusa indentazione iniziale
-  ; s/\s*\n/\n/          # testo bianco a fine riga
+    s/\r\n/\n/g           # carriage return
+  ; s/\t/  /g             # tab in 2 spazi
+  ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
+  ; s/\s*\n/\n/           # testo bianco a fine riga
 
   # maiuscole
   ; s/\\item ([a-z])/\\item \U\1/                     # dopo item
