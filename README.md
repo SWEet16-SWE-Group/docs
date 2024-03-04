@@ -18,6 +18,6 @@ Se tutto è andato correttamente, in automatico verrà aperto il browser predefi
 
 - I servizi seguenti si trovano in esecuzione sulle porte seguenti:
   - React: 3000:
-  - Apachi (PHP): 8888
+  - Apache (PHP): 8888
   - MySQL: 3306
   - PHPMyAdmin: 8080
