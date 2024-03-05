@@ -47,9 +47,9 @@ function pericolo_search_replace(){
   ; s/([a-zA-Z]),([a-zA-Z])/\1, \2/g          # aggiunta spazio dopo ,
 
   # maiuscole
-  ; s/\\item (\\textbf{)?([a-z])/\\item \1\U\2/                     # dopo item, preservando textbf
+  ; s/\\item (\\textbf{)?([a-z])/\\item \1\U\2/g                     # dopo item, preservando textbf
   ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/   # dopo : preservando caratteri in mezzo e escludendo url e href
-  ; s/: ([a-z])/: \U\1/g
+  ; s/:(})? ([a-z])/:\1 \U\2/g
 
   # mergia le linee di item
   ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
