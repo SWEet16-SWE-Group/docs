@@ -35,22 +35,36 @@ function colon_capital(){
 echo "Attenzione pericolo sostituzione regex inplace"
 
 function pericolo_search_replace(){
-  perl -i -pe '
+  #perl -i -0pe '
+  #  s/:\s*}/:}/g
+  #' $1
+  #exit
+  perl -i -0pe '
   # rimozione del rumore
     s/\r\n/\n/g           # carriage return
   ; s/\t/  /g             # tab in 2 spazi
   ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
-  ; s/\s*\n/\n/           # testo bianco a fine riga
+  ; s/ *\n/\n/g           # testo bianco a fine riga
+  ; s/ *}/}/g          # rimozione spazi tra : e }
+  ; s/}(\w)/} \1/g      # spazio dopo :} 
+  ; s/(\S) +([;:,.])/\1\2/g         # rimozione spazi prima di [:,.;]
+  ; s/([a-zA-Z]),([a-zA-Z])/\1, \2/g          # aggiunta spazio dopo ,
 
   # maiuscole
   ; s/\\item (\\textbf{)?([a-z])/\\item \1\U\2/                     # dopo item, preservando textbf
   ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/   # dopo : preservando caratteri in mezzo e escludendo url e href
 
   # elenchi ; .
-  ; s/(\S) +([;:,.])/\1\2/g         # rimozione spazi prima di [:,.;]
-  # ; s/(?<!{)(.*?\w)([;:,.])(\w.*?)(?!})/\1\2 \3/g          # aggiunta spazio dopo di [:,.;]
   # TODO verificare che solo l ultimo item abbia il . e quelli prima abbiano ;
-  ; s/(\\item .*?)[:;.]?\n( +\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
+  ; s/(\\item .*?)[:;.]?\n( *\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
+  ; s/(\\item .*?)[:;.]?\n( *\\end)/\1.\n\2/g        # rimozione spazi prima di [:,.;]
+  ; s/(\\item .*?)[:;.]?(})?\n( *\\begin)/\1:\2\n\3/g        # rimozione spazi prima di [:,.;]
+
+  # rimozione del rumore
+  ; s/\r\n/\n/g           # carriage return
+  ; s/\t/  /g             # tab in 2 spazi
+  ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
+  ; s/ *\n/\n/g           # testo bianco a fine riga
   ' $1
 }
 
