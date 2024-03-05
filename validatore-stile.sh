@@ -28,17 +28,13 @@ function colon_capital(){
   cat $1 | delete_url | grep_padded ':[^a-zA-Z]*[a-z]' | add_message_file "Maiuscola dopo i due punti" $1
 }
 
-# items_capital $*
-# colon_capital $*
-# exit
-
-echo "Attenzione pericolo sostituzione regex inplace"
+function find(){
+ items_capital $*
+ colon_capital $*
+}
 
 function pericolo_search_replace(){
-  #perl -i -0pe '
-  #  s/:\s*}/:}/g
-  #' $1
-  #exit
+  echo "Attenzione pericolo sostituzione regex inplace"
   perl -i -0pe '
   # rimozione del rumore
     s/\r\n/\n/g           # carriage return
@@ -79,4 +75,5 @@ function pericolo_search_replace(){
   ' $1
 }
 
-pericolo_search_replace $*
+[[ "$1" == "--find" ]] && { shift; find $* ; exit; }
+[[ "$1" == "--replace" ]] && { shift; pericolo_search_replace $* ; exit; }
