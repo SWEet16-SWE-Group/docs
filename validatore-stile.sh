@@ -55,8 +55,12 @@ function pericolo_search_replace(){
   ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/   # dopo : preservando caratteri in mezzo e escludendo url e href
   ; s/: ([a-z])/: \U\1/g
 
-  
   # mergia le linee di item
+  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
   ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
   ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
   ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
