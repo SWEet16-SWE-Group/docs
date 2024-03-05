@@ -53,9 +53,12 @@ function pericolo_search_replace(){
   # maiuscole
   ; s/\\item (\\textbf{)?([a-z])/\\item \1\U\2/                     # dopo item, preservando textbf
   ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/   # dopo : preservando caratteri in mezzo e escludendo url e href
+  ; s/: ([a-z])/: \U\1/g
+
+  # mergia le linee di item
+  ; s/(\\item .*?)\n(?!( +\\item| +\\end| +\\begin))\n/\1 \2\n/
 
   # elenchi ; .
-  # TODO verificare che solo l ultimo item abbia il . e quelli prima abbiano ;
   ; s/(\\item .*?)[:;.]?\n( *\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
   ; s/(\\item .*?)[:;.]?\n( *\\end)/\1.\n\2/g        # rimozione spazi prima di [:,.;]
   ; s/(\\item .*?)[:;.]?(})?\n( *\\begin)/\1:\2\n\3/g        # rimozione spazi prima di [:,.;]
