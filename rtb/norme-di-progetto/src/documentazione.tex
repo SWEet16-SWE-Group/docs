@@ -51,10 +51,10 @@ I documenti prodotti si possono suddividere in due macrosezioni.
           \item Titolo del documento.
           \item Informazioni aggiuntive:
           \begin{itemize}
-            \item Redattori
-            \item Verificicatori
-            \item Destinatari
-            \item Versione
+            \item Redattori: Indica chi si è occupato di redigere il documento;
+            \item Verificatori: Indica chi sono stati i verificatori in quel documento;
+            \item Destinatari: Indica a chi è destinato il documento;
+            \item Versione: Indica l'attuale versione del documento.
           \end{itemize}
         \end{itemize}
 
@@ -73,28 +73,47 @@ I documenti prodotti si possono suddividere in due macrosezioni.
         La prima pagina è la stessa fornita da template.
         Il resto della struttura è divisa in due:
         \begin{itemize}
-          \item Partecipanti
-          \begin{itemize}
-            \item Tabella dei partecipanti che possono essere i da due a tutti i membri del gruppo più il proponente
-            \item Orario di inizio e fine
-          \end{itemize}
-          \item Sintesi ed elaborazione dell'incontro
+          \item Partecipanti: Coloro che hanno effettivamente partecipato all'incontro;
+          \item Orario di inizio e fine;
+          \item Sintesi ed elaborazione dell'incontro.
         \end{itemize}
 
 \subsubsection{Norme tipografiche}
 
     \subsubsubsection{Nome del file}
-    Il nome di ogni file inizia con la prima lettera maiuscola, tutte le altre minuscole.
-    Segue poi dal numero di versione composto da una 'v' e tre numeri separati da un '.'.
-    Per i verbali il nome del documento sarà semplicemente la data cui si è tenuto nel formato
-    AAAA/MM/GG.
+    Di seguito viene descritta la convenzione per la rappresentazione dei nomi dei file, validi per tutti i documenti:
+    \begin{itemize}
+      \item Il nome di ogni file inizia con la lettera maiuscola;
+      \item Se il nome comprende più parole queste iniziano per lettera minuscola e sono separate da '\_';
+      \item Segue poi il numero di versione composto da una 'v' e tre numeri separati da un '.';
+      \item Un esempio corretto è \texttt{Norme\_di\_progetto\_v0.1.0}
+    \end{itemize}
+    
+
+    Per i verbali il nome del documento sarà semplicemente la data cui si è tenuto l'incontro nel formato AAAA/MM/GG.
 
     \subsubsubsection{Stile del testo}
+    
+    Gli stili del testo che vengono apportati all’interno di tutti i documenti sono:
+
     \begin{itemize}
-    % TODO da riempire in un secondo momento
-    \item TODO
+      \item \textbf{Grassetto:} Lo stile grassetto viene utilizzato per indicare i termini degli elenchi puntati ed i titoli delle sezioni.
+      \item \textbf{Corsivo:} Lo stile corsivo viene utilizzato per indicare il nome del gruppo, il nome dell'azienda proponente e per le parole di particolare rilevanza;
+      \item \textbf{Sottolineato:} Utilizzato per i link presenti nei documenti;
+      \item \textbf{Monospazio:} Utilizzato per riferimenti a codice.
     \end{itemize}
 
+    \subsubsubsubsection{Elenchi puntati e numerati}
+
+    Di seguito lo stile utilizzato dal team di sviluppo per gli elenchi puntati e numerati:
+    \begin{itemize}
+      \item Ogni punto dell'elenco inizia con la lettera maiuscola;
+      \item Alla fine di ogni punto vi è un ';';
+      \item Dopo l'ultima voce vi è un '.';
+      \item Se vi è un concetto da spiegare esso viene scritto in grassetto seguito da ':' e segue la spiegazione di esso. %mettere che comincia in maiuscola?
+    \end{itemize}
+
+    \pagebreak
     \subsubsubsection{Glossario}
     % TODO da ricontrollare anche questo che ho visto c'è anche nell'introduzione
     Il Glossario è un documento che contiene tutte le parole ritenute ambigue date il contesto del progetto.
