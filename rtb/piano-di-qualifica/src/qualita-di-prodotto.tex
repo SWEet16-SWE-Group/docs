@@ -110,19 +110,23 @@ Prodotto che sia sempre disponibile, che sia in grado di svolgere le funzionalit
     \label{tab:4}
 \end{table}
 
+
 \subsection{Efficienza}
 Prodotto che fornisca e soddisfi gli obiettivi prefissati con il minor utilizzo di risorse possibile.
+
 \subsubsection{Metriche}
+
 \subsubsection{Obiettivi}
+
 
 \subsection{Funzionalità}
 Soddisfare tutti i requisiti richiesti e descritti all'interno dell'Analisi dei Requisiti v1.0.0.
+
 \subsubsection{Metriche}
 \textbf{QPR-RC}: Requirements Coverage \\
 Indica la percentuale dei requisiti soddisfatti. Per il calcolo del valore accettato si considerano solo i requisiti obbligatori.\\
 Formula valore accettato:
 $$RC_{obb} = \frac{NR_{os}}{NR_{ot}} \cdot 100$$
-
 \begin{itemize}
 \item $RC_{obb}$ : Requirements Coverage obbligatori;
 \item $NR_{os}$ : numero di requisiti obbligatori soddisfatti;
@@ -150,23 +154,57 @@ $$RC_{i} = \frac{NR_{s}}{NR_{t}} \cdot 100$$
         QPR-RC & Requirements Coverage & 100\% $RC_{obb}$ & 100\% $RC_{i}$ \\
         \hline
      \end{tblr}
-    \caption{Metriche funzionalità}
+    \caption{Metriche Funzionalità}
     \label{tab:2}
 \end{table}
 
 \subsection{Compatibilità}
-Prodotto accessibile al maggior numero di utenti possibile, garantendo la compatibilità con i browser più diffusi.
+Prodotto accessibile al maggior numero di utenti possibile e che garantisce la compatibilità con i browser più diffusi.
 \subsubsection{Metriche}
+
 \subsubsection{Obiettivi}
+
 
 \subsection{Portabilità}
 Capacità del software di essere portato da un ambiente di sviluppo ad un altro.
 \subsubsection{Metriche}
+
 \subsubsection{Obiettivi}
+
 
 \subsection{Documentazione}
 I documenti dovranno essere di facile comprensione, corretti ortograficamente e sintatticamente.
 \subsubsection{Metriche}
+\textbf{QPR-DOC}: Indice di Gulpease \\
+L'Indice di Gulpease è un indice di leggibilità di un testo tarato sulla lingua italiana.
+Si basa sulla seguente formula:
+$$GULPEASE = 89+\frac{(NF \cdot 300) - (10 \cdot NL)}{NP}$$
+\begin{itemize}
+    \item NF: Numero frasi;
+    \item NL: Numero lettere;
+    \item NP: Numero parole;
+\end{itemize}
+
+In generale risulta la seguente suddivisione:
+\begin{itemize}
+    \item GULPEASE ${\le}$ 80 difficile da leggere per chi ha un licenza elementare;
+    \item GULPEASE ${\le}$ 60 difficile da leggere per chi ha un licenza media;
+    \item GULPEASE ${\le}$ 40 difficile da leggere per chi ha un diploma superiore;
+\end{itemize}
+
+
 \subsubsection{Obiettivi}
-
-
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-DOC & Indice di Gulpease & GULPEASE ${\geq}$ 40 & GULPEASE ${\geq}$ 60 \\
+        \hline
+     \end{tblr}
+    \caption{Metriche Documentazione}
+    \label{tab:2}
+\end{table}
