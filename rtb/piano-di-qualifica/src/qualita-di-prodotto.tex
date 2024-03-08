@@ -75,7 +75,7 @@ P: numero dei componenti del grafo disconnessi\\
         \hline
      \end{tblr}
     \caption{Metriche Manutenibilità}
-    \label{tab:3}
+    \label{tab:2}
 \end{table}
 
 
@@ -107,7 +107,7 @@ Prodotto che sia sempre disponibile, che sia in grado di svolgere le funzionalit
         \hline
      \end{tblr}
     \caption{Metriche Affidabilità}
-    \label{tab:4}
+    \label{tab:3}
 \end{table}
 
 
@@ -155,22 +155,37 @@ $$RC_{i} = \frac{NR_{s}}{NR_{t}} \cdot 100$$
         \hline
      \end{tblr}
     \caption{Metriche Funzionalità}
-    \label{tab:2}
+    \label{tab:4}
 \end{table}
 
 \subsection{Compatibilità}
 Prodotto accessibile al maggior numero di utenti possibile e che garantisce la compatibilità con i browser più diffusi.
 \subsubsection{Metriche}
+\textbf{QPR-CB}: Compatibilità Browser \\
+Indica la percentuale di versioni browser supportati in relazione a quelle previste.\\
+Formula valore accettato:
+$$CB = \frac{BW_{s}}{BW_{p}} \cdot 100$$
+\begin{itemize}
+\item $CB$ : Compatibilità browser;
+\item $BW_{s}$ : Versioni browser supportate;
+\item $BW_{p}$ : Versioni browser previste;
+\end{itemize}
 
 \subsubsection{Obiettivi}
-
-
-\subsection{Portabilità}
-Capacità del software di essere portato da un ambiente di sviluppo ad un altro.
-\subsubsection{Metriche}
-
-\subsubsection{Obiettivi}
-
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-CB & Compatibilità Browser & 90\% & 100\% \\
+        \hline
+     \end{tblr}
+    \caption{Metriche Compatiblità}
+    \label{tab:5}
+\end{table}
 
 \subsection{Documentazione}
 I documenti dovranno essere di facile comprensione, corretti ortograficamente e sintatticamente.
@@ -206,5 +221,5 @@ In generale risulta la seguente suddivisione:
         \hline
      \end{tblr}
     \caption{Metriche Documentazione}
-    \label{tab:2}
+    \label{tab:7}
 \end{table}
