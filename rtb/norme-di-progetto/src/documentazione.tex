@@ -6,20 +6,19 @@ Lo scopo di questo documento è fornire uno standard da seguire durante il proce
 \subsubsection{Ciclo di vita del documento}
 Tappe fondamentali del ciclo di vita di ogni documento sono:
   \begin{itemize}
-    \item Creazione: Creazione del documento partendo da un template.
-    \item Strutturazione: Creazione di file distinti rappresentanti le singole sezioni dell'indice dei contenuti.
-    \item Stesura: Fase di scrittura dei contenuti nei documenti. Può essere fatta da uno o più redattori, lavorando
-      asincronicamente su diverse sezioni.
-    \item Verifica: Una volta che una sezione viene completata entra in fase di verifica, dove uno o più verificatori
+    \item \textbf{Creazione:} Creazione del documento partendo da un template;
+    \item \textbf{Strutturazione:} Creazione di file distinti rappresentanti le singole sezioni dell'indice dei contenuti.;
+    \item \textbf{Stesura:} Fase di scrittura dei contenuti nei documenti.\\
+     Può essere fatta da uno o più redattori, lavorando asincronamente su diverse sezioni;
+    \item \textbf{Verifica:} Una volta che una sezione viene completata entra in fase di verifica, dove uno o più verificatori
       confermeranno le modifiche o rilasceranno dei commenti di correzione, in questo secondo caso il documento torna
-      nella fase di stesura.
-    \item Approvazione: Rilascio del documento.
+      nella fase di stesura;
+    \item \textbf{Approvazione:} Rilascio del documento.
   \end{itemize}
   Le prime due fasi sono svolte da tutti i membri del gruppo mentre la terza è affidata esclusivamente al responsabile.
 
 \subsubsection{Template}
-È stato deciso di utilizzare un template LaTeX % TODO marcare latex con il glossario e con il suo font
-come base di partenza per la stesura di ogni documento.
+È stato deciso di utilizzare un template \LaTeX$^{G}$ come base di partenza per la stesura di ogni documento.
 
 \subsubsection{Documenti prodotti}
 I documenti prodotti si possono suddividere in due macrosezioni.
@@ -27,16 +26,16 @@ I documenti prodotti si possono suddividere in due macrosezioni.
     \subsubsubsection{Esterni}
     Di interesse principale per il proponente e i committenti.
     \begin{itemize}
-      \item Analisi dei requisiti.
-      \item Piano di progetto.
-      \item Piano di qualifica.
+      \item Analisi dei requisiti;
+      \item Piano di progetto;
+      \item Piano di qualifica;
       \item Verbali esterni.
     \end{itemize}
 
     \subsubsubsection{Interni}
     Di interesse principale solo per membri del gruppo.
     \begin{itemize}
-      \item Norme di progetto.
+      \item Norme di progetto;
       \item Verbali interni.
     \end{itemize}
 
@@ -46,24 +45,34 @@ I documenti prodotti si possono suddividere in due macrosezioni.
         \subsubsubsection{Prima pagina}
         La prima pagina di ogni documento dovrà contenere:
         \begin{itemize}
-          \item Logo di Unipd accompagnato dal nome dell'università, corso di laurea, materia e anno accademico.
-          \item Logo del gruppo SWEet16 accompagnato dal nome del gruppo e la rispettiva mail.
-          \item Titolo del documento.
+          \item Logo di Unipd accompagnato dal nome dell'università, corso di laurea, materia e anno accademico;
+          \item Logo del gruppo SWEet16 accompagnato dal nome del gruppo e la rispettiva email;
+          \item Titolo del documento;
           \item Informazioni aggiuntive:
           \begin{itemize}
-            \item Redattori
-            \item Verificicatori
-            \item Destinatari
-            \item Versione
+            \item \textbf{Redattori:} Indica chi si è occupato di redigere il documento;
+            \item \textbf{Verificatri:} Indica chi sono stati i verificatori in quel documento;
+            \item \textbf{Destinatari:} Indica a chi è destinato il documento;
+            \item \textbf{Versione:} Indica l'attuale versione del documento.
           \end{itemize}
         \end{itemize}
 
-        % \subsubsubsection{Registro delle modifiche - Changelog}
-        % lo fa già github in automatico, non ci serve, possiamo toglierlo
+        \subsubsubsection{Registro delle modifiche - Changelog}
+        
+        Il file \texttt{registro-modifiche.tex} contiene il registro delle modifiche, presente in ogni singolo documento, ad eccezione dei verbali. \\
+        Esso corrisponde ad una tabella nella quale si tiene traccia di ogni attività svolta sulla documentazione.
+        In particolare la tabella è composta dalle seguenti voci:
+        \begin{itemize}
+          \item \textbf{Versione:} l'attuale versione del documento;
+          \item \textbf{Data:} la data in cui avviene un'attività;
+          \item \textbf{Autore:} nome della persona che ha apportato i cambiamenti al documento;
+          \item \textbf{Verificatore:} nome della persona che ha verificato i cambiamenti apportati al documento;
+          \item \textbf{Descrizione:}  breve descrizione della modifica effettuata.
+        \end{itemize}
 
         \subsubsubsection{Indice}
         Ogni documento presenta un indice di navigazione allo scopo di facilitare quest'ultima e
-        dare un'aspettativa di ciò che esso contiene.
+        dare un'anteprima di ciò che esso contiene.
 
         %\subsubsubsection{Piè di Pagina} si può pensare di aggiungere un piè di pagina ai documenti
 
@@ -73,26 +82,44 @@ I documenti prodotti si possono suddividere in due macrosezioni.
         La prima pagina è la stessa fornita da template.
         Il resto della struttura è divisa in due:
         \begin{itemize}
-          \item Partecipanti
-          \begin{itemize}
-            \item Tabella dei partecipanti che possono essere i da due a tutti i membri del gruppo più il proponente
-            \item Orario di inizio e fine
-          \end{itemize}
-          \item Sintesi ed elaborazione dell'incontro
+          \item Partecipanti: Coloro che hanno effettivamente partecipato all'incontro;
+          \item Orario di inizio e fine;
+          \item Sintesi ed elaborazione dell'incontro.
         \end{itemize}
 
 \subsubsection{Norme tipografiche}
 
     \subsubsubsection{Nome del file}
-    Il nome di ogni file inizia con la prima lettera maiuscola, tutte le altre minuscole.
-    Segue poi dal numero di versione composto da una 'v' e tre numeri separati da un '.'.
-    Per i verbali il nome del documento sarà semplicemente la data cui si è tenuto nel formato
-    AAAA/MM/GG.
+    Di seguito viene descritta la convenzione per la rappresentazione dei nomi dei file, validi per tutti i documenti:
+    \begin{itemize}
+      \item Il nome di ogni file inizia con la lettera maiuscola;
+      \item Se il nome comprende più parole queste iniziano per lettera minuscola e sono separate da '\_';
+      \item Segue poi il numero di versione composto da una 'v' e tre numeri separati da un '.';
+      \item Un esempio corretto è \texttt{Norme\_di\_progetto\_v0.1.0}
+    \end{itemize}
+    
+
+    Per i verbali il nome del documento sarà semplicemente la data cui si è tenuto l'incontro nel formato AAAA/MM/GG.
 
     \subsubsubsection{Stile del testo}
+    
+    Gli stili del testo che vengono apportati all’interno di tutti i documenti sono:
+
     \begin{itemize}
-    % TODO da riempire in un secondo momento
-    \item TODO
+      \item \textbf{Grassetto:} Lo stile grassetto viene utilizzato per indicare i termini degli elenchi puntati ed i titoli delle sezioni.
+      \item \textbf{Corsivo:} Lo stile corsivo viene utilizzato per indicare il nome del gruppo, il nome dell'azienda proponente e per le parole di particolare rilevanza;
+      \item \textbf{Sottolineato:} Utilizzato per i link presenti nei documenti;
+      \item \textbf{Monospazio:} Utilizzato per riferimenti a codice.
+    \end{itemize}
+
+    \subsubsubsubsection{Elenchi puntati e numerati}
+
+    Di seguito lo stile utilizzato dal team di sviluppo per gli elenchi puntati e numerati:
+    \begin{itemize}
+      \item Ogni punto dell'elenco inizia con la lettera maiuscola;
+      \item Alla fine di ogni punto vi è un ';';
+      \item Dopo l'ultima voce vi è un '.';
+      \item Se vi è un concetto da spiegare esso viene scritto in grassetto seguito da ':' e segue la spiegazione di esso che comincia per lettera maiuscola.
     \end{itemize}
 
     \subsubsubsection{Glossario}
@@ -128,15 +155,15 @@ I documenti prodotti si possono suddividere in due macrosezioni.
 \subsubsection{Strumenti}
 
     \subsubsubsection{GitHub}
-    Piattaforma di condivisione di codice, già utilizzata per la produzione del software, si presta
-    molto bene anche per la produzione della documentazione data la scelta di utilizzare LaTex.
+    Piattaforma di condivisione di codice, già utilizzata per il versionamento del software, si presta
+    molto bene anche per il versionamento e la condivisione della documentazione, data la scelta di utilizzare \LaTeX.
     L'ITS e il meccanismo di versionamento permettono di tener traccia delle modifiche apportate nel tempo
     in modo automatico e con un enorme quantità di informazioni utili.
     % ^ praticamente la stessa cosa del registro delle modifiche ma per i sigma gigachad
 
-    \subsubsubsection{LaTeX WorkShop}
-    Estensione per VSCode e fork vari che solleva dal redattore l'impegno di compilare il documento, concedendo un workflow più simile
-    a quello what you see is what get ma con il vantaggio di rimanere compilato da sorgente.
+    \subsubsubsection{\LaTeX  WorkShop}
+    Estensione per VSCode che include la compilazione automatica del documento, permettendo l'adozione di un workflow più simile
+    a quello "what you see is what get" ma con il vantaggio di rimanere compilato da sorgente.
     L'estensione è poi configurata in sinergia con Git (quindi anche GitHub) per ignorare la presenza di eventuali artefatti binari
     risultati dalla compilazione.
 
