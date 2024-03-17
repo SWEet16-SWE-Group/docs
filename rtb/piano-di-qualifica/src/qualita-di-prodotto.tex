@@ -118,9 +118,26 @@ Prodotto che sia sempre disponibile, che sia in grado di svolgere le funzionalit
 Prodotto che fornisca e soddisfi gli obiettivi prefissati con il minor utilizzo di risorse possibile.
 
 \subsubsection{Metriche}
+\begin{itemize}
+    \item \textbf{QPR-TMR - Tempo di Risposta Medio}:\\
+    Il tempo impiegato dal software dalla gestione ed elaborazione di una richiesta fino al risultato finale fornito. \\
+\end{itemize}
 
 \subsubsection{Obiettivi}
-
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[5cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-TMR & Tempo di Risposta Medio & 3 secondi & 2 secondi \\
+        \hline
+     \end{tblr}
+    \caption{Metriche efficienza}
+    \label{tab:8}
+\end{table}
 
 \subsection{Funzionalità}
 Soddisfare tutti i requisiti richiesti e descritti all'interno dell'Analisi dei Requisiti v1.0.0.
