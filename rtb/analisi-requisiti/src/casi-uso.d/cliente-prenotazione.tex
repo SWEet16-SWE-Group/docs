@@ -143,7 +143,11 @@ nella data da lui selezionata.
 \end{itemize}
 
 \pagebreak
-\subsubsection{UC17-Visualizzazione ristorante}
+\subsubsection{UC17-Visualizzazione ristorante} 
+%UC17: i riferimenti ai sottocasi nella sua descrizioni puntano a UC18.x (medesimo problema in tutti i sottocasi). 
+%Inoltre, dove sono modellate nel diagramma le informazioni riportate nella descrizione (nome, recapito, ecc..)? 
+
+% non so bene cosa intenda con la seconda parte del commento, cosa dobbiamo modellare ancora?
 \begin{figure}[h] \includegraphics[scale=0.6]{uc17.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
@@ -182,7 +186,7 @@ nella data da lui selezionata.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC17.1.1-Ricerca pietanza}
+\textbf{UC17.1.1-Ricerca pietanza}  % quindi questa va fatta come caso d'uso a parte
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
@@ -217,7 +221,7 @@ nella data da lui selezionata.
 \end{itemize}
 
 \pagebreak
-\textbf{UC17.2-Visualizzazione recensioni}
+\textbf{UC17.2-Visualizzazione recensioni} % UC17.2: deve essere modellata come una lista di informazioni
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni relative ad un ristorante.
@@ -258,7 +262,7 @@ nella data da lui selezionata.
 \end{itemize}
 
 \pagebreak
-\subsubsection{UC19-Visualizzazione lista prenotazioni}
+\subsubsection{UC19-Visualizzazione lista prenotazioni} % UC19: deve essere modellata come una lista di informazioni
 \begin{figure}[h] \includegraphics[scale=1]{uc19.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: } Cliente.
@@ -291,7 +295,7 @@ nella data da lui selezionata.
 \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC21-Visualizzazione singola prenotazione}
+\subsubsection{UC21-Visualizzazione singola prenotazione} % UC21: l'estensione non è corretta, non si riferisce allo scenario principale della visualizzazione. 
 \begin{figure}[h] \includegraphics[scale=1]{uc21.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: } Cliente.
@@ -315,7 +319,7 @@ nella data da lui selezionata.
     \item \textbf{Estensione: }UCE21-Prenotazione rifiutata
 \end{itemize}
 
-\subsubsection{UCE21-Prenotazione rifiutata}
+\subsubsection{UCE21-Prenotazione rifiutata} % unire con l'use case del ristoratore? (ovvero tenere solo quello)
 \begin{itemize}
     \item \textbf{Descrizione: }Se il ristoratore rifiuta una delle prenotazioni del cliente in attesa di conferma,
     mentre quest'ultimo sta visualizzando la lista delle sue prenotazioni, il cliente si accorge del rifiuto quando
