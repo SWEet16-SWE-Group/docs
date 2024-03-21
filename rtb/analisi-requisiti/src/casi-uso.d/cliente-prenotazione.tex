@@ -268,13 +268,20 @@ nella data da lui selezionata.
 \begin{figure}[h] \includegraphics[scale=1]{uc19.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: } Cliente.
-    \item \textbf{Precondizioni: }Il cliente sta visualizzando le sue informazioni personali.
+    \item \textbf{Precondizioni: }L'utente ha selezionato un profilo cliente.
     \item \textbf{Postcondizioni: }Il cliente visualizza la lista delle sue prenotazioni.
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item Il cliente seleziona la funzionalità di visualizzazione delle sue prenotazioni;
             \item Il cliente può filtrare le prenotazioni tramite dei parametri (si veda UC15);
             \item Il cliente può selezionare una prenotazione singola per vederne il dettaglio (si veda UC21).
+            \item Il cliente visualizza le seguenti informazioni per ogni prenotazione:
+              \begin{itemize}
+                \item Il ristorante;
+                \item La data per cui è programmata;
+                \item Il numero di persone partecipanti;
+                \item Lo stato (In Attesa, Accettata, Rifiutata);
+              \end{itemize}
         \end{enumerate}
 \end{itemize}
 
