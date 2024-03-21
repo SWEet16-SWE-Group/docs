@@ -15,17 +15,23 @@
 \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC50-Apertura chat} % non è chiara come funzionalità
+% TODO aggiornare l'immagine
+\subsubsection{UC50-Visualizzazione lista chat}
 \begin{figure}[h] \includegraphics[scale=1]{uc50.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente / Ristoratore.
-\item \textbf{Precondizioni:} Il cliente ha avviato la chat.
-\item \textbf{Postcondizioni:} L'attore principale visualizza i messaggi.
+\item \textbf{Precondizioni:} L'utente sta visualizzando la propria dashboard.
+\item \textbf{Postcondizioni:} L'utente visualizza le possibili chat con cui interagire.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item L'attore principale vuole visionare i messaggi in chat o inviare ulteriori messaggi;
-    \item L'attore clicca sul tasto della chat;
-    \item Diventa possibile interagire con la chat.
+    \item L'utente seleziona la funzionalità di visualizzazione della chat.
+    \item L'utente visualizza l'elenco di chat avviate;
+    \item Per ogni chat vengono visualizzate le seguenti informazioni:
+      \being{itemize}
+        \item Il nome profilo dell'altra parte;
+        \item La timestamp dell'ultimo messaggio inviato;
+        \item I primi 20 caratteri dell'ultimo messaggio inviato.
+      \end{itemize}
 \end{enumerate}
 \end{itemize}
 
