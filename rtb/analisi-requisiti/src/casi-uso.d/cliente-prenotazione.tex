@@ -221,7 +221,7 @@ nella data da lui selezionata.
 \end{itemize}
 
 \pagebreak
-\textbf{UC17.2-Visualizzazione recensioni} % UC17.2: deve essere modellata come una lista di informazioni
+\textbf{UC17.2-Visualizzazione lista recensioni}
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni relative ad un ristorante.
@@ -230,9 +230,11 @@ nella data da lui selezionata.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di visualizzazione delle recensioni fatte da altri utenti
     sulla loro esperienza presso il ristorante;
-    \item Di default,se presenti più di 5 recensioni, il sistema ne presenta una lista con le ultime 5 fatte in ordine temporale decrescente;
-    \item L'utente visualizza le suddette recensioni ,corredate dalle seguenti informazioni:
+    \item Il sistema presenta una lista con tutte le recensione di quel ristorante in ordine temporale decrescente;
+    \item L'utente visualizza le seguenti informazioni per ogni recensione:
     \begin{itemize}
+        \item Il nome del profilo che l'ha rilasciata;
+        \item La data di rilascio;
         \item Un voto da 1 a 5 sul menù;
         \item Un voto da 1 a 5 sul servizio;
         \item Un voto da 1 a 5 sul prezzo;
