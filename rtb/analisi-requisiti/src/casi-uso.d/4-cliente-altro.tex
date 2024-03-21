@@ -80,11 +80,15 @@
 \begin{figure}[h] \includegraphics[scale=1]{uc29.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} Il cliente ha partecipato ad una prenotazione il cui conto è stato saldato.
+\item \textbf{Precondizioni:}
+  \being{itemize}
+    \item Il cliente sta visualizando una prenotazione accettata;
+    \item La prenotazione è stata pagata.
+  \end{itemize}
 \item \textbf{Postcondizioni:} La recensione è stata salvata nella lista di recensioni del ristorante.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente clicca sul tasto per lasciare la recensione;
+    \item Il cliente clicca sul tasto per lasciare una recensione;
     \item Il sistema mostra un form contente tre voti da una a cinque stelle, rispettivamente per:
   \begin{itemize}
     \item Menù;
