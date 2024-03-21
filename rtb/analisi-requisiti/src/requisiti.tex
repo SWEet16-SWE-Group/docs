@@ -16,6 +16,8 @@ che verranno di seguito elencati, suddivisi in due categorie:
 I requisiti di seguito elencati presentano un codice identificativo univoco, il quale indica se il relativo requisito è
 obbligatorio (RFO), facoltativo (RFF), una breve descrizione e lo scenario d'uso di riferimento.
 
+\subsubsection{Obbligatori}
+
 \begin{center}
     \begin{longtblr}{
         colspec={|X[1.5cm]|X[12cm]|X[2.5cm]|},
@@ -81,6 +83,24 @@ obbligatorio (RFO), facoltativo (RFF), una breve descrizione e lo scenario d'uso
     \end{longtblr}
     \end{center}
 
+\subsubsection{Facoltativi}
+
+\begin{center}
+    \begin{tblr}{
+        colspec={|X[1.5cm]|X[3cm]|X[8cm]|X[2.5cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray}
+        }
+        \hline
+
+        \textbf{Codice} & \textbf{Caratteristica} & \textbf{Descrizione} & \textbf{Fonte} \\
+
+         RFD3 & Sicurezza & Le comunicazioni tra il client e il server devono essere crittografate, data la natura sensibile dei dati inseriti dagli utenti (HTTPS) & Capitolato \\ \hline
+         RFO4 & Sicurezza & Viene implementato RSA come sistema di autenticazione per controllare l'accesso ai dati degli utenti & Capitolato \\ \hline
+         RFD5 & Privacy & Viene richiesto all'utente un esplicito permesso per memorizzare i messaggi delle sue chat che saranno comunque salvati in forma crittografata end-to-end & Capitolato \\ \hline
+
+        \end{tblr}
+\end{center}
 
 \subsection{Requisiti non funzionali} % rivederli completamente
 
