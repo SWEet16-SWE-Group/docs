@@ -102,12 +102,13 @@ obbligatorio (RFO), facoltativo (RFF), una breve descrizione e lo scenario d'uso
         \end{tblr}
 \end{center}
 
-% TODO rivederli completamente
 \subsection{Requisiti non funzionali}
 
 I requisiti non funzionali presentano anch'essi un codice identificativo univoco, che indica se il
 relativo requisito è obbligatorio (RNFO), desiderabile (RNFD) o facoltativo (RNOF); vengono inoltre indicati
 esplicitamente la caratteristica del prodotto che il requisito tratta e la fonte d'ispirazione di quest'ultimo.
+
+\subsubsection{Qualità}
 
 \begin{center}
     \begin{tblr}{
@@ -118,19 +119,27 @@ esplicitamente la caratteristica del prodotto che il requisito tratta e la fonte
         \hline
         \textbf{Codice} & \textbf{Caratteristica} & \textbf{Descrizione} & \textbf{Fonte} \\
 
-        % ora la domanda sporge spontanea, ma cosa sono allora i requisiti non funzionali? chi cabbo lo sa
-
-        % secondo cardin questo (rnfo1) non è un requisito. se lo dice lui.
-        % Dobbiamo riferirci a standard. Inoltre è obbligatorio fornire le versioni minime supportate di ogni browser.
-        % RNFO1 & Portabilità & Il prodotto deve essere una web resposive app, quindi poter essere eseguito su tutti i principali browser, quali Chrome, Firefox, Microsoft Edge e Safari; deve offrire all'utente un'esperienza coerente e piacevole su qualsiasi dispositivo, garantendo che il contenuto e le funzionalità siano accessibili e ben visualizzati indipendentemente dalle dimensioni dello schermo & Capitolato \\ \hline
-
-        % Questo requisito non è verificabile
-        % RNFO2 & Testabilità & Il prodotto deve presentare un design che faciliti il testing, essendo richiesta dal proponente una copertura di test del codice maggiore o uguale all' 80 per cento & Capitolato \\ \hline
+        % TODO sviluppo secondo le norme di progetto
+        % TODO github
+        % TODO manuale utente
+        % TODO test di unità e integrazione (?)
 
         \end{tblr}
 \end{center}
 
-% mancano inoltre completamente i requisiti di qualità, "ossia quelli che vincolano il processo di sviluppo"
+\subsubsection{Vincolo}
 
+\begin{center}
+    \begin{tblr}{
+        colspec={|X[1.5cm]|X[3cm]|X[8cm]|X[2.5cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray}
+        }
+        \hline
+        \textbf{Codice} & \textbf{Caratteristica} & \textbf{Descrizione} & \textbf{Fonte} \\
 
+        % TODO docker
+        % TODO versioni browser
 
+        \end{tblr}
+\end{center}
