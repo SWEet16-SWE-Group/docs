@@ -34,7 +34,7 @@
 \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC35-Visualizzazione lista prenotazioni} % uc35 e 35.1 sono due funzionalità differenti
+\subsubsection{UC35-Visualizzazione lista prenotazioni}
 \begin{figure}[h] \includegraphics[scale=1]{uc35.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Ristoratore.
@@ -56,13 +56,14 @@
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC35.1-Visualizzazione dettagli ingredienti giornata} % andare quindi a creare un caso d'uso solo per il dettaglio ingredienti giornata?
+\textbf{UC54-Visualizzazione dettagli ingredienti giornata}
 \begin{itemize}
 \item \textbf{Attore principale:} Ristoratore.
-\item \textbf{Precondizioni:} Il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (si veda UC35).
+\item \textbf{Precondizioni:} Il ristoratore si trova nella dashboard.
 \item \textbf{Postcondizioni:} Il ristoratore visualizza la lista degli ingredienti.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
+    \item Il ristoratore seleziona la funzionalità di vedere i dettagli per la giornata selezionata da un calendario;
     \item Il sistema mostra la vista degli ingredienti relativi alla giornata, relativamente alle prenotazioni nello stato "Accettata";
     \item Il ristoratore visualizza la lista degli ingredienti.
 \end{enumerate}
