@@ -319,14 +319,16 @@
 \begin{figure}[h] \includegraphics[scale=1]{uc39.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Ristoratore.
-\item \textbf{Precondizioni:} Il ristoratore è connesso al sistema.
+\item \textbf{Precondizioni:} Il ristoratore si trova nella dashboard.
 \item \textbf{Postcondizioni:} Il ristoratore visualizza le ultime 5 recensioni fatte in ordine temporale decrescente dai clienti.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il ristoratore seleziona la funzionalità di visualizzazione delle recensioni fatte dai clienti sulla loro esperienza presso il ristorante;
-    \item Di default, se presenti più di 5 recensioni, il sistema ne presenta una lista con le ultime 5 fatte in ordine temporale decrescente;
-    \item Il ristoratore visualizza le suddette recensioni, corredate dalle seguenti informazioni:
+    \item Il sistema ne presenta una lista con le recensioni fatte in ordine temporale decrescente;
+    \item Il ristoratore visualizza le seguenti informazioni per ogni recensione:
     \begin{itemize}
+        \item Il nome del profilo che l'ha rilasciata;
+        \item La timestamp di rilascio;
         \item Un voto da 1 a 5 sul menù;
         \item Un voto da 1 a 5 sul servizio;
         \item Un voto da 1 a 5 sul prezzo;
