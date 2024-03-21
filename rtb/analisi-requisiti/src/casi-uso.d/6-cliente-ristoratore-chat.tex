@@ -35,7 +35,27 @@
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC50.1-Invio messaggio}
+% TODO aggiungere l'immagine
+\subsubsection{UC51-Apertura chat}
+\begin{figure}[h] \includegraphics[scale=1]{uc50.png} \end{figure}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente / Ristoratore.
+\item \textbf{Precondizioni:} L'utente sta visualizzando la lista di chat interagibili.
+\item \textbf{Postcondizioni:} L'utente visualizza la cronologia dei messaggi.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item L'utente seleziona chat con cui vuole interagire.
+    \item L'utente visualizza la cronologia di messaggi inviati in ordine temporale decrescente;
+    \item Per ogni mesaggio vengono visualizzate le seguenti informazioni:
+      \being{itemize}
+        \item Il nome profilo dell'altra parte;
+        \item La timestamp del messaggio;
+        \item Il contenuto del messaggio.
+      \end{itemize}
+\end{enumerate}
+\end{itemize}
+
+\textbf{UC51.1-Invio messaggio}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente / Ristoratore
 \item \textbf{Precondizioni:} È stata aperta la chat.
@@ -49,7 +69,7 @@
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC50.2-Lettura messaggio}  % UC50.2 deve essere analizzato più in dettaglio (com'è fatta una chat? 
+\textbf{UC51.2-Lettura messaggio}  % UC50.2 deve essere analizzato più in dettaglio (com'è fatta una chat? 
 %Quali informazioni sono visualizzate per ogni singolo messaggio?). 
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente / Ristoratore
