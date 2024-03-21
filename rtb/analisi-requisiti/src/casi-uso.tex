@@ -15,17 +15,18 @@ Come concordato con il proponente, la web app$^{G}$ deve essere utilizzata sia d
     \item \textbf{Ristoratore:} è un utente che ha effettuato l'accesso al Sistema ed ha selezionato un profilo ristoratore.\\
     Può gestire il proprio ristorante e le prenotazioni ad esso associate.
 \end{itemize}
+\begin{figure}[h] \includegraphics[scale=1]{attori.png} \end{figure}
 
-% oltre ad aggiungere l'immagine che andrà a mostrare le relazioni tra gli attori (non ci sono relazioni...)
-% a mio parere sarebbe utile fare una descrizioni più approfindita sui "profili", ovvero spiegare che un utente autenticato può avere più profili ecc.
+Non ci sono relazioni di alcun tipo tra i vari attori.
+
 \pagebreak
 \subsection{Lista dei casi d'uso}
 
-% registazione - login - navigazione del sito
+% registazione - login
 \input{src/casi-uso.d/0-utente-non-riconosciuto.tex}
 % profili
 \input{src/casi-uso.d/1-utente-autenticato.tex}
-% cliente
+% cliente - navigazione del sito
 \input{src/casi-uso.d/2-cliente-prenotazione.tex}
 \input{src/casi-uso.d/3-cliente-ordinazione.tex}
 \input{src/casi-uso.d/4-cliente-altro.tex}
