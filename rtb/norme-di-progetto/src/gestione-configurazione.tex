@@ -3,12 +3,11 @@
 \subsection{Gestione della Configurazione}
 
 \subsubsection{Descrizione, scopo ed aspettative}
-    \subsubsubsection{Scopo}
     Lo scopo è di supervisionare e regolare in modo organizzato la creazione di 
     documenti e codice. Ogni elemento soggetto a configurazione sarà soggetto a versionamento
     e controllo delle modifiche, al fine di assicurare l'integrità del prodotto 
     nel tempo.
-    \subsubsubsection{Descrizione}
+    \\
     Tutti gli strumenti dedicati alla configurazione utilizzati per la produzione
     di documenti e codice vengono raccolti, organizzati e coordinati. Questo include
     la gestione della struttura e della disposizione dei file all'interno del repository, 
@@ -16,30 +15,36 @@
 
 \subsubsection{Versionamento}
 Ogni modifica apportata a un documento genera una nuova versione seguendo il formato
-\textbf{[X].[Y].[Z]}, dove:
+\textbf{v[X].[Y].[Z]}, dove:
 \begin{itemize}
-    \item \textbf{X}: rappresenta la versione approvata dal \emph{Responsabile}, l'unico autorizzato ad incrementarla;
-    \item \textbf{Y}: rappresenta la versione approvata dal \emph{Verificatore}, l'unico autorizzato ad incrementarla;
-    \item \textbf{Z}: rappresenta la versione dell'ultima modifica.
+    \item \textbf{X:} Rappresenta la versione approvata dal \emph{Responsabile}, l'unico autorizzato ad incrementarla;
+    \item \textbf{Y:} Rappresenta la versione approvata dal \emph{Verificatore}, l'unico autorizzato ad incrementarla;
+    \item \textbf{Z:} Rappresenta la versione dell'ultima modifica.
 \end{itemize}
 Ogni parte del codice di versione inizia da 0 e ritorna a 0 ogni volta che la componente alla sua sinistra
-viene incrementata
+viene incrementata.
 \subsubsection{Repository}
-    \subsubsubsection{Tecnologie}
-    Per il progetto viene usato il sistema di versionamento \emph{Git}, nello specifico con 
-    il servizio \emph{GitHub}. Per documenti interni temporanei, invece, è stato utilizzato il servizio 
-    \emph{Google Documents}.
-    \subsubsubsection{Struttura Repository}
-    Il repository contiene il codice sorgente per ogni documento dentro una cartella denominata
-    NomeDocumento. Il repository è suddiviso in più branch:
+    \subsubsubsection{Tecnologie e strumenti}
+    Per il progetto viene usato \emph{GitHub}, che a sua volta implementa il sistema di versionamento 
+    \emph{Git}. Il gruppo fa pieno uso delle funzionalità di \emph{GitHub} tra cui:
     \begin{itemize}
-        \item \textbf{main}: il branch principale che contiene l'ultima versione dei documenti
-        \item \textbf{poc-main}: contiene il codice sorgente del \emph{PoC}
-        \item \textbf{rtb-documentazione-main}: il branch per la modifica e la creazione di documenti
+        \item \textbf{Issue:} Permette di discutere, tracciare e risolvere un problema nel progetto;
+        \item \textbf{Milestone:} Permette di raggruppare e monitorare insieme una serie di issues aiutando a tracciare il progresso verso obiettivi del progetto;
+        \item \textbf{Pull request:} Consente di proporre delle modifiche al codice e di richiederne la revisione da un altro membro.
+    \end{itemize}
+    \subsubsubsection{Struttura Repository}
+    Si è deciso di utilizzare un'unica repository contenente il codice sorgente per documentazione e \emph{PoC}.
+    All'interno della repository troviamo una cartella per ogni documento denominata \emph{nome-documento}. Inoltre la
+    repository è suddivisa in 3 branch principali:
+    \begin{itemize}
+        \item \textbf{main:} Il branch principale che contiene l'ultima versione dei documenti compilati in formato \emph{PDF};
+        \item \textbf{poc-main}: Contiene il codice sorgente del \emph{PoC};
+        \item \textbf{rtb-documentazione-main}: Il branch dedicato alla creazione/modifica dei documenti.
     \end{itemize}
     \subsubsubsection{Modifiche alla repository}
     Le modifiche ai vari documenti non vanno fatte direttamente nel branch \emph{rtb-documentazione-main},
-    poiché porterebbe ad un elevato rischio di incongruenze e conflitti. Per ogni sezione di un documento, vengono
-    creati appositi branch dove è possibile apportare modifiche. Successivamente, è necessario 
-    effettuare una \textbf{pull request} con verifica obbligatoria per integrare le modifiche nel branch 
-    \emph{rtb-documentazione-main}.
+    poiché questo porterebbe ad un elevato rischio di incongruenze e conflitti. Per ogni sezione di un documento, vengono
+    creati appositi branch dove è possibile apportare modifiche. Successivamente, una volta terminate le modifiche, è necessario 
+    effettuare una \emph{pull request} con verifica obbligatoria per integrare le modifiche nel branch. Se la verifica non è
+    soddisfatta bisogna apportare le giuste modifiche e richiedere un'altra verifica. Se la verifica è
+    soddisfatta le modifiche verranno integrate con il branch \emph{rtb-documentazione-main}, viene quindi effettuato il \emph{merge}. 
