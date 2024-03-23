@@ -1,0 +1,45 @@
+
+app|App|DA DEFINIRE
+back-end|Backend|DA DEFINIRE
+capitolato|Capitolato|DA DEFINIRE
+carrello|Carrello|DA DEFINIRE
+chat|Chat|DA DEFINIRE
+clienti|Cliente|DA DEFINIRE
+Clienti|Cliente|-
+Concept|PoC|DA DEFINIRE
+consuntivo|Consuntivo|DA DEFINIRE
+conto|Conto|DA DEFINIRE
+d’appalto||DA DEFINIRE
+dell'RTB|RTB|DA DEFINIRE
+design|Design|DA DEFINIRE
+Desktop|Design|DA DEFINIRE
+d’uso|Casi d'Uso|DA DEFINIRE
+Express|ExpressJS|DA DEFINIRE
+front-end|Frontend|DA DEFINIRE
+funzionali|Funzionale|DA DEFINIRE
+ingredienti|Ingrediente|DA DEFINIRE
+issue|Issue|DA DEFINIRE
+ITS|ITS (Issue Tracking System)|DA DEFINIRE
+\LaTeX|Latex \LaTeX|DA DEFINIRE
+l'ordinazione|Ordinazione|DA DEFINIRE
+Mobile|Mobile|DA DEFINIRE
+NestJS|NestJS|DA DEFINIRE
+ordinazione|Odinazione|DA DEFINIRE
+pietanze|Pientanza|DA DEFINIRE
+PoC|Poc|-
+practices|Best Practices|DA DEFINIRE
+prenotazione|Prenotazione|DA DEFINIRE
+prenotazioni|Prenotazione|DA DEFINIRE
+profili|Profilo|DA DEFINIRE
+proponente|Proponente|DA DEFINIRE
+request|Pull Request|DA DEFINIRE
+requisiti|Requisito|DA DEFINIRE
+ristoratore|Ristoratore|DA DEFINIRE
+Ristoratori|Ristoratore|DA DEFINIRE
+SaaS|SaaS (Software as a Service)|DA DEFINIRE
+Telegram|Telegram|DA DEFINIRE
+UML|UML|DA DEFINIRE
+V|V(?)|DA DEFINIRE
+WebApp|Webapp|DA DEFINIRE
+(WhatsApp|WhatsApp|DA DEFINIRE
+Working|Way of Working|DA DEFINIRE
