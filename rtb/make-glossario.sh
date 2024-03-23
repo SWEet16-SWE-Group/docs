@@ -11,8 +11,12 @@ function contains(){
 function linenumber(){
   SEGNAPOSTO="$1"
   FILE="$2"
-  printf '\n%s\n\t%s\n' "$SEGNAPOSTO" "$FILE"
-  grep -ne "$SEGNAPOSTO" "$FILE" | sed 's/\([0-9]*\):/\1/g' | xargs -I ç printf "\t\t%06d\n" ç
+  printf "\n$SEGNAPOSTO\n\t$FILE\n"
+  function p(){
+    printf "\t\t$*\n"
+  }
+  export -f p
+  grep -ne "$SEGNAPOSTO" "$FILE" | sed 's/:.*$//g' | xargs -I ç sh -c 'p ç'
 }
 
 function findsegnaposti(){
