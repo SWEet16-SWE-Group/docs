@@ -49,7 +49,7 @@ function latex(){
   export -f makelatexsource
   cat glossario.csv | awk -F '|' '{print $2}' | sort | uniq | while IFS= read line; do
     makelatexsource "$line"
-  done # < <() # | xargs -I ç sh -c 'makelatexsource ç'
+  done
 }
 
 #findsegnaposti #| xargs -I ç sh -c "findcontainssegnaposto ç"
