@@ -13,4 +13,8 @@ function texfiles() {
   return $matches;
 }
 
-var_dump(texfiles());
+function glossari($file) {
+  return explode("\n", preg_replace('/\s+/', "\n", file_get_contents($file)));
+}
+
+var_dump(glossari(texfiles()[0]));
