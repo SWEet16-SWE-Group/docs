@@ -43,7 +43,13 @@ function findsegnaposti(){
 }
 
 function latex(){
-  cat $* | awk -F '|' '{printf $2}' | sort | uniq | xargs -I ç sh -c 'makelatexsource ç'
+  function makelatexsource(){
+    grep "$*" glossario.csv | head -n 1 | awk -F '|' '{printf "\\item \\textbf{%s}: %s;\n",$2,$3}'
+  }
+  export -f makelatexsource
+  cat glossario.csv | awk -F '|' '{print $2}' | sort | uniq | while IFS= read line; do
+    makelatexsource "$line"
+  done # < <() # | xargs -I ç sh -c 'makelatexsource ç'
 }
 
 #findsegnaposti #| xargs -I ç sh -c "findcontainssegnaposto ç"
