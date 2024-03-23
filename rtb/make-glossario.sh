@@ -42,4 +42,9 @@ function findsegnaposti(){
     uniq
 }
 
-findsegnaposti | xargs -I ç sh -c "findcontainssegnaposto ç"
+function latex(){
+  cat $* | awk -F '|' '{printf $2}' | sort | uniq | xargs -I ç sh -c 'makelatexsource ç'
+}
+
+#findsegnaposti #| xargs -I ç sh -c "findcontainssegnaposto ç"
+$*
