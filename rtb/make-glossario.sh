@@ -11,6 +11,7 @@ function contains(){
 function linenumber(){
   SEGNAPOSTO="$1"
   FILE="$2"
+  printf '\n%s\n\t%s\n' "$SEGNAPOSTO" "$FILE"
   grep -ne "$SEGNAPOSTO" "$FILE" | sed 's/\([0-9]*\):/\1/g' | xargs -I ç printf "\t\t%06d\n" ç
 }
 
@@ -25,7 +26,7 @@ function findsegnaposti(){
 
 function findcontainssegnaposto(){
   SEGNAPOSTO="$*"
-  texfiles | xargs -I ç sh -c "contains $SEGNAPOSTO ç && printf '\t%s\n' ç # && linenumber $SEGNAPOSTO ç"
+  texfiles | xargs -I ç sh -c "contains $SEGNAPOSTO ç && linenumber $SEGNAPOSTO ç"
 }
 
 export -f texfiles
