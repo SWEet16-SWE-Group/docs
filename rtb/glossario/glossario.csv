@@ -4,12 +4,12 @@ back-end|Backend|Componente contenente la logica business del servizio/applicazi
 capitolato|Capitolato|DA DEFINIRE
 carrello|Carrello|DA DEFINIRE
 chat|Chat|DA DEFINIRE
-clienti|Cliente|DA DEFINIRE
+clienti|Cliente|Profilo più comune con le funzionalità di prenotazione, ordinazione ... 
 Clienti|Cliente|-
-Concept|PoC (Proof of Concept)|DA DEFINIRE
+Concept|PoC (Proof of Concept)|Prototipo di un'applicazione che soddisfi i requisiti, principalmente usato per testare le tecnologie
 consuntivo|Consuntivo|DA DEFINIRE
 conto|Conto|DA DEFINIRE
-d’appalto||DA DEFINIRE
+d’appalto|Capitolato d’appalto|DA DEFINIRE
 dell'RTB|RTB|DA DEFINIRE
 design|Design|DA DEFINIRE
 Desktop|Design|DA DEFINIRE
@@ -42,4 +42,4 @@ UML|UML|DA DEFINIRE
 V|V(?)|DA DEFINIRE
 WebApp|Webapp|Applicazione interagibile tramite web browser
 (WhatsApp|WhatsApp|Servizio di messaggistica istantanea
-Working|Way of Working|DA DEFINIRE
+Working|Way of Working|Il modo in cui si decide di lavorare
