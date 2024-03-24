@@ -70,7 +70,8 @@ function makelatex(){
         cnt="DA DEFINIRE"
       fi
       printf '\section{%s}: %s;\n' "$line" "$cnt"
-    done # | tee src/vocaboli.tex
+    done | tee src/vocaboli.tex.tmp
+    mv src/vocaboli.tex{.tmp,}
 }
 
 $*
