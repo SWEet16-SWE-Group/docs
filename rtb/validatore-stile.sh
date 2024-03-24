@@ -1,6 +1,9 @@
+function texfiles(){
+  find . -type f -name '*.tex'
+}
 
 function grep_padded(){
-  grep -ne $* | sed 's/^\([0-9]*\)\:\s*/\1@/;' | awk -F '@' '{printf("%06d: %s\n",$1,$2)}' 
+  grep -nP $* | sed 's/^\([0-9]*\)\:\s*/\1@/;' | awk -F '@' '{printf("%06d: %s\n",$1,$2)}'
 }
 
 function add_message_file(){
@@ -28,11 +31,13 @@ function colon_capital(){
   cat $1 | delete_url | grep_padded ':[^a-zA-Z]*[a-z]' | add_message_file "Maiuscola dopo i due punti" $1
 }
 
+# trova gli errori
 function find(){
  items_capital $*
  colon_capital $*
 }
 
+# applica tutte le formattazioni decise fin'ora
 function pericolo_search_replace(){
   echo "Attenzione pericolo sostituzione regex inplace"
   perl -i -0pe '
@@ -42,7 +47,7 @@ function pericolo_search_replace(){
   ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
   ; s/ *\n/\n/g           # testo bianco a fine riga
   ; s/ *}/}/g          # rimozione spazi tra : e }
-  ; s/}(\w)/} \1/g      # spazio dopo :} 
+  ; s/}(\w)/} \1/g      # spazio dopo :}
   ; s/(\S) +([;:,.])/\1\2/g         # rimozione spazi prima di [:,.;]
   ; s/([a-zA-Z]),([a-zA-Z])/\1, \2/g          # aggiunta spazio dopo ,
 
@@ -75,5 +80,11 @@ function pericolo_search_replace(){
   ' $1
 }
 
-[[ "$1" == "--find" ]] && { shift; find $* ; exit; }
-[[ "$1" == "--replace" ]] && { shift; pericolo_search_replace $* ; exit; }
+if [[ -z "$*" ]] ; then
+  echo Funzioni disponibili
+  echo
+  cat "$0" | grep -A 2 -P '^# '
+  echo
+else
+  $*
+fi
