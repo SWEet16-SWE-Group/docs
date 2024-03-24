@@ -2,10 +2,14 @@ function texfiles(){
   find . -type f -name '*.tex'
 }
 
+function greptext(){
+    grep -nP "$1" "$2" | awk -v msg="$3" -v file="$line" '{printf("%s : %s @ %s\n",msg,file,$0)}'
+}
+
 # trova gli errori nei file tex
 function finderrors(){
   texfiles | while IFS= read line ; do
-    grep -nP '\\item \\textbf{[a-z]' | awk -v msg="" -v file="$line" '{printf("%s : %s @ %s",msg,file,$0)}'
+    greptext '\\item [a-z]' "$line" 'Maiuscola mancante dopo \\item'
   done
 }
 
