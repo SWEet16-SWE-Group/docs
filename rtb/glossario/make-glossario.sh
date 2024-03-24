@@ -54,7 +54,9 @@ function latex(){
 
 # emphasi su ogni parola
 texfiles | grep -ve 'verbali' | while IFS= read line ; do 
-  echo
+  #echo
   MATCHES="$(grep -ne '\$\^{G}\$' $line)"
-  [[ -n "$MATCHES" ]] && echo $line && { echo "$MATCHES" | sed 's/^/\t/;s/\s*$//g'; }
+  [[ -n "$MATCHES" ]] &&
+    #echo $line &&
+      { echo "$MATCHES" | awk -F 'ç' -v file="$line"  '{printf("%s @ %s\n",file,$1)}' ; } | grep -vP '\\emph{.*?}\$\^{G}\$'
 done
