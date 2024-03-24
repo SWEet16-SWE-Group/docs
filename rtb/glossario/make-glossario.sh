@@ -51,7 +51,7 @@ function latex(){
 
 
 function findoutliers(){
-  texfiles | grep -ve 'verbali' | while IFS= read line ; do
+  texfiles | while IFS= read line ; do
     MATCHES="$(grep -ne '\$\^{G}\$' $line)"
     [[ -n "$MATCHES" ]] &&
       { echo "$MATCHES" | awk -F 'ç' -v file="$line"  '{printf("%s @ %s\n",file,$1)}' ; } | grep -vP '\\emph{.*?}\$\^{G}\$'
