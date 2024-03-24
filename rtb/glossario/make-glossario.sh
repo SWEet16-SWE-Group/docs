@@ -58,4 +58,8 @@ function findoutliers(){
   done
 }
 
+function findentries(){
+  cat $(texfiles) | grep -Po '\\emph{.*?}\$\^{G}\$'
+}
+
 $*
