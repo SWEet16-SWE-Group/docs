@@ -49,14 +49,13 @@ function latex(){
   cat glossario.csv | awk -F '|' '{print $2}' | sort | uniq | while IFS= read line; do makelatexsource "$line" ; done | tee $*
 }
 
-#findsegnaposti | xargs -I ç sh -c "findcontainssegnaposto ç"
-#$*
 
-# emphasi su ogni parola
-texfiles | grep -ve 'verbali' | while IFS= read line ; do 
-  #echo
-  MATCHES="$(grep -ne '\$\^{G}\$' $line)"
-  [[ -n "$MATCHES" ]] &&
-    #echo $line &&
+function findoutliers(){
+  texfiles | grep -ve 'verbali' | while IFS= read line ; do
+    MATCHES="$(grep -ne '\$\^{G}\$' $line)"
+    [[ -n "$MATCHES" ]] &&
       { echo "$MATCHES" | awk -F 'ç' -v file="$line"  '{printf("%s @ %s\n",file,$1)}' ; } | grep -vP '\\emph{.*?}\$\^{G}\$'
-done
+  done
+}
+
+$*
