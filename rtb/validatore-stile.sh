@@ -9,8 +9,6 @@ function finderrors(){
   done
 }
 
-texfiles
-
 if [[ -z "$*" ]] ; then
   echo Funzioni disponibili
   echo
@@ -19,6 +17,8 @@ if [[ -z "$*" ]] ; then
 else
   $*
 fi
+
+exit 0
 
 ## controllo che '\item' sia seguito da una maiuscola
 #function items_capital(){
