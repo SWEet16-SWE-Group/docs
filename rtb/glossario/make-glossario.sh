@@ -63,7 +63,14 @@ function findentries(){
 }
 
 function makelatex(){
-  findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | sort | uniq
+  findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | sort | uniq |
+    while IFS= read line ; do
+      cnt="$(cat src/vocaboli.tex | grep "$line" | sed "s/$line//" | perl -pe 's/\\section{}: (.*);/\1/' )"
+      if [[ -z "$cnt" ]] ; then
+        cnt="DA DEFINIRE"
+      fi
+      printf '\section{%s}: %s;\n' "$line" "$cnt"
+    done # | tee src/vocaboli.tex
 }
 
 $*
