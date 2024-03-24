@@ -63,7 +63,7 @@ function findentries(){
 }
 
 function makelatex(){
-  findentries | sed 's/\\emph{\(.\)/\\subsection{\U\1/;s/\$\^{G}\$//' | sort | uniq
+  findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | sort | uniq
 }
 
 $*
