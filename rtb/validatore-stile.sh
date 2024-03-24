@@ -3,13 +3,14 @@ function texfiles(){
 }
 
 function greptext(){
-    grep -nP "$1" "$2" | awk -v msg="$3" -v file="$line" '{printf("%s : %s @ %s\n",msg,file,$0)}'
+    grep -nP "$2" "$1" | awk -v msg="$3" -v file="$1" '{printf("%s : %s @ %s\n",msg,file,$0)}'
 }
 
 # trova gli errori nei file tex
 function finderrors(){
   texfiles | while IFS= read line ; do
-    greptext '\\item [a-z]' "$line" 'Maiuscola mancante dopo \\item'
+    greptext "$line" '\\item [a-z]' 'Maiuscola mancante dopo \\item'
+    greptext "$line" '\\item \\texbf{[a-z]' 'Maiuscola mancante dopo \\item \\textbf'
   done
 }
 
