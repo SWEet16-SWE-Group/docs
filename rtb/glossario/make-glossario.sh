@@ -1,9 +1,11 @@
 #!/bin/bash
 
+# stampa i file di latex
 function texfiles(){
   find .. -type f -name '*.tex'
 }
 
+# stampa le posizioni dove $^{G}$ viene usato senza un \emph associato
 function findoutliers(){
   texfiles | while IFS= read line ; do
     MATCHES="$(grep -ne '\$\^{G}\$' $line)"
@@ -12,17 +14,26 @@ function findoutliers(){
   done
 }
 
+# stampa le enties valide per il glossario
 function findentries(){
   cat $(texfiles) | grep -Po '\\emph{.*?}\$\^{G}\$'
 }
 
+# stampa e scrivi il template latex dove aggiungere le definizioni
 function makelatex(){
   findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | sort | uniq |
     while IFS= read line ; do
       cnt="DA DEFINIRE"
-      printf '\section{%s}: %s;\n' "$line" "$cnt"
+      printf '\subsection{%s}: %s;\n' "$line" "$cnt"
     done | tee src/vocaboli.tex.tmp
     mv src/vocaboli.tex{.tmp,}
 }
 
-$*
+if [[ -z "$*" ]] ; then
+  echo Funzioni disponibili
+  echo
+  cat "$0" | grep -P '^# ' -A 1 | sed 's/--//;s/^/\t/' | sed 's/function \(.*\)(){/come usare : sh make-glossario.sh \1/'
+  echo
+else
+  $*
+fi
