@@ -62,4 +62,8 @@ function findentries(){
   cat $(texfiles) | grep -Po '\\emph{.*?}\$\^{G}\$'
 }
 
+function makelatex(){
+  findentries | sed 's/\\emph{\(.\)/\\subsection{\U\1/;s/\$\^{G}\$//' | sort | uniq
+}
+
 $*
