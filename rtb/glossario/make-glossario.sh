@@ -1,7 +1,7 @@
 #!/bin/bash
 
 function texfiles(){
-  find . -type f -name *.tex
+  find .. -type f -name '*.tex'
 }
 
 function contains(){
@@ -49,5 +49,12 @@ function latex(){
   cat glossario.csv | awk -F '|' '{print $2}' | sort | uniq | while IFS= read line; do makelatexsource "$line" ; done | tee $*
 }
 
-#findsegnaposti #| xargs -I ç sh -c "findcontainssegnaposto ç"
-$*
+#findsegnaposti | xargs -I ç sh -c "findcontainssegnaposto ç"
+#$*
+
+# emphasi su ogni parola
+texfiles | grep -ve 'verbali' | while IFS= read line ; do 
+  echo
+  MATCHES="$(grep -ne '\$\^{G}\$' $line)"
+  [[ -n "$MATCHES" ]] && echo $line && { echo "$MATCHES" | sed 's/^/\t/;s/\s*$//g'; }
+done
