@@ -1,6 +1,6 @@
 
 app|App|DA DEFINIRE
-back-end|Backend|Componente contenente la logica business del servizio/applicazione
+back-end|Backend|Parte di un'applicazione con la quale l'utente interagisce indirettamente
 capitolato|Capitolato|DA DEFINIRE
 carrello|Carrello|DA DEFINIRE
 chat|Chat|DA DEFINIRE
@@ -15,10 +15,10 @@ design|Design|DA DEFINIRE
 Desktop|Design|DA DEFINIRE
 d’uso|Casi d'Uso|DA DEFINIRE
 Express|ExpressJS|DA DEFINIRE
-front-end|Frontend|DA DEFINIRE
+front-end|Frontend|Parte di un'applicazione con la quale l'utente interagisce direttamente
 funzionali|Funzionale|DA DEFINIRE
 ingredienti|Ingrediente|DA DEFINIRE
-issue|Issue|DA DEFINIRE
+issue|Issue|Feature offerta da GitHub per il tracciamento di idee, compiti o bug
 ITS|ITS (Issue Tracking System)|DA DEFINIRE
 \LaTeX|Latex \LaTeX|DA DEFINIRE
 l'ordinazione|Ordinazione|DA DEFINIRE
@@ -27,7 +27,7 @@ NestJS|NextJs|DA DEFINIRE
 ordinazione|Ordinazione|DA DEFINIRE
 pietanze|Pientanza|DA DEFINIRE
 PoC|PoC (Proof of Concept)|-
-practices|Best Practices|DA DEFINIRE
+practices|Best Practices|Modo di fare noto, che abbia dimostrato di garantire risultati migliori in determinate circostanze
 prenotazione|Prenotazione|DA DEFINIRE
 prenotazioni|Prenotazione|DA DEFINIRE
 profili|Profilo|DA DEFINIRE
