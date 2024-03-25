@@ -73,31 +73,3 @@ else
 fi
 
 exit 0
-
-## controllo che '\item' sia seguito da una maiuscola
-#function items_capital(){
-#  function remove_capital () {
-#    grep -vE '\\item (|\\textbf{)[A-Z]'
-#  }
-#
-#  # cat $1 | grep_padded '\\item' | remove_capital | add_message_file "Maiuscola dopo item" $1
-#}
-#
-## controllo che ':' sia seguito da una maiuscola
-#function colon_capital(){
-#  function delete_url(){
-#    perl -pe 's/\\(url|href){.*?}//
-#    ; s/Ore\s*\d*:\d*\s*//
-#    ; s/\\textbf{(Inizio|Fine) incontro:}//
-#    '
-#  }
-#
-#  # cat $1 | delete_url | grep_padded ':[^a-zA-Z]*[a-z]' | add_message_file "Maiuscola dopo i due punti" $1
-#}
-#
-## trova gli errori
-#function find(){
-# items_capital $*
-# colon_capital $*
-#}
-#
