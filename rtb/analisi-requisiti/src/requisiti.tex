@@ -111,9 +111,13 @@ Ogni requisito presenta un codice identificativo univoco, così definito:
 
 \subsubsection{Qualità}
 
-I requisiti non funzionali presentano anch'essi un codice identificativo univoco, che indica se il
-relativo requisito è obbligatorio (RNFO), desiderabile (RNFD) o facoltativo (RNFF); vengono inoltre indicati
-esplicitamente la caratteristica del prodotto che il requisito tratta e la fonte d'ispirazione di quest'ultimo.
+Ogni requisito di qualità presenta un codice identificativo univoco, così definito:
+\begin{itemize}
+    \item \textbf{RQO:} Requisito di Qualità Obbligatorio;
+    \item \textbf{RQD:} Requisito di Qualità Desiderabile;
+    \item \textbf{RQF:} Requisito di Qualità Facoltativo;
+\end{itemize}
+
 \begin{center}
     \begin{tblr}{
         colspec={|X[1.5cm]|X[3cm]|X[8cm]|X[2.5cm]|},
@@ -123,16 +127,22 @@ esplicitamente la caratteristica del prodotto che il requisito tratta e la fonte
         \hline
         \textbf{Codice} & \textbf{Caratteristica} & \textbf{Descrizione} & \textbf{Fonte} \\
 
-        RNFO1 & Sviluppo & Il prodotto deve essere sviluppato in modo concorde a quanto stabilito nelle Norme di Progetto & Brainstorming Interno \\ \hline
-        RNFO2 & Sviluppo & Il progetto deve essere accessibile pubblicamente su GitHub$^{G}$ & Brainstorming Interno \\ \hline
-        RNFO3 & Sviluppo & Devono essere realizzati i test di unità ed integrazione con una copertura minima del 80\% & Capitolato \\ \hline
-        RNFO4 & Sviluppo & Deve essere fornita una completa documentazione sulle scelte implementative e progettuali e relative motivazioni & Capitolato \\ \hline
-        RNFO5 & Sviluppo & Deve essere fornita una completa documentazione sui problemi aperti e sulle eventuali soluzioni da esplorare & Capitolato \\ \hline
+        RQO1 & Sviluppo & Il prodotto deve essere sviluppato in modo concorde a quanto stabilito nelle Norme di Progetto & Brainstorming Interno \\ \hline
+        RQO2 & Sviluppo & Il progetto deve essere accessibile pubblicamente su GitHub$^{G}$ & Brainstorming Interno \\ \hline
+        RQO3 & Sviluppo & Devono essere realizzati i test di unità ed integrazione con una copertura minima del 80\% & Capitolato \\ \hline
+        RQO4 & Sviluppo & Deve essere fornita una completa documentazione sulle scelte implementative e progettuali e relative motivazioni & Capitolato \\ \hline
+        RQO5 & Sviluppo & Deve essere fornita una completa documentazione sui problemi aperti e sulle eventuali soluzioni da esplorare & Capitolato \\ \hline
         \end{tblr}
 \end{center}
 
 \subsubsection{Vincolo}
 
+Ogni requisito di vincolo presenta un codice identificativo univoco, così definito:
+\begin{itemize}
+    \item \textbf{RVO:} Requisito di Vincolo Obbligatorio;
+    \item \textbf{RVD:} Requisito di Vincolo Desiderabile;
+    \item \textbf{RVF:} Requisito di Vincolo Facoltativo;
+\end{itemize}
 \begin{center}
     \begin{tblr}{
         colspec={|X[1.5cm]|X[3cm]|X[8cm]|X[2.5cm]|},
@@ -142,12 +152,12 @@ esplicitamente la caratteristica del prodotto che il requisito tratta e la fonte
         \hline
         \textbf{Codice} & \textbf{Caratteristica} & \textbf{Descrizione} & \textbf{Fonte} \\
 
-        RNFVO1 & Sviluppo & Il sistema sarà sviluppato e consegnato tramite piattaforma Docker & Capitolato \\ \hline
+        RVO1 & Sviluppo & Il sistema sarà sviluppato e consegnato tramite piattaforma Docker$^{G}$ & Capitolato \\ \hline
 
         % le versioni sono quelle uscite nel 2021
-        RNFVO2 & Portabilità & Il sistema dovrà funzionare sul browser Firefox dalla versione 95 & Capitolato \\ \hline
-        RNFVO3 & Portabilità & Il sistema dovrà funzionare sul browser Chromium dalla versione 90 & Capitolato \\ \hline
-        RNFVO4 & Portabilità & Il sistema dovrà funzionare sul browser Safari dalla versione 15 & Capitolato \\ \hline
+        RVO2 & Portabilità & Il sistema deve essere compatibile con il browser Firefox$^{G}$ dalla versione 95 & Capitolato \\ \hline
+        RVO3 & Portabilità & Il sistema deve essere compatibile con il browser Google Chrome$^{G}$ dalla versione 90 & Capitolato \\ \hline
+        RVO4 & Portabilità & Il sistema deve essere compatibile con il browser Safari$^{G}$ dalla versione 15 & Capitolato \\ \hline
 
         \end{tblr}
 \end{center}
