@@ -62,6 +62,10 @@ function findreplace(){
     ' "$line"
   done
   git diff
+
+  texfiles | while IFS= read line ; do
+    grep -zP '\\item .*?[:;.]?\n *\\item' "$line"
+  done
 }
 
 
