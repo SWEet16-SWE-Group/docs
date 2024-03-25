@@ -24,6 +24,7 @@ function finderrors(){
 function findreplace(){
   echo "Attenzione pericolo sostituzione regex inplace"
   texfiles | while IFS= read line ; do
+    printf 'Operando su: %s\n' "$line"
     perl -i -0pe '
     # rimozione del rumore
     ; s/\r\n/\n/g           # carriage return
