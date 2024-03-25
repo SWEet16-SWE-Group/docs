@@ -50,9 +50,10 @@ function findreplace(){
 
     perl -i -0pe '
     # elenchi ; .
-    ; s/(\\item .*?)[:;\.]?\n( *\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
-    ; s/(\\item .*?)[:;\.]?\n( *\\end)/\1.\n\2/g        # rimozione spazi prima di [:,.;]
-    ; s/(\\item .*?)[:;\.]?(})?\n( *\\begin)/\1:\2\n\3/g        # rimozione spazi prima di [:,.;]
+    ; s/(\\item .*?)[:;\.]?\n( *\\item)/\1;\n\2/g         # ; tra 2 \item
+    ; s/(\\item .*?)\.\n( *\\item)/\1;\n\2/g              # ; tra 2 \item con il . in mezzo quello sopra non sempre funziona
+    ; s/(\\item .*?)[:;\.]?\n( *\\end)/\1.\n\2/g          # . tra \item e \end
+    ; s/(\\item .*?)[:;\.]?(})?\n( *\\begin)/\1:\2\n\3/g  # : tra 2 \item e \begin
 
     # rimozione del rumore
     ; s/\r\n/\n/g           # carriage return
@@ -64,7 +65,7 @@ function findreplace(){
   #git diff
 
   texfiles | while IFS= read line ; do
-    grep -A 1 -B 1 --group-separator="=====" -zP '\\item .*?\.\n *\\item' "$line"
+    grep -zPo '\\item .*?\.\n *\\item' "$line" | tr "\0" '\r' | sed 's/\r/\n\n/'
   done
 
   echo
