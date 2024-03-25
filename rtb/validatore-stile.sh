@@ -9,14 +9,14 @@ function greptext(){
 # trova gli errori nei file tex
 function finderrors(){
   texfiles | while IFS= read line ; do
-    #greptext "$line" '\\item [a-z]' 'Maiuscola mancante dopo \\item'
-    #greptext "$line" '\\item \\texbf{[a-z]' 'Maiuscola mancante dopo \\item \\textbf'
-    #greptext "$line" '\S\s+[,;:]' 'Spazio presente prima di [,.:]'
-    #greptext "$line" '[,;:][^}\s0-9]' 'Spazio mancante dopo di [,.:]'
+    greptext "$line" '\\item [a-z]' 'Maiuscola mancante dopo \\item'
+    greptext "$line" '\\item \\texbf{[a-z]' 'Maiuscola mancante dopo \\item \\textbf'
+    greptext "$line" '\S\s+[,;:]' 'Spazio presente prima di [,.:]'
+    greptext "$line" '[,;:][^}\s0-9]' 'Spazio mancante dopo di [,.:]'
 
     #greptext "$line" '\\item.*?[^;]}?$' '\\item non finisce con ;'
     #greptextzero "$line" '\\item (?!\\item)*?[^\.]\s*?\n\s*?\\end{(itemize|enumerate)}' '\\item .* \\end non finisce con .'
-    greptextzero "$line" '\\item[^\n]*?[^:]\s*}?\n[^\n]*?\\begin' '\\item .* \\begin non finisce con :'
+    #greptextzero "$line" '\\item[^\n]*?[^:]\s*}?\n[^\n]*?\\begin' '\\item .* \\begin non finisce con :'
   done
 }
 
