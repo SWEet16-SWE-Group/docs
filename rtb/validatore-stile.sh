@@ -20,48 +20,54 @@ function finderrors(){
   done
 }
 
-# applica tutte le formattazioni decise fin'ora
-function pericolo_search_replace(){
+# findreplace le correzzioni
+function findreplace(){
   echo "Attenzione pericolo sostituzione regex inplace"
-  perl -i -0pe '
-  # rimozione del rumore
-    s/\r\n/\n/g           # carriage return
-  ; s/\t/  /g             # tab in 2 spazi
-  ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
-  ; s/ *\n/\n/g           # testo bianco a fine riga
-  ; s/ *}/}/g          # rimozione spazi tra : e }
-  ; s/}(\w)/} \1/g      # spazio dopo :}
-  ; s/(\S) +([;:,.])/\1\2/g         # rimozione spazi prima di [:,.;]
-  ; s/([a-zA-Z]),([a-zA-Z])/\1, \2/g          # aggiunta spazio dopo ,
+  texfiles | while IFS= read line ; do
+    perl -i -0pe '
 
-  # maiuscole
-  ; s/\\item (\\textbf{)?([a-z])/\\item \1\U\2/g                     # dopo item, preservando textbf
-  ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/   # dopo : preservando caratteri in mezzo e escludendo url e href
-  ; s/:(})? ([a-z])/:\1 \U\2/g
+    # rimozione del rumore
+    ; s/\r\n/\n/g           # carriage return
+    ; s/\t/  /g             # tab in 2 spazi
+    ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
+    ; s/ *\n/\n/g           # testo bianco a fine riga
+    ; s/ *}/}/g          # rimozione spazi tra : e }
+    ; s/}(\w)/} \1/g      # spazio dopo :}
+    ; s/(\S) +([;:,.])/\1\2/g         # rimozione spazi prima di [:,.;]
+    ; s/([a-zA-Z]),([a-zA-Z])/\1, \2/g          # aggiunta spazio dopo ,
 
-  # mergia le linee di item
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-  ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    # maiuscole
+    ; s/\\item (\\textbf{)?([a-z])/\\item \1\U\2/g                     # dopo item, preservando textbf
+    ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/   # dopo : preservando caratteri in mezzo e escludendo url e href
+    ; s/:(})? ([a-z])/:\1 \U\2/g
 
-  # elenchi ; .
-  ; s/(\\item .*?)[:;.]?\n( *\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
-  ; s/(\\item .*?)[:;.]?\n( *\\end)/\1.\n\2/g        # rimozione spazi prima di [:,.;]
-  ; s/(\\item .*?)[:;.]?(})?\n( *\\begin)/\1:\2\n\3/g        # rimozione spazi prima di [:,.;]
+    # mergia le linee di item
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
 
-  # rimozione del rumore
-  ; s/\r\n/\n/g           # carriage return
-  ; s/\t/  /g             # tab in 2 spazi
-  ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
-  ; s/ *\n/\n/g           # testo bianco a fine riga
-  ' $1
+    # elenchi ; .
+    ; s/(\\item .*?)[:;.]?\n( *\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
+    ; s/(\\item .*?)[:;.]?\n( *\\end)/\1.\n\2/g        # rimozione spazi prima di [:,.;]
+    ; s/(\\item .*?)[:;.]?(})?\n( *\\begin)/\1:\2\n\3/g        # rimozione spazi prima di [:,.;]
+
+    # rimozione del rumore
+    ; s/\r\n/\n/g           # carriage return
+    ; s/\t/  /g             # tab in 2 spazi
+    ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
+    ; s/ *\n/\n/g           # testo bianco a fine riga
+
+    ' "$line"
+  done
+  git diff
 }
+
 
 if [[ -z "$*" ]] ; then
   echo Funzioni disponibili
