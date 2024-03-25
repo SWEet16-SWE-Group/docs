@@ -41,7 +41,7 @@ function findreplace(){
     ; s/:(})? ([a-z])/:\1 \U\2/g
     ' "$line"
 
-    while [[ -z "$( grep -zP '\\item .*?\n[^\\]*?\n' "$line")" ]] ; do
+    while [[ -n "$( grep -zP '\\item .*?\n[^\\]*?\n' "$line" | tee /dev/stdout )" ]] ; do
       perl -i -0pe '
       # mergia le linee di item
       ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
