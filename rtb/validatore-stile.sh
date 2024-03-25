@@ -44,14 +44,6 @@ function findreplace(){
     perl -i -0pe '
     # mergia le linee di item
     ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
-    ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
     ' "$line"
 
 
