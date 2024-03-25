@@ -62,13 +62,10 @@ function findreplace(){
     ; s/ *\n/\n/g           # testo bianco a fine riga
     ' "$line"
   done
-  #git diff
 
-  texfiles | while IFS= read line ; do
-    grep -zPo '\\item .*?\.\n *\\item' "$line" | tr "\0" '\r' | sed 's/\r/\n\n/'
-  done
-
-  echo
+  #texfiles | while IFS= read line ; do
+  #  grep -zPo '\\item .*?\.\n *\\item' "$line" | tr "\0" '\r' | sed 's/\r/\n\n/'
+  #done
 }
 
 
