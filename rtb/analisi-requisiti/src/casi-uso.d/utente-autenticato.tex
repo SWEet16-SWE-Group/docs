@@ -1,9 +1,10 @@
-
+\pagebreak
 \subsubsection{UC3-Modifica account }
+\begin{figure}[h] \includegraphics[scale=0.8]{uc03.png} \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale:} utente autenticato.
-    \item \textbf{Precondizioni:} l'utente è autenticato all'interno del sistema.
-    \item \textbf{Postcondizioni:} le modifiche fatte alle informazioni dell'account dell'utente sono
+    \item \textbf{Attore principale:} Utente autenticato.
+    \item \textbf{Precondizioni:} L'utente è autenticato all'interno del sistema.
+    \item \textbf{Postcondizioni:} Le modifiche fatte alle informazioni dell'account dell'utente sono
     salvate dal sistema.
     \item \textbf{Scenario principale:}
         \begin{enumerate}
@@ -19,10 +20,11 @@
 \end{itemize}
 
 \subsubsection{UC4-Logout}
+\begin{figure}[h] \includegraphics[scale=1]{uc04.png} \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale:} utente autenticato.
-    \item \textbf{Precondizioni:} l'utente è autenticato presso il sistema.
-    \item \textbf{Postcondizioni:} l'utente non è più autenticato all'interno del sistema.
+    \item \textbf{Attore principale:} Utente autenticato.
+    \item \textbf{Precondizioni:} L'utente è autenticato presso il sistema.
+    \item \textbf{Postcondizioni:} L'utente non è più autenticato all'interno del sistema.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona l'opzione di logout;
@@ -32,11 +34,13 @@
     \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \subsubsection{UC5-Creazione profilo}
+\begin{figure}[h] \includegraphics[scale=.7]{uc05.png} \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale:} utente autenticato.
-    \item \textbf{Precondizioni:} l'utente è connesso al sistema e sta visualizzando la lista dei suoi profili.
-    \item \textbf{Postcondizioni:} il profilo creato dall'utente, insieme a tutte le relative informazioni,
+    \item \textbf{Attore principale:} Utente autenticato.
+    \item \textbf{Precondizioni:} L'utente è connesso al sistema e sta visualizzando la lista dei suoi profili.
+    \item \textbf{Postcondizioni:} Il profilo creato dall'utente, insieme a tutte le relative informazioni,
     è salvato dal sistema nella lista dei profili dell'utente.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -58,10 +62,10 @@
 
 \subsubsection{UC6-Creazione profilo cliente}
 \begin{itemize}
-    \item \textbf{Attore principale:} utente autenticato.
-    \item \textbf{Precondizioni:} l'utente è autenticato presso il sistema e sta visualizzando
+    \item \textbf{Attore principale:} Utente autenticato.
+    \item \textbf{Precondizioni:} L'utente è autenticato presso il sistema e sta visualizzando
     la lista dei suoi profili.
-    \item \textbf{Postcondizioni:} il profilo "cliente" viene salvato dal sistema nella lista dei profili
+    \item \textbf{Postcondizioni:} Il profilo "cliente" viene salvato dal sistema nella lista dei profili
     dell'utente.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -84,9 +88,9 @@
 
 \subsubsection{UC7-Creazione profilo ristoratore}
 \begin{itemize}
-    \item \textbf{Attore principale:} utente autenticato.
-    \item \textbf{Precondizioni:} l'utente è autenticato presso il sistema e sta visualizzando la lista dei suoi profili.
-    \item \textbf{Postcondizioni:} il profilo-ristoratore appena creato è salvato nella lista dei profili dell'utente.
+    \item \textbf{Attore principale:} Utente autenticato.
+    \item \textbf{Precondizioni:} L'utente è autenticato presso il sistema e sta visualizzando la lista dei suoi profili.
+    \item \textbf{Postcondizioni:} Il profilo-ristoratore appena creato è salvato nella lista dei profili dell'utente.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item L'utente seleziona l'opzione di creazione di un nuovo profilo;
@@ -114,9 +118,11 @@
         \end{itemize}
 \end{itemize}
 
+\pagebreak
+
 \textbf{UCE7.1-Campo mancante}
 \begin{itemize}
-    \item \textbf{Descrizione: }al momento della conferma dei dati inseriti,nessun campo relativo al ristorante può essere vuoto.
+    \item \textbf{Descrizione: }Al momento della conferma dei dati inseriti,nessun campo relativo al ristorante può essere vuoto.
     \item \textbf{Scenario alternativo:}
     \begin{enumerate}
         \item Il sistema verifica che l'utente non abbia inserito i valori relativi ad uno o più campi di
@@ -128,7 +134,7 @@
 
 \textbf{UCE7.2-Recapito telefonico già presente}
 \begin{itemize}
-    \item \textbf{Descrizione: }nel sistema non possono essere presenti ristoranti, afferenti allo stesso ristoratore
+    \item \textbf{Descrizione: }Nel sistema non possono essere presenti ristoranti, afferenti allo stesso ristoratore
     o a diversi ristoratori, con lo stesso recapito telefonico.
     \item \textbf{Scenario alternativo:}
     \begin{enumerate}
@@ -142,7 +148,7 @@
 
 \textbf{UCE7.3-Indirizzo già presente}
 \begin{itemize}
-    \item \textbf{Descrizione: }nel sistema non possono essere presenti ristoranti, afferenti allo stesso ristoratore
+    \item \textbf{Descrizione: }Nel sistema non possono essere presenti ristoranti, afferenti allo stesso ristoratore
     o a diversi ristoratori, con lo stesso indirizzo.
     \item \textbf{Scenario alternativo:}
     \begin{enumerate}
@@ -154,27 +160,30 @@
     \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \subsubsection{UC8-Cancellazione profilo}
+\begin{figure}[h] \includegraphics[scale=1]{uc08.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} utente autenticato.
-\item \textbf{Precondizioni:} l'utente è autenticato presso il sistema e sta visualizzando la lista dei suoi profili.
-\item \textbf{Postcondizioni:} il profilo eliminato è rimosso dalla lista dei profili dell'utente.
+\item \textbf{Attore principale:} Utente autenticato.
+\item \textbf{Precondizioni:} L'utente è autenticato presso il sistema e sta visualizzando la lista dei suoi profili.
+\item \textbf{Postcondizioni:} Il profilo eliminato è rimosso dalla lista dei profili dell'utente.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona l'opzione di eliminazione di un profilo;
     \item Il sistema chiede all'utente di scegliere quale profilo eliminare;
     \item L'utente sceglie il profilo;
-    \item L'utente sceglie l'opzione di conferma ;
+    \item L'utente sceglie l'opzione di conferma;
     \item Il sistema comunica all'utente che l'eliminazione del profilo è avvenuta con successo;
     \item L'utente visualizza la lista dei suoi profili dalla quale è stato rimosso il profilo appena creato.
 \end{enumerate}
 \end{itemize}
 
 \subsubsection{UC9-Selezione profilo cliente}
+\begin{figure}[h] \includegraphics[scale=1]{uc09.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} utente autenticato.
-\item \textbf{Precondizioni:} l'utente è autenticato presso il sistema.
-\item \textbf{Postcondizioni:} l'utente visualizza le informazioni relative al profilo cliente selezionato.
+\item \textbf{Attore principale:} Utente autenticato.
+\item \textbf{Precondizioni:} L'utente è autenticato presso il sistema.
+\item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative al profilo cliente selezionato.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente sta visualizzando la lista dei suoi profili;
@@ -183,11 +192,13 @@
 \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \subsubsection{UC10-Selezione profilo ristoratore}
+\begin{figure}[h] \includegraphics[scale=1]{uc10.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} utente autenticato.
-\item \textbf{Precondizioni:} l'utente è autenticato presso il sistema e possiede una profilo ristoratore.
-\item \textbf{Postcondizioni:} l'utente visualizza le informazioni relative al profilo selezionato.
+\item \textbf{Attore principale:} Utente autenticato.
+\item \textbf{Precondizioni:} L'utente è autenticato presso il sistema e possiede una profilo ristoratore.
+\item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative al profilo ristoratore selezionato.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente sta visualizzando la lista dei suoi profili;
@@ -197,10 +208,11 @@
 \end{itemize}
 
 \subsubsection{UC11-Modifica profilo }
+\begin{figure}[h] \includegraphics[scale=.7]{uc11.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} utente autenticato.
-\item \textbf{Precondizioni:} l'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
-\item \textbf{Postcondizioni:} le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
+\item \textbf{Attore principale:} Utente autenticato.
+\item \textbf{Precondizioni:} L'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
+\item \textbf{Postcondizioni:} Le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona l'opzione di modifica del profilo;
@@ -220,9 +232,9 @@
 
 \subsubsection{UC12-Modifica profilo cliente}
 \begin{itemize}
-\item \textbf{Attore principale:} utente autenticato.
-\item \textbf{Precondizioni:} l'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
-\item \textbf{Postcondizioni:} le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
+\item \textbf{Attore principale:} Utente autenticato / Cliente.
+\item \textbf{Precondizioni:} L'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
+\item \textbf{Postcondizioni:} Le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona l'opzione di modifica del profilo;
@@ -243,9 +255,9 @@
 
 \subsubsection{UC13-Modifica profilo ristoratore}
 \begin{itemize}
-\item \textbf{Attore principale:} utente autenticato.
-\item \textbf{Precondizioni:} l'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
-\item \textbf{Postcondizioni:} le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
+\item \textbf{Attore principale:} Utente autenticato / Ristoratore.
+\item \textbf{Precondizioni:} L'utente è stato autenticato dal sistema e sta visualizzando la lista dei suoi profili.
+\item \textbf{Postcondizioni:} Le modifiche apportate ai dati relativi al profilo sono salvate dal sistema.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona l'opzione di modifica del profilo;
@@ -273,15 +285,16 @@
 \end{itemize}
 
 \subsubsection{UC14-Logout dal profilo}
+\begin{figure}[h] \includegraphics[scale=1]{uc14.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} cliente/ristoratore.
-\item \textbf{Precondizioni:} l'utente ha selezionato uno dei profili afferenti al suo account.
-\item \textbf{Postcondizioni:} l'utente è indirizzato alla pagina di selezione del profilo.
+\item \textbf{Attore principale:} Cliente / Ristoratore.
+\item \textbf{Precondizioni:} L'utente ha selezionato uno dei profili afferenti al suo account.
+\item \textbf{Postcondizioni:} L'utente è indirizzato alla pagina di selezione del profilo.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona l'opzione di logout dal profilo precedentemente selezionato;
     \item Il sistema chiede la conferma all'utente della volontà di tornare alla scelta dei profili;
-    \item Il cliente conferma la scelta;
-    \item Il cliente visualizza la lista dei profili del suo account, potendone selezionare uno.
+    \item L'utente conferma la scelta;
+    \item L'utente visualizza la lista dei profili del suo account, potendone selezionare uno.
 \end{enumerate}
 \end{itemize}

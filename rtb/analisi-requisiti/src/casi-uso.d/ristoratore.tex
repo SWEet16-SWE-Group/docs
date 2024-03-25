@@ -1,13 +1,13 @@
-\pagebreak
 \subsubsection{UC33-Accettazione prenotazione}
+\begin{figure}[h] \includegraphics[scale=1]{uc33.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Attore principale:} Ristoratore.
 \item \textbf{Precondizioni:}
 \begin{itemize}
         \item Il ristoratore è connesso al sistema e sta visualizzando il dettaglio di una singola prenotazione (si veda UC36-Visualizzazione singola prenotazione);
         \item La prenotazione è nello stato "In attesa".
 \end{itemize}
-\item \textbf{Postcondizioni:} lo stato della prenotazione diventa "Accettata".
+\item \textbf{Postcondizioni:} Lo stato della prenotazione diventa "Accettata".
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il ristoratore seleziona l'opzione di accettazione della prenotazione;
@@ -15,15 +15,17 @@
 \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \subsubsection{UC34-Rifiuta prenotazione}
+\begin{figure}[h] \includegraphics[scale=1]{uc34.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Attore principale:} Ristoratore.
 \item \textbf{Precondizioni:}
 \begin{itemize}
         \item Il ristoratore è connesso al sistema e sta visualizzando il dettaglio di una singola prenotazione (si veda UC36-Visualizzazione singola prenotazione);
         \item La prenotazione è nello stato "In attesa".
 \end{itemize}
-\item \textbf{Postcondizioni:} lo stato della prenotazione diventa "Rifiutata".
+\item \textbf{Postcondizioni:} Lo stato della prenotazione diventa "Rifiutata".
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il ristoratore seleziona l'opzione di rifiuto della prenotazione;
@@ -33,10 +35,11 @@
 \end{itemize}
 
 \subsubsection{UC35-Visualizzazione lista prenotazioni}
+\begin{figure}[h] \includegraphics[scale=1]{uc35.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il ristoratore è connesso al sistema.
-\item \textbf{Postcondizioni:} il ristoratore visualizza la lista delle prenotazioni (in qualsiasi stato esse si trovino) suddivise per giorno.
+\item \textbf{Attore principale:} Ristoratore.
+\item \textbf{Precondizioni:} Il ristoratore è connesso al sistema.
+\item \textbf{Postcondizioni:} Il ristoratore visualizza la lista delle prenotazioni (in qualsiasi stato esse si trovino) suddivise per giorno.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema mostra le prenotazioni raggruppate per giorno.
@@ -55,9 +58,9 @@
 
 \textbf{UC35.1-Visualizzazione dettagli ingredienti giornata}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (si veda UC35).
-\item \textbf{Postcondizioni:} il ristoratore visualizza la lista degli ingredienti.
+\item \textbf{Attore principale:} Ristoratore.
+\item \textbf{Precondizioni:} Il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (si veda UC35).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza la lista degli ingredienti.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema mostra la vista degli ingredienti relativi alla giornata, relativamente alle prenotazioni nello stato "Accettata";
@@ -66,10 +69,11 @@
 \end{itemize}
 
 \subsubsection{UC36-Visualizzazione singola prenotazione}
+\begin{figure}[h] \includegraphics[scale=1]{uc36.png} \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (si veda UC35);
-    \item \textbf{Postcondizioni:} il ristoratore visualizza le informazioni dettagliate della singola prenotazione.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione "Visualizzazione lista prenotazioni" (si veda UC35);
+    \item \textbf{Postcondizioni:} Il ristoratore visualizza le informazioni dettagliate della singola prenotazione.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore seleziona una prenotazione da visualizzare in dettaglio.
@@ -88,13 +92,13 @@
 
 \textbf{UC36.1-Visualizzazione lista totale degli ingredienti}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Attore principale:} Ristoratore.
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (si veda UC36);
         \item Il ristoratore seleziona "Lista ingredienti per questa prenotazione".
     \end{itemize}
-    \item \textbf{Postcondizioni:} il ristoratore visualizza la lista degli ingredienti per la singola prenotazione.
+    \item \textbf{Postcondizioni:} Il ristoratore visualizza la lista degli ingredienti per la singola prenotazione.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore visualizza la lista degli ingredienti che servono per completare quella prenotazione, ogni ingrediente ha una sua quantità espressa in grammi.
@@ -103,9 +107,9 @@
 
 \textbf{UC36.2-Visualizzazione lista ordinazioni attuali}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (si veda UC36).
-    \item \textbf{Postcondizioni:} il ristoratore visualizza la lista delle ordinazioni per la singola prenotazione.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (si veda UC36).
+    \item \textbf{Postcondizioni:} Il ristoratore visualizza la lista delle ordinazioni per la singola prenotazione.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore seleziona l'opzione "Ordinazioni per questa prenotazione";
@@ -117,15 +121,17 @@
     \end{enumerate}
 \end{itemize}
 
+\pagebreak
+
 \textbf{UC36.3-Visualizzazione lista Clienti}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Attore principale:} Ristoratore.
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il ristoratore si trova nella sezione "Visualizzazione singola prenotazione" (si veda UC36);
         \item Il ristoratore seleziona "Lista clienti".
     \end{itemize}
-    \item \textbf{Postcondizioni:} il ristoratore visualizza la lista dei clienti collegati alla singola prenotazione.
+    \item \textbf{Postcondizioni:} Il ristoratore visualizza la lista dei clienti collegati alla singola prenotazione.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore visualizza la lista dei clienti collegati a questa prenotazione nei seguenti modi:
@@ -136,16 +142,12 @@
     \end{enumerate}
 \end{itemize}
 
-% ho deciso di mia spontanea volontà che l'UC36.4 non serve, perché sarebbe un duplicato del caso d'uso UC40.
-% SHo preferito mettere che nella vista della prenotazione singola lo stato della stessa passa da "accettata" a "pagata" una volta che tutti gli ordini
-%della prenotazione sono stati pagati
-
-
 \subsubsection{UC37-Modifica menù}
+\begin{figure}[h] \includegraphics[scale=1]{uc37.png} \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore ha effettuato l'accesso al sistema.
-    \item \textbf{Postcondizioni:} le modifiche apportate al menù sono salvate.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore ha effettuato l'accesso al sistema.
+    \item \textbf{Postcondizioni:} Le modifiche apportate al menù sono salvate.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore visualizza le pietanze contenute nel menù del ristorante;
@@ -165,9 +167,9 @@
 
 \textbf{UC37.1-Nuova pietanza}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
-    \item \textbf{Postcondizioni:} il ristoratore ha inserito una nuova pietanza al menù.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} Il ristoratore ha inserito una nuova pietanza al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore seleziona l'opzione di creazione di una nuova pietanza;
@@ -185,9 +187,9 @@
 
 \textbf{UC37.2-Modifica pietanza}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
-    \item \textbf{Postcondizioni:} il ristoratore ha modificato una pietanza al menù.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} Il ristoratore ha modificato una pietanza al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore seleziona l'opzione di modifica di una pietanza;
@@ -205,8 +207,8 @@
 
 \textbf{UC37.3-Rimuovi pietanza}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
     \item \textbf{Postcondizioni:} La pietanza non è più presente nel menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -219,9 +221,9 @@
 
 \textbf{UC37.4-Nuova sezione menù}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
-    \item \textbf{Postcondizioni:} il ristoratore ha inserito una nuova sezione al menù.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} Il ristoratore ha inserito una nuova sezione al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore seleziona l'opzione di creazione di una sezione;
@@ -233,9 +235,9 @@
 
 \textbf{UC37.5-Modifica sezione menù}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
-    \item \textbf{Postcondizioni:} il ristoratore ha modificato una sezione al menù.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
+    \item \textbf{Postcondizioni:} Il ristoratore ha modificato una sezione al menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore seleziona l'opzione di modifica di una sezione;
@@ -248,8 +250,8 @@
 
 \textbf{UC37.6-Rimuovi sezione menù}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione di modifica del menù (si veda UC37).
     \item \textbf{Postcondizioni:} La sezione non è più presente nel menù.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -258,12 +260,11 @@
     \end{enumerate}
 \end{itemize}
 
-% aggiungere UC 37.6 sono presenti ancora piatti all'interno della sezione?
-
 \subsubsection{UC38-Modifica lista degli ingredienti}
+\begin{figure}[h] \includegraphics[scale=1]{uc38.png} \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore ha effettuato l'accesso al sistema.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore ha effettuato l'accesso al sistema.
     \item \textbf{Postcondizioni:} Le modifiche apportate sono state salvate.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
@@ -279,11 +280,12 @@
     \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \textbf{UC38.1-Nuovo ingrediente}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di modifica della lista ingredienti (si veda UC38).
-    \item \textbf{Postcondizioni:} viene inserito un nuovo ingrediente nella lista degli ingredienti.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione di modifica della lista ingredienti (si veda UC38).
+    \item \textbf{Postcondizioni:} Viene inserito un nuovo ingrediente nella lista degli ingredienti.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore seleziona l'opzione di creazione di un nuovo ingrediente;
@@ -301,9 +303,9 @@
 
 \textbf{UC38.2-Rimuovi ingrediente}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
-    \item \textbf{Precondizioni:} il ristoratore si trova nella sezione di gestione della lista ingredienti (si veda UC38).
-    \item \textbf{Postcondizioni:} l'ingrediente viene rimosso dalla lista degli ingredienti.
+    \item \textbf{Attore principale:} Ristoratore.
+    \item \textbf{Precondizioni:} Il ristoratore si trova nella sezione di gestione della lista ingredienti (si veda UC38).
+    \item \textbf{Postcondizioni:} L'ingrediente viene rimosso dalla lista degli ingredienti.
     \item \textbf{Scenario principale:}
     \begin{enumerate}
         \item Il ristoratore seleziona l'opzione di eliminazione un ingrediente;
@@ -311,10 +313,11 @@
         \item Il ristoratore viene reindirizzato alla schermata di modifica della lista ingredienti (si veda UC38).
     \end{enumerate}
 \end{itemize}
-
+\pagebreak
 \subsubsection{UC39-Visualizzazione recensioni ristorante}
+\begin{figure}[h] \includegraphics[scale=1]{uc39.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Attore principale:} Ristoratore.
 \item \textbf{Precondizioni:} Il ristoratore è connesso al sistema.
 \item \textbf{Postcondizioni:} Il ristoratore visualizza le ultime 5 recensioni fatte in ordine temporale decrescente dai clienti.
 \item \textbf{Scenario principale:}
@@ -332,8 +335,9 @@
 \end{itemize}
 
 \subsubsection{UC40-Gestione pagamento conto}
+\begin{figure}[h] \includegraphics[scale=.7]{uc40.png} \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Attore principale:} Ristoratore.
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36);
@@ -356,8 +360,8 @@
 
 \subsubsection{UC41-Gestione pagamento equo}
 \begin{itemize}
-    \item \textbf{Descrizione:} pagamento equo del totale di tutti gli ordini, ovvero "alla romana".
-    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Descrizione:} Pagamento equo del totale di tutti gli ordini, ovvero "alla romana".
+    \item \textbf{Attore principale:} Ristoratore.
     \item \textbf{Precondizioni:}
     \begin{itemize}
         \item Il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36);
@@ -375,8 +379,8 @@
 
 \subsubsection{UC42-Gestione pagamento proporzionale}
 \begin{itemize}
-    \item \textbf{Descrizione:} pagamento proporzionale delle ordinazioni, ovvero i clienti selezionano gli ordini che vogliono pagare (anche di altri clienti).
-    \item \textbf{Attore principale:} ristoratore.
+    \item \textbf{Descrizione:} Pagamento proporzionale delle ordinazioni, ovvero i clienti selezionano gli ordini che vogliono pagare (anche di altri clienti).
+    \item \textbf{Attore principale:} Ristoratore.
     \begin{itemize}
         \item Il ristoratore è connesso al sistema e si trova nella sezione di visualizzazione di una singola prenotazione (si veda UC36);
         \item Un cliente ha selezionato la modalità di divisione del conto proporzionale (si veda UC27).
@@ -392,10 +396,11 @@
 \end{itemize}
 
 \subsubsection{UC43-Visualizzazione notifica cliente ha confermato l'ordinazione}
+\begin{figure}[h] \includegraphics[scale=1]{uc43.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il cliente ha confermato l'ordinazione (si veda UC23.3).
-\item \textbf{Postcondizioni:} il ristoratore visualizza una notifica relativa alla conferma dell'ordinazione.
+\item \textbf{Attore principale:} Ristoratore.
+\item \textbf{Precondizioni:} Il cliente ha confermato l'ordinazione (si veda UC23.3).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa alla conferma dell'ordinazione.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema vede che è stata confermata un'ordinazione dal cliente;
@@ -405,10 +410,11 @@
 \end{itemize}
 
 \subsubsection{UC44-Visualizzazione notifica cliente ha annullato la prenotazione}
+\begin{figure}[h] \includegraphics[scale=1]{uc44.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il cliente ha annullato la prenotazione (si veda UC21).
-\item \textbf{Postcondizioni:} il ristoratore visualizza una notifica relativa all'annullamento della prenotazione.
+\item \textbf{Attore principale:} Ristoratore.
+\item \textbf{Precondizioni:} Il cliente ha annullato la prenotazione (si veda UC21).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa all'annullamento della prenotazione.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema vede che è stata annullata una prenotazione dal cliente;
@@ -417,11 +423,13 @@
 \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \subsubsection{UC45-Visualizzazione notifica nuova prenotazione in arrivo}
+\begin{figure}[h] \includegraphics[scale=1]{uc45.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il cliente ha effettuato una prenotazione (si veda UC19).
-\item \textbf{Postcondizioni:} il ristoratore visualizza una notifica relativa alla prenotazione di un tavolo.
+\item \textbf{Attore principale:} Ristoratore.
+\item \textbf{Precondizioni:} Il cliente ha effettuato una prenotazione (si veda UC19).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa alla prenotazione di un tavolo.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema vede che è stata effettuata una prenotazione dal cliente;
@@ -431,44 +439,48 @@
 \end{itemize}
 
 \subsubsection{UC46-Visualizzazione notifica nuova recensione}
+\begin{figure}[h] \includegraphics[scale=1]{uc46.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il cliente ha lasciato una recensione (si veda UC29).
-\item \textbf{Postcondizioni:} il ristoratore visualizza una notifica relativa alla recensione.
+\item \textbf{Attore principale:} Ristoratore.
+\item \textbf{Precondizioni:} Il cliente ha lasciato una recensione (si veda UC29).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa alla recensione.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema vede che è stata lasciata una recensione dal cliente;
-    \item Il sistema invia al ristoratore una notifica relativa alla nuova recensione ;
+    \item Il sistema invia al ristoratore una notifica relativa alla nuova recensione;
     \item Il ristoratore visualizza la notifica relativa alla nuova recensione.
 \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \subsubsection{UC47-Visualizzazione notifica cliente ha pagato in app}
+\begin{figure}[h] \includegraphics[scale=1]{uc47.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
-\item \textbf{Precondizioni:} il cliente ha effettuato un pagamento in app (si veda UC28).
-\item \textbf{Postcondizioni:} il ristoratore visualizza una notifica relativa al pagamento in app.
+\item \textbf{Attore principale:} Ristoratore.
+\item \textbf{Precondizioni:} Il cliente ha effettuato un pagamento in app (si veda UC28).
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa al pagamento in app.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema vede che è stata pagata un'ordinazione dal cliente;
-    \item Il sistema invia al ristoratore una notifica relativa ad un pagamento ;
+    \item Il sistema invia al ristoratore una notifica relativa ad un pagamento;
     \item Il ristoratore visualizza la notifica relativa al pagamento.
 \end{enumerate}
 \end{itemize}
 
 \subsubsection{UC48-Visualizzazione notifica ricezione messaggio in chat}
+\begin{figure}[h] \includegraphics[scale=1]{uc48.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} ristoratore.
+\item \textbf{Attore principale:} Ristoratore.
 \item \textbf{Precondizioni:}
 \begin{itemize}
     \item Il cliente ha avviato la chat con il ristoratore (si veda UC49);
     \item Il cliente ha inviato un messaggio al ristoratore (si veda UC50.1).
 \end{itemize}
-\item \textbf{Postcondizioni:} il ristoratore visualizza una notifica relativa alla ricezione di un messaggio in chat.
+\item \textbf{Postcondizioni:} Il ristoratore visualizza una notifica relativa alla ricezione di un messaggio in chat.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item Il sistema vede che è stato inviato un messaggio dal cliente;
-    \item Il sistema invia al ristoratore una notifica relativa al messaggio ;
+    \item Il sistema invia al ristoratore una notifica relativa al messaggio;
     \item Il ristoratore visualizza la notifica relativa al messaggio.
 \end{enumerate}
 \end{itemize}

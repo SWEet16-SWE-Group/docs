@@ -1,6 +1,8 @@
-\subsubsection{UC16-Visualizzazione lista ristoranti}
+\pagebreak
+\subsubsection{UC15-Visualizzazione lista ristoranti}
+\begin{figure}[h] \includegraphics[scale=1]{uc15.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} L'utente visualizza una lista di ristoranti.
 \item \textbf{Scenario principale:}
@@ -10,9 +12,11 @@
 \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC17-Ricerca ristorante}
+\pagebreak
+\subsubsection{UC16-Ricerca ristorante}
+\begin{figure}[h] \includegraphics[scale=.7]{uc16.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti ai criteri inseriti
 dell'utente.
@@ -22,21 +26,22 @@ dell'utente.
     \item L'utente può effettuare la ricerca inserendo uno o più parametri ,corrispondenti
     ai seguenti criteri:
     \begin{itemize}
-        \item Il nome del ristorante (vedi UC17.1-Ricerca per nome);
-        \item La città del ristorante (vedi UC17.2-Ricerca per città);
-        \item La valutazione media del ristorante (vedi UC17.3-Ricerca per valutazione);
-        \item La tipologia di cucina (vedi UC17.4-Ricerca per tipologia di cucina);
-        \item L'orario (vedi UC17.5-Ricerca ristorante per orario) ;
-        \item La data (vedi UC17.6-Ricerca ristorante per data);
+        \item Il nome del ristorante (vedi UC16.1-Ricerca per nome);
+        \item La città del ristorante (vedi UC16.2-Ricerca per città);
+        \item La valutazione media del ristorante (vedi UC16.3-Ricerca per valutazione);
+        \item La tipologia di cucina (vedi UC16.4-Ricerca per tipologia di cucina);
+        \item L'orario (vedi UC16.5-Ricerca ristorante per orario);
+        \item La data (vedi UC16.6-Ricerca ristorante per data);
     \end{itemize}
-    \item  Il sistema filtra la lista di ristoranti secondo i criteri inseriti;
+    \item Il sistema filtra la lista di ristoranti secondo i criteri inseriti;
     \item L'utente visualizza la lista dei ristoranti che rispettano i criteri da lui inseriti.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC17.1-Ricerca ristorante per nome}
+\pagebreak
+\textbf{UC16.1-Ricerca ristorante per nome}
 \begin{itemize}
-\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:}Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti
 alla ricerca per nome da lui inserito.
@@ -49,9 +54,9 @@ alla ricerca per nome da lui inserito.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC17.2-Ricerca ristorante per città}
+\textbf{UC16.2-Ricerca ristorante per città}
 \begin{itemize}
-\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:}Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti corrispondenti alla città da lui inserita.
 \item \textbf{Scenario principale:}
@@ -63,9 +68,9 @@ alla ricerca per nome da lui inserito.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC17.3-Ricerca ristorante per valutazione}
+\textbf{UC16.3-Ricerca ristorante per valutazione}
 \begin{itemize}
-\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:}Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti la cui valutazione è maggiore o uguale alla
 valutazione da lui inserita.
@@ -78,9 +83,11 @@ valutazione da lui inserita.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC17.4-Ricerca ristorante per tipologia di cucina}
+\pagebreak
+
+\textbf{UC16.4-Ricerca ristorante per tipologia di cucina}
 \begin{itemize}
-\item \textbf{Attore principale:}Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:}Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che offrono la tipologia di cucina
 da lui inserita.
@@ -93,25 +100,25 @@ da lui inserita.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC17.5-Ricerca ristorante per orario}
+\textbf{UC16.5-Ricerca ristorante per orario}
 \begin{itemize}
-\item \textbf{Attore principale: }Utente non riconosciuto / cliente.
+\item \textbf{Attore principale: }Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario
 da lui scelto.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di ricerca di un ristorante;
-    \item L'utente seleziona l'orario ;
+    \item L'utente seleziona l'orario;
     \item Il sistema filtra la lista di ristoranti secondo il criterio inserito;
     \item L'utente visualizza la lista dei ristoranti che hanno posti disponibili nell'orario da lui
     selezionato.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC17.6-Ricerca ristorante per data}
+\textbf{UC16.6-Ricerca ristorante per data}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista dei ristoranti che hanno posti disponibili
 nella data da lui selezionata.
@@ -125,31 +132,34 @@ nella data da lui selezionata.
 \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC18-Visualizzazione ristorante}
+\pagebreak
+\subsubsection{UC17-Visualizzazione ristorante}
+\begin{figure}[h] \includegraphics[scale=0.6]{uc17.png} \end{figure}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema e sta visualizzando una lista di ristoranti.
 \item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative al ristorante selezionato.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item L'utente seleziona un ristorante dalla lista che sta visualizzando ;
+    \item L'utente seleziona un ristorante dalla lista che sta visualizzando;
     \item L'utente visualizza le informazioni relative al ristorante :
     \begin{itemize}
         \item Il nome;
-        \item il recapito telefonico;
+        \item Il recapito telefonico;
         \item L'indirizzo;
-        \item gli orari di servizio;
-        \item la/le tipologie di cucine offerte;
-        \item la valutazione media.
+        \item Gli orari di servizio;
+        \item La/le tipologie di cucine offerte;
+        \item La valutazione media.
     \end{itemize}
     \item L'utente può scegliere di visualizzare il menù completo (vedi UC18.1-Visualizzazione menù);
     \item L'utente può scegliere di visualizzare le recensioni rilasciate da altri utenti (vedi UC18.2-Visualizzazione recensioni).
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC18.1-Visualizzazione menù}
+\pagebreak
+\textbf{UC17.1-Visualizzazione menù}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni di un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza il menù del ristorante.
 \item \textbf{Scenario principale:}
@@ -162,14 +172,14 @@ nella data da lui selezionata.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC18.1.1-Ricerca pietanza}
+\textbf{UC17.1.1-Ricerca pietanza}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza la lista delle pietanze corrispondenti ai parametri di ricerca.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item L'utente seleziona la funzionalità di ricerca di una pietanza ;
+    \item L'utente seleziona la funzionalità di ricerca di una pietanza;
     \item L'utente può effettuare la ricerca per nome;
     \item L'utente può effettuare la ricerca selezionando gli allergeni che non vuole
     siano presenti nelle pietanze del menù;
@@ -179,9 +189,9 @@ nella data da lui selezionata.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC18.1.2-Visualizzazione pietanza}
+\textbf{UC17.1.2-Visualizzazione pietanza}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative alla pietanza selezionata.
 \item \textbf{Scenario principale:}
@@ -196,9 +206,10 @@ nella data da lui selezionata.
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC18.2-Visualizzazione recensioni}
+\pagebreak
+\textbf{UC17.2-Visualizzazione recensioni}
 \begin{itemize}
-\item \textbf{Attore principale:} Utente non riconosciuto / cliente.
+\item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni relative ad un ristorante.
 \item \textbf{Postcondizioni:} L'utente visualizza le ultime 5 recensioni fatte in ordine temporale decrescente da altri utenti.
 \item \textbf{Scenario principale:}
@@ -216,7 +227,8 @@ nella data da lui selezionata.
 \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC19-Prenotazione di un tavolo}
+\subsubsection{UC18-Prenotazione di un tavolo}
+\begin{figure}[h] \includegraphics[scale=1]{uc18.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: }Cliente.
     \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di un ristorante.
@@ -230,41 +242,61 @@ nella data da lui selezionata.
             \item Il cliente seleziona l'orario;
             \item Il cliente inserisce il numero di persone che parteciperanno alla prenotazione;
             \item Il cliente dà la conferma ed effettua la richiesta;
-            \item il cliente visualizza la lista delle sue prenotazioni,ove è presente la prenotazione appena
+            \item Il cliente visualizza la lista delle sue prenotazioni,ove è presente la prenotazione appena
             effettuata.
         \end{enumerate}
 \end{itemize}
 
-\subsubsection{UC20-Visualizzazione lista prenotazioni}
+\pagebreak
+\subsubsection{UC19-Visualizzazione lista prenotazioni}
+\begin{figure}[h] \includegraphics[scale=1]{uc19.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: } Cliente.
     \item \textbf{Precondizioni: }Il cliente sta visualizzando le sue informazioni personali.
     \item \textbf{Postcondizioni: }Il cliente visualizza la lista delle sue prenotazioni.
     \item \textbf{Scenario principale:}
         \begin{enumerate}
-            \item L'utente seleziona la funzionalità di visualizzazione delle sue prenotazioni;
-            \item L'utente visualizza la lista delle sue prenotazioni divise in due sezioni:
-              \begin{itemize}
-                \item Attive: prenotazioni future negli stati "In attesa" o "Accettata";
-                \item Scadute: prenotazioni passate o nello stato di "Rifiutata";
-              \end{itemize}
+            \item Il cliente seleziona la funzionalità di visualizzazione delle sue prenotazioni;
+            \item Il cliente può filtrare le prenotazioni tramite dei parametri (si veda UC15);
+            \item Il cliente può selezionare una prenotazione singola per vederne il dettaglio (si veda UC21).
         \end{enumerate}
 \end{itemize}
 
+\subsubsection{UC20-Filtra prenotazioni}
+\begin{figure}[h] \includegraphics[scale=1]{uc20.png} \end{figure}
+\begin{itemize}
+\item \textbf{Attore principale:} Cliente.
+\item \textbf{Precondizioni:} Il cliente sta visualizzando la lista delle sue prenotazioni.
+\item \textbf{Postcondizioni:} Il cliente visualizza la lista delle prenotazioni corrispondenti ai parametri di filtraggio.
+\item \textbf{Scenario principale:}
+\begin{enumerate}
+    \item Il cliente seleziona l'opzione di filtraggio delle prenotazioni.
+    \item Il cliente può filtrare le prenotazioni secondo i parametri:
+              \begin{itemize}
+                \item Range temporale: Data di inizio e data di fine;
+                \item Stato: "In Attesa", "Accettata" o "Rifiutata";
+              \end{itemize}
+    \item Il sistema filtra la lista di prenotazioni secondo il parametro selezionato;
+    \item Il cliente visualizza la lista di prenotazioni corrispondenti al parametro da lui selezionato. 
+\end{enumerate}
+\end{itemize}
+
 \subsubsection{UC21-Visualizzazione singola prenotazione}
+\begin{figure}[h] \includegraphics[scale=1]{uc21.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: } Cliente.
+    \item \textbf{Attore secondario: } Ristoratore.
     \item \textbf{Precondizioni: }Il cliente sta visualizzando la lista delle sue prenotazioni.
     \item \textbf{Postcondizioni: }Il cliente visualizza le informazioni relative ad una singola prenotazione.
     \item \textbf{Scenario principale:}
         \begin{enumerate}
-            \item L'utente seleziona una prenotazione in particolare;
-            \item L'utente visualizza la lista delle informazioni relative alla prenotazione selezionata:
+            \item Il cliente seleziona una prenotazione in particolare;
+            \item Il cliente visualizza la lista delle informazioni relative alla prenotazione selezionata:
             \begin{itemize}
                 \item Il nome del ristorante;
                 \item L'indirizzo del ristorante;
                 \item L'orario;
-                \item Il numero di persone ;
+                \item Il numero di persone;
                 \item Lo stato della prenotazione (se è in attesa di conferma da parte del ristoratore
                 o se è già stata confermata).
             \item Il cliente può andare a generare il link per la condivisione della prenotazione (si veda UC23).
@@ -273,8 +305,6 @@ nella data da lui selezionata.
     \item \textbf{Estensione: }UCE21-Prenotazione rifiutata
 \end{itemize}
 
-        %L'estensione avviene in seguito all'UC34 del ristoratore, ma credo che dobbiamo tenere la notazione
-        %UCE che usiamo per le estensioni ?
 \subsubsection{UCE21-Prenotazione rifiutata}
 \begin{itemize}
     \item \textbf{Descrizione: }Se il ristoratore rifiuta una delle prenotazioni del cliente in attesa di conferma,
@@ -289,7 +319,9 @@ nella data da lui selezionata.
     \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \subsubsection{UC22-Cancellazione prenotazione}
+\begin{figure}[h] \includegraphics[scale=1]{uc22.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: } Cliente.
     \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di una singola prenotazione
@@ -307,25 +339,24 @@ nella data da lui selezionata.
 \end{itemize}
 
 \subsubsection{UC23-Condivisione della prenotazione}
+\begin{figure}[h] \includegraphics[scale=1]{uc23.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: } Cliente.
     \item \textbf{Precondizioni: }Il cliente sta visualizzando le informazioni di una sua singola prenotazione (si veda UC21).
     \item \textbf{Postcondizioni: }Il cliente ha una copia testuale del link relativo alla prenotazione.
     \item \textbf{Scenario principale:}
         \begin{enumerate}
-            \item L'utente seleziona la funzionalità di condivione del link afferente alla prenotazione;
+            \item Il cliente seleziona la funzionalità di condivione del link afferente alla prenotazione;
             \item Il sistema genera il link relativo alla prenotazione;
-            \item Il cliente selezione l'opzione di copia testuale del link.
-            %Come ad esempio si fa con il link delle repo di git hub;
-            %Non so se aggiungere dettagli ,tipo condivisione del link su servizio di messaggistica,
-            %che però teoricamente è fuori dal sistema;è anche vero che il sistema può gestire come su telegram
-            %o whatsapp fino alla scelta del servizio di messaggistica per la condivisione di un contenuto.
+            \item Il cliente visualizza il link di invito.
         \end{enumerate}
 \end{itemize}
 
+\pagebreak
 \subsubsection{UC24-Accettazione di invito di partecipazione ad una prenotazione}
+\begin{figure}[h] \includegraphics[scale=.7]{uc24.png} \end{figure}
 \begin{itemize}
-    \item \textbf{Attore principale: } Utente non riconosciuto.
+    \item \textbf{Attore principale:} Utente non riconosciuto.
     \item \textbf{Precondizioni: }L'utente possiede il link per partecipare ad una prenotazione.
     \item \textbf{Postcondizioni: }La prenotazione è salvata nella lista delle prenotazioni dell'utente.
     \item \textbf{Scenario principale:}
@@ -348,7 +379,7 @@ nella data da lui selezionata.
     \begin{enumerate}
         \item L'utente riconosciuto seleziona il profilo con il quale partecipare alla prenotazione;
         \item Il sistema notifica all'utente un messaggio di errore,in cui gli comunica che è stato
-        già raggiunto il numero massimo di partecipanti ;
+        già raggiunto il numero massimo di partecipanti;
         %Forse l'estensione può terminare anche con il messaggio di errore.
         \item L'utente visualizza la sua lista di prenotazioni senza la prenotazione alla quale voleva
         partecipare.

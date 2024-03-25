@@ -1,4 +1,5 @@
 \subsubsection{UC1-Registrazione account}
+\begin{figure}[h] \includegraphics[scale=1]{uc01.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: }Utente non riconosciuto.
     \item \textbf{Precondizioni: }L'utente è connesso al sistema.
@@ -9,29 +10,30 @@
             \item Il sistema chiede all'utente di inserire una email ed una password;
             \item L'utente inserisce l'email e la password;
             \item L'utente conferma i valori inseriti;
-            \item Il sistema comunica all'utente che la registrazione è andata
-            a buon fine.
-            \item Il cliente visualizza un profilo di tipo cliente creato di default dal sistema.
+            \item Il sistema comunica all'utente che la registrazione è andata a buon fine.
+            \item L'utente visualizza un profilo di tipo cliente creato di default dal sistema.
         \end{enumerate}
     \item \textbf{Estensioni:}
         \begin{itemize}
                 \item UCE1.1-Campo mancante;
-                \item UC1.2-Email già registrata nel sistema.
+                \item UCE1.2-Email già registrata nel sistema.
         \end{itemize}
 \end{itemize}
 
 \textbf{UCE1.1-Campo mancante}
 \begin{itemize}
-    \item \textbf{Descrizione: }Per effettuare la registrazione,deve essere inserito un valore sia per la password che per l'email.
+    \item \textbf{Descrizione:} Per effettuare la registrazione, deve essere inserito un valore sia per la password che per l'email.
     \item \textbf{Scenario alternativo:}
     \begin{enumerate}
-        \item Al momento della conferma,il sistema rileva che uno dei campi (o entrambi) risulta non compilato;
+        \item Al momento della conferma, il sistema rileva che uno dei campi (o entrambi) risulta non compilato;
         \item Il sistema comunica la natura dell'errore all'utente;
         \item L'utente visualizza i campi di mail e password con i valori inseriti precedentemente.
     \end{enumerate}
 \end{itemize}
 
-\textbf{UC1.2-Email già registrata nel sistema}
+\pagebreak
+
+\textbf{UCE1.2-Email già registrata nel sistema}
 \begin{itemize}
     \item \textbf{Descrizione: }L'utente non può registrare con una email già presente nel sistema.
     \item \textbf{Scenario alternativo:}
@@ -42,9 +44,9 @@
         \item L'utente è reindirizzato alla homepage di registrazione.
     \end{itemize}
 \end{itemize}
-\break
 
 \subsubsection{UC2-Login}
+\begin{figure}[h] \includegraphics[scale=1]{uc02.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
