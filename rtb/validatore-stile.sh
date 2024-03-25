@@ -25,7 +25,6 @@ function findreplace(){
   echo "Attenzione pericolo sostituzione regex inplace"
   texfiles | while IFS= read line ; do
     perl -i -0pe '
-
     # rimozione del rumore
     ; s/\r\n/\n/g           # carriage return
     ; s/\t/  /g             # tab in 2 spazi
@@ -40,7 +39,9 @@ function findreplace(){
     ; s/\\item (\\textbf{)?([a-z])/\\item \1\U\2/g                     # dopo item, preservando textbf
     ; s/(?:(?<!(?<!\\url{)(?<!\\href{))):([^\w\d]*)([a-z])/:\1\U\2/   # dopo : preservando caratteri in mezzo e escludendo url e href
     ; s/:(})? ([a-z])/:\1 \U\2/g
+    ' "$line"
 
+    perl -i -0pe '
     # mergia le linee di item
     ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
     ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
@@ -51,7 +52,10 @@ function findreplace(){
     ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
     ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
     ; s/(\\item .*?)\n([^\\]*?)\n/\1 \2\n/g
+    ' "$line"
 
+
+    perl -i -0pe '
     # elenchi ; .
     ; s/(\\item .*?)[:;.]?\n( *\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
     ; s/(\\item .*?)[:;.]?\n( *\\end)/\1.\n\2/g        # rimozione spazi prima di [:,.;]
@@ -62,7 +66,6 @@ function findreplace(){
     ; s/\t/  /g             # tab in 2 spazi
     ; s/(\S) +/\1 /g        # compressione di tanti spazi in uno esclusa indentazione iniziale
     ; s/ *\n/\n/g           # testo bianco a fine riga
-
     ' "$line"
   done
   git diff
