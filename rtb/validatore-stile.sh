@@ -1,5 +1,5 @@
 function texfiles(){
-  find . -type f -name '*.tex'
+  find . -type f -name '*.tex' | grep -v 'verbali'
 }
 
 function greptext(){
