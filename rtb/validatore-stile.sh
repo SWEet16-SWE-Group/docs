@@ -50,9 +50,9 @@ function findreplace(){
 
     perl -i -0pe '
     # elenchi ; .
-    ; s/(\\item .*?)[:;.]?\n( *\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
-    ; s/(\\item .*?)[:;.]?\n( *\\end)/\1.\n\2/g        # rimozione spazi prima di [:,.;]
-    ; s/(\\item .*?)[:;.]?(})?\n( *\\begin)/\1:\2\n\3/g        # rimozione spazi prima di [:,.;]
+    ; s/(\\item .*?)[:;\.]?\n( *\\item)/\1;\n\2/g        # rimozione spazi prima di [:,.;]
+    ; s/(\\item .*?)[:;\.]?\n( *\\end)/\1.\n\2/g        # rimozione spazi prima di [:,.;]
+    ; s/(\\item .*?)[:;\.]?(})?\n( *\\begin)/\1:\2\n\3/g        # rimozione spazi prima di [:,.;]
 
     # rimozione del rumore
     ; s/\r\n/\n/g           # carriage return
@@ -61,11 +61,13 @@ function findreplace(){
     ; s/ *\n/\n/g           # testo bianco a fine riga
     ' "$line"
   done
-  git diff
+  #git diff
 
   texfiles | while IFS= read line ; do
-    grep -zP '\\item .*?[:;.]?\n *\\item' "$line"
+    grep -A 1 -B 1 --group-separator="=====" -zP '\\item .*?\.\n *\\item' "$line"
   done
+
+  echo
 }
 
 
