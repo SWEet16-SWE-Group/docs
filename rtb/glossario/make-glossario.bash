@@ -23,7 +23,7 @@ VOC=src/vocaboli.tex
 
 # formatta vocaboli
 function formattavocaboli(){
-   sed -zi 's/\n//g;s/\(\\section{\)/\n\1/g;s/$/\n/' "$VOC"
+   sed -zi 's/\n//g;s/\(\\subsection{\)/\n\1/g;s/$/\n/' "$VOC"
 }
 
 # stampa e scrivi il template latex dove aggiungere le definizioni
