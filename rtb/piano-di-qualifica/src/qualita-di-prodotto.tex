@@ -1,8 +1,246 @@
 
 \section{Qualità di prodotto}
-\subsection{Usabilità}
-\subsection{Manutenibilità}
-\subsection{Affidabilità}
-\subsection{Funzionalità}
-\subsection{Documentazione}
+\subsection{Scopo}
+Facendo riferimento allo standard ISO/IEC 9126:2001, vengono di seguito riportate le caratteristiche che il prodotto deve avere per essere considerato di qualità. \\
+Vengono inoltre riportate le relative metriche atte a definire un metodo di valutazione del prodotto finale.\\
+Le metriche hanno un identificativo avente come prefisso l'acronimo QPR (Qualità Prodotto) seguito dal codice della singola metrica.\\
 
+\subsection{Usabilità}
+Creazione di un prodotto che sia semplice da usare e di facile comprensione nel suo utilizzo da parte di ogni utente.
+L'obiettivo è quindi quello di fornire una user experience di elevata qualità.
+\subsubsection{Metriche}
+\begin{itemize}
+    \item \textbf{QPR-TA - Tempo Apprendimento}:\\
+    Tempo necessario all'utente per apprendere l'utilizzo del prodotto
+    \item \textbf{QPR-NP - Numero Passi}:\\
+    Numero di passi necessari per raggiungere lo scopo voluto
+    \item \textbf{QPR-TE - Tempo Esplorazione}:\\
+    Tempo spesso nell'esplorazione del prodotto
+    \item \textbf{QPR-NE - Numero Errori}:\\
+    Numero di errori commessi dall'utente prima di raggiungere lo scopo voluto
+\end{itemize}
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-TA & Tempo Apprendimento & 10 minuti & 5 minuti \\
+        QPR-NP & Numero Passi & 20 click & 10 click \\
+        QPR-TE & Tempo Esplorazione & 5 minuti & 3 minuti \\
+        QPR-NE & NUmero Errori & 5 & 0 \\
+        \hline
+     \end{tblr}
+    \caption{Metriche usabilità}
+    \label{tab:1}
+\end{table}
+
+
+\subsection{Manutenibilità}
+Facilità nell'apportare modifiche al prodotto per la corrrezione di bug già presenti o introdotti da modifiche precedenti,
+nel miglioramento nella qualità del prodotto, nel miglioramento delle funzionalità già presenti.
+\subsubsection{Metriche}
+\begin{itemize}
+    \item \textbf{QPR-CC - Complessità Ciclomatica}:\\
+    Valutazione della complessità di un algoritmo calcolata utilizzando il grafo di controllo del flusso tramite la formula\\
+$$v(G) = L - N + P$$\\
+\begin{itemize}
+    \item \textbf{v(G):} numero ciclomatico relativo al grafo G; \\
+    \item \textbf{L:} numero di archi nel grafo; \\
+    \item \textbf{N:} numero di nodi del grafo; \\
+    \item \textbf{P:} numero dei componenti del grafo disconnessi. \\
+\end{itemize}
+    \item \textbf{QPR-NPM - Numero parametri per metodo}:\\
+     Numero di parametri passati ai metodi. Un valore troppo grande può indicare un metodo troppo complesso\\
+
+     \item \textbf{QPR-FCC - Facilità di comprensione del codice}:\\
+    Un codice comprensibile permette una manutenibilità e gestione migliore. Viene misurata con la seguente formula
+    $$R = \frac{NR_{com}}{NR_{tot}}$$
+    che indica il rapporto tra le righe di commenti (${NR_{com}}$) e le righe di codice (${NR_{tot}}$).
+\end{itemize}
+
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[2cm]|X[6cm]|X[3cm]|X[3cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-CC & Complessità Ciclomatica & $\leq 25$ & $\leq 10$ \\
+        QPR-NPM & Numero parametri per metodo & $\leq 8$ & $\leq 4$ \\
+        QPR-FCC & Facilità di comprensione del codice & $\geq 0.10$ & $\geq 0.20$ \\
+        \hline
+     \end{tblr}
+    \caption{Metriche Manutenibilità}
+    \label{tab:2}
+\end{table}
+
+
+\subsection{Affidabilità}
+Prodotto che sia sempre disponibile, che sia in grado di svolgere le funzionalità implementate e che sia tollerante agli errori.
+
+\subsubsection{Metriche}
+\begin{itemize}
+    \item \textbf{QPR-AFD - Failure Density}:\\
+    Indica l'affidabilità del software. Si ricava dal rapporto tra i test eseguiti e i test falliti.
+    $$FD = \frac{T_{f}}{T_{t}} \cdot 100$$
+    \begin{itemize}
+        \item ${T_{f}}$: Test falliti; \\
+        \item ${T_{t}}$: Test totali. \\
+    \end{itemize}
+    \item \textbf{QPR-ACC - Code Coverage}:\\
+    Indica la percentuale di codice eseguito durante i test.
+\end{itemize}
+
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[2cm]|X[6cm]|X[3cm]|X[3cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-AFD & Failure Density & 90\% & 100\% \\
+        QPR-ACC & Code Coverage & 80\% & 100\% \\
+        \hline
+     \end{tblr}
+    \caption{Metriche Affidabilità}
+    \label{tab:3}
+\end{table}
+
+
+\subsection{Efficienza}
+Prodotto che fornisca e soddisfi gli obiettivi prefissati con il minor utilizzo di risorse possibile.
+
+\subsubsection{Metriche}
+\begin{itemize}
+    \item \textbf{QPR-TMR - Tempo di Risposta Medio}:\\
+    Il tempo impiegato dal software dalla gestione ed elaborazione di una richiesta fino al risultato finale fornito. \\
+\end{itemize}
+
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[5cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-TMR & Tempo di Risposta Medio & 3 secondi & 2 secondi \\
+        \hline
+     \end{tblr}
+    \caption{Metriche efficienza}
+    \label{tab:8}
+\end{table}
+
+\subsection{Funzionalità}
+Soddisfare tutti i requisiti richiesti e descritti all'interno dell'Analisi dei Requisiti v1.0.0.
+
+\subsubsection{Metriche}
+\textbf{QPR-RC}: Requirements Coverage \\
+Indica la percentuale dei requisiti soddisfatti. Per il calcolo del valore accettato si considerano solo i requisiti obbligatori.\\
+Formula valore accettato:
+$$RC_{obb} = \frac{NR_{os}}{NR_{ot}} \cdot 100$$
+\begin{itemize}
+\item $RC_{obb}$ : Requirements Coverage obbligatori;
+\item $NR_{os}$ : Numero di requisiti obbligatori soddisfatti;
+\item $NR_{ot}$ : Numero di requisiti obbligatori totali.
+\end{itemize}
+
+Formula valore ideale:
+$$RC_{i} = \frac{NR_{s}}{NR_{t}} \cdot 100$$
+
+\begin{itemize}
+\item $RC_{i}$ : Requirements Coverage ideali;
+\item $NR_{s}$ : Numero di requisiti ideali soddisfatti;
+\item $NR_{t}$ : Numero di requisiti ideali totali.
+\end{itemize}
+
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-RC & Requirements Coverage & 100\% $RC_{obb}$ & 100\% $RC_{i}$ \\
+        \hline
+     \end{tblr}
+    \caption{Metriche Funzionalità}
+    \label{tab:4}
+\end{table}
+
+\subsection{Compatibilità}
+Prodotto accessibile al maggior numero di utenti possibile e che garantisce la compatibilità con i browser più diffusi.
+\subsubsection{Metriche}
+\textbf{QPR-CB}: Compatibilità Browser \\
+Indica la percentuale di browser supportati in relazione a quelli previsti.\\
+Formula valore accettato:
+$$CB = \frac{BW_{s}}{BW_{p}} \cdot 100$$
+\begin{itemize}
+    \item $CB$ : Compatibilità browser;
+    \item $BW_{s}$ : Browser supportati;
+    \item $BW_{p}$ : Browser previsti.
+\end{itemize}
+
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-CB & Compatibilità Browser & 100\% & 100\% \\
+        \hline
+     \end{tblr}
+    \caption{Metriche Compatibilità}
+    \label{tab:5}
+\end{table}
+
+\subsection{Documentazione}
+I documenti dovranno essere di facile comprensione, corretti ortograficamente e sintatticamente.
+\subsubsection{Metriche}
+\textbf{QPR-DOC}: Indice di Gulpease \\
+L'Indice di Gulpease è un indice di leggibilità di un testo tarato sulla lingua italiana.
+Si basa sulla seguente formula:
+$$GULPEASE = 89+\frac{(NF \cdot 300) - (10 \cdot NL)}{NP}$$
+\begin{itemize}
+    \item \textbf{NF:} Numero frasi;
+    \item \textbf{NL:} Numero lettere;
+    \item \textbf{NP:} Numero parole.
+\end{itemize}
+
+In generale risulta la seguente suddivisione:
+\begin{itemize}
+   \item GULPEASE ${\le}$ 80 : difficile da leggere per chi ha un licenza elementare;
+    \item GULPEASE ${\le}$ 60 : difficile da leggere per chi ha un licenza media;
+    \item GULPEASE ${\le}$ 40 : difficile da leggere per chi ha un diploma superiore.
+\end{itemize}
+
+
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black,fg=white}
+        }
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-DOC & Indice di Gulpease & GULPEASE ${\geq}$ 40 & GULPEASE ${\geq}$ 60 \\
+        \hline
+     \end{tblr}
+    \caption{Metriche Documentazione}
+    \label{tab:7}
+\end{table}
