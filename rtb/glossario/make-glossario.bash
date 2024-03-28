@@ -28,12 +28,21 @@ function formattavocaboli(){
 
 # stampa e scrivi il template latex dove aggiungere le definizioni
 function makelatex(){
-  function escludi(){
-    grep -v 'Clienti' |
-    grep -v 'Ristoratori' |
-    cat
+  function parsione(){
+    sed '
+    ; s/^Clienti$/Cliente/
+    ; s/^Ristoratori$/Ristoratore/
+    ; s/^Prenotazioni$/Prenotazione/
+    ; s/^Requisiti$/Requisito/
+    ; s/^Requisiti funzionali$/Requisito funzionale/
+    ; s/^Profili$/Profilo/
+    ; s/^NextJs$/NextJS/
+    ; s/^Express$/ExpressJS/
+    ; s/^Capitolato d.appalto$//
+    ; /^$/d
+    '
   }
-  findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | escludi  | sort | uniq |
+  findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | parsione | sort | uniq |
     while IFS= read line ; do
       CNT="$(grep '\\subsection{'"$line"'}' "$VOC")"
       if [[ -n "$CNT" ]] ; then
