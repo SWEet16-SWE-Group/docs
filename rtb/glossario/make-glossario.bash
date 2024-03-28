@@ -19,14 +19,21 @@ function findentries(){
   cat $(texfiles) | grep -Po '\\emph{.*?}\$\^{G}\$'
 }
 
+VOC=src/vocaboli.tex
+
 # stampa e scrivi il template latex dove aggiungere le definizioni
 function makelatex(){
   findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | sort | uniq |
     while IFS= read line ; do
       cnt="DA DEFINIRE"
       printf '\subsection{%s}: %s;\n' "$line" "$cnt"
-    done | tee src/vocaboli.tex.tmp
-    mv src/vocaboli.tex{.tmp,}
+    done | tee "$VOC".tmp
+    mv "$VOC"{.tmp,}
+}
+
+# formatta vocaboli
+function formattavocaboli(){
+   sed -zi 's/\n//g;s/\(\\section{\)/\n\1/g;s/$/\n/' "$VOC"
 }
 
 if [[ -z "$*" ]] ; then
