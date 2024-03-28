@@ -77,7 +77,7 @@
         \begin{itemize}
             \item Il nome;
             \item Il cognome;
-            \item Lo username;
+            \item Il nome del profilo;
             \item Le eventuali allergie ed intolleranze da una lista precompilata dal sistema;
         \end{itemize}
         \item L'utente sceglie l'opzione di conferma dei dati inseriti;
@@ -101,7 +101,8 @@
         \begin{itemize}
             \item Il nome del ristorante;
             \item L'indirizzo;
-            \item Giorni di apertura;
+            \item Giorni di servizio;
+            \item Orari di servizio;
             \item Il recapito telefonico;
             \item Il numero di coperti disponibili;
             \item L'elenco delle tipologie di cucine proposte.
@@ -179,7 +180,7 @@
 \end{itemize}
 
 \subsubsection{UC9-Selezione profilo cliente}
-\begin{figure}[h] \includegraphics[scale=1]{uc09.png} \end{figure}
+\begin{figure}[h] \includegraphics[scale=1]{uc09.png} \end{figure} 
 \begin{itemize}
 \item \textbf{Attore principale:} Utente autenticato.
 \item \textbf{Precondizioni:} L'utente è autenticato presso il sistema.
@@ -188,7 +189,7 @@
 \begin{enumerate}
     \item L'utente sta visualizzando la lista dei suoi profili;
     \item L'utente seleziona un profilo di tipo cliente;
-    \item L'utente visualizza una lista casuale di ristoranti scelti dal sistema (si veda UC16).
+    \item L'utente visualizza la dashboard relativa al profilo selezionato.
 \end{enumerate}
 \end{itemize}
 
@@ -197,7 +198,7 @@
 \begin{figure}[h] \includegraphics[scale=1]{uc10.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Utente autenticato.
-\item \textbf{Precondizioni:} L'utente è autenticato presso il sistema e possiede una profilo ristoratore.
+\item \textbf{Precondizioni:} L'utente è autenticato presso il sistema e possiede un profilo ristoratore.
 \item \textbf{Postcondizioni:} L'utente visualizza le informazioni relative al profilo ristoratore selezionato.
 \item \textbf{Scenario principale:}
 \begin{enumerate}

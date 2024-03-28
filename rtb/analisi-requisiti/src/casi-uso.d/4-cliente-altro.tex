@@ -80,19 +80,22 @@
 \begin{figure}[h] \includegraphics[scale=1]{uc29.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Cliente.
-\item \textbf{Precondizioni:} Il cliente ha partecipato ad una prenotazione il cui conto è stato saldato.
+\item \textbf{Precondizioni:}
+  \begin{itemize}
+    \item Il cliente sta visualizzando il dettaglio di una prenotazione accettata;
+    \item La prenotazione è stata pagata.
+  \end{itemize}
 \item \textbf{Postcondizioni:} La recensione è stata salvata nella lista di recensioni del ristorante.
 \item \textbf{Scenario principale:}
 \begin{enumerate}
-    \item Il cliente clicca sul tasto per lasciare la recensione;
-    \item Il sistema mostra un form contente tre voti da una a cinque stelle, rispettivamente per:
+    \item Il cliente seleziona la funzione per lasciare una recensione;
+    \item Il sistema mostra un form contente tre voti da una a cinque stelle e un campo di testo opzionale, rispettivamente per:
   \begin{itemize}
     \item Menù;
     \item Servizio;
     \item Prezzo.
   \end{itemize}
-      Segue poi un campo di testo;
-    \item Il cliente può riempire i tre voti (obbligatori) e il campo di testo (facoltativo);
+    \item Il cliente deve riempire i tre voti e può opzionalmente compilare il campo di testo;
     \item Il cliente fa il submit del form;
     \item Il sistema reindirizza alla pagina del ristorante dove è possibile vedere la propria recensione.
 \end{enumerate}

@@ -1,6 +1,6 @@
 \pagebreak
 \subsubsection{UC15-Visualizzazione lista ristoranti}
-\begin{figure}[h] \includegraphics[scale=1]{uc15.png} \end{figure}
+\begin{figure}[h] \includegraphics[scale=1]{uc15.png} \end{figure} 
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente è connesso al sistema.
@@ -9,6 +9,13 @@
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di visualizzazione di una lista di ristoranti;
     \item L'utente visualizza una lista di ristoranti,ordinati secondo la loro valutazione media in ordine decrescente.
+    \item Il sistema mostra per ogni ristorante queste informazioni:
+       \begin{itemize}
+           \item Il nome del ristorante;
+           \item La tipologia/e di cucina del ristorante;
+           \item La valutazione media ed il numero di valutazioni;
+           \item Gli orari di apertura per la giornata di oggi o l'eventuale chiusura.
+       \end{itemize}
 \end{enumerate}
 \end{itemize}
 
@@ -133,7 +140,7 @@ nella data da lui selezionata.
 \end{itemize}
 
 \pagebreak
-\subsubsection{UC17-Visualizzazione ristorante}
+\subsubsection{UC17-Visualizzazione ristorante} 
 \begin{figure}[h] \includegraphics[scale=0.6]{uc17.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
@@ -149,10 +156,11 @@ nella data da lui selezionata.
         \item L'indirizzo;
         \item Gli orari di servizio;
         \item La/le tipologie di cucine offerte;
+        \item Il numero di coperti$^{G}$;
         \item La valutazione media.
     \end{itemize}
-    \item L'utente può scegliere di visualizzare il menù completo (vedi UC18.1-Visualizzazione menù);
-    \item L'utente può scegliere di visualizzare le recensioni rilasciate da altri utenti (vedi UC18.2-Visualizzazione recensioni).
+    \item L'utente può scegliere di visualizzare il menù completo (vedi UC17.1-Visualizzazione menù);
+    \item L'utente può scegliere di visualizzare le recensioni rilasciate da altri utenti (vedi UC17.2-Visualizzazione recensioni).
 \end{enumerate}
 \end{itemize}
 
@@ -166,13 +174,13 @@ nella data da lui selezionata.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di visualizzazione del menù del ristorante;
     \item L'utente visualizza la lista completa delle pietanze presenti nel menù;
-    \item L'utente può effettuare la ricerca di una pietanza (vedi UC18.1.1-Ricerca pietanza);
-    \item L'utente può visualizzare i dettagli relativi ad una singola pietanza presente
-     nel menù (vedi UC18.1.2-Visualizzazione pietanza).
+    \item L'utente può effettuare la ricerca di una pietanza (vedi UC53-Ricerca pietanza);
+    \item L'utente può visualizzare i dettagli relativi ad una singola pietanza presente nel menù (vedi UC17.1.2-Visualizzazione pietanza).
 \end{enumerate}
 \end{itemize}
 
-\textbf{UC17.1.1-Ricerca pietanza}
+\subsubsection{UC53-Ricerca pietanza} 
+\begin{figure}[h] \includegraphics[scale=0.6]{uc53.png} \end{figure}
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando il menù di un ristorante.
@@ -207,7 +215,7 @@ nella data da lui selezionata.
 \end{itemize}
 
 \pagebreak
-\textbf{UC17.2-Visualizzazione recensioni}
+\textbf{UC17.2-Visualizzazione lista recensioni}
 \begin{itemize}
 \item \textbf{Attore principale:} Utente non riconosciuto / Cliente.
 \item \textbf{Precondizioni:} L'utente sta visualizzando le informazioni relative ad un ristorante.
@@ -216,9 +224,11 @@ nella data da lui selezionata.
 \begin{enumerate}
     \item L'utente seleziona la funzionalità di visualizzazione delle recensioni fatte da altri utenti
     sulla loro esperienza presso il ristorante;
-    \item Di default,se presenti più di 5 recensioni, il sistema ne presenta una lista con le ultime 5 fatte in ordine temporale decrescente;
-    \item L'utente visualizza le suddette recensioni ,corredate dalle seguenti informazioni:
+    \item Il sistema presenta una lista con tutte le recensione di quel ristorante in ordine temporale decrescente;
+    \item L'utente visualizza le seguenti informazioni per ogni recensione:
     \begin{itemize}
+        \item Il nome del profilo che l'ha rilasciata;
+        \item La data di rilascio;
         \item Un voto da 1 a 5 sul menù;
         \item Un voto da 1 a 5 sul servizio;
         \item Un voto da 1 a 5 sul prezzo;
@@ -248,17 +258,24 @@ nella data da lui selezionata.
 \end{itemize}
 
 \pagebreak
-\subsubsection{UC19-Visualizzazione lista prenotazioni}
+\subsubsection{UC19-Visualizzazione lista prenotazioni} % UC19: deve essere modellata come una lista di informazioni
 \begin{figure}[h] \includegraphics[scale=1]{uc19.png} \end{figure}
 \begin{itemize}
     \item \textbf{Attore principale: } Cliente.
-    \item \textbf{Precondizioni: }Il cliente sta visualizzando le sue informazioni personali.
+    \item \textbf{Precondizioni: }L'utente ha selezionato un profilo cliente.
     \item \textbf{Postcondizioni: }Il cliente visualizza la lista delle sue prenotazioni.
     \item \textbf{Scenario principale:}
         \begin{enumerate}
             \item Il cliente seleziona la funzionalità di visualizzazione delle sue prenotazioni;
             \item Il cliente può filtrare le prenotazioni tramite dei parametri (si veda UC15);
             \item Il cliente può selezionare una prenotazione singola per vederne il dettaglio (si veda UC21).
+            \item Il cliente visualizza le seguenti informazioni per ogni prenotazione:
+              \begin{itemize}
+                \item Il ristorante;
+                \item La timestamp per cui è programmata;
+                \item Il numero di persone partecipanti;
+                \item Lo stato (In Attesa, Accettata, Rifiutata);
+              \end{itemize}
         \end{enumerate}
 \end{itemize}
 
@@ -297,26 +314,10 @@ nella data da lui selezionata.
                 \item L'indirizzo del ristorante;
                 \item L'orario;
                 \item Il numero di persone;
-                \item Lo stato della prenotazione (se è in attesa di conferma da parte del ristoratore
-                o se è già stata confermata).
+                \item Lo stato della prenotazione (se è in attesa di accettazione da parte del ristoratore o se è già stata accettata);
             \item Il cliente può andare a generare il link per la condivisione della prenotazione (si veda UC23).
             \end{itemize}
         \end{enumerate}
-    \item \textbf{Estensione: }UCE21-Prenotazione rifiutata
-\end{itemize}
-
-\subsubsection{UCE21-Prenotazione rifiutata}
-\begin{itemize}
-    \item \textbf{Descrizione: }Se il ristoratore rifiuta una delle prenotazioni del cliente in attesa di conferma,
-    mentre quest'ultimo sta visualizzando la lista delle sue prenotazioni, il cliente si accorge del rifiuto quando
-    seleziona la suddetta prenotazione.
-    \item \textbf{Scenario alternativo: }
-    \begin{enumerate}
-        \item Il cliente seleziona una prenotazione rifiutata mentre sta visualizzando la lista
-        delle sue prenotazioni;
-        \item Il sistema comunica un messaggio di errore al cliente,dicendogli che la prenotazione selezionata
-        è stata rifiutata e che non è più possibile visualizzarne le informazioni.
-    \end{enumerate}
 \end{itemize}
 
 \pagebreak
