@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  validatore:
+    image: archlinux:base-devel-20240101.0.204074
+    container_name: validatore
+    command: bash validatore-stile.sh findreplace
+    working_dir: /validatore/
+    volumes:
+      - ./:/validatore/
