@@ -30,8 +30,18 @@ function formattavocaboli(){
 function makelatex(){
   findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | sort | uniq |
     while IFS= read line ; do
-      cnt="DA DEFINIRE"
-      printf '\subsection{%s}: %s;\n' "$line" "$cnt"
+      #cnt="$(a="$(grep '\subsection{'"$line"'}' "$VOC")"  ; [[ -z "$a" ]] && printf '%s' "DA DEFINIRE" || printf '%s' "$a" )"
+      function getcontent(){
+        CNT="$(grep '\\subsection{'"$line"'}' "$VOC")"
+        if [[ -n "$CNT" ]] ; then
+          printf '%s\n' "$CNT"
+        else
+          printf '\\subsection{%s} DA DEFINIRE\n' "$line"
+        fi
+        #printf '%s' "$CNT"
+      }
+      getcontent
+      #printf '%s\n' "$line" "$(getcontent)"
     done | tee "$VOC".tmp
     mv "$VOC"{.tmp,}
 }
