@@ -5,6 +5,6 @@ services:
     image: archlinux:base-devel-20240101.0.204074
     container_name: validatore
     command: bash make-glossario.bash
-    working_dir: /glossario/
+    working_dir: /glossario/glossario/
     volumes:
       - ../:/glossario/
