@@ -28,7 +28,13 @@ function formattavocaboli(){
 
 # stampa e scrivi il template latex dove aggiungere le definizioni
 function makelatex(){
-  findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | sort | uniq |
+  function escludi(){
+    grep -v 'Clienti' |
+    grep -v 'Ristoratori' |
+    grep -v 'NextJs' |
+    cat
+  }
+  findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | escludi  | sort | uniq |
     while IFS= read line ; do
       CNT="$(grep '\\subsection{'"$line"'}' "$VOC")"
       if [[ -n "$CNT" ]] ; then
