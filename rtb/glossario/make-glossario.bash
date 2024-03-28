@@ -21,6 +21,11 @@ function findentries(){
 
 VOC=src/vocaboli.tex
 
+# formatta vocaboli
+function formattavocaboli(){
+   sed -zi 's/\n//g;s/\(\\section{\)/\n\1/g;s/$/\n/' "$VOC"
+}
+
 # stampa e scrivi il template latex dove aggiungere le definizioni
 function makelatex(){
   findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | sort | uniq |
@@ -29,11 +34,6 @@ function makelatex(){
       printf '\subsection{%s}: %s;\n' "$line" "$cnt"
     done | tee "$VOC".tmp
     mv "$VOC"{.tmp,}
-}
-
-# formatta vocaboli
-function formattavocaboli(){
-   sed -zi 's/\n//g;s/\(\\section{\)/\n\1/g;s/$/\n/' "$VOC"
 }
 
 if [[ -z "$*" ]] ; then
