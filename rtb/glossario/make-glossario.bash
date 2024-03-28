@@ -31,7 +31,6 @@ function makelatex(){
   function escludi(){
     grep -v 'Clienti' |
     grep -v 'Ristoratori' |
-    grep -v 'NextJs' |
     cat
   }
   findentries | sed 's/\\emph{\(.\)/\U\1/;s/}\$\^{G}\$//' | escludi  | sort | uniq |
