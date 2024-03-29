@@ -59,8 +59,9 @@ function makelatex(){
       else
         printf '\\subsection{%s} DA DEFINIRE\n' "$line"
       fi
-    done | tee "$VOC".tmp
+    done > "$VOC".tmp
     mv "$VOC"{.tmp,}
+    echo "$VOC è stato aggiornato, controlla dove per vocaboli da definire"
 }
 
 formattavocaboli && findoutliers && makelatex
