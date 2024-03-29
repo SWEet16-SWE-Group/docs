@@ -63,11 +63,4 @@ function makelatex(){
     mv "$VOC"{.tmp,}
 }
 
-if [[ -z "$*" ]] ; then
-  echo Funzioni disponibili
-  echo
-  cat "$0" | grep -P '^# ' -A 1 | sed 's/--//;s/^/\t/' | sed 's/function \(.*\)(){/come usare : sh make-glossario.sh \1/'
-  echo
-else
-  $*
-fi
+formattavocaboli && findoutliers && makelatex
