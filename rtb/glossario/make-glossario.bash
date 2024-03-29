@@ -7,11 +7,17 @@ function texfiles(){
 
 # stampa le posizioni dove $^{G}$ viene usato senza un \emph associato
 function findoutliers(){
+  OUTLIERS="$(
   texfiles | while IFS= read line ; do
     MATCHES="$(grep -ne '\$\^{G}\$' $line)"
     [[ -n "$MATCHES" ]] &&
-      { echo "$MATCHES" | awk -F 'ç' -v file="$line"  '{printf("%s @ %s\n",file,$1)}' ; } | grep -vP '\\emph{.*?}\$\^{G}\$'
-  done
+      { echo "$MATCHES" | awk -F 'ç' -v file="$line"  '{printf("%s @ %s\n",file,$1)}' ; }
+  done |
+    grep -vP '\\emph{.*?}\$\^{G}\$' |
+    grep -vP 'La presenza di un termine all.interno del glossario viene indicata applicando una'
+  )"
+  printf '%s\n' "$OUTLIERS"
+  [[ -z "$OUTLIERS" ]]
 }
 
 # stampa le enties valide per il glossario
