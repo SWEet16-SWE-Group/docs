@@ -36,6 +36,7 @@ function formattavocaboli(){
 function makelatex(){
   function parsione(){
     sed '
+    # rinomine
     ; s/^Clienti$/Cliente/
     ; s/^Ristoratori$/Ristoratore/
     ; s/^Prenotazioni$/Prenotazione/
@@ -44,7 +45,9 @@ function makelatex(){
     ; s/^Profili$/Profilo/
     ; s/^NextJs$/NextJS/
     ; s/^Express$/ExpressJS/
-    ; s/^Capitolato d.appalto$//
+
+    # eliminazioni
+    ; /^Capitolato d.appalto$/d
     ; /^$/d
     '
   }
