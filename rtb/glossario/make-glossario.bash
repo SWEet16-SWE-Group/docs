@@ -61,7 +61,7 @@ function makelatex(){
       fi
     done > "$VOC".tmp
     mv "$VOC"{.tmp,}
-    echo "$VOC è stato aggiornato, controlla dove per vocaboli da definire"
+    echo "$VOC è stato aggiornato, controlla per vocaboli da definire"
 }
 
 formattavocaboli && findoutliers && makelatex
