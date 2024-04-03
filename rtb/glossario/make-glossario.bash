@@ -44,6 +44,7 @@ function makelatex(){
     ; s/^Requisiti funzionali$/Requisito funzionale/
     ; s/^Profili$/Profilo/
     ; s/^NextJs$/NextJS/
+    ; s/^PoC$/PoC (Proof of Concept)/
     ; s/^Express$/ExpressJS/
 
     # eliminazioni
@@ -57,11 +58,11 @@ function makelatex(){
       if [[ -n "$CNT" ]] ; then
         printf '%s\n' "$CNT"
       else
-        printf '\\subsection{%s} DA DEFINIRE\n' "$line"
+        printf '\\subsection{%s} (INSERIRE DEFINIZIONE QUI)\n' "$line"
       fi
-    done > "$VOC".tmp
+    done | sort > "$VOC".tmp
     mv "$VOC"{.tmp,}
-    echo "$VOC è stato aggiornato, controlla dove per vocaboli da definire"
+    echo "$VOC è stato aggiornato, controlla per vocaboli da definire"
 }
 
 formattavocaboli && findoutliers && makelatex
