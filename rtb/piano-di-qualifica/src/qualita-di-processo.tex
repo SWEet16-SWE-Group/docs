@@ -10,10 +10,40 @@ il \textit{ciclo di Deming} , meglio conosciuto come PDCA, che prevede un approc
 all'attuazione di un miglioramento continuo.
 In questa sezione si espongono le metriche scelte ed i livelli di qualità accettabili e ottimali per ciascuna
 di esse.\\
+Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualità Processo) seguito dal codice della singola metrica.\\
 
 \subsection{Processi primari}
 
 \subsubsection{Fornitura}
+Processo che consiste nell'individuare e decidere quali sono le procedure e risorse adatte a soddisfare le necessità del cliente.\\
+\subsubsection{Metriche}
+\begin{itemize}
+    \item \textbf{Budget at Completion (BAC)}: Costo totale preventivato del progetto.
+\end{itemize}
+\begin{itemize}
+    \item \textbf{QPC-AC - Actual Cost}: Costo sostenuto per il progetto al momento del calcolo;
+    \item \textbf{QPC-EV - Earned Value}: Importo guadagnato per il lavoro svolto al momento del calcolo;
+    \item \textbf{QPC-PV - Planned Value}: Importo pianificato in base al lavoro svolto, al momento del calcolo:
+    \item \textbf{QPR-NE - Numero Errori}: Numero di errori commessi dall'utente prima di raggiungere lo scopo voluto.
+\end{itemize}
+\subsubsection{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black, fg=white}
+}
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPR-TA & Tempo Apprendimento & 10 minuti & 5 minuti \\
+        QPR-NP & Numero Passi & 20 click & 10 click \\
+        QPR-TE & Tempo Esplorazione & 5 minuti & 3 minuti \\
+        QPR-NE & NUmero Errori & 5 & 0 \\
+        \hline
+     \end{tblr}
+    \caption{Metriche usabilità}
+    \label{tab:1}
+\end{table}
 
 \subsubsection{Sviluppo}
 
