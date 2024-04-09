@@ -17,35 +17,44 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit�
 \subsubsection{Fornitura}
 Processo che consiste nell'individuare e decidere quali sono le procedure e risorse adatte a soddisfare le necessità del cliente.\\
 \subsubsection{Metriche}
+Parametro di riferimento utilizzato dalla metriche successive\\
 \begin{itemize}
-    \item \textbf{Budget at Completion (BAC)}: Costo totale preventivato del progetto.
+    \item \textbf{Budget at Completion (QPC-BAC)}: Totale preventivato del progetto.
 \end{itemize}
+Metriche:\\
 \begin{itemize}
     \item \textbf{QPC-AC - Actual Cost}: Costo sostenuto per il progetto al momento del calcolo;
-    \item \textbf{QPC-EV - Earned Value}: Importo guadagnato per il lavoro svolto al momento del calcolo;
-    \item \textbf{QPC-PV - Planned Value}: Importo pianificato in base al lavoro svolto, al momento del calcolo:
-    \item \textbf{QPR-NE - Numero Errori}: Numero di errori commessi dall'utente prima di raggiungere lo scopo voluto.
+    \item \textbf{QPC-ETC - Estimated to Completion}: Stima valore per la realizzazione delle rimanenti attività;
+    \item \textbf{QPC-EAC - Estimated at Completion}: Costo finale stimato alla data della misurazione, revisione del \textbf{QPC-BAC}; $$Formula: \textrm{QPC-AC} + \textrm{QPC-ETC}$$
+    \item \textbf{QPC-EV - Earned Value}: Importo guadagnato per il lavoro svolto al momento del calcolo; $$Formula: (\%Lavoro \enspace svolto) \cdot QPC-EAC$$
+    \item \textbf{QPC-PV - Planned Value}: Importo pianificato in base al lavoro svolto, al momento del calcolo; $$Formula: (\%Lavoro \enspace pianificato) \cdot \textrm{QPC-BAC}$$
+    \item \textbf{QPC-SV - Schedule Variance}: Stato (anticipo/ritardo) della pianificazione. Un valore negativo indica che si è in ritardo rispetto alla pianificazione; $$Formula \enspace base: \textrm{QPC-EV} - \textrm{QPC-PV}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-PV} \cdot 100$$
+    \item \textbf{QPC-CV - Cost Variance}: Differenza tra il budget a disposizione e quello effettivamente utilizzato. Un valore negativo indica che si sta lavorando in perdita. $$Formula: \textrm{QPC-EV} - \textrm{QPC-AC}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-AC} \cdot 100$$
 \end{itemize}
 \subsubsection{Obiettivi}
 \begin{table}[h!]
     \begin{tblr}{
-        colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
+        colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
         row{odd}={bg=white},
         row{even}={bg=lightgray},
         row{1}={bg=black, fg=white}
 }
         Metrica & Descrizione & Valore accettabile & Valore ideale \\
-        QPR-TA & Tempo Apprendimento & 10 minuti & 5 minuti \\
-        QPR-NP & Numero Passi & 20 click & 10 click \\
-        QPR-TE & Tempo Esplorazione & 5 minuti & 3 minuti \\
-        QPR-NE & NUmero Errori & 5 & 0 \\
+        QPC-AC & Actual Cost &  &  \\
+        QPC-ETC & Estimated to Completion & ${\geq}$ 0\% & ${\leq}$ QPC-EAC\\
+        QPC-EAC & Estimated at Completion & Errore del ${\pm}$ 3\% rispetto a QPC-BAC & = QPC-BAC\\
+        QPC-EV & Earned Value & ${\geq}$ 0 & ${\leq}$ QPC-EAC \\
+        QPC-PV & Planned Value & ${\geq}$ 0 & ${\leq}$ QPC-BAC \\
+        QPC-SV & Schedule Variance & ${\geq}$ -10\% & ${\geq}$ 0 \\
+        QPC-CV & Cost Variance & ${\geq}$ -5\% & ${\geq}$ 0 \\
         \hline
      \end{tblr}
-    \caption{Metriche usabilità}
+    \caption{Metriche fornitura}
     \label{tab:1}
 \end{table}
 
 \subsubsection{Sviluppo}
+Processo che ha lo scopo di sviluppare un prodotto software che indirizzi le esigenze del cliente.\\
 
 \subsection{Processi di supporto}
 
