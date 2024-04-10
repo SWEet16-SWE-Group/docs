@@ -49,12 +49,39 @@ Metriche:\\
         QPC-CV & Cost Variance & ${\geq}$ -5\% & ${\geq}$ 0 \\
         \hline
      \end{tblr}
-    \caption{Metriche fornitura}
-    \label{tab:1}
+    \caption{Metriche e obiettivi fornitura}
+    \label{tab:20}
 \end{table}
 
 \subsubsection{Sviluppo}
-Processo che ha lo scopo di sviluppare un prodotto software che indirizzi le esigenze del cliente.\\
+Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del cliente.\\
+
+\paragraph{Progettazione architetturale}
+
+\textbf{Metriche}\\
+
+\begin{itemize}
+    \item \textbf{QPC-SFIN - Structural Fan-in}: Indice di utilità, indica quante componenti utilizzano un determinato modulo. Un valore alto indica che il componente è molto usato;
+    \item \textbf{QPC-SFOUT - Structural Fan-out}: Indice di dipendenza, indica quante componenti sono utilizzate dalla componente in esame. Un valore alto indica un elevato utilizzo della componente.
+\end{itemize}
+
+\textbf{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black, fg=white}
+}
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPC-SFIN & Structural Fan-in & - & - \\
+        QPC-SFOUT & Structural Fan-out & - & - \\
+        \hline
+     \end{tblr}
+    \caption{Metriche e obiettivi progettazione architetturale}
+    \label{tab:21}
+\end{table}
+
 
 \subsection{Processi di supporto}
 
