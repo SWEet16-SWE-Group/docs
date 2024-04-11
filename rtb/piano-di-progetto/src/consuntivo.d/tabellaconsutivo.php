@@ -26,7 +26,7 @@ function tabella($titolo, $data) {
     'Differenze'             => array_sum(array_column($data, 'Differenze')),
   ];
 
-  foreach ($data as $i => &$v) {
+  foreach ($data as $_ => &$v) {
     $v['Costi preventivati (€)'] = sprintf('%.2f', $v['Costi preventivati (€)']);
     $v['Costi effettivi (€)'] = sprintf('%.2f', $v['Costi effettivi (€)']);
     $v['Differenze'] = sprintf('%.2f', $v['Differenze']);
@@ -69,9 +69,65 @@ EOF
   );
 }
 
+function trasponi($a) {
+  $b = [[]];
+  foreach ($a as $i => $v) {
+    foreach ($v as $j => $u) {
+      $b[$j][$i] = $u;
+    }
+  }
+  return $b;
+}
 
-// \subsection{Analisi e RTB}
-// \input{src/consuntivo.d/1-rtb.tex}
+$ruoli = [
+  ruolo('Responsabile',     30),
+  ruolo('Amministratore',   20),
+  ruolo('Analista',         25),
+  ruolo('Progettista',      25),
+  ruolo('Programmatore',    15),
+  ruolo('Verificatore',     15),
+];
+
+$dati = [
+  'Analisi e RTB' => [
+    'Preventivo' => [21, 18, 67, 26, 30, 49],
+    'Consuntivo' => [19, 20, 70, 30, 40, 61],
+  ],
+  'PB' => [
+    'Preventivo' => [00, 00, 00, 00, 00, 00],
+    'Consuntivo' => [00, 00, 00, 00, 00, 00],
+  ],
+  'CA' => [
+    'Preventivo' => [00, 00, 00, 00, 00, 00],
+    'Consuntivo' => [00, 00, 00, 00, 00, 00],
+  ],
+];
+$dati['Riepilogo'] = [
+  'Preventivo' => array_map(fn ($d) => array_sum($d), trasponi(array_column($dati, 'Preventivo'))),
+  'Consuntivo' => array_map(fn ($d) => array_sum($d), trasponi(array_column($dati, 'Consuntivo'))),
+];
+
+$txt = implode(
+  "\n",
+  array_map(
+    fn ($val, $key) => tabella(
+      $key,
+      array_map(
+        fn ($r, $c, $p) => $r($p, $c),
+        $ruoli,
+        $val['Preventivo'],
+        $val['Consuntivo']
+      )
+    ),
+    $dati,
+    array_keys($dati)
+  )
+);
+
+echo $txt;
+
+die();
+
 $txt =
   tabella('Analisi e RTB', [
     ($responsabile   = ruolo('Responsabile',     30))(21, 19),
@@ -82,8 +138,6 @@ $txt =
     ($verificatore   = ruolo('Verificatore',     15))(49, 61),
   ]);
 
-// % \subsection{PB}
-// % \input{src/consuntivo.d/2-pb.tex}
 $txt .=
   tabella('PB', [
     $responsabile(0, 0),
@@ -94,8 +148,6 @@ $txt .=
     $verificatore(0, 0),
   ]);
 
-// % \subsection{CA}
-// % \input{src/consuntivo.d/3-ca.tex}
 $txt .=
   tabella('CA', [
     $responsabile(0, 0),
@@ -106,8 +158,6 @@ $txt .=
     $verificatore(0, 0),
   ]);
 
-// % \subsection{Riepilogo}
-// % \input{src/consuntivo.d/4-riepilogo.tex}
 $txt .=
   tabella('Riepilogo', [
     $responsabile(0, 0),
