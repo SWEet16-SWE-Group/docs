@@ -1,5 +1,5 @@
 function texfiles(){
-  find . -type f -name '*.tex' ! -name 'vocaboli.tex' | grep -v 'verbali'
+  find . -type f -name '*.tex' ! -name 'vocaboli.tex' ! -name 'registro-modifiche.tex' | grep -v 'verbali'
 }
 
 function greptext(){
@@ -55,6 +55,9 @@ function findreplace(){
     ; s/(\\item .*?)\.\n( *\\item)/\1;\n\2/g              # ; tra 2 \item con il . in mezzo quello sopra non sempre funziona
     ; s/(\\item .*?)[:;\.]?\n( *\\end)/\1.\n\2/g          # . tra \item e \end
     ; s/(\\item .*?)[:;\.]?(})?\n( *\\begin)/\1:\2\n\3/g  # : tra 2 \item e \begin
+
+
+    ; s/(\\item .*?\$\$)[:;\.]?(})?\n/\1\2\n\3/g  # : tra 2 \item e \begin
 
     # rimozione del rumore
     ; s/\r\n/\n/g           # carriage return
