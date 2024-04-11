@@ -92,19 +92,19 @@ $dati = [
     'Preventivo' => [21, 18, 67, 26, 30, 49],
     'Consuntivo' => [19, 20, 70, 30, 40, 61],
   ],
-  'PB' => [
-    'Preventivo' => [00, 00, 00, 00, 00, 00],
-    'Consuntivo' => [00, 00, 00, 00, 00, 00],
-  ],
-  'CA' => [
-    'Preventivo' => [00, 00, 00, 00, 00, 00],
-    'Consuntivo' => [00, 00, 00, 00, 00, 00],
-  ],
+  //'PB' => [
+  //  'Preventivo' => [10, 10, 10, 10, 10, 10],
+  //  'Consuntivo' => [10, 10, 10, 10, 10, 10],
+  //],
+  //'CA' => [
+  //  'Preventivo' => [00, 00, 00, 00, 00, 00],
+  //  'Consuntivo' => [00, 00, 00, 00, 00, 00],
+  //],
 ];
-$dati['Riepilogo'] = [
-  'Preventivo' => array_map(fn ($d) => array_sum($d), trasponi(array_column($dati, 'Preventivo'))),
-  'Consuntivo' => array_map(fn ($d) => array_sum($d), trasponi(array_column($dati, 'Consuntivo'))),
-];
+//$dati['Riepilogo'] = [
+//  'Preventivo' => array_map(fn ($d) => array_sum($d), trasponi(array_column($dati, 'Preventivo'))),
+//  'Consuntivo' => array_map(fn ($d) => array_sum($d), trasponi(array_column($dati, 'Consuntivo'))),
+//];
 
 $txt = implode(
   "\n",
