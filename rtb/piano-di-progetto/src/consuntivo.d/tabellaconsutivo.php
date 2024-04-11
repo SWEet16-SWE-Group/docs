@@ -11,6 +11,11 @@ function ruolo($ruolo, $costo) {
   ];
 }
 
+function multireplace($args, $txt) {
+  return str_replace(array_keys($args), $args, $txt);
+}
+
+
 function tabella($titolo, $data) {
   $data[] = [
     'Ruolo' => 'Totale',
@@ -35,10 +40,6 @@ function tabella($titolo, $data) {
     $v = implode(' & ', $v) . ' \\\\ \\hline';
   }
   $data = implode("\n", $data);
-
-  function multireplace($args, $txt) {
-    return str_replace(array_keys($args), $args, $txt);
-  }
 
   return multireplace(
     [
@@ -68,6 +69,9 @@ EOF
   );
 }
 
+
+// \subsection{Analisi e RTB}
+// \input{src/consuntivo.d/1-rtb.tex}
 $txt =
   tabella('Analisi e RTB', [
     ($responsabile   = ruolo('Responsabile',     30))(21, 19),
@@ -76,6 +80,42 @@ $txt =
     ($progettista    = ruolo('Progettista',      25))(26, 30),
     ($programmatore  = ruolo('Programmatore',    15))(30, 40),
     ($verificatore   = ruolo('Verificatore',     15))(49, 61),
+  ]);
+
+// % \subsection{PB}
+// % \input{src/consuntivo.d/2-pb.tex}
+$txt .=
+  tabella('PB', [
+    $responsabile(0, 0),
+    $amministratore(0, 0),
+    $analista(0, 0),
+    $progettista(0, 0),
+    $programmatore(0, 0),
+    $verificatore(0, 0),
+  ]);
+
+// % \subsection{CA}
+// % \input{src/consuntivo.d/3-ca.tex}
+$txt .=
+  tabella('CA', [
+    $responsabile(0, 0),
+    $amministratore(0, 0),
+    $analista(0, 0),
+    $progettista(0, 0),
+    $programmatore(0, 0),
+    $verificatore(0, 0),
+  ]);
+
+// % \subsection{Riepilogo}
+// % \input{src/consuntivo.d/4-riepilogo.tex}
+$txt .=
+  tabella('Riepilogo', [
+    $responsabile(0, 0),
+    $amministratore(0, 0),
+    $analista(0, 0),
+    $progettista(0, 0),
+    $programmatore(0, 0),
+    $verificatore(0, 0),
   ]);
 
 echo $txt;
