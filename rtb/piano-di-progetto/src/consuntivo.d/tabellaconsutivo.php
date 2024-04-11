@@ -57,13 +57,11 @@ EOF);
 }
 
 
-$rtb = [
+echo tabella([
   ($responsabile   = ruolo('Responsabile',     30))(21, 19),
   ($amministratore = ruolo('Amministratore',   20))(18, 20),
   ($analista       = ruolo('Analista',         25))(67, 70),
   ($progettista    = ruolo('Progettista',      25))(26, 30),
   ($programmatore  = ruolo('Programmatore',    15))(30, 40),
   ($verificatore   = ruolo('Verificatore',     15))(49, 61),
-];
-
-echo tabella($rtb);
+]);
