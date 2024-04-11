@@ -123,6 +123,6 @@ $txt = implode(
   )
 );
 
-echo $txt;
+echo 'PHP: preprocessing del consuntivo';
 
 file_put_contents('out.tex', $txt);
