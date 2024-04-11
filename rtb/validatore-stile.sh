@@ -57,7 +57,7 @@ function findreplace(){
     ; s/(\\item .*?)[:;\.]?(})?\n( *\\begin)/\1:\2\n\3/g  # : tra 2 \item e \begin
 
 
-    ; s/(\\item .*?\$\$)[:;\.]?(})?\n/\1\2\n\3/g  # : tra 2 \item e \begin
+    ; s/(\\item .*?\$\$)[:;\.]?(})?\n/\1\2\n\3/g  # rimozione del carattere di fine item dopo $$
 
     # rimozione del rumore
     ; s/\r\n/\n/g           # carriage return
