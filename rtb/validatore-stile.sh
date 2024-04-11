@@ -75,13 +75,7 @@ function phpparse(){
 }
 
 
-if [[ -z "$*" ]] ; then
-  echo Funzioni disponibili
-  echo
-  cat "$0" | grep -A 2 -P '^# '
-  echo
-else
-  $*
-fi
+phpparse
+findreplace
 
 exit 0
