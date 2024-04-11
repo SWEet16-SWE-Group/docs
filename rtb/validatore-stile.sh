@@ -67,9 +67,11 @@ function findreplace(){
     ' "$line"
   done
 
-  #texfiles | while IFS= read line ; do
-  #  grep -zPo '\\item .*?\.\n *\\item' "$line" | tr "\0" '\r' | sed 's/\r/\n\n/'
-  #done
+}
+
+function phpparse(){
+  [[ -z "$(pacman -Qeq php)" ]] && pacman -Sy --needed --noconfirm php
+  find . -type f -name '*.php' -execdir php '{}' \;
 }
 
 
