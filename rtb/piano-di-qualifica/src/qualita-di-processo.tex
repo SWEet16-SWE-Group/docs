@@ -152,7 +152,7 @@ Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del 
         row{1}={bg=black, fg=white}
 }
         Metrica & Descrizione & Valore accettabile & Valore ideale \\
-        QPC-QMS & Quality Metrics Satisfied & ${\geq}$ 70\% & 100\% \\
+        QPC-QMS & Quality Metrics Satisfied & ${\geq}$ 90\% & 100\% \\
         \hline
      \end{tblr}
     \caption{Metriche e obiettivi gestione della qualità}
@@ -161,3 +161,31 @@ Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del 
 
 
 \subsubsection{Verifica}
+\textbf{Metriche}
+\begin{itemize}
+    \item \textbf{QPC-CC: Code Coverage}: Definisce la misura della quantità di codice di un programma che viene eseguita durante uno specifico test.
+    Una percentuale alta indica che il codice è stato testato in modo approfondito nelle sue diverse parti e quindi vi è quindi una minore probabilità ci siano bug;    
+    \item \textbf{QPC-SC: Statement Coverage}: Tecnica di test di tipo white box che prevede l’esecuzione di tutte le istruzioni presenti nel codice sorgente almeno una volta
+    Metrica utilizzata per calcolare il numero di istruzioni eseguite almeno una volta;
+    \item \textbf{QPC-BC: Branch Coverage}: Indice di quante diramazioni del codice vengono eseguite dai test. Un "ramo" è uno dei possibili percorsi di esecuzione che il codice può seguire dopo che un'istruzione decisionale (es. if) viene valutata;
+    \item \textbf{QPC-DCC: Decision/Condition Coverage}: Il Decision/Condition Coverage è un criterio di copertura del codice utilizzato nei test del software;
+\end{itemize}
+
+\textbf{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black, fg=white}
+}
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPC-CC & Code Coverage & ${\geq}$ 70\% & 90\% \\
+        QPC-SC & Statement Coverage & ${\geq}$ 70\% & 85\% \\
+        QPC-BC & Branch Coverage & ${\geq}$ 50\% & 75\% \\
+        QPC-DCC & Decision/Condition Coverage & - & - \\
+        \hline
+     \end{tblr}
+    \caption{Metriche di verifica}
+    \label{tab:25}
+\end{table}
