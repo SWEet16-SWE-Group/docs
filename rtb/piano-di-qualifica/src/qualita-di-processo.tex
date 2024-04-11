@@ -104,6 +104,33 @@ Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del 
     \label{tab:22}
 \end{table}
 
+\paragraph{Codifica}
+\textbf{Metriche}
+\begin{itemize}
+    \item \textbf{QPC-BLC: Bugs for Line of Code}: Indice del numero di righe di codice contenenti bug ed errori al proprio interno;
+    \item \textbf{QPC-VNU: Variabili Non Utilizzate}: Indice di un errore di programmazione: Le variabile non utilizzare sporcano il codice e fanno allocare memoria inutilmente;
+    \item \textbf{QPC-VND: Variabili Non Definite}: Fonte comune di bug nel software: sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
+\end{itemize}
+
+\textbf{Obiettivi}
+\begin{table}[h!]
+    \begin{tblr}{
+        colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
+        row{odd}={bg=white},
+        row{even}={bg=lightgray},
+        row{1}={bg=black, fg=white}
+}
+        Metrica & Descrizione & Valore accettabile & Valore ideale \\
+        QPC-BLC & Bugs for Line of Code & 0-70 & 0-25 \\
+        QPC-VNU & Variabili Non Utilizzate & 0 & 0 \\
+        QPC-VND & Variabili Non Definite & 0 & 0 \\
+        \hline
+     \end{tblr}
+    \caption{Metriche e obiettivi progettazione di dettaglio}
+    \label{tab:23}
+\end{table}
+
+
 \subsection{Processi di supporto}
 
 \subsubsection{Documentazione}
