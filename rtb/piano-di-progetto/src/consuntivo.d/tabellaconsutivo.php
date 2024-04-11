@@ -62,7 +62,7 @@ function tabella($titolo, $data) {
 \\subsubsection{Costi}
 
 \\begin{tblr}{
-colspec={|X[3.5cm]|X[2.5cm]|X[1.5cm]|X[1.5cm]|X[1.5cm]},
+colspec={X[3cm]|X[2.5cm]|X[2.5cm]|X[1.5cm]|X[1.5cm]|X[2cm]},
 row{odd}={bg=white},
 row{even}={bg=lightgray},
 row{1}={bg=black,fg=white},
