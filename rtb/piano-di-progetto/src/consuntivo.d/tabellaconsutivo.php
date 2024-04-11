@@ -11,15 +11,6 @@ function ruolo($ruolo, $costo) {
   ];
 }
 
-$rtb = [
-  ($responsabile   = ruolo('Responsabile',     30))(21, 19),
-  ($amministratore = ruolo('Amministratore',   20))(18, 20),
-  ($analista       = ruolo('Analista',         25))(67, 70),
-  ($progettista    = ruolo('Progettista',      25))(26, 30),
-  ($programmatore  = ruolo('Programmatore',    15))(30, 40),
-  ($verificatore   = ruolo('Verificatore',     15))(49, 61),
-];
-
 function tabella($data) {
   $data[] = [
     'Ruolo' => 'Totale',
@@ -36,27 +27,16 @@ function tabella($data) {
     $v['Differenze'] = sprintf('%.2f', $v['Differenze']);
   }
 
-  $data = implode(
-    "\n",
-    array_map(
-      fn ($l) => $l . ' \\\\ \\hline',
-      array_map(
-        fn ($a) => implode(
-          ' & ',
-          array_map(
-            fn ($b) => sprintf(
-              '%15s',
-              (string)$b
-            ),
-            $a
-          )
-        ),
-        array_merge([array_keys($data[0])], $data)
-      )
-    )
-  );
+  $data = array_merge([array_keys($data[0])], $data);
+  foreach ($data as $_ => &$v) {
+    foreach ($v as $_ => &$u) {
+      $u = sprintf('%15s', (string)$u);
+    }
+    $v = implode(' & ', $v) . ' \\\\ \\hline';
+  }
+  $data = implode("\n", $data);
 
-  $txt = <<<EOF
+  return str_replace('<TABELLA>', $data, <<<EOF
 
 \\subsubsection{Costi}
 
@@ -73,9 +53,17 @@ row{8}={bg=black,fg=white}
 \\end{tblr}
 
 
-EOF;
-  return str_replace('<TABELLA>', $data, $txt);
+EOF);
 }
 
+
+$rtb = [
+  ($responsabile   = ruolo('Responsabile',     30))(21, 19),
+  ($amministratore = ruolo('Amministratore',   20))(18, 20),
+  ($analista       = ruolo('Analista',         25))(67, 70),
+  ($progettista    = ruolo('Progettista',      25))(26, 30),
+  ($programmatore  = ruolo('Programmatore',    15))(30, 40),
+  ($verificatore   = ruolo('Verificatore',     15))(49, 61),
+];
 
 echo tabella($rtb);
