@@ -1,5 +1,19 @@
 <?php
 
+function multireplace($args, $txt) {
+  return str_replace(array_keys($args), $args, $txt);
+}
+
+function trasponi($a) {
+  $b = [[]];
+  foreach ($a as $i => $v) {
+    foreach ($v as $j => $u) {
+      $b[$j][$i] = $u;
+    }
+  }
+  return $b;
+}
+
 function ruolo($ruolo, $costo) {
   return fn ($preventivo, $consuntivo) => [
     'Ruolo' => $ruolo,
@@ -10,11 +24,6 @@ function ruolo($ruolo, $costo) {
     'Differenze' => $c - $p,
   ];
 }
-
-function multireplace($args, $txt) {
-  return str_replace(array_keys($args), $args, $txt);
-}
-
 
 function tabella($titolo, $data) {
   $data[] = [
@@ -69,16 +78,6 @@ EOF
   );
 }
 
-function trasponi($a) {
-  $b = [[]];
-  foreach ($a as $i => $v) {
-    foreach ($v as $j => $u) {
-      $b[$j][$i] = $u;
-    }
-  }
-  return $b;
-}
-
 $ruoli = [
   ruolo('Responsabile',     30),
   ruolo('Amministratore',   20),
@@ -123,50 +122,6 @@ $txt = implode(
     array_keys($dati)
   )
 );
-
-echo $txt;
-
-die();
-
-$txt =
-  tabella('Analisi e RTB', [
-    ($responsabile   = ruolo('Responsabile',     30))(21, 19),
-    ($amministratore = ruolo('Amministratore',   20))(18, 20),
-    ($analista       = ruolo('Analista',         25))(67, 70),
-    ($progettista    = ruolo('Progettista',      25))(26, 30),
-    ($programmatore  = ruolo('Programmatore',    15))(30, 40),
-    ($verificatore   = ruolo('Verificatore',     15))(49, 61),
-  ]);
-
-$txt .=
-  tabella('PB', [
-    $responsabile(0, 0),
-    $amministratore(0, 0),
-    $analista(0, 0),
-    $progettista(0, 0),
-    $programmatore(0, 0),
-    $verificatore(0, 0),
-  ]);
-
-$txt .=
-  tabella('CA', [
-    $responsabile(0, 0),
-    $amministratore(0, 0),
-    $analista(0, 0),
-    $progettista(0, 0),
-    $programmatore(0, 0),
-    $verificatore(0, 0),
-  ]);
-
-$txt .=
-  tabella('Riepilogo', [
-    $responsabile(0, 0),
-    $amministratore(0, 0),
-    $analista(0, 0),
-    $progettista(0, 0),
-    $programmatore(0, 0),
-    $verificatore(0, 0),
-  ]);
 
 echo $txt;
 
