@@ -11,7 +11,7 @@ function ruolo($ruolo, $costo) {
   ];
 }
 
-function tabella($data) {
+function tabella($titolo, $data) {
   $data[] = [
     'Ruolo' => 'Totale',
     'Ore preventivate (h)'   => array_sum(array_column($data, 'Ore preventivate (h)')),
@@ -36,7 +36,18 @@ function tabella($data) {
   }
   $data = implode("\n", $data);
 
-  return str_replace('<TABELLA>', $data, <<<EOF
+  function multireplace($args, $txt) {
+    return str_replace(array_keys($args), $args, $txt);
+  }
+
+  return multireplace(
+    [
+      '<TABELLA>' => $data,
+      '<TITOLO>' => $titolo,
+    ],
+    <<<EOF
+
+\\subsection{<TITOLO>}
 
 \\subsubsection{Costi}
 
@@ -53,15 +64,20 @@ row{8}={bg=black,fg=white}
 \\end{tblr}
 
 
-EOF);
+EOF
+  );
 }
 
+$txt =
+  tabella('Analisi e RTB', [
+    ($responsabile   = ruolo('Responsabile',     30))(21, 19),
+    ($amministratore = ruolo('Amministratore',   20))(18, 20),
+    ($analista       = ruolo('Analista',         25))(67, 70),
+    ($progettista    = ruolo('Progettista',      25))(26, 30),
+    ($programmatore  = ruolo('Programmatore',    15))(30, 40),
+    ($verificatore   = ruolo('Verificatore',     15))(49, 61),
+  ]);
 
-echo tabella([
-  ($responsabile   = ruolo('Responsabile',     30))(21, 19),
-  ($amministratore = ruolo('Amministratore',   20))(18, 20),
-  ($analista       = ruolo('Analista',         25))(67, 70),
-  ($progettista    = ruolo('Progettista',      25))(26, 30),
-  ($programmatore  = ruolo('Programmatore',    15))(30, 40),
-  ($verificatore   = ruolo('Verificatore',     15))(49, 61),
-]);
+echo $txt;
+
+file_put_contents('out.tex', $txt);
