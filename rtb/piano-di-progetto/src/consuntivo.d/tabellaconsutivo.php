@@ -38,7 +38,7 @@ function tabella($titolo, $data) {
   foreach ($data as $_ => &$v) {
     $v['Costi preventivati (€)'] = sprintf('%.2f', $v['Costi preventivati (€)']);
     $v['Costi effettivi (€)'] = sprintf('%.2f', $v['Costi effettivi (€)']);
-    $v['Differenze'] = sprintf('%.2f', $v['Differenze']);
+    $v['Differenze'] = sprintf(($v['Differenze'] > 0 ? '+' : '') . '%.2f', $v['Differenze']);
   }
 
   $data = array_merge([array_keys($data[0])], $data);
