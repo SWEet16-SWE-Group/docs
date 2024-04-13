@@ -114,8 +114,8 @@ $txt = implode(
       array_map(
         fn ($r, $c, $p) => $r($p, $c),
         $ruoli,
+        $val['Consuntivo'],
         $val['Preventivo'],
-        $val['Consuntivo']
       )
     ),
     $dati,
@@ -123,6 +123,6 @@ $txt = implode(
   )
 );
 
-echo 'PHP: preprocessing del consuntivo';
+echo 'PHP: preprocessing del consuntivo' . "\n";
 
 file_put_contents('out.tex', $txt);
