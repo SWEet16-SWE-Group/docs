@@ -3,8 +3,8 @@
 La qualità di un prodotto è influenzata dalla qualità dei processi che lo compongono.
 È quindi necessario dotarsi di metriche che permettano di valutare tali processi e garantire che essi
 raggiungano gli obiettivi di qualità fissati.\\
-Per garantire una corretta implementazione ed un mantenimento costante, si seguirà 
-il \textit{ciclo di Deming} , meglio conosciuto come PDCA, che prevede un approccio iterativo funzionale
+Per garantire una corretta implementazione ed un mantenimento costante, si seguirà
+il \textit{ciclo di Deming}, meglio conosciuto come PDCA, che prevede un approccio iterativo funzionale
 all'attuazione di un miglioramento continuo.
 In questa sezione si espongono le metriche scelte ed i livelli di qualità accettabili e ottimali per ciascuna
 di esse.\\
@@ -38,7 +38,7 @@ Parametro di riferimento utilizzato dalla metriche successive\\
         row{1}={bg=black, fg=white}
 }
         Metrica & Descrizione & Valore accettabile & Valore ideale \\
-        QPC-AC & Actual Cost &  &  \\
+        QPC-AC & Actual Cost & & \\
         QPC-ETC & Estimated to Completion & ${\geq}$ 0\% & ${\leq}$ QPC-EAC\\
         QPC-EAC & Estimated at Completion & Errore del ${\pm}$ 3\% rispetto a QPC-BAC & = QPC-BAC\\
         QPC-EV & Earned Value & ${\geq}$ 0 & ${\leq}$ QPC-EAC \\
@@ -107,7 +107,7 @@ Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del 
 \begin{itemize}
     \item \textbf{QPC-BLC: Bugs for Line of Code}: Indice del numero di righe di codice contenenti bug ed errori al proprio interno;
     \item \textbf{QPC-VNU: Variabili Non Utilizzate}: Indice di un errore di programmazione: Le variabile non utilizzare sporcano il codice e fanno allocare memoria inutilmente;
-    \item \textbf{QPC-VND: Variabili Non Definite}: Fonte comune di bug nel software: sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
+    \item \textbf{QPC-VND: Variabili Non Definite}: Fonte comune di bug nel software: Sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
 \end{itemize}
 
 \subsubsubsubsection{Obiettivi}
@@ -194,12 +194,10 @@ In generale risulta la seguente suddivisione:
 \subsubsection{Verifica}
 \subsubsubsection{Metriche}
 \begin{itemize}
-    \item \textbf{QPC-CC: Code Coverage}: Definisce la misura della quantità di codice di un programma che viene eseguita durante uno specifico test.
-    Una percentuale alta indica che il codice è stato testato in modo approfondito nelle sue diverse parti e quindi vi è quindi una minore probabilità ci siano bug;    
-    \item \textbf{QPC-SC: Statement Coverage}: Tecnica di test di tipo white box che prevede l'esecuzione di tutte le istruzioni presenti nel codice sorgente almeno una volta
-    Metrica utilizzata per calcolare il numero di istruzioni eseguite almeno una volta;
+    \item \textbf{QPC-CC: Code Coverage}: Definisce la misura della quantità di codice di un programma che viene eseguita durante uno specifico test. Una percentuale alta indica che il codice è stato testato in modo approfondito nelle sue diverse parti e quindi vi è quindi una minore probabilità ci siano bug;
+    \item \textbf{QPC-SC: Statement Coverage}: Tecnica di test di tipo white box che prevede l'esecuzione di tutte le istruzioni presenti nel codice sorgente almeno una volta Metrica utilizzata per calcolare il numero di istruzioni eseguite almeno una volta;
     \item \textbf{QPC-BC: Branch Coverage}: Indice di quante diramazioni del codice vengono eseguite dai test. Un "ramo" è uno dei possibili percorsi di esecuzione che il codice può seguire dopo che un'istruzione decisionale (es. if) viene valutata;
-    \item \textbf{QPC-DCC: Decision/Condition Coverage}: Il Decision/Condition Coverage è un criterio di copertura del codice utilizzato nei test del software;
+    \item \textbf{QPC-DCC: Decision/Condition Coverage}: Il Decision/Condition Coverage è un criterio di copertura del codice utilizzato nei test del software.
 \end{itemize}
 
 \subsubsubsection{Obiettivi}
