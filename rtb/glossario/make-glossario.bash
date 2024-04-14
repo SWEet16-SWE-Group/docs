@@ -38,6 +38,7 @@ function makelatex(){
     sed '
     # rinomine
     ; s/^Clienti$/Cliente/
+    ; s/^Coperti$/Coperto/
     ; s/^Ristoratori$/Ristoratore/
     ; s/^Prenotazioni$/Prenotazione/
     ; s/^Requisiti$/Requisito/
@@ -45,6 +46,7 @@ function makelatex(){
     ; s/^Profili$/Profilo/
     ; s/^NextJs$/NextJS/
     ; s/^PoC$/PoC (Proof of Concept)/
+    ; s/^ITS$/ITS (Issue Tracking System)/
     ; s/^Express$/ExpressJS/
 
     # eliminazioni
