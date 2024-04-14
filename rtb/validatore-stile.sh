@@ -1,5 +1,23 @@
 function texfiles(){
-  find . -type f -name '*.tex' ! -name 'vocaboli.tex' ! -name 'registro-modifiche.tex' | grep -v 'verbali'
+  find . -type f -name '*.tex' ! -name 'vocaboli.tex' | grep -v 'verbali'
+}
+
+function greptext(){
+    sed 's/%.*$//' "$1" | grep -nP "$2" | awk -v msg="$3" -v file="$1" '{printf("%s : %s @ %s\n",msg,file,$0)}'
+}
+
+# trova gli errori nei file tex
+function finderrors(){
+  texfiles | while IFS= read line ; do
+    greptext "$line" '\\item [a-z]' 'Maiuscola mancante dopo \\item'
+    greptext "$line" '\\item \\texbf{[a-z]' 'Maiuscola mancante dopo \\item \\textbf'
+    greptext "$line" '\S\s+[,;:]' 'Spazio presente prima di [,.:]'
+    greptext "$line" '[,;:][^}\s0-9]' 'Spazio mancante dopo di [,.:]'
+
+    #greptext "$line" '\\item.*?[^;]}?$' '\\item non finisce con ;'
+    #greptextzero "$line" '\\item (?!\\item)*?[^\.]\s*?\n\s*?\\end{(itemize|enumerate)}' '\\item .* \\end non finisce con .'
+    #greptextzero "$line" '\\item[^\n]*?[^:]\s*}?\n[^\n]*?\\begin' '\\item .* \\begin non finisce con :'
+  done
 }
 
 # findreplace le correzzioni
@@ -38,9 +56,6 @@ function findreplace(){
     ; s/(\\item .*?)[:;\.]?\n( *\\end)/\1.\n\2/g          # . tra \item e \end
     ; s/(\\item .*?)[:;\.]?(})?\n( *\\begin)/\1:\2\n\3/g  # : tra 2 \item e \begin
 
-
-    ; s/(\\item .*?\$\$)[:;\.]?(})?\n/\1\2\n\3/g  # rimozione del carattere di fine item dopo $$
-
     # rimozione del rumore
     ; s/\r\n/\n/g           # carriage return
     ; s/\t/  /g             # tab in 2 spazi
@@ -49,14 +64,19 @@ function findreplace(){
     ' "$line"
   done
 
+  #texfiles | while IFS= read line ; do
+  #  grep -zPo '\\item .*?\.\n *\\item' "$line" | tr "\0" '\r' | sed 's/\r/\n\n/'
+  #done
 }
 
-function phpparse(){
-  [[ -z "$(pacman -Qeq php)" ]] && pacman -Sy --needed --noconfirm php
-  find . -type f -name '*.php' -execdir php '{}' \;
-}
 
-phpparse
-findreplace
+if [[ -z "$*" ]] ; then
+  echo Funzioni disponibili
+  echo
+  cat "$0" | grep -A 2 -P '^# '
+  echo
+else
+  $*
+fi
 
 exit 0
