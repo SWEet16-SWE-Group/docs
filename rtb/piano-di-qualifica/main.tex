@@ -22,6 +22,15 @@
 \setlength{\parindent}{0pt}
 \graphicspath{{../media/}}
 
+\setcounter{secnumdepth}{6}
+\setcounter{tocdepth}{6}
+
+\makeatletter
+\newcommand\subsubsubsection{\@startsection{paragraph}{4}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus.25ex}{\normalfont\normalsize\bfseries}}
+\newcommand\subsubsubsubsection{\@startsection{subparagraph}{5}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus.25ex}{\normalfont\normalsize\bfseries}}
+\newcommand\subsubsubsubsubection{\@startsection{subparagraph}{6}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus.25ex}{\normalfont\normalsize\bfseries}}
+\makeatother
+
 \begin{document}
 
 \begin{minipage}{0.35\linewidth}
