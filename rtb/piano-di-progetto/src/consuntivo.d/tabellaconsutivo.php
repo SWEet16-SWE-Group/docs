@@ -75,7 +75,7 @@ row{8}={bg=black,fg=white}
 
 \\subsubsection{Resoconto}
 
-Si veda il riepilogo finale della pianificazione.
+Si veda la retrospettiva nella sezione di Pianificazione.
 
 
 EOF
