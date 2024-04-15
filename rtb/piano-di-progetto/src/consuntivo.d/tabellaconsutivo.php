@@ -73,6 +73,10 @@ row{8}={bg=black,fg=white}
   
 \\end{tblr}
 
+\\subsubsection{Resoconto}
+
+Si veda il riepilogo finale della pianificazione.
+
 
 EOF
   );
