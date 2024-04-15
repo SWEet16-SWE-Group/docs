@@ -13,7 +13,7 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit√
 \subsection{Processi primari}
 
 \subsubsection{Fornitura}
-\subsubsubsection{Metriche}
+
 \begin{itemize}
     \item \textbf{Budget at Completion (QPC-BAC)}: Totale preventivato del progetto.
 \end{itemize}
@@ -27,7 +27,7 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit√
     \item \textbf{QPC-SV - Schedule Variance}: Stato (anticipo/ritardo) della pianificazione. Un valore negativo indica che si √® in ritardo rispetto alla pianificazione; $$Formula \enspace base: \textrm{QPC-EV} - \textrm{QPC-PV}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-PV} \cdot 100$$
     \item \textbf{QPC-CV - Cost Variance}: Differenza tra il budget a disposizione e quello effettivamente utilizzato. Un valore negativo indica che si sta lavorando in perdita. $$Formula: \textrm{QPC-EV} - \textrm{QPC-AC}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-AC} \cdot 100$$
 \end{itemize}
-\subsubsubsection{Obiettivi}
+
 \begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
@@ -51,7 +51,6 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit√
 
 \subsubsection{Sviluppo}
 \subsubsubsection{Progettazione architetturale}
-\subsubsubsubsection{Metriche}
 
 \begin{itemize}
     \item \textbf{QPC-SFIN - Structural Fan-in}: Indice di utilit√†, indica quante componenti utilizzano un determinato modulo. 
@@ -60,7 +59,6 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit√
     Un valore elevato indica che quest'ultima utilizza molte componenti esterne ad essa.
 \end{itemize}
 
-\subsubsubsubsection{Obiettivi}
 \begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
@@ -77,13 +75,14 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit√
     \label{tab:21}
 \end{table}
 
+\pagebreak
 \subsubsubsection{Progettazione di dettaglio}
-\subsubsubsubsection{Metriche}
+
 \begin{itemize}
     \item \textbf{QPC-NM - Number of Methods}: Indica il numero medio di metodi per package. Un numero eccessivo potrebbe indicare la necessit√† di refactoring.
 \end{itemize}
 
-\subsubsubsubsection{Obiettivi}
+
 \begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
@@ -100,14 +99,14 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit√
 \end{table}
 
 \subsubsubsection{Codifica}
-\subsubsubsubsection{Metriche}
+
 \begin{itemize}
-    \item \textbf{QPC-BLC: Bugs for Line of Code}: Indice del numero di righe di codice contenenti bug ed errori al proprio interno;
-    \item \textbf{QPC-VNU: Variabili Non Utilizzate}: Indice di un errore di programmazione: Le variabile non utilizzate sporcano il codice e fanno allocare memoria inutilmente;
-    \item \textbf{QPC-VND: Variabili Non Definite}: Fonte comune di bug nel software: Sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
+    \item \textbf{QPC-BLC - Bugs for Line of Code}: Indice del numero di righe di codice contenenti bug ed errori al proprio interno;
+    \item \textbf{QPC-VNU - Variabili Non Utilizzate}: Indice di un errore di programmazione, le variabile non utilizzate sporcano il codice e fanno allocare memoria inutilmente;
+    \item \textbf{QPC-VND - Variabili Non Definite}: Fonte comune di bug nel software, sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
 \end{itemize}
 
-\subsubsubsubsection{Obiettivi}
+
 \begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
@@ -129,7 +128,7 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit√
 \subsection{Processi di supporto}
 
 \subsubsection{Documentazione}
-\subsubsubsection{Metriche}
+
 \textbf{QPR-DOC}: Indice di Gulpease \\
 L'Indice di Gulpease √® un indice di leggibilit√† di un testo tarato sulla lingua italiana.
 Si basa sulla seguente formula:
@@ -148,7 +147,7 @@ In generale risulta la seguente suddivisione:
 \end{itemize}
 
 
-\subsubsubsection{Obiettivi}
+
 \begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
@@ -170,7 +169,6 @@ In generale risulta la seguente suddivisione:
     \item \textbf{QPC-QMS: Quality Metrics Satisfied}: Percentuale di metriche di qualit√† soddisfatte. $$\textrm{QPC-QMS} = \frac{NQMS}{TQM} \cdot 100$$
 \end{itemize}
 
-\subsubsubsection{Obiettivi}
 \begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
@@ -188,7 +186,7 @@ In generale risulta la seguente suddivisione:
 
 
 \subsubsection{Verifica}
-\subsubsubsection{Metriche}
+
 \begin{itemize}
     \item \textbf{QPC-CC - Code Coverage}: Definisce la misura della quantit√† di codice di un programma che viene eseguita durante uno specifico test. \\
     Una percentuale alta indica che il codice √® stato testato in modo approfondito nelle sue diverse parti e quindi vi √® una minore probabilit√† che ci siano bug;
@@ -198,7 +196,7 @@ In generale risulta la seguente suddivisione:
     Un "ramo" √® uno dei possibili percorsi di esecuzione che il codice pu√≤ seguire dopo che un'istruzione decisionale (es. if) viene valutata;
 \end{itemize}
 
-\subsubsubsection{Obiettivi}
+
 \begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
