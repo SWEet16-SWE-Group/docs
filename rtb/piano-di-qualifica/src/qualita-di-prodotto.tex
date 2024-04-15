@@ -6,17 +6,15 @@ Vengono inoltre riportate le relative metriche atte a definire un metodo di valu
 Le metriche hanno un identificativo avente come prefisso l'acronimo QPR (Qualità Prodotto) seguito dal codice della singola metrica.\\
 
 \subsection{Usabilità}
-Creazione di un prodotto che sia semplice da usare e di facile comprensione nel suo utilizzo da parte di ogni utente.
-L'obiettivo è quindi quello di fornire una user experience di elevata qualità.
-\subsubsection{Metriche}
+
 \begin{itemize}
     \item \textbf{QPR-TA - Tempo Apprendimento}: Tempo necessario all'utente per apprendere l'utilizzo del prodotto;
     \item \textbf{QPR-NP - Numero Passi}: Numero di passi necessari per raggiungere lo scopo voluto;
-    \item \textbf{QPR-TE - Tempo Esplorazione}: Tempo spesso nell'esplorazione del prodotto;
+    \item \textbf{QPR-TE - Tempo Esplorazione}: Tempo speso nell'esplorazione del prodotto;
     \item \textbf{QPR-NE - Numero Errori}: Numero di errori commessi dall'utente prima di raggiungere lo scopo voluto.
 \end{itemize}
 \subsubsection{Obiettivi}
-\begin{table}[h!]
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
         row{odd}={bg=white},
@@ -27,7 +25,7 @@ L'obiettivo è quindi quello di fornire una user experience di elevata qualità.
         QPR-TA & Tempo Apprendimento & 10 minuti & 5 minuti \\
         QPR-NP & Numero Passi & 20 click & 10 click \\
         QPR-TE & Tempo Esplorazione & 5 minuti & 3 minuti \\
-        QPR-NE & NUmero Errori & 5 & 0 \\
+        QPR-NE & Numero Errori & 5 & 0 \\
         \hline
      \end{tblr}
     \caption{Metriche usabilità}
@@ -35,10 +33,9 @@ L'obiettivo è quindi quello di fornire una user experience di elevata qualità.
 \end{table}
 
 
+
 \subsection{Manutenibilità}
-Facilità nell'apportare modifiche al prodotto per la corrrezione di bug già presenti o introdotti da modifiche precedenti,
-nel miglioramento nella qualità del prodotto, nel miglioramento delle funzionalità già presenti.
-\subsubsection{Metriche}
+
 \begin{itemize}
     \item \textbf{QPR-CC - Complessità Ciclomatica}: Valutazione della complessità di un algoritmo calcolata utilizzando il grafo di controllo del flusso tramite la formula $$v(G) = L - N + P$$
 \begin{itemize}
@@ -51,8 +48,8 @@ nel miglioramento nella qualità del prodotto, nel miglioramento delle funzional
     \item \textbf{QPR-FCC - Facilità di comprensione del codice}: Un codice comprensibile permette una manutenibilità e gestione migliore. Viene misurata con la seguente formula $$R = \frac{NR_{com}}{NR_{tot}}$$ che indica il rapporto tra le righe di commenti (${NR_{com}}$) e le righe di codice (${NR_{tot}}$).
 \end{itemize}
 
-\subsubsection{Obiettivi}
-\begin{table}[h!]
+
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[2cm]|X[6cm]|X[3cm]|X[3cm]|},
         row{odd}={bg=white},
@@ -71,11 +68,9 @@ nel miglioramento nella qualità del prodotto, nel miglioramento delle funzional
 
 
 \subsection{Affidabilità}
-Prodotto che sia sempre disponibile, che sia in grado di svolgere le funzionalità implementate e che sia tollerante agli errori.
 
-\subsubsection{Metriche}
 \begin{itemize}
-    \item \textbf{QPR-AFD - Failure Density}: Indica l'affidabilità del software. Si ricava dal rapporto tra i test eseguiti e i test falliti. $$FD = \frac{T_{f}}{T_{t}} \cdot 100$$
+    \item \textbf{QPR-AFD - Failure Density}: Indica l'affidabilità del software. Si ricava dal rapporto tra i test falliti e quelli eseguiti. $$FD = \frac{T_{f}}{T_{t}} \cdot 100$$
     \begin{itemize}
         \item ${T_{f}}$: Test falliti;
         \item ${T_{t}}$: Test totali.
@@ -83,8 +78,7 @@ Prodotto che sia sempre disponibile, che sia in grado di svolgere le funzionalit
     \item \textbf{QPR-ACC - Code Coverage}: Indica la percentuale di codice eseguito durante i test.
 \end{itemize}
 
-\subsubsection{Obiettivi}
-\begin{table}[h!]
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[2cm]|X[6cm]|X[3cm]|X[3cm]|},
         row{odd}={bg=white},
@@ -100,18 +94,15 @@ Prodotto che sia sempre disponibile, che sia in grado di svolgere le funzionalit
     \label{tab:3}
 \end{table}
 
-
+\pagebreak
 \subsection{Efficienza}
-Prodotto che fornisca e soddisfi gli obiettivi prefissati con il minor utilizzo di risorse possibile.
 
-\subsubsection{Metriche}
 \begin{itemize}
-    \item \textbf{QPR-TMR - Tempo di Risposta Medio}:\\
-    Il tempo impiegato dal software dalla gestione ed elaborazione di una richiesta fino al risultato finale fornito. \\
+    \item \textbf{QPR-TMR - Tempo di Risposta Medio}: Il tempo impiegato dal software dalla gestione ed elaborazione di una richiesta fino al risultato finale fornito. \\
 \end{itemize}
 
-\subsubsection{Obiettivi}
-\begin{table}[h!]
+
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[4cm]|},
         row{odd}={bg=white},
@@ -127,11 +118,8 @@ Prodotto che fornisca e soddisfi gli obiettivi prefissati con il minor utilizzo 
 \end{table}
 
 \subsection{Funzionalità}
-Soddisfare tutti i requisiti richiesti e descritti all'interno dell'Analisi dei Requisiti v1.0.0.
 
-\subsubsection{Metriche}
-\textbf{QPR-RC}: Requirements Coverage \\
-Indica la percentuale dei requisiti soddisfatti. Per il calcolo del valore accettato si considerano solo i requisiti obbligatori.\\
+\textbf{QPR-RC}: Requirements Coverage, indica la percentuale dei requisiti soddisfatti. Per il calcolo del valore accettato si considerano solo i requisiti obbligatori.\\
 Formula valore accettato:
 $$RC_{obb} = \frac{NR_{os}}{NR_{ot}} \cdot 100$$
 \begin{itemize}
@@ -149,8 +137,8 @@ $$RC_{i} = \frac{NR_{s}}{NR_{t}} \cdot 100$$
 \item $NR_{t}$: Numero di requisiti ideali totali.
 \end{itemize}
 
-\subsubsection{Obiettivi}
-\begin{table}[h!]
+
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
         row{odd}={bg=white},
@@ -166,10 +154,8 @@ $$RC_{i} = \frac{NR_{s}}{NR_{t}} \cdot 100$$
 \end{table}
 
 \subsection{Compatibilità}
-Prodotto accessibile al maggior numero di utenti possibile e che garantisce la compatibilità con i browser più diffusi.
-\subsubsection{Metriche}
-\textbf{QPR-CB}: Compatibilità Browser \\
-Indica la percentuale di browser supportati in relazione a quelli previsti.\\
+
+\textbf{QPR-CB}: Compatibilità Browser, indica la percentuale di browser supportati in relazione a quelli previsti.\\
 Formula valore accettato:
 $$CB = \frac{BW_{s}}{BW_{p}} \cdot 100$$
 \begin{itemize}
@@ -178,8 +164,7 @@ $$CB = \frac{BW_{s}}{BW_{p}} \cdot 100$$
     \item $BW_{p}$: Browser previsti.
 \end{itemize}
 
-\subsubsection{Obiettivi}
-\begin{table}[h!]
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
         row{odd}={bg=white},

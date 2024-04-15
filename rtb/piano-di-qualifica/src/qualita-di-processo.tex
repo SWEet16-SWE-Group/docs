@@ -1,11 +1,11 @@
 \section{Qualità di processo}
 \subsection{Scopo}
-La qualità di un prodotto è influenzata dalla qualità dei processi che lo compongono.
+La qualità di un prodotto è influenzata dalla qualità dei processi che lo compongono. \\
 È quindi necessario dotarsi di metriche che permettano di valutare tali processi e garantire che essi
 raggiungano gli obiettivi di qualità fissati.\\
 Per garantire una corretta implementazione ed un mantenimento costante, si seguirà
 il \textit{ciclo di Deming}, meglio conosciuto come PDCA, che prevede un approccio iterativo funzionale
-all'attuazione di un miglioramento continuo.
+all'attuazione di un miglioramento continuo.\\
 In questa sezione si espongono le metriche scelte ed i livelli di qualità accettabili e ottimali per ciascuna
 di esse.\\
 Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualità Processo) seguito dal codice della singola metrica.\\
@@ -13,9 +13,7 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit�
 \subsection{Processi primari}
 
 \subsubsection{Fornitura}
-Processo che consiste nell'individuare e decidere quali sono le procedure e risorse adatte a soddisfare le necessità del cliente.\\
-\subsubsubsection{Metriche}
-Parametro di riferimento utilizzato dalla metriche successive\\
+
 \begin{itemize}
     \item \textbf{Budget at Completion (QPC-BAC)}: Totale preventivato del progetto.
 \end{itemize}
@@ -29,8 +27,8 @@ Parametro di riferimento utilizzato dalla metriche successive\\
     \item \textbf{QPC-SV - Schedule Variance}: Stato (anticipo/ritardo) della pianificazione. Un valore negativo indica che si è in ritardo rispetto alla pianificazione; $$Formula \enspace base: \textrm{QPC-EV} - \textrm{QPC-PV}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-PV} \cdot 100$$
     \item \textbf{QPC-CV - Cost Variance}: Differenza tra il budget a disposizione e quello effettivamente utilizzato. Un valore negativo indica che si sta lavorando in perdita. $$Formula: \textrm{QPC-EV} - \textrm{QPC-AC}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-AC} \cdot 100$$
 \end{itemize}
-\subsubsubsection{Obiettivi}
-\begin{table}[h!]
+
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
         row{odd}={bg=white},
@@ -52,19 +50,16 @@ Parametro di riferimento utilizzato dalla metriche successive\\
 \end{table}
 
 \subsubsection{Sviluppo}
-Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del cliente.\\
-
 \subsubsubsection{Progettazione architetturale}
 
-\subsubsubsubsection{Metriche}
-
 \begin{itemize}
-    \item \textbf{QPC-SFIN - Structural Fan-in}: Indice di utilità, indica quante componenti utilizzano un determinato modulo. Un valore alto indica che il componente è molto usato;
-    \item \textbf{QPC-SFOUT - Structural Fan-out}: Indice di dipendenza, indica quante componenti sono utilizzate dalla componente in esame. Un valore alto indica un elevato utilizzo della componente.
+    \item \textbf{QPC-SFIN - Structural Fan-in}: Indice di utilità, indica quante componenti utilizzano un determinato modulo. 
+    Un valore alto indica che il componente è molto usato;
+    \item \textbf{QPC-SFOUT - Structural Fan-out}: Indice di dipendenza, indica quante componenti sono utilizzate dalla componente in esame.
+    Un valore elevato indica che quest'ultima utilizza molte componenti esterne ad essa.
 \end{itemize}
 
-\subsubsubsubsection{Obiettivi}
-\begin{table}[h!]
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
         row{odd}={bg=white},
@@ -80,14 +75,15 @@ Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del 
     \label{tab:21}
 \end{table}
 
+\pagebreak
 \subsubsubsection{Progettazione di dettaglio}
-\subsubsubsubsection{Metriche}
+
 \begin{itemize}
     \item \textbf{QPC-NM - Number of Methods}: Indica il numero medio di metodi per package. Un numero eccessivo potrebbe indicare la necessità di refactoring.
 \end{itemize}
 
-\subsubsubsubsection{Obiettivi}
-\begin{table}[h!]
+
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
         row{odd}={bg=white},
@@ -103,15 +99,15 @@ Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del 
 \end{table}
 
 \subsubsubsection{Codifica}
-\subsubsubsubsection{Metriche}
+
 \begin{itemize}
-    \item \textbf{QPC-BLC: Bugs for Line of Code}: Indice del numero di righe di codice contenenti bug ed errori al proprio interno;
-    \item \textbf{QPC-VNU: Variabili Non Utilizzate}: Indice di un errore di programmazione: Le variabile non utilizzate sporcano il codice e fanno allocare memoria inutilmente;
-    \item \textbf{QPC-VND: Variabili Non Definite}: Fonte comune di bug nel software: Sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
+    \item \textbf{QPC-BLC - Bugs for Line of Code}: Indice del numero di righe di codice contenenti bug ed errori al proprio interno;
+    \item \textbf{QPC-VNU - Variabili Non Utilizzate}: Indice di un errore di programmazione, le variabile non utilizzate sporcano il codice e fanno allocare memoria inutilmente;
+    \item \textbf{QPC-VND - Variabili Non Definite}: Fonte comune di bug nel software, sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
 \end{itemize}
 
-\subsubsubsubsection{Obiettivi}
-\begin{table}[h!]
+
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
         row{odd}={bg=white},
@@ -132,8 +128,7 @@ Processo che ha lo scopo di sviluppare un prodotto che soddisfi le esigenze del 
 \subsection{Processi di supporto}
 
 \subsubsection{Documentazione}
-I documenti dovranno essere di facile comprensione, corretti ortograficamente e sintatticamente.
-\subsubsubsection{Metriche}
+
 \textbf{QPR-DOC}: Indice di Gulpease \\
 L'Indice di Gulpease è un indice di leggibilità di un testo tarato sulla lingua italiana.
 Si basa sulla seguente formula:
@@ -152,8 +147,8 @@ In generale risulta la seguente suddivisione:
 \end{itemize}
 
 
-\subsubsubsection{Obiettivi}
-\begin{table}[h!]
+
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[4cm]|X[4cm]|X[4cm]|},
         row{odd}={bg=white},
@@ -174,8 +169,7 @@ In generale risulta la seguente suddivisione:
     \item \textbf{QPC-QMS: Quality Metrics Satisfied}: Percentuale di metriche di qualità soddisfatte. $$\textrm{QPC-QMS} = \frac{NQMS}{TQM} \cdot 100$$
 \end{itemize}
 
-\subsubsubsection{Obiettivi}
-\begin{table}[h!]
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
         row{odd}={bg=white},
@@ -192,16 +186,18 @@ In generale risulta la seguente suddivisione:
 
 
 \subsubsection{Verifica}
-\subsubsubsection{Metriche}
+
 \begin{itemize}
-    \item \textbf{QPC-CC: Code Coverage}: Definisce la misura della quantità di codice di un programma che viene eseguita durante uno specifico test. Una percentuale alta indica che il codice è stato testato in modo approfondito nelle sue diverse parti e quindi vi è quindi una minore probabilità ci siano bug;
-    \item \textbf{QPC-SC: Statement Coverage}: Tecnica di test di tipo white box che prevede l'esecuzione di tutte le istruzioni presenti nel codice sorgente almeno una volta Metrica utilizzata per calcolare il numero di istruzioni eseguite almeno una volta;
-    \item \textbf{QPC-BC: Branch Coverage}: Indice di quante diramazioni del codice vengono eseguite dai test. Un "ramo" è uno dei possibili percorsi di esecuzione che il codice può seguire dopo che un'istruzione decisionale (es. if) viene valutata;
-    \item \textbf{QPC-DCC: Decision/Condition Coverage}: Il Decision/Condition Coverage è un criterio di copertura del codice utilizzato nei test del software.
+    \item \textbf{QPC-CC - Code Coverage}: Definisce la misura della quantità di codice di un programma che viene eseguita durante uno specifico test. \\
+    Una percentuale alta indica che il codice è stato testato in modo approfondito nelle sue diverse parti e quindi vi è una minore probabilità che ci siano bug;
+    \item \textbf{QPC-SC - Statement Coverage}: Metrica utilizzata per calcolare il numero di istruzioni eseguite almeno una volta.\\
+    Utilizza una tecnica di test chiamata white box che prevede l'esecuzione di tutte le istruzioni presenti nel codice sorgente almeno una volta;
+    \item \textbf{QPC-BC - Branch Coverage}: Indice di quante diramazioni del codice vengono eseguite dai test. \\
+    Un "ramo" è uno dei possibili percorsi di esecuzione che il codice può seguire dopo che un'istruzione decisionale (es. if) viene valutata;
 \end{itemize}
 
-\subsubsubsection{Obiettivi}
-\begin{table}[h!]
+
+\begin{table}[H]
     \begin{tblr}{
         colspec={|X[3cm]|X[5cm]|X[4cm]|X[3cm]|},
         row{odd}={bg=white},
@@ -212,7 +208,6 @@ In generale risulta la seguente suddivisione:
         QPC-CC & Code Coverage & ${\geq}$ 80\% & 90\% \\
         QPC-SC & Statement Coverage & ${\geq}$ 70\% & 85\% \\
         QPC-BC & Branch Coverage & ${\geq}$ 50\% & 75\% \\
-        QPC-DCC & Decision/Condition Coverage & - & - \\
         \hline
      \end{tblr}
     \caption{Metriche e obiettivi verifica}
