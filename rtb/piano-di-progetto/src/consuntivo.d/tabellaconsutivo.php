@@ -92,7 +92,7 @@ $ruoli = [
 ];
 
 $dati = [
-  'Analisi e RTB' => [
+  'RTB' => [
     'Preventivo' => [21, 18, 67, 26, 30, 49],
     'Consuntivo' => [19, 20, 70, 30, 40, 61],
   ],
