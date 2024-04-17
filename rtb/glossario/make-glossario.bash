@@ -46,6 +46,7 @@ function makelatex(){
     ; s/^Profili$/Profilo/
     ; s/^NextJs$/NextJS/
     ; s/^PoC$/PoC (Proof of Concept)/
+    ; s/^Proof of Concept$/PoC (Proof of Concept)/
     ; s/^ITS$/ITS (Issue Tracking System)/
     ; s/^Express$/ExpressJS/
 
