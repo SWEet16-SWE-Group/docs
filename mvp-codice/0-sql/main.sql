@@ -23,9 +23,9 @@ create table ristoratori  (id int not null primary key, foreign key (id) referen
 
 delimiter $$
 
-create function assert(errcode int) returns varchar(255) deterministic
+create function assert(errcode int, name varchar(255)) returns varchar(255) deterministic
 begin
-  return if(errcode = 1, 'OKK', 'ERR') ;
+  return concat('[[',if(errcode = 1, 'OKK', 'ERR'),']] ',name) ;
 end $$
 
 create view profili_staminali as
