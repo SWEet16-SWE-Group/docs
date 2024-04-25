@@ -28,11 +28,27 @@ begin
   return if(errcode = 1, 'OKK', 'ERR') ;
 end $$
 
+create view profili_staminali as
+  select p.id as id
+    from profili as p
+    left join ristoratori as r on p.id = r.id
+    left join clienti as c on p.id = c.id
+    where r.id is null and c.id is null
+$$
+
 create function insert_cliente(profilo int) returns int deterministic
 begin
   declare ris int;
-  insert into clienti(id) select p.id from profili as p left join ristoratori as r on p.id = r.id left join clienti as c on p.id = c.id where r.id is null and c.id is null and p.id = profilo;
+  insert into clienti(id) select id from profili_staminali where id = profilo;
   select count(*) into ris from clienti where id = profilo;
+  return ris;
+end $$
+
+create function insert_ristoratori(profilo int) returns int deterministic
+begin
+  declare ris int;
+  insert into ristoratori(id) select id from profili_staminali where id = profilo;
+  select count(*) into ris from ristoratori where id = profilo;
   return ris;
 end $$
 
