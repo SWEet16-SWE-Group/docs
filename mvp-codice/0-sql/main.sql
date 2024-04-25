@@ -39,6 +39,8 @@ $$
 create function insert_cliente(profilo int) returns int deterministic
 begin
   declare ris int;
+  select count(*) into ris from clienti where id = profilo;
+  if ris > 0 then return 0; end if;
   insert into clienti(id) select id from profili_staminali where id = profilo;
   select count(*) into ris from clienti where id = profilo;
   return ris;
@@ -47,6 +49,8 @@ end $$
 create function insert_ristoratori(profilo int) returns int deterministic
 begin
   declare ris int;
+  select count(*) into ris from ristoratori where id = profilo;
+  if ris > 0 then return 0; end if;
   insert into ristoratori(id) select id from profili_staminali where id = profilo;
   select count(*) into ris from ristoratori where id = profilo;
   return ris;
