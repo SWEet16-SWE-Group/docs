@@ -9,6 +9,6 @@ sql_exec "source main.sql" || { printf '\n\n%s\n\n' 'Errore nel sourcing del mai
 find tests.d -type f -name '*.sql' | while IFS= read test; do
   printf '\n=========================== %s\n' "$test"
   sql_exec "source main.sql ; source $test;"
-done
+done | tee tests.out
 
 printf '\n'
