@@ -22,3 +22,11 @@ node_modules/
 */*/*/*/*/node_modules/
 */*/*/*/*/*/node_modules/
 */*/*/*/*/*/*/node_modules/
+tests.out
+*/tests.out
+*/*/tests.out
+*/*/*/tests.out
+*/*/*/*/tests.out
+*/*/*/*/*/tests.out
+*/*/*/*/*/*/tests.out
+*/*/*/*/*/*/*/tests.out
