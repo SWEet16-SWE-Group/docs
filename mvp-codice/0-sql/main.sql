@@ -61,4 +61,22 @@ begin
   return -1;
 end $$
 
+create function registrazione() returns int deterministic begin return -1; end $$
+create function accesso() returns int deterministic begin return -1; end $$
+create function insert_profilo() returns int deterministic begin return -1; end $$
+
+create function insert_allergia() returns int deterministic begin return -1; end $$
+create function insert_recensione() returns int deterministic begin return -1; end $$
+
+create function insert_prenotazione() returns int deterministic begin return -1; end $$
+create function insert_invitato() returns int deterministic begin return -1; end $$
+create function insert_ordinazione() returns int deterministic begin return -1; end $$
+create function add_ingrediente_ordinazione() returns int deterministic begin return -1; end $$
+create function del_ingrediente_ordinazione() returns int deterministic begin return -1; end $$
+
+create function insert_ingrediente() returns int deterministic begin return -1; end $$
+create function insert_ingrediente_allergico() returns int deterministic begin return -1; end $$
+create function insert_pietanza() returns int deterministic begin return -1; end $$
+create function insert_ricetta() returns int deterministic begin return -1; end $$
+
 delimiter ;
