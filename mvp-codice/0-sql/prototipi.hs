@@ -1,6 +1,6 @@
 
-registrati :: mail -> password -> idaccount -- side effect di registrare le credenzialli, altrimenti 0
-accedi :: mail -> password -> idaccount -- lettura per le credenziali
+registrazione :: mail -> password -> idaccount -- side effect di registrare le credenzialli, altrimenti 0
+accesso :: mail -> password -> idaccount -- lettura per le credenziali
 insert_profilo :: idaccount -> idprofilo -- side effect di creare un nuovo profilo per l'account, altrimenti 0
 insert_cliente :: idprofilo -> ... -> bool_successo -- evolve il profilo staminale in profilo cliente
 insert_ristoratore :: idprofilo -> ... -> bool_successo -- evolve il profilo staminale in profilo ristoratore
@@ -18,7 +18,7 @@ del_ingrediente_ordinazione :: idordinazione -> idingrediente -> bool_successo -
 insert_ingrediente :: idristoratore -> ingrediente -> bool_successo
 insert_pietanza :: idristoratore -> pietanza -> ... -> bool_successo
 insert_ricetta :: idpietanza -> idingrediente -> bool_successo
-insert_allergene :: idingrediente -> idallergene -> bool_successo
+insert_ingrediente_allergico :: idingrediente -> idallergene -> bool_successo
 
 insert_allergia :: idcliente -> idallergene -> bool_successo
 
