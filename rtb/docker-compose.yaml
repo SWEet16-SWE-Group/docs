@@ -2,6 +2,8 @@
 services:
   validatore:
     image: archlinux:base-devel-20240101.0.204074
+    build:
+      context: .
     container_name: validatore
     command: bash validatore-stile.sh
     working_dir: /validatore/
