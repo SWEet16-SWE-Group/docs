@@ -52,11 +52,17 @@ function findreplace(){
 }
 
 function phpparse(){
-  [[ -z "$(pacman -Qeq php)" ]] && pacman -Sy --needed --noconfirm php
+  # [[ -z "$(pacman -Qeq php)" ]] && pacman -Sy --needed --noconfirm php
   find . -type f -name '*.php' -execdir php '{}' \;
+}
+
+function latexcompile(){
+  find . -type f -name 'main.tex' -execdir latexmk -pdf '{}' -outdir=.build/ \;
 }
 
 phpparse
 findreplace
+latexcompile
+
 
 exit 0
