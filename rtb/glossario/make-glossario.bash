@@ -1,4 +1,6 @@
 #!/bin/bash
+cd "$(dirname "$0")"
+
 
 # stampa i file di latex
 function texfiles(){
@@ -22,7 +24,9 @@ function findoutliers(){
 
 # stampa le enties valide per il glossario
 function findentries(){
-  cat $(texfiles) | grep -Po '\\emph{.*?}\$\^{G}\$'
+  A="$(cat $(texfiles) | grep -Po '\\emph{.*?}\$\^{G}\$')"
+  printf '%s\n' "$A"
+  [[ -z "$A" ]] || exit 1
 }
 
 VOC=src/vocaboli.tex
