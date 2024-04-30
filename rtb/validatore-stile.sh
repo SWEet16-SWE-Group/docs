@@ -56,7 +56,10 @@ function phpparse(){
 }
 
 function latexcompile(){
-  find . -type f -name 'main.tex' -execdir latexmk -pdf '{}' -outdir=.build/ \;
+  function latexrc(){
+    printf '$pdflatex = "pdflatex -interaction=nonstopmode";\n'
+  }
+  find . -type f -name 'main.tex' -execdir latexmk -r <(latexrc) -pdf '{}' -outdir=.build/ \;
 }
 
 function ortografia(){
