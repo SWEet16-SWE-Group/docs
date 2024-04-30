@@ -59,7 +59,11 @@ function latexcompile(){
   find . -type f -name 'main.tex' -execdir latexmk -pdf '{}' -outdir=.build/ \;
 }
 
+function ortografia(){
+  # LANG=it_IT.UTF-8 find . -type f -name '*.tex' -execdir hunspell '{}' \;
+  hunspell -d it_IT $(find . -type f -name '*.tex')
+}
 
-bash glossario/make-glossario.bash && phpparse && findreplace && latexcompile
+bash glossario/make-glossario.bash && phpparse && findreplace && ortografia && latexcompile
 
 exit 0
