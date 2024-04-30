@@ -24,5 +24,5 @@ Buona compilazione dei documenti :)
     2. Esecuzione di tutti gli script PHP
     3. Esecuzione delle regex di correzione
     4. Controllo ortografico di ogni file tex con i dizioniari italiano e inglese americano (Leggete il manuale di Hunspell)
-    5. Compulazione dei tutti i documenti LaTex
+    5. Compilazione di tutti i documenti LaTex
     6. --TODO Spostamento dei documenti compilati nelle directory ad albero che saranno poi mergiate in main
