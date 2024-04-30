@@ -61,7 +61,7 @@ function latexcompile(){
 
 function ortografia(){
   # LANG=it_IT.UTF-8 find . -type f -name '*.tex' -execdir hunspell '{}' \;
-  hunspell -d it_IT $(find . -type f -name '*.tex')
+  hunspell -d it_IT,en_US $(find . -type f -name '*.tex')
 }
 
 bash glossario/make-glossario.bash && phpparse && findreplace && ortografia && latexcompile
