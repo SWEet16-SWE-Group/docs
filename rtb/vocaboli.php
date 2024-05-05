@@ -80,10 +80,9 @@ function _parse() {
 // MAIN
 // =========================================
 
-array_shift($argv);
-$a = $argv;
+$files = glob('./' . str_repeat('{,*/', 12) . str_repeat('}', 12) . '*.tex', GLOB_BRACE);
 
-count($a = findoutliers($argv)) > 0 &&
+count($a = findoutliers($files)) > 0 &&
   die("\nCorreggere i seguenti outliers per procedere con il glossario\n"
     . stream(
       $a,
@@ -95,7 +94,7 @@ $d = preg('/\\\\subsection{(.*?)}(.*?)\n/', file_get_contents('glossario/src/voc
 $d = array_combine($d[1], $d[2]);
 
 $a = stream(
-  findvocaboli($argv),
+  findvocaboli($files),
   _parse(),
   _sort(),
   _unique(),
@@ -105,4 +104,4 @@ $a = stream(
 );
 
 file_put_contents('glossario/src/vocaboli.tex', $a);
-//print_r($a);
+print_r($a);
