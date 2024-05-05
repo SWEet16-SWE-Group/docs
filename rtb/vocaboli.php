@@ -48,6 +48,20 @@ function findvocaboli($files) {
 
 const parse = [
   'Ristoratori' => 'Ristoratore',
+  '' => '',
+  'Clienti' => 'Cliente',
+  'Coperti' => 'Coperto',
+  'Ristoratori' => 'Ristoratore',
+  'Prenotazioni' => 'Prenotazione',
+  'Requisiti' => 'Requisito',
+  'Requisiti funzionali' => 'Requisito funzionale',
+  'Profili' => 'Profilo',
+  'NextJs' => 'NextJS',
+  'PoC' => 'PoC (Proof of Concept)',
+  'Proof of Concept' => 'PoC (Proof of Concept)',
+  'ITS' => 'ITS (Issue Tracking System)',
+  'Express' => 'ExpressJS',
+  'Capitolato d\'appalto' => '',
 ];
 
 function _parse() {
