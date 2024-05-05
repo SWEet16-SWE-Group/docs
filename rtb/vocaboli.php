@@ -100,11 +100,10 @@ $a = stream(
   _parse(),
   _sort(),
   _unique(),
-  _map(fn ($a) => '\\subsection{' . $a . '} ' . (array_key_exists($a, $d) ? $d[$a] : 'INSERIRE DEFINIZIONE') . "\n"),
+  _map(fn ($a) => '\\subsection{' . $a . '}' . (array_key_exists($a, $d) ? $d[$a] : 'INSERIRE DEFINIZIONE') . "\n"),
   _sort(),
   _implode(""),
 );
 
-file_put_contents('glossario/src/vocaboli.tex',$a);
-
-// print_r($a);
+//file_put_contents('glossario/src/vocaboli.tex',$a);
+print_r($a);
