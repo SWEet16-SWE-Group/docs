@@ -69,6 +69,6 @@ function ortografia(){
   hunspell -d it_IT,en_US $(find . -type f -name '*.tex')
 }
 
-bash glossario/vocaboli.bash && phpparse && findreplace && ortografia && latexcompile
+php vocaboli.php && phpparse && findreplace && ortografia && latexcompile
 
 exit 0
