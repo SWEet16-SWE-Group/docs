@@ -48,7 +48,6 @@ function findvocaboli($files) {
 
 const parse = [
   'Ristoratori' => 'Ristoratore',
-  '' => '',
   'Clienti' => 'Cliente',
   'Coperti' => 'Coperto',
   'Ristoratori' => 'Ristoratore',
@@ -61,11 +60,20 @@ const parse = [
   'Proof of Concept' => 'PoC (Proof of Concept)',
   'ITS' => 'ITS (Issue Tracking System)',
   'Express' => 'ExpressJS',
-  'Capitolato d\'appalto' => '',
+  '\\LaTeX' => 'LaTeX',
+  'Capitolato d’appalto' => '',
+  '' => '',
 ];
 
 function _parse() {
-  return fn ($a) => _filter(fn ($a) => strlen($a) > 0)(str_replace(array_keys(parse), parse, $a));
+  return fn ($a) =>
+  _filter(fn ($a) => strlen($a) > 0)(
+    preg_replace(
+      _map(fn ($a) => '/^' . preg_quote($a) . '$/')(array_keys(parse)),
+      parse,
+      $a
+    )
+  );
 }
 
 // =========================================
@@ -94,7 +102,9 @@ $a = stream(
   _unique(),
   _map(fn ($a) => '\\subsection{' . $a . '} ' . (array_key_exists($a, $d) ? $d[$a] : 'INSERIRE DEFINIZIONE') . "\n"),
   _sort(),
+  _implode(""),
 );
 
+file_put_contents('glossario/src/vocaboli.tex',$a);
 
-print_r($a);
+// print_r($a);
