@@ -83,14 +83,13 @@ function _parse() {
 array_shift($argv);
 $a = $argv;
 
-if (false && count($a = findoutliers($argv)) > 0) {
-  die("\nCorreggere i seguenti outliers per il glossario\n"
+count($a = findoutliers($argv)) > 0 &&
+  die("\nCorreggere i seguenti outliers per procedere con il glossario\n"
     . stream(
       $a,
       _map(fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n"),
       _implode(''),
     ));
-}
 
 $d = preg('/\\\\subsection{(.*?)}(.*?)\n/', file_get_contents('glossario/src/vocaboli.tex'));
 $d = array_combine($d[1], $d[2]);
@@ -105,5 +104,5 @@ $a = stream(
   _implode(""),
 );
 
-file_put_contents('glossario/src/vocaboli.tex',$a);
+file_put_contents('glossario/src/vocaboli.tex', $a);
 //print_r($a);
