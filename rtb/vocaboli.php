@@ -50,10 +50,11 @@ array_shift($argv);
 $a = $argv;
 
 if (count($a = findoutliers($argv)) > 0) {
-  die(implode("", array_map(
-    fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n",
-    $a
-  )));
+  die(stream(
+    $a,
+    _map(fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n"),
+    _implode("\n"),
+  ));
 }
 
 $a = findvocaboli($argv);
