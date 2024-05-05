@@ -8,5 +8,5 @@ RUN pacman -Sy --noconfirm --needed \
   texlive-latexrecommended \
   texlive-latexextra \
   texlive-langitalian
-USER 1000:1000
-CMD bash validatore-stile.sh
+USER messer:messer
+CMD sed -zi 's/\r//g;' $(find . -type f -name '*.bash' -o -name '*.tex' -o -name '*.php' -o -name '*.md') && bash validatore-stile.sh
