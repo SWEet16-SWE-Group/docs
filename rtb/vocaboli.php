@@ -2,7 +2,8 @@
 require_once __DIR__ . '/.lib_php/Stream.php';
 
 function preg($r, $s) {
-  preg_match_all($r, $s, $a = []);
+  $a = [];
+  preg_match_all($r, $s, $a);
   return $a;
 }
 
@@ -45,19 +46,41 @@ function findvocaboli($files) {
   );
 }
 
+const parse = [
+  'Ristoratori' => 'Ristoratore',
+];
+
+function _parse() {
+  return fn ($a) => _filter(fn ($a) => strlen($a) > 0)(str_replace(array_keys(parse), parse, $a));
+}
+
+// =========================================
+// MAIN
+// =========================================
 
 array_shift($argv);
 $a = $argv;
 
-if (count($a = findoutliers($argv)) > 0) {
-  die(stream(
-    $a,
-    _map(fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n"),
-    _implode("\n"),
-  ));
+if (false && count($a = findoutliers($argv)) > 0) {
+  die("\nCorreggere i seguenti outliers per il glossario\n"
+    . stream(
+      $a,
+      _map(fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n"),
+      _implode(''),
+    ));
 }
 
-$a = findvocaboli($argv);
+$d = preg('/\\\\subsection{(.*?)}(.*?)\n/', file_get_contents('glossario/src/vocaboli.tex'));
+$d = array_combine($d[1], $d[2]);
+
+$a = stream(
+  findvocaboli($argv),
+  _parse(),
+  _sort(),
+  _unique(),
+  _map(fn ($a) => '\\subsection{' . $a . '} ' . (array_key_exists($a, $d) ? $d[$a] : 'INSERIRE DEFINIZIONE') . "\n"),
+  _sort(),
+);
 
 
 print_r($a);
