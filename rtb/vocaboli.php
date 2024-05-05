@@ -5,9 +5,11 @@ function findoutliers_file($file) {
   $filecontent = file_get_contents($file);
   $a = [];
   preg_match_all('/.*?[^}]\$\^{G}\$.*?/', $filecontent, $a);
-  $a = array_filter($a[0], fn ($a) => !str_contains($a, 'La presenza di un termine all’interno del glossario viene indicata applicando una'));
-  $a = array_map(fn ($a) => ['file' => $file, 'context' => $a], $a);
-  return $a;
+  return stream(
+    $a[0],
+    _filter(fn ($a) => !str_contains($a, 'La presenza di un termine all’interno del glossario viene indicata applicando una')),
+    _map(fn ($a) => ['file' => $file, 'context' => $a]),
+  );
 }
 
 function findvocaboli_file($file) {
@@ -45,7 +47,7 @@ function findvocaboli($files) {
 array_shift($argv);
 $a = $argv;
 
-if (count($a = findoutliers($argv)) > 0 && false) {
+if (count($a = findoutliers($argv)) > 0) {
   die(implode("", array_map(
     fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n",
     $a
