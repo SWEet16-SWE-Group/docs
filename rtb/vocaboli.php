@@ -1,23 +1,21 @@
 <?php
 require_once __DIR__ . '/.lib_php/Stream.php';
 
+function preg($r, $s) {
+  preg_match_all($r, $s, $a = []);
+  return $a;
+}
+
 function findoutliers_file($file) {
-  $filecontent = file_get_contents($file);
-  $a = [];
-  preg_match_all('/.*?[^}]\$\^{G}\$.*?/', $filecontent, $a);
   return stream(
-    $a[0],
+    preg('/.*?[^}]\$\^{G}\$.*?/', file_get_contents($file))[0],
     _filter(fn ($a) => !str_contains($a, 'La presenza di un termine all’interno del glossario viene indicata applicando una')),
     _map(fn ($a) => ['file' => $file, 'context' => $a]),
   );
 }
 
 function findvocaboli_file($file) {
-  $filecontent = file_get_contents($file);
-  $a = [];
-  preg_match_all('/\\\\emph{(.*?)}\$\^{G}\$/', $filecontent, $a);
-  //$a = array_map(fn ($a) => $a[1], $a);
-  return $a[1];
+  return preg('/\\\\emph{(.*?)}\$\^{G}\$/', file_get_contents($file))[1];
 };
 
 function applicative_list($functions, $args) {
