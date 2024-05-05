@@ -105,5 +105,5 @@ $a = stream(
   _implode(""),
 );
 
-//file_put_contents('glossario/src/vocaboli.tex',$a);
-print_r($a);
+file_put_contents('glossario/src/vocaboli.tex',$a);
+//print_r($a);
