@@ -104,4 +104,4 @@ $a = stream(
 );
 
 file_put_contents('glossario/src/vocaboli.tex', $a);
-print_r($a);
+//print_r($a);
