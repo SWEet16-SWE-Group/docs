@@ -27,19 +27,23 @@ function applicative_list($functions, $args) {
 }
 
 function findoutliers($files) {
-  $a = applicative_list(['findoutliers_file'], $files);
-  $a = array_values(array_map(fn ($a) => $a[0], array_filter($a, fn ($a) => count($a) > 0)));
-  return $a;
+  return stream(
+    applicative_list(['findoutliers_file'], $files),
+    _filter(fn ($a) => count($a) > 0),
+    _map(fn ($a) => $a[0]),
+  );
 }
 
 function findvocaboli($files) {
-  $a = applicative_list(['findvocaboli_file'], $files);
-  $a = array_map('ucfirst', array_reduce(array_filter($a, fn ($a) => count($a) > 0), fn ($a, $b) => array_merge($a, $b), []));
-  sort($a);
-  $a = array_unique($a);
-  return $a;
+  return stream(
+    applicative_list(['findvocaboli_file'], $files),
+    _filter(fn ($a) => count($a) > 0),
+    _reduce(fn ($a, $b) => array_merge($a, $b), []),
+    _map('ucfirst'),
+    _sort(),
+    _unique(),
+  );
 }
-
 
 
 array_shift($argv);
