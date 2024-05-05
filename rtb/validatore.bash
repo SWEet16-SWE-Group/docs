@@ -1,3 +1,5 @@
+#!/bin/bash
+
 function texfiles(){
   find . -type f -name '*.tex' ! -name 'vocaboli.tex' ! -name 'registro-modifiche.tex' | grep -v 'verbali'
 }
