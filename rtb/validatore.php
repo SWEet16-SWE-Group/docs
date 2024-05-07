@@ -64,6 +64,7 @@ function pulizia_regex($text) {
     "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\begin{enumerate})/"  => '\1:\3',
     "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\end{itemize})/"      => '\1.\3',
     "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\end{enumerate})/"    => '\1.\3',
+    "/(\\\\item [^\n]*?\\$\\$)[\\.;:]/" => '\1',
   ];
 
   $text = preg_replace_array($regexbianco, $text);
