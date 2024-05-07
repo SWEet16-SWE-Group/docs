@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/.lib_php/utils.php';
 require_once __DIR__ . '/.lib_php/Stream.php';
-require_once __DIR__ . '/vocaboli.php';
 
 function preg_replace_array($r, $a) {
   return preg_replace(array_keys($r), $r, $a);
@@ -112,8 +111,16 @@ function main_correttore_ortografico() {
 
 function main_compile() {
   foreach (_find('main.tex') as $a) {
-    passthru("latexmk -pdf '$a' -r <(printf '\$pdflatex = \"pdflatex -interaction=nonstopmode\";') -outdir=.build/");
+    passthru(
+      "latexmk -quiet -silent -pdf '$a' -r <(printf '\$pdflatex = \"pdflatex -interaction=nonstopmode\";') -outdir=.build/",
+      $a
+    );
+    if ($a != 0) {
+      die("\n\n\n" . 'ERRORE DI COMPILAZIONE: ' . $a . "\n\n");
+    }
   }
 }
 
+main_esegui_php();
+main_validatore_stilistico();
 main_compile();
