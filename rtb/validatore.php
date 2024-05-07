@@ -100,16 +100,16 @@ function main_correttore_ortografico() {
 
 function main_compile() {
   foreach (_find('main.tex') as $a) {
+    chdir(dirname($a));
     passthru(
-      "latexmk -quiet -silent -pdf '$a' -r <(printf '\$pdflatex = \"pdflatex -interaction=nonstopmode\";') -outdir=.build/",
-      $a
+      "mkdir -p .build && pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.build/ main.tex",
+      $e
     );
-    if ($a != 0) {
-      die("\n\n\n" . 'ERRORE DI COMPILAZIONE: ' . $a . "\n\n");
-    }
+    $e != 0 && die("\n\n\n$a\nERRORE DI COMPILAZIONE: $e\n\n");
+    chdir(__DIR__);
   }
 }
 
 //main_esegui_php();
 main_validatore_stilistico();
-//main_compile();
+main_compile();
