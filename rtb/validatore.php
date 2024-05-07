@@ -80,7 +80,6 @@ function pulizia_regex($text) {
   return $text;
 }
 
-
 // =========================================
 // MAIN
 // =========================================
@@ -89,12 +88,14 @@ function correggi_file($file) {
   file_put_contents($file, pulizia_regex(file_get_contents($file)));
 }
 
-$depth = 12;
-$files = glob('./' . str_repeat('{,*/', $depth) . str_repeat('}', $depth) . '/*.tex', GLOB_BRACE);
-foreach ($files as $a) {
-  echo "Correzione stile : $a\n";
-  correggi_file($a);
+function main_validatore_stilistico() {
+  $files = _find('*.tex');
+  foreach ($files as $a) {
+    echo "Correzione stile : $a\n";
+    correggi_file($a);
+  }
 }
 
-// print_r($files);
-// correggi_file($argv[1]);
+
+$a = stream(_find('*.tex'), _map(fn ($a) => "\"$a\""), _implode(' '));
+passthru("hunspell -d it_IT,en_US $a");
