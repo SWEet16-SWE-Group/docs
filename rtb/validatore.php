@@ -20,15 +20,16 @@ function merge_items($text) {
     "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
     "/\n\n\n/" => "\n\n",
   ];
-  $regexelenchi = [];
 
   $text = preg_multireplace($regexbianco, $text);
 
-  $text = preg_replace_callback("/\\\\item (\\\\textbf{)?([a-z])/", fn ($a) => '\\item ' . $a[1] . ucfirst($a[2]), $text);
-  $text = preg_replace_callback("/(}: )([a-z])/", fn ($a) => $a[1] . ucfirst($a[2]), $text);  // dopo : preservando caratteri in mezzo e escludendo url e href
+  $regexmaiuscole = [
+    "/\\\\item (\\\\textbf{)?([a-z])/" => fn ($a) => '\\item ' . $a[1] . ucfirst($a[2]),
+    "/(}: )([a-z])/" => fn ($a) => $a[1] . ucfirst($a[2]),
+    // "/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^0-9A-Z]*)([a-z])/" => fn ($a) => ':' . $a[1] . ucfirst($a[2]), // dopo : preservando caratteri in mezzo e escludendo url e href
+  ];
 
-  //$text = preg_replace_callback("/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^0-9A-Z]*)([a-z])/", fn ($a) => ':' . $a[1] . ucfirst($a[2]), $text);  // dopo : preservando caratteri in mezzo e escludendo url e href
-
+  $text = preg_replace_callback_array($regexmaiuscole, $text);
 
   $a = array_merge(
     //preg('/\\\\item/', $text, PREG_OFFSET_CAPTURE)[0],
@@ -73,6 +74,8 @@ function merge_items($text) {
   $text = $a_capo('\\end{enumerate}', $text);
 
   $text = preg_multireplace($regexbianco, $text);
+
+  $regexelenchi = [];
   $text = preg_multireplace($regexelenchi, $text);
 
   print_r($text);
