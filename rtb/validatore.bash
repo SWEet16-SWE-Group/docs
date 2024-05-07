@@ -64,7 +64,9 @@ function latexcompile(){
     cd "$(dirname "$line")"
     echo
     echo $line
-    latexmk -pdf "main.tex" -outdir=.build/ # -interaction=nonstopmode > /dev/null
+    rm -rf .build
+    mkdir -p .build
+    pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.build/ "main.tex" > /dev/null
     echo $line $?
     cd "$p"
   done
