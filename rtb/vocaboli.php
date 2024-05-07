@@ -1,12 +1,6 @@
 <?php
 require_once __DIR__ . '/.lib_php/Stream.php';
 
-function preg($r, $s) {
-  $a = [];
-  preg_match_all($r, $s, $a);
-  return $a;
-}
-
 function findoutliers_file($file) {
   return stream(
     preg('/.*?[^}]\$\^{G}\$.*?/', file_get_contents($file))[0],
