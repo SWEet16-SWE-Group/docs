@@ -54,14 +54,20 @@ function findreplace(){
 }
 
 function phpparse(){
-  find . -type f -name '*.php' -execdir php '{}' \;
+  #find . -type f -name '*.php' -execdir php '{}' \;
+  echo a 
 }
 
 function latexcompile(){
-  function latexrc(){
-    printf '$pdflatex = "pdflatex -interaction=nonstopmode";\n'
-  }
-  find . -type f -name 'main.tex' -execdir latexmk -r <(latexrc) -pdf '{}' -outdir=.build/ \;
+  p="$(pwd)"
+  find . -type f -name 'main.tex' | while IFS= read line ; do
+    cd "$(dirname "$line")"
+    echo
+    echo $line
+    latexmk -pdf "main.tex" -outdir=.build/ # -interaction=nonstopmode > /dev/null
+    echo $line $?
+    cd "$p"
+  done
 }
 
 function ortografia(){
