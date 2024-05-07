@@ -70,20 +70,16 @@ $regexelenchi = [
 // MAIN
 // =========================================
 
-function correggi_file($file) {
-  file_put_contents($file, pulizia_regex(file_get_contents($file)));
-}
-
 function main_validatore_stilistico() {
   foreach (_find('*.tex') as $a) {
     echo "Correzione stile : $a\n";
     $text = file_get_contents($a);
-    $text = preg_replace_array($regexbianco, $text);
-    $text = preg_replace_callback_array($regexmaiuscole, $text);
+    //$text = preg_replace_array($regexbianco, $text);
+    //$text = preg_replace_callback_array($regexmaiuscole, $text);
     $text = _appiattisci_item($text);
-    $text = preg_replace_array($regexbianco, $text);
-    $text = preg_replace_array($regexelenchi, $text);
-    $text = preg_replace_array($regexbianco, $text);
+    //$text = preg_replace_array($regexbianco, $text);
+    //$text = preg_replace_array($regexelenchi, $text);
+    //$text = preg_replace_array($regexbianco, $text);
     file_put_contents($a, $text);
   }
 }
