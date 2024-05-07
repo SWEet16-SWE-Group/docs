@@ -3,34 +3,38 @@
 require_once __DIR__ . '/.lib_php/utils.php';
 require_once __DIR__ . '/.lib_php/Stream.php';
 
-const stile = [
-  '\r' => '',                          // carriage return
-  '\t' => '  ',                        // tab in 2 spazi
-  '(\S) +' => '\1 ',                   // compressione di tanti spazi in uno esclusa indentazione iniziale
-  ' *\n' => '\n',                      // testo bianco a fine riga
-  ' *}' => '}',                        // rimozione spazi tra : e }
-  '}(\w)' => '} \1',                   // spazio dopo :}
-  '(\S) +([;:,.])' => '\1\2',          // rimozione spazi prima di [:,.;]
-  '([a-zA-Z]),([a-zA-Z])' => '\1, \2', // aggiunta spazio dopo ,
-];
-
-
-function stilizzazione($file) {
-  return file_put_contents($file, preg_replace(array_keys(stile), stile, file_get_contents($file)));
+function str_multireplace($r, $a) {
+  return str_replace(array_keys($r), $r, $a);
 }
 
-
-// stilizzazione($argv[1]);
-
+function preg_multireplace($r, $a) {
+  return preg_replace(array_keys($r), $r, $a);
+}
 
 function merge_items($text) {
+  $rumorebianco = [
+    "\r" => '',
+    "\t" => '  ',
+  ];
+
+  $regexbianco = [
+    "/(\\S) +/" => '\1 ',                   // compressione di tanti spazi in uno esclusa indentazione iniziale
+    "/ *\\n/" => '\n',                      // testo bianco a fine riga
+    "/ *}/" => '}',                         // rimozione spazi tra : e }
+    "/}(\\w)/" => '} \1',                   // spazio dopo :}
+    "/(\\S) +([;:,.])/" => '\1\2',          // rimozione spazi prima di [:,.;]
+    "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
+  ];
+
+  $text = str_multireplace($rumorebianco, $text);
+  $text = preg_multireplace($regexbianco, $text);
+
   $a = array_merge(
     //preg('/\\\\item/', $text, PREG_OFFSET_CAPTURE)[0],
     preg('/\\\\begin{itemize}/', $text, PREG_OFFSET_CAPTURE)[0],
     preg('/\\\\begin{enumerate}/', $text, PREG_OFFSET_CAPTURE)[0],
     preg('/\\\\end{itemize}/', $text, PREG_OFFSET_CAPTURE)[0],
     preg('/\\\\end{enumerate}/', $text, PREG_OFFSET_CAPTURE)[0],
-    // preg('/\\\\item\s*\\\\begin{/', $text, PREG_OFFSET_CAPTURE)[0],
   );
   usort($a, fn ($a, $b) => $a[1] < $b[1] ? -1 : 1);
 
@@ -52,13 +56,6 @@ function merge_items($text) {
       //$b[] = $i;
     }
   }
-
-  //$linearize = null;
-  //$linearize = fn ($a) => '[' . stream($a, _map($linearize), _implode(', ')) . ']';
-  //$linearize = fn ($a) => '[' . stream($a, _map($linearize), _implode(', ')) . ']';
-
-  //print_r(stream($a, _map(fn ($a) => '[' .  stream($a, _implode(', ')) . ']')));
-  //print_r(stream($stack, _map($linearize)));
 
   $text = array_reduce($stack, function ($text, $a) {
     $o = $a[0][1];
