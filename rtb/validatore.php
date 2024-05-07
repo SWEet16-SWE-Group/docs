@@ -26,6 +26,7 @@ function merge_items($text) {
   $text = preg_multireplace($regexbianco, $text);
   //$text = preg_multireplace($regexmaiuscole, $text);
   $text = preg_replace_callback("/\\\\item (\\\\textbf{)?([a-z])/", fn ($a) => '\\item ' . $a[1] . ucfirst($a[2]), $text);
+  $text = preg_replace_callback("/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^\\w\\d]*)([a-z])/", fn ($a) => ':' . $a[1] . ucfirst($a[2]), $text);  // dopo : preservando caratteri in mezzo e escludendo url e href
 
 
   $a = array_merge(
@@ -75,7 +76,7 @@ function merge_items($text) {
   $text = str_replace(':}', '}:', $text);
   $text = str_replace("\t", '  ', $text);
   $text = preg_replace("/ *\n/", "\n", $text);
-  //$text = str_replace("\n\n", "\n", $text);
+  $text = str_replace("\n\n\n", "\n\n", $text);
 
   print_r($text);
   return $text;
