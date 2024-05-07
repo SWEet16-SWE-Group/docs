@@ -73,11 +73,11 @@ function pulizia_regex($text) {
   ];
 
   $regexelenchi = [
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\item)/"            => '\1.\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{itemize})/"  => '\1;\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{enumerate})/"=> '\1;\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{itemize})/"    => '\1:\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{enumerate})/"  => '\1:\3',
+    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\item)/"            => '\1-\3',
+    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{itemize})/"  => '\1-\3',
+    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{enumerate})/"=> '\1-\3',
+    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{itemize})/"    => '\1-\3',
+    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{enumerate})/"  => '\1-\3',
   ];
 
   $text = preg_replace_array($regexbianco, $text);
