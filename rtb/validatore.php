@@ -77,7 +77,11 @@ function merge_items($text) {
   //$text = str_replace("\n\n", "\n", $text);
 
   print_r($text);
-  return;
+  return $text;
 }
 
-merge_items(file_get_contents($argv[1]));
+function correggi_file($file) {
+  file_put_contents($file, merge_items(file_get_contents($file)));
+}
+
+correggi_file($argv[1]);
