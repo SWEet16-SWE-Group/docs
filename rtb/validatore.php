@@ -18,15 +18,14 @@ function merge_items($text) {
     "/(\\S) +([;:,.])/" => '\1\2',          // rimozione spazi prima di [:,.;]
     "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
   ];
-  $regexmaiuscole = [
-    "/\\\\item (\\\\textbf{)?([a-z])/" => '\\item \1\U\2' // dopo item, preservando textbf
-  ];
   $regexelenchi = [];
 
   $text = preg_multireplace($regexbianco, $text);
-  //$text = preg_multireplace($regexmaiuscole, $text);
+
   $text = preg_replace_callback("/\\\\item (\\\\textbf{)?([a-z])/", fn ($a) => '\\item ' . $a[1] . ucfirst($a[2]), $text);
-  $text = preg_replace_callback("/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^\\w\\d]*)([a-z])/", fn ($a) => ':' . $a[1] . ucfirst($a[2]), $text);  // dopo : preservando caratteri in mezzo e escludendo url e href
+  $text = preg_replace_callback("/(}: )([a-z])/", fn ($a) => $a[1] . ucfirst($a[2]), $text);  // dopo : preservando caratteri in mezzo e escludendo url e href
+
+  //$text = preg_replace_callback("/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^0-9A-Z]*)([a-z])/", fn ($a) => ':' . $a[1] . ucfirst($a[2]), $text);  // dopo : preservando caratteri in mezzo e escludendo url e href
 
 
   $a = array_merge(
