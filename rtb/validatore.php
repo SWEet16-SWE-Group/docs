@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/.lib_php/utils.php';
 require_once __DIR__ . '/.lib_php/Stream.php';
+require_once __DIR__ . '/vocaboli.php';
 
 function preg_replace_array($r, $a) {
   return preg_replace(array_keys($r), $r, $a);
@@ -89,13 +90,30 @@ function correggi_file($file) {
 }
 
 function main_validatore_stilistico() {
-  $files = _find('*.tex');
-  foreach ($files as $a) {
+  foreach (_find('*.tex') as $a) {
     echo "Correzione stile : $a\n";
     correggi_file($a);
   }
 }
 
+function main_esegui_php() {
+  foreach (_find('*.php') as $file) {
+    chdir(dirname($file));
+    echo "Esecuzione: $file\n";
+    require_once $file;
+    chdir(__DIR__);
+  }
+}
 
-$a = stream(_find('*.tex'), _map(fn ($a) => "\"$a\""), _implode(' '));
-passthru("hunspell -d it_IT,en_US $a");
+function main_correttore_ortografico() {
+  $a = stream(_find('*.tex'), _map(fn ($a) => "\"$a\""), _implode(' '));
+  passthru("hunspell -d it_IT,en_US $a");
+}
+
+function main_compile() {
+  foreach (_find('main.tex') as $a) {
+    passthru("latexmk -pdf '$a' -r <(printf '\$pdflatex = \"pdflatex -interaction=nonstopmode\";') -outdir=.build/");
+  }
+}
+
+main_compile();
