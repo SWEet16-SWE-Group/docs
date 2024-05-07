@@ -3,21 +3,14 @@
 require_once __DIR__ . '/.lib_php/utils.php';
 require_once __DIR__ . '/.lib_php/Stream.php';
 
-function str_multireplace($r, $a) {
-  return str_replace(array_keys($r), $r, $a);
-}
-
 function preg_multireplace($r, $a) {
   return preg_replace(array_keys($r), $r, $a);
 }
 
 function merge_items($text) {
-  $rumorebianco = [
-    "\r" => '',
-    "\t" => '  ',
-  ];
-
   $regexbianco = [
+    "/\r/" => '',
+    "/\t/" => '  ',
     "/(\\S) +/" => '\1 ',                   // compressione di tanti spazi in uno esclusa indentazione iniziale
     "/ *\\n/" => "\n",                      // testo bianco a fine riga
     "/ *}/" => '}',                         // rimozione spazi tra : e }
@@ -26,7 +19,6 @@ function merge_items($text) {
     "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
   ];
 
-  $text = str_multireplace($rumorebianco, $text);
   $text = preg_multireplace($regexbianco, $text);
 
   $a = array_merge(
