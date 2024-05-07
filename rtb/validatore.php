@@ -19,7 +19,7 @@ function merge_items($text) {
     "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
   ];
   $regexmaiuscole = [
-    "/\\item (\\textbf{)?([a-z])/" => '\\item \1\U\2' // dopo item, preservando textbf
+    "/\\\\item (\\\\textbf{)?([a-z])/" => '\\item \1\U\2' // dopo item, preservando textbf
   ];
   $regexelenchi = [];
 
