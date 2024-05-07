@@ -80,11 +80,15 @@ function pulizia_regex($text) {
     "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{enumerate})/"  => '\1-\3',
   ];
 
-  $items = preg("/(\\\\item [^\n*]*?)([^\\.;:])?(\n\\\\(item|((begin|end){(itemize|enumerate)})))/n", $text);
+  $items = preg(
+    "/(\\\\item [^\n*]*?)([^\\.;:])?(\n\\\\(item|((begin|end){(itemize|enumerate)})))/n",
+    $text,
+    PREG_OFFSET_CAPTURE
+  )[0];
   print_r($items);
 
   $text = preg_replace_array($regexbianco, $text);
-  $text = preg_replace_callback_array($regexmaiuscole, $text);
+  // $text = preg_replace_callback_array($regexmaiuscole, $text);
 
   $text = _appiattisci_item($text);
 
