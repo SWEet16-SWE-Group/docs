@@ -73,22 +73,36 @@ function pulizia_regex($text) {
   ];
 
   $regexelenchi = [
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\item)/"            => '\1-\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{itemize})/"  => '\1-\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{enumerate})/" => '\1-\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{itemize})/"    => '\1-\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{enumerate})/"  => '\1-\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(\n\\\\item)/"            => '\1-\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(\n\\\\begin{itemize})/"  => '\1-\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(\n\\\\begin{enumerate})/" => '\1-\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(\n\\\\end{itemize})/"    => '\1-\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(\n\\\\end{enumerate})/"  => '\1-\3',
   ];
 
-  $items = preg(
-    "/(\\\\item [^\n*]*?)([^\\.;:])?(\n\\\\(item|((begin|end){(itemize|enumerate)})))/n",
-    $text,
-    PREG_OFFSET_CAPTURE
-  )[0];
-  print_r($items);
+  //$items = preg(
+  //  "/(\\\\item [^\n*]*?)([^\\.;:])?(\n\\\\(item|((begin|end){(itemize|enumerate)})))/n",
+  //  $text,
+  //  PREG_OFFSET_CAPTURE
+  //)[0];
+  //$items = stream(
+  //  $items,
+  //  _map(fn ($a) => [
+  //    'string' => $a[0],
+  //    'replace' => preg_replace_array(
+  //      [
+  //        "" => "",
+  //      ],
+  //      $a[0]
+  //    ),
+  //    'offset' => $a[1],
+  //    'length' => strlen($a[0]),
+  //  ]),
+  //);
+  //print_r($items);
 
   $text = preg_replace_array($regexbianco, $text);
-  // $text = preg_replace_callback_array($regexmaiuscole, $text);
+  $text = preg_replace_callback_array($regexmaiuscole, $text);
 
   $text = _appiattisci_item($text);
 
