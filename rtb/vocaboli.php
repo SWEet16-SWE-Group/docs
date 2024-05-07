@@ -1,5 +1,7 @@
 <?php
+
 require_once __DIR__ . '/.lib_php/Stream.php';
+require_once __DIR__ . '/.lib_php/utils.php';
 
 function findoutliers_file($file) {
   return stream(
