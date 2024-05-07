@@ -72,7 +72,13 @@ function pulizia_regex($text) {
     // "/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^0-9A-Z]*)([a-z])/" => fn ($a) => ':' . $a[1] . ucfirst($a[2]), // dopo : preservando caratteri in mezzo e escludendo url e href
   ];
 
-  $regexelenchi = [];
+  $regexelenchi = [
+    "(\\\\item [^\n]*)([\\.:;])?(\n\\\\item)"             => '\1.\3',
+    "(\\\\item [^\n]*)([\\.:;])?(\n\\\\begin{itemize})"   => '\1;\3',
+    "(\\\\item [^\n]*)([\\.:;])?(\n\\\\begin{enumerate})" => '\1;\3',
+    "(\\\\item [^\n]*)([\\.:;])?(\n\\\\end{itemize})"     => '\1:\3',
+    "(\\\\item [^\n]*)([\\.:;])?(\n\\\\end{enumerate})"   => '\1:\3',
+  ];
 
   $text = preg_replace_array($regexbianco, $text);
   $text = preg_replace_callback_array($regexmaiuscole, $text);
