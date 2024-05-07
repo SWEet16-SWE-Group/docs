@@ -12,12 +12,11 @@ function _appiattisci_item($text) {
 
   $stack = [];
   $i = 0;
-  foreach ($a as &$b) {
+  foreach ($a as $b) {
     if (str_contains($b[0], 'begin')) {
       if ($i == 0) {
         $stack[] = [$b];
       }
-      //$b[] = $i;
       $i += 1;
     }
     if (str_contains($b[0], 'end')) {
@@ -25,7 +24,6 @@ function _appiattisci_item($text) {
       if ($i == 0) {
         $stack[array_key_last($stack)][] = $b;
       }
-      //$b[] = $i;
     }
   }
 
