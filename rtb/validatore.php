@@ -24,7 +24,9 @@ function merge_items($text) {
   $regexelenchi = [];
 
   $text = preg_multireplace($regexbianco, $text);
-  $text = preg_multireplace($regexmaiuscole, $text);
+  //$text = preg_multireplace($regexmaiuscole, $text);
+  $text = preg_replace_callback("/\\\\item (\\\\textbf{)?([a-z])/", fn ($a) => '\\item ' . $a[1] . ucfirst($a[2]), $text);
+
 
   $a = array_merge(
     //preg('/\\\\item/', $text, PREG_OFFSET_CAPTURE)[0],
