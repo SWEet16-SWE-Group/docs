@@ -8,14 +8,7 @@ function preg_replace_array($r, $a) {
 }
 
 function _appiattisci_item($text) {
-  $a = array_merge(
-    //preg('/\\\\item/', $text, PREG_OFFSET_CAPTURE)[0],
-    preg('/\\\\begin{itemize}/', $text, PREG_OFFSET_CAPTURE)[0],
-    preg('/\\\\begin{enumerate}/', $text, PREG_OFFSET_CAPTURE)[0],
-    preg('/\\\\end{itemize}/', $text, PREG_OFFSET_CAPTURE)[0],
-    preg('/\\\\end{enumerate}/', $text, PREG_OFFSET_CAPTURE)[0],
-  );
-  usort($a, fn ($a, $b) => $a[1] < $b[1] ? -1 : 1);
+  $a = preg('/\\\\(begin|end){(itemize|enumerate)}/', $text, PREG_OFFSET_CAPTURE)[0];
 
   $stack = [];
   $i = 0;
