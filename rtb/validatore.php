@@ -18,8 +18,13 @@ function merge_items($text) {
     "/(\\S) +([;:,.])/" => '\1\2',          // rimozione spazi prima di [:,.;]
     "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
   ];
+  $regexmaiuscole = [
+    "/\\item (\\textbf{)?([a-z])/" => '\\item \1\U\2' // dopo item, preservando textbf
+  ];
+  $regexelenchi = [];
 
   $text = preg_multireplace($regexbianco, $text);
+  $text = preg_multireplace($regexmaiuscole, $text);
 
   $a = array_merge(
     //preg('/\\\\item/', $text, PREG_OFFSET_CAPTURE)[0],
@@ -55,12 +60,15 @@ function merge_items($text) {
     return substr_replace($text, str_replace("\n", ' ', substr($text, $o, $l)), $o, $l);
   }, $text);
 
+
   $a_capo = fn ($s, $t) => str_replace($s, "\n" . $s, $t);
   $text = $a_capo('\\item', $text);
   $text = $a_capo('\\begin{itemize}', $text);
   $text = $a_capo('\\begin{enumerate}', $text);
   $text = $a_capo('\\end{itemize}', $text);
   $text = $a_capo('\\end{enumerate}', $text);
+
+  $text = preg_multireplace($regexelenchi, $text);
 
   $text = str_replace(':}', '}:', $text);
   $text = str_replace("\t", '  ', $text);
