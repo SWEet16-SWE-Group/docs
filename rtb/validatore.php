@@ -70,8 +70,8 @@ $regexelenchi = [
 // MAIN
 // =========================================
 
-function main_validatore_stilistico() {
-  foreach (_find('*.tex') as $a) {
+function main_validatore_stilistico($files) {
+  foreach ($files as $a) {
     echo "Correzione stile : $a\n";
     $text = file_get_contents($a);
     //$text = preg_replace_array($regexbianco, $text);
@@ -84,22 +84,22 @@ function main_validatore_stilistico() {
   }
 }
 
-function main_esegui_php() {
-  foreach (_find('*.php') as $file) {
-    chdir(dirname($file));
-    echo "Esecuzione: $file\n";
-    require_once $file;
+function main_esegui_php($files) {
+  foreach ($files as $a) {
+    chdir(dirname($a));
+    echo "Esecuzione: $a\n";
+    require_once $a;
     chdir(__DIR__);
   }
 }
 
-function main_correttore_ortografico() {
-  $a = stream(_find('*.tex'), _map(fn ($a) => "\"$a\""), _implode(' '));
+function main_correttore_ortografico($files) {
+  $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
   passthru("hunspell -d it_IT,en_US $a");
 }
 
-function main_compile() {
-  foreach (_find('main.tex') as $a) {
+function main_compile($files) {
+  foreach ($files as $a) {
     chdir(dirname($a));
     passthru(
       "mkdir -p .build && pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.build/ main.tex > /dev/null",
@@ -111,6 +111,11 @@ function main_compile() {
   }
 }
 
-//main_esegui_php();
-//main_validatore_stilistico();
-main_compile();
+//main_esegui_php(_find('*.php'));
+//main_correttore_ortografico(_find('*.tex'));
+//main_validatore_stilistico(_find('*.tex'));
+//main_compile(_find('main.tex'));
+
+$a = $argv[1];
+main_validatore_stilistico($a);
+main_compile($a);
