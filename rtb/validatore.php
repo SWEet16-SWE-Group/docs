@@ -102,7 +102,7 @@ function main_compile($files) {
   foreach ($files as $a) {
     chdir(dirname($a));
     passthru(
-      "mkdir -p .build && pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.build/ main.tex > /dev/null",
+      "mkdir -p .build && latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > /dev/null",
       $e
     );
     echo "\n\n\n$a\nCODICE DI USCITA: $e\n\n";
