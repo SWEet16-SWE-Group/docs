@@ -101,11 +101,12 @@ function main_correttore_ortografico($files) {
 function main_compile($files) {
   foreach ($files as $a) {
     chdir(dirname($a));
+    echo "\n$a\n";
     passthru(
-      "mkdir -p .build && latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > /dev/null",
+      "latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > /dev/null",
       $e
     );
-    echo "\n\n\n$a\nCODICE DI USCITA: $e\n\n";
+    echo "\n$a\nCODICE DI USCITA: $e\n\n";
     $e != 0 && die("ERRORE DI COMPILAZIONE\n");
     chdir(__DIR__);
   }
