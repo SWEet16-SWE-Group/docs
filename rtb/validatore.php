@@ -14,9 +14,11 @@ function merge_items($text) {
     "/(\\S) +/" => '\1 ',                   // compressione di tanti spazi in uno esclusa indentazione iniziale
     "/ *\\n/" => "\n",                      // testo bianco a fine riga
     "/ *}/" => '}',                         // rimozione spazi tra : e }
-    "/}(\\w)/" => '} \1',                   // spazio dopo :}
+    '/:}/' => '}:',
+    "/:(\\w)/" => '} \1',                   // spazio dopo :
     "/(\\S) +([;:,.])/" => '\1\2',          // rimozione spazi prima di [:,.;]
     "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
+    "/\n\n\n/" => "\n\n",
   ];
   $regexelenchi = [];
 
@@ -70,12 +72,8 @@ function merge_items($text) {
   $text = $a_capo('\\end{itemize}', $text);
   $text = $a_capo('\\end{enumerate}', $text);
 
+  $text = preg_multireplace($regexbianco, $text);
   $text = preg_multireplace($regexelenchi, $text);
-
-  $text = str_replace(':}', '}:', $text);
-  $text = str_replace("\t", '  ', $text);
-  $text = preg_replace("/ *\n/", "\n", $text);
-  $text = str_replace("\n\n\n", "\n\n", $text);
 
   print_r($text);
   return $text;
