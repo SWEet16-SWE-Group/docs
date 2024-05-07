@@ -9,4 +9,5 @@ RUN pacman -Sy --noconfirm --needed \
   texlive-latexextra \
   texlive-langitalian
 USER 1000:1000
-CMD sed -zi 's/\r//g;' $(find . -type f -name '*.bash' -o -name '*.tex' -o -name '*.php' -o -name '*.md') && bash validatore.bash
+#CMD sed -zi 's/\r//g;' $(find . -type f -name '*.bash' -o -name '*.tex' -o -name '*.php' -o -name '*.md') && bash validatore.bash
+CMD php validatore.php
