@@ -79,8 +79,21 @@ function pulizia_regex($text) {
   return $text;
 }
 
+
+// =========================================
+// MAIN
+// =========================================
+
 function correggi_file($file) {
   file_put_contents($file, pulizia_regex(file_get_contents($file)));
 }
 
-correggi_file($argv[1]);
+$depth = 12;
+$files = glob('./' . str_repeat('{,*/', $depth) . str_repeat('}', $depth) . '/*.tex', GLOB_BRACE);
+foreach ($files as $a) {
+  echo "Correzione stile : $a\n";
+  correggi_file($a);
+}
+
+// print_r($files);
+// correggi_file($argv[1]);
