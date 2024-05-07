@@ -1,2 +1,11 @@
 
-    as         asasaa
+
+       a
+       a             a
+a ,a
+a : a
+a      
+
+\item a;
+\item \textbuf{a}: a;
+
