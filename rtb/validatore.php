@@ -75,10 +75,13 @@ function pulizia_regex($text) {
   $regexelenchi = [
     "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\item)/"            => '\1-\3',
     "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{itemize})/"  => '\1-\3',
-    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{enumerate})/"=> '\1-\3',
+    "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\begin{enumerate})/" => '\1-\3',
     "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{itemize})/"    => '\1-\3',
     "/(\\\\item [^\n]*?)([^\\.;:])?(\n\\\\end{enumerate})/"  => '\1-\3',
   ];
+
+  $items = preg("/(\\\\item [^\n*]*?)([^\\.;:])?(\n\\\\(item|((begin|end){(itemize|enumerate)})))/n", $text);
+  print_r($items);
 
   $text = preg_replace_array($regexbianco, $text);
   $text = preg_replace_callback_array($regexmaiuscole, $text);
