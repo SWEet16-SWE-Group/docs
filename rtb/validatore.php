@@ -33,9 +33,6 @@ function merge_items($text) {
     // preg('/\\\\item\s*\\\\begin{/', $text, PREG_OFFSET_CAPTURE)[0],
   );
   usort($a, fn ($a, $b) => $a[1] < $b[1] ? -1 : 1);
-  //$a = array_combine(array_column($a, 1), array_column($a, 0));
-  //ksort($a);
-  //$a = array_reverse($a, true);
 
   $stack = [];
   $i = 0;
@@ -43,16 +40,25 @@ function merge_items($text) {
     if (str_contains($b[0], 'begin')) {
       if ($i == 0) {
         $stack[] = [$b];
-        $i += 1;
       }
+      //$b[] = $i;
+      $i += 1;
     }
     if (str_contains($b[0], 'end')) {
-      $i = min([0, $i - 1]);
+      $i = max([0, $i - 1]);
       if ($i == 0) {
         $stack[array_key_last($stack)][] = $b;
       }
+      //$b[] = $i;
     }
   }
+
+  //$linearize = null;
+  //$linearize = fn ($a) => '[' . stream($a, _map($linearize), _implode(', ')) . ']';
+  //$linearize = fn ($a) => '[' . stream($a, _map($linearize), _implode(', ')) . ']';
+
+  //print_r(stream($a, _map(fn ($a) => '[' .  stream($a, _implode(', ')) . ']')));
+  //print_r(stream($stack, _map($linearize)));
 
   $text = array_reduce($stack, function ($text, $a) {
     $o = $a[0][1];
@@ -60,28 +66,17 @@ function merge_items($text) {
     return substr_replace($text, str_replace("\n", ' ', substr($text, $o, $l)), $o, $l);
   }, $text);
 
-  print_r($text);
+  $a_capo = fn ($s, $t) => str_replace($s, "\n" . $s, $t);
+  $text = $a_capo('\\item', $text);
+  $text = $a_capo('\\begin{itemize}', $text);
+  $text = $a_capo('\\begin{enumerate}', $text);
+  $text = $a_capo('\\end{itemize}', $text);
+  $text = $a_capo('\\end{enumerate}', $text);
 
-  //$a = array_values(array_map(fn ($a, $b) => [$a, $b], $a, array_keys($a)));
-  //for ($i = 0; $i < count($a) - 1; $i += 1) {
-  //  $j = $i + 1;
-  //  $o = $a[$j][1];
-  //  $l = $a[$i][1] - $o;
-  //  $text = substr_replace($text, str_replace("\n", ' ', substr($text, $o, $l)), $o, $l);
-  //  //if (str_contains('\\item', $a[$i][0]) && str_contains('\\item', $a[$j][0])) {
-  //  //} else if (str_contains('\\item', $a[$i][0]) && str_contains('\\begin', $a[$j][0])) {
-  //  //} else if (str_contains('\\item', $a[$i][0]) && str_contains('\\end', $a[$j][0])) {
-  //  //}
-  //}
-
-  $text = str_replace($b = '\\item', "\n" . $b, $text);
-  $text = str_replace($b = '\\begin{itemize}', "\n" . $b, $text);
-  $text = str_replace($b = '\\begin{enumerate}', "\n" . $b, $text);
-  $text = str_replace($b = '\\end{itemize}', "\n" . $b, $text);
-  $text = str_replace($b = '\\end{enumerate}', "\n" . $b, $text);
+  $text = preg_replace("/\\s*\n/", "\n", $text);
   //$text = str_replace("\n\n", "\n", $text);
 
-  //print_r($text);
+  print_r($text);
   return;
 }
 
