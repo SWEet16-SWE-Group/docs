@@ -3,7 +3,7 @@
 require_once __DIR__ . '/.lib_php/utils.php';
 require_once __DIR__ . '/.lib_php/Stream.php';
 
-function preg_multireplace($r, $a) {
+function preg_replace_array($r, $a) {
   return preg_replace(array_keys($r), $r, $a);
 }
 
@@ -21,14 +21,13 @@ function merge_items($text) {
     "/\n\n\n/" => "\n\n",
   ];
 
-  $text = preg_multireplace($regexbianco, $text);
-
   $regexmaiuscole = [
     "/\\\\item (\\\\textbf{)?([a-z])/" => fn ($a) => '\\item ' . $a[1] . ucfirst($a[2]),
     "/(}: )([a-z])/" => fn ($a) => $a[1] . ucfirst($a[2]),
     // "/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^0-9A-Z]*)([a-z])/" => fn ($a) => ':' . $a[1] . ucfirst($a[2]), // dopo : preservando caratteri in mezzo e escludendo url e href
   ];
 
+  $text = preg_replace_array($regexbianco, $text);
   $text = preg_replace_callback_array($regexmaiuscole, $text);
 
   $a = array_merge(
@@ -65,7 +64,6 @@ function merge_items($text) {
     return substr_replace($text, str_replace("\n", ' ', substr($text, $o, $l)), $o, $l);
   }, $text);
 
-
   $a_capo = fn ($s, $t) => str_replace($s, "\n" . $s, $t);
   $text = $a_capo('\\item', $text);
   $text = $a_capo('\\begin{itemize}', $text);
@@ -73,10 +71,11 @@ function merge_items($text) {
   $text = $a_capo('\\end{itemize}', $text);
   $text = $a_capo('\\end{enumerate}', $text);
 
-  $text = preg_multireplace($regexbianco, $text);
-
   $regexelenchi = [];
-  $text = preg_multireplace($regexelenchi, $text);
+
+  $text = preg_replace_array($regexbianco, $text);
+  $text = preg_replace_array($regexelenchi, $text);
+  $text = preg_replace_array($regexbianco, $text);
 
   print_r($text);
   return $text;
