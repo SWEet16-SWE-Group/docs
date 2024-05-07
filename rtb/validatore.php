@@ -102,10 +102,11 @@ function main_compile() {
   foreach (_find('main.tex') as $a) {
     chdir(dirname($a));
     passthru(
-      "mkdir -p .build && pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.build/ main.tex",
+      "mkdir -p .build && pdflatex -interaction=nonstopmode -halt-on-error -output-directory=.build/ main.tex > /dev/null",
       $e
     );
-    $e != 0 && die("\n\n\n$a\nERRORE DI COMPILAZIONE: $e\n\n");
+    echo "\n\n\n$a\nCODICE DI USCITA: $e\n\n";
+    $e != 0 && die("ERRORE DI COMPILAZIONE\n");
     chdir(__DIR__);
   }
 }
