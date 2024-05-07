@@ -7,5 +7,5 @@ a : a
 a      
 
 \item a;
-\item \textbuf{a}: a;
+\item \textbf{a}: a;
 
