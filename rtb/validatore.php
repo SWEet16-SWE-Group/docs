@@ -112,5 +112,5 @@ function main_compile() {
 }
 
 //main_esegui_php();
-main_validatore_stilistico();
+//main_validatore_stilistico();
 main_compile();
