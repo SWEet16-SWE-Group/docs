@@ -101,7 +101,7 @@ function main_correttore_ortografico($files) {
 
 function main_compile($files) {
   foreach ($files as $a) {
-    $pfx = fn ($s) => "$a: $s\n";
+    $pfx = fn ($s) => "Compilazione latex: $a: $s\n";
     chdir(dirname($a));
     echo $pfx("INIZIO");
     passthru("latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > /dev/null", $e);
