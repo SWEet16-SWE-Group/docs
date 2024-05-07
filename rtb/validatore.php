@@ -73,7 +73,9 @@ function merge_items($text) {
   $text = $a_capo('\\end{itemize}', $text);
   $text = $a_capo('\\end{enumerate}', $text);
 
-  $text = preg_replace("/\\s*\n/", "\n", $text);
+  $text = str_replace(':}', '}:', $text);
+  $text = str_replace("\t", '  ', $text);
+  $text = preg_replace("/ *\n/", "\n", $text);
   //$text = str_replace("\n\n", "\n", $text);
 
   print_r($text);
