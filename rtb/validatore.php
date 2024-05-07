@@ -19,7 +19,7 @@ function merge_items($text) {
 
   $regexbianco = [
     "/(\\S) +/" => '\1 ',                   // compressione di tanti spazi in uno esclusa indentazione iniziale
-    "/ *\\n/" => '\n',                      // testo bianco a fine riga
+    "/ *\\n/" => "\n",                      // testo bianco a fine riga
     "/ *}/" => '}',                         // rimozione spazi tra : e }
     "/}(\\w)/" => '} \1',                   // spazio dopo :}
     "/(\\S) +([;:,.])/" => '\1\2',          // rimozione spazi prima di [:,.;]
