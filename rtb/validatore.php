@@ -38,56 +38,49 @@ function _appiattisci_item($text) {
   return $text;
 }
 
-const regexbianco = [
-  "/\r/" => '',
-  "/\t/" => '  ',
-  "/(\\S) +/" => '\1 ',                   // compressione di tanti spazi in uno esclusa indentazione iniziale
-  "/ *\\n/" => "\n",                      // testo bianco a fine riga
-  "/ *}/" => '}',                         // rimozione spazi tra : e }
-  '/:}/' => '}:',
-  //"/:(\\w)/" => '} \1',                   // spazio dopo :
-  "/(\\S) +([;:,.])/" => '\1\2',          // rimozione spazi prima di [:,.;]
-  "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
-  "/\n\n\n/" => "\n\n",
-];
-
-function _preg_m1($a) {
-  return '\\item ' . $a[1] . ucfirst($a[2]);
-}
-
-function _preg_m2($a) {
-  return $a[1] . ucfirst($a[2]);
-}
-
-const regexmaiuscole = [
-  "/\\\\item (\\\\textbf{)?([a-z])/" => '_preg_m1',
-  "/(}: )([a-z])/" => '_preg_m2',
-  // "/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^0-9A-Z]*)([a-z])/" => fn ($a) => ':' . $a[1] . ucfirst($a[2]), // dopo : preservando caratteri in mezzo e escludendo url e href
-];
-
-const regexelenchi = [
-  "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\item)/"              => '\1;\3',
-  "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\begin{itemize})/"    => '\1:\3',
-  "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\begin{enumerate})/"  => '\1:\3',
-  "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\end{itemize})/"      => '\1.\3',
-  "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\end{enumerate})/"    => '\1.\3',
-  "/(\\\\item [^\n]*?\\$\\$)[\\.;:]/" => '\1',
-];
-
 // =========================================
 // MAIN
 // =========================================
 
 function main_validatore_stilistico($files) {
+
+  $regexbianco = [
+    "/\r/" => '',
+    "/\t/" => '  ',
+    "/(\\S) +/" => '\1 ',                   // compressione di tanti spazi in uno esclusa indentazione iniziale
+    "/ *\\n/" => "\n",                      // testo bianco a fine riga
+    "/ *}/" => '}',                         // rimozione spazi tra : e }
+    '/:}/' => '}:',
+    //"/:(\\w)/" => '} \1',                   // spazio dopo :
+    "/(\\S) +([;:,.])/" => '\1\2',          // rimozione spazi prima di [:,.;]
+    "/([a-zA-Z]),([a-zA-Z])/" => '\1, \2',  // aggiunta spazio dopo ,
+    "/\n\n\n/" => "\n\n",
+  ];
+
+  $regexmaiuscole = [
+    "/\\\\item (\\\\textbf{)?([a-z])/" => fn ($a) => '\\item ' . $a[1] . ucfirst($a[2]),
+    "/(}: )([a-z])/" => fn ($a) => $a[1] . ucfirst($a[2]),
+    // "/(?:(?<!(?<!\\\\url{)(?<!\\\\href{))):([^0-9A-Z]*)([a-z])/" => fn ($a) => ':' . $a[1] . ucfirst($a[2]), // dopo : preservando caratteri in mezzo e escludendo url e href
+  ];
+
+  $regexelenchi = [
+    "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\item)/"              => '\1;\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\begin{itemize})/"    => '\1:\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\begin{enumerate})/"  => '\1:\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\end{itemize})/"      => '\1.\3',
+    "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\end{enumerate})/"    => '\1.\3',
+    "/(\\\\item [^\n]*?\\$\\$)[\\.;:]/" => '\1',
+  ];
+
   foreach ($files as $a) {
     echo "Correzione stile : $a\n";
     $text = file_get_contents($a);
-    $text = preg_replace_array(regexbianco, $text);
-    $text = preg_replace_callback_array(regexmaiuscole, $text);
+    $text = preg_replace_array($regexbianco, $text);
+    $text = preg_replace_callback_array($regexmaiuscole, $text);
     $text = _appiattisci_item($text);
-    $text = preg_replace_array(regexbianco, $text);
-    $text = preg_replace_array(regexelenchi, $text);
-    $text = preg_replace_array(regexbianco, $text);
+    $text = preg_replace_array($regexbianco, $text);
+    $text = preg_replace_array($regexelenchi, $text);
+    $text = preg_replace_array($regexbianco, $text);
     file_put_contents($a, $text);
   }
 }
