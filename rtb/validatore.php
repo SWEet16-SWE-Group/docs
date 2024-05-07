@@ -35,12 +35,7 @@ function _appiattisci_item($text) {
     return substr_replace($text, str_replace("\n", ' ', substr($text, $o, $l)), $o, $l);
   }, $text);
 
-  $a_capo = fn ($s, $t) => str_replace($s, "\n" . $s, $t);
-  $text = $a_capo('\\item', $text);
-  $text = $a_capo('\\begin{itemize}', $text);
-  $text = $a_capo('\\begin{enumerate}', $text);
-  $text = $a_capo('\\end{itemize}', $text);
-  $text = $a_capo('\\end{enumerate}', $text);
+  $text = preg_replace_array(['/\\\\(item|(begin|end){(itemize|enumerate)})/' => "\n\\\\\\1"], $text);
 
   return $text;
 }
