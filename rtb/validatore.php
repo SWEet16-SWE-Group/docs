@@ -70,7 +70,7 @@ function main_validatore_stilistico($files) {
   ];
 
   foreach ($files as $a) {
-    echo "Correzione stile : $a\n";
+    echo "Correzione stile: $a\n";
     $text = file_get_contents($a);
     $text = preg_replace_array($regexbianco, $text);
     $text = preg_replace_callback_array($regexmaiuscole, $text);
@@ -88,10 +88,14 @@ function main_esegui_php($files) {
     echo $pfx("INIZIO");
 
     chdir(dirname($a));
+    // ob_start(fn ($b) => preg_replace_callback_array(['/^(.*)$/' => $pfx], $b));
+    ob_start(fn ($b) => stream($b, _explode("\n"), _filter(fn ($a) => strlen($a) > 0), _map($pfx), _implode("\n")));
     require_once basename($a);
+    ob_end_flush();
     chdir(__DIR__);
 
     echo $pfx("FINE");
+    echo "\n";
   }
 }
 
@@ -106,7 +110,9 @@ function main_compile($files) {
     echo $pfx("INIZIO");
 
     chdir(dirname($a));
+    ob_start(fn ($b) => stream($b, _explode("\n"), _filter(fn ($a) => strlen($a) > 0), _map($pfx), _implode("\n")));
     passthru("latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > /dev/null", $e);
+    ob_end_flush();
     chdir(__DIR__);
 
     echo $pfx("FINE");
