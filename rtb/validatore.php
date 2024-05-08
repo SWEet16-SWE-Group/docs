@@ -1,7 +1,8 @@
 <?php
 
 require_once __DIR__ . '/.lib_php/utils.php';
-require_once __DIR__ . '/.lib_php/Stream.php';
+require_once __DIR__ . '/.lib_php/stream.php';
+require_once __DIR__ . '/.lib_php/Vocaboli.php';
 
 function _appiattisci_item($text) {
   $a = preg('/\\\\(begin|end){(itemize|enumerate)}/', $text, PREG_OFFSET_CAPTURE)[0];
@@ -83,10 +84,14 @@ function main_validatore_stilistico($files) {
 
 function main_esegui_php($files) {
   foreach ($files as $a) {
+    $pfx = fn ($s) => "Esecuzione PHP: $a: $s\n";
+    echo $pfx("INIZIO");
+
     chdir(dirname($a));
-    echo "Esecuzione: $a\n";
-    require_once $a;
+    require_once basename($a);
     chdir(__DIR__);
+
+    echo $pfx("FINE");
   }
 }
 
@@ -98,18 +103,21 @@ function main_correttore_ortografico($files) {
 function main_compile($files) {
   foreach ($files as $a) {
     $pfx = fn ($s) => "Compilazione latex: $a: $s\n";
-    chdir(dirname($a));
     echo $pfx("INIZIO");
+
+    chdir(dirname($a));
     passthru("latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > /dev/null", $e);
+    chdir(__DIR__);
+
     echo $pfx("FINE");
     echo $pfx("CODICE DI USCITA: $e");
     $e != 0 && die($pfx("ERRORE DI COMPILAZIONE"));
     echo "\n";
-    chdir(__DIR__);
   }
 }
 
-//main_esegui_php(_find('*.php'));
-//main_correttore_ortografico(_find('*.tex'));
+main_esegui_php(_find('*.php'));
+main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
+main_correttore_ortografico(_find('*.tex'));
 main_validatore_stilistico(_find('*.tex'));
 main_compile(_find('main.tex'));
