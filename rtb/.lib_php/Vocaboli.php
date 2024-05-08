@@ -77,15 +77,20 @@ function _parse() {
 // =========================================
 
 function main_vocaboli($files, $latexoutput) {
-  count($a = findoutliers($files)) > 0 &&
-    die("\nCorreggere i seguenti outliers per procedere con il glossario\n"
+
+  if (count($a = findoutliers($files)) > 0) {
+    echo "\nCorreggere i seguenti outliers per procedere con il glossario\n"
       . stream(
         $a,
         _map(fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n"),
         _implode(''),
-      ));
+      );
+    die(11);
+  }
+
   $d = preg('/\\\\subsection{(.*?)}(.*?)\n/', file_get_contents($latexoutput));
   $d = array_combine($d[1], $d[2]);
+
   $a = stream(
     findvocaboli($files),
     _parse(),
@@ -95,5 +100,6 @@ function main_vocaboli($files, $latexoutput) {
     _sort(),
     _implode(""),
   );
+
   file_put_contents($latexoutput, $a);
 }
