@@ -13,6 +13,11 @@ docker build . -t tmesser
 ```shell
 docker run -v .:/validatore/ -it tmesser
 ```
+3. (Opzionale) Compilare solo alcuni documenti
+
+```shell
+docker run -v .:/validatore/ -it tmesser php validatore.php -t path/to/main.tex [-t altri/path/to/main.tex]
+```
 
 Buona compilazione dei documenti :)
 
