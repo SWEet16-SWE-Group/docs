@@ -80,6 +80,7 @@ function main_validatore_stilistico($files) {
     $text = preg_replace_array($regexbianco, $text);
     file_put_contents($a, $text);
   }
+  echo "\n";
 }
 
 function main_esegui_php($files) {
@@ -122,6 +123,7 @@ function main_compile($files) {
   }
 }
 
+echo "\n";
 main_esegui_php(_find('*.php'));
 main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
 main_correttore_ortografico(_find('*.tex'));
