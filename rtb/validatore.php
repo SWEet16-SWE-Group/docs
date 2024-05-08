@@ -118,7 +118,7 @@ function main_compile($files) {
 
     echo $pfx("FINE");
     echo $pfx("CODICE DI USCITA: $e");
-    $e != 0 && die($pfx("ERRORE DI COMPILAZIONE"));
+    $e != 0 && die($e);
     echo "\n";
   }
 }
