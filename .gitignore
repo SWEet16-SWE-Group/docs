@@ -1,3 +1,4 @@
+
 .build/
 */.build/
 */*/.build/
@@ -22,3 +23,4 @@ node_modules/
 */*/*/*/*/node_modules/
 */*/*/*/*/*/node_modules/
 */*/*/*/*/*/*/node_modules/
+pb/specifica-tecnica/indent.log
