@@ -117,8 +117,3 @@ function main_compile($files) {
 //main_correttore_ortografico(_find('*.tex'));
 main_validatore_stilistico(_find('*.tex'));
 main_compile(_find('main.tex'));
-
-//$a = [$argv[1]];
-//$a = ['glossario/main.tex'];
-//main_validatore_stilistico($a);
-//main_compile($a);
