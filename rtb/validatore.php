@@ -128,4 +128,12 @@ main_esegui_php(_find('*.php'));
 main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
 main_correttore_ortografico(_find('*.tex'));
 main_validatore_stilistico(_find('*.tex'));
-main_compile(_find('main.tex'));
+
+$targets = [];
+foreach ($argv as $i => $a) {
+  if ($a == '-t') {
+    $targets[] = $argv[$i + 1];
+  }
+}
+$find = _find('main.tex');
+main_compile(count($targets) > 0 ? array_intersect($targets, $find) : $find);
