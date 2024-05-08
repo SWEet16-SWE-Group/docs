@@ -129,6 +129,7 @@ main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
 main_correttore_ortografico(_find('*.tex'));
 main_validatore_stilistico(_find('*.tex'));
 
+
 $targets = [];
 foreach ($argv as $i => $a) {
   if ($a == '-t') {
