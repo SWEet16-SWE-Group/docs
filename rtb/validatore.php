@@ -3,10 +3,6 @@
 require_once __DIR__ . '/.lib_php/utils.php';
 require_once __DIR__ . '/.lib_php/Stream.php';
 
-function preg_replace_array($r, $a) {
-  return preg_replace(array_keys($r), $r, $a);
-}
-
 function _appiattisci_item($text) {
   $a = preg('/\\\\(begin|end){(itemize|enumerate)}/', $text, PREG_OFFSET_CAPTURE)[0];
 

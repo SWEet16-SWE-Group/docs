@@ -21,3 +21,7 @@ function array_flat($a) {
   }
   return $b;
 }
+
+function preg_replace_array($r, $a) {
+  return preg_replace(array_keys($r), $r, $a);
+}
