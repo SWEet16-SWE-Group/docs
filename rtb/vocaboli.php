@@ -76,28 +76,24 @@ function _parse() {
 // MAIN
 // =========================================
 
-$files = glob('./' . str_repeat('{,*/', 12) . str_repeat('}', 12) . '*.tex', GLOB_BRACE);
-
-count($a = findoutliers($files)) > 0 &&
-  die("\nCorreggere i seguenti outliers per procedere con il glossario\n"
-    . stream(
-      $a,
-      _map(fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n"),
-      _implode(''),
-    ));
-
-$d = preg('/\\\\subsection{(.*?)}(.*?)\n/', file_get_contents('glossario/src/vocaboli.tex'));
-$d = array_combine($d[1], $d[2]);
-
-$a = stream(
-  findvocaboli($files),
-  _parse(),
-  _sort(),
-  _unique(),
-  _map(fn ($a) => '\\subsection{' . $a . '}' . (array_key_exists($a, $d) ? $d[$a] : 'INSERIRE DEFINIZIONE') . "\n"),
-  _sort(),
-  _implode(""),
-);
-
-file_put_contents('glossario/src/vocaboli.tex', $a);
-//print_r($a);
+function main_vocaboli($files, $latexoutput) {
+  count($a = findoutliers($files)) > 0 &&
+    die("\nCorreggere i seguenti outliers per procedere con il glossario\n"
+      . stream(
+        $a,
+        _map(fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n"),
+        _implode(''),
+      ));
+  $d = preg('/\\\\subsection{(.*?)}(.*?)\n/', file_get_contents($latexoutput));
+  $d = array_combine($d[1], $d[2]);
+  $a = stream(
+    findvocaboli($files),
+    _parse(),
+    _sort(),
+    _unique(),
+    _map(fn ($a) => '\\subsection{' . $a . '}' . (array_key_exists($a, $d) ? $d[$a] : 'INSERIRE DEFINIZIONE') . "\n"),
+    _sort(),
+    _implode(""),
+  );
+  file_put_contents($latexoutput, $a);
+}
