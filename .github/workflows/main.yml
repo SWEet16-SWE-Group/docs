@@ -1,7 +1,8 @@
 name: Validatore TMesser
+
 on:
   push:
-    - '*doc-*'
+    branches: '*doc-*'
 
 jobs:
   TMesser:
