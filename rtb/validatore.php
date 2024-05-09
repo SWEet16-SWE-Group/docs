@@ -100,14 +100,14 @@ function main_esegui_php($files) {
   }
 }
 
-function main_correttore_ortografico($files) {
+function main_correttore_ortografico($dict, $files) {
   $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
-  passthru("hunspell -d it_IT,en_US $a");
+  passthru("hunspell -p $dict -d it_IT,en_US $a");
 }
 
-function main_correttore_ortografico_action($files) {
+function main_correttore_ortografico_action($dict, $files) {
   $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
-  // passthru("hunspell -d it_IT,en_US $a");
+  passthru("hunspell -p $dict -d it_IT,en_US $a");
 }
 
 function main_compile($files) {
@@ -128,16 +128,20 @@ function main_compile($files) {
   }
 }
 
+
 echo "\n";
+
 main_esegui_php(_find('*.php'));
 main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
 main_validatore_stilistico(_find('*.tex'));
+
 $find = _find('main.tex');
+$dict = __DIR__ . '/.lib_php/sweet16-dict';
 
 if (in_array('--action', $argv)) {
-  main_correttore_ortografico_action(_find('*.tex'));
+  main_correttore_ortografico_action($dict, _find('*.tex'));
 } else {
-  main_correttore_ortografico(_find('*.tex'));
+  main_correttore_ortografico($dict, _find('*.tex'));
   $targets = [];
   foreach ($argv as $i => $a) {
     if ($a == '-t') {
