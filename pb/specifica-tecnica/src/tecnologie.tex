@@ -1,149 +1,65 @@
+\pagebreak
+
 \section{Tecnologie}
 
 In questa sezione viene fornita una panoramica generale delle tecnologie utilizzate per la
-realizzazione del prodotto in questione. Vengono infatti descritte le procedure, gli strumenti e le
-librerie necessari per lo sviluppo, il test e la distribuzione del prodotto.\\
+realizzazione del prodotto in questione. \\
+Vengono infatti descritte le procedure, gli strumenti e le librerie necessari per lo sviluppo, il test e la distribuzione del prodotto.\\
 In particolare, verranno trattate le tecnologie impiegate per la realizzazione del front-end e del back-end, per la gestione del
 database e per l'integrazione con i servizi previsti.
 
-\subsection{Linguaggi}
+\subsection{Tecnologie per la codifica}
+
+\begin{center}
+	\begin{longtblr}{
+		colspec={|X[c,2cm]|X[c,12cm]|X[c,2cm]|},
+		row{odd}={bg=white},
+		row{even}={bg=lightgray}
+		}
+		\hline
+		\textbf{Tecnologia}                                                          & \textbf{Descrizione}                                                                                                                              & \textbf{Versione} \\ \hline
+		\multicolumn{3}{|c|}{\textbf{Linguaggi}}                                                                                                                                                                                                                      \\ \hline
+		HTML                                                                         & Linguaggio di annotazione (markup) utilizzato per impostare la struttura delle
+		singole pagine e definire gli elementi dell’interfaccia                      & 5                                                                                                                                                                     \\ \hline
+		CSS                                                                          & Linguaggio utilizzato per la formattazione e la gestione dello stile degli elementi HTML                                                          & 3                 \\ \hline
+		JavaScript                                                                   & Linguaggio utilizzato per la gestione di eventi incocati dall'utente                                                                              & ECMAScript 2023   \\ \hline
+		PHP                                                                          & Linguaggio per la codifica di applicazioni web lato server, utilizzato per la creazione di \emph{API Rest}$^{G}$                                  & 8.x               \\ \hline
+		\multicolumn{3}{|c|}{\textbf{Librerie e framework}}                                                                                                                                                                                                           \\ \hline
+		ReactJs                                                                      & Libreria grafica per facilitare lo sviluppo front-end gestendo modularmente le componenti grafiche,
+		permettendo performance buone grazie all'efficacia della sua renderizzazione & 18.2.x                                                                                                                                                                \\ \hline
+		Laravel                                                                      & Framework PHP utilizzato per facilitare la creazione di API Rest                                                                                  & 11                \\ \hline
+		Axios                                                                        & Libreria JavaScript che viene utilizzata per effettuare richieste HTTP sia negli ambienti browser che Node.js                                     & 11.x              \\ \hline
+		MaterialUI                                                                   & Framework di componenti React preconfezionati per la creazione di interfacce
+		utente gradevoli, funzionali e personalizzabili                              & 4.1.x                                                                                                                                                                 \\ \hline
+		Shadcn/ui                                                                    & Libreria di componenti React utilizzata per facilitare la codifica del front-end, incorporando nell’interfaccia grafica componenti prefabbricate,
+		personalizzabili e altamente riutilizzabili                                  & 0.8.0                                                                                                                                                                 \\ \hline
+		\multicolumn{3}{|c|}{\textbf{Strumenti e servizi}}                                                                                                                                                                                                       \\ \hline
+		Node.js                                                                      & Runtime system per esecuzione di codice Javascript                                                                                                & 20.11.0           \\ \hline                                                                                                                              
+		NPM                                                                          & Gestore di pacchetti per il linguaggio JavaScript e l'ambiente di esecuzione Node.js                                                              & 9.6.x             \\ \hline
+		Docker                                                                       & Piattaforma di sviluppo e gestione di applicazioni che permette di creare, distribuire e eseguire in software in container virtualizzati          & 24.0.7            \\ \hline
+		Git                                                                          & Sistema di controllo di versione distribuito utilizzato per la gestione del codice sorgente dal parte del gruppo di progetto                      & /                 \\ \hline
+	\end{longtblr}
+\end{center}
+
+// va aggiunto bootstrap
+
+\subsection{Tecnologie per l'analisi del codice}
+\begin{center}
+	\begin{longtblr}{
+		colspec={|X[c,2cm]|X[c,12cm]|X[c,2cm]|},
+		row{odd}={bg=white},
+		row{even}={bg=lightgray}
+		}
+		\hline
+		\textbf{Tecnologia}                                                        & \textbf{Descrizione}                                                                                                         & \textbf{Versione} \\ \hline
+		Prettier                                                                   & Strumento di formattazione del codice che aiuta a mantenere uno stile di codifica coerente e leggibile                       & 3.0.x             \\ \hline
+		Jest                                                                       & Framework di testing basato su JavaScript utilizzato per l'implementazione ed esecuzione dei test di unità e di integrazione & 29.1.x            \\ \hline
+		PHPUnit                                                                    & Framework di unit test per il linguaggio di programmazione PHP                                                               & 11.x              \\ \hline
+		React Testing Library                                                      & Libreria di test integrata nativamente che consente di testare il
+		comportamento dei componentiG React da una prospettiva degli utenti finali & 14.0.x                                                                                                                                           \\ \hline
+		GitHub Actions                                                             & Servizio di CI/CD per automatizzare il processo di buildG, test e deployG del progetto software                              & /                 \\ \hline                                                                                                                                                 
+	\end{longtblr}
+\end{center}
 
-\subsubsection{}
 
-\textbf{Descrizione:}
 
-\textbf{Versione:}
-
-
-
-\subsubsection{HTML}
-
-\textbf{Descrizione:} Linguaggio di annotazione (markup) utilizzato per impostare la struttura delle
-singole pagine e definire gli elementi dell’interfaccia;
-
-\textbf{Versione:} 5
-
-
-\subsubsection{CSS}
-
-\textbf{Descrizione:} Linguaggio utilizzato per la formattazione e la gestione dello stile degli elementi HTML;
-
-\textbf{Versione:} 3
-
-
-\subsubsection{JavaScript}
-
-\textbf{Descrizione:} Linguaggio utilizzato per la gestione di eventi incocati dall'utente;
-
-\textbf{Versione:} ECMAScript 2023;
-
-\subsubsection{PHP}
-
-\textbf{Descrizione:} Linguaggio per la codifica di applicazioni web lato server, utilizzato per la creazione di \emph{API Rest}$^{G}$;
-
-\textbf{Versione:} 8.x
-
-% fine linguaggi
-
-\subsection{Librerie e framework}
-
-\subsubsection{ReactJs}
-
-\textbf{Descrizione:} Libreria grafica per facilitare lo
-sviluppo front-end gestendo modularmente le componenti grafiche,
-permettendo performance buone grazie all'efficacia della sua renderizzazione;
-
-\textbf{Versione:} 18.2.x
-
-\subsubsection{Laravel}
-
-\textbf{Descrizione:} Framework PHP utilizzato per facilitare la creazione di API Rest;
-
-\textbf{Versione:} 11
-
-\subsubsection{Axios}
-
-\textbf{Descrizione:} Libreria JavaScript che viene utilizzata per effettuare richieste HTTP sia negli ambienti browser che Node.js;
-
-\textbf{Versione:} 11.x
-
-\subsubsection{Material UI}
-
-\textbf{Descrizione:} Framework di componenti React preconfezionati per la creazione di interfacce
-utente gradevoli, funzionali e personalizzabili;
-
-\textbf{Versione:} 4.1.x
-
-\subsubsection{Shadcn/ui}
-
-\textbf{Descrizione:} Libreria di componenti React utilizzata per facilitare la codifica del front-end, incorporando
-nell’interfaccia grafica componenti prefabbricate, personalizzabili e altamente riutilizzabili.
-
-\textbf{Versione:} 0.8.0
-
-% fine librerie e framework
-
-\subsection{Strumenti e servizi}
-
-\subsubsection{Node.js}
-
-\textbf{Descrizione:} Runtime system per esecuzione di codice Javascript;
-
-\textbf{Versione:} 20.11.0
-
-\subsubsection{NPM}
-
-\textbf{Descrizione:} Gestore di pacchetti per il linguaggio JavaScript e l'ambiente di esecuzione Node.js;
-
-\textbf{Versione:} 9.6.x
-
-\subsubsection{Docker}
-
-\textbf{Descrizione:} Piattaforma di sviluppo e gestione di applicazioni che permette di creare, distribuire e eseguire in software in container virtualizzati.
-
-\textbf{Versione:} 24.0.7
-
-
-\subsubsection{Git}
-
-\textbf{Descrizione:} Sistema di controllo versione distribuito utilizzato per la gestione del codice sorgente dal parte del gruppo di progetto;
-
-\textbf{Versione:} /
-
-% fine strumenti e servizi
-
-\subsection{Tecnologie per l'analisi statica del codice}
-
-\subsubsection{Prettier}
-
-\textbf{Descrizione:} Strumento di formattazione del codice che aiuta a mantenere uno stile di codifica coerente e leggibile;
-
-\textbf{Versione:} 3.0.x
-
-\subsubsection{Jest}
-
-\textbf{Descrizione:} Framework di testing basato su JavaScript utilizzato per l'implementazione ed esecuzione dei test di unità e di integrazione;
-
-\textbf{Versione:} 29.1.x
-
-\subsubsection{PHPUnit}
-
-\textbf{Descrizione:} Framework di unit test per il linguaggio di programmazione PHP.
-
-\textbf{Versione:} 11.x
-
-
-\subsection{Tecnologie per l'analisi dinamica del codice}
-\subsubsection{React Testing Library}
-
-\textbf{Descrizione:} Libreria di test integrata nativamente che consente di testare il
-comportamento dei componentiG React da una prospettiva degli utenti finali;
-
-\textbf{Versione:} 14.0.x
-
-\subsubsection{GitHub Actions}
-
-\textbf{Descrizione:} Servizio di CI/CDG per automatizzare il processo di buildG, test e deployG del
-progetto software;
-
-\textbf{Versione:} /
