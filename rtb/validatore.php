@@ -109,7 +109,7 @@ function main_correttore_ortografico_action($dict, $files) {
   $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
   $e = shell_exec("hunspell -p $dict -d it_IT,en_US -l $a");
   print_r($e);
-  $e = $e && false ? 0 : 14;
+  $e = $e === null ? 0 : 14;
   $e != 0 && print_r("\n\nCorreggere le parole evidenziate sopra\n");
   $e != 0 && die($e);
 }
@@ -141,7 +141,7 @@ main_validatore_stilistico(_find('*.tex'));
 
 $find = _find('main.tex');
 $dict = __DIR__ . '/.lib_php/sweet16-dict';
-echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "\n";
+echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "\n\n";
 $e == false && die(11);
 
 if (in_array('--action', $argv)) {
