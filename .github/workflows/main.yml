@@ -8,11 +8,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - run:  sudo apt install -y php
+      - run:  sudo apt install -y php hunspell hunspell-it hunspell-en-us
         name: Installazione PHP
 
       - run:  cd ./rtb/ && php validatore.php --action
-        name: Installazione PHP
+        name: Esecuzione del validatore
 
       - uses: xu-cheng/latex-action@v3
         name: Compilazione Latex
