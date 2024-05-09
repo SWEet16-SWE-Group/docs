@@ -105,6 +105,11 @@ function main_correttore_ortografico($files) {
   passthru("hunspell -d it_IT,en_US $a");
 }
 
+function main_correttore_ortografico_action($files) {
+  $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
+  // passthru("hunspell -d it_IT,en_US $a");
+}
+
 function main_compile($files) {
   foreach ($files as $a) {
     $pfx = fn ($s) => "Compilazione latex: $a: $s\n";
@@ -126,15 +131,18 @@ function main_compile($files) {
 echo "\n";
 main_esegui_php(_find('*.php'));
 main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
-main_correttore_ortografico(_find('*.tex'));
 main_validatore_stilistico(_find('*.tex'));
-
-
-$targets = [];
-foreach ($argv as $i => $a) {
-  if ($a == '-t') {
-    $targets[] = $argv[$i + 1];
-  }
-}
 $find = _find('main.tex');
-main_compile(count($targets) > 0 ? array_intersect($targets, $find) : $find);
+
+if (in_array('--action', $argv)) {
+  main_correttore_ortografico_action(_find('*.tex'));
+} else {
+  main_correttore_ortografico(_find('*.tex'));
+  $targets = [];
+  foreach ($argv as $i => $a) {
+    if ($a == '-t') {
+      $targets[] = $argv[$i + 1];
+    }
+  }
+  main_compile(count($targets) > 0 ? array_intersect($targets, $find) : $find);
+}
