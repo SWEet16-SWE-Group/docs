@@ -7,99 +7,30 @@ jobs:
       - uses: actions/checkout@v4
       - uses: xu-cheng/latex-action@v3
         with:
-          working_directory: ./pb/verbali/esterni/2024-05-02/
-          root_file: main.tex
-          working_directory: ./candidatura/analisi-capitolati/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./candidatura/preventivo-costi-assunzione-impegni/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./candidatura/verbali/esterni/2023-10-27/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./candidatura/verbali/interni/2023-10-19/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./candidatura/verbali/interni/2023-10-25/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./candidatura/verbali/interni/2023-11-06/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./candidatura/lettera-di-presentazione/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/lettera-presentazione/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/piano-di-progetto/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/norme-di-progetto/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/analisi-requisiti/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/glossario/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/esterni/2023-12-07/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/esterni/2024-02-23/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/esterni/2023-11-24/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/interni/2023-11-16/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/interni/2023-12-12/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/interni/2023-11-21/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/interni/2023-12-05/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/interni/2024-03-07/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/interni/2024-03-28/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/interni/2024-02-24/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/verbali/interni/2023-11-10/
-          root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
-          working_directory: ./rtb/piano-di-qualifica/
-          root_file: main.tex
+          work_in_root_file_dir: true
+          root_file: |
+            ./pb/verbali/esterni/2024-05-02/main.tex
+            ./candidatura/analisi-capitolati/main.tex
+            ./candidatura/preventivo-costi-assunzione-impegni/main.tex
+            ./candidatura/verbali/esterni/2023-10-27/main.tex
+            ./candidatura/verbali/interni/2023-10-19/main.tex
+            ./candidatura/verbali/interni/2023-10-25/main.tex
+            ./candidatura/verbali/interni/2023-11-06/main.tex
+            ./candidatura/lettera-di-presentazione/main.tex
+            ./rtb/lettera-presentazione/main.tex
+            ./rtb/piano-di-progetto/main.tex
+            ./rtb/norme-di-progetto/main.tex
+            ./rtb/analisi-requisiti/main.tex
+            ./rtb/glossario/main.tex
+            ./rtb/verbali/esterni/2023-12-07/main.tex
+            ./rtb/verbali/esterni/2024-02-23/main.tex
+            ./rtb/verbali/esterni/2023-11-24/main.tex
+            ./rtb/verbali/interni/2023-11-16/main.tex
+            ./rtb/verbali/interni/2023-12-12/main.tex
+            ./rtb/verbali/interni/2023-11-21/main.tex
+            ./rtb/verbali/interni/2023-12-05/main.tex
+            ./rtb/verbali/interni/2024-03-07/main.tex
+            ./rtb/verbali/interni/2024-03-28/main.tex
+            ./rtb/verbali/interni/2024-02-24/main.tex
+            ./rtb/verbali/interni/2023-11-10/main.tex
+            ./rtb/piano-di-qualifica/main.tex
