@@ -9,8 +9,6 @@ jobs:
         with:
           working_directory: ./pb/verbali/esterni/2024-05-02/
           root_file: main.tex
-      - uses: xu-cheng/latex-action@v3
-        with:
           working_directory: ./candidatura/analisi-capitolati/
           root_file: main.tex
       - uses: xu-cheng/latex-action@v3
