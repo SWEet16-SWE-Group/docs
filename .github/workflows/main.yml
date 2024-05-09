@@ -1,5 +1,8 @@
 name: Validatore TMesser
-on: [push]
+on:
+  push:
+    - '*doc-*'
+
 jobs:
   TMesser:
     runs-on: ubuntu-latest
