@@ -100,9 +100,16 @@ function main_esegui_php($files) {
   }
 }
 
-function main_correttore_ortografico($files) {
+function main_correttore_ortografico($dict, $files) {
   $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
-  passthru("hunspell -d it_IT,en_US $a");
+  passthru("hunspell -p $dict -d it_IT,en_US $a");
+}
+
+function main_correttore_ortografico_action($dict, $files) {
+  $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
+  passthru(" D=\"\$(hunspell -p $dict -d it_IT,en_US -l $a)\" && { echo \"\$D\" ; [[ -z \"\$D\" ]] ; }", $e);
+  $e != 0 && print_r("\n\nCorreggere le parole evidenziate sopra\n");
+  $e != 0 && die($e);
 }
 
 function main_compile($files) {
@@ -118,23 +125,30 @@ function main_compile($files) {
 
     echo $pfx("FINE");
     echo $pfx("CODICE DI USCITA: $e");
-    $e != 0 && die($pfx("ERRORE DI COMPILAZIONE"));
+    $e != 0 && die($e);
     echo "\n";
   }
 }
 
+
 echo "\n";
+
 main_esegui_php(_find('*.php'));
 main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
-main_correttore_ortografico(_find('*.tex'));
 main_validatore_stilistico(_find('*.tex'));
 
-
-$targets = [];
-foreach ($argv as $i => $a) {
-  if ($a == '-t') {
-    $targets[] = $argv[$i + 1];
-  }
-}
 $find = _find('main.tex');
-main_compile(count($targets) > 0 ? array_intersect($targets, $find) : $find);
+$dict = __DIR__ . '/.lib_php/sweet16-dict';
+
+if (in_array('--action', $argv)) {
+  main_correttore_ortografico_action($dict, _find('*.tex'));
+} else {
+  main_correttore_ortografico($dict, _find('*.tex'));
+  $targets = [];
+  foreach ($argv as $i => $a) {
+    if ($a == '-t') {
+      $targets[] = $argv[$i + 1];
+    }
+  }
+  main_compile(count($targets) > 0 ? array_intersect($targets, $find) : $find);
+}
