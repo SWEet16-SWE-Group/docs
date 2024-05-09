@@ -1,0 +1,35 @@
+name: Validatore TMesser
+on: [push]
+jobs:
+  TMesser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: xu-cheng/latex-action@v3
+        with:
+          root_file: |
+            ./pb/verbali/esterni/2024-05-02/main.tex
+            ./candidatura/analisi-capitolati/main.tex
+            ./candidatura/preventivo-costi-assunzione-impegni/main.tex
+            ./candidatura/verbali/esterni/2023-10-27/main.tex
+            ./candidatura/verbali/interni/2023-10-19/main.tex
+            ./candidatura/verbali/interni/2023-10-25/main.tex
+            ./candidatura/verbali/interni/2023-11-06/main.tex
+            ./candidatura/lettera-di-presentazione/main.tex
+            ./rtb/lettera-presentazione/main.tex
+            ./rtb/piano-di-progetto/main.tex
+            ./rtb/norme-di-progetto/main.tex
+            ./rtb/analisi-requisiti/main.tex
+            ./rtb/glossario/main.tex
+            ./rtb/verbali/esterni/2023-12-07/main.tex
+            ./rtb/verbali/esterni/2024-02-23/main.tex
+            ./rtb/verbali/esterni/2023-11-24/main.tex
+            ./rtb/verbali/interni/2023-11-16/main.tex
+            ./rtb/verbali/interni/2023-12-12/main.tex
+            ./rtb/verbali/interni/2023-11-21/main.tex
+            ./rtb/verbali/interni/2023-12-05/main.tex
+            ./rtb/verbali/interni/2024-03-07/main.tex
+            ./rtb/verbali/interni/2024-03-28/main.tex
+            ./rtb/verbali/interni/2024-02-24/main.tex
+            ./rtb/verbali/interni/2023-11-10/main.tex
+            ./rtb/piano-di-qualifica/main.tex
