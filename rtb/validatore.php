@@ -107,7 +107,9 @@ function main_correttore_ortografico($dict, $files) {
 
 function main_correttore_ortografico_action($dict, $files) {
   $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
-  passthru(" D=\"\$(hunspell -p $dict -d it_IT,en_US -l $a)\" && { echo \"\$D\" ; [ -z \"\$D\" ] ; }", $e);
+  $e = shell_exec("hunspell -p $dict -d it_IT,en_US -l $a");
+  print_r($e);
+  $e = $e && false ? 0 : 14;
   $e != 0 && print_r("\n\nCorreggere le parole evidenziate sopra\n");
   $e != 0 && die($e);
 }
