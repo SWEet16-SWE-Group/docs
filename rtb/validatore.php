@@ -141,6 +141,8 @@ main_validatore_stilistico(_find('*.tex'));
 
 $find = _find('main.tex');
 $dict = __DIR__ . '/.lib_php/sweet16-dict';
+echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "\n";
+$e == false && die(11);
 
 if (in_array('--action', $argv)) {
   main_correttore_ortografico_action($dict, _find('*.tex'));
