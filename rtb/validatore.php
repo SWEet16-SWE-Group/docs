@@ -135,14 +135,14 @@ function main_compile($files) {
 
 echo "\n";
 
-main_esegui_php(_find('*.php'));
-main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
-main_validatore_stilistico(_find('*.tex'));
-
 $find = _find('main.tex');
 $dict = __DIR__ . '/.lib_php/sweet16-dict';
 echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "\n\n";
 $e == false && die(11);
+
+main_esegui_php(_find('*.php'));
+main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
+main_validatore_stilistico(_find('*.tex'));
 
 if (in_array('--action', $argv)) {
   main_correttore_ortografico_action($dict, _find('*.tex'));
