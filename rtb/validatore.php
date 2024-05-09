@@ -132,7 +132,6 @@ function main_compile($files) {
   }
 }
 
-
 echo "\n";
 
 $find = _find('main.tex');
