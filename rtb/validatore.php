@@ -141,7 +141,7 @@ echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "
 $e == false && die(11);
 
 main_esegui_php(_find('*.php'));
-main_vocaboli(_find('*.tex'), 'glossario/src/vocaboli.tex');
+main_vocaboli(_find('*.tex'), __DIR__ . '/glossario/src/vocaboli.tex');
 main_validatore_stilistico(_find('*.tex'));
 
 if (in_array('--action', $argv)) {

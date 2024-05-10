@@ -96,7 +96,21 @@ function main_vocaboli($files, $latexoutput) {
     _parse(),
     _sort(),
     _unique(),
-    _map(fn ($a) => '\\subsection{' . $a . '}' . (array_key_exists($a, $d) ? $d[$a] : 'INSERIRE DEFINIZIONE') . "\n"),
+  );
+
+  if (count($m = stream($a, _filter(fn ($a) => !array_key_exists($a, $d)))) > 0) {
+    echo "\nNel Glossario manca la definizione delle seguenti parole:\n";
+    echo stream(
+      $m,
+      _map(fn ($a) => "\t$a\n"),
+      _implode(''),
+    );
+    die(10);
+  }
+
+  $a = stream(
+    $a,
+    _map(fn ($a) => '\\subsection{' . $a . '}' . $d[$a] . "\n"),
     _sort(),
     _implode(""),
   );
