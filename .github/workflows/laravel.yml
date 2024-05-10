@@ -33,4 +33,5 @@ jobs:
         php artisan key:generate
  
     - name: Run Testsuite
-      run: /vendor/bin/phpunit tests/
+      working-directory: ./mvp-codice/1-php/
+      run: vendor/bin/phpunit tests/
