@@ -29,3 +29,4 @@ jobs:
             ./rtb/norme-di-progetto/main.tex
             ./rtb/piano-di-progetto/main.tex
             ./rtb/piano-di-qualifica/main.tex
+            ./pb/specifica-tecnica/main.tex
