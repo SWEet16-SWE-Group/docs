@@ -102,7 +102,7 @@ function main_vocaboli($files, $latexoutput) {
     echo "\nNel Glossario manca la definizione delle seguenti parole:\n";
     echo stream(
       $m,
-      _map(fn ($a) => "\t$a\n\n"),
+      _map(fn ($a) => "\t$a\n"),
       _implode(''),
     );
     die(10);
