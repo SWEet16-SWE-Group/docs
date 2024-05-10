@@ -16,17 +16,17 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit�
 \subsubsection{Fornitura}
 
 \begin{itemize}
-    \item \textbf{Budget at Completion (QPC-BAC)}: Totale preventivato del progetto.
+\item \textbf{Budget at Completion (QPC-BAC)}: Totale preventivato del progetto.
 \end{itemize}
 
 \begin{itemize}
-    \item \textbf{QPC-AC - Actual Cost}: Costo sostenuto per il progetto al momento del calcolo;
-    \item \textbf{QPC-ETC - Estimated to Completion}: Stima del valore per la realizzazione delle rimanenti attività;
-    \item \textbf{QPC-EAC - Estimated at Completion}: Costo finale stimato alla data della misurazione, revisione del \textbf{QPC-BAC}; $$Formula: \textrm{QPC-AC} + \textrm{QPC-ETC}$$
-    \item \textbf{QPC-EV - Earned Value}: Importo guadagnato per il lavoro svolto al momento del calcolo; $$Formula: (\%Lavoro \enspace svolto) \cdot QPC-EAC$$
-    \item \textbf{QPC-PV - Planned Value}: Importo pianificato in base al lavoro svolto, al momento del calcolo; $$Formula: (\%Lavoro \enspace pianificato) \cdot \textrm{QPC-BAC}$$
-    \item \textbf{QPC-SV - Schedule Variance}: Stato (anticipo/ritardo) della pianificazione. Un valore negativo indica che si è in ritardo rispetto alla pianificazione; $$Formula \enspace base: \textrm{QPC-EV} - \textrm{QPC-PV}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-PV} \cdot 100$$
-    \item \textbf{QPC-CV - Cost Variance}: Differenza tra il budget a disposizione e quello effettivamente utilizzato. Un valore negativo indica che si sta lavorando in perdita. $$Formula: \textrm{QPC-EV} - \textrm{QPC-AC}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-AC} \cdot 100$$
+\item \textbf{QPC-AC - Actual Cost}: Costo sostenuto per il progetto al momento del calcolo;
+\item \textbf{QPC-ETC - Estimated to Completion}: Stima del valore per la realizzazione delle rimanenti attività;
+\item \textbf{QPC-EAC - Estimated at Completion}: Costo finale stimato alla data della misurazione, revisione del \textbf{QPC-BAC}; $$Formula: \textrm{QPC-AC} + \textrm{QPC-ETC}$$
+\item \textbf{QPC-EV - Earned Value}: Importo guadagnato per il lavoro svolto al momento del calcolo; $$Formula: (\%Lavoro \enspace svolto) \cdot QPC-EAC$$
+\item \textbf{QPC-PV - Planned Value}: Importo pianificato in base al lavoro svolto, al momento del calcolo; $$Formula: (\%Lavoro \enspace pianificato) \cdot \textrm{QPC-BAC}$$
+\item \textbf{QPC-SV - Schedule Variance}: Stato (anticipo/ritardo) della pianificazione. Un valore negativo indica che si è in ritardo rispetto alla pianificazione; $$Formula \enspace base: \textrm{QPC-EV} - \textrm{QPC-PV}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-PV} \cdot 100$$
+\item \textbf{QPC-CV - Cost Variance}: Differenza tra il budget a disposizione e quello effettivamente utilizzato. Un valore negativo indica che si sta lavorando in perdita. $$Formula: \textrm{QPC-EV} - \textrm{QPC-AC}$$ $$Formula \enspace in \enspace \%: \textrm{QPC-EV} / \textrm{QPC-AC} \cdot 100$$
 \end{itemize}
 
 \begin{table}[H]
@@ -54,8 +54,8 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit�
 \subsubsubsection{Progettazione architetturale}
 
 \begin{itemize}
-    \item \textbf{QPC-SFIN - Structural Fan-in}: Indice di utilità, indica quante componenti utilizzano un determinato modulo. Un valore alto indica che il componente è molto usato;
-    \item \textbf{QPC-SFOUT - Structural Fan-out}: Indice di dipendenza, indica quante componenti sono utilizzate dalla componente in esame. Un valore elevato indica che quest'ultima utilizza molte componenti esterne ad essa.
+\item \textbf{QPC-SFIN - Structural Fan-in}: Indice di utilità, indica quante componenti utilizzano un determinato modulo. Un valore alto indica che il componente è molto usato;
+\item \textbf{QPC-SFOUT - Structural Fan-out}: Indice di dipendenza, indica quante componenti sono utilizzate dalla componente in esame. Un valore elevato indica che quest'ultima utilizza molte componenti esterne ad essa.
 \end{itemize}
 
 \begin{table}[H]
@@ -78,9 +78,8 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit�
 \subsubsubsection{Progettazione di dettaglio}
 
 \begin{itemize}
-    \item \textbf{QPC-NM - Number of Methods}: Indica il numero medio di metodi per package. Un numero eccessivo potrebbe indicare la necessità di refactoring.
+\item \textbf{QPC-NM - Number of Methods}: Indica il numero medio di metodi per package. Un numero eccessivo potrebbe indicare la necessità di refactoring.
 \end{itemize}
-
 
 \begin{table}[H]
     \begin{tblr}{
@@ -100,11 +99,10 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit�
 \subsubsubsection{Codifica}
 
 \begin{itemize}
-    \item \textbf{QPC-BLC - Bugs for Line of Code}: Indice del numero di righe di codice contenenti bug ed errori al proprio interno;
-    \item \textbf{QPC-VNU - Variabili Non Utilizzate}: Indice di un errore di programmazione, le variabile non utilizzate sporcano il codice e fanno allocare memoria inutilmente;
-    \item \textbf{QPC-VND - Variabili Non Definite}: Fonte comune di bug nel software, sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
+\item \textbf{QPC-BLC - Bugs for Line of Code}: Indice del numero di righe di codice contenenti bug ed errori al proprio interno;
+\item \textbf{QPC-VNU - Variabili Non Utilizzate}: Indice di un errore di programmazione, le variabile non utilizzate sporcano il codice e fanno allocare memoria inutilmente;
+\item \textbf{QPC-VND - Variabili Non Definite}: Fonte comune di bug nel software, sono variabili dichiarate ma non inizializzate ad un valore noto definito prima di essere utilizzate.
 \end{itemize}
-
 
 \begin{table}[H]
     \begin{tblr}{
@@ -123,7 +121,6 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit�
     \label{tab:23}
 \end{table}
 
-
 \subsection{Processi di supporto}
 
 \subsubsection{Documentazione}
@@ -132,20 +129,20 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPC (Qualit�
 L'Indice di Gulpease è un indice di leggibilità di un testo tarato sulla lingua italiana.
 Si basa sulla seguente formula:
 $$GULPEASE = 89+\frac{(NF \cdot 300) - (10 \cdot NL)}{NP}$$
+
 \begin{itemize}
-    \item \textbf{NF:} Numero frasi;
-    \item \textbf{NL:} Numero lettere;
-    \item \textbf{NP:} Numero parole.
+\item \textbf{NF}: Numero frasi;
+\item \textbf{NL}: Numero lettere;
+\item \textbf{NP}: Numero parole.
 \end{itemize}
 
 In generale risulta la seguente suddivisione:
+
 \begin{itemize}
-   \item GULPEASE ${\le}$ 80: Difficile da leggere per chi ha un licenza elementare;
-    \item GULPEASE ${\le}$ 60: Difficile da leggere per chi ha un licenza media;
-    \item GULPEASE ${\le}$ 40: Difficile da leggere per chi ha un diploma superiore.
+\item GULPEASE ${\le}$ 80: Difficile da leggere per chi ha un licenza elementare;
+\item GULPEASE ${\le}$ 60: Difficile da leggere per chi ha un licenza media;
+\item GULPEASE ${\le}$ 40: Difficile da leggere per chi ha un diploma superiore.
 \end{itemize}
-
-
 
 \begin{table}[H]
     \begin{tblr}{
@@ -164,8 +161,9 @@ In generale risulta la seguente suddivisione:
 
 \subsubsection{Gestione delle qualità}
 \subsubsubsection{Metriche}
+
 \begin{itemize}
-    \item \textbf{QPC-QMS: Quality Metrics Satisfied}: Percentuale di metriche di qualità soddisfatte. $$\textrm{QPC-QMS} = \frac{NQMS}{TQM} \cdot 100$$
+\item \textbf{QPC-QMS: Quality Metrics Satisfied}: Percentuale di metriche di qualità soddisfatte. $$\textrm{QPC-QMS} = \frac{NQMS}{TQM} \cdot 100$$
 \end{itemize}
 
 \begin{table}[H]
@@ -183,15 +181,13 @@ In generale risulta la seguente suddivisione:
     \label{tab:25}
 \end{table}
 
-
 \subsubsection{Verifica}
 
 \begin{itemize}
-    \item \textbf{QPC-CC - Code Coverage}: Definisce la misura della quantità di codice di un programma che viene eseguita durante uno specifico test. \\ Una percentuale alta indica che il codice è stato testato in modo approfondito nelle sue diverse parti e quindi vi è una minore probabilità che ci siano bug;
-    \item \textbf{QPC-SC - Statement Coverage}: Metrica utilizzata per calcolare il numero di istruzioni eseguite almeno una volta.\\ Utilizza una tecnica di test chiamata white box che prevede l'esecuzione di tutte le istruzioni presenti nel codice sorgente almeno una volta;
-    \item \textbf{QPC-BC - Branch Coverage}: Indice di quante diramazioni del codice vengono eseguite dai test. \\ Un "ramo" è uno dei possibili percorsi di esecuzione che il codice può seguire dopo che un'istruzione decisionale (es. if) viene valutata.
+\item \textbf{QPC-CC - Code Coverage}: Definisce la misura della quantità di codice di un programma che viene eseguita durante uno specifico test. \\ Una percentuale alta indica che il codice è stato testato in modo approfondito nelle sue diverse parti e quindi vi è una minore probabilità che ci siano bug;
+\item \textbf{QPC-SC - Statement Coverage}: Metrica utilizzata per calcolare il numero di istruzioni eseguite almeno una volta.\\ Utilizza una tecnica di test chiamata white box che prevede l'esecuzione di tutte le istruzioni presenti nel codice sorgente almeno una volta;
+\item \textbf{QPC-BC - Branch Coverage}: Indice di quante diramazioni del codice vengono eseguite dai test. \\ Un "ramo" è uno dei possibili percorsi di esecuzione che il codice può seguire dopo che un'istruzione decisionale (es. if) viene valutata.
 \end{itemize}
-
 
 \begin{table}[H]
     \begin{tblr}{

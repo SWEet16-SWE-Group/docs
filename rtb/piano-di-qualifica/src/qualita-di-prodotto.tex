@@ -9,10 +9,10 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPR (Qualit�
 \subsection{Usabilità}
 
 \begin{itemize}
-    \item \textbf{QPR-TA - Tempo Apprendimento}: Tempo necessario all'utente per apprendere l'utilizzo del prodotto;
-    \item \textbf{QPR-NP - Numero Passi}: Numero di passi necessari per raggiungere lo scopo voluto;
-    \item \textbf{QPR-TE - Tempo Esplorazione}: Tempo speso nell'esplorazione del prodotto;
-    \item \textbf{QPR-NE - Numero Errori}: Numero di errori commessi dall'utente prima di raggiungere lo scopo voluto.
+\item \textbf{QPR-TA - Tempo Apprendimento}: Tempo necessario all'utente per apprendere l'utilizzo del prodotto;
+\item \textbf{QPR-NP - Numero Passi}: Numero di passi necessari per raggiungere lo scopo voluto;
+\item \textbf{QPR-TE - Tempo Esplorazione}: Tempo speso nell'esplorazione del prodotto;
+\item \textbf{QPR-NE - Numero Errori}: Numero di errori commessi dall'utente prima di raggiungere lo scopo voluto.
 \end{itemize}
 \subsubsection{Obiettivi}
 \begin{table}[H]
@@ -33,22 +33,19 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPR (Qualit�
     \label{tab:1}
 \end{table}
 
-
-
 \subsection{Manutenibilità}
 
 \begin{itemize}
-    \item \textbf{QPR-CC - Complessità Ciclomatica}: Valutazione della complessità di un algoritmo calcolata utilizzando il grafo di controllo del flusso tramite la formula $$v(G) = L - N + P$$
+\item \textbf{QPR-CC - Complessità Ciclomatica}: Valutazione della complessità di un algoritmo calcolata utilizzando il grafo di controllo del flusso tramite la formula $$v(G) = L - N + P$$
 \begin{itemize}
-    \item \textbf{V(G):} Numero ciclomatico relativo al grafo G;
-    \item \textbf{L:} Numero di archi nel grafo;
-    \item \textbf{N:} Numero di nodi del grafo;
-    \item \textbf{P:} Numero dei componenti del grafo disconnessi.
+\item \textbf{V(G)}: Numero ciclomatico relativo al grafo G;
+\item \textbf{L}: Numero di archi nel grafo;
+\item \textbf{N}: Numero di nodi del grafo;
+\item \textbf{P}: Numero dei componenti del grafo disconnessi.
 \end{itemize}
-    \item \textbf{QPR-NPM - Numero parametri per metodo}: Numero di parametri passati ai metodi. Un valore troppo grande può indicare un metodo troppo complesso;
-    \item \textbf{QPR-FCC - Facilità di comprensione del codice}: Un codice comprensibile permette una manutenibilità e gestione migliore. Viene misurata con la seguente formula $$R = \frac{NR_{com}}{NR_{tot}}$$ che indica il rapporto tra le righe di commenti (${NR_{com}}$) e le righe di codice (${NR_{tot}}$).
+\item \textbf{QPR-NPM - Numero parametri per metodo}: Numero di parametri passati ai metodi. Un valore troppo grande può indicare un metodo troppo complesso;
+\item \textbf{QPR-FCC - Facilità di comprensione del codice}: Un codice comprensibile permette una manutenibilità e gestione migliore. Viene misurata con la seguente formula $$R = \frac{NR_{com}}{NR_{tot}}$$ che indica il rapporto tra le righe di commenti (${NR_{com}}$) e le righe di codice (${NR_{tot}}$).
 \end{itemize}
-
 
 \begin{table}[H]
     \begin{tblr}{
@@ -67,16 +64,15 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPR (Qualit�
     \label{tab:2}
 \end{table}
 
-
 \subsection{Affidabilità}
 
 \begin{itemize}
-    \item \textbf{QPR-AFD - Failure Density}: Indica l'affidabilità del software. Si ricava dal rapporto tra i test falliti e quelli eseguiti. $$FD = \frac{T_{f}}{T_{t}} \cdot 100$$
-    \begin{itemize}
-        \item ${T_{f}}$: Test falliti;
-        \item ${T_{t}}$: Test totali.
-    \end{itemize}
-    \item \textbf{QPR-ACC - Code Coverage}: Indica la percentuale di codice eseguito durante i test.
+\item \textbf{QPR-AFD - Failure Density}: Indica l'affidabilità del software. Si ricava dal rapporto tra i test falliti e quelli eseguiti. $$FD = \frac{T_{f}}{T_{t}} \cdot 100$$
+\begin{itemize}
+\item ${T_{f}}$: Test falliti;
+\item ${T_{t}}$: Test totali.
+\end{itemize}
+\item \textbf{QPR-ACC - Code Coverage}: Indica la percentuale di codice eseguito durante i test.
 \end{itemize}
 
 \begin{table}[H]
@@ -99,9 +95,8 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPR (Qualit�
 \subsection{Efficienza}
 
 \begin{itemize}
-    \item \textbf{QPR-TMR - Tempo di Risposta Medio}: Il tempo impiegato dal software dalla gestione ed elaborazione di una richiesta fino al risultato finale fornito.
+\item \textbf{QPR-TMR - Tempo di Risposta Medio}: Il tempo impiegato dal software dalla gestione ed elaborazione di una richiesta fino al risultato finale fornito.
 \end{itemize}
-
 
 \begin{table}[H]
     \begin{tblr}{
@@ -123,6 +118,7 @@ Le metriche hanno un identificativo avente come prefisso l'acronimo QPR (Qualit�
 \textbf{QPR-RC}: Requirements Coverage, indica la percentuale dei requisiti soddisfatti. Per il calcolo del valore accettato si considerano solo i requisiti obbligatori.\\
 Formula valore accettato:
 $$RC_{obb} = \frac{NR_{os}}{NR_{ot}} \cdot 100$$
+
 \begin{itemize}
 \item $RC_{obb}$: Requirements Coverage obbligatori;
 \item $NR_{os}$: Numero di requisiti obbligatori soddisfatti;
@@ -137,7 +133,6 @@ $$RC_{i} = \frac{NR_{s}}{NR_{t}} \cdot 100$$
 \item $NR_{s}$: Numero di requisiti ideali soddisfatti;
 \item $NR_{t}$: Numero di requisiti ideali totali.
 \end{itemize}
-
 
 \begin{table}[H]
     \begin{tblr}{
@@ -159,10 +154,11 @@ $$RC_{i} = \frac{NR_{s}}{NR_{t}} \cdot 100$$
 \textbf{QPR-CB}: Compatibilità Browser, indica la percentuale di browser supportati in relazione a quelli previsti.\\
 Formula valore accettato:
 $$CB = \frac{BW_{s}}{BW_{p}} \cdot 100$$
+
 \begin{itemize}
-    \item $CB$: Compatibilità browser;
-    \item $BW_{s}$: Browser supportati;
-    \item $BW_{p}$: Browser previsti.
+\item $CB$: Compatibilità browser;
+\item $BW_{s}$: Browser supportati;
+\item $BW_{p}$: Browser previsti.
 \end{itemize}
 
 \begin{table}[H]
