@@ -24,3 +24,11 @@ node_modules/
 */*/*/*/*/*/node_modules/
 */*/*/*/*/*/*/node_modules/
 pb/specifica-tecnica/indent.log
+mvp-codice/
+*/mvp-codice/
+*/*/mvp-codice/
+*/*/*/mvp-codice/
+*/*/*/*/mvp-codice/
+*/*/*/*/*/mvp-codice/
+*/*/*/*/*/*/mvp-codice/
+*/*/*/*/*/*/*/mvp-codice/
