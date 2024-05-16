@@ -30,7 +30,6 @@ COPY webpack.mix.js         /app
 COPY /resources             /app/resources
 
 RUN npm install
-RUN npm run dev
 
 ### NodeJS
 ########################################################################
@@ -50,8 +49,8 @@ RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
 COPY . /var/www
 COPY --from=composer /app/vendor                /var/www/html/vendor
-COPY --from=node     /app/public                /var/www/html/public/
-COPY --from=node     /app/mix-manifest.json     /var/www/html/mix-manifest.json
+###COPY --from=node     /app/public                /var/www/html/public/
+###COPY --from=node     /app/mix-manifest.json     /var/www/html/mix-manifest.json
 
 
 RUN addgroup -g 1000 -S www && \
