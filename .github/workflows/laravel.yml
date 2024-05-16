@@ -22,16 +22,16 @@ jobs:
         fetch-depth: 1
  
     - name: Install composer dependencies
-      working-directory: ./mvp-codice/1-php/
+      working-directory: ./
       run: |
         composer install --no-scripts
  
     - name: Prepare Laravel Application
-      working-directory: ./mvp-codice/1-php/
+      working-directory: ./
       run: |
         cp .env.ci .env
         php artisan key:generate
  
     - name: Run Testsuite
-      working-directory: ./mvp-codice/1-php/
+      working-directory: ./
       run: vendor/bin/phpunit tests/

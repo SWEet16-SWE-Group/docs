@@ -24,11 +24,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Install dependencies
-        working-directory: ./mvp-codice/2-rct/
+        working-directory: ./react
         run: npm install
 
       - name: Run the tests and generate coverage report
-        working-directory: ./mvp-codice/2-rct/
+        working-directory: ./react
         run: npm test -- --coverage
 
       - name: Codecov
@@ -36,7 +36,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
 
-
       - name: Build
-        working-directory: ./mvp-codice/2-rct/
+        working-directory: ./react
         run: npm run build
