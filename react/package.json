@@ -7,10 +7,11 @@
     "start": "react-scripts start",
     "dev": "vite --port=3000",
     "build": "vite build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
+    
   },
   "dependencies": {
     "react": "^18.2.0",
