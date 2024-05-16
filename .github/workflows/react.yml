@@ -1,10 +1,6 @@
 name: React
 
-on:
-  push:
-    branches: [laravel-action]
-  pull_request:
-    branches: [laravel-action]
+on: push
 
 jobs:
   build:
