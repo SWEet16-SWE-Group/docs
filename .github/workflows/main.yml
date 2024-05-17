@@ -17,7 +17,10 @@ jobs:
         name: Installazione PHP
 
       - run:  cd ./rtb/ && php validatore.php --action
-        name: Esecuzione del validatore
+        name: Esecuzione del validatore RTB
+
+      - run:  cd ./pb/ && php ../rtb/validatore.php --action
+        name: Esecuzione del validatore PB
 
       - uses: xu-cheng/latex-action@v3
         name: Compilazione Latex
@@ -29,3 +32,4 @@ jobs:
             ./rtb/norme-di-progetto/main.tex
             ./rtb/piano-di-progetto/main.tex
             ./rtb/piano-di-qualifica/main.tex
+            ./pb/specifica-tecnica/main.tex

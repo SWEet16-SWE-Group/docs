@@ -58,6 +58,7 @@ const parse = [
   'Express' => 'ExpressJS',
   '\\LaTeX' => 'LaTeX',
   'Capitolato d’appalto' => '',
+  'Deploy' => 'Deployment',
   '' => '',
 ];
 
