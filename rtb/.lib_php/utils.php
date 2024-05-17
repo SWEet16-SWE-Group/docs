@@ -2,8 +2,8 @@
 
 const glob_depth = 12;
 
-function _find($p) {
-  return glob(str_repeat('{,*/', glob_depth) . str_repeat('}', glob_depth) . $p, GLOB_BRACE);
+function _find($p, $dir) {
+  return glob($dir . str_repeat('{,*/', glob_depth) . str_repeat('}', glob_depth) . $p, GLOB_BRACE);
 }
 
 function preg($r, $s, $f = 0) {

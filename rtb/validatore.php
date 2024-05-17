@@ -135,19 +135,21 @@ function main_compile($files) {
 
 echo "\n";
 
-$find = _find('main.tex');
+$find = _find('main.tex', __DIR__);
 $dict = __DIR__ . '/.lib_php/sweet16-dict';
 echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "\n\n";
 $e == false && die(11);
 
-main_esegui_php(_find('*.php'));
-main_vocaboli(_find('*.tex'), __DIR__ . '/glossario/src/vocaboli.tex');
-main_validatore_stilistico(_find('*.tex'));
+$tex = array_merge(_find('*.tex', __DIR__), _find('*.tex', __DIR__ . '/../pb/'));
+
+main_esegui_php(_find('*.php', __DIR__));
+main_vocaboli($tex, __DIR__ . '/glossario/src/vocaboli.tex');
+main_validatore_stilistico($tex);
 
 if (in_array('--action', $argv)) {
-  main_correttore_ortografico_action($dict, _find('*.tex'));
+  main_correttore_ortografico_action($dict, $tex);
 } else {
-  main_correttore_ortografico($dict, _find('*.tex'));
+  main_correttore_ortografico($dict, $tex);
   $targets = [];
   foreach ($argv as $i => $a) {
     if ($a == '-t') {
