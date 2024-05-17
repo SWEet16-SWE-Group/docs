@@ -1,0 +1,45 @@
+
+# requisiti opzionali
+
+incontro per discutere i requisiti opzionali da implementare e quali no
+
+I requisiti opzioni che è stato deciso di implementare saranno i seguenti:
+
+...
+
+I requisiti opzionali che non saranno implementati al fine dell'MVP sono i seguenti:
+
+...
+
+Il propontente si è trovato d'accordo con queste decisioni.
+
+
+# aiuti generali
+
+Domanda per docker
+
+dockerfile installa in automatico npm, composer e ???
+
+
+Risposta
+
+È norma per ogni servizio avere un immagine docker esegue con il servizio installato. utilizzando ad esempio FROM per il dockerfile. Ed è necessario solo importare la propria libreria.
+Ad esempio con node viene copiato il package.json e i file di libreria e in automatico eseguito `npm install`
+
+In aggiunta cercando su google ci sono i bundle di MySQL, React, 
+
+dockerfile multistage react, serve per definire degli step, 
+es parto da node e si builda o compila 
+poi riparto da apache o nginx che copia i file compilati nella sua docroot
+
+È stato fornito un esempio concreto dall'url: https://medium.com/@mohamedbenkhemiswork576/how-to-dockerize-a-react-app-with-multi-stage-build-and-nginx-minimize-react-image-size-by-80-33a09ae20118
+
+con una spiegazione a voce del tutorial, con esempio di query di ricerca per laravel usando "laravel dockerize".
+
+
+
+Domanda per la code coverage
+
+risposta
+
+avere code coverage separate per backend e frontend, quanto contano come due applicazione separate e in un contesto reale sarebbero sviluppate da team diversi
