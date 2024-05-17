@@ -142,9 +142,9 @@ $e == false && die(11);
 
 $tex = array_merge(_find('*.tex', __DIR__), _find('*.tex', __DIR__ . '/../pb/'));
 
-main_vocaboli($tex, __DIR__ . '/glossario/src/vocaboli.tex');
 main_esegui_php(_find('*.php', __DIR__));
 main_validatore_stilistico($tex);
+main_vocaboli($tex, __DIR__ . '/glossario/src/vocaboli.tex');
 
 if (in_array('--action', $argv)) {
   main_correttore_ortografico_action($dict, $tex);
