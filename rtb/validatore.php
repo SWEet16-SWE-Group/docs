@@ -66,7 +66,8 @@ function main_validatore_stilistico($files) {
     "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\begin{enumerate})/"  => '\1:\3',
     "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\end{itemize})/"      => '\1.\3',
     "/(\\\\item [^\n]*?)([\\.;:])?(?=\n\\\\end{enumerate})/"    => '\1.\3',
-    "/(\\\\item [^\n]*?\\$\\$)[\\.;:]/" => '\1',
+    "/(\\\\item [^\n]*?\\$\\$)[\\.;:]\n/" => "\\1\n",
+    "/(\\\\item [^\n]*?\\\\end{center})[\\.;:]\n/" => "\\1\n",
   ];
 
   foreach ($files as $a) {
@@ -121,7 +122,7 @@ function main_compile($files) {
 
     chdir(dirname($a));
     ob_start(fn ($b) => stream($b, _explode("\n"), _filter(fn ($a) => strlen($a) > 0), _map($pfx), _implode("\n")));
-    passthru("latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > /dev/null", $e);
+    passthru("mkdir -p .build/ && latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > .build/php.out", $e);
     ob_end_flush();
     chdir(__DIR__);
 
