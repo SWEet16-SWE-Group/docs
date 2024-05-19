@@ -145,8 +145,8 @@ I requisiti opzionali che saranno implementati al fine dell'MVP sono i seguenti:
 \item Un sistema ‘fittizio’ per pagare in app;
 \item Durante la fase di creazione del profilo cliente esso fornisce eventuali allergie o intolleranze;
 \item Il messaggio di conferma in caso di selezione di pietanze che contengono allergeni presenti nel profilo del cliente;
-\item Durante la creazione di nuovi ingredienti vengono aggiunti gli allergeni ad esso collegati (ad es: Farina -> glutine)
-\item Dopo che il primo cliente seleziona la modalità di pagamento non sarà più possibile modificarla;
+\item Durante la creazione di nuovi ingredienti vengono aggiunti gli allergeni ad esso collegati (ad es: Farina -> glutine);
+\item Dopo che il primo cliente seleziona la modalità di pagamento non sarà più possibile modificarla.
 \end{itemize}
 
 I requisiti opzionali che non saranno implementati al fine dell'MVP sono i seguenti:
@@ -157,20 +157,20 @@ I requisiti opzionali che non saranno implementati al fine dell'MVP sono i segue
 \item Chat testuale;
 \item Il pagamento in app per clienti che non siamo noi, nel caso di divisione del conto alla romana;
 \item Il pagamento in app di pietanze ordinate non da noi, nel caso di divisione del conto proporzionale;
-\item La vista a calendario con le prenotazioni raggruppate per giorno e il dettaglio di ingredienti di ogni giorno;
+\item La vista a calendario con le prenotazioni raggruppate per giorno e il dettaglio di ingredienti di ogni giorno.
 \end{itemize}
 
-Il propontente si è trovato d'accordo con queste decisioni.
+Il proponente si è trovato d'accordo con queste decisioni.
 
 \subsection{Domande generali}
 
 \begin{itemize}
-\item \textbf{Domanda}: Nei Dockerfile bisogna installare npm e composer per esempio manualmente tramite comando o non serve ?% 
-\item \textbf{Risposta}: È norma per ogni servizio fornire un immagine docker già preparata ad hoc, utilizzando ad esempio FROM all'interno del dockerfile, ed è necessario solo importare la propria libreria nel container. \\ Ad esempio per node viene copiato il package.json e il proprio codice ed eseguire `npm build`, il container sarà già fornito di tutti gli strumenti necessari completare la costruzione con successo. \\ \\ Sono stati poi menzionati i bundle (Es. MySQL più Apache) e i dockerfile multistage. \\ Per questi utlimi il sig. Staffolani ci ha spiegato a voce il seguente \href{https://medium.com/@mohamedbenkhemiswork576/how-to-dockerize-a-react-app-with-multi-stage-build-and-nginx-minimize-react-image-size-by-80-33a09ae20118}{tutoriarl}.
+\item \textbf{Domanda}: Nei dockerfile bisogna installare NPM e composer per esempio manualmente tramite comando o non serve ?%;
+\item \textbf{Risposta}: È norma per ogni servizio fornire un immagine docker già preparata ad hoc, utilizzando ad esempio FROM all'interno del dockerfile, ed è necessario solo importare la propria libreria nel container. \\ Ad esempio per node viene copiato il package.json e il proprio codice ed eseguire `npm build`, il container sarà già fornito di tutti gli strumenti necessari completare la costruzione con successo. \\ \\ Sono stati poi menzionati i bundle (Es. MySQL più Apache) e i dockerfile multistage. \\ Per questi ultimi il sig. Staffolani ci ha spiegato a voce il seguente \href{https://medium.com/@mohamedbenkhemiswork576/how-to-dockerize-a-react-app-with-multi-stage-build-and-nginx-minimize-react-image-size-by-80-33a09ae20118}{tutorial}.
 \end{itemize}
 
 \begin{itemize}
-\item \textbf{Domanda}: È meglio avere un indicatore di code coverage unico per backend e frontend o averne due separati ?%
+\item \textbf{Domanda}: È meglio avere un indicatore di code coverage unico per backend e frontend o averne due separati ?%;
 \item \textbf{Risposta}: Ci è stato consigliato di utilizzare due code coverage separate per backend e frontend, quanto contano come due applicazione separate e in un contesto reale sarebbero sviluppate da team diversi.
 \end{itemize}
 
