@@ -17,7 +17,7 @@ Il propontente si è trovato d'accordo con queste decisioni.
 # aiuti generali
 
 \begin{itemize}
-\item \textbf{Domanda}: Come poter preparare un 
+\item \textbf{Domanda}: Nei Dockerfile bisogna installare npm e composer per esempio manualmente tramite comando o non serve ? 
 \item \textbf{Risposta}: È norma per ogni servizio fornire un immagine docker già preparata ad hoc, utilizzando ad esempio FROM all'interno del dockerfile, ed è necessario solo importare la propria libreria nel container. \\ Ad esempio per node viene copiato il package.json e il proprio codice ed eseguire `npm build`, il container sarà già fornito di tutti gli strumenti necessari completare la costruzione con successo. \\ \\ Sono stati poi menzionati i bundle (Es. MySQL più Apache) e i dockerfile multistage. \\ Per questi utlimi il sig. Staffolani ci ha spiegato a voce il seguente \href{https://medium.com/@mohamedbenkhemiswork576/how-to-dockerize-a-react-app-with-multi-stage-build-and-nginx-minimize-react-image-size-by-80-33a09ae20118}{tutoriarl}.
 \end{itemize}
 
