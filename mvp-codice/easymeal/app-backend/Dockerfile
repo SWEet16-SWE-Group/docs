@@ -1,64 +1,30 @@
-########################################################################
-### Composer
+FROM php:8.1-apache AS backend
 
-FROM composer:1.10 AS composer
+WORKDIR /var/www/html
 
-COPY composer.json /app
-COPY composer.lock /app
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    zip \
+    && docker-php-ext-install pdo_mysql zip
 
-RUN composer install        \
-    --ignore-platform-reqs  \
-    --no-ansi               \
-    --no-autoloader         \
-    --no-interaction        \
-    --no-scripts
+RUN a2enmod rewrite
 
-COPY . /app/
-### RUN composer dump-autoload --optimize --classmap-authoritative
+COPY ./composer.json ./composer.lock /var/www/html/
 
-### Composer
-########################################################################
-### NodeJS
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-FROM node:18-alpine AS node
+ENV COMPOSER_ALLOW_SUPERUSER=1
 
-WORKDIR /app
+RUN composer update --no-scripts --no-autoloader
 
-COPY package.json           /app
-COPY package-lock.json      /app
-COPY webpack.mix.js         /app
-COPY /resources             /app/resources
+COPY . /var/www/html
 
-RUN npm install
+RUN composer install --no-scripts --no-autoloader
 
-### NodeJS
-########################################################################
-### PHP
+RUN chown -R www-data:www-data /var/www/html
 
-FROM php:7.3-fpm-alpine
+EXPOSE 80
 
-RUN apk update && apk add --no-cache \
-    libpng-dev                       \
-    freetype-dev                     \
-    oniguruma-dev                    \
-    libxml2-dev
-
-RUN rm -rf /var/lib/apt/lists/* && rm -rf /var/cache/apk/*
-RUN docker-php-ext-configure gd
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
-
-COPY . /var/www
-COPY --from=composer /app/vendor                /var/www/html/vendor
-###COPY --from=node     /app/public                /var/www/html/public/
-###COPY --from=node     /app/mix-manifest.json     /var/www/html/mix-manifest.json
-
-
-RUN addgroup -g 1000 -S www && \
-    adduser -u 1000 -S www -G www-data
-
-COPY --chown=www:www-data . /var/www
-
-WORKDIR /var/www
-
-### PHP
-########################################################################
+CMD ["apache2-foreground"]
