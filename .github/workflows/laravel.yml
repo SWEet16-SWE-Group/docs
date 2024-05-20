@@ -15,6 +15,12 @@ jobs:
         run: |
           composer install --no-scripts
 
+      - name: Prepare Laravel Application
+        working-directory: ./app-backend
+        run: |
+          cp .env.ci .env
+          php artisan key:generate
+
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
         env:
