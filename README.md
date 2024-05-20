@@ -1,4 +1,4 @@
-<p style="text-align: center;">Text_content
+<p style="text-align: center;">
 
 [![React](https://github.com/SWEet16-SWE-Group/docs/workflows/React/badge.svg)](https://github.com/SWEet16-SWE-Group/docs/actions?query=workflow:"React")
 [![Laravel](https://github.com/SWEet16-SWE-Group/docs/workflows/Laravel/badge.svg)](https://github.com/SWEet16-SWE-Group/docs/actions?query=workflow:"Laravel")
