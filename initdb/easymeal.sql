@@ -49,3 +49,15 @@ create table allergie(
   allergene int not null references allergeni(id),
   primary key (cliente, allergene)
 );
+
+create table pietanze(
+  id int not null auto_increment primary key,
+  ristorante int not null references ristoratori(id),
+  nome varchar(255) not null
+);
+
+create table ricette(
+  pietanza   int not null references pietanze(id)  ,
+  ristorante int not null references ristoratore(id),
+  primary key (pietanza, ristorante)
+);
