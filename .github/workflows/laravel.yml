@@ -34,4 +34,4 @@ jobs:
  
     - name: Run Testsuite
       working-directory: ./app-backend
-      run: vendor/bin/phpunit tests/
+      run: vendor/bin/phpunit tests/ --migrate-configuration
