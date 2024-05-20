@@ -1,24 +1,43 @@
-# Documentazione SWEet16
+# Docker Compose - React, Laravel, MySQL, PhpMyAdmin
+Just a basic boilerplate to start directly coding on React, Laravel, MySQL and PhpMyAdmin with Docker Compose.
 
-Documentazione interna, esterna e verbali del gruppo 16
+## Frontend
+- NodeJS 13.10.1 Alpine
+- React 16.13.0
+- Webpack 4
 
-Ingegneria del Software - Gruppo SWEet16
+## Backend
+- PHP 7.4 FPM Alpine
+- Laravel 8
+- Composer 1.10
+- NodeJS 14.17.0 Alpine
 
-Corso di Laurea in Informatica - A.A.: 2023/2024
+## MySQL and PhpMyAdmin
 
-Università degli Studi di Padova
+MySQL Version: 5.7.x
 
-## Componenti del Gruppo
+## Using the Project
 
-| Nominativo           | Matricola               |
-| :------------------: | :----------------------:|
-| Alberto Cinel        | 1142833                 |
-| Bilal El Moutaren    | 2053470                 |
-| Alberto Michelazzo   | 2010007	               |
-| Alex Scantamburlo    | 2042326                 |
-| Iulius Signorelli    | 2012434                 |
-| Giovanni Zuliani     | 595900                  |
+Execute the following command and the Docker will build and run the containers;
 
-E-mail: sweet16.unipd@gmail.com
+```
+docker-compose up --build
+```
 
+### To-Do
 
+1. Webpack and Babel configuration for Frontend & Updating the versions of the dependencies in Frontend
+2. Creating some examples in Backend & Frontend, example request & response.
+
+### Contribution
+
+Feel free to contribute this project.
+
+### Changelog
+
+#### 2021-07-31
+- **[Backend]** PHP version updated to 7.4
+- **[Backend]** Laravel update 7 to 8
+- **[Backend]** Composer & NPM update and audits
+- **[Backend]** Docker multistage build
+- **[Frontend]** NPM update and audits

@@ -22,7 +22,7 @@ jobs:
         fetch-depth: 1
  
     - name: Install composer dependencies
-      working-directory: ./mvp-codice/easymeal/app-backend
+      working-directory: ./app-backend
       run: |
         composer install --no-scripts
  
@@ -33,5 +33,5 @@ jobs:
         php artisan key:generate
  
     - name: Run Testsuite
-      working-directory: ./mvp-codice/easymeal/app-backend
+      working-directory: .app-backend
       run: vendor/bin/phpunit tests/
