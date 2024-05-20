@@ -1,8 +1,11 @@
+<p style="text-align: center;">Text_content
+
 [![React](https://github.com/SWEet16-SWE-Group/docs/workflows/React/badge.svg)](https://github.com/SWEet16-SWE-Group/docs/actions?query=workflow:"React")
-
 [![Laravel](https://github.com/SWEet16-SWE-Group/docs/workflows/Laravel/badge.svg)](https://github.com/SWEet16-SWE-Group/docs/actions?query=workflow:"Laravel")
-
 [![codecov](https://codecov.io/gh/SWEet16-SWE-Group/docs/graph/badge.svg?token=KZVW5OOT08)](https://codecov.io/gh/SWEet16-SWE-Group/docs)
+
+
+</p>
 
 # Docker Compose - React, Laravel, MySQL, PhpMyAdmin
 
