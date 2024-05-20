@@ -25,7 +25,7 @@ create table ristoratori(
   telefono varchar(255) not null unique,
   apertura time not null,
   chiusura time not null,
-  cucina enum ('pizza', 'pasta', 'pesce') not null,
+  cucina enum ('pizza', 'pasta', 'pesce') not null
 );
 
 create table allergeni(
