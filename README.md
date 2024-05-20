@@ -7,9 +7,9 @@
 
 </p>
 
-## Using the Project
+## Usare il progetto:
 
-Execute the following command and the Docker will build and run the containers;
+Assicurarsi di avere installato Docker Desktop e Docker Compose, aprire un terminale e posizionarsi nella cartella del progetto, chiamare il comando:
 
 ```
 docker-compose up --build
