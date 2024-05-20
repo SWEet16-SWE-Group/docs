@@ -71,3 +71,24 @@ create table prenotazioni(
   timestamp datetime not null,
   n_inviti int not null
 );
+
+create table inviti(
+  id int not null auto_increment primary key,
+  prenotazione int not null references prenotazioni(id),
+  cliente   int not null references clienti(id),
+  pagamento enum ('pagato', 'non_pagato') not null
+);
+
+create table ordinazioni(
+  id int not null auto_increment primary key,
+  invito int not null references inviti(id),
+  pietanza int not null references pientaze(id)
+);
+
+create table dettagli_ordinazione(
+  ingrediente int not null references ingredienti(id),
+  ordinazione int not null references ordinazione(id),
+  dettaglio enum ('aggiunto', 'rimosso') not null,
+  primary key (ingrediente, ordinazione)
+);
+
