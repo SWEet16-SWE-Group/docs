@@ -11,9 +11,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install composer dependencies
-      working-directory: ./app-backend
-      run: |
-        composer install --no-scripts
+        working-directory: ./app-backend
+        run: |
+          composer install --no-scripts
 
       - name: PHPUnit Tests
         uses: php-actions/phpunit@v3
