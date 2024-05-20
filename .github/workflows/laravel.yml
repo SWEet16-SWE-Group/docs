@@ -38,13 +38,13 @@ jobs:
 
     - name: PHPUnit Tests
       uses: php-actions/phpunit@v2
-        env:
-          XDEBUG_MODE: coverage
-        with:
-          bootstrap: app-backend/vendor/autoload.php
-          configuration: app-backend/phpunit.xml
-          php_extensions: xdebug
-          args: app-backend/tests --coverage-clover ./app-backend/coverage.xml
+      env:
+        XDEBUG_MODE: coverage
+      with:
+        bootstrap: app-backend/vendor/autoload.php
+        configuration: app-backend/phpunit.xml
+        php_extensions: xdebug
+        args: app-backend/tests --coverage-clover ./app-backend/coverage.xml
 
       - name: Upload to Codecov
         uses: codecov/codecov-action@v2
