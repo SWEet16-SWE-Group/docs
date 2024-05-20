@@ -17,21 +17,41 @@ jobs:
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
  
     steps:
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
+    - name: Checkout Code
+    - uses: actions/checkout@v2
  
-    - name: Install composer dependencies
-      working-directory: ./app-backend
-      run: |
-        composer install --no-scripts
+    #- name: Install composer dependencies
+    #  working-directory: ./app-backend
+     # run: |
+      #  composer install --no-scripts
  
+     - name: Install composer and dependencies
+        working-directory: ./app-backend
+        uses: php-actions/composer@v6
+
     - name: Prepare Laravel Application
       working-directory: ./app-backend
       run: |
         cp .env.ci .env
         php artisan key:generate
  
-    - name: Run Testsuite
-      working-directory: ./app-backend
-      run: vendor/bin/phpunit tests/ --migrate-configuration
+   # - name: Run Testsuite
+   #   working-directory: ./app-backend
+   #   run: vendor/bin/phpunit tests/ --migrate-configuration
+
+     - name: PHPUnit Tests
+       uses: php-actions/phpunit@v3
+       env:
+         XDEBUG_MODE: coverage
+       with:
+         bootstrap: vendor/autoload.php
+         configuration: ./app-backend/phpunit.xml
+         php_extensions: xdebug
+         args: tests --coverage-clover ./app-backend/coverage.xml
+
+     - name: Upload to Codecov
+       uses: codecov/codecov-action@v4.3.1
+       with:
+         token: ${{ secrets.CODECOV_TOKEN }}
+         files: ./app-backend/coverage.xml
+         verbose: true
