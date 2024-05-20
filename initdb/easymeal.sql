@@ -60,7 +60,7 @@ create table pietanze(
 );
 
 create table ricette(
-  pietanza   int not null references pietanze(id),
+  pietanza    int not null references pietanze(id),
   ingrediente int not null references ingredienti(id),
   primary key (pietanza, ristorante),
 );
@@ -69,7 +69,8 @@ create table prenotazioni(
   id int not null auto_increment primary key,
   ristorante int not null references ristoratore(id),
   timestamp datetime not null,
-  n_inviti int not null
+  n_inviti int not null,
+  divisione_conto enum ('equa', 'proporzionale') not null
 );
 
 create table inviti(
@@ -77,18 +78,21 @@ create table inviti(
   prenotazione int not null references prenotazioni(id),
   cliente   int not null references clienti(id),
   pagamento enum ('pagato', 'non_pagato') not null
+  -- necessario se divisione equa
 );
 
 create table ordinazioni(
   id int not null auto_increment primary key,
   invito int not null references inviti(id),
-  pietanza int not null references pientaze(id)
+  pietanza int not null references pientaze(id),
+  pagamento enum ('pagato', 'non_pagato') not null
+  -- necessario se divisione proporzionale
 );
 
 create table dettagli_ordinazione(
   ingrediente int not null references ingredienti(id),
   ordinazione int not null references ordinazione(id),
-  dettaglio enum ('aggiunto', 'rimosso') not null,
+  dettaglio enum ('-', '+') not null,
   primary key (ingrediente, ordinazione)
 );
 
