@@ -22,10 +22,22 @@ create table ristoratori(
   account int not null, foreign key (account) references account(id),
   nome varchar(255) not null unique,
   indirizzo varchar(255) not null unique,
-  telefono varchar(255) not null unique,
+  telefono varchar(255) not null unique
+);
+
+create table orari_apertura_ristorante(
+  ristorante int not null, foreign key (ristorante) references ristoratori(id),
   apertura time not null,
   chiusura time not null,
-  cucina enum ('pizza', 'pasta', 'pesce') not null
+  giorno enum ('月','火','水','木','金','土','日') not null,
+  check( apertura < chiusura ),
+  primary key (ristorante, apertura, chiusura, giorno)
+);
+
+create table cucina_ristorante(
+  ristorante int not null, foreign key (ristorante) references ristoratori(id),
+  cucina enum ('pizza', 'pasta', 'pesce') not null,
+  primary key (ristorante, cucina)
 );
 
 create table allergeni(
