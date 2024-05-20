@@ -1,7 +1,6 @@
 {
-    "name": "laravel/laravel",
+    "name": "easymeal/backend",
     "type": "project",
-    "description": "The Laravel Framework.",
     "keywords": [
         "framework",
         "laravel"
