@@ -36,6 +36,9 @@ jobs:
       working-directory: ./app-backend
       run: vendor/bin/phpunit tests/ --migrate-configuration
 
+    - name: Install XDebug
+      run: apt-get install -y php-xdebug
+
     - name: PHPUnit Tests
        uses: php-actions/phpunit@v3
        env:
@@ -43,7 +46,6 @@ jobs:
        with:
          bootstrap: app-backend/vendor/autoload.php
          configuration: app-backend/phpunit.xml
-         php_extensions: xdebug
          args: app-backend/tests --coverage-clover ./app-backend/coverage.xml
 
      - name: Upload to Codecov
