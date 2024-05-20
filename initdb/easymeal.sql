@@ -93,3 +93,5 @@ create table dettagli_ordinazione(
   primary key (ingrediente, ordinazione)
 );
 
+
+insert into clienti(account, nome) values (12, 'aaaaa');
