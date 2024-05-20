@@ -29,7 +29,7 @@ create table orari_apertura_ristorante(
   ristorante int not null, foreign key (ristorante) references ristoratori(id),
   apertura time not null,
   chiusura time not null,
-  giorno enum ('月','火','水','木','金','土','日') not null,
+  giorno enum ('Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica') not null,
   check( apertura < chiusura ),
   primary key (ristorante, apertura, chiusura, giorno)
 );
@@ -89,7 +89,7 @@ create table inviti(
   id int not null auto_increment primary key,
   prenotazione int not null, foreign key (prenotazione) references prenotazioni(id),
   cliente   int not null, foreign key (cliente) references clienti(id),
-  pagamento enum ('non_pagato', 'pagato') not null
+  pagamento enum ('non_pagato', 'pagato') not null default 'non_pagato'
   -- necessario se divisione equa
 );
 
@@ -97,7 +97,7 @@ create table ordinazioni(
   id int not null auto_increment primary key,
   invito int not null, foreign key (invito) references inviti(id),
   pietanza int not null, foreign key (pietanza) references pietanze(id),
-  pagamento enum ('non_pagato', 'pagato') not null
+  pagamento enum ('non_pagato', 'pagato') not null default 'non_pagato'
   -- necessario se divisione proporzionale
 );
 
