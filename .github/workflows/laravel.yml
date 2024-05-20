@@ -37,18 +37,18 @@ jobs:
       run: vendor/bin/phpunit tests/ --migrate-configuration
 
     - name: PHPUnit Tests
-      uses: php-actions/phpunit@v2
-      env:
-        XDEBUG_MODE: coverage
-      with:
-        bootstrap: app-backend/vendor/autoload.php
-        configuration: app-backend/phpunit.xml
-        php_extensions: xdebug
-        args: app-backend/tests --coverage-clover ./app-backend/coverage.xml
+       uses: php-actions/phpunit@v3
+       env:
+         XDEBUG_MODE: coverage
+       with:
+         bootstrap: app-backend/vendor/autoload.php
+         configuration: app-backend/phpunit.xml
+         php_extensions: xdebug
+         args: app-backend/tests --coverage-clover ./app-backend/coverage.xml
 
-      - name: Upload to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./app-backend/coverage.xml
-          verbose: true
+     - name: Upload to Codecov
+       uses: codecov/codecov-action@v2
+       with:
+         token: ${{ secrets.CODE_COV_TOKEN }}
+         files: ./app-backend/coverage.xml
+         verbose: true
