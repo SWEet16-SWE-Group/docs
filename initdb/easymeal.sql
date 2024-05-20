@@ -42,12 +42,12 @@ create table ingredienti(
 
 create table reagenti(
   ingrediente int not null references ingredienti(id),
-  allergene   int not null references allergeni(id)  ,
+  allergene   int not null references allergeni(id),
   primary key (ingrediente, allergene)
 );
 
 create table allergie(
-  cliente   int not null references clienti(id)  ,
+  cliente   int not null references clienti(id),
   allergene int not null references allergeni(id),
   primary key (cliente, allergene)
 );
@@ -60,7 +60,14 @@ create table pietanze(
 );
 
 create table ricette(
-  pietanza   int not null references pietanze(id)  ,
+  pietanza   int not null references pietanze(id),
   ristorante int not null references ristoratore(id),
   primary key (pietanza, ristorante)
+);
+
+create table prenotazioni(
+  id int not null auto_increment primary key,
+  ristorante int not null references ristoratore(id),
+  timestamp datetime not null,
+  n_inviti int not null
 );
