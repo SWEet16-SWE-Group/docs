@@ -24,7 +24,10 @@ create table ristoratori(
   foreign key (account) references account(id),
   nome varchar(255) not null unique,
   indirizzo varchar(255) not null unique,
-  telefono varchar(255) not null unique
+  telefono varchar(255) not null unique,
+  apertura time not null,
+  chiusura time not null,
+  cucina enum ('pizza', 'pasta', 'pesce') not null,
 );
 
 create table allergeni(
