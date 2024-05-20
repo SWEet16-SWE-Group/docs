@@ -1,3 +1,7 @@
+[![codecov](https://codecov.io/gh/SWEet16-SWE-Group/docs/graph/badge.svg?token=KZVW5OOT08)](https://codecov.io/gh/SWEet16-SWE-Group/docs)
+
+
+
 # Docker Compose - React, Laravel, MySQL, PhpMyAdmin
 Just a basic boilerplate to start directly coding on React, Laravel, MySQL and PhpMyAdmin with Docker Compose.
 
@@ -24,20 +28,10 @@ Execute the following command and the Docker will build and run the containers;
 docker-compose up --build
 ```
 
-### To-Do
+Per collegarsi a React andare su:
 
-1. Webpack and Babel configuration for Frontend & Updating the versions of the dependencies in Frontend
-2. Creating some examples in Backend & Frontend, example request & response.
+localhost/80
 
-### Contribution
+Per collegarsi a PhpmyAdmin andare su:
 
-Feel free to contribute this project.
-
-### Changelog
-
-#### 2021-07-31
-- **[Backend]** PHP version updated to 7.4
-- **[Backend]** Laravel update 7 to 8
-- **[Backend]** Composer & NPM update and audits
-- **[Backend]** Docker multistage build
-- **[Frontend]** NPM update and audits
+localhost/8443
