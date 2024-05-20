@@ -17,6 +17,7 @@ create table clienti(
   id int not null auto_increment primary key,
   account int not null references account(id),
   nome varchar(255) not null unique
+  -- decidere se nome globale tra tutti i clienti o solo nel contesto di un account
 );
 
 create table ristoratori(
@@ -35,7 +36,8 @@ create table allergeni(
 create table ingredienti(
   id int not null auto_increment primary key,
   ristorante int not null references ristoratori(id),
-  nome varchar(255) not null
+  nome varchar(255) not null,
+  unique (ristorante, nome)
 );
 
 create table reagenti(
@@ -53,7 +55,8 @@ create table allergie(
 create table pietanze(
   id int not null auto_increment primary key,
   ristorante int not null references ristoratori(id),
-  nome varchar(255) not null
+  nome varchar(255) not null,
+  unique (ristorante, nome)
 );
 
 create table ricette(
