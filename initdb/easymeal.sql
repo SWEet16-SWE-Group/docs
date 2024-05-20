@@ -62,7 +62,7 @@ create table pietanze(
 create table ricette(
   pietanza    int not null references pietanze(id),
   ingrediente int not null references ingredienti(id),
-  primary key (pietanza, ristorante),
+  primary key (pietanza, ingrediente)
 );
 
 create table prenotazioni(
