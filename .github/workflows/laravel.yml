@@ -33,5 +33,5 @@ jobs:
         php artisan key:generate
  
     - name: Run Testsuite
-      working-directory: .app-backend
+      working-directory: ./app-backend
       run: vendor/bin/phpunit tests/
