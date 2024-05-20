@@ -89,7 +89,7 @@ create table inviti(
   id int not null auto_increment primary key,
   prenotazione int not null, foreign key (prenotazione) references prenotazioni(id),
   cliente   int not null, foreign key (cliente) references clienti(id),
-  pagamento enum ('pagato', 'non_pagato') not null
+  pagamento enum ('non_pagato', 'pagato') not null
   -- necessario se divisione equa
 );
 
@@ -97,7 +97,7 @@ create table ordinazioni(
   id int not null auto_increment primary key,
   invito int not null, foreign key (invito) references inviti(id),
   pietanza int not null, foreign key (pietanza) references pietanze(id),
-  pagamento enum ('pagato', 'non_pagato') not null
+  pagamento enum ('non_pagato', 'pagato') not null
   -- necessario se divisione proporzionale
 );
 
