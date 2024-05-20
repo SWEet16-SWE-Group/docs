@@ -40,7 +40,6 @@ jobs:
       run: apt-get install -y php-xdebug
 
     - name: PHPUnit Tests
-       uses: php-actions/phpunit@v3
        env:
          XDEBUG_MODE: coverage
        with:
