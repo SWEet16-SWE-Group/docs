@@ -1,43 +1,28 @@
-# Docker Compose - React, Laravel, MySQL, PhpMyAdmin
-Just a basic boilerplate to start directly coding on React, Laravel, MySQL and PhpMyAdmin with Docker Compose.
+<p style="text-align: center;">
 
-## Frontend
-- NodeJS 13.10.1 Alpine
-- React 16.13.0
-- Webpack 4
+[![React](https://github.com/SWEet16-SWE-Group/docs/workflows/React/badge.svg)](https://github.com/SWEet16-SWE-Group/docs/actions?query=workflow:"React")
+[![Laravel](https://github.com/SWEet16-SWE-Group/docs/workflows/Laravel/badge.svg)](https://github.com/SWEet16-SWE-Group/docs/actions?query=workflow:"Laravel")
+[![codecov](https://codecov.io/gh/SWEet16-SWE-Group/docs/graph/badge.svg?token=KZVW5OOT08)](https://codecov.io/gh/SWEet16-SWE-Group/docs)
 
-## Backend
-- PHP 7.4 FPM Alpine
-- Laravel 8
-- Composer 1.10
-- NodeJS 14.17.0 Alpine
 
-## MySQL and PhpMyAdmin
+</p>
 
-MySQL Version: 5.7.x
+## Usare il progetto:
 
-## Using the Project
-
-Execute the following command and the Docker will build and run the containers;
+Assicurarsi di avere installato Docker Desktop e Docker Compose, aprire un terminale e posizionarsi nella cartella del progetto, chiamare il comando:
 
 ```
 docker-compose up --build
 ```
 
-### To-Do
+Per collegarsi a React andare su:
 
-1. Webpack and Babel configuration for Frontend & Updating the versions of the dependencies in Frontend
-2. Creating some examples in Backend & Frontend, example request & response.
+```
+localhost/80
+```
 
-### Contribution
+Per collegarsi a PhpmyAdmin andare su:
 
-Feel free to contribute this project.
-
-### Changelog
-
-#### 2021-07-31
-- **[Backend]** PHP version updated to 7.4
-- **[Backend]** Laravel update 7 to 8
-- **[Backend]** Composer & NPM update and audits
-- **[Backend]** Docker multistage build
-- **[Frontend]** NPM update and audits
+```
+localhost/8443
+```

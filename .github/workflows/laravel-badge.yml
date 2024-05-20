@@ -1,0 +1,33 @@
+name: Laravel-badge
+
+on: [push]
+
+jobs:
+ build-test:
+   runs-on: ubuntu-latest
+
+   steps:
+     - name: Checkout Code
+       uses: actions/checkout@v2
+
+     - name: Install composer dependencies
+       working-directory: ./app-backend
+       run: |
+        composer install --no-scripts
+
+     - name: PHPUnit Tests
+       uses: php-actions/phpunit@v3
+       env:
+         XDEBUG_MODE: coverage
+       with:
+         bootstrap: app-backend/vendor/autoload.php
+         configuration: app-backend/phpunit.xml
+         php_extensions: xdebug
+         args: app-backend/tests --migrate-configuration --coverage-clover ./app-backend/coverage.xml 
+
+     - name: Upload to Codecov
+       uses: codecov/codecov-action@v2
+       with:
+         token: ${{ secrets.CODE_COV_TOKEN }}
+         files: ./app-backend/coverage.xml
+         verbose: true
