@@ -21,10 +21,13 @@ RUN composer update --no-scripts --no-autoloader
 
 COPY . /var/www/html
 
-RUN composer install --no-scripts --no-autoloader
+RUN composer install # --no-scripts --no-autoloader
 
 RUN chown -R www-data:www-data /var/www/html
 
 EXPOSE 80
+EXPOSE 8000
 
-CMD ["apache2-foreground"]
+# CMD ["apache2-foreground"]
+
+CMD ["php", "artisan", "serve", "--host=0.0.0.0"]
