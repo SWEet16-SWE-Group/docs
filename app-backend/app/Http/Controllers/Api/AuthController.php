@@ -13,9 +13,11 @@ class AuthController extends Controller
 {
     public function signup(SignupRequest $request)
     {
+
         $data = $request->validated();
         /** @var User $user */
-        User::create([
+
+        $user = User::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);

@@ -28,10 +28,14 @@ export default function SignUp() {
                 setToken(data.token)
             })
             .catch(err => {
+
                 const response = err.response;
             if(response && response.status === 422) {
-                    console.log(response.data.errors);
+                    console.error(response.data);
+                    //console.log(response.data.errors);
                     setErrors(response.data.errors);
+
+                    debugger;
                 }
             })
     }
