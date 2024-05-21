@@ -9,6 +9,8 @@ RUN rm -rf node_modules package-lock.json
 
 RUN npm install
 
+RUN npm install bootstrap axios
+
 COPY . .
 
 RUN echo "SKIP_PREFLIGHT_CHECK=true" > .env
