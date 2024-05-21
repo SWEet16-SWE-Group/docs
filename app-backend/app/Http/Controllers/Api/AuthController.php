@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\SignupRequest;
-use App\Models\User;
+use App\Models\Account;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,9 +15,9 @@ class AuthController extends Controller
     {
 
         $data = $request->validated();
-        /** @var User $user */
+        /** @var Account $user */
 
-        $user = User::create([
+        $user = Account::create([
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
@@ -36,7 +36,7 @@ class AuthController extends Controller
             ]);
         }
 
-        /** @var User $user */
+        /** @var Account $user */
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
 
@@ -45,7 +45,7 @@ class AuthController extends Controller
 
     public function logout(Request $request)
     {
-        /** @var User $user */
+        /** @var Account $user */
         $user = $request->user();
         $user->currentAccessToken()->delete();
 
