@@ -1,109 +1,175 @@
-
 DROP DATABASE IF EXISTS `easymeal`;
+
 CREATE DATABASE `easymeal`;
+
 USE `easymeal`;
 
-
-create table account(
-  id int not null auto_increment primary key ,
-  mail varchar(255) not null unique,
-  password varchar(255) not null
+CREATE TABLE account(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create table clienti(
-  id int not null auto_increment primary key,
-  account int not null, foreign key (account) references account(id),
-  nome varchar(255) not null unique
-  -- decidere se nome globale tra tutti i clienti o solo nel contesto di un account
+CREATE TABLE clienti(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    account INT NOT NULL,
+    nome VARCHAR(255) NOT NULL UNIQUE,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account) REFERENCES account(id)
 );
 
-create table ristoratori(
-  id int not null auto_increment primary key,
-  account int not null, foreign key (account) references account(id),
-  nome varchar(255) not null unique,
-  indirizzo varchar(255) not null unique,
-  telefono varchar(255) not null unique
+CREATE TABLE ristoratori(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    account INT NOT NULL,
+    nome VARCHAR(255) NOT NULL UNIQUE,
+    indirizzo VARCHAR(255) NOT NULL UNIQUE,
+    telefono VARCHAR(255) NOT NULL UNIQUE,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (account) REFERENCES account(id)
 );
 
-create table orari_apertura_ristorante(
-  ristorante int not null, foreign key (ristorante) references ristoratori(id),
-  apertura time not null,
-  chiusura time not null,
-  giorno enum ('Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica') not null,
-  check( apertura < chiusura ),
-  primary key (ristorante, apertura, chiusura, giorno)
+CREATE TABLE orari_apertura_ristorante(
+    ristorante INT NOT NULL,
+    apertura TIME NOT NULL,
+    chiusura TIME NOT NULL,
+    giorno ENUM(
+        'Lunedì',
+        'Martedì',
+        'Mercoledì',
+        'Giovedì',
+        'Venerdì',
+        'Sabato',
+        'Domenica'
+    ) NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ristorante, giorno, apertura, chiusura),
+    FOREIGN KEY (ristorante) REFERENCES ristoratori(id),
+    CHECK (apertura < chiusura)
 );
 
-create table cucina_ristorante(
-  ristorante int not null, foreign key (ristorante) references ristoratori(id),
-  cucina enum ('pizza', 'pasta', 'pesce') not null,
-  primary key (ristorante, cucina)
+CREATE TABLE cucina_ristorante(
+    ristorante INT NOT NULL,
+    cucina ENUM('pizza', 'pasta', 'pesce') NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ristorante, cucina),
+    FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
 );
 
-create table allergeni(
-  id int not null auto_increment primary key,
-  nome varchar(255) not null unique
+CREATE TABLE allergeni(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL UNIQUE,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-create table ingredienti(
-  id int not null auto_increment primary key,
-  ristorante int not null, foreign key (ristorante) references ristoratori(id),
-  nome varchar(255) not null,
-  unique (ristorante, nome)
+CREATE TABLE ingredienti(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ristorante INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (ristorante, nome),
+    FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
 );
 
-create table reagenti(
-  ingrediente int not null, foreign key (ingrediente) references ingredienti(id),
-  allergene   int not null, foreign key (allergene) references allergeni(id),
-  primary key (ingrediente, allergene)
+CREATE TABLE reagenti(
+    ingrediente INT NOT NULL,
+    allergene INT NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ingrediente, allergene),
+    FOREIGN KEY (ingrediente) REFERENCES ingredienti(id),
+    FOREIGN KEY (allergene) REFERENCES allergeni(id)
 );
 
-create table allergie(
-  cliente   int not null, foreign key (cliente) references clienti(id),
-  allergene int not null, foreign key (allergene) references allergeni(id),
-  primary key (cliente, allergene)
+CREATE TABLE allergie(
+    cliente INT NOT NULL,
+    allergene INT NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (cliente, allergene),
+    FOREIGN KEY (cliente) REFERENCES clienti(id),
+    FOREIGN KEY (allergene) REFERENCES allergeni(id)
 );
 
-create table pietanze(
-  id int not null auto_increment primary key,
-  ristorante int not null, foreign key (ristorante) references ristoratori(id),
-  nome varchar(255) not null,
-  unique (ristorante, nome)
+CREATE TABLE pietanze(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ristorante INT NOT NULL,
+    nome VARCHAR(255) NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE (ristorante, nome),
+    FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
 );
 
-create table ricette(
-  pietanza    int not null, foreign key (pietanza) references pietanze(id),
-  ingrediente int not null, foreign key (ingrediente) references ingredienti(id),
-  primary key (pietanza, ingrediente)
+CREATE TABLE ricette(
+    pietanza INT NOT NULL,
+    ingrediente INT NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (pietanza, ingrediente),
+    FOREIGN KEY (pietanza) REFERENCES pietanze(id),
+    FOREIGN KEY (ingrediente) REFERENCES ingredienti(id)
 );
 
-create table prenotazioni(
-  id int not null auto_increment primary key,
-  ristorante int not null, foreign key (ristorante) references ristoratori(id),
-  timestamp datetime not null,
-  n_inviti int not null,
-  divisione_conto enum ('equa', 'proporzionale') not null
+CREATE TABLE prenotazioni(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    ristorante INT NOT NULL,
+    timestamp DATETIME NOT NULL,
+    n_inviti INT NOT NULL,
+    divisione_conto ENUM('equa', 'proporzionale') NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
 );
 
-create table inviti(
-  id int not null auto_increment primary key,
-  prenotazione int not null, foreign key (prenotazione) references prenotazioni(id),
-  cliente   int not null, foreign key (cliente) references clienti(id),
-  pagamento enum ('non_pagato', 'pagato') not null default 'non_pagato'
-  -- necessario se divisione equa
+CREATE TABLE inviti(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    prenotazione INT NOT NULL,
+    cliente INT NOT NULL,
+    pagamento ENUM('non_pagato', 'pagato') NOT NULL DEFAULT 'non_pagato',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (prenotazione) REFERENCES prenotazioni(id),
+    FOREIGN KEY (cliente) REFERENCES clienti(id)
 );
 
-create table ordinazioni(
-  id int not null auto_increment primary key,
-  invito int not null, foreign key (invito) references inviti(id),
-  pietanza int not null, foreign key (pietanza) references pietanze(id),
-  pagamento enum ('non_pagato', 'pagato') not null default 'non_pagato'
-  -- necessario se divisione proporzionale
+CREATE TABLE ordinazioni(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    invito INT NOT NULL,
+    pietanza INT NOT NULL,
+    pagamento ENUM('non_pagato', 'pagato') NOT NULL DEFAULT 'non_pagato',
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (invito) REFERENCES inviti(id),
+    FOREIGN KEY (pietanza) REFERENCES pietanze(id)
 );
 
-create table dettagli_ordinazione(
-  ingrediente int not null, foreign key (ingrediente) references ingredienti(id),
-  ordinazione int not null, foreign key (ordinazione) references ordinazioni(id),
-  dettaglio enum ('-', '+') not null,
-  primary key (ingrediente, ordinazione)
+CREATE TABLE dettagli_ordinazione(
+    ingrediente INT NOT NULL,
+    ordinazione INT NOT NULL,
+    dettaglio ENUM('-', '+') NOT NULL,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (ingrediente, ordinazione),
+    FOREIGN KEY (ingrediente) REFERENCES ingredienti(id),
+    FOREIGN KEY (ordinazione) REFERENCES ordinazioni(id)
+);
+
+CREATE TABLE personal_access_tokens(
+    id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    tokenable_type VARCHAR(255) NOT NULL,
+    tokenable_id BIGINT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    token VARCHAR(64) NOT NULL,
+    abilities TEXT DEFAULT NULL,
+    last_used_at TIMESTAMP DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

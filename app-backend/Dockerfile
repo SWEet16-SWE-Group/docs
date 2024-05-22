@@ -29,5 +29,9 @@ EXPOSE 80
 EXPOSE 8000
 
 # CMD ["apache2-foreground"]
+#RUN php artisan migrate
 
 CMD ["php", "artisan", "serve", "--host=0.0.0.0"]
+
+
+
