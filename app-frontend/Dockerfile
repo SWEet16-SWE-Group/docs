@@ -8,7 +8,7 @@ RUN rm -rf node_modules package-lock.json
 
 RUN npm install
 
-RUN npm install bootstrap axios
+RUN npm install bootstrap axios react-router-dom
 
 COPY . .
 
