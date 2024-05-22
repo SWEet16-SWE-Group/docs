@@ -27,14 +27,17 @@ export default function Login() {
                 if (response && response.status === 422) {
                     setMessage(response.data.message)
                 }
+                //debugger;
             })
+
     }
 
     return (
         <div className="login-signup-form animated fadeInDown">
             <div className="form">
                 <form onSubmit={onSubmit}>
-                    <h1 className="title">Effettua il login nel tuo account</h1>
+                    <h1 className="title"> Effettua il login nel tuo account
+                    </h1>
 
                     {message &&
                         <div className="alert">
