@@ -16,7 +16,7 @@ services:
     environment:
       MYSQL_DATABASE: easymeal
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
+      MYSQL_PASSWORD:
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
     ports:
@@ -29,7 +29,7 @@ services:
     restart: unless-stopped
     environment:
       PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD:
     depends_on:
       - db
     ports:
@@ -43,8 +43,8 @@ services:
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: easymeal
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD:
+      MYSQL_PASSWORD:
       MYSQL_USER: ${DB_USERNAME}
     working_dir: /var/www
     volumes:
