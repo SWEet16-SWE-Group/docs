@@ -47,6 +47,7 @@ services:
       MYSQL_PASS: 'root'
     volumes:
       - ./initdb:/docker-entrypoint-initdb.d
+      - ./db-data:/var/lib/mysql
     networks:
       - app-network
 
@@ -63,15 +64,6 @@ services:
     networks:
       - app-network
 
-
- # composer:
-  #  build:
-  #    context: .
-   #   dockerfile: Docker/composer/Dockerfile
-  #  networks:
-   #   - app-network
-   # volumes:
-   #   - ./app-backend/:/var/www/html/
 
 networks:
   app-network:
