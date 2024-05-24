@@ -50,3 +50,5 @@ yarn-error.log*
 
 .idea
 .env
+/db-data
+/logs

@@ -25,14 +25,17 @@ export default function SignUp() {
             .then(({data}) => {
                 setUser(data.user)
                 setToken(data.token)
+
+                debugger;
             })
             .catch(err => {
-
                 const response = err.response;
             if(response && response.status === 422) {
                     console.error(response.data);
-                    //console.log(response.data.errors);
+                    console.log(response.data.errors);
                     setErrors(response.data.errors);
+
+                    debugger;
                 }
             })
     }
