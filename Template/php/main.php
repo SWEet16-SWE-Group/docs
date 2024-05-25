@@ -11,13 +11,13 @@ ob_start(function ($tex) {
     'REDATTORI' => '',
     'VERIFICATORI' => '',
     'AMMINISTRATORI' => '',
+    'TITOLO_DOCUMENTO' => '',
     'VERSIONE' => '1.0.0',
   ], $tex);
   return $tex;
 });
 
 ?>
-
 \nonstopmode
 \documentclass[a4paper, 11pt]{article}
 \usepackage{graphicx} % Required for inserting images
@@ -26,7 +26,7 @@ ob_start(function ($tex) {
 \usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{array}
-\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[usenames, dvipsnames]{xcolor}
 \usepackage{colortbl}
 \usepackage{tabularray}
 \usepackage[italian]{babel}
@@ -70,7 +70,7 @@ Anno Accademico 2023/2024
 
 \begin{center}
 \begin{Huge}
-\textbf{Titolo del documento} \\
+\textbf{TITOLO_DOCUMENTO} \\
 \vspace{4mm}
 
 \end{Huge}

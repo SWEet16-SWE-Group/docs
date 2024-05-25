@@ -13,6 +13,10 @@ $registro = registromodifiche(
 );
 
 ?>
+\begin{huge}
+\textbf{Registro delle modifiche}
+\end{huge}
+\vspace{5pt}
 
 \begin{tblr}{
 colspec={|X[1.5cm]|X[2cm]|X[2.5cm]|X[2.5cm]|X[5cm]|},
