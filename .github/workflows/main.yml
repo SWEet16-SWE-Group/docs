@@ -14,10 +14,10 @@ jobs:
       - uses: actions/checkout@v4
 
       - run:  sudo apt install -y php hunspell hunspell-it hunspell-en-us
-        name: Installazione PHP
+        name: Installazione PHP e hunspell
 
-      - run:  cd ./rtb/ && php validatore.php --action
-        name: Esecuzione del validatore
+      - run:  php validatore.php
+        name: Esecuzione validatore
 
       - uses: xu-cheng/latex-action@v3
         name: Compilazione Latex
