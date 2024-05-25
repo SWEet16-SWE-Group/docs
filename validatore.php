@@ -5,11 +5,6 @@ require_once __DIR__ . '/.libphp/Stream.php';
 require_once __DIR__ . '/.libphp/Vocaboli.php';
 require_once __DIR__ . '/.libphp/Validatore.php';
 
-function main_correttore_ortografico($dict, $files) {
-  $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
-  passthru("hunspell -p $dict -d it_IT,en_US $a");
-}
-
 function main_correttore_ortografico_action($dict, $files) {
   $a = stream($files, _map(fn ($a) => "\"$a\""), _implode(' '));
   $e = shell_exec("hunspell -p $dict -d it_IT,en_US -l $a");
@@ -57,10 +52,7 @@ foreach (stream(
 echo "\n";
 
 $tex = _find('main.tex', __DIR__);
-
+main_correttore_ortografico_action($dict, $tex);
 if (in_array('--compile', $argv)) {
-  main_correttore_ortografico($dict, $tex);
   main_compile($tex);
-} else {
-  main_correttore_ortografico_action($dict, $tex);
 }
