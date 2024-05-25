@@ -34,7 +34,7 @@ function _appiattisci_item($text) {
   return $text;
 }
 
-function valida_file($text) {
+function _valida_testo($text) {
   $regexbianco = [
     "/\r/" => '',
     "/\t/" => '  ',
