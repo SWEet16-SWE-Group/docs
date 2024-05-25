@@ -1,7 +1,7 @@
 <?php
-
-require_once __DIR__ . '/../.libphp/Utils.php';
-require_once __DIR__ . '/../.libphp/RegistroModifiche.php';
+set_include_path(__DIR__ . '//.libphp/');
+require_once 'Utils.php';
+require_once 'RegistroModifiche.php';
 
 $titolo = 'TITOLO';
 $pathsimmagini = [
