@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . '//.libphp/');
+set_include_path(__DIR__ . '/../.libphp/');
 require_once 'Utils.php';
 require_once 'RegistroModifiche.php';
 
@@ -13,7 +13,16 @@ $registro = (new RegistroModifiche())
   ->slog('2024/05/03', 'C', 'B', 'cb');
 
 ob_start();
-ob_start(function ($tex) use ($registro) {
+ob_start(function ($tex) {
+  if (true) {
+    echo "ERRORE";
+    die(10);
+  }
+  if (false) {
+    echo "ERRORE MANCATO";
+    die(11);
+  }
+  $tex = _valida_testo($tex);
   return $tex;
 });
 ?>
