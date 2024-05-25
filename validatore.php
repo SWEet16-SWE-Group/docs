@@ -43,13 +43,18 @@ $dict = __DIR__ . '/.libphp/sweet16-dict';
 echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "\n\n";
 $e == false && die(11);
 
-foreach (_find('main.php', __DIR__) as $file) {
-  $a = require $file;
-  if ($a > 0) {
-    echo "ERRORE NEL PREPROCESSING DI: $file\n";
+foreach (stream(
+  _find('main.php', __DIR__),
+  _filter(fn ($a) => !str_contains($a, 'Template/main.php'))
+) as $file) {
+  echo "PREPROCESSING: $file\n";
+  if ((require $file) > 0) {
+    echo "PREPROCESSING: ERRORE A $file\n";
     die(13);
   }
 }
+
+echo "\n";
 
 $tex = _find('main.tex', __DIR__);
 

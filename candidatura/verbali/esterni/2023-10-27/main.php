@@ -173,7 +173,7 @@ Per la parte backend consiglia di usare una REST API, usando un linguaggio come 
 \textbf{E’ necessario implementare un sistema di pagamento all’interno dell’applicazione?}
 
 L'implementazione è complicata a livello di progettazione universitaria, 
-sia dal punto di vista della privacy che da quello dei costi, si può quindi decidere di non implementarlo, basta solo che la WebApp comunichi che il cliente deve effettuare il pagamento delle pietanze prenotate in precedenza, il pagamento avverrà poi in maniera "fisica" alla cassa del ristorante. \newline 
+sia dal punto di vista della privacy che da quello dei costi, si può quindi decidere di non implementarlo, basta solo che la Webapp comunichi che il cliente deve effettuare il pagamento delle pietanze prenotate in precedenza, il pagamento avverrà poi in maniera "fisica" alla cassa del ristorante. \newline 
 
 \textbf{Come gestire la chat tra clienti e ristoratori?}
 
