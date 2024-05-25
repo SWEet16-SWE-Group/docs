@@ -39,8 +39,51 @@ function _appiattisci_item($text) {
 // MAIN
 // =========================================
 
-function main_validatore_stilistico($files) {
+function main_vocaboli($files, $latexoutput) {
 
+  if (count($a = findoutliers($files)) > 0) {
+    echo "\nCorreggere i seguenti outliers per procedere con il glossario\n"
+      . stream(
+        $a,
+        _map(fn ($a) => "\n" . $a['file'] . ":\n" . $a['context'] . "\n\n"),
+        _implode(''),
+      );
+    die(11);
+  }
+
+  $d = preg('/\\\\subsection{(.*?)}(.*?)\n/', file_get_contents($latexoutput));
+  $d = array_combine($d[1], $d[2]);
+
+  $a = stream(
+    findvocaboli($files),
+    _parse(),
+    _sort(),
+    _unique(),
+  );
+
+  if (count($m = stream($a, _filter(fn ($a) => !array_key_exists($a, $d)))) > 0) {
+    echo "\nNel Glossario manca la definizione delle seguenti parole:\n";
+    echo stream(
+      $m,
+      _map(fn ($a) => "\t$a\n"),
+      _implode(''),
+    );
+    die(10);
+  }
+
+  $a = stream(
+    $a,
+    _map(fn ($a) => '\\subsection{' . $a . '}' . $d[$a] . "\n"),
+    _sort(),
+    _implode(""),
+  );
+
+  file_put_contents($latexoutput, $a);
+}
+
+// MAIN VALIDATORE
+
+function valida_file($file) {
   $regexbianco = [
     "/\r/" => '',
     "/\t/" => '  ',
@@ -70,16 +113,20 @@ function main_validatore_stilistico($files) {
     "/(\\\\item [^\n]*?\\\\end{center})[\\.;:]\n/" => "\\1\n",
   ];
 
+  $text = file_get_contents($file);
+  $text = preg_replace_array($regexbianco, $text);
+  $text = preg_replace_callback_array($regexmaiuscole, $text);
+  $text = _appiattisci_item($text);
+  $text = preg_replace_array($regexbianco, $text);
+  $text = preg_replace_array($regexelenchi, $text);
+  $text = preg_replace_array($regexbianco, $text);
+  file_put_contents($file, $text);
+}
+
+function main_validatore_stilistico($files) {
   foreach ($files as $a) {
     echo "Correzione stile: $a\n";
-    $text = file_get_contents($a);
-    $text = preg_replace_array($regexbianco, $text);
-    $text = preg_replace_callback_array($regexmaiuscole, $text);
-    $text = _appiattisci_item($text);
-    $text = preg_replace_array($regexbianco, $text);
-    $text = preg_replace_array($regexelenchi, $text);
-    $text = preg_replace_array($regexbianco, $text);
-    file_put_contents($a, $text);
+    valida_file($a);
   }
   echo "\n";
 }
