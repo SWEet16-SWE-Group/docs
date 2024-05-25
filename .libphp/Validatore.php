@@ -105,6 +105,5 @@ function racatta_errori($titolo, $tex) {
       _implode(''),
     );
   }
-  $tex = _valida_testo($tex);
-  return $tex;
+  return $errormsg;
 }
