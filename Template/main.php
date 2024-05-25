@@ -2,6 +2,8 @@
 set_include_path(__DIR__ . '/../.libphp/');
 require_once 'Utils.php';
 require_once 'RegistroModifiche.php';
+require_once 'Vocaboli.php';
+require_once 'Validatore.php';
 
 $titolo = 'TITOLO';
 $pathsimmagini = [
@@ -14,14 +16,8 @@ $registro = (new RegistroModifiche())
 
 ob_start();
 ob_start(function ($tex) {
-  if (true) {
-    echo "ERRORE";
-    die(10);
-  }
-  if (false) {
-    echo "ERRORE MANCATO";
-    die(11);
-  }
+  die_if_outliers($tex);
+  die_if_vocaboli_non_definiti($tex);
   $tex = _valida_testo($tex);
   return $tex;
 });
@@ -112,7 +108,7 @@ row{even}={bg=lightgray},
 row{1}={bg=black,fg=white}
 }
 
-Versione & Data & Autore & Verificatore & Descrizione \\
+Versione & Data & Autore & Verificatore & Descrizione \\ \hline
 <?php echo $registro; ?>
 
 \end{tblr}
