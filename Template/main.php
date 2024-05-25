@@ -4,6 +4,7 @@ require_once 'Utils.php';
 require_once 'RegistroModifiche.php';
 require_once 'Vocaboli.php';
 require_once 'Validatore.php';
+require_once 'Membri.php';
 
 $titolo = 'TITOLO';
 $pathsimmagini = [
@@ -90,7 +91,7 @@ Anno Accademico 2023/2024
 \begin{tabular}{c c c}
 Redattori: & <?php echo $registro->autori(); ?> & \\
 Verificatori: & <?php echo $registro->verificatori(); ?> & \\
-Amministratore: & AMMINISTRATORI & \\
+Amministratore: & <?php echo alberto_m(); ?> & \\
 Destinatari: & T. Vardanega & R. Cardin \\
 Versione: & <?php echo $registro->versione(); ?> &
 \end{tabular}
