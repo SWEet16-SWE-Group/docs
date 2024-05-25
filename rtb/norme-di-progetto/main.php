@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . '/../.libphp/');
+set_include_path(__DIR__ . '/../../.libphp/');
 require_once 'Utils.php';
 require_once 'RegistroModifiche.php';
 require_once 'Vocaboli.php';
@@ -108,29 +108,29 @@ Anno Accademico 2023/2024
 \end{huge}
 \vspace{5pt}
 
-<?php require_once "src/registro-modifiche.tex"; ?>
+<?php require_once "src/registro-modifiche.php"; ?>
 
 \pagebreak
 \tableofcontents
 \pagebreak
 
-<?php require_once 'src/introduzione.tex'; ?>
+<?php require_once "src/introduzione.tex"; ?>
 % fine sezione introduzione
 \pagebreak
 
 \section{Processi Primari}
 
-<?php require_once 'src/fornitura.tex'; ?>
+<?php require_once "src/fornitura.tex"; ?>
     %fine subsection fornitura
 
-<?php require_once 'src/sviluppo.tex'; ?>
+<?php require_once "src/sviluppo.tex"; ?>
     %fine subsection sviluppo
 
-<?php require_once 'src/progettazione.tex'; ?>
+<?php require_once "src/progettazione.tex"; ?>
 
     %fine progettazione
 
-<?php require_once 'src/codifica.tex'; ?>
+<?php require_once "src/codifica.tex"; ?>
 
     %fine codifica
 %fine processi primari
@@ -138,26 +138,26 @@ Anno Accademico 2023/2024
 
 \section{Processi di Supporto}
 
-<?php require_once 'src/documentazione.tex'; ?>
+<?php require_once "src/documentazione.tex"; ?>
 
     % fine documentazione
-<?php require_once 'src/gestione-configurazione.tex'; ?>
+<?php require_once "src/gestione-configurazione.tex"; ?>
     % fine gestione della configurazione
 
-<?php require_once 'src/gestione-qualita.tex'; ?>
+<?php require_once "src/gestione-qualita.tex"; ?>
 
     % fine gestione della qualità
 
-<?php require_once 'src/verifica.tex'; ?>
+<?php require_once "src/verifica.tex"; ?>
     % fine verifica
 
-<?php require_once 'src/validazione.tex'; ?>
+<?php require_once "src/validazione.tex"; ?>
 % fine processi di supporto
 \pagebreak
 
 \section{Processi organizzativi}
 
-<?php require_once 'src/gestione-processi.tex'; ?>
+<?php require_once "src/gestione-processi.tex"; ?>
 
 \end{document}
 

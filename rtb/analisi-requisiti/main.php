@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . '/../.libphp/');
+set_include_path(__DIR__ . '/../../.libphp/');
 require_once 'Utils.php';
 require_once 'RegistroModifiche.php';
 require_once 'Vocaboli.php';
@@ -92,29 +92,29 @@ Anno Accademico 2023/2024
 
 \pagebreak
 
-<?php require_once 'src/registro-modifiche.tex'; ?>
+<?php require_once "src/registro-modifiche.tex"; ?>
 
 \pagebreak
 \tableofcontents
 \pagebreak
 
-<?php require_once 'src/introduzione.tex'; ?>
+<?php require_once "src/introduzione.tex"; ?>
 
 \pagebreak
 
-<?php require_once 'src/descrizione.tex'; ?>
+<?php require_once "src/descrizione.tex"; ?>
 
 \pagebreak
 
-<?php require_once 'src/casi-uso.tex'; ?>
+<?php require_once "src/casi-uso.tex"; ?>
 
 \pagebreak
 
-<?php require_once 'src/requisiti.tex'; ?>
+<?php require_once "src/requisiti.tex"; ?>
 
 \pagebreak
 
-<?php require_once 'src/elenco-delle-tabelle.tex'; ?>
+<?php require_once "src/elenco-delle-tabelle.tex"; ?>
 
 \end{document}
 

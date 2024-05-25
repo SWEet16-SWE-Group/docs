@@ -21,14 +21,14 @@ Non ci sono relazioni di alcun tipo tra i vari attori.
 \subsection{Lista dei casi d'uso}
 
 % registazione - login
-<?php require_once "src/casi-uso.d/0-utente-non-riconosciuto.tex"; ?>
+<?php require_once "src/casi-uso.d/0-utente-non-riconosciuto.php"; ?>
 % profili
-<?php require_once "src/casi-uso.d/1-utente-autenticato.tex"; ?>
+<?php require_once "src/casi-uso.d/1-utente-autenticato.php"; ?>
 % cliente - navigazione del sito
-<?php require_once "src/casi-uso.d/2-cliente-prenotazione.tex"; ?>
-<?php require_once "src/casi-uso.d/3-cliente-ordinazione.tex"; ?>
-<?php require_once "src/casi-uso.d/4-cliente-altro.tex"; ?>
+<?php require_once "src/casi-uso.d/2-cliente-prenotazione.php"; ?>
+<?php require_once "src/casi-uso.d/3-cliente-ordinazione.php"; ?>
+<?php require_once "src/casi-uso.d/4-cliente-altro.php"; ?>
 % ristoratore
-<?php require_once "src/casi-uso.d/5-ristoratore.tex"; ?>
+<?php require_once "src/casi-uso.d/5-ristoratore.php"; ?>
 % chat
-<?php require_once "src/casi-uso.d/6-cliente-ristoratore-chat.tex"; ?>
+<?php require_once "src/casi-uso.d/6-cliente-ristoratore-chat.php"; ?>
