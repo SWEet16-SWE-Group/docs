@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/Stream.php';
 require_once __DIR__ . '/Utils.php';
+require_once __DIR__ . '/Vocaboli.php';
 
 function _appiattisci_item($text) {
   $a = preg('/\\\\(begin|end){(itemize|enumerate)}/', $text, PREG_OFFSET_CAPTURE)[0];
@@ -73,3 +74,37 @@ function _valida_testo($text) {
   return $text;
 }
 
+
+function racatta_errori($titolo, $tex) {
+  $outliers = stream(
+    _findoutliers($tex),
+    _map(fn ($a) => "\t$a\n"),
+    _implode(''),
+  );
+  $missing = stream(
+    _findvocaboli($tex),
+    _filter(fn ($a) => !array_key_exists($a, definizioni_glossario)),
+    _map(fn ($a) => "\t$a\n"),
+    _implode(''),
+  );
+  $ortografia = '';
+  if (strlen($outliers) > 0) {
+    $outliers = "\n\nQuesti vocaboli devono essere definiti con \\empf{VOCABOLO}$^{G}$\n" . $outliers;
+  }
+  if (strlen($missing) > 0) {
+    $missing = "\n\nMancano le definizioni dei sequenti vocaboli:\n" . $missing;
+  }
+  if (strlen($ortografia) > 0) {
+    $ortografia = "\n\nPossibili errori di ortografia:\n" . $ortografia;
+  }
+  if (strlen($errormsg = $outliers . $missing . $ortografia) > 0) {
+    return stream(
+      $errormsg,
+      _explode("\n"),
+      _map(fn ($a) => "$titolo:\t$a\n"),
+      _implode(''),
+    );
+  }
+  $tex = _valida_testo($tex);
+  return $tex;
+}
