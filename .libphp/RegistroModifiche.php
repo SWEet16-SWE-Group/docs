@@ -28,7 +28,7 @@ class RegistroModifiche {
         };
         $a[0] = implode('.', $t->versione);
         $a = array_map('trim', $a);
-        $t->testo .= implode(" & ", $a) . " \\\\ \\hline\n";
+        $t->testo = implode(" & ", $a) . " \\\\ \\hline\n" . $t->testo;
         return $t;
       },
       (object)['versione' => [0, 0, 0], 'testo' => '']
