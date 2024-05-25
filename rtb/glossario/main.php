@@ -1,8 +1,10 @@
 <?php
-
-require_once __DIR__ . '/../../.libphp/Utils.php';
-require_once __DIR__ . '/../../.libphp/RegistroModifiche.php';
-require_once __DIR__ . '/../../.libphp/Vocaboli.php';
+set_include_path(__DIR__ . '/../../.libphp/');
+require_once 'Utils.php';
+require_once 'RegistroModifiche.php';
+require_once 'Vocaboli.php';
+require_once 'Validatore.php';
+require_once 'Membri.php';
 
 $titolo = 'Glossario';
 $pathsimmagini = [
@@ -19,8 +21,15 @@ $registro = (new RegistroModifiche())
   ->log(DX, '2024/03/26', 'Alberto C.', 'Iulius S. ', 'Aggiornamento definizioni                    ')
   ->log(SX, '2024/04/16', 'Alex S.   ', '          ', 'Approvazione per il rilascio                 ');
 
+$error_flag = 0;
 ob_start();
-ob_start(function ($tex) use ($registro) {
+ob_start(function ($tex) use ($titolo, &$error_flag) {
+  $errormsg = racatta_errori($titolo, $tex);
+  if (strlen($errormsg) > 0) {
+    $error_flag = 11;
+    return $errormsg;
+  }
+  $tex = _valida_testo($tex);
   return $tex;
 });
 ?>
@@ -32,7 +41,7 @@ ob_start(function ($tex) use ($registro) {
 \usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{array}
-\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[usenames, dvipsnames]{xcolor}
 \usepackage{colortbl}
 \usepackage{tabularray}
 \usepackage[italian]{babel}
@@ -47,7 +56,7 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{<?php echo implode('', array_map(fn ($a) => "\{$a\}", $pathsimmagini)); ?>}
+\graphicspath{<?php echo implode('', array_map(fn ($a) => "{$a}", $pathsimmagini)); ?>}
 \setcounter{secnumdepth}{-2}
 
 \begin{document}
@@ -89,7 +98,7 @@ Anno Accademico 2023/2024
 \begin{tabular}{c c c}
 Redattori: & <?php echo $registro->autori(); ?> & \\
 Verificatori: & <?php echo $registro->verificatori(); ?> & \\
-Amministratore: & AMMINISTRATORI & \\
+Amministratore: & <?php echo alberto_m(); ?> & \\
 Destinatari: & T. Vardanega & R. Cardin \\
 Versione: & <?php echo $registro->versione(); ?> &
 \end{tabular}
@@ -111,7 +120,7 @@ row{even}={bg=lightgray},
 row{1}={bg=black,fg=white}
 }
 
-Versione & Data & Autore & Verificatore & Descrizione \\
+Versione & Data & Autore & Verificatore & Descrizione \\ \hline
 <?php echo $registro; ?>
 
 \end{tblr}
@@ -129,9 +138,10 @@ $tex = ob_get_contents();
 ob_end_clean();
 
 $opts = getopt('p');
-if (array_key_exists('p', $opts)) {
+if (array_key_exists('p', $opts) || $error_flag > 0) {
   echo $tex;
 } else {
   chdir(__DIR__);
   file_put_contents('main.tex', $tex);
 }
+return $error_flag;
