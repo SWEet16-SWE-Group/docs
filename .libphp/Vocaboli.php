@@ -34,31 +34,31 @@ function findvocaboli($files) {
   );
 }
 
-const parse = [
-  'Ristoratori' => 'Ristoratore',
-  'Clienti' => 'Cliente',
-  'Coperti' => 'Coperto',
-  'Ristoratori' => 'Ristoratore',
-  'Prenotazioni' => 'Prenotazione',
-  'Requisiti' => 'Requisito',
-  'Requisiti funzionali' => 'Requisito funzionale',
-  'Profili' => 'Profilo',
-  'NextJs' => 'NextJS',
-  'PoC' => 'PoC (Proof of Concept)',
-  'Proof of Concept' => 'PoC (Proof of Concept)',
-  'ITS' => 'ITS (Issue Tracking System)',
-  'Express' => 'ExpressJS',
-  '\\LaTeX' => 'LaTeX',
-  'Capitolato d’appalto' => '',
-  '' => '',
-];
 
 function _parse() {
+  $parse = [
+    'Ristoratori' => 'Ristoratore',
+    'Clienti' => 'Cliente',
+    'Coperti' => 'Coperto',
+    'Ristoratori' => 'Ristoratore',
+    'Prenotazioni' => 'Prenotazione',
+    'Requisiti' => 'Requisito',
+    'Requisiti funzionali' => 'Requisito funzionale',
+    'Profili' => 'Profilo',
+    'NextJs' => 'NextJS',
+    'PoC' => 'PoC (Proof of Concept)',
+    'Proof of Concept' => 'PoC (Proof of Concept)',
+    'ITS' => 'ITS (Issue Tracking System)',
+    'Express' => 'ExpressJS',
+    '\\LaTeX' => 'LaTeX',
+    'Capitolato d’appalto' => '',
+    '' => '',
+  ];
   return fn ($a) =>
   _filter(fn ($a) => strlen($a) > 0)(
     preg_replace(
-      _map(fn ($a) => '/^' . preg_quote($a) . '$/')(array_keys(parse)),
-      parse,
+      _map(fn ($a) => '/^' . preg_quote($a) . '$/')(array_keys($parse)),
+      $parse,
       $a
     )
   );
