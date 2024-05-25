@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../.libphp/utils.php';
+require_once __DIR__ . '/../.libphp/Utils.php';
 require_once __DIR__ . '/../.libphp/RegistroModifiche.php';
 
 $titolo = 'TITOLO';
@@ -8,17 +8,9 @@ $pathsimmagini = [
   '../media/',
 ];
 $registro = (new RegistroModifiche())
-  ->dlog('', '', '', '')
-  ->dlog('', '', '', '')
-  ->dlog('', '', '', '')
-  ->dlog('', '', '', '')
-  ->clog('', '', '', '')
-  ->dlog('', '', '', '')
-  ->dlog('', '', '', '')
-  ->dlog('', '', '', '')
-  ->dlog('', '', '', '')
-  ->clog('', '', '', '')
-  ->slog('', '', '', '');
+  ->dlog('2024/05/01', 'A', 'C', 'ac')
+  ->clog('2024/05/02', 'B', 'E', 'bb')
+  ->slog('2024/05/03', 'C', 'B', 'cb');
 
 ob_start();
 ob_start(function ($tex) use ($registro) {
