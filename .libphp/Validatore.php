@@ -1,5 +1,8 @@
 <?php
 
+require_once __DIR__ . '/Stream.php';
+require_once __DIR__ . '/Utils.php';
+
 function _appiattisci_item($text) {
   $a = preg('/\\\\(begin|end){(itemize|enumerate)}/', $text, PREG_OFFSET_CAPTURE)[0];
 
