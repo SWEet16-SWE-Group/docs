@@ -33,7 +33,7 @@ ob_start(function ($tex) use ($registro) {
 \usepackage{hyperref}
 \usepackage{setspace}
 \usepackage{array}
-\usepackage[usenames,dvipsnames]{xcolor}
+\usepackage[usenames, dvipsnames]{xcolor}
 \usepackage{colortbl}
 \usepackage{tabularray}
 \usepackage[italian]{babel}
@@ -48,7 +48,7 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{<?php echo implode('', array_map(fn ($a) => "\{$a\}", $pathsimmagini)); ?>}
+\graphicspath{<?php echo implode('', array_map(fn ($a) => "{$a}", $pathsimmagini)); ?>}
 
 \begin{document}
 
@@ -68,8 +68,8 @@ Anno Accademico 2023/2024
 \includegraphics[width=\linewidth]{logo rotondo.jpg}
 \end{minipage}\hfil
 \begin{minipage}{0.55\linewidth}
-\textbf{Gruppo:} SWEet16 \\
-\textbf{Email:}
+\textbf{Gruppo}: SWEet16 \\
+\textbf{Email}:
 \href{mailto:sweet16.unipd@gmail.com}{\nolinkurl{sweet16.unipd@gmail.com}}
 \end{minipage}
 
