@@ -1,5 +1,9 @@
 <?php
 
+function str_replace_array($a, $s) {
+  return str_replace(array_keys($a), $a, $s);
+}
+
 class RegistroModifiche {
   private $tabella = [];
   private function log($incremento, $data, $autore, $verificatore, $descrizione) {
@@ -9,20 +13,27 @@ class RegistroModifiche {
   public function dlog($data, $autore, $verificatore, $descrizione) {
     return $this->log([0, 0, 1], $data, $autore, $verificatore, $descrizione);
   }
-  public function clog($data, $autore, $verificatore, $descrizione) {
+ public function clog($data, $autore, $verificatore, $descrizione) {
     return $this->log([0, 1, 0], $data, $autore, $verificatore, $descrizione);
   }
   public function slog($data, $autore, $verificatore, $descrizione) {
     return $this->log([1, 0, 0], $data, $autore, $verificatore, $descrizione);
   }
   public function __toString() {
-    return implode(
-      '',
-      array_map(
-        fn ($a) => implode(" & ", $a) . " \\\\ \\hline\n",
-        $this->tabella
-      )
-    );
+    return array_reduce(
+      $this->tabella,
+      function ($t, $a) {
+        $t->versione = match ($a[0]) {
+          [0, 0, 1] => [$t->versione[0], $t->versione[1], $t->versione[2] + 1],
+          [0, 1, 0] => [$t->versione[0], $t->versione[1] + 1, 0],
+          [1, 0, 0] => [$t->versione[0] + 1, 0, 0],
+        };
+        $a[0] = implode('.', $t->versione);
+        $t->testo .= implode(" & ", $a) . " \\\\ \\hline\n";
+        return $t;
+      },
+      (object)['versione' => [0, 0, 0], 'testo' => '']
+    )->testo;
   }
   public function versione() {
     $c = array_column($this->tabella, 0);
@@ -33,12 +44,41 @@ class RegistroModifiche {
     }, [0, 0, 0]);
     return vsprintf('%d.%d.%d', $c);
   }
+
+  public function autori() {
+    $a = array_column($this->tabella, 2);
+    sort($a);
+    return implode(", ", array_unique($a));
+  }
+
+  public function verificatori() {
+    $a = array_column($this->tabella, 3);
+    sort($a);
+    return implode(", ", array_unique($a));
+  }
 };
 
-$registro = (new RegistroModifiche());
+
+$titolo = 'TITOLO';
+$pathsimmagini = [
+  '../media/',
+];
+
+$registro = (new RegistroModifiche())
+  ->dlog('', '', '', '')
+  ->dlog('', '', '', '')
+  ->dlog('', '', '', '')
+  ->dlog('', '', '', '')
+  ->clog('', '', '', '')
+  ->dlog('', '', '', '')
+  ->dlog('', '', '', '')
+  ->dlog('', '', '', '')
+  ->dlog('', '', '', '')
+  ->clog('', '', '', '')
+  ->slog('', '', '', '');
 
 ob_start();
-ob_start(function ($tex) {
+ob_start(function ($tex) use ($registro) {
   return $tex;
 });
 ?>
@@ -65,7 +105,7 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{{PERCOSO_DA_AGGIORNARE_PER_LE_IMMAGINI}}
+\graphicspath{<?php echo implode('', array_map(fn ($a) => "\{$a\}", $pathsimmagini)); ?>}
 
 \begin{document}
 
@@ -94,7 +134,7 @@ Anno Accademico 2023/2024
 
 \begin{center}
 \begin{Huge}
-\textbf{Titolo del documento} \\
+\textbf{<?php echo $titolo; ?>} \\
 \vspace{4mm}
 
 \end{Huge}
@@ -104,11 +144,11 @@ Anno Accademico 2023/2024
 \begin{large}
 \begin{spacing}{1.4}
 \begin{tabular}{c c c}
-Redattori: & Alberto M. & \\
-Verificatori: & Iulius S. & \\
-Amministratore: & Alberto C. & \\
+Redattori: & <?php echo $registro->autori(); ?> & \\
+Verificatori: & <?php echo $registro->verificatori(); ?> & \\
+Amministratore: & AMMINISTRATORI & \\
 Destinatari: & T. Vardanega & R. Cardin \\
-Versione: & 0.1.0 &
+Versione: & <?php echo $registro->versione(); ?> &
 \end{tabular}
 \end{spacing}
 \end{large}
@@ -127,9 +167,9 @@ row{odd}={bg=white},
 row{even}={bg=lightgray},
 row{1}={bg=black,fg=white}
 }
+
 Versione & Data & Autore & Verificatore & Descrizione \\
-0.1.0 & 2023/10/30 & Mario & Luigi & Approvazione per rilascio \\
-\hline
+<?php echo $registro; ?>
 
 \end{tblr}
 
