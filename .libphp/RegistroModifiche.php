@@ -27,6 +27,7 @@ class RegistroModifiche {
           [1, 0, 0] => [$t->versione[0] + 1, 0, 0],
         };
         $a[0] = implode('.', $t->versione);
+        $a = array_map('trim', $a);
         $t->testo .= implode(" & ", $a) . " \\\\ \\hline\n";
         return $t;
       },
@@ -43,15 +44,17 @@ class RegistroModifiche {
     return vsprintf('%d.%d.%d', $c);
   }
 
-  public function autori() {
-    $a = array_column($this->tabella, 2);
+  private function select_column($key) {
+    $a = array_column($this->tabella, $key);
+    $a = array_map('trim', $a);
+    $a = array_filter($a, fn ($a) => strlen($a) > 0);
     sort($a);
     return implode(", ", array_unique($a));
   }
-
+  public function autori() {
+    return $this->select_column(2);
+  }
   public function verificatori() {
-    $a = array_column($this->tabella, 3);
-    sort($a);
-    return implode(", ", array_unique($a));
+    return $this->select_column(3);
   }
 };
