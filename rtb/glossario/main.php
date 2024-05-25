@@ -56,7 +56,7 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{<?php echo implode('', array_map(fn ($a) => "{$a}", $pathsimmagini)); ?>}
+\graphicspath{<?php echo implode('', array_map(fn ($a) => sprintf('{%s}',$a), $pathsimmagini)); ?>}
 \setcounter{secnumdepth}{-2}
 
 \begin{document}
