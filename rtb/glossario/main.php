@@ -2,22 +2,22 @@
 
 require_once __DIR__ . '/../../.libphp/Utils.php';
 require_once __DIR__ . '/../../.libphp/RegistroModifiche.php';
-require_once __DIR__ . '/../../.libphp/Vocaboli.php'; 
+require_once __DIR__ . '/../../.libphp/Vocaboli.php';
 
-$titolo = 'TITOLO';
+$titolo = 'Glossario';
 $pathsimmagini = [
   '../media/',
 ];
 $registro = (new RegistroModifiche())
-  ->clog('2024/02/14', 'Alex S.   ', 'Iulius S. ', 'Stesura scheletro documento                  ')
-  ->clog('2024/02/23', 'Alex S.   ', 'Alberto M.', 'Inserimento prime definizioni                ')
-  ->clog('2024/02/24', 'Alberto C.', 'Alberto M.', 'Inserimento definizioni Analisi dei Requisiti')
-  ->clog('2024/02/27', 'Alberto C.', 'Alberto M.', 'Inserimento definizioni Norme di Progetto    ')
-  ->dlog('2024/03/06', 'Alex S.   ', 'Iulius S. ', 'Aggiornamento definizioni                    ')
-  ->clog('2024/03/19', 'Alberto C.', 'Iulius S. ', 'Inserimento definizioni Piano di Progetto    ')
-  ->clog('2024/03/23', 'Alex S.   ', 'Alberto M.', 'Inserimento definizioni Piano di Qualifica   ')
-  ->dlog('2024/03/26', 'Alberto C.', 'Iulius S. ', 'Aggiornamento definizioni                    ')
-  ->slog('2024/04/16', 'Alex S.   ', '          ', 'Approvazione per il rilascio                 ');
+  ->log(CE, '2024/02/14', 'Alex S.   ', 'Iulius S. ', 'Stesura scheletro documento                  ')
+  ->log(CE, '2024/02/23', 'Alex S.   ', 'Alberto M.', 'Inserimento prime definizioni                ')
+  ->log(CE, '2024/02/24', 'Alberto C.', 'Alberto M.', 'Inserimento definizioni Analisi dei Requisiti')
+  ->log(CE, '2024/02/27', 'Alberto C.', 'Alberto M.', 'Inserimento definizioni Norme di Progetto    ')
+  ->log(DX, '2024/03/06', 'Alex S.   ', 'Iulius S. ', 'Aggiornamento definizioni                    ')
+  ->log(CE, '2024/03/19', 'Alberto C.', 'Iulius S. ', 'Inserimento definizioni Piano di Progetto    ')
+  ->log(CE, '2024/03/23', 'Alex S.   ', 'Alberto M.', 'Inserimento definizioni Piano di Qualifica   ')
+  ->log(DX, '2024/03/26', 'Alberto C.', 'Iulius S. ', 'Aggiornamento definizioni                    ')
+  ->log(SX, '2024/04/16', 'Alex S.   ', '          ', 'Approvazione per il rilascio                 ');
 
 ob_start();
 ob_start(function ($tex) use ($registro) {
