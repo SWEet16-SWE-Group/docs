@@ -15,17 +15,9 @@ function findvocaboli_file($file) {
   return preg('/\\\\emph{(.*?)}\$\^{G}\$/', file_get_contents($file))[1];
 };
 
-function applicative_list($functions, $args) {
-  return array_reduce(
-    array_map(fn ($f) => array_map(fn ($a) => $f($a), $args), $functions),
-    fn ($a, $b) => array_merge($a, $b),
-    []
-  );
-}
-
 function findoutliers($files) {
   return stream(
-    applicative_list(['findoutliers_file'], $files),
+    findoutliers_file($files),
     _filter(fn ($a) => count($a) > 0),
     _map(fn ($a) => $a[0]),
   );
@@ -33,7 +25,7 @@ function findoutliers($files) {
 
 function findvocaboli($files) {
   return stream(
-    applicative_list(['findvocaboli_file'], $files),
+    findvocaboli_file($files),
     _filter(fn ($a) => count($a) > 0),
     _reduce(fn ($a, $b) => array_merge($a, $b), []),
     _map('ucfirst'),
