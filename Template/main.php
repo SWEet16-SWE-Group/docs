@@ -1,4 +1,42 @@
 <?php
+
+class RegistroModifiche {
+  private $tabella = [];
+  private function log($incremento, $data, $autore, $verificatore, $descrizione) {
+    $this->tabella[] = [$incremento, $data, $autore, $verificatore, $descrizione];
+    return $this;
+  }
+  public function dlog($data, $autore, $verificatore, $descrizione) {
+    return $this->log([0, 0, 1], $data, $autore, $verificatore, $descrizione);
+  }
+  public function clog($data, $autore, $verificatore, $descrizione) {
+    return $this->log([0, 1, 0], $data, $autore, $verificatore, $descrizione);
+  }
+  public function slog($data, $autore, $verificatore, $descrizione) {
+    return $this->log([1, 0, 0], $data, $autore, $verificatore, $descrizione);
+  }
+  public function __toString() {
+    return implode(
+      '',
+      array_map(
+        fn ($a) => implode(" & ", $a) . " \\\\ \\hline\n",
+        $this->tabella
+      )
+    );
+  }
+  public function versione() {
+    $c = array_column($this->tabella, 0);
+    $c = array_reduce($c, fn ($a, $b) => match ($b) {
+      [0, 0, 1] => [$a[0], $a[1], $a[2] + 1],
+      [0, 1, 0] => [$a[0], $a[1] + 1, 0],
+      [1, 0, 0] => [$a[0] + 1, 0, 0],
+    }, [0, 0, 0]);
+    return vsprintf('%d.%d.%d', $c);
+  }
+};
+
+$registro = (new RegistroModifiche());
+
 ob_start();
 ob_start(function ($tex) {
   return $tex;
