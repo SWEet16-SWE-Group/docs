@@ -127,6 +127,6 @@ $txt = implode(
   )
 );
 
-echo 'PHP: preprocessing del consuntivo' . "\n";
-
-file_put_contents('out.tex', $txt);
+//echo 'PHP: preprocessing del consuntivo' . "\n";
+//file_put_contents('out.tex', $txt);
+echo $txt;
