@@ -39,7 +39,7 @@ function main_compile($files) {
 
 echo "\n";
 
-$dict = __DIR__ . '/.lib_php/sweet16-dict';
+$dict = __DIR__ . '/.libphp/sweet16-dict';
 echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "\n\n";
 $e == false && die(11);
 
