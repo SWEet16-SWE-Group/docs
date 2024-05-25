@@ -1,8 +1,8 @@
 <?php
 
-require_once __DIR__ . '/.lib_php/utils.php';
-require_once __DIR__ . '/.lib_php/stream.php';
-require_once __DIR__ . '/.lib_php/Vocaboli.php';
+require_once __DIR__ . '/.libphp/utils.php';
+require_once __DIR__ . '/.libphp/stream.php';
+require_once __DIR__ . '/.libphp/Vocaboli.php';
 
 function _appiattisci_item($text) {
   $a = preg('/\\\\(begin|end){(itemize|enumerate)}/', $text, PREG_OFFSET_CAPTURE)[0];
@@ -135,12 +135,14 @@ function main_compile($files) {
 
 echo "\n";
 
+die();
+
 $find = _find('main.tex', __DIR__);
 $dict = __DIR__ . '/.lib_php/sweet16-dict';
 echo "Controllo esistenza del dizionario: " . json_encode($e = touch($dict)) . "\n\n";
 $e == false && die(11);
 
-$tex = array_merge(_find('*.tex', __DIR__), _find('*.tex', __DIR__ . '/../pb/'));
+$tex = array_merge(_find('*.tex', __DIR__ . '/rtb/'), _find('*.tex', __DIR__ . '/pb/'));
 
 main_esegui_php(_find('*.php', __DIR__));
 main_validatore_stilistico($tex);
