@@ -53,9 +53,9 @@ foreach (_find('main.php', __DIR__) as $file) {
 
 $tex = _find('main.tex', __DIR__);
 
-if (in_array('--action', $argv)) {
-  main_correttore_ortografico_action($dict, $tex);
-} else {
+if (in_array('--compile', $argv)) {
   main_correttore_ortografico($dict, $tex);
   main_compile($tex);
+} else {
+  main_correttore_ortografico_action($dict, $tex);
 }
