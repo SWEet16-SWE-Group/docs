@@ -3,17 +3,19 @@
 require_once __DIR__ . '/Stream.php';
 require_once __DIR__ . '/Utils.php';
 
-function findoutliers_file($file) {
+function _findoutliers($text) {
   return stream(
-    preg('/.*?[^}]\$\^{G}\$.*?/', file_get_contents($file))[0],
+    preg('/.*?[^}]\$\^{G}\$.*?/', $text)[0],
     _filter(fn ($a) => !str_contains($a, 'La presenza di un termine all’interno del glossario viene indicata applicando una')),
-    _map(fn ($a) => ['file' => $file, 'context' => $a]),
   );
 }
 
-function findvocaboli_file($file) {
-  return preg('/\\\\emph{(.*?)}\$\^{G}\$/', file_get_contents($file))[1];
-};
+function findoutliers_file($file) {
+  return stream(
+    _findoutliers(file_get_contents($file))[0],
+    _map(fn ($a) => ['file' => $file, 'context' => $a]),
+  );
+}
 
 function findoutliers($files) {
   return stream(
@@ -21,6 +23,14 @@ function findoutliers($files) {
     _filter(fn ($a) => count($a) > 0),
     _map(fn ($a) => $a[0]),
   );
+}
+
+function _findvocaboli($text) {
+  return preg('/\\\\emph{(.*?)}\$\^{G}\$/', $text)[1];
+}
+
+function findvocaboli_file($file) {
+  return _findvocaboli(file_get_contents($file))[1];
 }
 
 function findvocaboli($files) {
@@ -33,7 +43,6 @@ function findvocaboli($files) {
     _unique(),
   );
 }
-
 
 function _parse() {
   $parse = [
