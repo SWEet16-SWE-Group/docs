@@ -83,6 +83,8 @@ function racatta_errori($titolo, $tex) {
   );
   $missing = stream(
     _findvocaboli($tex),
+    _map('ucfirst'),
+    _parse(),
     _filter(fn ($a) => !array_key_exists($a, definizioni_glossario)),
     _map(fn ($a) => "\t$a\n"),
     _implode(''),
