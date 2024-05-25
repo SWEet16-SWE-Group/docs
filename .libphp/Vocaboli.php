@@ -5,7 +5,7 @@ require_once __DIR__ . '/Utils.php';
 
 function _findoutliers($text) {
   return stream(
-    preg('/.*?[^}]\$\^{G}\$.*?/', $text)[0],
+    preg('/.*?[^}]\$\^{G}\$.*/', $text)[0],
     _filter(fn ($a) => !str_contains($a, 'La presenza di un termine all’interno del glossario viene indicata applicando una')),
   );
 }
@@ -136,30 +136,4 @@ function print_vocaboli() {
     _sort(),
     _implode(""),
   );
-}
-
-function die_if_outliers($text) {
-  if (count($outliers = _findoutliers($text)) > 0) {
-    echo "\n\nQuesti vocaboli devono essere definiti con \\empf{VOCABOLO}$^{G}$\n";
-    echo stream(
-      $outliers,
-      _map(fn ($a) => "\t$a\n"),
-      _implode(''),
-    );
-    die(12);
-  }
-}
-
-function die_if_vocaboli_non_definiti($text) {
-  $missing = stream(
-    _findvocaboli($text),
-    _filter(fn ($a) => !array_key_exists($a, definizioni_glossario)),
-    _map(fn ($a) => "\t$a\n"),
-    _implode(''),
-  );
-  if (strlen($missing) > 0) {
-    echo "\n\nMancano le definizioni dei sequenti vocaboli:\n";
-    echo $missing;
-    die(11);
-  }
 }
