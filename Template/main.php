@@ -39,9 +39,6 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \usepackage{tabularray}
 \usepackage[italian]{babel}
 
-roba a$^{G}$ altra roba
-roba \\emph{roba fatta bene}$^{G}$ testo dopo
-
 \geometry{
 a4paper,
 left=25mm,
