@@ -2,20 +2,15 @@
 
 require_once __DIR__ . '/Utils.php';
 
+const DX = [0,0,1];
+const CE = [0,1,0];
+const SX = [1,0,0];
+
 class RegistroModifiche {
   private $tabella = [];
-  private function log($incremento, $data, $autore, $verificatore, $descrizione) {
+  public function log($incremento, $data, $autore, $verificatore, $descrizione) {
     $this->tabella[] = [$incremento, $data, $autore, $verificatore, $descrizione];
     return $this;
-  }
-  public function dlog($data, $autore, $verificatore, $descrizione) {
-    return $this->log([0, 0, 1], $data, $autore, $verificatore, $descrizione);
-  }
-  public function clog($data, $autore, $verificatore, $descrizione) {
-    return $this->log([0, 1, 0], $data, $autore, $verificatore, $descrizione);
-  }
-  public function slog($data, $autore, $verificatore, $descrizione) {
-    return $this->log([1, 0, 0], $data, $autore, $verificatore, $descrizione);
   }
   public function __toString() {
     return array_reduce(

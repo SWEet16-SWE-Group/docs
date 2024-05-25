@@ -10,9 +10,9 @@ $pathsimmagini = [
   '../media/',
 ];
 $registro = (new RegistroModifiche())
-  ->dlog('2024/05/01', 'A', 'C', 'ac')
-  ->clog('2024/05/02', 'B', 'E', 'bb')
-  ->slog('2024/05/03', 'C', 'B', 'cb');
+  ->log(DX, '2024/05/01', 'A', 'C', 'ac')
+  ->log(CE, '2024/05/02', 'B', 'E', 'bb')
+  ->log(SX, '2024/05/03', 'C', 'B', 'cb');
 
 $error_flag = 0;
 ob_start();
