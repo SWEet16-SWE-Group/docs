@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/Utils.php';
+
 class RegistroModifiche {
   private $tabella = [];
   private function log($incremento, $data, $autore, $verificatore, $descrizione) {
@@ -9,7 +11,7 @@ class RegistroModifiche {
   public function dlog($data, $autore, $verificatore, $descrizione) {
     return $this->log([0, 0, 1], $data, $autore, $verificatore, $descrizione);
   }
- public function clog($data, $autore, $verificatore, $descrizione) {
+  public function clog($data, $autore, $verificatore, $descrizione) {
     return $this->log([0, 1, 0], $data, $autore, $verificatore, $descrizione);
   }
   public function slog($data, $autore, $verificatore, $descrizione) {

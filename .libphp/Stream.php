@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/Utils.php';
+
 function _map($f) {
   return fn ($a) => array_map($f, $a);
 }
