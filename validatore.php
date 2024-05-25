@@ -1,7 +1,7 @@
 <?php
 
-require_once __DIR__ . '/.libphp/utils.php';
-require_once __DIR__ . '/.libphp/stream.php';
+require_once __DIR__ . '/.libphp/Utils.php';
+require_once __DIR__ . '/.libphp/Stream.php';
 require_once __DIR__ . '/.libphp/Vocaboli.php';
 require_once __DIR__ . '/.libphp/Validatore.php';
 
