@@ -14,4 +14,4 @@ Per riportare i nomi dei ruoli nelle tabelle, essi sono stati abbreviati come se
 \item \textbf{Vf}: Verificatore.
 \end{itemize}
 
-<?php require_once "src/consuntivo.d/out.php"; ?>
+<?php require_once __DIR__ . "/src/consuntivo.d/out.php"; ?>

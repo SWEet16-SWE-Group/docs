@@ -109,21 +109,21 @@ Anno Accademico 2023/2024
 \end{huge}
 \vspace{5pt}
 
-<?php require_once "src/registro-modifiche.php"; ?>
+<?php require_once __DIR__ . "/src/registro-modifiche.php"; ?>
 
 \pagebreak
 \tableofcontents
 \pagebreak
 
-<?php require_once "src/introduzione.php"; ?>
+<?php require_once __DIR__ . "/src/introduzione.php"; ?>
 
-<?php require_once "src/qualita-di-processo.php"; ?>
+<?php require_once __DIR__ . "/src/qualita-di-processo.php"; ?>
 
-<?php require_once "src/qualita-di-prodotto.php"; ?>
+<?php require_once __DIR__ . "/src/qualita-di-prodotto.php"; ?>
 
-<?php require_once "src/test.php"; ?>
+<?php require_once __DIR__ . "/src/test.php"; ?>
 
-<?php require_once "src/resoconto-delle-attivita-di-verifica.php"; ?>
+<?php require_once __DIR__ . "/src/resoconto-delle-attivita-di-verifica.php"; ?>
 
 \end{document}
 

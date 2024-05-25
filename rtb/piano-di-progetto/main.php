@@ -99,25 +99,25 @@ Anno Accademico 2023/2024
 \end{huge}
 \vspace{5pt}
 
-<?php require_once "src/registro-modifiche.php"; ?>
+<?php require_once __DIR__ . "/src/registro-modifiche.php"; ?>
 
 \pagebreak
 \tableofcontents
 \pagebreak
 
-<?php require_once "src/introduzione.php"; ?>
+<?php require_once __DIR__ . "/src/introduzione.php"; ?>
 
-<?php require_once "src/analisi-dei-rischi.php"; ?>
+<?php require_once __DIR__ . "/src/analisi-dei-rischi.php"; ?>
 
-<?php require_once "src/modello-di-sviluppo.php"; ?>
+<?php require_once __DIR__ . "/src/modello-di-sviluppo.php"; ?>
 
-<?php require_once "src/pianificazione.php"; ?>
+<?php require_once __DIR__ . "/src/pianificazione.php"; ?>
 
 \pagebreak
 
-<?php require_once "src/preventivo.php"; ?>
+<?php require_once __DIR__ . "/src/preventivo.php"; ?>
 
-<?php require_once "src/consuntivo.php"; ?>
+<?php require_once __DIR__ . "/src/consuntivo.php"; ?>
 
 \end{document}
 

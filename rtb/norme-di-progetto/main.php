@@ -108,29 +108,29 @@ Anno Accademico 2023/2024
 \end{huge}
 \vspace{5pt}
 
-<?php require_once "src/registro-modifiche.php"; ?>
+<?php require_once __DIR__ . "/src/registro-modifiche.php"; ?>
 
 \pagebreak
 \tableofcontents
 \pagebreak
 
-<?php require_once "src/introduzione.php"; ?>
+<?php require_once __DIR__ . "/src/introduzione.php"; ?>
 % fine sezione introduzione
 \pagebreak
 
 \section{Processi Primari}
 
-<?php require_once "src/fornitura.php"; ?>
+<?php require_once __DIR__ . "/src/fornitura.php"; ?>
     %fine subsection fornitura
 
-<?php require_once "src/sviluppo.php"; ?>
+<?php require_once __DIR__ . "/src/sviluppo.php"; ?>
     %fine subsection sviluppo
 
-<?php require_once "src/progettazione.php"; ?>
+<?php require_once __DIR__ . "/src/progettazione.php"; ?>
 
     %fine progettazione
 
-<?php require_once "src/codifica.php"; ?>
+<?php require_once __DIR__ . "/src/codifica.php"; ?>
 
     %fine codifica
 %fine processi primari
@@ -138,26 +138,26 @@ Anno Accademico 2023/2024
 
 \section{Processi di Supporto}
 
-<?php require_once "src/documentazione.php"; ?>
+<?php require_once __DIR__ . "/src/documentazione.php"; ?>
 
     % fine documentazione
-<?php require_once "src/gestione-configurazione.php"; ?>
+<?php require_once __DIR__ . "/src/gestione-configurazione.php"; ?>
     % fine gestione della configurazione
 
-<?php require_once "src/gestione-qualita.php"; ?>
+<?php require_once __DIR__ . "/src/gestione-qualita.php"; ?>
 
     % fine gestione della qualità
 
-<?php require_once "src/verifica.php"; ?>
+<?php require_once __DIR__ . "/src/verifica.php"; ?>
     % fine verifica
 
-<?php require_once "src/validazione.php"; ?>
+<?php require_once __DIR__ . "/src/validazione.php"; ?>
 % fine processi di supporto
 \pagebreak
 
 \section{Processi organizzativi}
 
-<?php require_once "src/gestione-processi.php"; ?>
+<?php require_once __DIR__ . "/src/gestione-processi.php"; ?>
 
 \end{document}
 
