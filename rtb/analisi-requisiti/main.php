@@ -92,29 +92,29 @@ Anno Accademico 2023/2024
 
 \pagebreak
 
-<?php require_once "src/registro-modifiche.tex"; ?>
+<?php require_once "src/registro-modifiche.php"; ?>
 
 \pagebreak
 \tableofcontents
 \pagebreak
 
-<?php require_once "src/introduzione.tex"; ?>
+<?php require_once "src/introduzione.php"; ?>
 
 \pagebreak
 
-<?php require_once "src/descrizione.tex"; ?>
+<?php require_once "src/descrizione.php"; ?>
 
 \pagebreak
 
-<?php require_once "src/casi-uso.tex"; ?>
+<?php require_once "src/casi-uso.php"; ?>
 
 \pagebreak
 
-<?php require_once "src/requisiti.tex"; ?>
+<?php require_once "src/requisiti.php"; ?>
 
 \pagebreak
 
-<?php require_once "src/elenco-delle-tabelle.tex"; ?>
+<?php require_once "src/elenco-delle-tabelle.php"; ?>
 
 \end{document}
 

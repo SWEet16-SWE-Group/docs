@@ -114,23 +114,23 @@ Anno Accademico 2023/2024
 \tableofcontents
 \pagebreak
 
-<?php require_once "src/introduzione.tex"; ?>
+<?php require_once "src/introduzione.php"; ?>
 % fine sezione introduzione
 \pagebreak
 
 \section{Processi Primari}
 
-<?php require_once "src/fornitura.tex"; ?>
+<?php require_once "src/fornitura.php"; ?>
     %fine subsection fornitura
 
-<?php require_once "src/sviluppo.tex"; ?>
+<?php require_once "src/sviluppo.php"; ?>
     %fine subsection sviluppo
 
-<?php require_once "src/progettazione.tex"; ?>
+<?php require_once "src/progettazione.php"; ?>
 
     %fine progettazione
 
-<?php require_once "src/codifica.tex"; ?>
+<?php require_once "src/codifica.php"; ?>
 
     %fine codifica
 %fine processi primari
@@ -138,26 +138,26 @@ Anno Accademico 2023/2024
 
 \section{Processi di Supporto}
 
-<?php require_once "src/documentazione.tex"; ?>
+<?php require_once "src/documentazione.php"; ?>
 
     % fine documentazione
-<?php require_once "src/gestione-configurazione.tex"; ?>
+<?php require_once "src/gestione-configurazione.php"; ?>
     % fine gestione della configurazione
 
-<?php require_once "src/gestione-qualita.tex"; ?>
+<?php require_once "src/gestione-qualita.php"; ?>
 
     % fine gestione della qualità
 
-<?php require_once "src/verifica.tex"; ?>
+<?php require_once "src/verifica.php"; ?>
     % fine verifica
 
-<?php require_once "src/validazione.tex"; ?>
+<?php require_once "src/validazione.php"; ?>
 % fine processi di supporto
 \pagebreak
 
 \section{Processi organizzativi}
 
-<?php require_once "src/gestione-processi.tex"; ?>
+<?php require_once "src/gestione-processi.php"; ?>
 
 \end{document}
 

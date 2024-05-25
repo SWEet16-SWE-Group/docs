@@ -105,19 +105,19 @@ Anno Accademico 2023/2024
 \tableofcontents
 \pagebreak
 
-<?php require_once "src/introduzione.tex"; ?>
+<?php require_once "src/introduzione.php"; ?>
 
-<?php require_once "src/analisi-dei-rischi.tex"; ?>
+<?php require_once "src/analisi-dei-rischi.php"; ?>
 
-<?php require_once "src/modello-di-sviluppo.tex"; ?>
+<?php require_once "src/modello-di-sviluppo.php"; ?>
 
-<?php require_once "src/pianificazione.tex"; ?>
+<?php require_once "src/pianificazione.php"; ?>
 
 \pagebreak
 
-<?php require_once "src/preventivo.tex"; ?>
+<?php require_once "src/preventivo.php"; ?>
 
-<?php require_once "src/consuntivo.tex"; ?>
+<?php require_once "src/consuntivo.php"; ?>
 
 \end{document}
 

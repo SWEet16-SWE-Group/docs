@@ -115,15 +115,15 @@ Anno Accademico 2023/2024
 \tableofcontents
 \pagebreak
 
-<?php require_once "src/introduzione.tex"; ?>
+<?php require_once "src/introduzione.php"; ?>
 
-<?php require_once "src/qualita-di-processo.tex"; ?>
+<?php require_once "src/qualita-di-processo.php"; ?>
 
-<?php require_once "src/qualita-di-prodotto.tex"; ?>
+<?php require_once "src/qualita-di-prodotto.php"; ?>
 
-<?php require_once "src/test.tex"; ?>
+<?php require_once "src/test.php"; ?>
 
-<?php require_once "src/resoconto-delle-attivita-di-verifica.tex"; ?>
+<?php require_once "src/resoconto-delle-attivita-di-verifica.php"; ?>
 
 \end{document}
 
