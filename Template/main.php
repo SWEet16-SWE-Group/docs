@@ -14,10 +14,14 @@ $registro = (new RegistroModifiche())
   ->clog('2024/05/02', 'B', 'E', 'bb')
   ->slog('2024/05/03', 'C', 'B', 'cb');
 
+$error_flag = 0;
 ob_start();
-ob_start(function ($tex) {
-  die_if_outliers($tex);
-  die_if_vocaboli_non_definiti($tex);
+ob_start(function ($tex) use ($titolo, &$error_flag) {
+  $errormsg = racatta_errori($titolo, $tex);
+  if (strlen($errormsg) > 0) {
+    $error_flag = 11;
+    return $errormsg;
+  }
   $tex = _valida_testo($tex);
   return $tex;
 });
@@ -34,6 +38,9 @@ ob_start(function ($tex) {
 \usepackage{colortbl}
 \usepackage{tabularray}
 \usepackage[italian]{babel}
+
+roba a$^{G}$ altra roba
+roba \\emph{roba fatta bene}$^{G}$ testo dopo
 
 \geometry{
 a4paper,
@@ -124,9 +131,10 @@ $tex = ob_get_contents();
 ob_end_clean();
 
 $opts = getopt('p');
-if (array_key_exists('p', $opts)) {
+if (array_key_exists('p', $opts) || $error_flag > 0) {
   echo $tex;
 } else {
   chdir(__DIR__);
   file_put_contents('main.tex', $tex);
 }
+return $error_flag;
