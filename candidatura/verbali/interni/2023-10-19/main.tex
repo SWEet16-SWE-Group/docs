@@ -1,3 +1,24 @@
+<?php
+set_include_path(__DIR__ . '/../.libphp/');
+require_once 'Utils.php';
+require_once 'RegistroModifiche.php';
+require_once 'Vocaboli.php';
+require_once 'Validatore.php';
+require_once 'Membri.php';
+
+$titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/candidatura/verbali/interni/2023-10-19/main.tex';
+$error_flag = 0;
+ob_start();
+ob_start(function ($tex) use ($titolo, &$error_flag) {
+  $errormsg = racatta_errori($titolo, $tex);
+  if (strlen($errormsg) > 0) {
+    $error_flag = 11;
+    return $errormsg;
+  }
+  $tex = _valida_testo($tex);
+  return $tex;
+});
+?>
 \documentclass[a4paper, 11pt]{article}
 \usepackage{graphicx} % Required for inserting images
 \usepackage{amsmath}
@@ -144,3 +165,17 @@ E' stato inoltre pianificato un allineamento del gruppo sulle competenze base de
 
 \end{document}
 
+
+<?php
+ob_end_flush();
+$tex = ob_get_contents();
+ob_end_clean();
+
+$opts = getopt('p');
+if (array_key_exists('p', $opts) || $error_flag > 0) {
+  echo $tex;
+} else {
+  chdir(__DIR__);
+  file_put_contents('main.tex', $tex);
+}
+return $error_flag;

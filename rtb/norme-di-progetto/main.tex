@@ -1,3 +1,24 @@
+<?php
+set_include_path(__DIR__ . '/../.libphp/');
+require_once 'Utils.php';
+require_once 'RegistroModifiche.php';
+require_once 'Vocaboli.php';
+require_once 'Validatore.php';
+require_once 'Membri.php';
+
+$titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/norme-di-progetto/main.tex';
+$error_flag = 0;
+ob_start();
+ob_start(function ($tex) use ($titolo, &$error_flag) {
+  $errormsg = racatta_errori($titolo, $tex);
+  if (strlen($errormsg) > 0) {
+    $error_flag = 11;
+    return $errormsg;
+  }
+  $tex = _valida_testo($tex);
+  return $tex;
+});
+?>
 \nonstopmode
 \documentclass[a4paper, 11pt]{article}
 \usepackage{graphicx} % Required for inserting images
@@ -87,29 +108,29 @@ Anno Accademico 2023/2024
 \end{huge}
 \vspace{5pt}
 
-\input {src/registro-modifiche.tex}
+<? require_once "src/registro-modifiche.tex"; ?>
 
 \pagebreak
 \tableofcontents
 \pagebreak
 
-\input{src/introduzione.tex}
+<?php require_once 'src/introduzione.tex'; ?>
 % fine sezione introduzione
 \pagebreak
 
 \section{Processi Primari}
 
-\input{src/fornitura.tex}
+<?php require_once 'src/fornitura.tex'; ?>
     %fine subsection fornitura
 
-\input{src/sviluppo.tex}
+<?php require_once 'src/sviluppo.tex'; ?>
     %fine subsection sviluppo
 
-\input{src/progettazione.tex}
+<?php require_once 'src/progettazione.tex'; ?>
 
     %fine progettazione
 
-\input{src/codifica.tex}
+<?php require_once 'src/codifica.tex'; ?>
 
     %fine codifica
 %fine processi primari
@@ -117,25 +138,39 @@ Anno Accademico 2023/2024
 
 \section{Processi di Supporto}
 
-\input{src/documentazione.tex}
+<?php require_once 'src/documentazione.tex'; ?>
 
     % fine documentazione
-\input{src/gestione-configurazione.tex}
+<?php require_once 'src/gestione-configurazione.tex'; ?>
     % fine gestione della configurazione
 
-\input{src/gestione-qualita.tex}
+<?php require_once 'src/gestione-qualita.tex'; ?>
 
     % fine gestione della qualità
 
-\input{src/verifica.tex}
+<?php require_once 'src/verifica.tex'; ?>
     % fine verifica
 
-\input{src/validazione.tex}
+<?php require_once 'src/validazione.tex'; ?>
 % fine processi di supporto
 \pagebreak
 
 \section{Processi organizzativi}
 
-\input{src/gestione-processi.tex}
+<?php require_once 'src/gestione-processi.tex'; ?>
 
 \end{document}
+
+<?php
+ob_end_flush();
+$tex = ob_get_contents();
+ob_end_clean();
+
+$opts = getopt('p');
+if (array_key_exists('p', $opts) || $error_flag > 0) {
+  echo $tex;
+} else {
+  chdir(__DIR__);
+  file_put_contents('main.tex', $tex);
+}
+return $error_flag;
