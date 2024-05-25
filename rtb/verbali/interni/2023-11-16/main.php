@@ -1,5 +1,5 @@
 <?php
-set_include_path(__DIR__ . '/../.libphp/');
+set_include_path(__DIR__ . '/../../../../.libphp/');
 require_once 'Utils.php';
 require_once 'RegistroModifiche.php';
 require_once 'Vocaboli.php';
