@@ -224,6 +224,8 @@ $periodi = [
   ]
 ];
 
+// CODICE DI VALIDAZIONE DELLE TABELLE
+// NON TOCCARE
 $_ = array_map(
   'indicizza_tabella',
   array_merge(
