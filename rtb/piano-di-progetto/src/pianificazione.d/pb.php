@@ -1,6 +1,18 @@
 <?php
 
 require_once __DIR__ . '/../../../../.libphp/Utils.php';
+require_once __DIR__ . '/../../../../.libphp/Membri.php';
+
+function indicizza_tabella($a) {
+  return [
+    alberto_c()->nome => $a[alberto_c()->nome],
+    bilal_em()->nome => $a[bilal_em()->nome],
+    alberto_m()->nome => $a[alberto_m()->nome],
+    alex_s()->nome => $a[alex_s()->nome],
+    iulius_s()->nome => $a[iulius_s()->nome],
+    giovanni_z()->nome => $a[giovanni_z()->nome],
+  ];
+}
 
 function tabella_to_string($a) {
   return implode('', array_map(fn ($a) => implode(" & ", $a) . " \\\\ \\hline\n", $a));
@@ -30,7 +42,7 @@ function tabella_soldi($a) {
   return [
     ['Ruolo', 'Costo orario (€/h)', 'N. Ore', 'Costo totale (€)'],
     ...($colonne = array_map(fn ($k, $b) => [$k, $b, $o = array_sum($a[$k]), $o * $b], $k, $ruoli)),
-    ['Totale', null, null, array_sum(array_column($colonne, 3))]
+    ['\\SetCell[c=3]{l} Totale', null, null, array_sum(array_column($colonne, 3))]
   ];
 }
 
@@ -64,30 +76,30 @@ function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $
   EOF;
 
   $latex = <<<'EOF'
-    \subsection{TITOLO}
+    \subsubsection{TITOLO}
 
     Inizio: INIZIO \\
     Fine: FINE \\
 
-    \subsubsection{Preventivo orario}
+    \subsubsubsection{Preventivo orario}
 
     PREVENTIVO_ORE
 
-    \subsubsection{Preventivo economico}
+    \subsubsubsection{Preventivo economico}
 
     PREVENTIVO_SOLDI
 
-    \subsubsection{Attività svolte}
+    \subsubsubsection{Attività svolte}
 
     \begin{itemize}
     ATTIVITA
     \end{itemize}
 
-    \subsubsection{Consuntivo orario}
+    \subsubsubsection{Consuntivo orario}
   
     CONSUNTIVO_ORE
   
-    \textbf{Consuntivo economico}
+    \subsubsubsection{Consuntivo economico}
 
     CONSUNTIVO_SOLDI
 
@@ -211,5 +223,13 @@ $periodi = [
     '',
   ]
 ];
+
+$_ = array_map(
+  'indicizza_tabella',
+  array_merge(
+    array_column($periodi, 4),
+    array_column($periodi, 5),
+  )
+);
 
 echo implode("\n", array_map(fn ($a) => periodo(...$a), $periodi));
