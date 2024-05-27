@@ -51,7 +51,10 @@ foreach (stream(
 
 echo "\n";
 
-$tex = _find('main.tex', __DIR__);
+$tex = stream(
+  _find('main.tex', __DIR__),
+  _filter(fn ($a) => !str_contains($a, 'Template/main.tex'))
+);
 main_correttore_ortografico_action($dict, $tex);
 if (in_array('--compile', $argv)) {
   main_compile($tex);

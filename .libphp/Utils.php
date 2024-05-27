@@ -25,7 +25,7 @@ const glob_depth = 12;
 function _find($p, $dir) {
   $depth = fn ($fn, $d, $a) => $d > 0 ? $fn($fn, $d - 1, "{,*/$a}") : $a;
   $depth = fn ($d) => $depth($depth, $d, '');
-  return glob("$dir/$depth(12)/$p", GLOB_BRACE);
+  return glob("$dir/{$depth(12)}/$p", GLOB_BRACE);
 }
 
 function preg($r, $s, $f = 0) {
