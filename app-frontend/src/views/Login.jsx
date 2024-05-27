@@ -7,7 +7,8 @@ import { useState } from "react";
 export default function Login() {
     const emailRef = createRef()
     const passwordRef = createRef()
-    const { setUser, setToken } = useStateContext()
+
+    const { setUser, setToken, setRole} = useStateContext()
     const [message, setMessage] = useState(null)
 
     const onSubmit = ev => {
@@ -21,6 +22,8 @@ export default function Login() {
                 setUser(data.user)
                 setRole(data.role);
                 setToken(data.token);
+
+                //debugger;
             })
             .catch((err) => {
                 const response = err.response;

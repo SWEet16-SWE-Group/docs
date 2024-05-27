@@ -2,13 +2,17 @@ import {Link, Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
 
-export default function DefaultLayout() {
+export default function AuthenticatedLayout() {
     
     const {user, token,role,setUser, setToken,setRole} =  useStateContext()
     
     if (!token) {
-        return <Navigate to={"/signup"} />
+        return <Navigate to={"/login"} />
     }
+
+    /*if(token && role === 'AUTENTICATO')
+    {}*/
+    debugger;
 
     const onLogout = (ev) => {
         ev.preventDefault()
@@ -33,12 +37,14 @@ export default function DefaultLayout() {
                         Header
                     </div>
                     <div>
-                        {user.name}
+                        {user.email}
                         <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
                     </div>
                 </header>
 
                 <main>
+
+                    <div>Autenticato!</div>
                 <Outlet />
                 </main>
             </div>

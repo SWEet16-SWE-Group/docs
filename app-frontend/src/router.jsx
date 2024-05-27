@@ -1,34 +1,94 @@
-import {createBrowserRouter} from "react-router-dom";
+import {createBrowserRouter, Navigate} from "react-router-dom";
 import SignUp from "./views/SignUp.jsx";
 import Login from "./views/Login";
 import NotFound from "./views/NotFound.jsx";
-import DefaultLayout from "./components/DefaultLayout";
+import AuthenticatedLayout from "./components/AuthenticatedLayout";
 import GuestLayout from "./components/GuestLayout";
+import ClientLayout from "./components/ClientLayout"
+import RestaurantLayout from "./components/RestaurantLayout"
 
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <DefaultLayout />,
+        element: <AuthenticatedLayout />,
         children: [
-            // decommentare qui per dashboard
-            // {
-            // path: '/',
-            // element: <Navigate to="/dashboard" />
-            // }
+            /*
+            {
+                path: '/selezionaprofilo',
+                element: <SelezionaProfilo />
+            },
+            {
+                path: '/creazioneprofilocliente',
+                element: <CreazioneProfiloCliente />
+            },
+            {
+                path: '/creazioneprofiloristoratore',
+                element: <CreazioneProfiloRistoratore />
+            },
+            {
+                path: '/modificaprofilocliente',
+                element: <ModificaProfiloCliente />
+            },
+            {
+                path: '/modificaprofiloristoratore',
+                element: <ModificaProfiloRistoratore />
+            },
+            {
+                path: '/modificainfoaccount',
+                element: <ModificaInfoAccount />
+            }
+            */
+            {
+                path: '*',
+                element: <NotFound />
+            }
         ]
-
+    },
+    {
+        path: '/',
+        element: <ClientLayout />,
+        children: [
+            /*
+            // decommentare qui per dashboard
+             {
+                path: '/',
+                element: <Navigate to="/dashboardcliente" />
+             },
+            {
+                path: '/ristoranti',
+                element: <Ristoranti />
+            },
+            */
+        ]
+    },
+    {
+        path: '/',
+        element: <RestaurantLayout />,
+        children: [
+            /*
+            // decommentare qui per dashboard
+            {
+                path: '/',
+                element: <Navigate to="/dashboardristoratore" />
+            },
+            {
+                path: '/ristoranti',
+                element: <Ristoranti />
+            },
+            */
+        ]
     },
     {
         path: '/',
         element: <GuestLayout />,
         children: [
             {
-                path: '/signup',
-                element: <SignUp />
-            },
-            {
                 path: '/login',
                 element: <Login />
+            },
+            {
+                path: '/signup',
+                element: <SignUp />
             },
             {
                 path: '*',
