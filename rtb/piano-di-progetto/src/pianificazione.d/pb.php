@@ -106,19 +106,6 @@ function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $
     ],
     $latex
   );
-
-  return [
-    'inizio',
-    'fine',
-    'preventivo orario',
-    'preventivo economico',
-    'attività svolte',
-    'gantt attvità',
-    'consuntivo orario',
-    'consuntivo economico',
-    'gestione dei ruoli',
-    'gestione dei rischi',
-  ];
 }
 
 $periodi = [
