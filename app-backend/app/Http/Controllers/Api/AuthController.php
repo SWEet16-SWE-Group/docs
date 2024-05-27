@@ -22,7 +22,11 @@ class AuthController extends Controller
         ]);
 
         $token = $user->createToken('main')->plainTextToken;
-        return response(compact('user', 'token'));
+        return response([
+            'user' => $user['id'],
+            'token' => $token,
+            'role' => 'authenticated'
+        ]);
     }
 
     public function login(LoginRequest $request)
@@ -37,7 +41,11 @@ class AuthController extends Controller
         /** @var User $user */
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
-        return response(compact('user', 'token'));
+        return response([
+            'user' => $user['id'],
+            'token' => $token,
+            'role' => 'authenticated'
+        ]);
     }
 
     public function logout(Request $request)

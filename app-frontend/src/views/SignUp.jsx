@@ -11,7 +11,7 @@ export default function SignUp() {
 
     const [errors, setErrors] = useState(null)
 
-    const {setUser, setToken} = useStateContext()
+    const {setUser, setToken, setRole} = useStateContext()
 
     const onSubmit = (ev) => {
         ev.preventDefault()
@@ -24,9 +24,10 @@ export default function SignUp() {
         axiosClient.post('/signup', payload)
             .then(({data}) => {
                 setUser(data.user)
+                setRole(data.role)
                 setToken(data.token)
 
-                debugger;
+               // debugger;
             })
             .catch(err => {
                 const response = err.response;
@@ -34,8 +35,6 @@ export default function SignUp() {
                     console.error(response.data);
                     console.log(response.data.errors);
                     setErrors(response.data.errors);
-
-                    debugger;
                 }
             })
     }

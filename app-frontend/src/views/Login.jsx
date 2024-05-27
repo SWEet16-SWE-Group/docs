@@ -12,7 +12,6 @@ export default function Login() {
 
     const onSubmit = ev => {
         ev.preventDefault()
-
         const payload = {
             email: emailRef.current.value,
             password: passwordRef.current.value,
@@ -20,6 +19,7 @@ export default function Login() {
         axiosClient.post('/login', payload)
             .then(({data}) => {
                 setUser(data.user)
+                setRole(data.role);
                 setToken(data.token);
             })
             .catch((err) => {

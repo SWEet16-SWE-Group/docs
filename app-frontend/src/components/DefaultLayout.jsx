@@ -4,7 +4,7 @@ import axiosClient from "../axios-client";
 
 export default function DefaultLayout() {
     
-    const {user, token,setUser, setToken} =  useStateContext()
+    const {user, token,role,setUser, setToken,setRole} =  useStateContext()
     
     if (!token) {
         return <Navigate to={"/signup"} />
@@ -15,8 +15,9 @@ export default function DefaultLayout() {
 
         axiosClient.post('/logout')
             .then(() => {
-                setUser({})
+                setUser('')
                 setToken(null)
+                setRole('')
             })
     }
 
