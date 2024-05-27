@@ -121,8 +121,8 @@ function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $
   ];
 }
 
-echo implode("\n", [
-  periodo(
+$periodi = [
+  [
     'periodo buio',
     '2025/04/22',
     '2024/05/03',
@@ -145,8 +145,8 @@ echo implode("\n", [
     ],
     '',
     '',
-  ),
-  periodo(
+  ],
+  [
     '???',
     '2025/05/06',
     '2024/05/18',
@@ -169,12 +169,17 @@ echo implode("\n", [
     ],
     '',
     '',
-  ),
-  periodo(
+  ],
+  [
     'cose di progettazione',
     '2025/05/20',
     '2024/05/24',
-    [],
+    [
+      'Suddivisione delle task in issue di GitHub con conseguente assegnazione ai membri',
+      'Creazione della base docker dove si andrà a fare la codifica del progetto',
+      'Creazione del database per l\'MVP',
+      'Aggiunto PHP sopra \\LaTeX per maggiore automazione della stesura dei documenti',
+    ],
     [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
@@ -193,8 +198,8 @@ echo implode("\n", [
     ],
     '',
     '',
-  ),
-  periodo(
+  ],
+  [
     'sviluppo effettivo',
     '2025/05/27',
     '2024/05/31',
@@ -217,5 +222,7 @@ echo implode("\n", [
     ],
     '',
     '',
-  ),
-]);
+  ]
+];
+
+echo implode("\n", array_map(fn ($a) => periodo(...$a), $periodi));
