@@ -40,7 +40,7 @@ $e == false && die(11);
 
 foreach (stream(
   _find('main.php', __DIR__),
-  _filter(fn ($a) => !str_contains($a, 'Template/main.php'))
+  _filter(fn ($a) => !str_contains($a, '/Template/')),
 ) as $file) {
   echo "PREPROCESSING: $file\n";
   if ((require $file) > 0) {
@@ -53,7 +53,7 @@ echo "\n";
 
 $tex = stream(
   _find('main.tex', __DIR__),
-  _filter(fn ($a) => !str_contains($a, 'Template/main.tex'))
+  _filter(fn ($a) => !str_contains($a, '/Template/')),
 );
 main_correttore_ortografico_action($dict, $tex);
 if (in_array('--compile', $argv)) {
