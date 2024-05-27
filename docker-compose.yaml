@@ -1,58 +1,69 @@
 version: '3.7'
 services:
 
-    frontend:
-      build:
-        context: ./app-frontend 
-      ports:
-        - "3000:80"
-      networks:
-        - app-network
+  frontend:
+    build:
+      context: ./app-frontend
+      dockerfile: ../Docker/react/Dockerfile
+    ports:
+      - "3000:80"
+    networks:
+      - app-network
 
-    backend:
-      build:
-        context: ./app-backend/
-      restart: unless-stopped
-      environment:
-        MYSQL_DATABASE: easymeal
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_PASSWORD: root
-        MYSQL_USER: ${DB_USERNAME}
-      working_dir: /var/www
-      volumes:
-        - ./app-backend:/var/www
-      ports:
-        - "8000:8000"
-      networks:
-        - app-network
-        - db
+  nginx:
+    build:
+      context: .
+      dockerfile: Docker/nginx/Dockerfile
+    ports:
+      - "8000:80"
+    networks:
+      - app-network
+    volumes:
+      - ./app-backend/:/var/www/html/
+      - ./logs/nginx:/var/log/nginx/
+    container_name: nginx
 
-    db:
-      image: mysql
-      restart: unless-stopped
-      environment:
-        MYSQL_DATABASE: easymeal
-        MYSQL_ROOT_PASSWORD: root
-        MYSQL_PASSWORD: root
-      volumes:
-        - ./initdb:/docker-entrypoint-initdb.d
-      ports:
-        - 3306:3306
-      networks:
-        - db
+  php:
+    build:
+      context: .
+      dockerfile: Docker/php/Dockerfile
+    networks:
+      - app-network
+    volumes:
+      - ./app-backend/:/var/www/html/
+      - ./logs/php.log:/var/log/fpm-php.www.log
+    container_name: php
+    expose:
+      - "9000"
+  mysql:
+    container_name: db
+    restart: always
+    image: mysql:latest
+    platform: linux/x86_64
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_PASS: 'root'
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+      - ./db-data:/var/lib/mysql
+    networks:
+      - app-network
 
-    phpmyadmin:
-      image: phpmyadmin/phpmyadmin
-      restart: unless-stopped
-      environment:
-        PMA_HOST: db
-        MYSQL_ROOT_PASSWORD: root
-      depends_on:
-        - db
-      ports:
-        - 8443:80
-      networks:
-        - db
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - mysql
+    ports:
+      - "8443:80"
+    networks:
+      - app-network
+
 
 networks:
   app-network:

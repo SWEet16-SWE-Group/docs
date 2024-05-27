@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import ReactDom from "react-dom/client";
+import {createBrowserRoute,
+        RouterProvider,
+} from "react-router-dom";
+import ClientForm from "./components/ClientForm";
 
-function App() {
+const Router =createBrowserRouter([
+  {
+    path : "/",
+    element : <Account />,
+  },
+]);
+
+export default function App() {
+
+ 
+
+// Make a request for a user with a given ID
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <ClientForm/>
     </div>
   );
 }
 
-export default App;
+

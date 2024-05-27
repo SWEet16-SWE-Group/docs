@@ -4,13 +4,13 @@ CREATE DATABASE `easymeal`;
 USE `easymeal`;
 
 
-create table account(
+create Table account(
   id int not null auto_increment primary key ,
   mail varchar(255) not null unique,
   password varchar(255) not null
 );
 
-create table clienti(
+create Table clienti(
   id int not null auto_increment primary key,
   account int not null, foreign key (account) references account(id),
   nome varchar(255) not null unique
@@ -25,7 +25,7 @@ create table ristoratori(
   telefono varchar(255) not null unique
 );
 
-create table orari_apertura_ristorante(
+create Table orari_apertura_ristorante(
   ristorante int not null, foreign key (ristorante) references ristoratori(id),
   apertura time not null,
   chiusura time not null,
@@ -34,18 +34,18 @@ create table orari_apertura_ristorante(
   primary key (ristorante, apertura, chiusura, giorno)
 );
 
-create table cucina_ristorante(
+create Table cucina_ristorante(
   ristorante int not null, foreign key (ristorante) references ristoratori(id),
   cucina enum ('pizza', 'pasta', 'pesce') not null,
   primary key (ristorante, cucina)
 );
 
-create table allergeni(
+create Table allergeni(
   id int not null auto_increment primary key,
   nome varchar(255) not null unique
 );
 
-create table ingredienti(
+create Table ingredienti(
   id int not null auto_increment primary key,
   ristorante int not null, foreign key (ristorante) references ristoratori(id),
   nome varchar(255) not null,
@@ -58,26 +58,26 @@ create table reagenti(
   primary key (ingrediente, allergene)
 );
 
-create table allergie(
+create Table allergie(
   cliente   int not null, foreign key (cliente) references clienti(id),
   allergene int not null, foreign key (allergene) references allergeni(id),
   primary key (cliente, allergene)
 );
 
-create table pietanze(
+create Table pietanze(
   id int not null auto_increment primary key,
   ristorante int not null, foreign key (ristorante) references ristoratori(id),
   nome varchar(255) not null,
   unique (ristorante, nome)
 );
 
-create table ricette(
+create Table ricette(
   pietanza    int not null, foreign key (pietanza) references pietanze(id),
   ingrediente int not null, foreign key (ingrediente) references ingredienti(id),
   primary key (pietanza, ingrediente)
 );
 
-create table prenotazioni(
+create Table prenotazioni(
   id int not null auto_increment primary key,
   ristorante int not null, foreign key (ristorante) references ristoratori(id),
   timestamp datetime not null,
@@ -85,7 +85,7 @@ create table prenotazioni(
   divisione_conto enum ('equa', 'proporzionale') not null
 );
 
-create table inviti(
+create Table inviti(
   id int not null auto_increment primary key,
   prenotazione int not null, foreign key (prenotazione) references prenotazioni(id),
   cliente   int not null, foreign key (cliente) references clienti(id),
@@ -93,7 +93,7 @@ create table inviti(
   -- necessario se divisione equa
 );
 
-create table ordinazioni(
+create Table ordinazioni(
   id int not null auto_increment primary key,
   invito int not null, foreign key (invito) references inviti(id),
   pietanza int not null, foreign key (pietanza) references pietanze(id),
@@ -101,7 +101,7 @@ create table ordinazioni(
   -- necessario se divisione proporzionale
 );
 
-create table dettagli_ordinazione(
+create Table dettagli_ordinazione(
   ingrediente int not null, foreign key (ingrediente) references ingredienti(id),
   ordinazione int not null, foreign key (ordinazione) references ordinazioni(id),
   dettaglio enum ('-', '+') not null,
