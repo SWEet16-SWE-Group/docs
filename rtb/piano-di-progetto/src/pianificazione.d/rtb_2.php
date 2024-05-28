@@ -6,7 +6,7 @@ echo tabelle_ore_soldi_tostring($periodi_rtb, 1, preventivo);
 
 ?>
 
-\textbf{Attività svolte}
+\paragraph{Attività svolte}
 
 \paragraph{} Le attività svolte dal gruppo nel secondo periodo sono state:
 
@@ -28,7 +28,7 @@ echo tabelle_ore_soldi_tostring($periodi_rtb, 1, consuntivo);
 
 ?>
 
-\textbf{Gestione dei ruoli}
+\paragraph{Gestione dei ruoli}
 
 \paragraph{}
 Nel secondo periodo, il ruolo per il quale è stata spesa la fetta più consistente di ore (50\%),

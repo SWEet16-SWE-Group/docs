@@ -6,7 +6,7 @@ echo tabelle_ore_soldi_tostring($periodi_rtb, 2, preventivo);
 
 ?>
 
-\textbf{Attività svolte}
+\paragraph{Attività svolte}
 
 \paragraph{}
 Le attività svolte dal gruppo nel terzo periodo sono state:
@@ -29,7 +29,7 @@ echo tabelle_ore_soldi_tostring($periodi_rtb, 2, consuntivo);
 
 ?>
 
-\textbf{Gestione dei ruoli}
+\paragraph{Gestione dei ruoli}
 
 \paragraph{}
 Nel terzo periodo, il 56\% delle risorse temporali del gruppo è stato speso nel ruolo dell'Analista, data la necessità

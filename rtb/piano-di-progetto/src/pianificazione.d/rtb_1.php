@@ -34,7 +34,7 @@ echo tabelle_ore_soldi_tostring($periodi_rtb, 0, consuntivo);
 
 \pagebreak
 
-\textbf{Gestione dei ruoli}
+\paragraph{Gestione dei ruoli}
 \paragraph{}
 In questo primo periodo, il 26\% delle ore di lavoro sono state dedicate alla fase di analisi,
 data la necessità di effettuare uno studio preliminare dei documenti che dovranno essere prodotti durante

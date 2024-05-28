@@ -6,7 +6,7 @@ echo tabelle_ore_soldi_tostring($periodi_rtb, 3, preventivo);
 
 ?>
 
-\textbf{Attività svolte}
+\paragraph{Attività svolte}
 
 \paragraph{}
 Le attività svolte dal gruppo nel quarto periodo sono state:
@@ -30,7 +30,7 @@ echo tabelle_ore_soldi_tostring($periodi_rtb, 3, consuntivo);
 
 ?>
 
-\textbf{Gestione dei ruoli}
+\paragraph{Gestione dei ruoli}
 
 \paragraph{}
 Come si può vedere dalla suddetta tabella, in questo quarto periodo il gruppo ha concentrato buona parte del monte-ore nello svolgimento
