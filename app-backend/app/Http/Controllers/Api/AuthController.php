@@ -25,7 +25,7 @@ class AuthController extends Controller
         return response([
             'user' => $user['id'],
             'token' => $token,
-            'role' => 'authenticated'
+            'role' => 'AUTENTICATO'
         ]);
     }
 
