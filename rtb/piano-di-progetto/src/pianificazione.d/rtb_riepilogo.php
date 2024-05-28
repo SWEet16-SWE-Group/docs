@@ -21,45 +21,29 @@ $rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), $membri,
 
 ?>
 
-\nonstopmode
-\textbf{Preventivo economico totale}
+\subsubsubsection{Preventivo economico totale}
 
-<?php
+<?php echo str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($rtb_somma_preventivi))],  tabella_soldi); ?>
 
-echo str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($rtb_somma_preventivi))],  tabella_soldi);
+\subsubsubsection{Consuntivo economico finale}
 
-?>
-
-\textbf{Consuntivo economico finale}
-
-<?php
-
-echo str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($rtb_somma_consuntivi))],  tabella_soldi);
-
-?>
+<?php echo str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($rtb_somma_consuntivi))],  tabella_soldi); ?>
 
 \pagebreak
 
-\textbf{Preventivo orario totale}
+\subsubsubsection{Preventivo orario totale}
 
-<?php
+<?php echo str_replace_array(['ORE'   => tabella_to_string(tabella_ore($rtb_somma_preventivi))],    tabella_ore); ?>
 
-echo str_replace_array(['ORE'   => tabella_to_string(tabella_ore($rtb_somma_preventivi))],    tabella_ore);
+\subsubsubsection{Consuntivo orario finale}
 
-?>
-
-\textbf{Consuntivo orario finale}
-
-<?php
-
-echo str_replace_array(['ORE'   => tabella_to_string(tabella_ore($rtb_somma_consuntivi))],    tabella_ore);
-
-?>
+<?php echo str_replace_array(['ORE'   => tabella_to_string(tabella_ore($rtb_somma_consuntivi))],    tabella_ore); ?>
 
 \paragraph{Gestione dei ruoli}
 Durante la fase di RTB, il 29\% delle risorse orario è stato dedicato al ruolo di Analista, il 17\% a quello di Programmatore, il 25\% a quello di Verificatore, mentre
 solo l'8 \% per le figure rispettivamente del Responsabile e dell'Amministratore; il 13\% per la figura del Progettista.\\
-\textbf{Retrospettiva finale}\\
+
+\paragraph{Retrospettiva finale}
 Analizzando le gestione da parte del gruppo dei ruoli, salta subito all'occhio un forte sbilanciamento, in parte abbastanza naturale nella fase di RTB, a favore di alcuni ruoli a discapito di altri: Abbondanti risorse sono state spese
 per la figura dell'Analista in quanto la produzione dei documenti in generale, e dell'Analisi dei Requisiti in particolare, si è dimostrata un compito assai più oneroso di quanto si fosse preventivato
 inizialmente; di questo fatto, è considerata una diretta conseguenza la quantità di risorse dedicate alla verifica e alla validazione della documentazione e del codice del PoC. \\
