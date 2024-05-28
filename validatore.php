@@ -23,11 +23,13 @@ function main_compile($files) {
     ob_start(fn ($b) => stream($b, _explode("\n"), _filter(fn ($a) => strlen($a) > 0), _map($pfx), _implode("\n")));
     passthru("mkdir -p .build/ && latexmk -interaction=nonstopmode -halt-on-error -output-directory=.build/ -pdf main.tex > .build/php.out", $e);
     ob_end_flush();
-    chdir(__DIR__);
-
     echo $pfx("FINE");
     echo $pfx("CODICE DI USCITA: $e");
-    $e != 0 && die($e);
+    if ($e != 0) {
+      echo file_get_contents('.build/main.log');
+      die($e);
+    }
+    chdir(__DIR__);
     echo "\n";
   }
 }
