@@ -29,8 +29,6 @@ $rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), $membri,
 
 <?php echo str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($rtb_somma_consuntivi))],  tabella_soldi); ?>
 
-\pagebreak
-
 \subsubsubsection{Preventivo orario totale}
 
 <?php echo str_replace_array(['ORE'   => tabella_to_string(tabella_ore($rtb_somma_preventivi))],    tabella_ore); ?>
