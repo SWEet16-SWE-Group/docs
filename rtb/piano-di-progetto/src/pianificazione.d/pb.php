@@ -46,6 +46,17 @@ function tabella_soldi($a) {
   ];
 }
 
+function rischio($rischio, $pianocontingenza, $impatto) {
+  return str_replace_array([
+    'RISCHIO' => $rischio,
+    'CONTINGENZA' => $pianocontingenza,
+    'IMPATTO' => $impatto,
+    ]
+    ,<<<'EOF'
+    EOF
+  );
+}
+
 function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $gestioneruoli, $rischi) {
   $tabella_ore = <<<'EOF'
     \begin{tblr}{
