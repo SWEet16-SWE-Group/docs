@@ -25,7 +25,7 @@ function formatta_tabella($a) {
 function formatta_tabella_soldi($a) {
   return array_map(
     fn ($a) => array_map(
-      fn ($k, $a) => (is_numeric($a) and $k != 1 and $k != 3) ? sprintf("%'.2f", $a) : $a,
+      fn ($k, $a) => (is_numeric($a) and ($k == 1 or $k == 3)) ? number_format($a, 2, ',', '.') : $a,
       array_keys($a),
       $a
     ),
@@ -449,7 +449,7 @@ function tabelle_ore_soldi_tostring($tabella, $periodo, $colonna) {
   ];
   return ''
     . "\n\n{$titolo[$colonna][0]}\n\n"
-    . str_replace_array(['ORE' => tabella_to_string(tabella_ore($tabella[$periodo][$colonna]))], tabella_ore)
+    . tabella_ore_to_string($tabella[$periodo][$colonna])
     . "\n\n{$titolo[$colonna][1]}\n\n"
-    . str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($tabella[$periodo][$colonna]))], tabella_soldi);
+    . tabella_soldi_to_string($tabella[$periodo][$colonna]);
 }
