@@ -63,20 +63,7 @@ function rischio($rischio, $pianocontingenza, $impatto) {
   );
 }
 
-function periodo(
-  $titolo,
-  $inizio,
-  $fine,
-  $attivita,
-  $preventivo,
-  $consuntivo,
-  $gestioneruoli,
-  $rischi,
-  $retrospettiva,
-  $raggiunti,
-  $mancati
-) {
-  $tabella_ore = <<<'EOF'
+const tabella_ore = <<<'EOF'
     \begin{tblr}{
         colspec={|X[5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[3.5cm]},
         row{odd}={bg=white},
@@ -90,7 +77,7 @@ function periodo(
     \end{tblr}
   EOF;
 
-  $tabella_soldi = <<<'EOF'
+const tabella_soldi = <<<'EOF'
     \begin{tblr}{
         colspec={|X[5cm]|X[3.5cm]|X[1.5cm]|X[3.5cm]},
         row{odd}={bg=white},
@@ -104,6 +91,19 @@ function periodo(
     \end{tblr}
   EOF;
 
+function periodo(
+  $titolo,
+  $inizio,
+  $fine,
+  $attivita,
+  $preventivo,
+  $consuntivo,
+  $gestioneruoli,
+  $rischi,
+  $retrospettiva,
+  $raggiunti,
+  $mancati
+) {
   $latex = <<<'EOF'
     \subsubsection{TITOLO}
 
@@ -165,10 +165,10 @@ function periodo(
       'INIZIO' => (DateTime::createFromFormat('Y/m/d', $inizio))->format('Y/m/d'),
       'FINE'   => (DateTime::createFromFormat('Y/m/d', $fine))->format('Y/m/d'),
       'ATTIVITA' => $attivita ? $itemize($attivita) : '\\item Nessuna attività svolta',
-      'PREVENTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($preventivo))],    $tabella_ore),
-      'PREVENTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($preventivo))],  $tabella_soldi),
-      'CONSUNTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($consuntivo))],    $tabella_ore),
-      'CONSUNTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($consuntivo))],  $tabella_soldi),
+      'PREVENTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($preventivo))],    tabella_ore),
+      'PREVENTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($preventivo))],  tabella_soldi),
+      'CONSUNTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($consuntivo))],    tabella_ore),
+      'CONSUNTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($consuntivo))],  tabella_soldi),
       'RUOLI' => $gestioneruoli,
       'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
       'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
@@ -402,4 +402,25 @@ $_ = array_map(
 
 function periodi_tostring($a) {
   return implode("\n", array_map(fn ($a) => periodo(...$a), $a));
+}
+
+const preventivo = 4;
+const consuntivo = 5;
+
+function tabelle_ore_soldi_tostring($tabella, $periodo, $colonna) {
+  $titolo = [
+    preventivo => [
+      '\textbf{Preventivo orario}',
+      '\textbf{Preventivo economico}',
+    ],
+    consuntivo => [
+      '\textbf{Consuntivo orario}',
+      '\textbf{Consuntivo economico}',
+    ],
+  ];
+  return ''
+    . "\n\n{$titolo[$colonna][0]}\n\n"
+    . str_replace_array(['ORE' => tabella_to_string(tabella_ore($tabella[$periodo][$colonna]))], tabella_ore)
+    . "\n\n{$titolo[$colonna][1]}\n\n"
+    . str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($tabella[$periodo][$colonna]))], tabella_soldi);
 }

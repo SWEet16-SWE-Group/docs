@@ -1,45 +1,10 @@
-\nonstopmode
-\textbf{Preventivo orario}
+<?php
 
-\begin{tblr}{
-    colspec={|X[5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[3.5cm]},
-    row{odd}={bg=white},
-    row{even}={bg=lightgray},
-    row{1}={bg=black, fg=white},
-    row{8}={bg=black, fg=white}
-}
+require_once __DIR__ . '/pb.php';
 
-    Nominativo & Re & Am & An & Pg & Pr & Vf & Ore Totali \\ \hline
-    Alberto C. & - & - & - & 4 & - & 1 & 5 \\ \hline
-    Bilal El M. & - & - & 4 & - & - & 1 & 5 \\ \hline
-    Alberto M. & 3 & 2 & - & - & - & - & 5 \\ \hline
-    Alex S. & 2 & 3 & - & - & - & - & 5 \\ \hline
-    Iulius S. & - & - & 4 & - & - & 1 & 5 \\ \hline
-    Giovanni Z. & - & - & - & 4 & - & 1 & 5 \\ \hline
-    Totale & 5 & 5 & 8 & 8 & 0 & 4 & 30 \\ \hline
+echo tabelle_ore_soldi_tostring($periodi_rtb, 0, preventivo);
 
-\end{tblr}
-
-\textbf{Preventivo economico}
-
-\begin{tblr}{
-colspec={|X[5cm]|X[3.5cm]|X[1.5cm]|X[3.5cm]},
-row{odd}={bg=white},
-row{even}={bg=lightgray},
-row{1}={bg=black, fg=white},
-row{8}={bg=black, fg=white}
-}
-
-Ruolo & Costo orario (€/h) & N. Ore & Costo totale (€) \\ \hline
-Responsabile & 30,00 & 5 & 150,00 \\ \hline
-Amministratore & 20,00 & 5 & 100,00 \\ \hline
-Analista & 25,00 & 8 & 200,00 \\ \hline
-Progettista & 25,00 & 8 & 200,00 \\ \hline
-Programmatore & 15,00 & 0 & 0,00 \\ \hline
-Verificatore & 15,00 & 4 & 60,00 \\ \hline
-Totale & \SetCell[c=1]{c} & 30 & 710,00 \\ \hline
-
-\end{tblr}
+?>
 
 \paragraph{Attività svolte}
 \subparagraph{}
@@ -61,47 +26,11 @@ Le attività svolte dai membri del gruppo nel primo periodo sono state:
 
 \begin{figure}[H] \includegraphics[scale=.6]{GanttPrimoPeriodo.png} \end{figure}
 
-\textbf{Consuntivo orario}
+<?php
 
-\begin{tblr}{
-    colspec={|X[5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[3.5cm]},
-    row{odd}={bg=white},
-    row{even}={bg=lightgray},
-    row{1}={bg=black, fg=white},
-    row{8}={bg=black, fg=white}
-}
+echo tabelle_ore_soldi_tostring($periodi_rtb, 0, consuntivo);
 
-    Nominativo & Re & Am & An & Pg & Pr & Vf & Ore Totali \\ \hline
-    Alberto C. & - & - & - & 4 & - & 1 & 5 \\ \hline
-    Bilal El M. & - & - & 4 & - & - & 1 & 5 \\ \hline
-    Alberto M. & 3 & 2 & - & - & - & - & 5 \\ \hline
-    Alex S. & 2 & 3 & - & - & - & - & 5 \\ \hline
-    Iulius S. & - & - & 4 & - & - & 1 & 5 \\ \hline
-    Giovanni Z. & - & - & - & 4 & - & 1 & 5 \\ \hline
-    Totale & 5 & 5 & 8 & 8 & 0 & 4 & 30 \\ \hline
-
-\end{tblr}
-
-\textbf{Consuntivo economico}
-
-\begin{tblr}{
-colspec={|X[5cm]|X[3.5cm]|X[1.5cm]|X[3.5cm]},
-row{odd}={bg=white},
-row{even}={bg=lightgray},
-row{1}={bg=black, fg=white},
-row{8}={bg=black, fg=white}
-}
-
-Ruolo & Costo orario (€/h) & N. Ore & Costo totale (€) \\ \hline
-Responsabile & 30,00 & 5 & 150,00 \\ \hline
-Amministratore & 20,00 & 5 & 100,00 \\ \hline
-Analista & 25,00 & 8 & 200,00 \\ \hline
-Progettista & 25,00 & 8 & 200,00 \\ \hline
-Programmatore & 15,00 & 0 & 0,00 \\ \hline
-Verificatore & 15,00 & 4 & 60,00 \\ \hline
-Totale & \SetCell[c=1]{c} & 30 & 710,00 \\ \hline
-\end{tblr}
-\pagebreak
+?>
 
 \textbf{Gestione dei ruoli}
 \paragraph{}
