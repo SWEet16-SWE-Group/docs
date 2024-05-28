@@ -47,17 +47,35 @@ function tabella_soldi($a) {
 }
 
 function rischio($rischio, $pianocontingenza, $impatto) {
-  return str_replace_array([
-    'RISCHIO' => $rischio,
-    'CONTINGENZA' => $pianocontingenza,
-    'IMPATTO' => $impatto,
-    ]
-    ,<<<'EOF'
+  return str_replace_array(
+    [
+      'RISCHIO' => $rischio,
+      'CONTINGENZA' => $pianocontingenza,
+      'IMPATTO' => $impatto,
+    ],
+    <<<'EOF'
+    \textbf{RISCHIO}
+    \begin{itemize}
+      \item \textbf{Esito Piano di Contingenza}: CONTINGENZA
+      \item \textbf{Impatto}: IMPATTO
+    \end{itemize}
     EOF
   );
 }
 
-function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $gestioneruoli, $rischi) {
+function periodo(
+  $titolo,
+  $inizio,
+  $fine,
+  $attivita,
+  $preventivo,
+  $consuntivo,
+  $gestioneruoli,
+  $rischi,
+  $retrospettiva,
+  $raggiunti,
+  $mancati
+) {
   $tabella_ore = <<<'EOF'
     \begin{tblr}{
         colspec={|X[5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[3.5cm]},
@@ -114,24 +132,55 @@ function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $
 
     CONSUNTIVO_SOLDI
 
+    \paragraph{Gestione dei ruoli}
+
+    RUOLI
+
+    \paragraph{Gestione dei rischi}
+
+    \begin{itemize}
+    RISCHI
+    \end{itemize}
+
+    RETROSPETTIVA
+
+    \paragraph{Obbiettivi raggiunti}
+
+    \begin{itemize}
+    RAGGIUNTI
+    \end{itemize}
+
+    \paragraph{Obbiettivi mancati}
+
+    \begin{itemize}
+    MANCATI
+    \end{itemize}
+
   EOF;
 
+  $itemize = fn ($a) => implode('', array_map(fn ($a) => "\\item " . str_replace_array(["\n" => ""], $a) . "\n", $a));
   return str_replace_array(
     [
       'TITOLO' => $titolo,
       'INIZIO' => (DateTime::createFromFormat('Y/m/d', $inizio))->format('Y/m/d'),
       'FINE'   => (DateTime::createFromFormat('Y/m/d', $fine))->format('Y/m/d'),
-      'ATTIVITA' => $attivita ? implode('', array_map(fn ($a) => "\\item $a\n", $attivita)) : '\\item Nessuna attività svolta',
+      'ATTIVITA' => $attivita ? $itemize($attivita) : '\\item Nessuna attività svolta',
       'PREVENTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($preventivo))],    $tabella_ore),
       'PREVENTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($preventivo))],  $tabella_soldi),
       'CONSUNTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($consuntivo))],    $tabella_ore),
       'CONSUNTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($consuntivo))],  $tabella_soldi),
+      'RUOLI' => $gestioneruoli,
+      'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
+      'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
+      'RAGGIUNTI' => $raggiunti ? $itemize($raggiunti) : '\\item Nessun obbiettivo raggiunto',
+      'MANCATI' => $mancati ? $itemize($mancati) : '\\item Nessun obbiettivo mancato',
     ],
     $latex
   );
 }
 
 $periodi = [
+  // ===========================================================================================================================
   [
     'periodo buio',
     '2025/04/22',
@@ -154,8 +203,12 @@ $periodi = [
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
     '',
+    [],
     '',
+    [],
+    [],
   ],
+  // ===========================================================================================================================
   [
     '???',
     '2025/05/06',
@@ -178,8 +231,12 @@ $periodi = [
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
     '',
+    [],
     '',
+    [],
+    [],
   ],
+  // ===========================================================================================================================
   [
     'cose di progettazione',
     '2025/05/20',
@@ -207,8 +264,12 @@ $periodi = [
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
     '',
+    [],
     '',
+    [],
+    [],
   ],
+  // ===========================================================================================================================
   [
     'sviluppo effettivo',
     '2025/05/27',
@@ -231,8 +292,12 @@ $periodi = [
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
     '',
+    [],
     '',
+    [],
+    [],
   ]
+  // ===========================================================================================================================
 ];
 
 // CODICE DI VALIDAZIONE DELLE TABELLE
