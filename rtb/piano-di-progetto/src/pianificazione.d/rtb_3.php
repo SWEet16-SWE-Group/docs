@@ -1,48 +1,16 @@
-\nonstopmode
-\textbf{Preventivo orario}
+\subsubsection{Terzo periodo}
+Inizio: 2024/01/27 \\
+Fine: 2024/03/11 \\
 
-\begin{tblr}{
-    colspec={|X[5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[3.5cm]},
-    row{odd}={bg=white},
-    row{even}={bg=lightgray},
-    row{1}={bg=black, fg=white},
-    row{8}={bg=black, fg=white}
-}
+<?php
 
-    Nominativo & Re & Am & An & Pg & Pr & Vf & Ore Totali \\ \hline
-    Alberto C. & - & - & 5 & - & - & - & 5 \\ \hline
-    Bilal El M. & - & - & 5 & - & - & 7 & 12 \\ \hline
-    Alberto M. & - & - & 10 & - & - & 2 & 12 \\ \hline
-    Alex S. & - & 5 & 5 & - & - & - & 10 \\ \hline
-    Iulius S. & - & - & 10 & - & - & 2 & 12 \\ \hline
-    Giovanni Z. & 5 & - & - & - & - & - & 5 \\ \hline
-    Totale & 5 & 5 & 35 & 0 & 0 & 11 & 56\\ \hline
+require_once __DIR__ . '/pb.php';
 
-\end{tblr}
+echo tabelle_ore_soldi_tostring($periodi_rtb, 2, preventivo);
 
-\textbf{Preventivo economico}
+?>
 
-\begin{tblr}{
-colspec={|X[5cm]|X[3.5cm]|X[1.5cm]|X[3.5cm]},
-row{odd}={bg=white},
-row{even}={bg=lightgray},
-row{1}={bg=black, fg=white},
-row{8}={bg=black, fg=white}
-}
-
-Ruolo & Costo orario (€/h) & N. Ore & Costo totale (€) \\ \hline
-Responsabile & 30,00 & 5 & 150,00 \\ \hline
-Amministratore & 20,00 & 5 & 100,00 \\ \hline
-Analista & 25,00 & 35 & 875,00 \\ \hline
-Progettista & 25,00 & 0 & 0,00 \\ \hline
-Programmatore & 15,00 & 0 & 0,00 \\ \hline
-Verificatore & 15,00 & 11 & 165,00 \\ \hline
-Totale & \SetCell[c=1]{c} & 56 & 1.290,00 \\ \hline
-
-\end{tblr}
-\pagebreak
-
-\textbf{Attività svolte}
+\paragraph{Attività svolte}
 
 \paragraph{}
 Le attività svolte dal gruppo nel terzo periodo sono state:
@@ -59,50 +27,13 @@ Le attività svolte dal gruppo nel terzo periodo sono state:
 
 \begin{figure}[H] \includegraphics[scale=.6]{GanttTerzoPeriodo.png} \end{figure}
 
-\textbf{Consuntivo orario}
+<?php
 
-\begin{tblr}{
-    colspec={|X[5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[3.5cm]},
-    row{odd}={bg=white},
-    row{even}={bg=lightgray},
-    row{1}={bg=black, fg=white},
-    row{8}={bg=black, fg=white}
-}
+echo tabelle_ore_soldi_tostring($periodi_rtb, 2, consuntivo);
 
-    Nominativo & Re & Am & An & Pg & Pr & Vf & Ore Totali \\ \hline
-    Alberto C. & - & 2 & 3 & - & - & - & 5 \\ \hline
-    Bilal El M. & - & - & 2 & - & - & 3 & 5 \\ \hline
-    Alberto M. & - & - & 12 & - & - & 5 & 17 \\ \hline
-    Alex S. & - & 5 & 10 & - & - & 5 & 20 \\ \hline
-    Iulius S. & - & - & 12 & - & - & 5 & 17 \\ \hline
-    Giovanni Z. & 5 & - & 3 & - & - & 2 & 10 \\ \hline
-    Totale & 5 & 7 & 42 & 0 & 0 & 20 & 74 \\ \hline
+?>
 
-\end{tblr}
-
-\pagebreak
-\textbf{Consuntivo economico}
-
-\begin{tblr}{
-colspec={|X[5cm]|X[3.5cm]|X[1.5cm]|X[3.5cm]},
-row{odd}={bg=white},
-row{even}={bg=lightgray},
-row{1}={bg=black, fg=white},
-row{8}={bg=black, fg=white}
-}
-
-Ruolo & Costo orario (€/h) & N. Ore & Costo totale (€) \\ \hline
-Responsabile & 30,00 & 5 & 150,00 \\ \hline
-Amministratore & 20,00 & 7 & 140,00 \\ \hline
-Analista & 25,00 & 42 & 1050,00 \\ \hline
-Progettista & 25,00 & 0 & 0,00 \\ \hline
-Programmatore & 15,00 & 0 & 0,00 \\ \hline
-Verificatore & 15,00 & 20 & 300,00 \\ \hline
-Totale & \SetCell[c=1]{c} & 74 & 1.640,00 \\ \hline
-
-\end{tblr}
-
-\textbf{Gestione dei ruoli}
+\paragraph{Gestione dei ruoli}
 
 \paragraph{}
 Nel terzo periodo, il 56\% delle risorse temporali del gruppo è stato speso nel ruolo dell'Analista, data la necessità

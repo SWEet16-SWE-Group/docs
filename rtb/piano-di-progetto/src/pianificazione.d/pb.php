@@ -18,6 +18,21 @@ function tabella_to_string($a) {
   return implode('', array_map(fn ($a) => implode(" & ", $a) . " \\\\ \\hline\n", $a));
 }
 
+function formatta_tabella($a) {
+  return array_map(fn ($a) => array_map(fn ($a) => $a ? $a : '-', $a), $a);
+}
+
+function formatta_tabella_soldi($a) {
+  return array_map(
+    fn ($a) => array_map(
+      fn ($k, $a) => (is_numeric($a) and ($k == 1 or $k == 3)) ? number_format($a, 2, ',', '.') : $a,
+      array_keys($a),
+      $a
+    ),
+    $a
+  );
+}
+
 function tabella_ore($a) {
   return [
     ['Nominativo', 'Re', 'Am', 'An', 'Pg', 'Pr', 'Vf', 'Ore totali'],
@@ -28,12 +43,12 @@ function tabella_ore($a) {
 
 function tabella_soldi($a) {
   $ruoli = [
-    'Responsabile'    => 0,
-    'Amministratore'  => 1,
-    'Analista'        => 2,
-    'Progettista'     => 3,
-    'Programmatore'   => 4,
-    'Verificatore'    => 5,
+    'Responsabile'    => 30,
+    'Amministratore'  => 20,
+    'Analista'        => 25,
+    'Progettista'     => 25,
+    'Programmatore'   => 15,
+    'Verificatore'    => 15,
   ];
   $a = array_combine(
     $k = array_keys($ruoli),
@@ -47,18 +62,23 @@ function tabella_soldi($a) {
 }
 
 function rischio($rischio, $pianocontingenza, $impatto) {
-  return str_replace_array([
-    'RISCHIO' => $rischio,
-    'CONTINGENZA' => $pianocontingenza,
-    'IMPATTO' => $impatto,
-    ]
-    ,<<<'EOF'
+  return str_replace_array(
+    [
+      'RISCHIO' => $rischio,
+      'CONTINGENZA' => $pianocontingenza,
+      'IMPATTO' => $impatto,
+    ],
+    <<<'EOF'
+    \textbf{RISCHIO}
+    \begin{itemize}
+      \item \textbf{Esito Piano di Contingenza}: CONTINGENZA
+      \item \textbf{Impatto}: IMPATTO
+    \end{itemize}
     EOF
   );
 }
 
-function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $gestioneruoli, $rischi) {
-  $tabella_ore = <<<'EOF'
+const tabella_ore = <<<'EOF'
     \begin{tblr}{
         colspec={|X[5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[.5cm]|X[3.5cm]},
         row{odd}={bg=white},
@@ -72,7 +92,14 @@ function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $
     \end{tblr}
   EOF;
 
-  $tabella_soldi = <<<'EOF'
+function tabella_ore_to_string($tabella) {
+  return str_replace_array(
+    ['ORE' => tabella_to_string(formatta_tabella(tabella_ore($tabella)))],
+    tabella_ore
+  );
+}
+
+const tabella_soldi = <<<'EOF'
     \begin{tblr}{
         colspec={|X[5cm]|X[3.5cm]|X[1.5cm]|X[3.5cm]},
         row{odd}={bg=white},
@@ -86,6 +113,26 @@ function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $
     \end{tblr}
   EOF;
 
+function tabella_soldi_to_string($tabella) {
+  return str_replace_array(
+    ['SOLDI' => tabella_to_string(formatta_tabella_soldi(formatta_tabella(tabella_soldi($tabella))))],
+    tabella_soldi
+  );
+}
+
+function periodo(
+  $titolo,
+  $inizio,
+  $fine,
+  $attivita,
+  $preventivo,
+  $consuntivo,
+  $gestioneruoli,
+  $rischi,
+  $retrospettiva,
+  $raggiunti,
+  $mancati
+) {
   $latex = <<<'EOF'
     \subsubsection{TITOLO}
 
@@ -114,24 +161,140 @@ function periodo($titolo, $inizio, $fine, $attivita, $preventivo, $consuntivo, $
 
     CONSUNTIVO_SOLDI
 
+    \paragraph{Gestione dei ruoli}
+
+    RUOLI
+
+    \paragraph{Gestione dei rischi}
+
+    \begin{itemize}
+    RISCHI
+    \end{itemize}
+
+    RETROSPETTIVA
+
+    \paragraph{Obbiettivi raggiunti}
+
+    \begin{itemize}
+    RAGGIUNTI
+    \end{itemize}
+
+    \paragraph{Obbiettivi mancati}
+
+    \begin{itemize}
+    MANCATI
+    \end{itemize}
+
   EOF;
 
+  $itemize = fn ($a) => implode('', array_map(fn ($a) => "\\item " . str_replace_array(["\n" => ""], $a) . "\n", $a));
   return str_replace_array(
     [
       'TITOLO' => $titolo,
       'INIZIO' => (DateTime::createFromFormat('Y/m/d', $inizio))->format('Y/m/d'),
       'FINE'   => (DateTime::createFromFormat('Y/m/d', $fine))->format('Y/m/d'),
-      'ATTIVITA' => $attivita ? implode('', array_map(fn ($a) => "\\item $a\n", $attivita)) : '\\item Nessuna attività svolta',
-      'PREVENTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($preventivo))],    $tabella_ore),
-      'PREVENTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($preventivo))],  $tabella_soldi),
-      'CONSUNTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($consuntivo))],    $tabella_ore),
-      'CONSUNTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($consuntivo))],  $tabella_soldi),
+      'ATTIVITA' => $attivita ? $itemize($attivita) : '\\item Nessuna attività svolta',
+      'PREVENTIVO_ORE'    => tabella_ore_to_string($preventivo),
+      'PREVENTIVO_SOLDI'  => tabella_soldi_to_string($preventivo),
+      'CONSUNTIVO_ORE'    => tabella_ore_to_string($consuntivo),
+      'CONSUNTIVO_SOLDI'  => tabella_soldi_to_string($consuntivo),
+      'RUOLI' => $gestioneruoli,
+      'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
+      'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
+      'RAGGIUNTI' => $raggiunti ? $itemize($raggiunti) : '\\item Nessun obbiettivo raggiunto',
+      'MANCATI' => $mancati ? $itemize($mancati) : '\\item Nessun obbiettivo mancato',
     ],
     $latex
   );
 }
 
-$periodi = [
+$periodi_rtb = [
+  // ===========================================================================================================================
+  // RTB 1
+  [
+    4 => [
+      'Alberto C.'  => [0, 0, 0, 4, 0, 1],
+      'Bilal El M.' => [0, 0, 4, 0, 0, 1],
+      'Alberto M.'  => [3, 2, 0, 0, 0, 0],
+      'Alex S.'     => [2, 3, 0, 0, 0, 0],
+      'Iulius S.'   => [0, 0, 4, 0, 0, 1],
+      'Giovanni Z.' => [0, 0, 0, 4, 0, 1],
+    ],
+    5 => [
+      'Alberto C.'  => [0, 0, 0, 4, 0, 1],
+      'Bilal El M.' => [0, 0, 4, 0, 0, 1],
+      'Alberto M.'  => [3, 2, 0, 0, 0, 0],
+      'Alex S.'     => [2, 3, 0, 0, 0, 0],
+      'Iulius S.'   => [0, 0, 4, 0, 0, 1],
+      'Giovanni Z.' => [0, 0, 0, 4, 0, 1],
+    ],
+  ],
+  // ===========================================================================================================================
+  // RTB 2
+  [
+    4 => [
+      'Alberto C.'  => [0, 0, 0, 0, 15, 2],
+      'Bilal El M.' => [2, 3, 0, 4,  0, 2],
+      'Alberto M.'  => [5, 0, 5, 0,  0, 0],
+      'Alex S.'     => [0, 0, 0, 5,  5, 5],
+      'Iulius S.'   => [0, 0, 7, 0,  0, 2],
+      'Giovanni Z.' => [0, 0, 0, 0, 10, 0],
+    ],
+    5 => [
+      'Alberto C.'  => [0, 0, 0, 0, 20, 5],
+      'Bilal El M.' => [0, 0, 0, 4,  0, 2],
+      'Alberto M.'  => [2, 3, 5, 0,  0, 0],
+      'Alex S.'     => [0, 0, 0, 5,  5, 5],
+      'Iulius S.'   => [0, 0, 3, 4,  0, 2],
+      'Giovanni Z.' => [0, 0, 0, 0, 15, 0],
+    ],
+  ],
+  // ===========================================================================================================================
+  // RTB 3
+  [
+    4 => [
+      'Alberto C.'  =>  [0, 0,  5, 0, 0, 0],
+      'Bilal El M.' =>  [0, 0,  5, 0, 0, 7],
+      'Alberto M.'  =>  [0, 0, 10, 0, 0, 2],
+      'Alex S.'     =>  [0, 5,  5, 0, 0, 0],
+      'Iulius S.'   =>  [0, 0, 10, 0, 0, 2],
+      'Giovanni Z.' =>  [5, 0,  0, 0, 0, 0],
+    ],
+    5 => [
+      'Alberto C.'  => [0, 2,  3, 0, 0, 0],
+      'Bilal El M.' => [0, 0,  2, 0, 0, 3],
+      'Alberto M.'  => [0, 0, 12, 0, 0, 5],
+      'Alex S.'     => [0, 5, 10, 0, 0, 5],
+      'Iulius S.'   => [0, 0, 12, 0, 0, 5],
+      'Giovanni Z.' => [5, 0,  3, 0, 0, 2],
+    ],
+  ],
+  // ===========================================================================================================================
+  // RTB 4
+  [
+    4 => [
+      'Alberto C.'  =>  [0, 0, 0, 2, 0, 3],
+      'Bilal El M.' =>  [2, 2, 4, 2, 0, 5],
+      'Alberto M.'  =>  [0, 0, 4, 0, 0, 5],
+      'Alex S.'     =>  [2, 3, 0, 0, 0, 0],
+      'Iulius S.'   =>  [0, 0, 4, 0, 0, 5],
+      'Giovanni Z.' =>  [0, 0, 0, 5, 0, 5],
+    ],
+    5 => [
+      'Alberto C.'  => [0, 0, 0, 2, 0, 3],
+      'Bilal El M.' => [2, 0, 4, 2, 0, 5],
+      'Alberto M.'  => [0, 0, 4, 0, 0, 5],
+      'Alex S.'     => [5, 5, 0, 0, 0, 0],
+      'Iulius S.'   => [0, 0, 4, 0, 0, 5],
+      'Giovanni Z.' => [0, 0, 0, 5, 0, 5],
+    ],
+  ],
+  // ===========================================================================================================================
+];
+
+$periodi_pb = [
+  // ===========================================================================================================================
+  // PB 1
   [
     'periodo buio',
     '2025/04/22',
@@ -154,8 +317,13 @@ $periodi = [
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
     '',
+    [],
     '',
+    [],
+    [],
   ],
+  // ===========================================================================================================================
+  // PB 2
   [
     '???',
     '2025/05/06',
@@ -178,8 +346,13 @@ $periodi = [
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
     '',
+    [],
     '',
+    [],
+    [],
   ],
+  // ===========================================================================================================================
+  // PB 3
   [
     'cose di progettazione',
     '2025/05/20',
@@ -207,8 +380,13 @@ $periodi = [
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
     '',
+    [],
     '',
+    [],
+    [],
   ],
+  // ===========================================================================================================================
+  // PB 4
   [
     'sviluppo effettivo',
     '2025/05/27',
@@ -231,8 +409,12 @@ $periodi = [
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
     '',
+    [],
     '',
+    [],
+    [],
   ]
+  // ===========================================================================================================================
 ];
 
 // CODICE DI VALIDAZIONE DELLE TABELLE
@@ -240,9 +422,34 @@ $periodi = [
 $_ = array_map(
   'indicizza_tabella',
   array_merge(
-    array_column($periodi, 4),
-    array_column($periodi, 5),
+    array_column($periodi_rtb, 5),
+    array_column($periodi_rtb, 5),
+    array_column($periodi_pb,  4),
+    array_column($periodi_pb,  5),
   )
 );
 
-echo implode("\n", array_map(fn ($a) => periodo(...$a), $periodi));
+function periodi_tostring($a) {
+  return implode("\n", array_map(fn ($a) => periodo(...$a), $a));
+}
+
+const preventivo = 4;
+const consuntivo = 5;
+
+function tabelle_ore_soldi_tostring($tabella, $periodo, $colonna) {
+  $titolo = [
+    preventivo => [
+      '\textbf{Preventivo orario}',
+      '\textbf{Preventivo economico}',
+    ],
+    consuntivo => [
+      '\textbf{Consuntivo orario}',
+      '\textbf{Consuntivo economico}',
+    ],
+  ];
+  return ''
+    . "\n\n{$titolo[$colonna][0]}\n\n"
+    . tabella_ore_to_string($tabella[$periodo][$colonna])
+    . "\n\n{$titolo[$colonna][1]}\n\n"
+    . tabella_soldi_to_string($tabella[$periodo][$colonna]);
+}
