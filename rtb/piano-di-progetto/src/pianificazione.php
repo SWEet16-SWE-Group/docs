@@ -8,15 +8,7 @@ require_once __DIR__ . '/pianificazione.d/pb.php';
 
 \subsection{Verso la RTB}
 
-<?php require_once __DIR__ . "/pianificazione.d/rtb_1.php"; ?>
-
-<?php require_once __DIR__ . "/pianificazione.d/rtb_2.php"; ?>
-
-<?php require_once __DIR__ . "/pianificazione.d/rtb_3.php"; ?>
-
-<?php require_once __DIR__ . "/pianificazione.d/rtb_4.php"; ?>
-
-<?php require_once __DIR__ . "/pianificazione.d/rtb_riepilogo.php"; ?>
+<?php require_once __DIR__ . "/pianificazione.d/rtb.php"; ?>
 
 \pagebreak
 \subsection{Verso la PB}
