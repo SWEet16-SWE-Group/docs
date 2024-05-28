@@ -85,7 +85,7 @@
 
 \end{tblr}
 
-\paragraph{Gestione dei ruoli} \\
+\paragraph{Gestione dei ruoli}
 Durante la fase di RTB, il 29\% delle risorse orario è stato dedicato al ruolo di Analista, il 17\% a quello di Programmatore, il 25\% a quello di Verificatore, mentre
 solo l'8 \% per le figure rispettivamente del Responsabile e dell'Amministratore; il 13\% per la figura del Progettista.\\
 \textbf{Retrospettiva finale}\\
