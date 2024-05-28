@@ -1,4 +1,8 @@
-\nonstopmode
+<?php
+
+require_once __DIR__ . '/pianificazione.d/pb.php';
+
+?>
 \pagebreak
 \section{Pianificazione}
 
@@ -35,4 +39,8 @@ Fine: 2024/04/18 \\
 \subsection{Verso la PB}
 <?php require_once __DIR__ . "/pianificazione.d/verso_pb.php"; ?>
 
-<?php require_once __DIR__ . "/pianificazione.d/pb.php"; ?>
+<?php
+
+echo periodi_tostring($periodi_pb);
+
+?>
