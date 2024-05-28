@@ -18,6 +18,21 @@ function tabella_to_string($a) {
   return implode('', array_map(fn ($a) => implode(" & ", $a) . " \\\\ \\hline\n", $a));
 }
 
+function formatta_tabella($a) {
+  return array_map(fn ($a) => array_map(fn ($a) => $a ? $a : '-', $a), $a);
+}
+
+function formatta_tabella_soldi($a) {
+  return array_map(
+    fn ($a) => array_map(
+      fn ($k, $a) => (is_numeric($a) and $k != 1 and $k != 3) ? sprintf("%'.2f", $a) : $a,
+      array_keys($a),
+      $a
+    ),
+    $a
+  );
+}
+
 function tabella_ore($a) {
   return [
     ['Nominativo', 'Re', 'Am', 'An', 'Pg', 'Pr', 'Vf', 'Ore totali'],
@@ -77,6 +92,13 @@ const tabella_ore = <<<'EOF'
     \end{tblr}
   EOF;
 
+function tabella_ore_to_string($tabella) {
+  return str_replace_array(
+    ['ORE' => tabella_to_string(formatta_tabella(tabella_ore($tabella)))],
+    tabella_ore
+  );
+}
+
 const tabella_soldi = <<<'EOF'
     \begin{tblr}{
         colspec={|X[5cm]|X[3.5cm]|X[1.5cm]|X[3.5cm]},
@@ -90,6 +112,13 @@ const tabella_soldi = <<<'EOF'
 
     \end{tblr}
   EOF;
+
+function tabella_soldi_to_string($tabella) {
+  return str_replace_array(
+    ['SOLDI' => tabella_to_string(formatta_tabella_soldi(formatta_tabella(tabella_soldi($tabella))))],
+    tabella_soldi
+  );
+}
 
 function periodo(
   $titolo,
@@ -165,10 +194,10 @@ function periodo(
       'INIZIO' => (DateTime::createFromFormat('Y/m/d', $inizio))->format('Y/m/d'),
       'FINE'   => (DateTime::createFromFormat('Y/m/d', $fine))->format('Y/m/d'),
       'ATTIVITA' => $attivita ? $itemize($attivita) : '\\item Nessuna attività svolta',
-      'PREVENTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($preventivo))],    tabella_ore),
-      'PREVENTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($preventivo))],  tabella_soldi),
-      'CONSUNTIVO_ORE'    => str_replace_array(['ORE'   => tabella_to_string(tabella_ore($consuntivo))],    tabella_ore),
-      'CONSUNTIVO_SOLDI'  => str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($consuntivo))],  tabella_soldi),
+      'PREVENTIVO_ORE'    => tabella_ore_to_string($preventivo),
+      'PREVENTIVO_SOLDI'  => tabella_soldi_to_string($preventivo),
+      'CONSUNTIVO_ORE'    => tabella_ore_to_string($consuntivo),
+      'CONSUNTIVO_SOLDI'  => tabella_soldi_to_string($consuntivo),
       'RUOLI' => $gestioneruoli,
       'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
       'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
