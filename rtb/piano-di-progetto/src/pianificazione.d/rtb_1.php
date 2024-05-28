@@ -1,3 +1,7 @@
+\subsubsection{Primo periodo}
+Inizio: 2023/11/08 \\
+Fine: 2023/11/24 \\
+
 <?php
 
 require_once __DIR__ . '/pb.php';
