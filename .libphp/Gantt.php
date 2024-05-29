@@ -24,6 +24,18 @@ class Attivita {
   }
 }
 
+function array_group($f, $a) {
+  $b = [];
+  foreach ($a as $v) {
+    $k = $f($v);
+    if (!array_key_exists($k, $b)) {
+      $b[$k] = [];
+    }
+    $b[$k][] = $v;
+  }
+  return $b;
+}
+
 function stampablocco($a, $d) {
   $tag = "td";
   return match (true) {
@@ -50,11 +62,41 @@ function gantt($attivita) {
     range(0, $inizio->diff($fine)->format('%a'))
   );
 
-  $html = [
-    'tbody' => array_map(fn ($a) => '<tr>' . colonna0($a) . implode(array_map(fn ($d) => stampablocco($a, $d), $datarange)) . '</tr>', $attivita),
-  ];
+  $ndate = count($datarange);
 
-  return implode("\n", $html['tbody']);
+  $anni = array_group(fn ($d) => $d->format('Y'), $datarange);
+  $anni = array_map(fn ($a) => sprintf('<th colspan="%d">%s</th>', count($anni[$a]), $a), array_keys($anni));
+  $anni = implode('', $anni);
+
+  $mesi = array_group(fn ($d) => $d->format('Y-m'), $datarange);
+  $mesi = array_map(fn ($a) => sprintf('<th colspan="%d">%s</th>', count($mesi[$a]), DateTime::createFromFormat('Y-m', $a)->format('m')), array_keys($mesi));
+  $mesi = implode('', $mesi);
+
+  $giorni = implode('', array_map(fn ($d) => "<th>{$d->format('d')}</th>", $datarange));
+  $tbody = implode("\n", array_map(fn ($a) => '<tr>' . colonna0($a) . implode('', array_map(fn ($d) => stampablocco($a, $d), $datarange)) . '</tr>', $attivita));
+
+  return <<<EOF
+    <table>
+      <thead>
+        <tr>
+          <th rowspan="4" style="width: 180px">Attività</th>
+          <th colspan="{$ndate}">Tempo</th>
+        </tr>
+        <tr>
+          {$anni}
+        </tr>
+        <tr>
+          {$mesi}
+        </tr>
+        <tr>
+          {$giorni}
+        </tr>
+      </thead>
+      <tbody>
+        {$tbody}
+      </tbody>
+    </table>
+  EOF;
 }
 
 function now() {
@@ -82,6 +124,7 @@ $gantt = gantt([
   <style>
     table {
       width: 100%;
+      height: 100%;
       border-spacing: 0px;
       border-right: solid 1px black;
     }
@@ -126,31 +169,7 @@ $gantt = gantt([
 
 <body>
 
-  <table>
-    <thead>
-      <tr>
-        <th rowspan="4" style="width: 180px;">
-          Attività
-        </th>
-        <th colspan="14">
-          Tempo
-        </th>
-      </tr>
-      <tr>
-        <th colspan="14">2024</th>
-      </tr>
-      <th colspan="3">05</th>
-      <th colspan="11">06</th>
-      <tr>
-        <?php echo implode('', array_map(fn ($a) => "<th>$a</th>", [...range(29, 31), 1]));
-        ?>
-      </tr>
-    </thead>
-
-    <tbody>
-      <?php echo $gantt; ?>
-    </tbody>
-  </table>
+  <?php echo $gantt; ?>
 
 </body>
 
