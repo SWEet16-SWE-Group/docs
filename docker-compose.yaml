@@ -35,16 +35,18 @@ services:
     container_name: php
     expose:
       - "9000"
-  db:
-    restart: unless-stopped
+  mysql:
+    container_name: db
+    restart: always
     image: mysql:latest
+    platform: linux/x86_64
     ports:
       - "3306:3306"
     environment:
       MYSQL_ROOT_PASSWORD: 'root'
       MYSQL_PASS: 'root'
     volumes:
-      - ./initdb:/docker-entrypoint-initdb.d
+      - ./db-data:/var/lib/mysql
     networks:
       - app-network
 
@@ -55,7 +57,7 @@ services:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: root
     depends_on:
-      - db
+      - mysql
     ports:
       - "8443:80"
     networks:

@@ -6,6 +6,7 @@ import AuthenticatedLayout from "./components/AuthenticatedLayout";
 import GuestLayout from "./components/GuestLayout";
 import ClientLayout from "./components/ClientLayout"
 import RestaurantLayout from "./components/RestaurantLayout"
+import ModificaInfoAccount from "./views/ModificaInfoAccount";
 
 const router = createBrowserRouter([
     {
@@ -32,12 +33,11 @@ const router = createBrowserRouter([
             {
                 path: '/modificaprofiloristoratore',
                 element: <ModificaProfiloRistoratore />
-            },
+            }, */
             {
                 path: '/modificainfoaccount',
                 element: <ModificaInfoAccount />
-            }
-            */
+            },
             {
                 path: '*',
                 element: <NotFound />

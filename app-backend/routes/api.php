@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\InfoAccountController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
@@ -20,12 +21,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:api')->group(function () {
 
-    Route::middleware(UserIsAuthenticated::class) {
-    Route::prefix('authenticated')->group(function () {})
-        // inserire qui dentro chiamate api per utente autenticato e solo utente autenticato
+    // inserire qui dentro chiamate api per utente autenticato e solo utente autenticato
 
-    };
+       // ->middleware(UserIsAuthenticated::class);
 
+
+    /*
     Route::middleware(UserIsRestaurant::class) {
         Route::prefix('restaurant')->group(function () {})
         // inserire qui dentro chiamate api per ristoratore e solo ristoratore
@@ -37,7 +38,7 @@ Route::middleware('auth:api')->group(function () {
         // inserire qui dentro chiamate api per cliente e solo cliente
 
     };
-
+*/
 
     // inserire qui le chiamate api comuni a tutti e tre i tipi di utenti (ad esempio logout)
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -46,6 +47,7 @@ Route::middleware('auth:api')->group(function () {
 
 // inserire qui le chiamate per gli utenti non autenticati
 
+Route::post('/email', [InfoAccountController::class, 'email']);
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 

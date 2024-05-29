@@ -1,6 +1,7 @@
-import {Link, Navigate, Outlet} from "react-router-dom";
+import {Link, Navigate, Outlet, redirect, useNavigate} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
+
 
 export default function AuthenticatedLayout() {
 
@@ -20,8 +21,6 @@ export default function AuthenticatedLayout() {
 
     if (token && role === 'AUTENTICATO') {
 
-        debugger;
-
         const onLogout = (ev) => {
             ev.preventDefault()
 
@@ -33,6 +32,10 @@ export default function AuthenticatedLayout() {
                 })
         }
 
+
+        const goToModificaAccountInfo = () => {
+            Navigate("/modificainfoaccount");
+        }
         return (
             <>
                 <div id="defaultLayout">
@@ -45,7 +48,10 @@ export default function AuthenticatedLayout() {
                                 Header
                             </div>
                             <div>
-                                {user.email}
+                                <a href="#" onClick={Navigate("/modificainfoaccount")} className="btn-info">Profilo</a>
+                            </div>
+                            <div>
+                                {localStorage.USER_ID}
                                 <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
                             </div>
                         </header>

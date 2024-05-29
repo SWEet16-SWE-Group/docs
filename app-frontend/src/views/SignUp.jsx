@@ -27,7 +27,7 @@ export default function SignUp() {
                 setRole(data.role)
                 setToken(data.token)
 
-               // debugger;
+                debugger;
             })
             .catch(err => {
                 const response = err.response;

@@ -23,7 +23,7 @@ class AuthController extends Controller
 
         $token = $user->createToken('main')->plainTextToken;
         return response([
-            'user' => $user['id'],
+            'user' => $user,
             'token' => $token,
             'role' => 'AUTENTICATO'
         ]);
@@ -42,9 +42,9 @@ class AuthController extends Controller
         $user = Auth::user();
         $token = $user->createToken('main')->plainTextToken;
         return response([
-            'user' => $user['id'],
+            'user' => $user,
             'token' => $token,
-            'role' => 'authenticated'
+            'role' => 'AUTENTICATO'
         ]);
     }
 
