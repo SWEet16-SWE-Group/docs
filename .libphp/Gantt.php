@@ -112,8 +112,12 @@ $gantt = gantt([
         Attivita::Micro('s122', (now())->add(new DateInterval('P3D')), []),
         Attivita::Micro('s123', (now())->add(new DateInterval('P3D')), []),
       ]),
+      Attivita::Micro('s2', (now())->add(new DateInterval('P1D')), []),
     ])
   ]),
+  Attivita::Macro('y', now(), [
+    Attivita::Micro('y1', now()->add(new DateInterval('P4D')), [])
+  ])
 ]);
 
 ?>
