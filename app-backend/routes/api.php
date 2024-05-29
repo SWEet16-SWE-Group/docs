@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\InfoAccountController;
+use App\Http\Controllers\Api\UserController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
@@ -19,11 +19,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->group(function () {
+Route::middleware('auth:sanctum')->group(function () {
 
     // inserire qui dentro chiamate api per utente autenticato e solo utente autenticato
 
-       // ->middleware(UserIsAuthenticated::class);
+    Route::post('/user', [UserController::class, 'showUserInfo']);
+        // ->middleware(UserIsAuthenticated::class);
+
+    Route::delete('/user', [UserController::class, 'deleteUser']);
+    Route::put('/useremail', [UserController::class, 'updateUserEmail']);
+    Route::put('/userpassword', [UserController::class, 'updateUserPassword']);
 
 
     /*
@@ -42,12 +47,12 @@ Route::middleware('auth:api')->group(function () {
 
     // inserire qui le chiamate api comuni a tutti e tre i tipi di utenti (ad esempio logout)
     Route::post('/logout', [AuthController::class, 'logout']);
+
 });
 
 
 // inserire qui le chiamate per gli utenti non autenticati
 
-Route::post('/email', [InfoAccountController::class, 'email']);
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 

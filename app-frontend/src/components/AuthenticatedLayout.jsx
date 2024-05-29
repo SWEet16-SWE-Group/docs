@@ -48,7 +48,7 @@ export default function AuthenticatedLayout() {
                                 Header
                             </div>
                             <div>
-                                <a href="#" onClick={Navigate("/modificainfoaccount")} className="btn-info">Profilo</a>
+                                <Link to="/modificainfoaccount" className="btn-info">Profilo</Link>
                             </div>
                             <div>
                                 {localStorage.USER_ID}

@@ -3,65 +3,70 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreUserRequest;
-use App\Http\Requests\UpdateUserRequest;
+use App\Http\Requests\UpdateUserEmailRequest;
+use App\Http\Requests\UpdateUserPasswordRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function showUserInfo(Request $request)
     {
-        return User::query
+        /** @var User $user */
+        $user = User::where('id',$request['id'])->first();
 
+        return response([
+            'id' => $user['id'],
+            'email' => $user['email']
+        ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreUserRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreUserRequest $request)
+    public function updateUserEmail(UpdateUserEmailRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        /** @var User $user */
+        $user = User::where('id',$data['id'])->first();
+
+        if(!$user) return response(['','422']);
+
+        if(isset($data['email']) && $data['email'] != $user['email']) {
+            $user->update(['email' => $data['email']]);
+            return response('Email aggiornata con successo', '204');
+        }
+
+        return response(['','422']);
+    }
+    public function updateUserPassword(UpdateUserPasswordRequest $request)
+    {
+        $data = $request->validated();
+
+        if(isset($data['password'])) {
+            $data['password'] = bcrypt($data['password']);
+        }
+
+        /** @var User $user */
+        $user = User::where('id',$data['id'])->first();
+
+        if(!$user) return response(['','422']);
+
+        if(isset($data['password']) && $data['password'] != $user['password']) {
+            $user->update(['password' => $data['password']]);
+            return response("Password aggiornata con successo",'204');
+        }
+
+        return response(['','422']);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
-    {
-        //
-    }
+    public function deleteUser(Request $request) {
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateUserRequest  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateUserRequest $request, User $user)
-    {
-        //
-    }
+        /** @var User $user */
+        $user = User::where('id',$request['id'])->first();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+        //if(!$user) return response(['','422']);
+
+        $user->delete();
+
+        return response('User eliminato con successo','204');
     }
 }
