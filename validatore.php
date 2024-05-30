@@ -58,6 +58,6 @@ $tex = stream(
   _filter(fn ($a) => !str_contains($a, '/Template/')),
 );
 main_correttore_ortografico_action($dict, $tex);
-if (in_array('--compile', $argv)) {
+if (_compile()) {
   main_compile($tex);
 }

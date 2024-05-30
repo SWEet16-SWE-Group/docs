@@ -2,6 +2,7 @@
 
 require_once __DIR__ . '/../../../../.libphp/Utils.php';
 require_once __DIR__ . '/../../../../.libphp/Membri.php';
+require_once __DIR__ . '/../../../../.libphp/Gantt.php';
 
 function indicizza_tabella($a) {
   return [
@@ -149,6 +150,8 @@ function periodo(
 
     \subsubsubsection{Attività svolte}
 
+    GANTT
+
     \begin{itemize}
     ATTIVITA
     \end{itemize}
@@ -203,6 +206,7 @@ function periodo(
       'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
       'RAGGIUNTI' => $raggiunti ? $itemize($raggiunti) : '\\item Nessun obbiettivo raggiunto',
       'MANCATI' => $mancati ? $itemize($mancati) : '\\item Nessun obbiettivo mancato',
+      'GANTT' => gantt_latex(__DIR__ . '/../Gantt/g1.png', [Attivita::Macro('M1', '2024-05-01', [Attivita::Micro('m1', '2024-05-02', [])])]),
     ],
     $latex
   );
