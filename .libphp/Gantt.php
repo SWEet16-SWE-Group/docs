@@ -123,66 +123,94 @@ $gantt = gantt($ganttstruct = [
   ])
 ]);
 
+function gantt_html($ganttstruct) {
+  try {
+    ob_start();
 ?>
-<!DOCTYPE html>
-<html>
+    <!DOCTYPE html>
+    <html>
 
-<head>
-  <style>
-    html,
-    body {
-      height: 100%;
-    }
+    <head>
+      <style>
+        html,
+        body {
+          height: 100%;
+        }
 
-    table {
-      width: 100%;
-      height: 100%;
-      border-spacing: 0px;
-      border: solid 1px black;
-    }
+        table {
+          width: 100%;
+          height: 100%;
+          border-spacing: 0px;
+          border: solid 1px black;
+        }
 
-    th,
-    td.attivita {
-      border: solid 1px black;
-    }
+        th,
+        td.attivita {
+          border: solid 1px black;
+        }
 
-    td.attivita {
-      text-align: right;
-      padding-right: 10px;
-    }
+        td.attivita {
+          text-align: right;
+          padding-right: 10px;
+        }
 
-    td.vuoto,
-    td.singolo,
-    td.inizio {
-      border-left: solid 1px black;
-    }
+        td.vuoto,
+        td.singolo,
+        td.inizio {
+          border-left: solid 1px black;
+        }
 
-    td.vuoto,
-    td.singolo,
-    td.fine {
-      border-right: solid 1px black;
-    }
+        td.vuoto,
+        td.singolo,
+        td.fine {
+          border-right: solid 1px black;
+        }
 
-    td.macro,
-    td.micro {
-      border-top: solid 1px black;
-      border-bottom: solid 1px black;
-    }
+        td.macro,
+        td.micro {
+          border-top: solid 1px black;
+          border-bottom: solid 1px black;
+        }
 
-    td.macro {
-      background-color: lightblue;
-    }
+        td.macro {
+          background-color: lightblue;
+        }
 
-    td.micro {
-      background-color: lightcyan;
-    }
-  </style>
-</head>
+        td.micro {
+          background-color: lightcyan;
+        }
+      </style>
+    </head>
 
-<body>
+    <body>
 
-  <?php echo $gantt; ?>
+      <?php echo gantt($ganttstruct); ?>
 
-</body>
+    </body>
 
-</html>
+    </html>
+
+<?php
+
+    return ob_get_contents();
+  } finally {
+    ob_end_clean();
+  }
+}
+
+function gantt_latex_full($imagefilepath, $ganttstruct, $latexcmd, $processingcmd,) {
+  file_put_contents(__DIR__ . '/gantt.html', gantt_html($ganttstruct));
+  passthru($processingcmd);
+  mkdir(dirname($imagefilepath));
+  rename('screenshot.png', $imagefilepath);
+  echo $latexcmd;
+}
+
+function gantt_latex($imagefilepath, $ganttstruct) {
+  gantt_latex_full(
+    $imagefilepath,
+    $ganttstruct,
+    "\\begin{figure}[H] \\includegraphics[scale=1] {${'basename'}($imagefilepath)} \\end{figure}",
+    "firefox --headless --screenshot --window-size 640,360 'file://" . __DIR__ . "/gantt.html'"
+  );
+}
