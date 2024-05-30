@@ -4,6 +4,7 @@ class Attivita {
   private function __construct(public $nome, public $inizio, public $fine, public $class, public $tag) {
   }
   public static function Macro($nome, $inizio, $figli) {
+    $inizio = DateTimeImmutable::createFromFormat('Y-m-d', $inizio);
     $figli = array_merge(...array_map(fn ($a) => $a($inizio), $figli));
     return [
       new Attivita(
@@ -17,6 +18,7 @@ class Attivita {
     ];
   }
   public static function Micro($nome, $fine, $figli) {
+    $fine = DateTimeImmutable::createFromFormat('Y-m-d', $fine);
     return fn ($inizio) => array_merge(
       [new Attivita($nome, $inizio, $fine, 'micro', 'td')],
       ...array_map(fn ($micro) => $micro($fine->add(new DateInterval('P1D'))), $figli),
@@ -54,11 +56,11 @@ function colonna0($a) {
 
 function gantt($attivita) {
   $attivita = array_merge(...$attivita);
-  $inizio = DateTime::createFromFormat('Y-m-d', min(array_map(fn ($a) => $a->inizio->format('Y-m-d'), $attivita)));
-  $fine   = DateTime::createFromFormat('Y-m-d', max(array_map(fn ($a) =>   $a->fine->format('Y-m-d'), $attivita)));
+  $inizio = DateTimeImmutable::createFromFormat('Y-m-d', min(array_map(fn ($a) => $a->inizio->format('Y-m-d'), $attivita)));
+  $fine   = DateTimeImmutable::createFromFormat('Y-m-d', max(array_map(fn ($a) =>   $a->fine->format('Y-m-d'), $attivita)));
 
   $datarange = array_map(
-    fn ($a) => (new DateTime())->add(new DateInterval("P{$a}D")),
+    fn ($a) => $inizio->add(new DateInterval("P{$a}D")),
     range(0, $inizio->diff($fine)->format('%a'))
   );
 
@@ -100,23 +102,27 @@ function gantt($attivita) {
 }
 
 function now() {
-  return new DateTimeImmutable();
+  return (new DateTimeImmutable())->format('Y-m-d');
 }
 
-$gantt = gantt([
-  Attivita::Macro('s', now(), [
-    Attivita::Micro('s1', (now())->add(new DateInterval('P0D')), [
-      Attivita::Micro('s11', (now())->add(new DateInterval('P2D')), []),
-      Attivita::Micro('s12', (now())->add(new DateInterval('P2D')), [
-        Attivita::Micro('s121', (now())->add(new DateInterval('P3D')), []),
-        Attivita::Micro('s122', (now())->add(new DateInterval('P3D')), []),
-        Attivita::Micro('s123', (now())->add(new DateInterval('P3D')), []),
+function dateadd($d, $p) {
+  return $d->add(new DateInterval($p))->format('Y-m-d');
+}
+
+$gantt = gantt($ganttstruct = [
+  Attivita::Macro('s',            '2024-05-16', [
+    Attivita::Micro('s1',         '2024-05-17', [
+      Attivita::Micro('s11',      '2024-05-18', []),
+      Attivita::Micro('s12',      '2024-05-18', [
+        Attivita::Micro('s121',   '2024-05-19', []),
+        Attivita::Micro('s122',   '2024-05-22', []),
+        Attivita::Micro('s123',   '2024-05-21', []),
       ]),
-      Attivita::Micro('s2', (now())->add(new DateInterval('P1D')), []),
+      Attivita::Micro('s2',       '2024-05-28', []),
     ])
   ]),
-  Attivita::Macro('y', now(), [
-    Attivita::Micro('y1', now()->add(new DateInterval('P4D')), [])
+  Attivita::Macro('y',            '2024-05-27', [
+    Attivita::Micro('y1',         '2024-06-03', [])
   ])
 ]);
 
