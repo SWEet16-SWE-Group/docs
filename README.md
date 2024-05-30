@@ -4,7 +4,6 @@
 [![Laravel](https://github.com/SWEet16-SWE-Group/docs/workflows/Laravel/badge.svg)](https://github.com/SWEet16-SWE-Group/docs/actions?query=workflow:"Laravel")
 [![codecov](https://codecov.io/gh/SWEet16-SWE-Group/docs/graph/badge.svg?token=KZVW5OOT08)](https://codecov.io/gh/SWEet16-SWE-Group/docs)
 
-
 </p>
 
 ## Usare il progetto:
@@ -15,10 +14,36 @@ Assicurarsi di avere installato Docker Desktop e Docker Compose, aprire un termi
 docker-compose up --build
 ```
 
+Aprire ora un altro terminale e chiamare: 
+```
+docker-compose exec php sh
+```
+
+E: 
+```
+composer install
+```
+
+Infine: 
+```
+php artisan key:generate
+```
+
+Controllare ora se la pagina di laravel (localhost/8000) non dia errori, se così non fosse chiamare sempre da dentro il container docker:
+```
+chmod -R 777 storage
+```
+
 Per collegarsi a React andare su:
 
 ```
-localhost/80
+localhost/3000
+```
+
+Per collegarsi a Laravel andare su:
+
+```
+localhost/8000
 ```
 
 Per collegarsi a PhpmyAdmin andare su:
