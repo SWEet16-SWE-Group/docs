@@ -355,10 +355,10 @@ $periodi_pb = [
     [],
     <<<'EOF'
     I conflitti interni al gruppo sono stati risolti. \\
-    Le questioni trattate principalmente sono state il ripristino di un contatto con il proponente e una seconda valutazione delle tecnologie scelte. A votazione si è deciso di adottare il framework di Lavaravel per lo sviluppo del backend. Successivamente il gruppo si è diviso in due sottogruppi, uno con lo scopo di riprendere contatto con il proponente e aggiornarlo sulla situazione, l'altro si è occupato di stabilire una baseline per l'inizio della fase di codifica. La baseline consisteva nella creazione un progetto "vuoto" dove fosse possibile utilizzare tutte le tecnologie scelte e averle interconnesse tra di loro, pronte per la codifica. Questa baseline non è stata raggiunta vista la complessità realte delle tecnologie scelte molto superiore a quella che era preventivata.
+    Le questioni trattate principalmente sono state il ripristino di un contatto con il proponente e una seconda valutazione delle tecnologie scelte. A votazione si è deciso di adottare il framework di Laravel per lo sviluppo del backend. Successivamente il gruppo si è diviso in due sottogruppi, uno con lo scopo di riprendere contatto con il proponente e aggiornarlo sulla situazione, l'altro si è occupato di stabilire una baseline per l'inizio della fase di codifica. La baseline consisteva nella creazione un progetto "vuoto" dove fosse possibile utilizzare tutte le tecnologie scelte e averle interconnesse tra di loro, pronte per la codifica. Questa baseline non è stata raggiunta vista la complessità reale delle tecnologie scelte molto superiore a quella preventivata.
     EOF,
     [
-      'Appacificamento generale',
+      'Risoluzione degli attriti tra colleghi',
       'Ripreso una comunicazione costante con il proponente',
     ],
     [
