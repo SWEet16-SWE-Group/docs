@@ -208,15 +208,15 @@ function gantt_latex_full($imagefilepath, $ganttstruct, $latexcmd, $processingcm
   is_dir($dir = dirname($imagefilepath)) or mkdir($dir, recursive: true);
   rename('screenshot.png', $imagefilepath);
   unlink($html);
-  echo $latexcmd;
+  return $latexcmd;
 }
 
 function gantt_latex($imagefilepath, $ganttstruct) {
   $img = basename($imagefilepath);
-  gantt_latex_full(
+  return gantt_latex_full(
     $imagefilepath,
     $ganttstruct,
-    "\\begin{figure}[H] \\includegraphics[scale=.7]{{$img}} \\end{figure}",
+    "\\begin{figure}[h!] \\includegraphics[scale=.7]{{$img}} \\end{figure}",
     "firefox --headless --screenshot --window-size 640,360 'file://" . __DIR__ . "/gantt.html'"
   );
 }
