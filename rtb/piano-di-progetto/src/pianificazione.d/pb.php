@@ -300,7 +300,7 @@ $periodi_pb = [
   // ===========================================================================================================================
   // PB 1
   [
-    'periodo buio',
+    'Periodo 1',
     '2025/04/22',
     '2024/05/03',
     [],
@@ -322,7 +322,9 @@ $periodi_pb = [
     ],
     '',
     [],
-    '',
+    <<<'EOF'
+    Causa la lunga durata del progetto e l'accumulo di ritardi, sono nati forti attriti all'interno del gruppo in merito come procedere in fase di PB. Questi attriti si sono aggravati in veri e propri conflitti tra i membri del gruppo. In queste due settimane non è stato svolto nulla di rilevante.
+    EOF,
     [],
     [],
   ],
