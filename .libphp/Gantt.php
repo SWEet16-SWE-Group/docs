@@ -199,18 +199,21 @@ function gantt_html($ganttstruct) {
 }
 
 function gantt_latex_full($imagefilepath, $ganttstruct, $latexcmd, $processingcmd,) {
-  file_put_contents(__DIR__ . '/gantt.html', gantt_html($ganttstruct));
+  $html = __DIR__ . '/gantt.html';
+  file_put_contents($html, gantt_html($ganttstruct));
   passthru($processingcmd);
-  mkdir(dirname($imagefilepath));
+  is_dir($dir = dirname($imagefilepath)) or mkdir($dir, recursive: true);
   rename('screenshot.png', $imagefilepath);
+  unlink($html);
   echo $latexcmd;
 }
 
 function gantt_latex($imagefilepath, $ganttstruct) {
+  $img = basename($imagefilepath);
   gantt_latex_full(
     $imagefilepath,
     $ganttstruct,
-    "\\begin{figure}[H] \\includegraphics[scale=1] {${'basename'}($imagefilepath)} \\end{figure}",
+    "\\begin{figure}[H] \\includegraphics[scale=.4]{{$img}} \\end{figure}",
     "firefox --headless --screenshot --window-size 640,360 'file://" . __DIR__ . "/gantt.html'"
   );
 }
