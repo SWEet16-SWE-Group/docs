@@ -134,7 +134,10 @@ function gantt_html($ganttstruct) {
       <style>
         html,
         body {
+          width: 100%;
           height: 100%;
+          margin: 0px;
+          padding: 0px;
         }
 
         table {
@@ -213,7 +216,7 @@ function gantt_latex($imagefilepath, $ganttstruct) {
   gantt_latex_full(
     $imagefilepath,
     $ganttstruct,
-    "\\begin{figure}[H] \\includegraphics[scale=.4]{{$img}} \\end{figure}",
+    "\\begin{figure}[H] \\includegraphics[scale=.7]{{$img}} \\end{figure}",
     "firefox --headless --screenshot --window-size 640,360 'file://" . __DIR__ . "/gantt.html'"
   );
 }
