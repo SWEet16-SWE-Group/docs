@@ -101,14 +101,6 @@ function gantt($attivita) {
   EOF;
 }
 
-function now() {
-  return (new DateTimeImmutable())->format('Y-m-d');
-}
-
-function dateadd($d, $p) {
-  return $d->add(new DateInterval($p))->format('Y-m-d');
-}
-
 $gantt = gantt($ganttstruct = [
   Attivita::Macro('s',            '2024-05-16', [
     Attivita::Micro('s1',         '2024-05-17', [
@@ -138,9 +130,10 @@ $gantt = gantt($ganttstruct = [
 <head>
   <style>
     html,
-    body{
+    body {
       height: 100%;
     }
+
     table {
       width: 100%;
       height: 100%;
