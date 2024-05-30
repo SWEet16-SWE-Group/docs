@@ -5,7 +5,8 @@ import axiosClient from "../axios-client";
 
 export default function AuthenticatedLayout() {
 
-    const {user, token, role, setUser, setToken, setRole} = useStateContext()
+    const {user, token, role, notification, notificationStatus, setUser, setToken, setRole, setNotificationStatus}
+        = useStateContext()
 
     if (!token) {
         return <Navigate to={"/login"}/>
@@ -57,9 +58,14 @@ export default function AuthenticatedLayout() {
                         </header>
 
                         <main>
-
                             <div>Autenticato!</div>
                             <Outlet/>
+
+                            {notification &&
+                                <div className={`notification ${notificationStatus}`}>
+                                {notification}
+                            </div>
+                            }
                         </main>
                     </div>
                 </div>

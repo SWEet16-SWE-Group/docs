@@ -2,6 +2,7 @@ import {useEffect, useRef, useState} from "react";
 import axiosClient from "../axios-client";
 import {get} from "axios";
 import {Link, Navigate, redirect} from "react-router-dom";
+import {useStateContext} from "../contexts/ContextProvider";
 
 export default function ModificaInfoAccount() {
 
@@ -18,11 +19,14 @@ export default function ModificaInfoAccount() {
 
     const [errorsEmail, setErrorsEmail] = useState(null);
     const [errorsPassword, setErrorsPassword] = useState(null);
+    const {role, setRole, setNotification, setNotificationStatus} = useStateContext();
+    setRole(localStorage.getItem('ROLE'));
 
     const getUser = () => {
 
         const payload = {
-            id: user.id
+            id: user.id,
+            role: role
         };
         axiosClient.post('/user',payload)
             .then(({data}) => {
@@ -46,15 +50,17 @@ export default function ModificaInfoAccount() {
 
         const payload = {
             id: user.id,
+            role: role,
             password: user.password,
             password_confirmation: user.password_confirmation
         };
 
         axiosClient.put(`/userpassword`, payload)
             .then(({}) => {
-                // TODO show notification
+
                 console.log('password modificata');
-                window.location.reload();
+                setNotificationStatus('success')
+                setNotification("Password modificata con successo");
 
             })
             .catch(err => {
@@ -62,7 +68,11 @@ export default function ModificaInfoAccount() {
                 if(response && response.status === 422) {
                     console.error(response.data);
                     console.log(response.data.errors);
-                    setErrorsPassword(response.data.errors);
+
+                    setNotificationStatus('failure');
+                    setNotification(response.data.errors.password);
+
+                    debugger;
                 }
             })
     }
@@ -74,12 +84,14 @@ export default function ModificaInfoAccount() {
 
         const payload = {
             id: user.id,
+            role: role,
             email: user.email,
         };
 
         axiosClient.put(`/useremail`, payload)
             .then(({}) => {
-                // TODO show notification
+                setNotificationStatus('success');
+                setNotification("Email modificata con successo");
             })
             .catch(err => {
 
@@ -87,7 +99,11 @@ export default function ModificaInfoAccount() {
                 if(response && response.status === 422) {
                     console.error(response.data);
                     console.log(response.data.errors);
-                    setErrorsEmail(response.data.errors);
+
+                    setNotificationStatus('failure');
+                    setNotification(response.data.errors.email);
+
+                    debugger;
                 }
             })
     }
@@ -100,12 +116,16 @@ export default function ModificaInfoAccount() {
         }
 
         const payload = {
-            id: user.id
+            id: user.id,
+            role: role
         };
 
         axiosClient.delete(`/user`,{ data: payload })
             .then(() => {
-                // TODO show notification
+
+                setNotificationStatus('success');
+                setNotification("Account eliminato con successo");
+
                 localStorage.clear();
                 window.location.reload();
             })
