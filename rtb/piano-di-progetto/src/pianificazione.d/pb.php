@@ -331,7 +331,7 @@ $periodi_pb = [
   // ===========================================================================================================================
   // PB 2
   [
-    '???',
+    'Periodo 2',
     '2025/05/06',
     '2024/05/18',
     [],
@@ -353,14 +353,22 @@ $periodi_pb = [
     ],
     '',
     [],
-    '',
-    [],
-    [],
+    <<<'EOF'
+    I conflitti interni al gruppo sono stati risolti. \\
+    Le questioni trattate principalmente sono state il ripristino di un contatto con il proponente e una seconda valutazione delle tecnologie scelte. A votazione si è deciso di adottare il framework di Lavaravel per lo sviluppo del backend. Successivamente il gruppo si è diviso in due sottogruppi, uno con lo scopo di riprendere contatto con il proponente e aggiornarlo sulla situazione, l'altro si è occupato di stabilire una baseline per l'inizio della fase di codifica. La baseline consisteva nella creazione un progetto "vuoto" dove fosse possibile utilizzare tutte le tecnologie scelte e averle interconnesse tra di loro, pronte per la codifica. Questa baseline non è stata raggiunta vista la complessità realte delle tecnologie scelte molto superiore a quella che era preventivata.
+    EOF,
+    [
+      'Appacificamento generale',
+      'Ripreso una comunicazione costante con il proponente',
+    ],
+    [
+      'Baseline MVP'
+    ],
   ],
   // ===========================================================================================================================
   // PB 3
   [
-    'cose di progettazione',
+    'Periodo 3',
     '2025/05/20',
     '2024/05/24',
     [
@@ -387,14 +395,15 @@ $periodi_pb = [
     ],
     '',
     [],
-    '',
+    <<<'EOF'
+    EOF,
     [],
     [],
   ],
   // ===========================================================================================================================
   // PB 4
   [
-    'sviluppo effettivo',
+    'Questa settimana',
     '2025/05/27',
     '2024/05/31',
     [],
