@@ -1,7 +1,8 @@
-import {createRef} from "react";
+import {createRef, useEffect} from "react";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios, { all } from "axios";
+import { fetchAllergeni } from "../IntolleranzeService";
 
 export default function ClientForm() {
     
@@ -11,6 +12,32 @@ export default function ClientForm() {
     nome: ''
     
 });
+
+const [allergeni,setAllergeni] = useState([]);
+
+const [selectedIds, setSelectedIds] = useState([]);
+
+   const handleCheckboxChange = (event) => {
+   const checkedId = event.target.value;
+   if(event.target.checked){
+    setSelectedIds([...selectedIds,checkedId])
+   }else{
+    setSelectedIds(selectedIds.filter(id=>id !== checkedId))
+   }
+   }
+
+async function getAllergeni() {
+  try {
+    const allergeni = await fetchAllergeni();
+    setAllergeni(allergeni);
+  } catch (error) {
+    console.error('Error fetching allergeni:', error);
+  }
+}
+
+useEffect( () => {
+ getAllergeni();
+},[]); 
 
 const navigate=useNavigate();
 
@@ -25,11 +52,21 @@ const handleChange = (e) => {
 
         
 const handleSubmit = (event) => {
-  event.preventDefault();
-      axios.post('http://localhost:8000/api/account',formData)
+      event.preventDefault();
+      const api = axios.create({
+        baseURL: 'http://localhost:8000/api'
+      });
+      api.interceptors.request.use(request => {
+        console.log('Starting Request', request);
+        return request;
+      });
+      api.post('/account',{
+                  clientData: formData,
+                  allergie: selectedIds
+                })
   .then(function (response) {
     // handle success
-    setMessage(response.data.message);
+   // setMessage(response.data.message);
     console.log(response);
   })
   .catch(function (error) {
@@ -50,26 +87,24 @@ const handleSubmit = (event) => {
                 <input type="text" id="id" name="id" value={formData.id} placeholder="id" onChange={handleChange}/>
                 <input type="text" id="account" name="account" value={formData.account} onChange={handleChange} placeholder="account" />
                 <input type="text" id="nome" name="nome" value={formData.nome} onChange={handleChange} placeholder="username" />
-                <div class="allergeniCheckBoxes">
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                <label class="form-check-label" for="defaultCheck1">
-                    Graminacee
-                </label>
-                </div>
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                <label class="form-check-label" for="defaultCheck1">
-                  Crostacei
-                </label>
-                </div>
-                <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1"/>
-                <label class="form-check-label" for="defaultCheck1">
-                  Lattosio
-                </label>
-                </div>
-                </div>
+                { allergeni.length === 0 ? (<p>Loading...</p>) : (
+               <div> 
+                {allergeni.map((allergene) => {
+                  return (
+                  <div class="form-check">
+                  <input 
+                  class="form-check-input" 
+                  type="checkbox" 
+                  value={allergene.id} 
+                  id={allergene.id}
+                  onChange={(event) => { handleCheckboxChange(event) }
+                  } />
+                  <label class="form-check-label" for={allergene.id}>
+                   {allergene.nome}
+                  </label>
+                </div>);
+                })}
+               </div>)}
                 <button>Crea il nuovo profilo!</button>
             </form>
         </div>

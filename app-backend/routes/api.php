@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AllergeniController;
 use App\Http\Controllers\ClientController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,5 @@ Route::get('account/{id}', [ClientController::class,'show']);
 Route::post('/account',[ClientController::class,'store']);
 Route::put('/account',[ClientController::class,'update']);
 Route::delete('account/{id}',[ClientController::class,'destroy']);
+
+Route::get('/allergeni',[AllergeniController::class,'index']);

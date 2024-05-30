@@ -1,5 +1,6 @@
 import {  useParams , useNavigate} from "react-router-dom";
 import {useState , useEffect } from 'react';
+import { fetchClientProfile , deleteClientProfile } from '../ClientService';
 import axios from 'axios';
 
 export default function EditClient() {
@@ -10,7 +11,9 @@ export default function EditClient() {
   const [formData, setFormData] = useState({
     id:'',
     account: '',
-    nome: ''
+    nome: '',
+    created_at: '',
+    updated_at:'',
     
 });
 
@@ -44,13 +47,16 @@ const handleChange = (e) => {
   }
 
 
-  const getClient = async () => {
-      
-    await axios.get(baseUrl)
-               .then(response => {
-                setFormData(response.data[0]);
-               })
-  };
+  async function getClient() {
+    try {
+       const data = await fetchClientProfile(clientName['clientId']);
+       setFormData(data.cliente);
+       console.log(formData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+  
 
   useEffect(() => {
     

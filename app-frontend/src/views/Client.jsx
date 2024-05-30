@@ -12,8 +12,8 @@ export default function Client() {
 
   async function getClient() {
     try {
-      const client = await fetchClientProfile(clientName['clientId']);
-      setClient(client);
+       const client = await fetchClientProfile(clientName['clientId']);
+       setClient(client.cliente);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -35,7 +35,7 @@ export default function Client() {
 
   return (
     <div id="client">
-    {client.length ? (
+    { client.length > 0 ? (
             
               client.map((clientValue) => (
                 <div>
