@@ -396,7 +396,7 @@ $periodi_pb = [
     '',
     [],
     <<<'EOF'
-    Sono state create le diverse task per la fase di codifica dell'MVP sotto forma di issue su GitHub. Ad ogni task è stata assegnata una priorità decrescente (più basso il numero, più è imperativo il suo completamento), issue con priorità uguale possono essere svolte in parallelo. Molto tempo è stato dedicato allo studio di Laravel, in quanto vi sono state molte difficoltà solo nella creazione di un docker che lo eseguisse e nel stabilire una connessione anche parziale tra esso e il database. È stato stimato che la codifica dell'MVP sia ciò che richieda maggiori risorse, il gruppo dunque si è diviso in due sottogruppi rispettivamente da ciqnue persone per la codifica e una per la stesura della documentazione.
+    Sono state create le diverse task per la fase di codifica dell'MVP sotto forma di issue su GitHub. Ad ogni task è stata assegnata una priorità decrescente (più basso il numero, più è imperativo il suo completamento), issue con priorità uguale possono essere svolte in parallelo. Molto tempo è stato dedicato allo studio di Laravel, in quanto vi sono state molte difficoltà solo nella creazione di un docker che lo eseguisse e nel stabilire una connessione anche parziale tra esso e il database. È stato stimato che la codifica dell'MVP sia ciò che richieda maggiori risorse, il gruppo dunque si è diviso in due sottogruppi rispettivamente da cinque persone per la codifica e una per la stesura della documentazione.
     EOF,
     [],
     [],
