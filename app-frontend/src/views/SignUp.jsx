@@ -11,7 +11,7 @@ export default function SignUp() {
 
     const [errors, setErrors] = useState(null)
 
-    const {setUser, setToken, setRole} = useStateContext()
+    const {setUser, setToken, setRole, setNotificationStatus, setNotification} = useStateContext()
 
     const onSubmit = (ev) => {
         ev.preventDefault()
@@ -26,6 +26,9 @@ export default function SignUp() {
                 setUser(data.user)
                 setRole(data.role)
                 setToken(data.token)
+
+                setNotificationStatus('success')
+                setNotification('Registrazione effettuata con successo')
             })
             .catch(err => {
                 const response = err.response;

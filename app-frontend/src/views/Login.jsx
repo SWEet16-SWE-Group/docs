@@ -8,7 +8,7 @@ export default function Login() {
     const emailRef = createRef()
     const passwordRef = createRef()
 
-    const { setUser, setToken, setRole} = useStateContext()
+    const { setUser, setToken, setRole, setNotificationStatus, setNotification} = useStateContext()
     const [message, setMessage] = useState(null)
 
     const onSubmit = ev => {
@@ -23,12 +23,17 @@ export default function Login() {
                 setRole(data.role);
                 setToken(data.token);
 
+                setNotificationStatus('success');
+                setNotification('Login effettuato con successo');
+
+
                 //debugger;
             })
             .catch((err) => {
                 const response = err.response;
                 if (response && response.status === 422) {
                     setMessage(response.data.message)
+
                 }
                 //debugger;
             })
