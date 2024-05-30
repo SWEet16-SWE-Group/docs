@@ -127,6 +127,11 @@ const definizioni_glossario = [
   'Webapp' => "Programma applicativo memorizzato su un server remoto e distribuito su Internet attraverso un'interfaccia browser.",
   'Webinar' => "Sessione educativa o informativa la cui partecipazione avviene in forma remota tramite una connessione a internet.",
   'WhatsApp' => "Applicazione multipiattaforma di messaggistica istantanea basata su cloud che che consente agli utenti di inviare messaggi di testo, immagini, video, documenti e messaggi vocali a singoli o a gruppi tramite Internet.",
+
+  'API Rest'    => null,
+  'Componenti'  => null,
+  'Build'       => null,
+  'Deploy'      => null,
 ];
 
 function print_vocaboli() {
