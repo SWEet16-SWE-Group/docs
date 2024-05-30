@@ -7,6 +7,8 @@ import GuestLayout from "./components/GuestLayout";
 import ClientLayout from "./components/ClientLayout"
 import RestaurantLayout from "./components/RestaurantLayout"
 import ModificaInfoAccount from "./views/ModificaInfoAccount";
+import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore.jsx";
+import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore.jsx";
 
 const router = createBrowserRouter([
     {
@@ -21,19 +23,19 @@ const router = createBrowserRouter([
             {
                 path: '/creazioneprofilocliente',
                 element: <CreazioneProfiloCliente />
-            },
+            },*/
             {
                 path: '/creazioneprofiloristoratore',
                 element: <CreazioneProfiloRistoratore />
-            },
+            },/*
             {
                 path: '/modificaprofilocliente',
                 element: <ModificaProfiloCliente />
-            },
+            },*/
             {
                 path: '/modificaprofiloristoratore',
                 element: <ModificaProfiloRistoratore />
-            }, */
+            },
             {
                 path: '/modificainfoaccount',
                 element: <ModificaInfoAccount />
