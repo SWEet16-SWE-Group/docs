@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/Utils.php';
+
 class Attivita {
   private function __construct(public $nome, public $inizio, public $fine, public $class, public $tag) {
   }
@@ -203,11 +205,13 @@ function gantt_html($ganttstruct) {
 
 function gantt_latex_full($imagefilepath, $ganttstruct, $latexcmd, $processingcmd,) {
   $html = __DIR__ . '/gantt.html';
-  file_put_contents($html, gantt_html($ganttstruct));
-  passthru($processingcmd);
-  is_dir($dir = dirname($imagefilepath)) or mkdir($dir, recursive: true);
-  rename('screenshot.png', $imagefilepath);
-  unlink($html);
+  if (_compile()) {
+    file_put_contents($html, gantt_html($ganttstruct));
+    passthru($processingcmd);
+    is_dir($dir = dirname($imagefilepath)) or mkdir($dir, recursive: true);
+    rename('screenshot.png', $imagefilepath);
+    unlink($html);
+  }
   return $latexcmd;
 }
 
