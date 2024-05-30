@@ -355,7 +355,7 @@ $periodi_pb = [
     [],
     <<<'EOF'
     I conflitti interni al gruppo sono stati risolti. \\
-    Le questioni trattate principalmente sono state il ripristino di un contatto con il proponente e una seconda valutazione delle tecnologie scelte. A votazione si è deciso di adottare il framework di Laravel per lo sviluppo del backend. Successivamente il gruppo si è diviso in due sottogruppi, uno con lo scopo di riprendere contatto con il proponente e aggiornarlo sulla situazione, l'altro si è occupato di stabilire una baseline per l'inizio della fase di codifica. La baseline consisteva nella creazione un progetto "vuoto" dove fosse possibile utilizzare tutte le tecnologie scelte e averle interconnesse tra di loro, pronte per la codifica. Questa baseline non è stata raggiunta vista la complessità reale delle tecnologie scelte molto superiore a quella preventivata.
+    Le questioni trattate principalmente sono state il ripristino di un contatto con il proponente e una seconda valutazione delle tecnologie scelte. A votazione si è deciso di adottare il framework di Laravel per lo sviluppo del backend. Successivamente il gruppo si è diviso in due sottogruppi da tre e tre, uno con lo scopo di riprendere contatto con il proponente e aggiornarlo sulla situazione, l'altro si è occupato di stabilire una baseline per l'inizio della fase di codifica. La baseline consisteva nella creazione un progetto "vuoto" dove fosse possibile utilizzare tutte le tecnologie scelte e averle interconnesse tra di loro, pronte per la codifica. Questa baseline non è stata raggiunta vista la complessità reale delle tecnologie scelte molto superiore a quella preventivata.
     EOF,
     [
       'Risoluzione degli attriti tra colleghi',
@@ -396,6 +396,7 @@ $periodi_pb = [
     '',
     [],
     <<<'EOF'
+    Sono state create le diverse task per la fase di codifica dell'MVP sotto forma di issue su GitHub. Ad ogni task è stata assegnata una priorità decrescente (più basso il numero, più è imperativo il suo completamento), issue con priorità uguale possono essere svolte in parallelo. Molto tempo è stato dedicato allo studio di Laravel, in quanto vi sono state molte difficoltà solo nella creazione di un docker che lo eseguisse e nel stabilire una connessione anche parziale tra esso e il database. È stato stimato che la codifica dell'MVP sia ciò che richieda maggiori risorse, il gruppo dunque si è diviso in due sottogruppi rispettivamente da ciqnue persone per la codifica e una per la stesura della documentazione.
     EOF,
     [],
     [],
