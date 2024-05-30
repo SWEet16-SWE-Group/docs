@@ -8,16 +8,16 @@ CREATE TABLE account(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP
 );
 
 CREATE TABLE clienti(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     account INT NOT NULL,
     nome VARCHAR(255) NOT NULL UNIQUE,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     FOREIGN KEY (account) REFERENCES account(id)
 );
 
@@ -27,8 +27,8 @@ CREATE TABLE ristoratori(
     nome VARCHAR(255) NOT NULL UNIQUE,
     indirizzo VARCHAR(255) NOT NULL UNIQUE,
     telefono VARCHAR(255) NOT NULL UNIQUE,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     FOREIGN KEY (account) REFERENCES account(id)
 );
 
@@ -45,8 +45,8 @@ CREATE TABLE orari_apertura_ristorante(
         'Sabato',
         'Domenica'
     ) NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     PRIMARY KEY (ristorante, giorno, apertura, chiusura),
     FOREIGN KEY (ristorante) REFERENCES ristoratori(id),
     CHECK (apertura < chiusura)
@@ -55,8 +55,8 @@ CREATE TABLE orari_apertura_ristorante(
 CREATE TABLE cucina_ristorante(
     ristorante INT NOT NULL,
     cucina ENUM('pizza', 'pasta', 'pesce') NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     PRIMARY KEY (ristorante, cucina),
     FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
 );
@@ -64,16 +64,16 @@ CREATE TABLE cucina_ristorante(
 CREATE TABLE allergeni(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(255) NOT NULL UNIQUE,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP
 );
 
 CREATE TABLE ingredienti(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ristorante INT NOT NULL,
     nome VARCHAR(255) NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     UNIQUE (ristorante, nome),
     FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
 );
@@ -81,8 +81,8 @@ CREATE TABLE ingredienti(
 CREATE TABLE reagenti(
     ingrediente INT NOT NULL,
     allergene INT NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     PRIMARY KEY (ingrediente, allergene),
     FOREIGN KEY (ingrediente) REFERENCES ingredienti(id),
     FOREIGN KEY (allergene) REFERENCES allergeni(id)
@@ -91,8 +91,8 @@ CREATE TABLE reagenti(
 CREATE TABLE allergie(
     cliente INT NOT NULL,
     allergene INT NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     PRIMARY KEY (cliente, allergene),
     FOREIGN KEY (cliente) REFERENCES clienti(id),
     FOREIGN KEY (allergene) REFERENCES allergeni(id)
@@ -102,8 +102,8 @@ CREATE TABLE pietanze(
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     ristorante INT NOT NULL,
     nome VARCHAR(255) NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     UNIQUE (ristorante, nome),
     FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
 );
@@ -111,8 +111,8 @@ CREATE TABLE pietanze(
 CREATE TABLE ricette(
     pietanza INT NOT NULL,
     ingrediente INT NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     PRIMARY KEY (pietanza, ingrediente),
     FOREIGN KEY (pietanza) REFERENCES pietanze(id),
     FOREIGN KEY (ingrediente) REFERENCES ingredienti(id)
@@ -124,8 +124,8 @@ CREATE TABLE prenotazioni(
     timestamp DATETIME NOT NULL,
     n_inviti INT NOT NULL,
     divisione_conto ENUM('equa', 'proporzionale') NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
 );
 
@@ -134,8 +134,8 @@ CREATE TABLE inviti(
     prenotazione INT NOT NULL,
     cliente INT NOT NULL,
     pagamento ENUM('non_pagato', 'pagato') NOT NULL DEFAULT 'non_pagato',
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     FOREIGN KEY (prenotazione) REFERENCES prenotazioni(id),
     FOREIGN KEY (cliente) REFERENCES clienti(id)
 );
@@ -145,8 +145,8 @@ CREATE TABLE ordinazioni(
     invito INT NOT NULL,
     pietanza INT NOT NULL,
     pagamento ENUM('non_pagato', 'pagato') NOT NULL DEFAULT 'non_pagato',
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     FOREIGN KEY (invito) REFERENCES inviti(id),
     FOREIGN KEY (pietanza) REFERENCES pietanze(id)
 );
@@ -155,8 +155,8 @@ CREATE TABLE dettagli_ordinazione(
     ingrediente INT NOT NULL,
     ordinazione INT NOT NULL,
     dettaglio ENUM('-', '+') NOT NULL,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP,
+    created_at TIMESTAMP,
     PRIMARY KEY (ingrediente, ordinazione),
     FOREIGN KEY (ingrediente) REFERENCES ingredienti(id),
     FOREIGN KEY (ordinazione) REFERENCES ordinazioni(id)
@@ -169,7 +169,7 @@ CREATE TABLE personal_access_tokens(
     name VARCHAR(255) NOT NULL,
     token VARCHAR(64) NOT NULL,
     abilities TEXT DEFAULT NULL,
-    last_used_at TIMESTAMP DEFAULT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+    last_used_at TIMESTAMP,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP
 );
