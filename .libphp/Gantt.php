@@ -122,7 +122,12 @@ $gantt = gantt($ganttstruct = [
     ])
   ]),
   Attivita::Macro('y',            '2024-05-27', [
-    Attivita::Micro('y1',         '2024-06-03', [])
+    Attivita::Micro('y1',         '2024-06-03', []),
+    Attivita::Micro('y1',         '2024-06-03', []),
+    Attivita::Micro('y1',         '2024-06-03', []),
+    Attivita::Micro('y1',         '2024-06-07', []),
+    Attivita::Micro('y1',         '2024-06-07', []),
+    Attivita::Micro('y1',         '2024-06-07', []),
   ])
 ]);
 
@@ -132,11 +137,15 @@ $gantt = gantt($ganttstruct = [
 
 <head>
   <style>
+    html,
+    body{
+      height: 100%;
+    }
     table {
       width: 100%;
       height: 100%;
       border-spacing: 0px;
-      border-right: solid 1px black;
+      border: solid 1px black;
     }
 
     th,
