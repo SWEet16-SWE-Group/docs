@@ -51,7 +51,9 @@ const dict = __DIR__ . '/.libphp/sweet16-dict';
 echo "Controllo esistenza del dizionario: " . json_encode($e = touch(dict)) . "\n\n";
 $e == false && die(11);
 
-$files = _find(__DIR__, 'main.php');
+$files = stream(_find(__DIR__, 'main.php'), _filter(fn ($a) => !str_contains($a, '/Template/')));
+
+die(print_r($files));
 
 $artefatti = stream(
   $files,
