@@ -1,16 +1,15 @@
 \nonstopmode
 \begin{huge}
-    \textbf{Registro delle modifiche}
+\textbf{Registro delle modifiche}
 \end{huge}
 \vspace{5pt}
-
 \begin{tblr}{
 colspec={|X[1.5cm]|X[2cm]|X[2.5cm]|X[2.5cm]|X[5cm]|},
 row{odd}={bg=white},
 row{even}={bg=lightgray},
 row{1}={bg=black, fg=white}
 }
-    Versione & Data & Autore & Verificatore & Descrizione \\ \hline
+Versione & Data & Autore & Verificatore & Descrizione \\ \hline
 2.0.0 & 2024/04/03 & Alex S. & & Approvazione per il rilascio \\ \hline
 1.1.0 & 2024/03/25 & Alex S. & Alberto M. & Applicazione correzioni \\ \hline
 1.0.0 & 2024/03/05 & Alex S. & & Approvazione per il rilascio \\ \hline
@@ -37,5 +36,4 @@ row{1}={bg=black, fg=white}
 0.0.3 & 2024/02/17 & Alex S. & Alberto M. & Stesura template casi d'uso \\ \hline
 0.0.2 & 2024/02/16 & Iulius S. & Alberto M. & Stesura descrizione \\ \hline
 0.0.1 & 2024/02/15 & Iulius S. & Alberto M. & Stesura del template \\ \hline
-
 \end{tblr}
