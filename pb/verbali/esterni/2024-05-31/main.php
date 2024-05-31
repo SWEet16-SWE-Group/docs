@@ -114,7 +114,7 @@ row{1}={bg=black, fg=white}
         \hline
         0.2.0 & 2024/06/03 & Sig. Staffolani & & Apposizione firma \\
         \hline
-        0.1.0 & 2024/05/31 & Alberto C.. & Julius S. & Stesura del documento \\
+        0.1.0 & 2024/05/31 & Alberto C. & Julius S. & Stesura del documento \\
         \hline
 
 \end{tblr}
@@ -158,7 +158,7 @@ In questo breve incontro il proponente, Alessandro Staffolani, ci ha aiutato a r
 \subsection{Domande generali}
 
 \begin{itemize}
-\item \textbf{Domanda}: Stiamo riscontrando alcuni problemi nella fase di testing con GEST: durante l'installazione risultano mancare alcuni moduli e risulta difficile poter procedere con i test, ha qualche soluzione da consigliare ?%;
+\item \textbf{Domanda}: Stiamo riscontrando alcuni problemi nella fase di testing con JEST: durante l'installazione risultano mancare alcuni moduli e risulta difficile poter procedere con i test, ha qualche soluzione da consigliare ?%;
 \item \textbf{Risposta}: Dopo essersi accertato di quale tipologia di React stessimo utilizzando, ReactJS nel nostro caso, e aver approfondito la domanda anche attraverso altri accertamenti come l'installazione del Webpack, il sig. Staffolani ci ha consigliato di seguire i passi del seguente \href{https://create-react-app.dev/}{tutorial}. Inizialmente si dovrebbe creare una nuova app React per poi trasferire i vecchi dati su questa; in questa maniera si potrà verificare infine la corretta installazione e funzionamento del programma di testing. \\ Questa soluzione ovviamente potrà essere presa in considerazione qualora non si riescano a risolvere autonomamente i problemi riscontrati.
 
 \end{itemize}
