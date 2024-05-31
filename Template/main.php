@@ -10,10 +10,11 @@ $titolo = 'TITOLO';
 $pathsimmagini = [
   '../media/',
 ];
-$registro = (new RegistroModifiche())
-  ->log(DX, '2024/05/01', 'A', 'C', 'ac')
-  ->log(CE, '2024/05/02', 'B', 'E', 'bb')
-  ->log(SX, '2024/05/03', 'C', 'B', 'cb');
+$registro = (new RegistroModifiche())->logArray([
+  [DX, '2024/05/01', alex_s(), alberto_m(), 'Stesura 1'],
+  [CE, '2024/05/02', alex_s(), alberto_m(), 'Stesura 2'],
+  [SX, '2024/05/03', alex_s(), '', 'Approvazione per il rilascio'],
+]);
 
 $nome = "documento_v{$registro->versione()}.pdf";
 
@@ -103,22 +104,7 @@ Versione: & <?php echo $registro->versione(); ?> &
 
 \pagebreak
 
-\begin{huge}
-\textbf{Registro delle modifiche}
-\end{huge}
-\vspace{5pt}
-
-\begin{tblr}{
-colspec={|X[1.5cm]|X[2cm]|X[2.5cm]|X[2.5cm]|X[5cm]|},
-row{odd}={bg=white},
-row{even}={bg=lightgray},
-row{1}={bg=black,fg=white}
-}
-
-Versione & Data & Autore & Verificatore & Descrizione \\ \hline
-<?php echo $registro; ?>
-
-\end{tblr}
+<?php echo $registro->latex(); ?>
 
 \pagebreak
 \tableofcontents
