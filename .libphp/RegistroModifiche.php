@@ -17,26 +17,23 @@ class RegistroModifiche {
     return _reduce(fn ($t, $a) => $t->log(...$a), $this)($a);
   }
 
-  public function __toString() {
-    return array_reduce(
-      $this->tabella,
-      function ($t, $a) {
-        $t->versione = match ($a[0]) {
-          [0, 0, 1] => [$t->versione[0], $t->versione[1], $t->versione[2] + 1],
-          [0, 1, 0] => [$t->versione[0], $t->versione[1] + 1, 0],
-          [1, 0, 0] => [$t->versione[0] + 1, 0, 0],
-        };
-        $a[0] = implode('.', $t->versione);
-        $a = array_map('trim', $a);
-        $t->testo = implode(" & ", $a) . " \\\\ \\hline\n" . $t->testo;
-        return $t;
-      },
-      (object)['versione' => [0, 0, 0], 'testo' => '']
-    )->testo;
-  }
   public function latex() {
     return str_replace_array([
-      'REGISTRO' => (string) $this,
+      'REGISTRO' => array_reduce(
+        $this->tabella,
+        function ($t, $a) {
+          $t->versione = match ($a[0]) {
+            [0, 0, 1] => [$t->versione[0], $t->versione[1], $t->versione[2] + 1],
+            [0, 1, 0] => [$t->versione[0], $t->versione[1] + 1, 0],
+            [1, 0, 0] => [$t->versione[0] + 1, 0, 0],
+          };
+          $a[0] = implode('.', $t->versione);
+          $a = array_map('trim', $a);
+          $t->testo = implode(" & ", $a) . " \\\\ \\hline\n" . $t->testo;
+          return $t;
+        },
+        (object)['versione' => [0, 0, 0], 'testo' => '']
+      )->testo,
     ], <<<'EOF'
     \begin{huge}
     \textbf{Registro delle modifiche}
