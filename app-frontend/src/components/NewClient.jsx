@@ -1,12 +1,12 @@
-import {createRef, useEffect} from "react";
+import { useEffect} from "react";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { fetchAllergeni } from "../services/IntolleranzeService";
 import ContextProvider from "../contexts/ContextProvider";
 
-export default function ClientForm() {
-  localStorage.setItem('USER_ID', 1);
+export default function NewClient() {
+
   const [formData, setFormData] = useState({
     account_id: localStorage.getItem('USER_ID'),
     nome: ''
@@ -15,6 +15,7 @@ export default function ClientForm() {
 
 const [allergeni,setAllergeni] = useState([]);
 
+//selectedIds rappresenta gli allergeni selezionati
 const [selectedIds, setSelectedIds] = useState([]);
 
    const handleCheckboxChange = (event) => {
@@ -69,11 +70,12 @@ const handleSubmit = (event) => {
   })
   .catch(function (error) {
     setMessage(error.response.data.errors["clientData.nome"]);
+    setFormData({
+      account_id: localStorage.getItem('USER_ID'),
+      nome: ''
+    }
+    );
     console.log(error);
-  })
-  .finally(function () {
-    // always executed
-    //navigate('/');
   });
 }
 

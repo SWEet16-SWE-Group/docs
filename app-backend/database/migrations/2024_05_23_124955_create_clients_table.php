@@ -20,6 +20,8 @@ class CreateClientsTable extends Migration
             $table->timestamps();
 
             $table->unique(['nome','id']);
+
+            
         });
     }
 

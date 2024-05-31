@@ -9,7 +9,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import Account from "./views/Account";
 import Client,{loader as clientLoader} from "./views/Client";
-import ClientForm from "./components/ClientForm";
+import ClientForm from "./components/NewClient";
 import EditClient from "./views/EditClient";
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
 
     {
         path : "new",
-        element : <ClientForm />,
+        element : <newClient />,
     },
       
     {

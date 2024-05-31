@@ -38,9 +38,7 @@ class ClientController extends Controller
          $cliente= Client::create(['nome'=>$clientData["nome"],
                                    'account'=>$clientData["account_id"]]);
      //   $cliente->id=$clientData["profile_id"];
-       
-        $cliente->save();
-        
+               
         if ($request -> allergie) {
             $allergies = $request->allergie;
             foreach($allergies as $key => $value) {

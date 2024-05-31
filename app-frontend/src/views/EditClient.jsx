@@ -27,7 +27,7 @@ const [message,setMessage] = useState();
 const handleChange = (e) => {
     setFormData({
         ...formData,
-        nome:e.target.value
+        [e.target.name] : e.target.value,
     });
 };
 
