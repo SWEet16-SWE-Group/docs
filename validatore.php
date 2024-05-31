@@ -26,7 +26,7 @@ function errori_ortografici($dict, $file) {
 }
 
 function compila($file, $rinomina = false) {
-  $pfx = fn ($s) => "Compilazione latex: $file: $s\n";
+  $pfx = fn ($s) => "COMPILAZIONE LATEX: $file: $s\n";
   echo $pfx("INIZIO");
   passthru(<<<EOF
       mkdir -p .build/ &&
@@ -39,7 +39,8 @@ function compila($file, $rinomina = false) {
     echo $pfx("CODICE DI USCITA: $e");
     die($e);
   }
-  $rinomina and rename(".build/main.pdf", ".build/$rinomina");
+  $rinomina and copy(".build/main.pdf", ".build/$rinomina");
+  echo "\n";
 }
 
 echo "\n";
@@ -85,6 +86,8 @@ if (
 if (!_compile()) {
   die();
 }
+
+echo "\n\n";
 
 foreach (array_column($artefatti, 'compilatore') as $compilatore) {
   $compilatore();
