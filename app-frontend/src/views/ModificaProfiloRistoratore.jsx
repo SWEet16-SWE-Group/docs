@@ -1,19 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from '../axios-client.js';
+import { useStateContext } from '../contexts/ContextProvider.jsx';
 
 export default function ModificaProfiloRistoratore() {
+    const { setNotificationStatus, setNotification } = useStateContext();
     const [ristoratori, setRistoratori] = useState([]);
     const [selectedRistoratoreId, setSelectedRistoratoreId] = useState(null);
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),
         nome: '',
         indirizzo: '',
-        telefono: ''
+        telefono: '',
+        capienza: '',
+        orario: ''
     });
     const [errorMessage, setErrorMessage] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
     const [loading, setLoading] = useState(true);
 
+    // Togliere questo quando si implementa SceltaProfilo
     useEffect(() => {
         const fetchRistoratori = async () => {
             try {
@@ -25,6 +29,8 @@ export default function ModificaProfiloRistoratore() {
                 }
             } catch (error) {
                 setErrorMessage('Errore durante il recupero dei ristoratori.');
+                setNotificationStatus('error');
+                setNotification('Errore durante il recupero dei ristoratori.');
                 console.error(error);
                 setLoading(false);
             }
@@ -41,11 +47,15 @@ export default function ModificaProfiloRistoratore() {
                         user: localStorage.getItem('USER_ID'),
                         nome: response.data.nome,
                         indirizzo: response.data.indirizzo,
-                        telefono: response.data.telefono
+                        telefono: response.data.telefono,
+                        capienza: response.data.capienza,
+                        orario: response.data.orario
                     });
                     setLoading(false);
                 } catch (error) {
                     setErrorMessage('Errore durante il recupero dei dati.');
+                    setNotificationStatus('error');
+                    setNotification('Errore durante il recupero dei dati.');
                     console.error(error);
                     setLoading(false);
                 }
@@ -65,34 +75,38 @@ export default function ModificaProfiloRistoratore() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErrorMessage('');
-        setSuccessMessage('');
         try {
-            console.log(formData);
             const response = await axiosClient.put(`/modifica-ristoratore/${selectedRistoratoreId}`, formData);
-            setSuccessMessage('Dati aggiornati con successo.');
-            console.log(response.data);
+            setNotificationStatus('success');
+            setNotification('Dati aggiornati con successo.');
         } catch (error) {
             setErrorMessage('Errore durante l\'aggiornamento dei dati.');
+            setNotificationStatus('error');
+            setNotification('Errore durante l\'aggiornamento dei dati.');
             console.error(error);
         }
     };
 
     const handleDelete = async () => {
         setErrorMessage('');
-        setSuccessMessage('');
         try {
             const response = await axiosClient.delete(`/elimina-ristoratore/${selectedRistoratoreId}`);
-            setSuccessMessage('Ristoratore eliminato con successo.');
-            console.log(response.data);
+            setNotificationStatus('success');
+            setNotification('Ristoratore eliminato con successo.');
             setFormData({
+                user: localStorage.getItem('USER_ID'),
                 nome: '',
                 indirizzo: '',
-                telefono: ''
+                telefono: '',
+                capienza: '',
+                orario: ''
             });
             setSelectedRistoratoreId(null);
             setLoading(true);
         } catch (error) {
             setErrorMessage('Errore durante l\'eliminazione del ristoratore.');
+            setNotificationStatus('error');
+            setNotification('Errore durante l\'eliminazione del ristoratore.');
             console.error(error);
         }
     };
@@ -106,7 +120,6 @@ export default function ModificaProfiloRistoratore() {
         <div className="container mt-5">
             <h3>Modifica account ristoratore</h3>
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
-            {successMessage && <div className="alert alert-success" role="alert">{successMessage}</div>}
             {loading ? (
                 <div className="d-flex justify-content-center">
                     <div className="spinner-border" role="status">
@@ -162,8 +175,37 @@ export default function ModificaProfiloRistoratore() {
                                 className="form-control"
                                 id="telefono"
                                 name="telefono"
+                                maxLength="10"
                                 value={formData.telefono}
                                 onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="capienza">Capienza</label>
+                            <input
+                                type="number"
+                                className="form-control"
+                                id="capienza"
+                                name="capienza"
+                                min="1"
+                                value={formData.capienza}
+                                onChange={handleChange}
+                                required
+                            />
+                        </div>
+                        <div className="mb-3">
+                            <label htmlFor="orario">Orario</label>
+                            <input
+                                type="text"
+                                className="form-control"
+                                id="orario"
+                                name="orario"
+                                value={formData.orario}
+                                onChange={handleChange}
+                                pattern="\d{2}:\d{2} - \d{2}:\d{2}"
+                                placeholder="19:30 - 20:30"
+                                title="Inserisci l'orario nel formato 19:30 - 20:30"
                                 required
                             />
                         </div>
