@@ -16,6 +16,10 @@ set_exception_handler(function (Throwable $exception) {
 
 // Utils
 
+function pathimmagini(){
+  return sprintf('{%s/%s}',__DIR__,'../rtb/media/');
+}
+
 function _compile() {
   return array_key_exists('compile', getopt('', ['compile']));
 }
