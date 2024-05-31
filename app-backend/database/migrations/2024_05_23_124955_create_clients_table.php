@@ -18,6 +18,8 @@ class CreateClientsTable extends Migration
             $table->string('nome');
             $table->integer('account');
             $table->timestamps();
+
+            $table->unique(['nome','id']);
         });
     }
 
