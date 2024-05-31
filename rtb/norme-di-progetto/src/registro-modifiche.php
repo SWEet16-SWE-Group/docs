@@ -6,7 +6,7 @@ row{even}={bg=lightgray},
 row{1}={bg=black, fg=white}
 }
 Versione, Data, Autore, Verificatore, Descrizione \\
-1.0.0, "2024/04/15", alex_s(), "", "Approvazione per il rilascio")
+SX, "2024/04/15", alex_s(), "", "Approvazione per il rilascio")
 0.12.0, "2024/03/29", alberto_m(), alex_s(), "Stesura gestione dei processi")
 0.11.0, "2024/03/24", bilal_em(), alberto_m(), "Stesura verifica")
 0.10.0, "2024/03/19", alberto_m(), bilal_em(), "Stesura validazione")

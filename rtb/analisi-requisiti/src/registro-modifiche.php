@@ -10,9 +10,9 @@ row{even}={bg=lightgray},
 row{1}={bg=black, fg=white}
 }
 Versione, Data, Autore, Verificatore, Descrizione")
-2.0.0, "2024/04/03", alex_s(), "", "Approvazione per il rilascio")
+SX, "2024/04/03", alex_s(), "", "Approvazione per il rilascio")
 1.1.0, "2024/03/25", alex_s(), alberto_m(), "Applicazione correzioni")
-1.0.0, "2024/03/05", alex_s(), "", "Approvazione per il rilascio")
+SX, "2024/03/05", alex_s(), "", "Approvazione per il rilascio")
 DX, "2024/03/05", alex_s(), alberto_m(), "Stesura tracciamento fonti requisiti")
 0.9.0, "2024/03/05", iulius_s(), alberto_m(), "Stesura requisiti non funzionali")
 DX, "2024/03/04", alberto_m(), alex_s(), "Correzione UC")
