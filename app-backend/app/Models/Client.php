@@ -22,5 +22,5 @@ class Client extends Model
         return $this->belongsTo(User::class, 'user');
     }
 
-    protected $table='clients';
+    protected $table='clienti';
 }

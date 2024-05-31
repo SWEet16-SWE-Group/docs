@@ -32,7 +32,6 @@ CREATE TABLE ristoratori(
     FOREIGN KEY (account) REFERENCES account(id)
 );
 
-<<<<<<< HEAD
 create Table orari_apertura_ristorante(
   ristorante int not null, foreign key (ristorante) references ristoratori(id),
   apertura time not null,
@@ -76,7 +75,6 @@ CREATE TABLE ingredienti(
     created_at TIMESTAMP,
     UNIQUE (ristorante, nome),
     FOREIGN KEY (ristorante) REFERENCES ristoratori(id)
->>>>>>> mvp-main
 );
 
 CREATE TABLE reagenti(
