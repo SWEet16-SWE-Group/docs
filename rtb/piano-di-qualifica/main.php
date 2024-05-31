@@ -7,6 +7,18 @@ require_once 'Validatore.php';
 require_once 'Membri.php';
 
 $titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/piano-di-qualifica/main.tex';
+
+$registro = (new RegistroModifiche())->logArray([
+[CE, "2024/02/16", alex_s(), alberto_m(), "Stesura scheletro"],
+[CE, "2024/03/19", bilal_em(), alberto_m(), "Stesura introduzione"],
+[CE, "2024/03/22", alberto_c(), alberto_m(), "Stesura test"],
+[CE, "2024/03/25", giovanni_z(), alex_s(), "Stesura qualità di prodotto"],
+[CE, "2024/04/02", alberto_c(), alex_s(), "Stesura resoconto delle attività di verifica"],
+[CE, "2024/04/08", giovanni_z(), alberto_m(), "Stesura qualità di processo"],
+[DX, "2024/04/10", alberto_c(), alex_s(), "Modifica grafici resoconto attività di verifica"],
+[SX, "2024/04/15", alex_s(), "", "Approvazione per il rilascio"],
+]);
+
 $error_flag = 0;
 ob_start();
 ob_start(function ($tex) use ($titolo, &$error_flag) {
@@ -104,12 +116,7 @@ Anno Accademico 2023/2024
 
 \pagebreak
 
-\begin{huge}
-    \textbf{Registro delle modifiche}
-\end{huge}
-\vspace{5pt}
-
-<?php require_once __DIR__ . "/src/registro-modifiche.php"; ?>
+<?php echo $registro->latex(); ?>
 
 \pagebreak
 \tableofcontents

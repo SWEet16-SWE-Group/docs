@@ -10,10 +10,11 @@ $titolo = 'Specifica Tecnica';
 $pathsimmagini = [
   '../media/',
 ];
-$registro = (new RegistroModifiche())
-  ->log(CE, '2024/05/05', alberto_m(), iulius_s(), 'Stesura scheletro           ')
-  ->log(CE, '2024/05/07', alberto_m(), alex_s()  , 'Stesura sezione introduzione')
-  ->log(CE, '2024/05/08', alberto_m(), alex_s()  , 'Stesura sezione tecnologie  ');
+$registro = (new RegistroModifiche())->logArray([
+  [CE, '2024/05/05', alberto_m(), iulius_s(), 'Stesura scheletro           '],
+  [CE, '2024/05/07', alberto_m(), alex_s()  , 'Stesura sezione introduzione'],
+  [CE, '2024/05/08', alberto_m(), alex_s()  , 'Stesura sezione tecnologie  '],
+]);
 
 $error_flag = 0;
 ob_start();
@@ -58,7 +59,7 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{<?php echo implode('', array_map(fn ($a) => sprintf('{%s}',$a), $pathsimmagini)); ?>}
+\graphicspath{<?php echo pathimmagini(); ?>}
 
 \begin{document}
 
@@ -109,22 +110,7 @@ Versione: & <?php echo $registro->versione(); ?> &
 
 \pagebreak
 
-\begin{huge}
-\textbf{Registro delle modifiche}
-\end{huge}
-\vspace{5pt}
-
-\begin{tblr}{
-colspec={|X[1.5cm]|X[2cm]|X[2.5cm]|X[2.5cm]|X[5cm]|},
-row{odd}={bg=white},
-row{even}={bg=lightgray},
-row{1}={bg=black,fg=white}
-}
-
-Versione & Data & Autore & Verificatore & Descrizione \\ \hline
-<?php echo $registro; ?>
-
-\end{tblr}
+<?php echo $registro->latex(); ?>
 
 \pagebreak
 \tableofcontents

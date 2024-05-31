@@ -8,18 +8,19 @@ require_once 'Membri.php';
 
 $error_flag = 0;
 $titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/piano-di-progetto/main.tex';
-$registro = (new RegistroModifiche())
-  ->log(CE, '2024/02/14', alex_s()->nome, iulius_s()->nome, 'Stesura scheletro')
-  ->log(CE, '2024/02/23', bilal_em()->nome, alberto_m()->nome, 'Stesura introduzione')
-  ->log(CE, '2024/02/24', alex_s()->nome, alberto_m()->nome, 'Stesura preventivo')
-  ->log(CE, '2024/02/27', bilal_em()->nome, alex_s()->nome, 'Stesura analisi dei rischi')
-  ->log(CE, '2024/03/19', bilal_em()->nome, alex_s()->nome, 'Stesura modello di sviluppo')
-  ->log(CE, '2024/03/23', alex_s()->nome, alberto_m()->nome, 'Stesura consuntivo')
-  ->log(CE, '2024/03/26', iulius_s()->nome, alex_s()->nome, 'Stesura pianificazione')
-  ->approvazione('2024/04/16', alex_s())
-  ->log(CE, '2024/05/28', alex_s(), '', 'Automazione tabelle preventivi e consuntivi')
-  ->log(CE, '2024/05/29', alex_s(), '', 'Automazione diagrammi di Gantt')
-  ->log(CE, '2024/05/31', alex_s(), '', 'Stesura delle retrospettive dei periodi di PB');
+$registro = (new RegistroModifiche())->logArray([
+  [CE, '2024/02/14', alex_s()->nome, iulius_s()->nome, 'Stesura scheletro'],
+  [CE, '2024/02/23', bilal_em()->nome, alberto_m()->nome, 'Stesura introduzione'],
+  [CE, '2024/02/24', alex_s()->nome, alberto_m()->nome, 'Stesura preventivo'],
+  [CE, '2024/02/27', bilal_em()->nome, alex_s()->nome, 'Stesura analisi dei rischi'],
+  [CE, '2024/03/19', bilal_em()->nome, alex_s()->nome, 'Stesura modello di sviluppo'],
+  [CE, '2024/03/23', alex_s()->nome, alberto_m()->nome, 'Stesura consuntivo'],
+  [CE, '2024/03/26', iulius_s()->nome, alex_s()->nome, 'Stesura pianificazione'],
+  [SX, '2024/04/16', alex_s(), '', 'Approvazione per il rilascio'],
+  [CE, '2024/05/28', alex_s(), '', 'Automazione tabelle preventivi e consuntivi'],
+  [CE, '2024/05/29', alex_s(), '', 'Automazione diagrammi di Gantt'],
+  [CE, '2024/05/31', alex_s(), '', 'Stesura delle retrospettive dei periodi di PB'],
+]);
   //->approvazione('2024/06/07', alex_s());
 
 $nome = "Piano_di_progetto_v{$registro->versione()}.pdf";
@@ -116,22 +117,7 @@ Versione: & <?php echo $registro->versione(); ?> &
 
 \pagebreak
 
-\begin{huge}
-\textbf{Registro delle modifiche}
-\end{huge}
-\vspace{5pt}
-
-\begin{tblr}{
-colspec={|X[1.5cm]|X[2cm]|X[2.5cm]|X[2.5cm]|X[5cm]|},
-row{odd}={bg=white},
-row{even}={bg=lightgray},
-row{1}={bg=black,fg=white}
-}
-
-Versione & Data & Autore & Verificatore & Descrizione \\ \hline
-<?php echo $registro; ?>
-
-\end{tblr}
+<?php echo $registro->latex(); ?>
 
 \pagebreak
 \tableofcontents
