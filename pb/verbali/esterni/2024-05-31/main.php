@@ -164,7 +164,7 @@ In questo breve incontro il proponente, Alessandro Staffolani, ci ha aiutato a r
 \end{itemize}
 
 \begin{itemize}
-\item \textbf{Domanda}: È possibile utilizzare delle viste nel databese ?%;
+\item \textbf{Domanda}: È possibile utilizzare delle viste nel database ?%;
 \item \textbf{Risposta}: Data la maggiore performance all'interno del database, ci è stato consigliato di utilizzare le viste solo per query più complesse ("JOIN" per esempio) e non per quelle banali che possono comprendere solamente una clausola "WHERE".
 \end{itemize}
 
