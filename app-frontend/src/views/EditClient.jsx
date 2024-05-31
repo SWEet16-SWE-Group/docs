@@ -1,6 +1,6 @@
 import {  useParams , useNavigate} from "react-router-dom";
 import {useState , useEffect } from 'react';
-import { fetchClientProfile , deleteClientProfile } from '../services/ClientService';
+import { fetchClientProfile , deleteClientProfile , updateClientProfile } from '../services/ClientService';
 import {useStateContext} from "../contexts/ContextProvider";
 import axios from 'axios';
 
@@ -33,19 +33,16 @@ const handleChange = (e) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-        axios.put('http://localhost:8000/api/account',formData)
+    updateClientProfile(formData)
     .then(function (response) {
       // handle success
-      setMessage(response.data.message);
+      navigate("/");
       console.log(response);
     })
-    .catch(function (error) {
+    .catch(error => {
       // handle error
-      console.log(error);
-    })
-    .finally(function () {
-      // always executed
-      navigate("/");
+        setMessage(error.response.data.message);
+       
     });
   }
 

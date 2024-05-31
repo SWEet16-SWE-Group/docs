@@ -19,7 +19,7 @@ export const fetchClientProfiles = async () => {
 
 export const fetchClientProfile = async (clientId) => {
     try {
-        const response = await apiService.get('/account/'.concat(clientId));
+        const response = await apiService.get('/client/'.concat(clientId));
 
         return response.data;
     } catch (error) {
@@ -27,9 +27,18 @@ export const fetchClientProfile = async (clientId) => {
     }
 };
 
+export const updateClientProfile = async(formData) => {
+  try {
+    const response = await apiService.put('client',formData);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const deleteClientProfile = async (clientId) => {
     try {
-        const response = await apiService.delete('/account/'.concat(clientId));
+        const response = await apiService.delete('/client/'.concat(clientId));
         return response.data;
     } catch (error) {
         throw error;

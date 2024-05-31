@@ -64,6 +64,11 @@ public function update(Request $request) {
             "message" => "Client updated"
         ],202);
     }
+        else {
+            return response()->json([
+            "message" => "Client not updated!"
+        ],404);
+        }
 }
 
     public function destroy(string $id) {

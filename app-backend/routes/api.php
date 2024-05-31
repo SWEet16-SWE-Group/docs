@@ -22,9 +22,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/account',[ClientController::class,'index']);
-Route::get('account/{id}', [ClientController::class,'show']);
-Route::post('/account',[ClientController::class,'store']);
-Route::put('/account',[ClientController::class,'update']);
-Route::delete('account/{id}',[ClientController::class,'destroy']);
+Route::get('client/{id}', [ClientController::class,'show']);
+Route::post('/client',[ClientController::class,'store']);
+Route::put('/client',[ClientController::class,'update']);
+Route::delete('client/{id}',[ClientController::class,'destroy']);
 
 Route::get('/allergeni',[AllergeniController::class,'index']);
