@@ -15,7 +15,7 @@ $registro = (new RegistroModifiche())
   ->log(CE, '2024/05/02', 'B', 'E', 'bb')
   ->log(SX, '2024/05/03', 'C', 'B', 'cb');
 
-$nome = fn () => "documento_v{$registro->versione()}.pdf";
+$nome = "documento_v{$registro->versione()}.pdf";
 
 $error_flag = 0;
 ob_start();
