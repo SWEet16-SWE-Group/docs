@@ -24,7 +24,8 @@ function errori_ortografici($dict, $file) {
     ($e = shell_exec("hunspell -p $dict -d it_IT,en_US -l \"$file\"")) === null ? '' : $e,
     _explode("\n"),
     _filter(fn ($a) => strlen($a) > 0),
-    _implode("\n"),
+    _map(fn ($a) => "ORTOGRAFIA: $file: $a"),
+    _implode(''),
   );
 }
 
@@ -69,14 +70,14 @@ $artefatti = stream(
   }),
 );
 
-die(print_r($artefatti));
 
 if (
   $errori_ortografici = implode(
     "\n",
-    array_merge(
-      ...array_column($artefatti, 'errori_ortografici')
-    )
+    stream(
+      array_column($artefatti, 'errori_ortografici'),
+      _filter(fn ($a) => $a),
+    ),
   )
 ) {
   print_r("\n\nCorreggere le parole evidenziate di seguito\n");
@@ -84,6 +85,8 @@ if (
   print_r("\n\n");
   die(14);
 }
+
+die(print_r(''));
 
 if (!_compile()) {
   die();
