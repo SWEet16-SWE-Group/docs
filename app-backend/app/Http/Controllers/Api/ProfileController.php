@@ -11,15 +11,21 @@ class ProfileController extends Controller
 {
     public function getAllProfiles(Request $request)
     {
-        // $clients = Client::where('account',$request->id)->orderBy('id','desc')->paginate();
-        // $restaurants = Ristoratore::where('user',$request->id)->orderBy('id','desc')->paginate();
+        $clients = Client::where('user',$request->id)->get(['id','nome','user']);
 
+        if($clients) {
+            foreach ($clients as $client) {
+                $client['tipo'] = "cliente";
+            }
+        }
 
-        $clients = Client::where('user',$request->id)->get();
-        $clients->tipo = 'Cliente';
+        $restaurants = Ristoratore::where('user',$request->id)->get(['id','nome','user']);
 
-        $restaurants = Ristoratore::where('user',$request->id)->get();
-        $restaurants->type = "Ristoratore";
+        if($restaurants) {
+            foreach ($restaurants as $restaurant) {
+                $restaurant['tipo'] = "ristoratore";
+            }
+        }
 
         if(!$clients && !$restaurants)
             return response('',204);
