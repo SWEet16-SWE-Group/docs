@@ -16,19 +16,13 @@ class ClientController extends Controller
        return response($client);
     }
 
-    public function show(string $id) {
-        $client=Client::find(2929);
-        $allergie=$client->allergie;
+    public function show(string $client_name) {
+        $client=Client::where('nome',$client_name)->get();
         if (!empty($client)) 
             {
-            if ($allergie) {
-                return response()->json(['cliente'=>$client,
-                                         'allergie'=>$allergie]);
-            }   else {
+            
                  return response()->json(['cliente' => $client]);
                                                     }
-                                                }
-                                       
             else {
                 return response()->json(
                     ["message" => "Client not found"],404
@@ -41,10 +35,10 @@ class ClientController extends Controller
 
         $clientData=$request->validated();
         $clientData=$clientData["clientData"];
-         $cliente=new Client;
-        $cliente->id=$clientData["profile_id"];
-        $cliente->account=$clientData["account_id"];
-        $cliente->nome=$clientData["nome"];
+         $cliente= Client::create(['nome'=>$clientData["nome"],
+                                   'account'=>$clientData["account_id"]]);
+     //   $cliente->id=$clientData["profile_id"];
+       
         $cliente->save();
         
         if ($request -> allergie) {

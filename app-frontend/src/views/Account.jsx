@@ -1,6 +1,6 @@
 import {Outlet , Link,Form} from "react-router-dom";
 import {useState , useEffect } from 'react';
-import { fetchClientProfiles } from "../ClientService";
+import { fetchClientProfiles } from "../services/ClientService";
 
 
 

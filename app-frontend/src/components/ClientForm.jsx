@@ -2,13 +2,12 @@ import {createRef, useEffect} from "react";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { fetchAllergeni } from "../IntolleranzeService";
+import { fetchAllergeni } from "../services/IntolleranzeService";
 import ContextProvider from "../contexts/ContextProvider";
 
 export default function ClientForm() {
   localStorage.setItem('USER_ID', 1);
   const [formData, setFormData] = useState({
-    profile_id:'',
     account_id: localStorage.getItem('USER_ID'),
     nome: ''
     
@@ -83,8 +82,6 @@ const handleSubmit = (event) => {
           <h1>Inserisci i tuoi dati</h1>
           {message && <div><p>{message}</p></div>}
             <form onSubmit={handleSubmit} >
-                <input type="text" id="id" name="profile_id" value={formData.profile_id} placeholder="id" onChange={handleChange}/>
-                <input type="text" id="account" name="account_id" value={formData.account_id} onChange={handleChange} placeholder="account" />
                 <input type="text" id="nome" name="nome" value={formData.nome} onChange={handleChange} placeholder="username" />
                 { allergeni.length === 0 ? (<p>Loading...</p>) : (
                <div> 

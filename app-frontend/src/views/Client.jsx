@@ -1,6 +1,6 @@
 import {useState,useEffect} from 'react';
 import { Form , useParams ,Outlet , useNavigate} from "react-router-dom";
-import { fetchClientProfile , deleteClientProfile } from '../ClientService';
+import { fetchClientProfile , deleteClientProfile } from '../services/ClientService';
 
 
 
