@@ -120,12 +120,7 @@ Anno Accademico 2023/2024
 
 \pagebreak
 
-\begin{huge}
-    \textbf{Registro delle modifiche}
-\end{huge}
-\vspace{5pt}
-
-<?php require_once __DIR__ . "/src/registro-modifiche.php"; ?>
+<?php echo $registro->latex(); ?>
 
 \pagebreak
 \tableofcontents
