@@ -1,0 +1,6 @@
+{
+    "require-dev": {
+        "laravel/ui": "^4.5",
+        "laravel/sanctum": "v2.15.1"
+    }
+}

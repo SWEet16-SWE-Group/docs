@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React from 'react';
 import ReactDOM from "react-dom/client";
 import {createBrowserRouter,
@@ -52,3 +53,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
+=======
+export * from "./App";
+export * from "./main";
+export * from "./router";
+export * from "./App.test";
+export * from "./setupTests";
+export * from "./serviceWorker";
+>>>>>>> mvp-main

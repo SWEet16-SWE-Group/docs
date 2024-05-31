@@ -14,10 +14,24 @@ Assicurarsi di avere installato Docker Desktop e Docker Compose, aprire un termi
 docker-compose up --build
 ```
 
-E dopo fare
-
+Aprire ora un altro terminale e chiamare: 
 ```
-docker-compose up
+docker-compose exec php sh
+```
+
+E: 
+```
+composer install
+```
+
+Infine: 
+```
+php artisan key:generate
+```
+
+Controllare ora se la pagina di laravel (localhost/8000) non dia errori, se così non fosse chiamare sempre da dentro il container docker:
+```
+chmod -R 777 storage
 ```
 
 Per collegarsi a React andare su:
