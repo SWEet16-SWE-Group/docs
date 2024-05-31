@@ -4,10 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use App\Http\Requests\ClientRequest;
 use App\Models\Client;
-use App\Models\Allergie;
 use App\Models\Allergeni;
-use Illuminate\Support\Facades\DB;
 
 
 class ClientController extends Controller
@@ -38,12 +37,13 @@ class ClientController extends Controller
     
 }
 
-    public function store(Request $request)  {
+    public function store(ClientRequest $request)  {
 
-        $clientData=$request->clientData;
+        $clientData=$request->validated();
+        $clientData=$clientData["clientData"];
          $cliente=new Client;
-        $cliente->id=$clientData["id"];
-        $cliente->account=$clientData["account"];
+        $cliente->id=$clientData["profile_id"];
+        $cliente->account=$clientData["account_id"];
         $cliente->nome=$clientData["nome"];
         $cliente->save();
         

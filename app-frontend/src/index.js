@@ -13,6 +13,7 @@ import ClientForm from "./components/ClientForm";
 import EditClient from "./views/EditClient";
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
+import { ContextProvider } from './contexts/ContextProvider';
 
 
 const router = createBrowserRouter([
@@ -41,7 +42,9 @@ const router = createBrowserRouter([
   ]);
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
+        <ContextProvider>
         <RouterProvider router={router} />
+        </ContextProvider>
     </React.StrictMode>
 )
 

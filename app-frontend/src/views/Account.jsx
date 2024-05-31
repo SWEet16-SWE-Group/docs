@@ -44,7 +44,7 @@ export default function Account() {
               ></div>
             </form>
             <Form  action="new" >
-              <button type="submit">New</button>
+              <button type="submit">Nuovo Cliente</button>
             </Form>
           </div>
           <nav>

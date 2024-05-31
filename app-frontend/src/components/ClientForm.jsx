@@ -1,14 +1,15 @@
 import {createRef, useEffect} from "react";
 import {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import axios, { all } from "axios";
+import axios from "axios";
 import { fetchAllergeni } from "../IntolleranzeService";
+import ContextProvider from "../contexts/ContextProvider";
 
 export default function ClientForm() {
-    
+  localStorage.setItem('USER_ID', 1);
   const [formData, setFormData] = useState({
-    id:'',
-    account: '',
+    profile_id:'',
+    account_id: localStorage.getItem('USER_ID'),
     nome: ''
     
 });
@@ -56,10 +57,7 @@ const handleSubmit = (event) => {
       const api = axios.create({
         baseURL: 'http://localhost:8000/api'
       });
-      api.interceptors.request.use(request => {
-        console.log('Starting Request', request);
-        return request;
-      });
+
       api.post('/account',{
                   clientData: formData,
                   allergie: selectedIds
@@ -68,14 +66,15 @@ const handleSubmit = (event) => {
     // handle success
    // setMessage(response.data.message);
     console.log(response);
+    navigate("/");
   })
   .catch(function (error) {
-    // handle error
+    setMessage(error.response.data.errors["clientData.nome"]);
     console.log(error);
   })
   .finally(function () {
     // always executed
-    navigate('/');
+    //navigate('/');
   });
 }
 
@@ -84,8 +83,8 @@ const handleSubmit = (event) => {
           <h1>Inserisci i tuoi dati</h1>
           {message && <div><p>{message}</p></div>}
             <form onSubmit={handleSubmit} >
-                <input type="text" id="id" name="id" value={formData.id} placeholder="id" onChange={handleChange}/>
-                <input type="text" id="account" name="account" value={formData.account} onChange={handleChange} placeholder="account" />
+                <input type="text" id="id" name="profile_id" value={formData.profile_id} placeholder="id" onChange={handleChange}/>
+                <input type="text" id="account" name="account_id" value={formData.account_id} onChange={handleChange} placeholder="account" />
                 <input type="text" id="nome" name="nome" value={formData.nome} onChange={handleChange} placeholder="username" />
                 { allergeni.length === 0 ? (<p>Loading...</p>) : (
                <div> 
@@ -111,3 +110,4 @@ const handleSubmit = (event) => {
     );
 
 }
+
