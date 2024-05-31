@@ -49,12 +49,16 @@ Route::middleware('auth:sanctum')->group(function () {
         // inserire qui dentro chiamate api per cliente e solo cliente
 
     };
-*/
+    */
 
     // inserire qui le chiamate api comuni a tutti e tre i tipi di utenti (ad esempio logout)
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::post('/profiles',[ProfileController::class, 'getAllProfiles']);
+    Route::post('/profiles',[ProfileController::class, 'getAllProfiles'])
+        ->middleware('authenticated');
+
+    Route::post('/selectprofile',[ProfileController::class, 'selectProfile'])
+        ->middleware('authenticated');
 });
 
 

@@ -6,7 +6,6 @@ import {useStateContext} from "../contexts/ContextProvider";
 
 export default function SelezioneProfilo() {
 
-
     const {role, setRole, setProfile, setNotification, setNotificationStatus } = useStateContext()
     const [ClientProfiles, setClientProfiles] = useState(null);
     const [RestaurantProfiles, setRestaurantProfiles] = useState(null);
@@ -29,7 +28,8 @@ export default function SelezioneProfilo() {
                 setClientProfiles(data.clienti);
                 setRestaurantProfiles(data.ristoratori);
                 console.log(data);
-                debugger;
+
+
             })
             .catch(err => {
                 const response = err.response;
@@ -38,28 +38,66 @@ export default function SelezioneProfilo() {
     }
 
     useEffect(() => {
-
         getProfiles();
     }, [])
 
 
-    /*const onSelectProfile = (p) => {
-        p.preventDefault();
+    const onSelectProfile = (profile) => {
+
+        const payload = {
+            userId: user.id,
+            profileId: profile.id,
+            profileType: profile.tipo,
+            role: role
+        }
+        axiosClient.post('/selectprofile',payload)
+            .then(({data}) => {
+
+                setProfile(data.profile);
+                setRole(data.role);
+
+                console.log(data.profile);
+            })
+            .catch(err => {
+                    const response = err.response;
+                    if(response && response.status === 422) {
+                        redirect('/');
+                    }
+                }
+            );
 
         // TODO funzione che seleziona il profilo
     }
 
-    const onModifyProfile = (p) => {
-        p.preventDefault();
+    const onModifyProfile = (profile) => {
 
+        console.log("dentro modifica ", profile.id);
         // TODO creare funzione che ti porta alla pagina di modifica profilo
     }
 
-    const onDeleteProfile = (p) => {
-        p.preventDefault();
+    const onDeleteProfile = (profile) => {
 
-        // TODO creare funzione che elimina il profilo
-    }*/
+        console.log("dentro elimina ", profile.id);
+
+        if(!window.confirm("Sei sicuro di voler eliminare il tuo account?")) {
+            return
+        }
+
+        const payload = {
+            id: profile.id,
+            role: role
+        };
+
+        axiosClient.delete(`/profiles`,{ data: payload })
+            .then(() => {
+
+                setNotificationStatus('success');
+                setNotification("Account eliminato con successo");
+
+                localStorage.clear();
+                window.location.reload();
+            })
+    }
 
     return (
         <div className="container-fluid p-auto border rounded border-2 margin-tb h-auto">
@@ -84,34 +122,34 @@ export default function SelezioneProfilo() {
                     <th>Operazioni</th>
                     </thead>
                     <tbody>
-                    {ClientProfiles && ClientProfiles.map(p => (
+                    {ClientProfiles && ClientProfiles.map(profile => (
                         <tr>
                             <td>
-                                <button >Seleziona</button>
+                                <button onClick={() =>onSelectProfile(profile)}>Seleziona</button>
                             </td>
-                            <td>{p.nome}</td>
-                            <td>Cliente</td>
+                            <td>{profile.nome}</td>
+                            <td>{profile.tipo}</td>
                             <td>
-                                <button >Modifica</button>
-                                <button >Elimina</button>
+                                <button onClick={() => onModifyProfile(profile)}>Modifica</button>
+                                <button onClick={() => onDeleteProfile(profile)}>Elimina</button>
                             </td>
                         </tr>
                     ))}
-                    {RestaurantProfiles && RestaurantProfiles.map(p => (
+                    {RestaurantProfiles && RestaurantProfiles.map(profile => (
                         <tr>
+                        <td>
+                            <button onClick={() => onSelectProfile(profile)}>Seleziona</button>
+                        </td>
+                            <td>{profile.nome}</td>
+                            <td>{profile.tipo}</td>
                             <td>
-                                <button >Seleziona</button>
-                            </td>
-                            <td>{p.nome}</td>
-                            <td>Ristoratore</td>
-                            <td>
-                                <button >Modifica</button>
-                                <button >Elimina</button>
+                                <button onClick={() => onModifyProfile(profile)}>Modifica</button>
+                                <button onClick={() => onDeleteProfile(profile)}>Elimina</button>
                             </td>
                         </tr>
                     ))}
                     </tbody>
-                </table>
+                    </table>
                 }
             </div>
         </div>

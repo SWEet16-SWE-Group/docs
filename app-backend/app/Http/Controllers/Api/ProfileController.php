@@ -36,4 +36,35 @@ class ProfileController extends Controller
        ],201);
     }
 
+
+    public function selectProfile(Request $request)
+    {
+        if($request['profileType'] === 'cliente') {
+            /** @var Client $client */
+            $client = Client::where(['id' => $request->profileId, 'user' => $request->userId])->first();
+
+            if(!$client)
+                return response('',204);
+
+            return response([
+                'profile' => $client,
+                'role' => 'CLIENTE'
+            ]);
+
+        } elseif ($request['profileType'] === 'ristoratore') {
+            /** @var Ristoratore $restaurant */
+            $restaurant = Ristoratore::where(['id' => $request->profileId, 'user' => $request->userId])->first();
+
+            if(!$restaurant)
+                return response('',204);
+
+            return response([
+                'profile' => $restaurant,
+                'role' => 'RISTORATORE'
+            ]);
+
+        } else {
+            return response('', 422);
+        }
+    }
 }
