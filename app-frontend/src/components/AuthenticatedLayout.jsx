@@ -37,6 +37,11 @@ export default function AuthenticatedLayout() {
         const goToModificaAccountInfo = () => {
             Navigate("/modificainfoaccount");
         }
+
+        const goToSelectProfile = () => {
+            Navigate("/selezioneprofilo");
+        }
+
         return (
             <>
                 <div id="defaultLayout">
@@ -50,6 +55,10 @@ export default function AuthenticatedLayout() {
                             </div>
                             <div>
                                 <Link to="/modificainfoaccount" className="btn-info">Profilo</Link>
+                            </div>
+
+                            <div>
+                                <Link to="/selezioneprofilo" className="btn-info">Selezione Profilo</Link>
                             </div>
                             <div>
                                 {localStorage.USER_ID}

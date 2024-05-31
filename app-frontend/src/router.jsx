@@ -7,17 +7,15 @@ import GuestLayout from "./components/GuestLayout";
 import ClientLayout from "./components/ClientLayout"
 import RestaurantLayout from "./components/RestaurantLayout"
 import ModificaInfoAccount from "./views/ModificaInfoAccount";
+import SelezioneProfilo from "./views/SelezioneProfilo";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <AuthenticatedLayout />,
         children: [
+
             /*
-            {
-                path: '/selezionaprofilo',
-                element: <SelezionaProfilo />
-            },
             {
                 path: '/creazioneprofilocliente',
                 element: <CreazioneProfiloCliente />
@@ -34,6 +32,10 @@ const router = createBrowserRouter([
                 path: '/modificaprofiloristoratore',
                 element: <ModificaProfiloRistoratore />
             }, */
+            {
+                path: '/selezioneprofilo',
+                element: <SelezioneProfilo />
+            },
             {
                 path: '/modificainfoaccount',
                 element: <ModificaInfoAccount />

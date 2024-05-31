@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
@@ -53,6 +54,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // inserire qui le chiamate api comuni a tutti e tre i tipi di utenti (ad esempio logout)
     Route::post('/logout', [AuthController::class, 'logout']);
 
+    Route::post('/profiles',[ProfileController::class, 'getAllProfiles']);
 });
 
 
