@@ -12,6 +12,9 @@ class RegistroModifiche {
     $this->tabella[] = [$incremento, $data, $autore, $verificatore, $descrizione];
     return $this;
   }
+  public function logArray($a) {
+    return _reduce(fn ($t, $a) => $t->log(...$a), $this)($a);
+  }
   public function approvazione($data, $autore) {
     return $this->log(SX, $data, $autore, '', 'Approvazione per il rilascio');
   }
@@ -31,6 +34,27 @@ class RegistroModifiche {
       },
       (object)['versione' => [0, 0, 0], 'testo' => '']
     )->testo;
+  }
+  public function latex() {
+    return str_replace_array([
+      'REGISTRO' => (string) $this,
+    ], <<<'EOF'
+    \begin{huge}
+    \textbf{Registro delle modifiche}
+    \end{huge}
+    \vspace{5pt}
+
+    \begin{tblr}{
+    colspec={|X[1.5cm]|X[2cm]|X[2.5cm]|X[2.5cm]|X[5cm]|},
+    row{odd}={bg=white},
+    row{even}={bg=lightgray},
+    row{1}={bg=black,fg=white}
+    }
+
+    Versione & Data & Autore & Verificatore & Descrizione \\ \hline
+    REGISTRO
+    \end{tblr}
+    EOF);
   }
   public function versione() {
     $c = array_column($this->tabella, 0);
