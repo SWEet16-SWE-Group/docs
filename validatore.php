@@ -21,7 +21,7 @@ function _execdir($dstdir, $fn) {
 
 function errori_ortografici($dict, $file) {
   return stream(
-    ($e = shell_exec("hunspell -p $dict -d it_IT,en_US -l \"$file\"")) === null ? [] : $e,
+    ($e = shell_exec("hunspell -p $dict -d it_IT,en_US -l \"$file\"")) === null ? '' : $e,
     _explode("\n"),
     _filter(fn ($a) => strlen($a) > 0),
     _implode("\n"),
@@ -53,8 +53,6 @@ $e == false && die(11);
 
 $files = stream(_find(__DIR__, 'main.php'), _filter(fn ($a) => !str_contains($a, '/Template/')));
 
-die(print_r($files));
-
 $artefatti = stream(
   $files,
   _map(function ($file) {
@@ -70,6 +68,8 @@ $artefatti = stream(
     ];
   }),
 );
+
+die(print_r($artefatti));
 
 if (
   $errori_ortografici = implode(
