@@ -10,7 +10,10 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable=['id','account','nome'];
+    /**
+     * @var mixed|string
+     */
+    protected $fillable=['id','user','nome'];
 
     public function allergie() : BelongsToMany
     {

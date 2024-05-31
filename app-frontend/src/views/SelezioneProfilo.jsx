@@ -8,7 +8,8 @@ export default function SelezioneProfilo() {
 
 
     const {role, setRole, setProfile, setNotification, setNotificationStatus } = useStateContext()
-    const [profiles, setProfiles] = useState(null);
+    const [ClientProfiles, setClientProfiles] = useState(null);
+    const [RestaurantProfiles, setRestaurantProfiles] = useState(null);
 
 
     const [user, setUser] = useState({
@@ -25,8 +26,14 @@ export default function SelezioneProfilo() {
         axiosClient.post('/profiles',$payload)
             .then(({data}) => {
 
-                setProfiles(data);
+                setClientProfiles(data.clienti);
+                setRestaurantProfiles(data.ristoratori);
+                console.log(data);
                 debugger;
+            })
+            .catch(err => {
+                const response = err.response;
+                console.error(response);
             })
     }
 
@@ -36,23 +43,23 @@ export default function SelezioneProfilo() {
     }, [])
 
 
-    const onSelectProfile = (ev) => {
-        ev.preventDefault();
+    /*const onSelectProfile = (p) => {
+        p.preventDefault();
 
         // TODO funzione che seleziona il profilo
     }
 
-    const onModifyProfile = (ev) => {
-        ev.preventDefault();
+    const onModifyProfile = (p) => {
+        p.preventDefault();
 
         // TODO creare funzione che ti porta alla pagina di modifica profilo
     }
 
-    const onDeleteProfile = (ev) => {
-        ev.preventDefault();
+    const onDeleteProfile = (p) => {
+        p.preventDefault();
 
         // TODO creare funzione che elimina il profilo
-    }
+    }*/
 
     return (
         <div className="container-fluid p-auto border rounded border-2 margin-tb h-auto">
@@ -63,30 +70,49 @@ export default function SelezioneProfilo() {
                 <Link to={'/creazioneprofiloristoratore'}>Crea nuovo profilo ristoratore</Link>
             </div>
             <div>
-                <table>
+                {(!ClientProfiles && !RestaurantProfiles) &&
+                    <h2>
+                        Non è presente nessun profilo, creane uno!
+                    </h2>
+                }
+                {(ClientProfiles || RestaurantProfiles) &&
+                    <table>
                     <thead>
-                    <th>Id</th>
+                    <th>Entra con questo profilo</th>
                     <th>Nome</th>
                     <th>Tipo</th>
                     <th>Operazioni</th>
                     </thead>
                     <tbody>
-                    {profiles && profiles.map(p => (
+                    {ClientProfiles && ClientProfiles.map(p => (
                         <tr>
                             <td>
-                                <button onClick={onSelectProfile(p)}>Seleziona</button>
+                                <button >Seleziona</button>
                             </td>
-                            <td>{p.id}</td>
                             <td>{p.nome}</td>
-                            <td>{p.tipo}</td>
+                            <td>Cliente</td>
                             <td>
-                                <button onClick={onModifyProfile(p)}>Modifica</button>
-                                <button onClick={onDeleteProfile(p)}>Elimina</button>
+                                <button >Modifica</button>
+                                <button >Elimina</button>
+                            </td>
+                        </tr>
+                    ))}
+                    {RestaurantProfiles && RestaurantProfiles.map(p => (
+                        <tr>
+                            <td>
+                                <button >Seleziona</button>
+                            </td>
+                            <td>{p.nome}</td>
+                            <td>Ristoratore</td>
+                            <td>
+                                <button >Modifica</button>
+                                <button >Elimina</button>
                             </td>
                         </tr>
                     ))}
                     </tbody>
                 </table>
+                }
             </div>
         </div>
     );

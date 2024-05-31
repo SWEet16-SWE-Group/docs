@@ -10,7 +10,7 @@ class Ristoratore extends Model
     use HasFactory;
 
     protected $table = "ristoratori";
-    protected $fillable = ['user', 'nome', 'indirizzo', 'telefono'];
+    protected $fillable = ['account', 'nome', 'indirizzo', 'telefono'];
 
     public function user() {
         return $this->belongsTo(User::class, 'user');
