@@ -6,8 +6,11 @@ require_once 'Vocaboli.php';
 require_once 'Validatore.php';
 require_once 'Membri.php';
 
-$titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/piano-di-progetto/main.tex';
 $error_flag = 0;
+$titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/piano-di-progetto/main.tex';
+$registro = (new RegistroModifiche());
+$nome = "Piano_di_progetto_v{$registro->versione()}.pdf";
+
 ob_start();
 ob_start(function ($tex) use ($titolo, &$error_flag) {
   $errormsg = racatta_errori($titolo, $tex);
@@ -33,12 +36,12 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \usepackage[italian]{babel}
 \usepackage{float}
 
- \geometry{
- a4paper,
- left=25mm,
- right=25mm,
- top=20mm,
- bottom=20mm,
+\geometry{
+a4paper,
+left=25mm,
+right=25mm,
+top=20mm,
+bottom=20mm,
 }
 
 \makeatletter
@@ -54,7 +57,7 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \begin{document}
 
 \begin{minipage}{0.35\linewidth}
-    \includegraphics[width=\linewidth]{Logo_Università_Padova.svg.png}
+\includegraphics[width=\linewidth]{Logo_Università_Padova.svg.png}
 \end{minipage}\hfil
 \begin{minipage}{0.55\linewidth}
 \textbf{Università degli Studi di Padova} \\
@@ -66,7 +69,7 @@ Anno Accademico 2023/2024
 \vspace{5mm}
 
 \begin{minipage}{0.35\linewidth}
-    \includegraphics[width=\linewidth]{logo rotondo.jpg}
+\includegraphics[width=\linewidth]{logo rotondo.jpg}
 \end{minipage}\hfil
 \begin{minipage}{0.55\linewidth}
 \textbf{Gruppo}: SWEet16 \\
@@ -78,8 +81,8 @@ Anno Accademico 2023/2024
 
 \begin{center}
 \begin{Huge}
-        \textbf{Piano di Progetto} \\
-        \vspace{4mm}
+\textbf{Piano di Progetto} \\
+\vspace{4mm}
 
 \end{Huge}
 
@@ -88,11 +91,11 @@ Anno Accademico 2023/2024
 \begin{large}
 \begin{spacing}{1.4}
 \begin{tabular}{c c c}
-   Redattori: & Alex S., Bilal E., Iulius S. & \\
-   Verificatori: & Alberto M., Alex S., Iulius S. & \\
-   Amministratore: & Alex S. & \\
-   Destinatari: & T. Vardanega & R. Cardin \\
-   Versione: & 1.0.0 &
+Redattori: & Alex S., Bilal E., Iulius S. & \\
+Verificatori: & Alberto M., Alex S., Iulius S. & \\
+Amministratore: & Alex S. & \\
+Destinatari: & T. Vardanega & R. Cardin \\
+Versione: & 1.0.0 &
 \end{tabular}
 \end{spacing}
 \end{large}
@@ -101,7 +104,7 @@ Anno Accademico 2023/2024
 \pagebreak
 
 \begin{huge}
-    \textbf{Registro delle modifiche}
+\textbf{Registro delle modifiche}
 \end{huge}
 \vspace{5pt}
 
