@@ -19,7 +19,8 @@ $registro = (new RegistroModifiche())
   ->log(CE, '2024/03/19', 'Alberto C.', 'Iulius S. ', 'Inserimento definizioni Piano di Progetto    ')
   ->log(CE, '2024/03/23', 'Alex S.   ', 'Alberto M.', 'Inserimento definizioni Piano di Qualifica   ')
   ->log(DX, '2024/03/26', 'Alberto C.', 'Iulius S. ', 'Aggiornamento definizioni                    ')
-  ->log(SX, '2024/04/16', 'Alex S.   ', '          ', 'Approvazione per il rilascio                 ');
+  ->log(SX, '2024/04/16', 'Alex S.   ', '          ', 'Approvazione per il rilascio                 ')
+;
 
 $error_flag = 0;
 ob_start();

@@ -19,7 +19,8 @@ $registro = (new RegistroModifiche())
   ->approvazione('2024/04/16', alex_s())
   ->log(CE, '2024/05/28', alex_s(), '', 'Automazione tabelle preventivi e consuntivi')
   ->log(CE, '2024/05/29', alex_s(), '', 'Automazione diagrammi di Gantt')
-  ->log(CE, '2024/05/31', alex_s(), '', 'Stesura delle retrospettive dei periodi di PB');
+  ->log(CE, '2024/05/31', alex_s(), '', 'Stesura delle retrospettive dei periodi di PB')
+;
   //->approvazione('2024/06/07', alex_s());
 
 $nome = "Piano_di_progetto_v{$registro->versione()}.pdf";
