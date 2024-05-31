@@ -15,7 +15,13 @@ $registro = (new RegistroModifiche())
   ->log(CE, '2024/02/27', bilal_em()->nome, alex_s()->nome, 'Stesura analisi dei rischi')
   ->log(CE, '2024/03/19', bilal_em()->nome, alex_s()->nome, 'Stesura modello di sviluppo')
   ->log(CE, '2024/03/23', alex_s()->nome, alberto_m()->nome, 'Stesura consuntivo')
-  ->log(CE, '2024/03/26', iulius_s()->nome, alex_s()->nome, 'Stesura pianificazione');
+  ->log(CE, '2024/03/26', iulius_s()->nome, alex_s()->nome, 'Stesura pianificazione')
+  ->approvazione('2024/04/16', alex_s())
+  ->log(CE, '2024/05/28', alex_s(), '', 'Automazione tabelle preventivi e consuntivi')
+  ->log(CE, '2024/05/29', alex_s(), '', 'Automazione diagrammi di Gantt')
+  ->log(CE, '2024/05/31', alex_s(), '', 'Stesura delle retrospettive dei periodi di PB');
+  //->approvazione('2024/06/07', alex_s());
+
 $nome = "Piano_di_progetto_v{$registro->versione()}.pdf";
 
 ob_start();
@@ -98,11 +104,11 @@ Anno Accademico 2023/2024
 \begin{large}
 \begin{spacing}{1.4}
 \begin{tabular}{c c c}
-Redattori: & Alex S., Bilal E., Iulius S. & \\
-Verificatori: & Alberto M., Alex S., Iulius S. & \\
-Amministratore: & Alex S. & \\
+Redattori: & <?php echo $registro->autori(); ?> & \\
+Verificatori: & <?php echo $registro->verificatori(); ?> & \\
+Amministratore: & <?php echo alex_s(); ?> & \\
 Destinatari: & T. Vardanega & R. Cardin \\
-Versione: & 1.0.0 &
+Versione: & <?php echo $registro->versione(); ?> &
 \end{tabular}
 \end{spacing}
 \end{large}
@@ -115,7 +121,17 @@ Versione: & 1.0.0 &
 \end{huge}
 \vspace{5pt}
 
-<?php require_once __DIR__ . "/src/registro-modifiche.php"; ?>
+\begin{tblr}{
+colspec={|X[1.5cm]|X[2cm]|X[2.5cm]|X[2.5cm]|X[5cm]|},
+row{odd}={bg=white},
+row{even}={bg=lightgray},
+row{1}={bg=black,fg=white}
+}
+
+Versione & Data & Autore & Verificatore & Descrizione \\ \hline
+<?php echo $registro; ?>
+
+\end{tblr}
 
 \pagebreak
 \tableofcontents
