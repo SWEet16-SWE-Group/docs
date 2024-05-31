@@ -8,7 +8,14 @@ require_once 'Membri.php';
 
 $error_flag = 0;
 $titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/piano-di-progetto/main.tex';
-$registro = (new RegistroModifiche());
+$registro = (new RegistroModifiche())
+  ->log(CE, '2024/02/14', alex_s()->nome, iulius_s()->nome, 'Stesura scheletro')
+  ->log(CE, '2024/02/23', bilal_em()->nome, alberto_m()->nome, 'Stesura introduzione')
+  ->log(CE, '2024/02/24', alex_s()->nome, alberto_m()->nome, 'Stesura preventivo')
+  ->log(CE, '2024/02/27', bilal_em()->nome, alex_s()->nome, 'Stesura analisi dei rischi')
+  ->log(CE, '2024/03/19', bilal_em()->nome, alex_s()->nome, 'Stesura modello di sviluppo')
+  ->log(CE, '2024/03/23', alex_s()->nome, alberto_m()->nome, 'Stesura consuntivo')
+  ->log(CE, '2024/03/26', iulius_s()->nome, alex_s()->nome, 'Stesura pianificazione');
 $nome = "Piano_di_progetto_v{$registro->versione()}.pdf";
 
 ob_start();
