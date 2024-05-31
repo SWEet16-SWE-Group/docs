@@ -300,7 +300,7 @@ $periodi_pb = [
   // ===========================================================================================================================
   // PB 1
   [
-    'periodo buio',
+    'Periodo 1',
     '2025/04/22',
     '2024/05/03',
     [],
@@ -322,14 +322,16 @@ $periodi_pb = [
     ],
     '',
     [],
-    '',
+    <<<'EOF'
+    Causa la lunga durata del progetto e l'accumulo di ritardi, sono nati forti attriti all'interno del gruppo in merito come procedere in fase di PB. Questi attriti si sono aggravati in veri e propri conflitti tra i membri del gruppo. In queste due settimane non è stato svolto nulla di rilevante.
+    EOF,
     [],
     [],
   ],
   // ===========================================================================================================================
   // PB 2
   [
-    '???',
+    'Periodo 2',
     '2025/05/06',
     '2024/05/18',
     [],
@@ -351,14 +353,22 @@ $periodi_pb = [
     ],
     '',
     [],
-    '',
-    [],
-    [],
+    <<<'EOF'
+    I conflitti interni al gruppo sono stati risolti. \\
+    Le questioni trattate principalmente sono state il ripristino di un contatto con il proponente e una seconda valutazione delle tecnologie scelte. A votazione si è deciso di adottare il framework di Laravel per lo sviluppo del backend. Successivamente il gruppo si è diviso in due sottogruppi da tre e tre, uno con lo scopo di riprendere contatto con il proponente e aggiornarlo sulla situazione, l'altro si è occupato di stabilire una baseline per l'inizio della fase di codifica. La baseline consisteva nella creazione un progetto "vuoto" dove fosse possibile utilizzare tutte le tecnologie scelte e averle interconnesse tra di loro, pronte per la codifica. Questa baseline non è stata raggiunta vista la complessità reale delle tecnologie scelte molto superiore a quella preventivata.
+    EOF,
+    [
+      'Risoluzione degli attriti tra colleghi',
+      'Ripreso una comunicazione costante con il proponente',
+    ],
+    [
+      'Baseline MVP'
+    ],
   ],
   // ===========================================================================================================================
   // PB 3
   [
-    'cose di progettazione',
+    'Periodo 3',
     '2025/05/20',
     '2024/05/24',
     [
@@ -385,14 +395,16 @@ $periodi_pb = [
     ],
     '',
     [],
-    '',
+    <<<'EOF'
+    Sono state create le diverse task per la fase di codifica dell'MVP sotto forma di issue su GitHub. Ad ogni task è stata assegnata una priorità decrescente (più basso il numero, più è imperativo il suo completamento), issue con priorità uguale possono essere svolte in parallelo. Molto tempo è stato dedicato allo studio di Laravel, in quanto vi sono state molte difficoltà solo nella creazione di un docker che lo eseguisse e nel stabilire una connessione anche parziale tra esso e il database. È stato stimato che la codifica dell'MVP sia ciò che richieda maggiori risorse, il gruppo dunque si è diviso in due sottogruppi rispettivamente da cinque persone per la codifica e una per la stesura della documentazione.
+    EOF,
     [],
     [],
   ],
   // ===========================================================================================================================
   // PB 4
   [
-    'sviluppo effettivo',
+    'Questa settimana',
     '2025/05/27',
     '2024/05/31',
     [],

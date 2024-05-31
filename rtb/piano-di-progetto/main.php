@@ -6,8 +6,24 @@ require_once 'Vocaboli.php';
 require_once 'Validatore.php';
 require_once 'Membri.php';
 
-$titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/piano-di-progetto/main.tex';
 $error_flag = 0;
+$titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/piano-di-progetto/main.tex';
+$registro = (new RegistroModifiche())
+  ->log(CE, '2024/02/14', alex_s()->nome, iulius_s()->nome, 'Stesura scheletro')
+  ->log(CE, '2024/02/23', bilal_em()->nome, alberto_m()->nome, 'Stesura introduzione')
+  ->log(CE, '2024/02/24', alex_s()->nome, alberto_m()->nome, 'Stesura preventivo')
+  ->log(CE, '2024/02/27', bilal_em()->nome, alex_s()->nome, 'Stesura analisi dei rischi')
+  ->log(CE, '2024/03/19', bilal_em()->nome, alex_s()->nome, 'Stesura modello di sviluppo')
+  ->log(CE, '2024/03/23', alex_s()->nome, alberto_m()->nome, 'Stesura consuntivo')
+  ->log(CE, '2024/03/26', iulius_s()->nome, alex_s()->nome, 'Stesura pianificazione')
+  ->approvazione('2024/04/16', alex_s())
+  ->log(CE, '2024/05/28', alex_s(), '', 'Automazione tabelle preventivi e consuntivi')
+  ->log(CE, '2024/05/29', alex_s(), '', 'Automazione diagrammi di Gantt')
+  ->log(CE, '2024/05/31', alex_s(), '', 'Stesura delle retrospettive dei periodi di PB');
+  //->approvazione('2024/06/07', alex_s());
+
+$nome = "Piano_di_progetto_v{$registro->versione()}.pdf";
+
 ob_start();
 ob_start(function ($tex) use ($titolo, &$error_flag) {
   $errormsg = racatta_errori($titolo, $tex);
@@ -33,12 +49,12 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \usepackage[italian]{babel}
 \usepackage{float}
 
- \geometry{
- a4paper,
- left=25mm,
- right=25mm,
- top=20mm,
- bottom=20mm,
+\geometry{
+a4paper,
+left=25mm,
+right=25mm,
+top=20mm,
+bottom=20mm,
 }
 
 \makeatletter
@@ -54,7 +70,7 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \begin{document}
 
 \begin{minipage}{0.35\linewidth}
-    \includegraphics[width=\linewidth]{Logo_Università_Padova.svg.png}
+\includegraphics[width=\linewidth]{Logo_Università_Padova.svg.png}
 \end{minipage}\hfil
 \begin{minipage}{0.55\linewidth}
 \textbf{Università degli Studi di Padova} \\
@@ -66,7 +82,7 @@ Anno Accademico 2023/2024
 \vspace{5mm}
 
 \begin{minipage}{0.35\linewidth}
-    \includegraphics[width=\linewidth]{logo rotondo.jpg}
+\includegraphics[width=\linewidth]{logo rotondo.jpg}
 \end{minipage}\hfil
 \begin{minipage}{0.55\linewidth}
 \textbf{Gruppo}: SWEet16 \\
@@ -78,8 +94,8 @@ Anno Accademico 2023/2024
 
 \begin{center}
 \begin{Huge}
-        \textbf{Piano di Progetto} \\
-        \vspace{4mm}
+\textbf{Piano di Progetto} \\
+\vspace{4mm}
 
 \end{Huge}
 
@@ -88,11 +104,11 @@ Anno Accademico 2023/2024
 \begin{large}
 \begin{spacing}{1.4}
 \begin{tabular}{c c c}
-   Redattori: & Alex S., Bilal E., Iulius S. & \\
-   Verificatori: & Alberto M., Alex S., Iulius S. & \\
-   Amministratore: & Alex S. & \\
-   Destinatari: & T. Vardanega & R. Cardin \\
-   Versione: & 1.0.0 &
+Redattori: & <?php echo $registro->autori(); ?> & \\
+Verificatori: & <?php echo $registro->verificatori(); ?> & \\
+Amministratore: & <?php echo alex_s(); ?> & \\
+Destinatari: & T. Vardanega & R. Cardin \\
+Versione: & <?php echo $registro->versione(); ?> &
 \end{tabular}
 \end{spacing}
 \end{large}
@@ -101,11 +117,21 @@ Anno Accademico 2023/2024
 \pagebreak
 
 \begin{huge}
-    \textbf{Registro delle modifiche}
+\textbf{Registro delle modifiche}
 \end{huge}
 \vspace{5pt}
 
-<?php require_once __DIR__ . "/src/registro-modifiche.php"; ?>
+\begin{tblr}{
+colspec={|X[1.5cm]|X[2cm]|X[2.5cm]|X[2.5cm]|X[5cm]|},
+row{odd}={bg=white},
+row{even}={bg=lightgray},
+row{1}={bg=black,fg=white}
+}
+
+Versione & Data & Autore & Verificatore & Descrizione \\ \hline
+<?php echo $registro; ?>
+
+\end{tblr}
 
 \pagebreak
 \tableofcontents

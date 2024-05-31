@@ -15,6 +15,8 @@ $registro = (new RegistroModifiche())
   ->log(CE, '2024/05/02', 'B', 'E', 'bb')
   ->log(SX, '2024/05/03', 'C', 'B', 'cb');
 
+$nome = "documento_v{$registro->versione()}.pdf";
+
 $error_flag = 0;
 ob_start();
 ob_start(function ($tex) use ($titolo, &$error_flag) {
@@ -50,7 +52,7 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{<?php echo implode('', array_map(fn ($a) => sprintf('{%s}',$a), $pathsimmagini)); ?>}
+\graphicspath{<?php echo implode('', array_map(fn ($a) => sprintf('{%s}', $a), $pathsimmagini)); ?>}
 
 \begin{document}
 

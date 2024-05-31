@@ -55,7 +55,7 @@ durante le quali i membri hanno preso dimestichezza con l'operazione di verifica
 \begin{itemize}
 \item \textbf{Rischio verificatosi}: Scarsa esperienza tecnologica:
 \begin{itemize}
-\item \textbf{Esito Piano di Contingenza}: Tramite lo studio individuale e soprattutto tramite la trasmissione di conoscenza dai membri maggiormente esperti nel linguaggio LaTex e nei comandi Git a quelli meno esperti, il gruppo è riuscito efficacemente a mettere in pratica il piano di contingenza previsto per il suddetto rischio, ottenendo un allineamento delle conoscenze tra i veri membri;
+\item \textbf{Esito Piano di Contingenza}: Tramite lo studio individuale e soprattutto tramite la trasmissione di conoscenza dai membri maggiormente esperti nel linguaggio \LaTeX e nei comandi Git a quelli meno esperti, il gruppo è riuscito efficacemente a mettere in pratica il piano di contingenza previsto per il suddetto rischio, ottenendo un allineamento delle conoscenze tra i veri membri;
 \item \textbf{Impatto}: L'impatto della scarsa esperienza tecnologica è stato nullo in questo primo periodo, avendo il gruppo preventivato la necessità di dedicare innanzitutto risorse all'individuazione, allo studio e all'apprendimento delle tecnologie di supporto, così come di quelle che andranno a far parte dello stack tecnologico del prodotto.
 \end{itemize}
 \end{itemize}
@@ -74,7 +74,7 @@ ruotare in futuro i ruoli stessi.
 \begin{itemize}
 \item \textbf{Obbiettivi raggiunti}:
 \begin{itemize}
-\item Allineamento da parte del gruppo, delle conoscenze del linguaggio LaTex e dei comandi Git;
+\item Allineamento da parte del gruppo, delle conoscenze del linguaggio \LaTeX e dei comandi Git;
 \item Scelta delle tecnologie da includere nello stack tecnologico;
 \item Inizio dell'analisi dei requisiti funzionali del prodotto.
 \end{itemize}\pagebreak

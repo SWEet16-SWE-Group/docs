@@ -26,7 +26,7 @@ function str_replace_array($a, $s) {
 
 const glob_depth = 12;
 
-function _find($p, $dir) {
+function _find($dir, $p) {
   $depth = fn ($fn, $d, $a) => $d > 0 ? $fn($fn, $d - 1, "{,*/$a}") : $a;
   $depth = fn ($d) => $depth($depth, $d, '');
   return stream(
