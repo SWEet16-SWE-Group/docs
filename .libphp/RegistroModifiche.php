@@ -8,16 +8,15 @@ const SX = [1, 0, 0];
 
 class RegistroModifiche {
   private $tabella = [];
-  public function log($incremento, $data, $autore, $verificatore, $descrizione) {
+  private function log($incremento, $data, $autore, $verificatore, $descrizione) {
     $this->tabella[] = [$incremento, $data, $autore, $verificatore, $descrizione];
     return $this;
   }
+
   public function logArray($a) {
     return _reduce(fn ($t, $a) => $t->log(...$a), $this)($a);
   }
-  public function approvazione($data, $autore) {
-    return $this->log(SX, $data, $autore, '', 'Approvazione per il rilascio');
-  }
+
   public function __toString() {
     return array_reduce(
       $this->tabella,
