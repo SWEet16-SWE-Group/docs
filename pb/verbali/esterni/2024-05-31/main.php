@@ -7,6 +7,7 @@ require_once 'Validatore.php';
 require_once 'Membri.php';
 
 $titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/pb/verbali/esterni/2024-05-17/main.tex';
+$nome = '2024_05_31_v1.0.0.pdf';
 $error_flag = 0;
 ob_start();
 ob_start(function ($tex) use ($titolo, &$error_flag) {
