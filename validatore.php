@@ -20,7 +20,7 @@ function errori_ortografici($dict, $file) {
     ($e = shell_exec("hunspell -p $dict -d it_IT,en_US -l \"$file\"")) === null ? '' : $e,
     _explode("\n"),
     _filter(fn ($a) => strlen($a) > 0),
-    _map(fn ($a) => "ORTOGRAFIA: $file: $a"),
+    _map(fn ($a) => "ORTOGRAFIA: $file: $a\n"),
     _implode(''),
   );
 }
