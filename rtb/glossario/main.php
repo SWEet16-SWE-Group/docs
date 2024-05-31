@@ -10,17 +10,17 @@ $titolo = 'Glossario';
 $pathsimmagini = [
   '../media/',
 ];
-$registro = (new RegistroModifiche())
-  ->log(CE, '2024/02/14', 'Alex S.   ', 'Iulius S. ', 'Stesura scheletro documento                  ')
-  ->log(CE, '2024/02/23', 'Alex S.   ', 'Alberto M.', 'Inserimento prime definizioni                ')
-  ->log(CE, '2024/02/24', 'Alberto C.', 'Alberto M.', 'Inserimento definizioni Analisi dei Requisiti')
-  ->log(CE, '2024/02/27', 'Alberto C.', 'Alberto M.', 'Inserimento definizioni Norme di Progetto    ')
-  ->log(DX, '2024/03/06', 'Alex S.   ', 'Iulius S. ', 'Aggiornamento definizioni                    ')
-  ->log(CE, '2024/03/19', 'Alberto C.', 'Iulius S. ', 'Inserimento definizioni Piano di Progetto    ')
-  ->log(CE, '2024/03/23', 'Alex S.   ', 'Alberto M.', 'Inserimento definizioni Piano di Qualifica   ')
-  ->log(DX, '2024/03/26', 'Alberto C.', 'Iulius S. ', 'Aggiornamento definizioni                    ')
-  ->log(SX, '2024/04/16', 'Alex S.   ', '          ', 'Approvazione per il rilascio                 ')
-;
+$registro = (new RegistroModifiche())->logArray([
+  [CE, '2024/02/14', 'Alex S.   ', 'Iulius S. ', 'Stesura scheletro documento                  '],
+  [CE, '2024/02/23', 'Alex S.   ', 'Alberto M.', 'Inserimento prime definizioni                '],
+  [CE, '2024/02/24', 'Alberto C.', 'Alberto M.', 'Inserimento definizioni Analisi dei Requisiti'],
+  [CE, '2024/02/27', 'Alberto C.', 'Alberto M.', 'Inserimento definizioni Norme di Progetto    '],
+  [DX, '2024/03/06', 'Alex S.   ', 'Iulius S. ', 'Aggiornamento definizioni                    '],
+  [CE, '2024/03/19', 'Alberto C.', 'Iulius S. ', 'Inserimento definizioni Piano di Progetto    '],
+  [CE, '2024/03/23', 'Alex S.   ', 'Alberto M.', 'Inserimento definizioni Piano di Qualifica   '],
+  [DX, '2024/03/26', 'Alberto C.', 'Iulius S. ', 'Aggiornamento definizioni                    '],
+  [SX, '2024/04/16', 'Alex S.   ', '          ', 'Approvazione per il rilascio                 '],
+]);
 
 $error_flag = 0;
 ob_start();

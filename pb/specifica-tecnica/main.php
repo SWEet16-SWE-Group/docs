@@ -10,11 +10,11 @@ $titolo = 'Specifica Tecnica';
 $pathsimmagini = [
   '../media/',
 ];
-$registro = (new RegistroModifiche())
-  ->log(CE, '2024/05/05', alberto_m(), iulius_s(), 'Stesura scheletro           ')
-  ->log(CE, '2024/05/07', alberto_m(), alex_s()  , 'Stesura sezione introduzione')
-  ->log(CE, '2024/05/08', alberto_m(), alex_s()  , 'Stesura sezione tecnologie  ')
-;
+$registro = (new RegistroModifiche())->logArray([
+  [CE, '2024/05/05', alberto_m(), iulius_s(), 'Stesura scheletro           '],
+  [CE, '2024/05/07', alberto_m(), alex_s()  , 'Stesura sezione introduzione'],
+  [CE, '2024/05/08', alberto_m(), alex_s()  , 'Stesura sezione tecnologie  '],
+]);
 
 $error_flag = 0;
 ob_start();

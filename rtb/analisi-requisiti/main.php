@@ -7,8 +7,7 @@ require_once 'Validatore.php';
 require_once 'Membri.php';
 
 $titolo = '/home/lumine/Documenti/unipd/2023-2024-swe/docs/rtb/analisi-requisiti/main.tex';
-$registro = (new RegistroModifiche())
-  ->logArray([
+$registro = (new RegistroModifiche())->logArray([
 [DX, "2024/02/12", iulius_s(), alex_s(), "Stesura casi d'uso cliente prenotazione"],
 [DX, "2024/02/15", iulius_s(), alberto_m(), "Stesura del template"],
 [CE, "2024/02/15", iulius_s(), alberto_m(), "Stesura sezione introduzione"],
