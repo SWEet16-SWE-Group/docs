@@ -8,8 +8,6 @@ RUN rm -rf node_modules package-lock.json
 
 RUN npm install
 
-RUN npm install bootstrap axios react-router-dom
-
 COPY . .
 
 RUN echo "SKIP_PREFLIGHT_CHECK=true" > .env
