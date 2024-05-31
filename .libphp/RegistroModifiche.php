@@ -2,15 +2,18 @@
 
 require_once __DIR__ . '/Utils.php';
 
-const DX = [0,0,1];
-const CE = [0,1,0];
-const SX = [1,0,0];
+const DX = [0, 0, 1];
+const CE = [0, 1, 0];
+const SX = [1, 0, 0];
 
 class RegistroModifiche {
   private $tabella = [];
   public function log($incremento, $data, $autore, $verificatore, $descrizione) {
     $this->tabella[] = [$incremento, $data, $autore, $verificatore, $descrizione];
     return $this;
+  }
+  public function approvazione($data, $autore) {
+    return $this->log(SX, $data, $autore, '', 'Approvazione per il rilascio');
   }
   public function __toString() {
     return array_reduce(
