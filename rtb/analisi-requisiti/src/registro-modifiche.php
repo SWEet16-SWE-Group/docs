@@ -9,7 +9,8 @@ row{odd}={bg=white},
 row{even}={bg=lightgray},
 row{1}={bg=black, fg=white}
 }
-Versione, Data, Autore, Verificatore, Descrizione")
+<?php 
+$registro = (new RegistroModifiche())
 ->log(DX, "2024/02/12", iulius_s(), alex_s(), "Stesura casi d'uso cliente prenotazione")
 ->log(DX, "2024/02/15", iulius_s(), alberto_m(), "Stesura del template")
 ->log(CE, "2024/02/15", iulius_s(), alberto_m(), "Stesura sezione introduzione")
@@ -36,4 +37,4 @@ Versione, Data, Autore, Verificatore, Descrizione")
 ->log(CE, "2024/03/05", iulius_s(), alberto_m(), "Stesura requisiti non funzionali")
 ->log(CE, "2024/03/25", alex_s(), alberto_m(), "Applicazione correzioni")
 ->log(SX, "2024/04/03", alex_s(), "", "Approvazione per il rilascio")
-\end{tblr}
+;
