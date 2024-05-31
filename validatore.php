@@ -86,8 +86,6 @@ if (
   die(14);
 }
 
-die(print_r(''));
-
 if (!_compile()) {
   die();
 }
