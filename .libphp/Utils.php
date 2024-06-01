@@ -16,8 +16,15 @@ set_exception_handler(function (Throwable $exception) {
 
 // Utils
 
-function includegraphics(){
-  return sprintf('{%s/%s}',__DIR__,'../rtb/media/');
+function includegraphics() {
+  $depth = fn ($fn, $d, $a) => $d > 0 ? $fn($fn, $d - 1, "{,*/$a}") : $a;
+  $depth = fn ($d) => $depth($depth, $d, '');
+  return stream(
+    glob(__DIR__ . "/../media/{$depth(12)}/*", GLOB_BRACE),
+    _filter(fn ($a) => is_dir($a)),
+    _map(fn ($a) => sprintf('{%s}', $a)),
+    _implode(''),
+  );
 }
 
 function _compile() {
