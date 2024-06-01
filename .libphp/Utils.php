@@ -16,11 +16,15 @@ set_exception_handler(function (Throwable $exception) {
 
 // Utils
 
+function mediapath() {
+  return "../media/";
+}
+
 function includegraphics() {
   $depth = fn ($fn, $d, $a) => $d > 0 ? $fn($fn, $d - 1, "{,*/$a}") : $a;
   $depth = fn ($d) => $depth($depth, $d, '');
   return stream(
-    glob(__DIR__ . "/../media/{$depth(12)}/", GLOB_BRACE),
+    glob(__DIR__ . "/" . mediapath() . "/{$depth(12)}/", GLOB_BRACE),
     _filter(fn ($a) => is_dir($a)),
     _map(fn ($a) => sprintf('{%s}%s', $a, "\n")),
     _implode(''),
