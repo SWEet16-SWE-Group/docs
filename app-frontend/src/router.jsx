@@ -9,6 +9,8 @@ import RestaurantLayout from "./components/RestaurantLayout"
 import ModificaInfoAccount from "./views/ModificaInfoAccount";
 import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore.jsx";
 import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore.jsx";
+import newClient from "./components/NewClient.jsx";
+import EditClient from "./views/EditClient.jsx";
 
 const router = createBrowserRouter([
     {
@@ -19,19 +21,19 @@ const router = createBrowserRouter([
             {
                 path: '/selezionaprofilo',
                 element: <SelezionaProfilo />
-            },
+            }*/
             {
-                path: '/creazioneprofilocliente',
-                element: <CreazioneProfiloCliente />
-            },*/
+                path: '/newClient',
+                element: <newClient />
+            },
             {
                 path: '/creazioneprofiloristoratore',
                 element: <CreazioneProfiloRistoratore />
-            },/*
+            },
             {
-                path: '/modificaprofilocliente',
-                element: <ModificaProfiloCliente />
-            },*/
+                path: '/editClient',
+                element: <EditClient />
+            },
             {
                 path: '/modificaprofiloristoratore',
                 element: <ModificaProfiloRistoratore />

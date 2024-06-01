@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AllergeniController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RistoratoreController;
@@ -8,6 +10,7 @@ use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +64,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
 });
 
+Route::get('/account',[ClientController::class,'index']);
+Route::get('client/{id}', [ClientController::class,'show']);
+Route::post('/client',[ClientController::class,'store']);
+Route::put('/client',[ClientController::class,'update']);
+Route::delete('client/{id}',[ClientController::class,'destroy']);
+
+Route::get('/allergeni',[AllergeniController::class,'index']);
 
 // inserire qui le chiamate per gli utenti non autenticati
 

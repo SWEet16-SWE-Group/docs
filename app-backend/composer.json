@@ -14,7 +14,8 @@
         "laravel/framework": "^8.12",
         "laravel/sanctum": "^2.15",
         "laravel/tinker": "^2.5",
-        "symfony/symfony": "5.3.*"
+        "symfony/symfony": "5.3.*",
+        "thiagoprz/eloquent-composite-key": "^1.0"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

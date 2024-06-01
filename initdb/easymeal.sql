@@ -32,21 +32,20 @@ CREATE TABLE ristoratori(
     FOREIGN KEY (account) REFERENCES account(id)
 );
 
-CREATE TABLE orari_apertura_ristorante(
-    ristorante INT NOT NULL,
-    apertura TIME NOT NULL,
-    chiusura TIME NOT NULL,
-    giorno ENUM(
-        'Lunedì',
-        'Martedì',
-        'Mercoledì',
-        'Giovedì',
-        'Venerdì',
-        'Sabato',
-        'Domenica'
-    ) NOT NULL,
-    updated_at TIMESTAMP,
-    created_at TIMESTAMP,
+create Table orari_apertura_ristorante(
+  ristorante int not null, foreign key (ristorante) references ristoratori(id),
+  apertura time not null,
+  chiusura time not null,
+  giorno enum ('Lunedì','Martedì','Mercoledì','Giovedì','Venerdì','Sabato','Domenica') not null,
+  check( apertura < chiusura ),
+  primary key (ristorante, apertura, chiusura, giorno)
+);
+
+create Table cucina_ristorante(
+  ristorante int not null, foreign key (ristorante) references ristoratori(id),
+  cucina enum ('pizza', 'pasta', 'pesce') not null,
+  primary key (ristorante, cucina)
+);
     PRIMARY KEY (ristorante, giorno, apertura, chiusura),
     FOREIGN KEY (ristorante) REFERENCES ristoratori(id),
     CHECK (apertura < chiusura)
