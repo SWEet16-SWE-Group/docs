@@ -9,9 +9,8 @@ require_once 'Membri.php';
 $error_flag = 0;
 $titolo = 'TITOLO';
 $registro = (new RegistroModifiche())->logArray([
-  [DX, '2024/05/01', alex_s(), alberto_m(), 'Stesura 1'],
-  [CE, '2024/05/02', alex_s(), alberto_m(), 'Stesura 2'],
-  [SX, '2024/05/03', alex_s(), '', 'Approvazione per il rilascio'],
+  [DX, '2024/06/01', alex_s(), '', 'Stesura scheletro'],
+  //[SX, '2024/06/00', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
 $nome = "documento_v{$registro->versione()}.pdf";
 
@@ -105,6 +104,45 @@ Versione: & <?php echo $registro->versione(); ?> &
 \pagebreak
 \tableofcontents
 \pagebreak
+
+
+<?php
+
+$contenuti = [
+  'Utente anonimo' => null,
+  'Utente autenticato' => null,
+  'Cliente' => [
+    'Navbar' => [
+      'Impostazioni account' => null,
+      'Ricerca dei ristoranti' => [
+        'Elenco dei ristoranti' => null,
+        'Homepage del ristorante' => null,
+        'Menù del ristorante' => null,
+        'Form di prenotazione' => null,
+      ],
+    ],
+    'Dashboard' => [
+      'Lista di prenotazioni' => [
+        'Attive' => null,
+        'Scadute' => null,
+      ],
+      'Prenotazione' => [
+        'Ordinazioni collaborative' => null,
+        'Manipolare un\'ordinazione' => null,
+        'Effettuare pagamenti' => null,
+        // 'Lasciare una recensione' => null,
+      ],
+    ],
+  ],
+  'Ristoratore' => [
+    'Navbar' => [
+      'Impostazioni account' => null,
+    ],
+    'Dashboard' => '',
+  ],
+];
+
+?>
 
 \end{document}
 <?php
