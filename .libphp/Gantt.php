@@ -203,25 +203,24 @@ function gantt_html($ganttstruct) {
   }
 }
 
-function gantt_latex_full($imagefilepath, $ganttstruct, $latexcmd, $processingcmd,) {
+function gantt_latex_full($img, $ganttstruct, $latexcmd, $processingcmd,) {
   if (!_compile()) {
     return '';
   }
-  $html = __DIR__ . '/gantt.html';
+  $html = mediapath() . '/gantt.html';
   file_put_contents($html, gantt_html($ganttstruct));
-  passthru($processingcmd);
-  is_dir($dir = dirname($imagefilepath)) or mkdir($dir, recursive: true);
-  rename('screenshot.png', $imagefilepath);
+  passthru($processingcmd . $html . '\'');
+  is_dir($dir = dirname($img)) or mkdir($dir, recursive: true);
+  rename('screenshot.png', mediapath() . "/$img");
   unlink($html);
   return $latexcmd;
 }
 
-function gantt_latex($imagefilepath, $ganttstruct) {
-  $img = basename($imagefilepath);
+function gantt_latex($img, $ganttstruct) {
   return gantt_latex_full(
-    $imagefilepath,
+    $img,
     $ganttstruct,
     "\\begin{figure}[h!] \\includegraphics[scale=.7]{{$img}} \\end{figure}",
-    "firefox --headless --screenshot --window-size 640,360 'file://" . __DIR__ . "/gantt.html'"
+    "firefox --headless --screenshot --window-size 640,360 'file://"
   );
 }
