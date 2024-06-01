@@ -111,22 +111,28 @@ Versione: & <?php echo $registro->versione(); ?> &
 $contenuti = [
   'Utente anonimo' => null,
   'Utente autenticato' => null,
-  'Cliente' => [
-    'Navbar' => [
+  'Cliente' =>
+  [
+    'Navbar' =>
+    [
       'Impostazioni account' => null,
-      'Ricerca dei ristoranti' => [
+      'Ricerca dei ristoranti' =>
+      [
         'Elenco dei ristoranti' => null,
         'Homepage del ristorante' => null,
         'Menù del ristorante' => null,
         'Form di prenotazione' => null,
       ],
     ],
-    'Dashboard' => [
-      'Lista di prenotazioni' => [
+    'Dashboard' =>
+    [
+      'Lista di prenotazioni' =>
+      [
         'Attive' => null,
         'Scadute' => null,
       ],
-      'Prenotazione' => [
+      'Prenotazione' =>
+      [
         'Ordinazioni collaborative' => null,
         'Manipolare un\'ordinazione' => null,
         'Effettuare pagamenti' => null,
@@ -134,8 +140,10 @@ $contenuti = [
       ],
     ],
   ],
-  'Ristoratore' => [
-    'Navbar' => [
+  'Ristoratore' =>
+  [
+    'Navbar' =>
+    [
       'Impostazioni account' => null,
     ],
     'Dashboard' => '',
