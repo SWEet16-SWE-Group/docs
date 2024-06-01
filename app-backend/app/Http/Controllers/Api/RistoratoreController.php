@@ -12,7 +12,7 @@ class RistoratoreController extends Controller
     public function index()
     {
         $ristoratori = Ristoratore::select('id', 'user', 'nome', 'indirizzo', 'telefono', 'capienza', 'orario')->get();
-        return response()->json($ristoratori);
+        return response()->json($ristoratori, 200);
     }
 
     public function store(RistoratoreRequest $request)
@@ -40,6 +40,7 @@ class RistoratoreController extends Controller
 
             $ristoratore -> nome = is_null($request -> nome) ? $ristoratore -> nome : $request -> nome;
             $ristoratore -> indirizzo = is_null($request -> indirizzo) ? $ristoratore -> indirizzo : $request -> indirizzo;
+            $ristoratore -> telefono = is_null($request -> telefono) ? $ristoratore -> telefono : $request -> telefono;
             $ristoratore -> capienza = is_null($request -> capienza) ? $ristoratore -> capienza : $request -> capienza;
             $ristoratore -> orario = is_null($request -> orario) ? $ristoratore -> orario : $request -> orario;
             $ristoratore->save();
