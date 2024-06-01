@@ -66,7 +66,7 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{<?php echo pathimmagini(); ?>}
+\graphicspath{<?php echo includegraphics(); ?>}
 
 \begin{document}
 

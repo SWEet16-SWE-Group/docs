@@ -16,7 +16,7 @@ set_exception_handler(function (Throwable $exception) {
 
 // Utils
 
-function pathimmagini(){
+function includegraphics(){
   return sprintf('{%s/%s}',__DIR__,'../rtb/media/');
 }
 
