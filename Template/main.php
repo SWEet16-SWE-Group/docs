@@ -49,12 +49,12 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{<?php echo pathimmagini(); ?>}
+\graphicspath{<?php echo includegraphics(); ?>}
 
 \begin{document}
 
 \begin{minipage}{0.35\linewidth}
-\includegraphics[width=\linewidth]{Logo_Università_Padova.svg.png}
+\includegraphics[width=\linewidth]{logo_unipd.png}
 \end{minipage}\hfil
 \begin{minipage}{0.55\linewidth}
 \textbf{Università degli Studi di Padova} \\
@@ -66,7 +66,7 @@ Anno Accademico 2023/2024
 \vspace{5mm}
 
 \begin{minipage}{0.35\linewidth}
-\includegraphics[width=\linewidth]{logo rotondo.jpg}
+\includegraphics[width=\linewidth]{logo_rotondo.jpg}
 \end{minipage}\hfil
 \begin{minipage}{0.55\linewidth}
 \textbf{Gruppo}: SWEet16 \\
