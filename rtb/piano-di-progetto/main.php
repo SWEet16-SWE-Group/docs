@@ -66,7 +66,7 @@ bottom=20mm,
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{{../media/},{./src/Gantt}}
+\graphicspath{<?php echo pathimmagini(); ?>}
 
 \begin{document}
 

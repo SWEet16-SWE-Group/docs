@@ -56,7 +56,7 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{{../media/}{src/resoconto.d/}}
+\graphicspath{<?php echo pathimmagini(); ?>}
 
 \setcounter{secnumdepth}{6}
 \setcounter{tocdepth}{6}

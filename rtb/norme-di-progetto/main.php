@@ -59,7 +59,7 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
-\graphicspath{{media/}{../media/}}
+\graphicspath{<?php echo pathimmagini(); ?>}
 
 \setcounter{secnumdepth}{5}
 \setcounter{tocdepth}{5}
