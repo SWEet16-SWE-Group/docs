@@ -4,7 +4,7 @@ import axiosClient from "../axios-client";
 
 export default function RestaurantLayout() {
 
-    const {user, token, role, setUser, setToken, setRole} = useStateContext()
+    const {user, token, role, notification,notificationStatus, setUser, setToken, setRole} = useStateContext()
 
     if (!token) {
         return <Navigate to={"/login"}/>
@@ -49,8 +49,14 @@ export default function RestaurantLayout() {
                         </header>
 
                         <main>
-                            <div>Ristorante!</div>
+                            <div>Ristoratore!</div>
                             <Outlet/>
+
+                            {notification &&
+                                <div className={`notification ${notificationStatus}`}>
+                                    {notification}
+                                </div>
+                            }
                         </main>
                     </div>
                 </div>

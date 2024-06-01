@@ -50,12 +50,13 @@ const router = createBrowserRouter([
         path: '/',
         element: <ClientLayout />,
         children: [
-            /*
+
             // decommentare qui per dashboard
              {
                 path: '/',
                 element: <Navigate to="/dashboardcliente" />
              },
+            /*
             {
                 path: '/ristoranti',
                 element: <Ristoranti />

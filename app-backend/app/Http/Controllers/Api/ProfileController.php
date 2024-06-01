@@ -15,7 +15,7 @@ class ProfileController extends Controller
 
         if($clients) {
             foreach ($clients as $client) {
-                $client['tipo'] = "cliente";
+                $client['tipo'] = "Cliente";
             }
         }
 
@@ -23,7 +23,7 @@ class ProfileController extends Controller
 
         if($restaurants) {
             foreach ($restaurants as $restaurant) {
-                $restaurant['tipo'] = "ristoratore";
+                $restaurant['tipo'] = "Ristoratore";
             }
         }
 
@@ -39,32 +39,48 @@ class ProfileController extends Controller
 
     public function selectProfile(Request $request)
     {
-        if($request['profileType'] === 'cliente') {
+        if($request['profileType'] === 'Cliente') {
             /** @var Client $client */
             $client = Client::where(['id' => $request->profileId, 'user' => $request->userId])->first();
 
             if(!$client)
-                return response('',204);
+                return response([
+                        'notification' => 'Errore nella selezione del profilo!',
+                        'status' => 'failure'
+                    ]
+                );
 
             return response([
                 'profile' => $client,
-                'role' => 'CLIENTE'
+                'role' => 'CLIENTE',
+                'notification' => 'Profilo cliente selezionato con successo',
+                'status' => 'success'
             ]);
 
-        } elseif ($request['profileType'] === 'ristoratore') {
+        } elseif ($request['profileType'] === 'Ristoratore') {
             /** @var Ristoratore $restaurant */
             $restaurant = Ristoratore::where(['id' => $request->profileId, 'user' => $request->userId])->first();
 
             if(!$restaurant)
-                return response('',204);
+                return response([
+                    'notification' => 'Errore nella selezione del profilo!',
+                    'status' => 'failure'
+                    ]
+                );
 
             return response([
                 'profile' => $restaurant,
-                'role' => 'RISTORATORE'
+                'role' => 'RISTORATORE',
+                'notification' => 'Profilo ristoratore selezionato con successo',
+                'status' => 'success'
             ]);
 
         } else {
-            return response('', 422);
+            return response([
+                    'notification' => 'Errore nella selezione del profilo!',
+                    'status' => 'failure'
+                ]
+            );
         }
     }
 }

@@ -52,11 +52,14 @@ export default function SelezioneProfilo() {
         }
         axiosClient.post('/selectprofile',payload)
             .then(({data}) => {
-
                 setProfile(data.profile);
                 setRole(data.role);
 
+
+                setNotificationStatus(data.status);
+                setNotification(data.notification);
                 console.log(data.profile);
+
             })
             .catch(err => {
                     const response = err.response;
@@ -65,13 +68,20 @@ export default function SelezioneProfilo() {
                     }
                 }
             );
-
-        // TODO funzione che seleziona il profilo
     }
 
     const onModifyProfile = (profile) => {
 
         console.log("dentro modifica ", profile.id);
+        console.log(profile.tipo);
+
+        if(profile.tipo === 'Cliente')
+        {
+
+        } else if (profile.tipo === 'Ristoratore')
+        {
+            axiosClient.post('/modifica-ristoratore/{profile.id}');
+        }
         // TODO creare funzione che ti porta alla pagina di modifica profilo
     }
 
@@ -102,7 +112,7 @@ export default function SelezioneProfilo() {
     return (
         <div className="container-fluid p-auto border rounded border-2 margin-tb h-auto">
             <div>
-                <Link to={'/creazioneprofilocliente'}>Crea nuovo profilo cliente</Link>
+                <Link to={'/newclient'}>Crea nuovo profilo cliente</Link>
             </div>
             <div>
                 <Link to={'/creazioneprofiloristoratore'}>Crea nuovo profilo ristoratore</Link>
