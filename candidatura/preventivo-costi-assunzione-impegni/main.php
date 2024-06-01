@@ -240,7 +240,7 @@ row{1,8}={bg=darkgreen,fg=white}
 
 \begin{figure}[h]
 \centering
- \includegraphics[width=\linewidth]{grafico a torta.png}
+ \includegraphics[width=\linewidth]{torta1.png}
  \caption{Grafico a torta contenente la distribuzione oraria}
     \label{Immagine:1}
 \end{figure}
