@@ -404,7 +404,11 @@ $periodi_pb = [
     ],
     [
       'pbg3.png',
-      []
+      [
+        Attivita::Macro('A', '2024/05/10', [
+          Attivita::Micro('B',  '2024/05/18', []),
+        ]),
+      ]
     ],
     preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
@@ -439,7 +443,11 @@ $periodi_pb = [
     [],
     [
       'pbg4.png',
-      []
+      [
+        Attivita::Macro('A', '2024/05/10', [
+          Attivita::Micro('B',  '2024/05/18', []),
+        ]),
+      ]
     ],
     preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
