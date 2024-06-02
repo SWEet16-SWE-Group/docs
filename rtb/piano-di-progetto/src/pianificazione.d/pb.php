@@ -4,6 +4,9 @@ require_once __DIR__ . '/../../../../.libphp/Utils.php';
 require_once __DIR__ . '/../../../../.libphp/Membri.php';
 require_once __DIR__ . '/../../../../.libphp/Gantt.php';
 
+const preventivo = -1;
+const consuntivo = -2;
+
 function indicizza_tabella($a) {
   return [
     alberto_c()->nome => $a[alberto_c()->nome],
@@ -217,7 +220,7 @@ $periodi_rtb = [
   // ===========================================================================================================================
   // RTB 1
   [
-    4 => [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 4, 0, 1],
       'Bilal El M.' => [0, 0, 4, 0, 0, 1],
       'Alberto M.'  => [3, 2, 0, 0, 0, 0],
@@ -225,7 +228,7 @@ $periodi_rtb = [
       'Iulius S.'   => [0, 0, 4, 0, 0, 1],
       'Giovanni Z.' => [0, 0, 0, 4, 0, 1],
     ],
-    5 => [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 4, 0, 1],
       'Bilal El M.' => [0, 0, 4, 0, 0, 1],
       'Alberto M.'  => [3, 2, 0, 0, 0, 0],
@@ -237,7 +240,7 @@ $periodi_rtb = [
   // ===========================================================================================================================
   // RTB 2
   [
-    4 => [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 15, 2],
       'Bilal El M.' => [2, 3, 0, 4,  0, 2],
       'Alberto M.'  => [5, 0, 5, 0,  0, 0],
@@ -245,7 +248,7 @@ $periodi_rtb = [
       'Iulius S.'   => [0, 0, 7, 0,  0, 2],
       'Giovanni Z.' => [0, 0, 0, 0, 10, 0],
     ],
-    5 => [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 20, 5],
       'Bilal El M.' => [0, 0, 0, 4,  0, 2],
       'Alberto M.'  => [2, 3, 5, 0,  0, 0],
@@ -257,7 +260,7 @@ $periodi_rtb = [
   // ===========================================================================================================================
   // RTB 3
   [
-    4 => [
+    preventivo => [
       'Alberto C.'  =>  [0, 0,  5, 0, 0, 0],
       'Bilal El M.' =>  [0, 0,  5, 0, 0, 7],
       'Alberto M.'  =>  [0, 0, 10, 0, 0, 2],
@@ -265,7 +268,7 @@ $periodi_rtb = [
       'Iulius S.'   =>  [0, 0, 10, 0, 0, 2],
       'Giovanni Z.' =>  [5, 0,  0, 0, 0, 0],
     ],
-    5 => [
+    consuntivo => [
       'Alberto C.'  => [0, 2,  3, 0, 0, 0],
       'Bilal El M.' => [0, 0,  2, 0, 0, 3],
       'Alberto M.'  => [0, 0, 12, 0, 0, 5],
@@ -277,7 +280,7 @@ $periodi_rtb = [
   // ===========================================================================================================================
   // RTB 4
   [
-    4 => [
+    preventivo => [
       'Alberto C.'  =>  [0, 0, 0, 2, 0, 3],
       'Bilal El M.' =>  [2, 2, 4, 2, 0, 5],
       'Alberto M.'  =>  [0, 0, 4, 0, 0, 5],
@@ -285,7 +288,7 @@ $periodi_rtb = [
       'Iulius S.'   =>  [0, 0, 4, 0, 0, 5],
       'Giovanni Z.' =>  [0, 0, 0, 5, 0, 5],
     ],
-    5 => [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 2, 0, 3],
       'Bilal El M.' => [2, 0, 4, 2, 0, 5],
       'Alberto M.'  => [0, 0, 4, 0, 0, 5],
@@ -306,7 +309,7 @@ $periodi_pb = [
     '2024/05/03',
     [],
     null,
-    [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -314,7 +317,7 @@ $periodi_pb = [
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
-    [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -345,19 +348,19 @@ $periodi_pb = [
     [
       'pbg2.png',
       [
-        Attivita::Macro('Progettazione', '2024-05-06', [
-          Attivita::Micro('Studio delle tecnologie', '2024-05-10', [
-            Attivita::Micro('Studio delle librerie di testing', '2024-05-16', []),
-            Attivita::Micro('Studio dei desgnin pattern',  '2024-05-14', []),
+        Attivita::Macro('Progettazione', '2024/05/06', [
+          Attivita::Micro('Studio delle tecnologie', '2024/05/10', [
+            Attivita::Micro('Studio delle librerie di testing', '2024/05/16', []),
+            Attivita::Micro('Studio dei desgnin pattern',  '2024/05/14', []),
           ]),
         ]),
-        Attivita::Macro('CI con Github Actions', '2024-05-10', [
-          Attivita::Micro('Laravel', '2024-05-18', []),
-          Attivita::Micro('React',  '2024-05-18', []),
+        Attivita::Macro('CI con Github Actions', '2024/05/10', [
+          Attivita::Micro('Laravel', '2024/05/18', []),
+          Attivita::Micro('React',  '2024/05/18', []),
         ]),
       ]
     ],
-    [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -365,7 +368,7 @@ $periodi_pb = [
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
-    [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -403,7 +406,7 @@ $periodi_pb = [
       'pbg3.png',
       []
     ],
-    [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -411,7 +414,7 @@ $periodi_pb = [
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
-    [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -438,7 +441,7 @@ $periodi_pb = [
       'pbg4.png',
       []
     ],
-    [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -446,7 +449,7 @@ $periodi_pb = [
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
-    [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -468,19 +471,16 @@ $periodi_pb = [
 $_ = array_map(
   'indicizza_tabella',
   array_merge(
-    array_column($periodi_rtb, 5),
-    array_column($periodi_rtb, 5),
-    array_column($periodi_pb,  4),
-    array_column($periodi_pb,  5),
+    array_column($periodi_rtb, preventivo),
+    array_column($periodi_rtb, preventivo),
+    array_column($periodi_pb,  consuntivo),
+    array_column($periodi_pb,  consuntivo),
   )
 );
 
 function periodi_tostring($a) {
   return implode("\n", array_map(fn ($a) => periodo(...$a), $a));
 }
-
-const preventivo = 4;
-const consuntivo = 5;
 
 function tabelle_ore_soldi_tostring($tabella, $periodo, $colonna) {
   $titolo = [
