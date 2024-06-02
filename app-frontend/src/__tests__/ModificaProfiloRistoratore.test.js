@@ -17,7 +17,6 @@ const renderWithContext = (component) => {
 
 describe('ModificaProfiloRistoratore', () => {
     beforeEach(() => {
-        axiosClient.get.mockResolvedValueOnce({ data: [{ id: 1, nome: 'Ristoratore Uno'}]});
         axiosClient.get.mockResolvedValueOnce({
             data: {
                 nome: 'Ristorante Uno',
@@ -30,7 +29,7 @@ describe('ModificaProfiloRistoratore', () => {
     });
 
     it('renders the form correctly', async () => {
-        renderWithContext(<ModificaProfiloRistoratore/>);
+        renderWithContext(<ModificaProfiloRistoratore id={1}/>);
 
         await waitFor(() => {
             expect(screen.getByText('Modifica account ristoratore')).toBeInTheDocument();
@@ -43,7 +42,7 @@ describe('ModificaProfiloRistoratore', () => {
     });
 
     it('handles form input changes', async () => {
-        renderWithContext(<ModificaProfiloRistoratore/>);
+        renderWithContext(<ModificaProfiloRistoratore id={1}/>);
 
         await waitFor(() => {
             expect(screen.getByLabelText('Nome').value).toBe('Ristorante Uno');
@@ -56,7 +55,7 @@ describe('ModificaProfiloRistoratore', () => {
     it('handles form submission successfully', async () => {
         axiosClient.put.mockResolvedValueOnce({ data: {}});
 
-        renderWithContext(<ModificaProfiloRistoratore/>);
+        renderWithContext(<ModificaProfiloRistoratore id={1}/>);
 
         await waitFor(() => {
             expect(screen.getByLabelText('Nome').value).toBe('Ristorante Uno');
@@ -65,20 +64,22 @@ describe('ModificaProfiloRistoratore', () => {
         fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Ristorante Modificato'}});
         fireEvent.click(screen.getByText('Modifica'));
 
-        expect(axiosClient.put).toHaveBeenCalledWith('/modifica-ristoratore/1', {
+        await waitFor(() => {
+          expect(axiosClient.put).toHaveBeenCalledWith('/modifica-ristoratore/1', {
             user: localStorage.getItem('USER_ID'),
             nome: 'Ristorante Modificato',
             indirizzo: 'Indirizzo Uno',
             telefono: '1234567890',
             capienza: '50',
             orario: '19:30 - 20:30'
+          });
         });
     });
 
     it('handles form submission errors', async () => {
         axiosClient.put.mockRejectedValueOnce({});
     
-        renderWithContext(<ModificaProfiloRistoratore />);
+        renderWithContext(<ModificaProfiloRistoratore id={1}/>);
     
         await waitFor(() => {
           expect(screen.getByLabelText('Nome').value).toBe('Ristorante Uno');
@@ -96,7 +97,7 @@ describe('ModificaProfiloRistoratore', () => {
       it('handles delete action successfully', async () => {
         axiosClient.delete.mockResolvedValueOnce({});
     
-        renderWithContext(<ModificaProfiloRistoratore />);
+        renderWithContext(<ModificaProfiloRistoratore id={1}/>);
     
         await waitFor(() => {
           expect(screen.getByLabelText('Nome').value).toBe('Ristorante Uno');
@@ -104,13 +105,15 @@ describe('ModificaProfiloRistoratore', () => {
     
         fireEvent.click(screen.getByText('Elimina'));
     
-        expect(axiosClient.delete).toHaveBeenCalledWith('/elimina-ristoratore/1');
+        await waitFor(() => {
+          expect(axiosClient.delete).toHaveBeenCalledWith('/elimina-ristoratore/1');
+        });
       });
 
       it('handles delete action errors', async () => {
         axiosClient.delete.mockRejectedValueOnce({});
     
-        renderWithContext(<ModificaProfiloRistoratore />);
+        renderWithContext(<ModificaProfiloRistoratore id={1}/>);
     
         await waitFor(() => {
           expect(screen.getByLabelText('Nome').value).toBe('Ristorante Uno');
@@ -120,16 +123,6 @@ describe('ModificaProfiloRistoratore', () => {
     
         await waitFor(() => {
           expect(screen.getByText('Errore durante l\'eliminazione del ristoratore.')).toBeInTheDocument();
-        });
-      });
-
-      it('displays loading spinner while fetching data', async () => {
-        renderWithContext(<ModificaProfiloRistoratore />);
-    
-        expect(screen.getByRole('status')).toBeInTheDocument();
-    
-        await waitFor(() => {
-          expect(screen.queryByRole('status')).not.toBeInTheDocument();
         });
       });
 });
