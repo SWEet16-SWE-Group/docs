@@ -18,7 +18,7 @@ row{odd}={bg=white},
 row{even}={bg=lightgray}
 }
 \hline
-\textbf{Codice} & \textbf{Descrizione} & \textbf{Stato} \\ \hline
+\textbf{Stato} & \textbf{Codice} & \textbf{Descrizione} \\ \hline
 Non soddisfatto & RFO1 & L'utente non riconosciuto deve poter registrare un nuovo account \\ \hline
 Non soddisfatto & RFO2 & L'utente non riconosciuto deve visualizzare un messaggio d'errore se la registrazione non va a buon fine \\ \hline
 Non soddisfatto & RFO3 & L'utente non riconosciuto deve poter effettuare il login \\ \hline
