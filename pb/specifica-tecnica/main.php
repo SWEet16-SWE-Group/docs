@@ -120,7 +120,11 @@ Versione: & <?php echo $registro->versione(); ?> &
 
 <?php require_once  __DIR__ . "/src/tecnologie.php"; ?>
 
-<?php require_once  __DIR__ . "/src/architettura.php"; ?>
+\section{Architettura}
+
+\subsection{Architettura front-end}
+
+\subsection{Architettura back-end}
 
 <?php require_once  __DIR__ . "/src/requisiti-soddisfatti.php"; ?>
 
