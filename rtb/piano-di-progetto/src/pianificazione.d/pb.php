@@ -347,6 +347,7 @@ $periodi_pb = [
     ],
     [
       'pbg2.png',
+      '640,360',
       [
         Attivita::Macro('Progettazione', '2024/05/06', [
           Attivita::Micro('Studio delle tecnologie', '2024/05/10', [
@@ -358,7 +359,7 @@ $periodi_pb = [
           Attivita::Micro('Laravel', '2024/05/18', []),
           Attivita::Micro('React',  '2024/05/18', []),
         ]),
-      ]
+      ],
     ],
     preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
@@ -404,6 +405,7 @@ $periodi_pb = [
     ],
     [
       'pbg3.png',
+      '640,360',
       [
         Attivita::Macro('A', '2024/05/10', [
           Attivita::Micro('B',  '2024/05/18', []),
@@ -443,6 +445,7 @@ $periodi_pb = [
     [],
     [
       'pbg4.png',
+      '640,360',
       [
         Attivita::Macro('A', '2024/05/10', [
           Attivita::Micro('B',  '2024/05/18', []),

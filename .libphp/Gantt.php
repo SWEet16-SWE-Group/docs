@@ -227,7 +227,7 @@ function gantt_test() {
 
 //gantt_test();
 
-function gantt_latex($img, $ganttstruct, $size) {
+function gantt_latex($img, $size, $ganttstruct) {
   if (!_compile()) {
     return '';
   }
