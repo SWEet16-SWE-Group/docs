@@ -12,8 +12,8 @@ $pathsimmagini = [
 ];
 $registro = (new RegistroModifiche())->logArray([
   [CE, '2024/05/05', alberto_m(), iulius_s(), 'Stesura scheletro           '],
-  [CE, '2024/05/07', alberto_m(), alex_s()  , 'Stesura sezione introduzione'],
-  [CE, '2024/05/08', alberto_m(), alex_s()  , 'Stesura sezione tecnologie  '],
+  [CE, '2024/05/07', alberto_m(), alex_s(), 'Stesura sezione introduzione'],
+  [CE, '2024/05/08', alberto_m(), alex_s(), 'Stesura sezione tecnologie  '],
 ]);
 
 $error_flag = 0;
@@ -120,11 +120,21 @@ Versione: & <?php echo $registro->versione(); ?> &
 
 <?php require_once  __DIR__ . "/src/tecnologie.php"; ?>
 
-\section{Architettura}
+<?php
 
-\subsection{Architettura front-end}
+$architettura =
+  [
+    'Frontend' =>
+    [
+      'Pattern' => [],
+    ],
+    'Backend' =>
+    [
+      'Pattern' => [],
+    ],
+  ];
 
-\subsection{Architettura back-end}
+?>
 
 <?php require_once  __DIR__ . "/src/requisiti-soddisfatti.php"; ?>
 
