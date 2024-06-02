@@ -126,6 +126,7 @@ function periodo(
   $inizio,
   $fine,
   $attivita,
+  $gantt,
   $preventivo,
   $consuntivo,
   $gestioneruoli,
@@ -150,11 +151,11 @@ function periodo(
 
     \subsubsubsection{Attività svolte}
 
-    GANTT
-
     \begin{itemize}
     ATTIVITA
     \end{itemize}
+
+    GANTT
 
     \subsubsubsection{Consuntivo orario}
   
@@ -206,7 +207,7 @@ function periodo(
       'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
       'RAGGIUNTI' => $raggiunti ? $itemize($raggiunti) : '\\item Nessun obbiettivo raggiunto',
       'MANCATI' => $mancati ? $itemize($mancati) : '\\item Nessun obbiettivo mancato',
-      'GANTT' => gantt_latex('g1.png', [Attivita::Macro('M1', '2024-05-01', [Attivita::Micro('m1', '2024-05-02', [])])]),
+      'GANTT' => $gantt == null ? '' : gantt_latex(...$gantt),
     ],
     $latex
   );
@@ -304,6 +305,7 @@ $periodi_pb = [
     '2025/04/22',
     '2024/05/03',
     [],
+    null,
     [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
@@ -335,6 +337,11 @@ $periodi_pb = [
     '2025/05/06',
     '2024/05/18',
     [],
+    [
+      'pbg2.png',
+      [
+      ]
+    ],
     [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
@@ -378,6 +385,11 @@ $periodi_pb = [
       'Aggiunto PHP sopra \\LaTeX per maggiore automazione della stesura dei documenti',
     ],
     [
+      'pbg3.png',
+      [
+      ]
+    ],
+    [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -408,6 +420,11 @@ $periodi_pb = [
     '2025/05/27',
     '2024/05/31',
     [],
+    [
+      'pbg4.png',
+      [
+      ]
+    ],
     [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
