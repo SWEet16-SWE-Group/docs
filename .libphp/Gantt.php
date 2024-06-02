@@ -105,28 +105,6 @@ function gantt($attivita) {
   EOF;
 }
 
-$gantt = gantt($ganttstruct = [
-  Attivita::Macro('s',            '2024/05/16', [
-    Attivita::Micro('s1',         '2024/05/17', [
-      Attivita::Micro('s11',      '2024/05/18', []),
-      Attivita::Micro('s12',      '2024/05/18', [
-        Attivita::Micro('s121',   '2024/05/19', []),
-        Attivita::Micro('s122',   '2024/05/22', []),
-        Attivita::Micro('s123',   '2024/05/21', []),
-      ]),
-      Attivita::Micro('s2',       '2024/05/28', []),
-    ])
-  ]),
-  Attivita::Macro('y',            '2024/05/27', [
-    Attivita::Micro('y1',         '2024/06/03', []),
-    Attivita::Micro('y1',         '2024/06/03', []),
-    Attivita::Micro('y1',         '2024/06/03', []),
-    Attivita::Micro('y1',         '2024/06/07', []),
-    Attivita::Micro('y1',         '2024/06/07', []),
-    Attivita::Micro('y1',         '2024/06/07', []),
-  ])
-]);
-
 function gantt_html($ganttstruct) {
   try {
     ob_start();
@@ -205,8 +183,39 @@ function gantt_html($ganttstruct) {
   }
 }
 
-//echo gantt_html($ganttstruct);
-//die();
+function gantt_test() {
+
+  $gantt = gantt($ganttstruct = [
+    Attivita::Macro('s',            '2024/05/16', [
+      Attivita::Micro('s1',         '2024/05/17', [
+        Attivita::Micro('s11',      '2024/05/18', []),
+        Attivita::Micro('s12',      '2024/05/18', [
+          Attivita::Micro('s121',   '2024/05/19', []),
+          Attivita::Micro('s122',   '2024/05/22', []),
+          Attivita::Micro('s123',   '2024/05/21', []),
+        ]),
+        Attivita::Micro('s2',       '2024/05/28', []),
+      ])
+    ]),
+    Attivita::Macro('y',            '2024/05/27', [
+      Attivita::Micro('y1',         '2024/06/03', []),
+      Attivita::Micro('y1',         '2024/06/03', []),
+      Attivita::Micro('y1',         '2024/06/03', []),
+      Attivita::Micro('y1',         '2024/06/07', []),
+      Attivita::Micro('y1',         '2024/06/07', []),
+      Attivita::Micro('y1',         '2024/06/07', []),
+    ])
+  ]);
+
+  print_r($ganttstruct);
+
+  print_r($gantt);
+
+  echo gantt_html($gantt);
+
+  die();
+}
+//gantt_test();
 
 function gantt_latex_full($img, $ganttstruct, $latexcmd, $processingcmd,) {
   if (!_compile()) {
