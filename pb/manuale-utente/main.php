@@ -7,12 +7,12 @@ require_once 'Validatore.php';
 require_once 'Membri.php';
 
 $error_flag = 0;
-$titolo = 'TITOLO';
+$titolo = 'Manuale utente';
 $registro = (new RegistroModifiche())->logArray([
   [DX, '2024/06/01', alex_s(), '', 'Stesura scheletro'],
   //[SX, '2024/06/00', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
-$nome = "documento_v{$registro->versione()}.pdf";
+$nome = "Manuale_utente_v{$registro->versione()}.pdf";
 
 ob_start();
 ob_start(function ($tex) use ($titolo, &$error_flag) {
@@ -116,6 +116,8 @@ $contenuti = [
     'Navbar' =>
     [
       'Impostazioni account' => null,
+      'Dashboard' => null,
+      'Selezione allergeni' => null,
       'Ricerca dei ristoranti' =>
       [
         'Elenco dei ristoranti' => null,
@@ -145,8 +147,22 @@ $contenuti = [
     'Navbar' =>
     [
       'Impostazioni account' => null,
+      'Dashboard' => null,
+      'Impostazioni menù' =>
+      [
+        'Manipolazione pietanze' => null,
+      ],
     ],
-    'Dashboard' => '',
+    'Dashboard' =>
+    [
+      'Lista di prenotazioni' => null,
+      'Prenotazione' =>
+      [
+        'Ordinazioni collaborative' => null,
+        'Dettagli ordinazioni' => null,
+        'Segna il pagamento di pietanze/clienti come effettuati' => null,
+      ],
+    ],
   ],
 ];
 
