@@ -125,6 +125,7 @@ $contenuti = [
         'Menù del ristorante' => null,
         'Form di prenotazione' => null,
       ],
+      'Notifiche' => null,
     ],
     'Dashboard' =>
     [
@@ -152,6 +153,7 @@ $contenuti = [
       [
         'Manipolazione pietanze' => null,
       ],
+      'Notifiche' => null,
     ],
     'Dashboard' =>
     [
