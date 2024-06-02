@@ -224,7 +224,8 @@ function gantt_test() {
 
   die();
 }
-gantt_test();
+
+//gantt_test();
 
 function gantt_latex($img, $ganttstruct, $size) {
   if (!_compile()) {
