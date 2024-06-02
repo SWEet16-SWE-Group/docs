@@ -85,7 +85,7 @@ function gantt($attivita) {
     <table>
       <thead>
         <tr>
-          <th rowspan="4" style="width: 180px">Attività</th>
+          <th rowspan="4" class="altosinistra">Attività</th>
           <th colspan="{$ndate}">Tempo</th>
         </tr>
         <tr>
@@ -102,7 +102,7 @@ function gantt($attivita) {
         {$tbody}
       </tbody>
     </table>
-  EOF;
+    EOF;
 }
 
 function gantt_html($ganttstruct) {
@@ -127,6 +127,11 @@ function gantt_html($ganttstruct) {
           height: 100%;
           border-spacing: 0px;
           border: solid 1px black;
+        }
+
+        th.altosinistra,
+        th.attivita {
+          width: 180px;
         }
 
         th,
@@ -185,7 +190,7 @@ function gantt_html($ganttstruct) {
 
 function gantt_test() {
 
-  $gantt = gantt($ganttstruct = [
+  $ganttstruct = [
     Attivita::Macro('s',            '2024/05/16', [
       Attivita::Micro('s1',         '2024/05/17', [
         Attivita::Micro('s11',      '2024/05/18', []),
@@ -205,36 +210,31 @@ function gantt_test() {
       Attivita::Micro('y1',         '2024/06/07', []),
       Attivita::Micro('y1',         '2024/06/07', []),
     ])
-  ]);
+  ];
 
-  print_r($ganttstruct);
+  $gantt = gantt_html($ganttstruct);
+
+  // print_r($ganttstruct);
+
+  // print_r($gantt);
+
+  //echo gantt_html($ganttstruct);
 
   print_r($gantt);
 
-  echo gantt_html($gantt);
-
   die();
 }
-//gantt_test();
+gantt_test();
 
-function gantt_latex_full($img, $ganttstruct, $latexcmd, $processingcmd,) {
+function gantt_latex($img, $ganttstruct, $size) {
   if (!_compile()) {
     return '';
   }
-  $html = mediapath() . '/gantt.html';
-  file_put_contents($html, gantt_html($ganttstruct));
-  passthru($processingcmd . $html . '\'');
+  $htmlfile = mediapath() . '/gantt.html';
+  file_put_contents($htmlfile, gantt_html($ganttstruct));
+  passthru(sprintf("firefox --headless --screenshot --window-size %s 'file://%s'", $size, $htmlfile));
   is_dir($dir = dirname($img)) or mkdir($dir, recursive: true);
   rename('screenshot.png', mediapath() . "/$img");
-  unlink($html);
-  return $latexcmd;
-}
-
-function gantt_latex($img, $ganttstruct) {
-  return gantt_latex_full(
-    $img,
-    $ganttstruct,
-    "\\begin{figure}[h!] \\includegraphics[scale=.7]{{$img}} \\end{figure}",
-    "firefox --headless --screenshot --window-size 640,360 'file://"
-  );
+  unlink($htmlfile);
+  return "\\begin{figure}[h!] \\includegraphics[scale=.7]{{$img}} \\end{figure}";
 }
