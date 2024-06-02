@@ -336,10 +336,25 @@ $periodi_pb = [
     'Periodo 2',
     '2025/05/06',
     '2024/05/18',
-    [],
+    [
+      'Studio nuove delle tecnologie',
+      'Studio delle librerie di testing',
+      'Studio dei design pattern',
+      'Implementazione della CI',
+    ],
     [
       'pbg2.png',
       [
+        Attivita::Macro('Progettazione', '2024-05-06', [
+          Attivita::Micro('Studio delle tecnologie', '2024-05-10', [
+            Attivita::Micro('Studio delle librerie di testing', '2024-05-16', []),
+            Attivita::Micro('Studio dei desgnin pattern',  '2024-05-14', []),
+          ]),
+        ]),
+        Attivita::Macro('CI con Github Actions', '2024-05-10', [
+          Attivita::Micro('Laravel', '2024-05-18', []),
+          Attivita::Micro('React',  '2024-05-18', []),
+        ]),
       ]
     ],
     [
@@ -386,8 +401,7 @@ $periodi_pb = [
     ],
     [
       'pbg3.png',
-      [
-      ]
+      []
     ],
     [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
@@ -422,8 +436,7 @@ $periodi_pb = [
     [],
     [
       'pbg4.png',
-      [
-      ]
+      []
     ],
     [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
