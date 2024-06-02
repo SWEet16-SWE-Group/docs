@@ -73,5 +73,6 @@ echo tabelle_tecnologie(
     ['NPM', 'Gestore di pacchetti per il linguaggio JavaScript e l\'ambiente di esecuzione Node.js', '9.6.x'],
     ['Docker', 'Piattaforma di sviluppo e gestione di applicazioni che permette di creare, distribuire e eseguire in software in container virtualizzati', '24.0.7'],
     ['Git', 'Sistema di controllo di versione distribuito utilizzato per la gestione del codice sorgente dal parte del gruppo di progetto', '/'],
+    ['Bootstrap', '', '0'],
   ]
 );
