@@ -13,7 +13,7 @@ Ogni requisito presenta un codice identificativo univoco, così definito:
 
 \begin{center}
 \begin{longtblr}{
-colspec={|X[m,1.5cm]|X[m,11cm]|X[m,3cm]|},
+colspec={|X[m,3cm]|X[m,1.5cm]|X[m,11cm]|},
 row{odd}={bg=white},
 row{even}={bg=lightgray}
 }
