@@ -129,8 +129,11 @@ function gantt_html($ganttstruct) {
           border: solid 1px black;
         }
 
-        th.altosinistra,
-        th.attivita {
+        thead {
+          height: 0.1%;
+        }
+
+        th.altosinistra {
           width: 180px;
         }
 
@@ -193,22 +196,22 @@ function gantt_test() {
   $ganttstruct = [
     Attivita::Macro('s',            '2024/05/16', [
       Attivita::Micro('s1',         '2024/05/17', [
-        Attivita::Micro('s11',      '2024/05/18', []),
-        Attivita::Micro('s12',      '2024/05/18', [
-          Attivita::Micro('s121',   '2024/05/19', []),
-          Attivita::Micro('s122',   '2024/05/22', []),
-          Attivita::Micro('s123',   '2024/05/21', []),
-        ]),
+        //Attivita::Micro('s11',      '2024/05/18', []),
+        //Attivita::Micro('s12',      '2024/05/18', [
+        //  Attivita::Micro('s121',   '2024/05/19', []),
+        //  Attivita::Micro('s122',   '2024/05/22', []),
+        //  Attivita::Micro('s123',   '2024/05/21', []),
+        //]),
         Attivita::Micro('s2',       '2024/05/28', []),
       ])
     ]),
     Attivita::Macro('y',            '2024/05/27', [
       Attivita::Micro('y1',         '2024/06/03', []),
-      Attivita::Micro('y1',         '2024/06/03', []),
-      Attivita::Micro('y1',         '2024/06/03', []),
-      Attivita::Micro('y1',         '2024/06/07', []),
-      Attivita::Micro('y1',         '2024/06/07', []),
-      Attivita::Micro('y1',         '2024/06/07', []),
+      //Attivita::Micro('y1',         '2024/06/03', []),
+      //Attivita::Micro('y1',         '2024/06/03', []),
+      //Attivita::Micro('y1',         '2024/06/07', []),
+      //Attivita::Micro('y1',         '2024/06/07', []),
+      //Attivita::Micro('y1',         '2024/06/07', []),
     ])
   ];
 
