@@ -158,7 +158,9 @@ function periodo(
     ATTIVITA
     \end{itemize}
 
+    \begin{center}
     GANTT
+    \end{center}
 
     \subsubsubsection{Consuntivo orario}
   
@@ -347,7 +349,7 @@ $periodi_pb = [
     ],
     [
       'pbg2.png',
-      '640,360',
+      '640,400',
       [
         Attivita::Macro('Progettazione', '2024/05/06', [
           Attivita::Micro('Studio delle tecnologie', '2024/05/10', [
@@ -358,6 +360,7 @@ $periodi_pb = [
         Attivita::Macro('CI con Github Actions', '2024/05/10', [
           Attivita::Micro('Laravel', '2024/05/18', []),
           Attivita::Micro('React',  '2024/05/18', []),
+          Attivita::Micro('Baseline di sviluppo',  '2024/05/18', []),
         ]),
       ],
     ],
@@ -398,19 +401,38 @@ $periodi_pb = [
     '2025/05/20',
     '2024/05/24',
     [
-      'Suddivisione delle task in issue di GitHub con conseguente assegnazione ai membri',
-      'Creazione della base docker dove si andrà a fare la codifica del progetto',
-      'Creazione del database per l\'MVP',
-      'Aggiunto PHP sopra \\LaTeX per maggiore automazione della stesura dei documenti',
     ],
     [
       'pbg3.png',
-      '640,360',
+      '640,1200',
       [
-        Attivita::Macro('A', '2024/05/10', [
-          Attivita::Micro('B',  '2024/05/18', []),
+        Attivita::Macro('MVP 0', '2024/05/20', [
+          Attivita::Micro('Registrazione',  '2024/05/21', []),
+          Attivita::Micro('Creazione cliente',  '2024/05/21', []),
+          Attivita::Micro('Creazione ristoratore',  '2024/05/21', []),
+          Attivita::Micro('Selezione profilo',  '2024/05/22', []),
         ]),
-      ]
+        Attivita::Macro('MVP 1', '2024/05/21', [
+          Attivita::Micro('Login',  '2024/05/22', []),
+          Attivita::Micro('Logout',  '2024/05/22', []),
+          Attivita::Micro('Modifica info profilo',  '2024/05/23', []),
+          Attivita::Micro('Modifica info cliente',  '2024/05/23', []),
+          Attivita::Micro('Modifica info ristoratore',  '2024/05/22', []),
+        ]),
+        Attivita::Macro('MVP 2', '2024/05/20', [
+          Attivita::Micro('a',  '2024/05/21', []),
+        ]),
+        Attivita::Macro('MVP 3', '2024/05/20', [
+          Attivita::Micro('a',  '2024/05/21', []),
+        ]),
+        Attivita::Macro('MVP 4', '2024/05/20', [
+          Attivita::Micro('a',  '2024/05/21', []),
+        ]),
+        Attivita::Macro('MVP 5', '2024/05/20', [
+          Attivita::Micro('a',  '2024/05/21', []),
+        ]),
+      ],
+      '.4',
     ],
     preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
@@ -433,7 +455,12 @@ $periodi_pb = [
     <<<'EOF'
     Sono state create le diverse task per la fase di codifica dell'MVP sotto forma di issue su GitHub. Ad ogni task è stata assegnata una priorità decrescente (più basso il numero, più è imperativo il suo completamento), issue con priorità uguale possono essere svolte in parallelo. Molto tempo è stato dedicato allo studio di Laravel, in quanto vi sono state molte difficoltà solo nella creazione di un docker che lo eseguisse e nel stabilire una connessione anche parziale tra esso e il database. È stato stimato che la codifica dell'MVP sia ciò che richieda maggiori risorse, il gruppo dunque si è diviso in due sottogruppi rispettivamente da cinque persone per la codifica e una per la stesura della documentazione.
     EOF,
-    [],
+    [
+      'Suddivisione delle task in issue di GitHub con conseguente assegnazione ai membri',
+      'Creazione della base docker dove si andrà a fare la codifica del progetto',
+      'Creazione del database per l\'MVP',
+      'Aggiunto PHP sopra \\LaTeX per maggiore automazione della stesura dei documenti',
+    ],
     [],
   ],
   // ===========================================================================================================================

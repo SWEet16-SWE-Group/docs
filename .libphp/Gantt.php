@@ -230,7 +230,7 @@ function gantt_test() {
 
 //gantt_test();
 
-function gantt_latex($img, $size, $ganttstruct) {
+function gantt_latex($img, $size, $ganttstruct, $scale = '.7') {
   if (!_compile()) {
     return '';
   }
@@ -240,5 +240,5 @@ function gantt_latex($img, $size, $ganttstruct) {
   is_dir($dir = dirname($img)) or mkdir($dir, recursive: true);
   rename('screenshot.png', mediapath() . "/$img");
   unlink($htmlfile);
-  return "\\begin{figure}[h!] \\includegraphics[scale=.7]{{$img}} \\end{figure}";
+  return "\\begin{figure}[h!] \\includegraphics[scale={$scale}]{{$img}} \\end{figure}";
 }
