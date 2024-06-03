@@ -11,9 +11,10 @@ $pathsimmagini = [
   '../media/',
 ];
 $registro = (new RegistroModifiche())->logArray([
-  [CE, '2024/05/05', alberto_m(), iulius_s(), 'Stesura scheletro           '],
+  [CE, '2024/05/05', alberto_m(), iulius_s(), 'Stesura scheletro'],
   [CE, '2024/05/07', alberto_m(), alex_s(), 'Stesura sezione introduzione'],
-  [CE, '2024/05/08', alberto_m(), alex_s(), 'Stesura sezione tecnologie  '],
+  [CE, '2024/05/08', alberto_m(), alex_s(), 'Stesura sezione tecnologie'],
+  [CE, '2024/06/03', alberto_m(), alex_s(), 'Stesura sezione pattern frontend'],
 ]);
 
 $error_flag = 0;
@@ -122,17 +123,37 @@ Versione: & <?php echo $registro->versione(); ?> &
 
 <?php
 
+function _stampatex($a, $k, $pfx) {
+  return "\\$pfx{{$k}}\n\n" . match (gettype($a)) {
+    'string' => $a,
+    'array' => implode("\n\n", array_map(fn ($a, $k) => _stampatex($a, $k, "sub$pfx"), $a, array_keys($a))),
+  };
+}
+
 $architettura =
   [
     'Frontend' =>
     [
-      'Pattern' => [],
+      'Pattern' =>
+      [
+        'Factory' => 'cosa diavolo avete fatto per necessitare una factory nell\'api, chi me l\'ha fatto fare',
+        'Facade' => 'l\'unico veramente utile e sensato',
+      ],
     ],
     'Backend' =>
     [
-      'Pattern' => [],
+      'Pattern' =>
+      [
+        'React Hook' => 'Al fine di gestire lo stato dell’applicazione in modo efficiente e visualizzare dinamicamente le informazioni, sia utilizzando gli hook già previsti in React (useState, useEffect, useContext), che hook personalizzati in base alle esigenze delle singole viste e componenti, come dettagliato sopra.',
+
+        'Conditional Rendering' => 'Consente di mostrare un contenuto diverso a seconda del ruolo dell’utente; in particolare, si prevedono dei componenti in grado di verificare il ruolo dell’utente e renderizzare opportunamente i dati utili in base al suo ruolo. - Questo viene utilizzato in particolare all’interno dei componenti Layout, per renderizzare il menù adatto al tipo di utente autenticato (tramite il router).',
+
+        'Compound Components' => 'Al fine di modulare le singole componenti ideando i componenti sulla base di una gerarchia padre-figlio, in cui ciascun padre contiene uno o più componenti figlio e quindi specializzare la gestione dei dati e la personalizzazione dell’interfaccia utente in modo centralizzato, secondo una lista di opzioni unica',
+      ],
     ],
   ];
+
+echo _stampatex($architettura, 'Architettura', 'section');
 
 ?>
 
