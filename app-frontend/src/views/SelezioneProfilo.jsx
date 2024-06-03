@@ -1,10 +1,12 @@
 import {useEffect, useRef, useState} from "react";
 import axiosClient from "../axios-client";
 import {get} from "axios";
-import {Link, Navigate, redirect} from "react-router-dom";
+import {Link, useNavigate, redirect} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 
 export default function SelezioneProfilo() {
+
+    const navigate = useNavigate();
 
     const {role, setRole, setProfile, setNotification, setNotificationStatus } = useStateContext()
     const [ClientProfiles, setClientProfiles] = useState(null);
@@ -77,36 +79,44 @@ export default function SelezioneProfilo() {
 
         if(profile.tipo === 'Cliente')
         {
-
+            navigate('/editClient', {state: { id: profile.id}});
         } else if (profile.tipo === 'Ristoratore')
         {
-            axiosClient.post('/modifica-ristoratore/{profile.id}');
+           navigate(`/modificaprofiloristoratore/${profile.id}`);
         }
-        // TODO creare funzione che ti porta alla pagina di modifica profilo
     }
 
-    const onDeleteProfile = (profile) => {
+    const onDeleteProfile = async (profile) => {
 
         console.log("dentro elimina ", profile.id);
 
-        if(!window.confirm("Sei sicuro di voler eliminare il tuo account?")) {
+        if(!window.confirm("Sei sicuro di voler eliminare questo profilo?")) {
             return
         }
 
-        const payload = {
-            id: profile.id,
-            role: role
-        };
+       if(profile.tipo === 'Cliente') {
+           try {
+               const response = await axiosClient.delete(`/client/${profile.id}`);
+               setNotificationStatus('success');
+               setNotification('Ristoratore eliminato con successo.');
+           } catch (error) {
+               setNotificationStatus('failure');
+               setNotification('Errore durante l\'eliminazione del cliente.');
+               console.error(error);
+           }
 
-        axiosClient.delete(`/profiles`,{ data: payload })
-            .then(() => {
+       } else if(profile.tipo === 'Ristoratore') {
 
-                setNotificationStatus('success');
-                setNotification("Account eliminato con successo");
-
-                localStorage.clear();
-                window.location.reload();
-            })
+           try {
+               const response = await axiosClient.delete(`/elimina-ristoratore/${profile.id}`);
+               setNotificationStatus('success');
+               setNotification('Ristoratore eliminato con successo.');
+           } catch (error) {
+               setNotificationStatus('failure');
+               setNotification('Errore durante l\'eliminazione del ristoratore.');
+               console.error(error);
+           }
+       }
     }
 
     return (
