@@ -414,7 +414,7 @@ $periodi_pb = [
         Attivita::Macro('MVP 1', '2024/05/21', [
           Attivita::Micro('Login',  '2024/05/22', []),
           Attivita::Micro('Logout',  '2024/05/22', []),
-          Attivita::Micro('Modifica info profilo',  '2024/05/23', []),
+          Attivita::Micro('Modifica info account',  '2024/05/23', []),
           Attivita::Micro('Modifica info cliente',  '2024/05/23', []),
           Attivita::Micro('Modifica info ristoratore',  '2024/05/22', []),
         ]),
@@ -428,7 +428,6 @@ $periodi_pb = [
           ]),
         ]),
       ],
-      '.4',
     ],
     preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
