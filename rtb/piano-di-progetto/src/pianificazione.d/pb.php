@@ -481,8 +481,8 @@ $periodi_pb = [
           Attivita::Micro('Cliente: Pagamento',  '2024/06/01', []),
           Attivita::Micro('Ristoratore: Pagamento',  '2024/06/01', []),
         ]),
-        Attivita::Macro('MVP 6', '2024/06/03', [
-          Attivita::Micro('Test di integrazione',  '2024/06/04', []),
+        Attivita::Macro('MVP 6', '2024/06/02', [
+          Attivita::Micro('Test di integrazione',  '2024/06/03', []),
         ]),
       ]
     ],
