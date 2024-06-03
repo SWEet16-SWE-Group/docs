@@ -403,7 +403,7 @@ $periodi_pb = [
     [],
     [
       'pbg3.png',
-      '640,800',
+      '640,600',
       [
         Attivita::Macro('MVP 0', '2024/05/20', [
           Attivita::Micro('Registrazione',  '2024/05/21', []),
@@ -423,9 +423,6 @@ $periodi_pb = [
           Attivita::Micro('Dashboard ristoratore',  '2024/05/24', []),
           Attivita::Micro('Form di prenotazione',  '2024/05/23', []),
           Attivita::Micro('Singola prenotazione cliente',  '2024/05/24', []),
-          Attivita::Micro('Nuova pietanza',  '2024/05/23', [
-            Attivita::Micro('Gestione pietanze',  '2024/05/24', []),
-          ]),
         ]),
       ],
     ],
@@ -463,20 +460,29 @@ $periodi_pb = [
   [
     'Questa settimana',
     '2025/05/27',
-    '2024/05/31',
+    '2024/06/07',
     [],
     [
       'pbg4.png',
-      '640,360',
+      '640,530',
       [
-        Attivita::Macro('MVP 3', '2024/05/20', [
-          Attivita::Micro('a',  '2024/05/21', []),
+        Attivita::Macro('MVP 3', '2024/05/27', [
+          Attivita::Micro('Nuova pietanza',  '2024/05/28', [
+            Attivita::Micro('Gestione pietanze',  '2024/05/29', []),
+          ]),
+          Attivita::Micro('Navigazione del menù',  '2024/05/29', []),
         ]),
-        Attivita::Macro('MVP 4', '2024/05/20', [
-          Attivita::Micro('a',  '2024/05/21', []),
+        Attivita::Macro('MVP 4', '2024/05/30', [
+          Attivita::Micro('Ristoratore: Dettagli prenotazione',  '2024/05/31', []),
+          Attivita::Micro('Cliente: Dettagli pietanza',  '2024/05/31', []),
         ]),
-        Attivita::Macro('MVP 5', '2024/05/20', [
-          Attivita::Micro('a',  '2024/05/21', []),
+        Attivita::Macro('MVP 5', '2024/05/31', [
+          Attivita::Micro('Divisione del conto',  '2024/05/31', []),
+          Attivita::Micro('Cliente: Pagamento',  '2024/06/01', []),
+          Attivita::Micro('Ristoratore: Pagamento',  '2024/06/01', []),
+        ]),
+        Attivita::Macro('MVP 6', '2024/06/03', [
+          Attivita::Micro('Test di integrazione',  '2024/06/04', []),
         ]),
       ]
     ],
