@@ -5,6 +5,7 @@ require_once 'RegistroModifiche.php';
 require_once 'Vocaboli.php';
 require_once 'Validatore.php';
 require_once 'Membri.php';
+require_once 'Latex.php';
 
 $error_flag = 0;
 $titolo = 'Manuale utente';
@@ -186,6 +187,8 @@ $contenuti = [
     ],
   ],
 ];
+
+echo _stampatex($contenuti, 'Manuale utente', 'section');
 
 ?>
 

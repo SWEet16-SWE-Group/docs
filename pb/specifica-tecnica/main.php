@@ -5,6 +5,7 @@ require_once 'RegistroModifiche.php';
 require_once 'Vocaboli.php';
 require_once 'Validatore.php';
 require_once 'Membri.php';
+require_once 'Latex.php';
 
 $titolo = 'Specifica Tecnica';
 $pathsimmagini = [
@@ -122,13 +123,6 @@ Versione: & <?php echo $registro->versione(); ?> &
 <?php require_once  __DIR__ . "/src/tecnologie.php"; ?>
 
 <?php
-
-function _stampatex($a, $k, $pfx) {
-  return "\\$pfx{{$k}}\n\n" . match (gettype($a)) {
-    'string' => $a,
-    'array' => implode("\n\n", array_map(fn ($a, $k) => _stampatex($a, $k, "sub$pfx"), $a, array_keys($a))),
-  };
-}
 
 $architettura =
   [
