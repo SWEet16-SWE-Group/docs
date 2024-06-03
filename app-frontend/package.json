@@ -21,7 +21,7 @@
     },
     "moduleNameMapper": {
       "^axios$": "axios/dist/node/axios.cjs"
-    },  
+    },
     "transformIgnorePatterns": [
       "node_modules/(?!variables/.*)"
     ]
@@ -53,5 +53,5 @@
   "devDependencies": {
     "react-test-renderer": "^18.3.1"
   }
-  
+
 }

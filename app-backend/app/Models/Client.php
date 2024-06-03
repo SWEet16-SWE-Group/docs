@@ -18,6 +18,7 @@ class Client extends Model
         return $this->belongsToMany(Allergeni::class);
     }
 
+    protected $table='clients';
     public function user() {
         return $this->belongsTo(User::class, 'user');
     }

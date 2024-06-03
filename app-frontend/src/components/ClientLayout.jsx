@@ -4,7 +4,7 @@ import axiosClient from "../axios-client";
 
 export default function ClientLayout() {
 
-    const {user, token, role, setUser, setToken, setRole} = useStateContext()
+    const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
 
     if (!token) {
         return <Navigate to={"/login"}/>
@@ -51,6 +51,12 @@ export default function ClientLayout() {
                         <main>
                             <div>Cliente!</div>
                             <Outlet/>
+
+                            {notification &&
+                                <div className={`notification ${notificationStatus}`}>
+                                    {notification}
+                                </div>
+                            }
                         </main>
                     </div>
                 </div>

@@ -7,24 +7,25 @@ import GuestLayout from "./components/GuestLayout";
 import ClientLayout from "./components/ClientLayout"
 import RestaurantLayout from "./components/RestaurantLayout"
 import ModificaInfoAccount from "./views/ModificaInfoAccount";
-import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore.jsx";
-import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore.jsx";
-import newClient from "./components/NewClient.jsx";
-import EditClient from "./views/EditClient.jsx";
+import SelezioneProfilo from "./views/SelezioneProfilo";
+import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore";
+import EditClient from "./views/EditClient";
+import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore";
+import NewClient from "./views/NewClient";
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <AuthenticatedLayout />,
         children: [
-            /*
+
             {
-                path: '/selezionaprofilo',
-                element: <SelezionaProfilo />
-            }*/
+                path: '/selezioneprofilo',
+                element: <SelezioneProfilo />
+            },
             {
                 path: '/newClient',
-                element: <newClient />
+                element: <NewClient />
             },
             {
                 path: '/creazioneprofiloristoratore',
@@ -35,8 +36,8 @@ const router = createBrowserRouter([
                 element: <EditClient />
             },
             {
-                path: '/modificaprofiloristoratore',
-                element: <ModificaProfiloRistoratore id={1}/>
+                path: '/modificaprofiloristoratore/:id',
+                element: <ModificaProfiloRistoratore/>
             },
             {
                 path: '/modificainfoaccount',
@@ -52,12 +53,13 @@ const router = createBrowserRouter([
         path: '/',
         element: <ClientLayout />,
         children: [
-            /*
+
             // decommentare qui per dashboard
              {
                 path: '/',
                 element: <Navigate to="/dashboardcliente" />
              },
+            /*
             {
                 path: '/ristoranti',
                 element: <Ristoranti />
