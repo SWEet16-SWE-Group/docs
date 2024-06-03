@@ -400,11 +400,10 @@ $periodi_pb = [
     'Periodo 3',
     '2025/05/20',
     '2024/05/24',
-    [
-    ],
+    [],
     [
       'pbg3.png',
-      '640,1200',
+      '640,800',
       [
         Attivita::Macro('MVP 0', '2024/05/20', [
           Attivita::Micro('Registrazione',  '2024/05/21', []),
@@ -419,17 +418,14 @@ $periodi_pb = [
           Attivita::Micro('Modifica info cliente',  '2024/05/23', []),
           Attivita::Micro('Modifica info ristoratore',  '2024/05/22', []),
         ]),
-        Attivita::Macro('MVP 2', '2024/05/20', [
-          Attivita::Micro('a',  '2024/05/21', []),
-        ]),
-        Attivita::Macro('MVP 3', '2024/05/20', [
-          Attivita::Micro('a',  '2024/05/21', []),
-        ]),
-        Attivita::Macro('MVP 4', '2024/05/20', [
-          Attivita::Micro('a',  '2024/05/21', []),
-        ]),
-        Attivita::Macro('MVP 5', '2024/05/20', [
-          Attivita::Micro('a',  '2024/05/21', []),
+        Attivita::Macro('MVP 2', '2024/05/23', [
+          Attivita::Micro('Dashboard cliente',  '2024/05/24', []),
+          Attivita::Micro('Dashboard ristoratore',  '2024/05/24', []),
+          Attivita::Micro('Form di prenotazione',  '2024/05/23', []),
+          Attivita::Micro('Singola prenotazione cliente',  '2024/05/24', []),
+          Attivita::Micro('Nuova pietanza',  '2024/05/23', [
+            Attivita::Micro('Gestione pietanze',  '2024/05/24', []),
+          ]),
         ]),
       ],
       '.4',
@@ -474,8 +470,14 @@ $periodi_pb = [
       'pbg4.png',
       '640,360',
       [
-        Attivita::Macro('A', '2024/05/10', [
-          Attivita::Micro('B',  '2024/05/18', []),
+        Attivita::Macro('MVP 3', '2024/05/20', [
+          Attivita::Micro('a',  '2024/05/21', []),
+        ]),
+        Attivita::Macro('MVP 4', '2024/05/20', [
+          Attivita::Micro('a',  '2024/05/21', []),
+        ]),
+        Attivita::Macro('MVP 5', '2024/05/20', [
+          Attivita::Micro('a',  '2024/05/21', []),
         ]),
       ]
     ],
