@@ -4,6 +4,7 @@ require_once __DIR__ . '/.libphp/Utils.php';
 require_once __DIR__ . '/.libphp/Stream.php';
 require_once __DIR__ . '/.libphp/Vocaboli.php';
 require_once __DIR__ . '/.libphp/Validatore.php';
+require_once __DIR__ . '/.libphp/Gantt.php';
 
 function _execdir($dstdir, $fn) {
   $srcdir = getcwd();

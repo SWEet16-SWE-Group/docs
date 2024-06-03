@@ -6,17 +6,14 @@ require_once 'Vocaboli.php';
 require_once 'Validatore.php';
 require_once 'Membri.php';
 
-$titolo = 'Specifica Tecnica';
-$pathsimmagini = [
-  '../media/',
-];
-$registro = (new RegistroModifiche())->logArray([
-  [CE, '2024/05/05', alberto_m(), iulius_s(), 'Stesura scheletro           '],
-  [CE, '2024/05/07', alberto_m(), alex_s(), 'Stesura sezione introduzione'],
-  [CE, '2024/05/08', alberto_m(), alex_s(), 'Stesura sezione tecnologie  '],
-]);
-
 $error_flag = 0;
+$titolo = 'Manuale utente';
+$registro = (new RegistroModifiche())->logArray([
+  [DX, '2024/06/01', alex_s(), '', 'Stesura scheletro'],
+  //[SX, '2024/06/00', alex_s(), '', 'Approvazione per il rilascio'],
+]);
+$nome = "Manuale_utente_v{$registro->versione()}.pdf";
+
 ob_start();
 ob_start(function ($tex) use ($titolo, &$error_flag) {
   $errormsg = racatta_errori($titolo, $tex);
@@ -40,7 +37,6 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \usepackage{colortbl}
 \usepackage{tabularray}
 \usepackage[italian]{babel}
-\usepackage{float}
 
 \geometry{
 a4paper,
@@ -49,13 +45,6 @@ right=25mm,
 top=20mm,
 bottom=20mm,
 }
-
-\makeatletter
-\newcommand\subsubsubsection{\@startsection{paragraph}{4}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus.25ex}{\normalfont\normalsize\bfseries}}
-\newcommand\subsubsubsubsection{\@startsection{subparagraph}{5}{\z@}{-2.5ex\@plus -1ex \@minus -.25ex}{1.25ex \@plus.25ex}{\normalfont\normalsize\bfseries}}
-\makeatother
-% comandi per permettere di aggiungere altre sub section innestate
-
 
 \setlength{\parskip}{1em}
 \setlength{\parindent}{0pt}
@@ -116,27 +105,89 @@ Versione: & <?php echo $registro->versione(); ?> &
 \tableofcontents
 \pagebreak
 
-<?php require_once  __DIR__ . "/src/introduzione.php"; ?>
-
-<?php require_once  __DIR__ . "/src/tecnologie.php"; ?>
 
 <?php
 
-$architettura =
+$contenuti = [
+  'Utente anonimo' =>
   [
-    'Frontend' =>
+    'Ricerca dei ristoranti' =>
     [
-      'Pattern' => [],
+      'Elenco dei ristoranti' => null,
+      'Homepage del ristorante' => null,
+      'Menù del ristorante' => null,
+      'Form di prenotazione' => null,
     ],
-    'Backend' =>
+  ],
+  'Utente autenticato' =>
+  [
+    'Navbar' =>
     [
-      'Pattern' => [],
+      'Impostazioni account' => null,
+      'Nuovo profilo cliente' => null,
+      'Nuovo profilo ristoratore' => null,
     ],
-  ];
+    'Selezione profili' => null,
+  ],
+  'Cliente' =>
+  [
+    'Navbar' =>
+    [
+      'Selezione profili' => null,
+      'Impostazioni profilo' => null,
+      'Dashboard' => null,
+      'Ricerca dei ristoranti' =>
+      [
+        'Elenco dei ristoranti' => null,
+        'Homepage del ristorante' => null,
+        'Menù del ristorante' => null,
+        'Form di prenotazione' => null,
+      ],
+      'Notifiche' => null,
+    ],
+    'Dashboard' =>
+    [
+      'Lista di prenotazioni' =>
+      [
+        'Attive' => null,
+        'Scadute' => null,
+      ],
+      'Prenotazione' =>
+      [
+        'Ordinazioni collaborative' => null,
+        'Manipolare un\'ordinazione' => null,
+        'Effettuare pagamenti' => null,
+        // 'Lasciare una recensione' => null,
+      ],
+    ],
+  ],
+  'Ristoratore' =>
+  [
+    'Navbar' =>
+    [
+      'Selezione profili' => null,
+      'Impostazioni profilo' => null,
+      'Dashboard' => null,
+      'Impostazioni menù' =>
+      [
+        'Manipolazione pietanze' => null,
+      ],
+      'Notifiche' => null,
+    ],
+    'Dashboard' =>
+    [
+      'Lista di prenotazioni' => null,
+      'Prenotazione' =>
+      [
+        'Ordinazioni collaborative' => null,
+        'Dettagli ordinazioni' => null,
+        'Segna il pagamento di pietanze/clienti come effettuati' => null,
+      ],
+    ],
+  ],
+];
 
 ?>
-
-<?php require_once  __DIR__ . "/src/requisiti-soddisfatti.php"; ?>
 
 \end{document}
 <?php

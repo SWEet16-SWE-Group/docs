@@ -4,6 +4,9 @@ require_once __DIR__ . '/../../../../.libphp/Utils.php';
 require_once __DIR__ . '/../../../../.libphp/Membri.php';
 require_once __DIR__ . '/../../../../.libphp/Gantt.php';
 
+const preventivo = -1;
+const consuntivo = -2;
+
 function indicizza_tabella($a) {
   return [
     alberto_c()->nome => $a[alberto_c()->nome],
@@ -126,6 +129,7 @@ function periodo(
   $inizio,
   $fine,
   $attivita,
+  $gantt,
   $preventivo,
   $consuntivo,
   $gestioneruoli,
@@ -150,11 +154,13 @@ function periodo(
 
     \subsubsubsection{Attività svolte}
 
-    GANTT
-
     \begin{itemize}
     ATTIVITA
     \end{itemize}
+
+    \begin{center}
+    GANTT
+    \end{center}
 
     \subsubsubsection{Consuntivo orario}
   
@@ -206,7 +212,7 @@ function periodo(
       'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
       'RAGGIUNTI' => $raggiunti ? $itemize($raggiunti) : '\\item Nessun obbiettivo raggiunto',
       'MANCATI' => $mancati ? $itemize($mancati) : '\\item Nessun obbiettivo mancato',
-      'GANTT' => gantt_latex('g1.png', [Attivita::Macro('M1', '2024-05-01', [Attivita::Micro('m1', '2024-05-02', [])])]),
+      'GANTT' => $gantt == null ? '' : gantt_latex(...$gantt),
     ],
     $latex
   );
@@ -216,7 +222,7 @@ $periodi_rtb = [
   // ===========================================================================================================================
   // RTB 1
   [
-    4 => [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 4, 0, 1],
       'Bilal El M.' => [0, 0, 4, 0, 0, 1],
       'Alberto M.'  => [3, 2, 0, 0, 0, 0],
@@ -224,7 +230,7 @@ $periodi_rtb = [
       'Iulius S.'   => [0, 0, 4, 0, 0, 1],
       'Giovanni Z.' => [0, 0, 0, 4, 0, 1],
     ],
-    5 => [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 4, 0, 1],
       'Bilal El M.' => [0, 0, 4, 0, 0, 1],
       'Alberto M.'  => [3, 2, 0, 0, 0, 0],
@@ -236,7 +242,7 @@ $periodi_rtb = [
   // ===========================================================================================================================
   // RTB 2
   [
-    4 => [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 15, 2],
       'Bilal El M.' => [2, 3, 0, 4,  0, 2],
       'Alberto M.'  => [5, 0, 5, 0,  0, 0],
@@ -244,7 +250,7 @@ $periodi_rtb = [
       'Iulius S.'   => [0, 0, 7, 0,  0, 2],
       'Giovanni Z.' => [0, 0, 0, 0, 10, 0],
     ],
-    5 => [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 20, 5],
       'Bilal El M.' => [0, 0, 0, 4,  0, 2],
       'Alberto M.'  => [2, 3, 5, 0,  0, 0],
@@ -256,7 +262,7 @@ $periodi_rtb = [
   // ===========================================================================================================================
   // RTB 3
   [
-    4 => [
+    preventivo => [
       'Alberto C.'  =>  [0, 0,  5, 0, 0, 0],
       'Bilal El M.' =>  [0, 0,  5, 0, 0, 7],
       'Alberto M.'  =>  [0, 0, 10, 0, 0, 2],
@@ -264,7 +270,7 @@ $periodi_rtb = [
       'Iulius S.'   =>  [0, 0, 10, 0, 0, 2],
       'Giovanni Z.' =>  [5, 0,  0, 0, 0, 0],
     ],
-    5 => [
+    consuntivo => [
       'Alberto C.'  => [0, 2,  3, 0, 0, 0],
       'Bilal El M.' => [0, 0,  2, 0, 0, 3],
       'Alberto M.'  => [0, 0, 12, 0, 0, 5],
@@ -276,7 +282,7 @@ $periodi_rtb = [
   // ===========================================================================================================================
   // RTB 4
   [
-    4 => [
+    preventivo => [
       'Alberto C.'  =>  [0, 0, 0, 2, 0, 3],
       'Bilal El M.' =>  [2, 2, 4, 2, 0, 5],
       'Alberto M.'  =>  [0, 0, 4, 0, 0, 5],
@@ -284,7 +290,7 @@ $periodi_rtb = [
       'Iulius S.'   =>  [0, 0, 4, 0, 0, 5],
       'Giovanni Z.' =>  [0, 0, 0, 5, 0, 5],
     ],
-    5 => [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 2, 0, 3],
       'Bilal El M.' => [2, 0, 4, 2, 0, 5],
       'Alberto M.'  => [0, 0, 4, 0, 0, 5],
@@ -304,7 +310,8 @@ $periodi_pb = [
     '2025/04/22',
     '2024/05/03',
     [],
-    [
+    null,
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -312,7 +319,7 @@ $periodi_pb = [
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
-    [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -334,8 +341,30 @@ $periodi_pb = [
     'Periodo 2',
     '2025/05/06',
     '2024/05/18',
-    [],
     [
+      'Studio nuove delle tecnologie',
+      'Studio delle librerie di testing',
+      'Studio dei design pattern',
+      'Implementazione della CI',
+    ],
+    [
+      'pbg2.png',
+      '640,400',
+      [
+        Attivita::Macro('Progettazione', '2024/05/06', [
+          Attivita::Micro('Studio delle tecnologie', '2024/05/10', [
+            Attivita::Micro('Studio delle librerie di testing', '2024/05/16', []),
+            Attivita::Micro('Studio dei desgnin pattern',  '2024/05/14', []),
+          ]),
+        ]),
+        Attivita::Macro('CI con Github Actions', '2024/05/10', [
+          Attivita::Micro('Laravel', '2024/05/18', []),
+          Attivita::Micro('React',  '2024/05/18', []),
+          Attivita::Micro('Baseline di sviluppo',  '2024/05/18', []),
+        ]),
+      ],
+    ],
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -343,7 +372,7 @@ $periodi_pb = [
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
-    [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -371,13 +400,33 @@ $periodi_pb = [
     'Periodo 3',
     '2025/05/20',
     '2024/05/24',
+    [],
     [
-      'Suddivisione delle task in issue di GitHub con conseguente assegnazione ai membri',
-      'Creazione della base docker dove si andrà a fare la codifica del progetto',
-      'Creazione del database per l\'MVP',
-      'Aggiunto PHP sopra \\LaTeX per maggiore automazione della stesura dei documenti',
+      'pbg3.png',
+      '640,600',
+      [
+        Attivita::Macro('MVP 0', '2024/05/20', [
+          Attivita::Micro('Registrazione',  '2024/05/21', []),
+          Attivita::Micro('Creazione cliente',  '2024/05/21', []),
+          Attivita::Micro('Creazione ristoratore',  '2024/05/21', []),
+          Attivita::Micro('Selezione profilo',  '2024/05/22', []),
+        ]),
+        Attivita::Macro('MVP 1', '2024/05/21', [
+          Attivita::Micro('Login',  '2024/05/22', []),
+          Attivita::Micro('Logout',  '2024/05/22', []),
+          Attivita::Micro('Modifica info account',  '2024/05/23', []),
+          Attivita::Micro('Modifica info cliente',  '2024/05/23', []),
+          Attivita::Micro('Modifica info ristoratore',  '2024/05/22', []),
+        ]),
+        Attivita::Macro('MVP 2', '2024/05/23', [
+          Attivita::Micro('Dashboard cliente',  '2024/05/24', []),
+          Attivita::Micro('Dashboard ristoratore',  '2024/05/24', []),
+          Attivita::Micro('Form di prenotazione',  '2024/05/23', []),
+          Attivita::Micro('Singola prenotazione cliente',  '2024/05/24', []),
+        ]),
+      ],
     ],
-    [
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -385,7 +434,7 @@ $periodi_pb = [
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
-    [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -398,7 +447,12 @@ $periodi_pb = [
     <<<'EOF'
     Sono state create le diverse task per la fase di codifica dell'MVP sotto forma di issue su GitHub. Ad ogni task è stata assegnata una priorità decrescente (più basso il numero, più è imperativo il suo completamento), issue con priorità uguale possono essere svolte in parallelo. Molto tempo è stato dedicato allo studio di Laravel, in quanto vi sono state molte difficoltà solo nella creazione di un docker che lo eseguisse e nel stabilire una connessione anche parziale tra esso e il database. È stato stimato che la codifica dell'MVP sia ciò che richieda maggiori risorse, il gruppo dunque si è diviso in due sottogruppi rispettivamente da cinque persone per la codifica e una per la stesura della documentazione.
     EOF,
-    [],
+    [
+      'Suddivisione delle task in issue di GitHub con conseguente assegnazione ai membri',
+      'Creazione della base docker dove si andrà a fare la codifica del progetto',
+      'Creazione del database per l\'MVP',
+      'Aggiunto PHP sopra \\LaTeX per maggiore automazione della stesura dei documenti',
+    ],
     [],
   ],
   // ===========================================================================================================================
@@ -406,9 +460,33 @@ $periodi_pb = [
   [
     'Questa settimana',
     '2025/05/27',
-    '2024/05/31',
+    '2024/06/07',
     [],
     [
+      'pbg4.png',
+      '640,530',
+      [
+        Attivita::Macro('MVP 3', '2024/05/27', [
+          Attivita::Micro('Nuova pietanza',  '2024/05/28', [
+            Attivita::Micro('Gestione pietanze',  '2024/05/29', []),
+          ]),
+          Attivita::Micro('Navigazione del menù',  '2024/05/29', []),
+        ]),
+        Attivita::Macro('MVP 4', '2024/05/30', [
+          Attivita::Micro('Ristoratore: Dettagli prenotazione',  '2024/05/31', []),
+          Attivita::Micro('Cliente: Dettagli pietanza',  '2024/05/31', []),
+        ]),
+        Attivita::Macro('MVP 5', '2024/05/31', [
+          Attivita::Micro('Divisione del conto',  '2024/05/31', []),
+          Attivita::Micro('Cliente: Pagamento',  '2024/06/01', []),
+          Attivita::Micro('Ristoratore: Pagamento',  '2024/06/01', []),
+        ]),
+        Attivita::Macro('MVP 6', '2024/06/02', [
+          Attivita::Micro('Test di integrazione',  '2024/06/03', []),
+        ]),
+      ]
+    ],
+    preventivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -416,7 +494,7 @@ $periodi_pb = [
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
-    [
+    consuntivo => [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
@@ -438,19 +516,16 @@ $periodi_pb = [
 $_ = array_map(
   'indicizza_tabella',
   array_merge(
-    array_column($periodi_rtb, 5),
-    array_column($periodi_rtb, 5),
-    array_column($periodi_pb,  4),
-    array_column($periodi_pb,  5),
+    array_column($periodi_rtb, preventivo),
+    array_column($periodi_rtb, preventivo),
+    array_column($periodi_pb,  consuntivo),
+    array_column($periodi_pb,  consuntivo),
   )
 );
 
 function periodi_tostring($a) {
   return implode("\n", array_map(fn ($a) => periodo(...$a), $a));
 }
-
-const preventivo = 4;
-const consuntivo = 5;
 
 function tabelle_ore_soldi_tostring($tabella, $periodo, $colonna) {
   $titolo = [

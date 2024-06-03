@@ -2,17 +2,19 @@
 
 require_once __DIR__ . '/Utils.php';
 
+const dateformat = 'Y/m/d';
+
 class Attivita {
   private function __construct(public $nome, public $inizio, public $fine, public $class, public $tag) {
   }
   public static function Macro($nome, $inizio, $figli) {
-    $inizio = DateTimeImmutable::createFromFormat('Y-m-d', $inizio);
+    $inizio = DateTimeImmutable::createFromFormat(dateformat, $inizio);
     $figli = array_merge(...array_map(fn ($a) => $a($inizio), $figli));
     return [
       new Attivita(
         $nome,
         $inizio,
-        DateTime::createFromFormat('Y-m-d', max(array_map(fn ($a) => $a->fine->format('Y-m-d'), $figli))),
+        DateTime::createFromFormat(dateformat, max(array_map(fn ($a) => $a->fine->format(dateformat), $figli))),
         'macro',
         'th',
       ),
@@ -20,7 +22,7 @@ class Attivita {
     ];
   }
   public static function Micro($nome, $fine, $figli) {
-    $fine = DateTimeImmutable::createFromFormat('Y-m-d', $fine);
+    $fine = DateTimeImmutable::createFromFormat(dateformat, $fine);
     return fn ($inizio) => array_merge(
       [new Attivita($nome, $inizio, $fine, 'micro', 'td')],
       ...array_map(fn ($micro) => $micro($fine->add(new DateInterval('P1D'))), $figli),
@@ -43,10 +45,10 @@ function array_group($f, $a) {
 function stampablocco($a, $d) {
   $tag = "td";
   return match (true) {
-    $a->inizio->format('Y-m-d') == $d->format('Y-m-d') and
-      $a->fine->format('Y-m-d') == $d->format('Y-m-d') => "<$tag class='singolo {$a->class}'></$tag>",
-    $a->inizio->format('Y-m-d') == $d->format('Y-m-d') => "<$tag class='inizio  {$a->class}'></$tag>",
-    $a->fine->format('Y-m-d') == $d->format('Y-m-d')   => "<$tag class='fine    {$a->class}'></$tag>",
+    $a->inizio->format(dateformat) == $d->format(dateformat) and
+      $a->fine->format(dateformat) == $d->format(dateformat) => "<$tag class='singolo {$a->class}'></$tag>",
+    $a->inizio->format(dateformat) == $d->format(dateformat) => "<$tag class='inizio  {$a->class}'></$tag>",
+    $a->fine->format(dateformat) == $d->format(dateformat)   => "<$tag class='fine    {$a->class}'></$tag>",
     $a->inizio < $d and $d < $a->fine                  => "<$tag class='centro  {$a->class}'></$tag>",
     default                                            => "<$tag class='vuoto'></$tag>",
   };
@@ -58,8 +60,8 @@ function colonna0($a) {
 
 function gantt($attivita) {
   $attivita = array_merge(...$attivita);
-  $inizio = DateTimeImmutable::createFromFormat('Y-m-d', min(array_map(fn ($a) => $a->inizio->format('Y-m-d'), $attivita)));
-  $fine   = DateTimeImmutable::createFromFormat('Y-m-d', max(array_map(fn ($a) =>   $a->fine->format('Y-m-d'), $attivita)));
+  $inizio = DateTimeImmutable::createFromFormat(dateformat, min(array_map(fn ($a) => $a->inizio->format(dateformat), $attivita)));
+  $fine   = DateTimeImmutable::createFromFormat(dateformat, max(array_map(fn ($a) =>   $a->fine->format(dateformat), $attivita)));
 
   $datarange = array_map(
     fn ($a) => $inizio->add(new DateInterval("P{$a}D")),
@@ -83,7 +85,7 @@ function gantt($attivita) {
     <table>
       <thead>
         <tr>
-          <th rowspan="4" style="width: 180px">Attività</th>
+          <th rowspan="4" class="altosinistra">Attività</th>
           <th colspan="{$ndate}">Tempo</th>
         </tr>
         <tr>
@@ -100,30 +102,8 @@ function gantt($attivita) {
         {$tbody}
       </tbody>
     </table>
-  EOF;
+    EOF;
 }
-
-$gantt = gantt($ganttstruct = [
-  Attivita::Macro('s',            '2024-05-16', [
-    Attivita::Micro('s1',         '2024-05-17', [
-      Attivita::Micro('s11',      '2024-05-18', []),
-      Attivita::Micro('s12',      '2024-05-18', [
-        Attivita::Micro('s121',   '2024-05-19', []),
-        Attivita::Micro('s122',   '2024-05-22', []),
-        Attivita::Micro('s123',   '2024-05-21', []),
-      ]),
-      Attivita::Micro('s2',       '2024-05-28', []),
-    ])
-  ]),
-  Attivita::Macro('y',            '2024-05-27', [
-    Attivita::Micro('y1',         '2024-06-03', []),
-    Attivita::Micro('y1',         '2024-06-03', []),
-    Attivita::Micro('y1',         '2024-06-03', []),
-    Attivita::Micro('y1',         '2024-06-07', []),
-    Attivita::Micro('y1',         '2024-06-07', []),
-    Attivita::Micro('y1',         '2024-06-07', []),
-  ])
-]);
 
 function gantt_html($ganttstruct) {
   try {
@@ -147,6 +127,14 @@ function gantt_html($ganttstruct) {
           height: 100%;
           border-spacing: 0px;
           border: solid 1px black;
+        }
+
+        thead {
+          height: 0.1%;
+        }
+
+        th.altosinistra {
+          width: 180px;
         }
 
         th,
@@ -203,24 +191,54 @@ function gantt_html($ganttstruct) {
   }
 }
 
-function gantt_latex_full($img, $ganttstruct, $latexcmd, $processingcmd,) {
+function gantt_test() {
+
+  $ganttstruct = [
+    Attivita::Macro('s',            '2024/05/16', [
+      Attivita::Micro('s1',         '2024/05/17', [
+        //Attivita::Micro('s11',      '2024/05/18', []),
+        //Attivita::Micro('s12',      '2024/05/18', [
+        //  Attivita::Micro('s121',   '2024/05/19', []),
+        //  Attivita::Micro('s122',   '2024/05/22', []),
+        //  Attivita::Micro('s123',   '2024/05/21', []),
+        //]),
+        Attivita::Micro('s2',       '2024/05/28', []),
+      ])
+    ]),
+    Attivita::Macro('y',            '2024/05/27', [
+      Attivita::Micro('y1',         '2024/06/03', []),
+      //Attivita::Micro('y1',         '2024/06/03', []),
+      //Attivita::Micro('y1',         '2024/06/03', []),
+      //Attivita::Micro('y1',         '2024/06/07', []),
+      //Attivita::Micro('y1',         '2024/06/07', []),
+      //Attivita::Micro('y1',         '2024/06/07', []),
+    ])
+  ];
+
+  $gantt = gantt_html($ganttstruct);
+
+  // print_r($ganttstruct);
+
+  // print_r($gantt);
+
+  //echo gantt_html($ganttstruct);
+
+  print_r($gantt);
+
+  die();
+}
+
+//gantt_test();
+
+function gantt_latex($img, $size, $ganttstruct, $scale = '.7') {
   if (!_compile()) {
     return '';
   }
-  $html = mediapath() . '/gantt.html';
-  file_put_contents($html, gantt_html($ganttstruct));
-  passthru($processingcmd . $html . '\'');
+  $htmlfile = mediapath() . '/gantt.html';
+  file_put_contents($htmlfile, gantt_html($ganttstruct));
+  passthru(sprintf("firefox --headless --screenshot --window-size %s 'file://%s'", $size, $htmlfile));
   is_dir($dir = dirname($img)) or mkdir($dir, recursive: true);
   rename('screenshot.png', mediapath() . "/$img");
-  unlink($html);
-  return $latexcmd;
-}
-
-function gantt_latex($img, $ganttstruct) {
-  return gantt_latex_full(
-    $img,
-    $ganttstruct,
-    "\\begin{figure}[h!] \\includegraphics[scale=.7]{{$img}} \\end{figure}",
-    "firefox --headless --screenshot --window-size 640,360 'file://"
-  );
+  unlink($htmlfile);
+  return "\\begin{figure}[h!] \\includegraphics[scale={$scale}]{{$img}} \\end{figure}";
 }
