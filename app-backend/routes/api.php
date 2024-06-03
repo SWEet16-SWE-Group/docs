@@ -1,13 +1,17 @@
 <?php
 
+use App\Http\Controllers\AllergeniController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\RistoratoreController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +40,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/userpassword', [UserController::class, 'updateUserPassword'])
         ->middleware('authenticated');
 
-
+    // Da fare il middleware
+    Route::get('/ristoratori/{id}', [RistoratoreController::class, 'listByUser']);
+    Route::post('/crea-ristoratore', [RistoratoreController::class, 'store']);
+    Route::get('/get-ristoratore/{id}', [RistoratoreController::class, 'show']);
+    Route::put('/modifica-ristoratore/{id}', [RistoratoreController::class, 'update']);
+    Route::delete('/elimina-ristoratore/{id}', [RistoratoreController::class, 'destroy']);
     /*
     Route::middleware(UserIsRestaurant::class) {
         Route::prefix('restaurant')->group(function () {})
@@ -61,6 +70,13 @@ Route::middleware('auth:sanctum')->group(function () {
         ->middleware('authenticated');
 });
 
+Route::get('/account',[ClientController::class,'index']);
+Route::get('client/{id}', [ClientController::class,'show']);
+Route::post('/client',[ClientController::class,'store']);
+Route::put('/client',[ClientController::class,'update']);
+Route::delete('client/{id}',[ClientController::class,'destroy']);
+
+Route::get('/allergeni',[AllergeniController::class,'index']);
 
 // inserire qui le chiamate per gli utenti non autenticati
 

@@ -6,7 +6,6 @@ import { useParams } from 'react-router-dom';
 export default function ModificaProfiloRistoratore() {
     const { id } = useParams();
 
-    debugger;
     const { setNotificationStatus, setNotification } = useStateContext();
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),

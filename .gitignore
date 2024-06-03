@@ -33,6 +33,7 @@ node_modules/
 
 # testing
 /coverage
+/app-backend/coverage
 
 # production
 /build
