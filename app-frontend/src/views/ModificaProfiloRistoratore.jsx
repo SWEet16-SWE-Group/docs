@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
-export default function ModificaProfiloRistoratore() {
+export default function ModificaProfiloRistoratore({ id }) {
     const { setNotificationStatus, setNotification } = useStateContext();
-    const [ristoratori, setRistoratori] = useState([]);
-    const [selectedRistoratoreId, setSelectedRistoratoreId] = useState(null);
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),
         nome: '',
@@ -15,34 +13,12 @@ export default function ModificaProfiloRistoratore() {
         orario: ''
     });
     const [errorMessage, setErrorMessage] = useState('');
-    const [loading, setLoading] = useState(true);
-
-    // Togliere questo quando si implementa SceltaProfilo
-    useEffect(() => {
-        const fetchRistoratori = async () => {
-            try {
-                const userId = localStorage.getItem('USER_ID');
-                const response = await axiosClient.get(`/ristoratori/${userId}`);
-                setRistoratori(response.data);
-                if (response.data.length > 0) {
-                    setSelectedRistoratoreId(response.data[0].id);
-                }
-            } catch (error) {
-                setErrorMessage('Errore durante il recupero dei ristoratori.');
-                setNotificationStatus('error');
-                setNotification('Errore durante il recupero dei ristoratori.');
-                console.error(error);
-                setLoading(false);
-            }
-        };
-        fetchRistoratori();
-    }, []);
 
     useEffect(() => {
-        if (selectedRistoratoreId) {
+        if (id) {
             const fetchData = async () => {
                 try {
-                    const response = await axiosClient.get(`/get-ristoratore/${selectedRistoratoreId}`);
+                    const response = await axiosClient.get(`/get-ristoratore/${id}`);
                     setFormData({
                         user: localStorage.getItem('USER_ID'),
                         nome: response.data.nome,
@@ -51,19 +27,14 @@ export default function ModificaProfiloRistoratore() {
                         capienza: response.data.capienza,
                         orario: response.data.orario
                     });
-                    setLoading(false);
                 } catch (error) {
                     setErrorMessage('Errore durante il recupero dei dati.');
-                    setNotificationStatus('error');
-                    setNotification('Errore durante il recupero dei dati.');
                     console.error(error);
-                    setLoading(false);
                 }
             };
-
             fetchData();
         }
-    }, [selectedRistoratoreId]);
+    }, [id]);
 
     const handleChange = (e) => {
         setFormData({
@@ -76,13 +47,11 @@ export default function ModificaProfiloRistoratore() {
         e.preventDefault();
         setErrorMessage('');
         try {
-            const response = await axiosClient.put(`/modifica-ristoratore/${selectedRistoratoreId}`, formData);
+            const response = await axiosClient.put(`/modifica-ristoratore/${id}`, formData);
             setNotificationStatus('success');
             setNotification('Dati aggiornati con successo.');
         } catch (error) {
             setErrorMessage('Errore durante l\'aggiornamento dei dati.');
-            setNotificationStatus('error');
-            setNotification('Errore durante l\'aggiornamento dei dati.');
             console.error(error);
         }
     };
@@ -90,7 +59,7 @@ export default function ModificaProfiloRistoratore() {
     const handleDelete = async () => {
         setErrorMessage('');
         try {
-            const response = await axiosClient.delete(`/elimina-ristoratore/${selectedRistoratoreId}`);
+            const response = await axiosClient.delete(`/elimina-ristoratore/${id}`);
             setNotificationStatus('success');
             setNotification('Ristoratore eliminato con successo.');
             setFormData({
@@ -101,48 +70,17 @@ export default function ModificaProfiloRistoratore() {
                 capienza: '',
                 orario: ''
             });
-            setSelectedRistoratoreId(null);
-            setLoading(true);
         } catch (error) {
             setErrorMessage('Errore durante l\'eliminazione del ristoratore.');
-            setNotificationStatus('error');
-            setNotification('Errore durante l\'eliminazione del ristoratore.');
             console.error(error);
         }
-    };
-
-    const handleSelectChange = (e) => {
-        setSelectedRistoratoreId(e.target.value);
-        setLoading(true);
     };
 
     return (
         <div className="container mt-5">
             <h3>Modifica account ristoratore</h3>
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
-            {loading ? (
-                <div className="d-flex justify-content-center">
-                    <div className="spinner-border" role="status">
-                        <span className="sr-only"></span>
-                    </div>
-                </div>
-            ) : (
                 <>
-                    <div className="mb-3">
-                        <label htmlFor="ristoratore-select">Seleziona Ristoratore</label>
-                        <select
-                            className="form-control"
-                            id="ristoratore-select"
-                            value={selectedRistoratoreId}
-                            onChange={handleSelectChange}
-                        >
-                            {ristoratori.map((ristoratore) => (
-                                <option key={ristoratore.id} value={ristoratore.id}>
-                                    {ristoratore.nome}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
                     <form onSubmit={handleSubmit}>
                         <div className="mb-3">
                             <label htmlFor="nome">Nome</label>
@@ -215,7 +153,6 @@ export default function ModificaProfiloRistoratore() {
                         </div>
                     </form>
                 </>
-            )}
         </div>
     );
 }

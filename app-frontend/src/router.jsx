@@ -36,7 +36,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/modificaprofiloristoratore',
-                element: <ModificaProfiloRistoratore />
+                element: <ModificaProfiloRistoratore id={1}/>
             },
             {
                 path: '/modificainfoaccount',
