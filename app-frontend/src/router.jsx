@@ -32,7 +32,7 @@ const router = createBrowserRouter([
                 element: <CreazioneProfiloRistoratore />
             },
             {
-                path: '/editClient',
+                path: '/editClient/:id',
                 element: <EditClient />
             },
             {

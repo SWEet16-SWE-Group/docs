@@ -30,12 +30,11 @@ export default function SelezioneProfilo() {
                 setClientProfiles(data.clienti);
                 setRestaurantProfiles(data.ristoratori);
                 console.log(data);
-
-
             })
             .catch(err => {
                 const response = err.response;
                 console.error(response);
+
             })
     }
 
@@ -79,7 +78,7 @@ export default function SelezioneProfilo() {
 
         if(profile.tipo === 'Cliente')
         {
-            navigate('/editClient', {state: { id: profile.id}});
+            navigate(`/editClient/${profile.id}`);
         } else if (profile.tipo === 'Ristoratore')
         {
            navigate(`/modificaprofiloristoratore/${profile.id}`);

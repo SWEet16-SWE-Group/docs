@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\ClientRequest;
@@ -16,19 +17,25 @@ class ClientController extends Controller
        return response($client);
     }
 
-    public function show(string $client_name) {
-        $client=Client::where('nome',$client_name)->get();
-        if (!empty($client)) 
+    public function show($id) {
+
+        /** @var Client $client */
+        $client = Client::where('id',$id)->first();
+        if (!empty($client))
             {
-            
-                 return response()->json(['cliente' => $client]);
+                 return response()->json([
+                     'id' => $client['id'],
+                     'nome' => $client['nome'],
+                     'user' => $client['user'],
+                 ]);
                                                     }
             else {
-                return response()->json(
-                    ["message" => "Client not found"],404
-                );
+                return response([
+                    "notification" => "Cliente non trovato!",
+                    'status' => "failure",
+                ],404);
             }
-    
+
 }
 
     public function store(ClientRequest $request)  {
@@ -38,18 +45,19 @@ class ClientController extends Controller
          $cliente= Client::create(['nome'=>$clientData["nome"],
                                    'account'=>$clientData["account_id"]]);
      //   $cliente->id=$clientData["profile_id"];
-               
+
         if ($request -> allergie) {
             $allergies = $request->allergie;
             foreach($allergies as $key => $value) {
                 $allergene=Allergeni::find($value);
                 $cliente->allergie()->attach($allergene);
-               
-                
             }
         }
 
-        return response()->json(['message' => 'New client saved!'], 201);
+        return response([
+            'notification' => "Profilo cliente creato con successo",
+            'status' => "success"
+        ],201);
 }
 
 public function update(Request $request) {
@@ -58,15 +66,17 @@ public function update(Request $request) {
     if (Client::where('id',$request -> id) -> exists()) {
         $client= Client::find($request->id);
         $client->nome = is_null($request->nome) ? $client->nome : $request->nome;
-        $client-> account = is_null($request->account) ? $client->account : $request->account;
+        $client-> user = is_null($request->user) ? $client->user : $request->user;
         $client->save();
-        return response()->json([
-            "message" => "Client updated"
+        return response([
+            'notification' => "Profilo cliente aggiornato con successo",
+            'status' => "success"
         ],202);
     }
         else {
-            return response()->json([
-            "message" => "Client not updated!"
+            return response([
+                "notification" => "Errore nell'aggiornamento del cliente!",
+                'status' => "failure",
         ],404);
         }
 }
@@ -75,13 +85,15 @@ public function update(Request $request) {
         if (Client::where('id',$id)) {
             $client = Client::find($id);
             $client -> delete();
-            return response()->json([
-                "message" => "Client deleted."
+            return response([
+                'notification' => "Profilo cliente eliminato con successo",
+                'status' => "success"
             ],202);
         }
             else {
-                return response()->json([
-                    "message" => "Client not found!"
+                return response([
+                    "notification" => "Errore nell'eliminazione del cliente!",
+                    'status' => "failure",
                 ],404);
             }
     }

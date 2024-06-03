@@ -27,7 +27,7 @@ class ClientRequest extends FormRequest
             'clientData' => 'required',
             'clientData.nome' => 'required|string|max:255|unique:clients,nome',
             'clientData.account_id' => 'required|exists:users,id',
-        
+
         ];
     }
 
