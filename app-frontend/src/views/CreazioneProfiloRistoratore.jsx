@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
+import {useNavigate} from "react-router-dom";
 
 export default function CreazioneProfiloRistoratore() {
     const { setNotificationStatus, setNotification } = useStateContext();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),
@@ -22,32 +24,21 @@ export default function CreazioneProfiloRistoratore() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        try {
-            const response = await axiosClient.post('/crea-ristoratore', formData);
-            setNotificationStatus('success');
-            setNotification('Account ristoratore creato con successo');
-            setFormData({
-                user: localStorage.getItem('USER_ID'),
-                nome: '',
-                indirizzo: '',
-                telefono: '',
-                capienza: '',
-                orario: ''
-            });
-        } catch (error) {
-            if (error.response) {
-                setErrors(Object.values(error.response.data.errors || {}));
-                setNotificationStatus('error');
-                setNotification('Errore nella creazione dell\'account ristoratore');
-            } else {
-                setErrors(['C\'è stato un errore, riprova.']);
-                setNotificationStatus('error');
-                setNotification('C\'è stato un errore, riprova.');
-            }
-        }
+
+        axiosClient.post('/crea-ristoratore', formData)
+            .then(({data}) => {
+
+            navigate('/selezioneprofilo');
+            setNotificationStatus(data.status);
+            setNotification(data.notification);
+
+        })
+            .catch(error => {
+                setErrors(error.notification);
+            })
     };
 
     return (

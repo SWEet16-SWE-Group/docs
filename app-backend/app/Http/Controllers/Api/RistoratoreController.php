@@ -21,7 +21,17 @@ class RistoratoreController extends Controller
         $validatedData = $request->validated();
         $ristoratore = Ristoratore::create($validatedData);
 
-        return response()->json($ristoratore, 201);
+        if($ristoratore) {
+            return response([
+                "notification" => "Ristoratore creato con successo",
+                'status' => "success",
+            ], 201);
+        } else {
+            return response([
+                "notification" => "Errore nella creazione di ristoratore!",
+                'status' => "failure",
+            ], 404);
+        }
     }
 
     public function show($id)
