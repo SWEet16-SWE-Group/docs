@@ -9,4 +9,3 @@ RUN pacman -Sy --noconfirm --needed \
   texlive-latexextra \
   texlive-langitalian
 USER 1000:1000
-CMD php validatore.php
