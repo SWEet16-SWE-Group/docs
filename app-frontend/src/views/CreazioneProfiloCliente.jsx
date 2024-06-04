@@ -3,14 +3,16 @@ import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from "axios";
 import { fetchAllergeni } from "../services/IntolleranzeService";
-import ContextProvider, {useStateContext} from "../contexts/ContextProvider";
+import {useStateContext} from "../contexts/ContextProvider";
 import axiosClient from "../axios-client.js";
 
 export default function CreazioneProfiloCliente() {
     const [errors, setErrors] = useState(null);
     const navigate= useNavigate();
-    const {user, role, setNotification, setNotificationStatus } = useStateContext();
+    const {role, setNotification, setNotificationStatus } = useStateContext();
+    const user_id = localStorage.getItem('USER_ID');
 
+    console.log('user: ',user_id);
     const [username, setUsername] = useState('');
     const [allergeni,setAllergeni] = useState([]);
 
@@ -46,11 +48,12 @@ export default function CreazioneProfiloCliente() {
 
         const payload = {
             nome: username,
-            user: user,
+            user: user_id,
             allergie: selectedIds,
             role : role
         };
 
+        console.log(payload);
 
         axiosClient.post('/client',payload)
             .then(({data}) => {

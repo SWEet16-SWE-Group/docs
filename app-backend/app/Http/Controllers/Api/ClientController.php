@@ -63,22 +63,23 @@ public function update(ClientRequest $request) {
 
     $data = $request->validated();
 
-    if (Client::where('id',$data -> id) -> exists()) {
-        $client= Client::find($data->id);
-        $client->nome = is_null($data->nome) ? $client->nome : $data->nome;
-        $client-> user = is_null($data->user) ? $client->user : $data->user;
-        $client->save();
+    /** @var Client $client */
+    $client = Client::where('id',$data['id'])->first();
+
+    if(!$client) return response(['','422']);
+
+    if(isset($data['nome']) && $data['nome'] != $client['nome']){
+        $client->update(['nome'=>$data['nome']]);
         return response([
             'notification' => "Profilo cliente aggiornato con successo",
             'status' => "success"
         ],202);
-    }
-        else {
+    } else {
             return response([
                 "notification" => "Errore nell'aggiornamento del cliente!",
                 'status' => "failure",
         ],404);
-        }
+    }
 }
 
     public function destroy(string $id) {

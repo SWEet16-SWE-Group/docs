@@ -7,67 +7,58 @@ import axiosClient from "../axios-client.js";
 
 export default function ModificaProfiloCliente() {
 
+    const [errors, setErrors] = useState(null);
     const {id} = useParams();
-
-    const { setNotificationStatus, setNotification}  = useStateContext();
-
-    const [formData, setFormData] = useState({
-        id: '',
-        nome: '',
-        user: localStorage.getItem('USER_ID'),
-    });
-
+    const {role,setNotificationStatus, setNotification}  = useStateContext();
+    const user_id = localStorage.getItem('USER_ID');
+    const [username, setUsername] = useState('');
     const navigate=useNavigate();
 
     useEffect(() => {
         getClient();
     },[]);
 
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name] : e.target.value,
-        });
-    };
-
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        //apiService.get('/client/'.concat(clientId));
-        updateClientProfile(formData)
-            .then(function (response) {
+        const payload = {
+            id: id,
+            user: user_id,
+            nome: username,
+            role: role,
+        }
+
+        axiosClient.put('/client',payload)
+            .then(({data}) => {
                 // handle success
-                setNotification(response.notification);
-                setNotificationStatus(response.status);
+
                 navigate("/selezioneprofilo");
-                console.log(response);
+                setNotificationStatus(data.status);
+                setNotification(data.notification);
             })
             .catch(error => {
-                // handle error
-                //setMessage(error.response.data.message);
-
-            });
+                    setErrors(error.response.data.errors);
+                });
     }
 
    const getClient = () => {
 
         const payload = {
             id: id,
-            userId: formData.user,
-            role: localStorage.getItem('ROLE'),
+            user: user_id,
+            role: role,
         }
 
         axiosClient.get(`/client/${id}`)
             .then(({data}) => {
 
-            setFormData(data);
+            setUsername(data.nome);
             console.log(data);
-            console.log(formData);
        })
         .catch (error =>
         {
-            setNotification(error.notification);
-            setNotificationStatus(error.status);
+            setErrors('Errore durante il recupero dei dati.');
+            console.error(error);
         })
     }
 
@@ -75,28 +66,31 @@ export default function ModificaProfiloCliente() {
         <div>
                 <h1 className="title text-center">Modifica le informazioni relative a questo profilo</h1>
             <div id="editClientForm">
-                {formData != null ? (
-                    <div>
-                        <form>
-                            <div class="form-group row">
-                                <label for="nome" class="col-sm-2 col-form-label">Username</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="nome" name="nome" value={formData.nome}
-                                           onChange={handleChange}/>
-                                </div>
-                            </div>
-                            <div>
-                            <button onClick={handleSubmit} class="btn btn-primary mb-2">Conferma modifiche</button>
-                            &nbsp; &nbsp;
-                            <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
-                            </div>
-                        </form>
-                    </div>) : (
-                    <p>Loading...</p>
-                )
-
+                {errors && <div className="alert">
+                    {Object.keys(errors).map(key => (
+                        <p key={key}>{errors[key][0]}</p>
+                    ))}
+                </div>
                 }
-
+                <div>
+                    <form>
+                        <div class="form-group row">
+                            <label for="nome" class="col-sm-2 col-form-label">Username</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="nome" name="nome" value={username}
+                                       onChange={ev =>
+                                           setUsername(ev.target.value)}
+                                required
+                                />
+                            </div>
+                        </div>
+                        <div>
+                        <button onClick={handleSubmit} class="btn btn-primary mb-2">Conferma modifiche</button>
+                        &nbsp; &nbsp;
+                        <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     );

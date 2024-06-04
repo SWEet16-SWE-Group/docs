@@ -20,6 +20,8 @@ export default function Login() {
         }
         axiosClient.post('/login', payload)
             .then(({data}) => {
+
+                debugger;
                 setUser(data.user)
                 setRole(data.role);
                 setToken(data.token);
