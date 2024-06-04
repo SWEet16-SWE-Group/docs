@@ -29,9 +29,17 @@ export default function SelezioneProfilo() {
 
                 setClientProfiles(data.clienti);
                 setRestaurantProfiles(data.ristoratori);
+
+                if(data.clienti.length === 0)
+                    setClientProfiles(null);
+
+                if(data.ristoratori.length === 0)
+                    setRestaurantProfiles(null);
+
                 console.log(data);
             })
             .catch(err => {
+
                 const response = err.response;
                 console.error(response);
 
@@ -119,6 +127,7 @@ export default function SelezioneProfilo() {
 
                })
                .catch(data =>  {
+
                    setNotificationStatus(data.status);
                    setNotification(data.notification);
                })
