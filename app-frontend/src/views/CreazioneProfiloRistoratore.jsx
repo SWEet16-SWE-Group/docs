@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
+import {Link, useNavigate} from "react-router-dom";
 
 export default function CreazioneProfiloRistoratore() {
     const { setNotificationStatus, setNotification } = useStateContext();
+    const navigate = useNavigate();
 
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),
@@ -13,7 +15,7 @@ export default function CreazioneProfiloRistoratore() {
         capienza: '',
         orario: ''
     });
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState(null);
 
     const handleChange = (e) => {
         setFormData({
@@ -22,44 +24,32 @@ export default function CreazioneProfiloRistoratore() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([]);
-        try {
-            const response = await axiosClient.post('/crea-ristoratore', formData);
-            setNotificationStatus('success');
-            setNotification('Account ristoratore creato con successo');
-            setFormData({
-                user: localStorage.getItem('USER_ID'),
-                nome: '',
-                indirizzo: '',
-                telefono: '',
-                capienza: '',
-                orario: ''
-            });
-        } catch (error) {
-            if (error.response) {
-                setErrors(Object.values(error.response.data.errors || {}));
-                setNotificationStatus('error');
-                setNotification('Errore nella creazione dell\'account ristoratore');
-            } else {
-                setErrors(['C\'è stato un errore, riprova.']);
-                setNotificationStatus('error');
-                setNotification('C\'è stato un errore, riprova.');
-            }
-        }
+        setErrors(null);
+
+        axiosClient.post('/crea-ristoratore', formData)
+            .then(({data}) => {
+
+            navigate('/selezioneprofilo');
+            setNotificationStatus(data.status);
+            setNotification(data.notification);
+
+        })
+            .catch(error => {
+                setErrors(error.response.data.errors);
+            })
     };
 
     return (
         <div className="container mt-5">
             <h3>Crea account ristoratore</h3>
-            {errors.length > 0 && (
-                <div className="alert alert-danger">
-                    <ul>
-                        {errors.map((error, index) => <li data-testId="notifica" key={index}>{error}</li>)}
-                    </ul>
-                </div>
-            )}
+            {errors && <div className="alert">
+                {Object.keys(errors).map(key => (
+                    <p key={key}>{errors[key][0]}</p>
+                ))}
+            </div>
+            }
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="nome">Nome</label>
@@ -128,14 +118,8 @@ export default function CreazioneProfiloRistoratore() {
                 </div>
                 <div>
                     <button type="submit" className="btn btn-primary me-2">Conferma</button>
-                    <button type="button" className="btn btn-secondary" onClick={() => setFormData({
-                        user: localStorage.getItem('USER_ID'),
-                        nome: '',
-                        indirizzo: '',
-                        telefono: '',
-                        capienza: '',
-                        orario: ''
-                    })}>Annulla</button>
+                    &nbsp; &nbsp;
+                    <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
                 </div>
             </form>
         </div>

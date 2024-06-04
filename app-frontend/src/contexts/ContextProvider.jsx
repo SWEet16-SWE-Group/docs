@@ -48,7 +48,7 @@ export const ContextProvider = ({children}) => {
         _setUser(user)
 
         if(user) {
-            localStorage.setItem('USER_ID', user['id']);
+            localStorage.setItem('USER_ID', user);
         } else {
             localStorage.removeItem('USER_ID');
         }
@@ -58,7 +58,7 @@ export const ContextProvider = ({children}) => {
         _setProfile(profile)
 
         if(profile) {
-            localStorage.setItem('PROFILE_ID',profile['id']);
+            localStorage.setItem('PROFILE_ID',profile);
         } else {
             localStorage.removeItem('PROFILE_ID');
         }
@@ -66,6 +66,7 @@ export const ContextProvider = ({children}) => {
 
     const setNotification = (message) => {
         _setNotification(message)
+
         setTimeout( () => {
             _setNotification('')
         }, 5000)

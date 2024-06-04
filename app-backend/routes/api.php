@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\AllergeniController;
-use App\Http\Controllers\ClientController;
+use App\Http\Controllers\Api\AllergeniController;
+use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserController;

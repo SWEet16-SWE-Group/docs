@@ -21,14 +21,27 @@ class RistoratoreController extends Controller
         $validatedData = $request->validated();
         $ristoratore = Ristoratore::create($validatedData);
 
-        return response()->json($ristoratore, 201);
+        if($ristoratore) {
+            return response([
+                "notification" => "Ristoratore creato con successo",
+                'status' => "success",
+            ], 201);
+        } else {
+            return response([
+                "notification" => "Errore nella creazione di ristoratore!",
+                'status' => "failure",
+            ], 404);
+        }
     }
 
     public function show($id)
     {
         $ristoratore = Ristoratore::find($id);
         if (!$ristoratore) {
-            return response()->json(['error' => 'Ristoratore non trovato'], 404);
+            return response([
+                "notification" => "Ristoratore non trovato!",
+                'status' => "failure",
+            ],404);
         }
         return response()->json($ristoratore);
     }
@@ -45,11 +58,15 @@ class RistoratoreController extends Controller
             $ristoratore -> orario = is_null($request -> orario) ? $ristoratore -> orario : $request -> orario;
             $ristoratore->save();
 
-            return response()->json([
-                "message" => "Ristoratore aggiornato con successo"
+            return response([
+                'notification' => "Ristoratore aggiornato con succcesso",
+                'status' => "success",
             ],202);
         } else {
-            return response()->json(["error" => "Ristoratore non trovato"], 404);
+            return response([
+                'notification' => "Ristoratore non trovato!",
+                'status' => "failure",
+            ],404);
         }
     }
 
@@ -65,9 +82,15 @@ class RistoratoreController extends Controller
             $ristoratore = Ristoratore::where('id', $id)->first();
             $ristoratore->delete();
 
-            return response()->json(['message' => 'Ristoratore eliminato con successo.'], 200);
+            return response([
+                "notification" => "Ristoratore eliminato con succcesso",
+                'status' => "success",
+            ],200);
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Errore durante l\'eliminazione del ristoratore.'], 500);
+            return response([
+                "notification" => "Errore durante l'eliminazione del ristoratore!",
+                'status' => "failure",
+            ],500);
         }
     }
 
@@ -75,7 +98,10 @@ class RistoratoreController extends Controller
         $ristoratori = Ristoratore::where('user', $user)->get();
 
         if ($ristoratori->isEmpty()) {
-            return response()->json(['message' => 'L\'account non ha ristoratori'], 404);
+            return response([
+                "notification" => "Questo account non ha ristoratori!",
+                'status' => "failure",
+            ],404);
         }
 
         return response()->json($ristoratori);

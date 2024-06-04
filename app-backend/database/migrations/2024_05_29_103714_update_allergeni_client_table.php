@@ -15,15 +15,8 @@ class UpdateAllergeniClientTable extends Migration
     {
             Schema::create('allergeni_client', function (Blueprint $table) {
                 $table->id();
-                $table->integer('client_id');
-                $table->integer('allergeni_id');
-    
-                $table->foreign('client_id')->references('id')
-                    ->on('clients')->onDelete('cascade');
-                $table->foreign('allergeni_id')->references('id')
-                    ->on('allergeni')->onDelete('cascade');
-            
-
+                $table->foreignId('client_id')->constrained('clients')->onDelete('cascade');
+                $table->foreignId('allergeni_id')->constrained('allergeni')->onDelete('cascade');
         });
     }
 

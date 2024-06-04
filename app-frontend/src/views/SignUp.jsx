@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useRef, useState} from "react";
 import axiosClient from "../axios-client";
 import {useStateContext} from "../contexts/ContextProvider";
@@ -9,8 +9,8 @@ export default function SignUp() {
     const passwordRef = useRef();
     const passwordConfirmationRef = useRef();
 
+    const navigate= useNavigate();
     const [errors, setErrors] = useState(null)
-
     const {setUser, setToken, setRole, setNotificationStatus, setNotification} = useStateContext()
 
     const onSubmit = (ev) => {
@@ -27,6 +27,7 @@ export default function SignUp() {
                 setRole(data.role)
                 setToken(data.token)
 
+                navigate('/selezioneprofilo');
                 setNotificationStatus('success')
                 setNotification('Registrazione effettuata con successo')
             })

@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import axiosClient from "../axios-client.js";
 import {createRef} from "react";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
@@ -8,6 +8,7 @@ export default function Login() {
     const emailRef = createRef()
     const passwordRef = createRef()
 
+    const navigate= useNavigate();
     const { setUser, setToken, setRole, setNotificationStatus, setNotification} = useStateContext()
     const [message, setMessage] = useState(null)
 
@@ -19,10 +20,12 @@ export default function Login() {
         }
         axiosClient.post('/login', payload)
             .then(({data}) => {
+
                 setUser(data.user)
                 setRole(data.role);
                 setToken(data.token);
 
+                navigate('/selezioneprofilo');
                 setNotificationStatus('success');
                 setNotification('Login effettuato con successo');
 

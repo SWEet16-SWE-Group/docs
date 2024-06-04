@@ -11,7 +11,7 @@ class Client extends Model
 {
     use HasFactory;
 
-    protected $fillable=['id','account','nome'];
+    protected $fillable=['id','user','nome'];
 
     public function allergie() : BelongsToMany
     {
@@ -19,9 +19,8 @@ class Client extends Model
     }
 
     protected $table='clients';
+
     public function user() {
         return $this->belongsTo(User::class, 'user');
     }
-
-    protected $table='clienti';
 }
