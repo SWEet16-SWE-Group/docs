@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 export default function CreazioneProfiloRistoratore() {
     const { setNotificationStatus, setNotification } = useStateContext();
@@ -119,14 +119,8 @@ export default function CreazioneProfiloRistoratore() {
                 </div>
                 <div>
                     <button type="submit" className="btn btn-primary me-2">Conferma</button>
-                    <button type="button" className="btn btn-secondary" onClick={() => setFormData({
-                        user: localStorage.getItem('USER_ID'),
-                        nome: '',
-                        indirizzo: '',
-                        telefono: '',
-                        capienza: '',
-                        orario: ''
-                    })}>Annulla</button>
+                    &nbsp; &nbsp;
+                    <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
                 </div>
             </form>
         </div>

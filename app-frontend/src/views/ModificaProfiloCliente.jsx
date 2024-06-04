@@ -5,7 +5,7 @@ import {useStateContext} from "../contexts/ContextProvider";
 import axios from 'axios';
 import axiosClient from "../axios-client.js";
 
-export default function EditClient() {
+export default function ModificaProfiloCliente() {
 
     const {id} = useParams();
 

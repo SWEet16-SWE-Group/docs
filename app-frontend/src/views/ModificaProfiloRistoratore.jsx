@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
-import { useNavigate, useParams} from 'react-router-dom';
+import {Link, useNavigate, useParams} from 'react-router-dom';
 
 export default function ModificaProfiloRistoratore() {
     const { id } = useParams();
@@ -135,7 +135,8 @@ export default function ModificaProfiloRistoratore() {
                     </div>
                     <div>
                         <button type="submit" className="btn btn-primary me-2">Conferma modifiche</button>
-
+                        &nbsp; &nbsp;
+                        <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
                     </div>
                 </form>
             </>

@@ -56,7 +56,6 @@ export default function SelezioneProfilo() {
                 setProfile(data.profile);
                 setRole(data.role);
 
-
                 setNotificationStatus(data.status);
                 setNotification(data.notification);
                 console.log(data.profile);
@@ -78,14 +77,14 @@ export default function SelezioneProfilo() {
 
         if(profile.tipo === 'Cliente')
         {
-            navigate(`/editClient/${profile.id}`);
+            navigate(`/modificaprofilocliente/${profile.id}`);
         } else if (profile.tipo === 'Ristoratore')
         {
            navigate(`/modificaprofiloristoratore/${profile.id}`);
         }
     }
 
-    const onDeleteProfile = async (profile) => {
+    const onDeleteProfile =  (profile) => {
 
         console.log("dentro elimina ", profile.id);
 
@@ -94,34 +93,41 @@ export default function SelezioneProfilo() {
         }
 
        if(profile.tipo === 'Cliente') {
-           try {
-               const response = await axiosClient.delete(`/client/${profile.id}`);
-               setNotificationStatus('success');
-               setNotification('Ristoratore eliminato con successo.');
-           } catch (error) {
-               setNotificationStatus('failure');
-               setNotification('Errore durante l\'eliminazione del cliente.');
-               console.error(error);
-           }
+
+           axiosClient.delete(`/client/${profile.id}`)
+               .then(({data}) => {
+
+                   setNotificationStatus(data.status);
+                   setNotification(data.notification);
+                   getProfiles();
+
+           })
+               .catch(data =>  {
+                   setNotificationStatus(data.status);
+                   setNotification(data.notification);
+           })
 
        } else if(profile.tipo === 'Ristoratore') {
 
-           try {
-               const response = await axiosClient.delete(`/elimina-ristoratore/${profile.id}`);
-               setNotificationStatus('success');
-               setNotification('Ristoratore eliminato con successo.');
-           } catch (error) {
-               setNotificationStatus('failure');
-               setNotification('Errore durante l\'eliminazione del ristoratore.');
-               console.error(error);
-           }
        }
+           axiosClient.delete(`/elimina-ristoratore/${profile.id}`)
+               .then(({data}) => {
+
+                   setNotificationStatus(data.status);
+                   setNotification(data.notification);
+                   getProfiles();
+
+               })
+               .catch(data =>  {
+                   setNotificationStatus(data.status);
+                   setNotification(data.notification);
+               })
     }
 
     return (
         <div className="container-fluid p-auto border rounded border-2 margin-tb h-auto">
             <div>
-                <Link to={'/newclient'}>Crea nuovo profilo cliente</Link>
+                <Link to={'/creazioneprofilocliente'}>Crea nuovo profilo cliente</Link>
             </div>
             <div>
                 <Link to={'/creazioneprofiloristoratore'}>Crea nuovo profilo ristoratore</Link>
@@ -144,26 +150,28 @@ export default function SelezioneProfilo() {
                     {ClientProfiles && ClientProfiles.map(profile => (
                         <tr>
                             <td>
-                                <button onClick={() =>onSelectProfile(profile)}>Seleziona</button>
+                                <button className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile)}>Seleziona</button>
                             </td>
                             <td>{profile.nome}</td>
                             <td>{profile.tipo}</td>
                             <td>
-                                <button onClick={() => onModifyProfile(profile)}>Modifica</button>
-                                <button onClick={() => onDeleteProfile(profile)}>Elimina</button>
+                                <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile)}>Modifica</button>
+                                &nbsp;
+                                <button className="btn btn-primary me-2" onClick={() => onDeleteProfile(profile)}>Elimina</button>
                             </td>
                         </tr>
                     ))}
                     {RestaurantProfiles && RestaurantProfiles.map(profile => (
                         <tr>
                         <td>
-                            <button onClick={() => onSelectProfile(profile)}>Seleziona</button>
+                            <button className="btn btn-primary me-2" onClick={() => onSelectProfile(profile)}>Seleziona</button>
                         </td>
                             <td>{profile.nome}</td>
                             <td>{profile.tipo}</td>
                             <td>
-                                <button onClick={() => onModifyProfile(profile)}>Modifica</button>
-                                <button onClick={() => onDeleteProfile(profile)}>Elimina</button>
+                                <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile)}>Modifica</button>
+                                &nbsp;
+                                <button className="btn btn-primary me-2" onClick={() => onDeleteProfile(profile)}>Elimina</button>
                             </td>
                         </tr>
                     ))}

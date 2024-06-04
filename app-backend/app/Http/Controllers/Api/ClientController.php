@@ -43,8 +43,7 @@ class ClientController extends Controller
         $clientData=$request->validated();
         $clientData=$clientData["clientData"];
          $cliente= Client::create(['nome'=>$clientData["nome"],
-                                   'account'=>$clientData["account_id"]]);
-     //   $cliente->id=$clientData["profile_id"];
+                                   'user'=>$clientData["account_id"]]);
 
         if ($request -> allergie) {
             $allergies = $request->allergie;
