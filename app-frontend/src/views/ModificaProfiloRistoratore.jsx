@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams} from 'react-router-dom';
 
 export default function ModificaProfiloRistoratore() {
     const { id } = useParams();
-
+    const navigate = useNavigate();
     const { setNotificationStatus, setNotification } = useStateContext();
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),
@@ -46,37 +46,20 @@ export default function ModificaProfiloRistoratore() {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         setErrorMessage('');
-        try {
-            const response = await axiosClient.put(`/modifica-ristoratore/${id}`, formData);
-            setNotificationStatus('success');
-            setNotification('Dati aggiornati con successo.');
-        } catch (error) {
-            setErrorMessage('Errore durante l\'aggiornamento dei dati.');
-            console.error(error);
-        }
-    };
 
-    const handleDelete = async () => {
-        setErrorMessage('');
-        try {
-            const response = await axiosClient.delete(`/elimina-ristoratore/${id}`);
-            setNotificationStatus('success');
-            setNotification('Ristoratore eliminato con successo.');
-            setFormData({
-                user: localStorage.getItem('USER_ID'),
-                nome: '',
-                indirizzo: '',
-                telefono: '',
-                capienza: '',
-                orario: ''
-            });
-        } catch (error) {
-            setErrorMessage('Errore durante l\'eliminazione del ristoratore.');
-            console.error(error);
-        }
+        axiosClient.put(`/modifica-ristoratore/${id}`, formData)
+            .then(({data}) => {
+                navigate('/selezioneprofilo');
+                setNotificationStatus(data.status);
+                setNotification(data.notification);
+        })
+            .catch(error =>  {
+                setErrorMessage('Errore durante l\'aggiornamento dei dati.');
+                console.error(error);
+        })
     };
 
     return (
@@ -151,8 +134,8 @@ export default function ModificaProfiloRistoratore() {
                         />
                     </div>
                     <div>
-                        <button type="submit" className="btn btn-primary me-2">Modifica</button>
-                        <button type="button" className="btn btn-danger" onClick={handleDelete}>Elimina</button>
+                        <button type="submit" className="btn btn-primary me-2">Conferma modifiche</button>
+
                     </div>
                 </form>
             </>
