@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import axiosClient from "../axios-client";
 import {get} from "axios";
 import {Link, Navigate, redirect} from "react-router-dom";
@@ -133,7 +133,7 @@ export default function ModificaInfoAccount() {
 
     return (
 
-        <div className="form">
+        <div className="container mt-5">
 
             <h1 className="title text-center">Modifica le informazioni relative al tuo account</h1>
 
@@ -145,11 +145,11 @@ export default function ModificaInfoAccount() {
                     ))}
                 </div>
                 }
-                <input onChange={ev => setUser({...user, password: ev.target.value})} type="password"
+                <input className="form-control" onChange={ev => setUser({...user, password: ev.target.value})} type="password"
                        placeholder=" Nuova Password"/>
-                <input onChange={ev => setUser({...user, password_confirmation: ev.target.value})} type="password"
+                <input className="form-control" onChange={ev => setUser({...user, password_confirmation: ev.target.value})} type="password"
                        placeholder=" Ripeti nuova password"/>
-                <button className="btn btn-block">Salva</button>
+                <button className="btn btn-primary me-2">Salva</button>
             </form>
 
             <form onSubmit={onModifyEmail}>
@@ -162,11 +162,14 @@ export default function ModificaInfoAccount() {
                 }
                 <input onChange={ev => setUser({...user, email: ev.target.value})} value={user.email} type="email"
                        required/>
-                <button className="btn btn-block">Salva</button>
+                <button className="btn btn-primary me-2">Salva</button>
+                &nbsp; &nbsp;
+                <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
             </form>
 
+
             <form onSubmit={onDelete}>
-                <button className="btn btn-delete">Elimina account</button>
+                <button className="btn btn-danger me-2">Elimina account</button>
             </form>
         </div>
 

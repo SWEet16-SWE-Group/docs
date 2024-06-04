@@ -1,5 +1,5 @@
-import {  useParams , useNavigate} from "react-router-dom";
-import {useState , useEffect } from 'react';
+import {useParams, useNavigate, Link} from "react-router-dom";
+import React, {useState , useEffect } from 'react';
 import { fetchClientProfile , deleteClientProfile , updateClientProfile } from '../services/ClientService';
 import {useStateContext} from "../contexts/ContextProvider";
 import axios from 'axios';
@@ -85,7 +85,11 @@ export default function ModificaProfiloCliente() {
                                            onChange={handleChange}/>
                                 </div>
                             </div>
+                            <div>
                             <button onClick={handleSubmit} class="btn btn-primary mb-2">Conferma modifiche</button>
+                            &nbsp; &nbsp;
+                            <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
+                            </div>
                         </form>
                     </div>) : (
                     <p>Loading...</p>
@@ -97,5 +101,3 @@ export default function ModificaProfiloCliente() {
         </div>
     );
 }
-
-// <div>  {message && <p>{message}</p>}</div>

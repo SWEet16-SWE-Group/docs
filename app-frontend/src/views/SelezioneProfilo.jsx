@@ -157,7 +157,7 @@ export default function SelezioneProfilo() {
                             <td>
                                 <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile)}>Modifica</button>
                                 &nbsp;
-                                <button className="btn btn-primary me-2" onClick={() => onDeleteProfile(profile)}>Elimina</button>
+                                <button className="btn btn-danger me-2" onClick={() => onDeleteProfile(profile)}>Elimina</button>
                             </td>
                         </tr>
                     ))}
@@ -171,7 +171,7 @@ export default function SelezioneProfilo() {
                             <td>
                                 <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile)}>Modifica</button>
                                 &nbsp;
-                                <button className="btn btn-primary me-2" onClick={() => onDeleteProfile(profile)}>Elimina</button>
+                                <button className="btn btn-danger me-2" onClick={() => onDeleteProfile(profile)}>Elimina</button>
                             </td>
                         </tr>
                     ))}

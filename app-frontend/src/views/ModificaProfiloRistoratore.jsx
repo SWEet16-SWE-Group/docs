@@ -64,7 +64,7 @@ export default function ModificaProfiloRistoratore() {
 
     return (
         <div className="container mt-5">
-            <h3>Modifica account ristoratore</h3>
+            <h1 className="title text-center">Modifica le informazioni relative a questo profilo</h1>
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             <>
                 <form onSubmit={handleSubmit}>
