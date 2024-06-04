@@ -11,8 +11,6 @@ export default function CreazioneProfiloCliente() {
     const navigate= useNavigate();
     const {role, setNotification, setNotificationStatus } = useStateContext();
     const user_id = localStorage.getItem('USER_ID');
-
-    console.log('user: ',user_id);
     const [username, setUsername] = useState('');
     const [allergeni,setAllergeni] = useState([]);
 
@@ -53,11 +51,9 @@ export default function CreazioneProfiloCliente() {
             role : role
         };
 
-        console.log(payload);
 
         axiosClient.post('/client',payload)
             .then(({data}) => {
-
 
                 navigate('/selezioneprofilo');
                 setNotificationStatus(data.status);

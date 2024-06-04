@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateClientRequest;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\ClientRequest;
@@ -59,7 +60,7 @@ class ClientController extends Controller
         ],201);
 }
 
-public function update(ClientRequest $request) {
+public function update(UpdateClientRequest $request) {
 
     $data = $request->validated();
 

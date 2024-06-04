@@ -59,12 +59,12 @@ class RistoratoreController extends Controller
             $ristoratore->save();
 
             return response([
-                "notification" => "Ristoratore aggiornato con succcesso",
+                'notification' => "Ristoratore aggiornato con succcesso",
                 'status' => "success",
             ],202);
         } else {
             return response([
-                "notification" => "Ristoratore non trovato!",
+                'notification' => "Ristoratore non trovato!",
                 'status' => "failure",
             ],404);
         }

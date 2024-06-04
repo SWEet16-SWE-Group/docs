@@ -44,7 +44,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/ristoratori/{id}', [RistoratoreController::class, 'listByUser']);
     Route::post('/crea-ristoratore', [RistoratoreController::class, 'store']);
     Route::get('/get-ristoratore/{id}', [RistoratoreController::class, 'show']);
-    Route::put('/modifica-ristoratore', [RistoratoreController::class, 'update']);
+    Route::put('/modifica-ristoratore/{id}', [RistoratoreController::class, 'update']);
     Route::delete('/elimina-ristoratore/{id}', [RistoratoreController::class, 'destroy']);
     /*
     Route::middleware(UserIsRestaurant::class) {
