@@ -40,10 +40,10 @@ class ClientController extends Controller
 
     public function store(ClientRequest $request)  {
 
-        $clientData=$request->validated();
-        $clientData=$clientData["clientData"];
-         $cliente= Client::create(['nome'=>$clientData["nome"],
-                                   'user'=>$clientData["account_id"]]);
+        $data= $request->validated();
+
+         $cliente = Client::create(['nome'=>$data['nome'],
+                                   'user'=>$data['user']]);
 
         if ($request -> allergie) {
             $allergies = $request->allergie;
@@ -59,13 +59,14 @@ class ClientController extends Controller
         ],201);
 }
 
-public function update(Request $request) {
+public function update(ClientRequest $request) {
 
+    $data = $request->validated();
 
-    if (Client::where('id',$request -> id) -> exists()) {
-        $client= Client::find($request->id);
-        $client->nome = is_null($request->nome) ? $client->nome : $request->nome;
-        $client-> user = is_null($request->user) ? $client->user : $request->user;
+    if (Client::where('id',$data -> id) -> exists()) {
+        $client= Client::find($data->id);
+        $client->nome = is_null($data->nome) ? $client->nome : $data->nome;
+        $client-> user = is_null($data->user) ? $client->user : $data->user;
         $client->save();
         return response([
             'notification' => "Profilo cliente aggiornato con successo",

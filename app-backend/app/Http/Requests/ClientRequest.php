@@ -24,19 +24,8 @@ class ClientRequest extends FormRequest
     public function rules()
     {
         return [
-            'clientData' => 'required',
-            'clientData.nome' => 'required|string|max:255|unique:clients,nome',
-            'clientData.account_id' => 'required|exists:users,id',
-
+            'user' => 'required|exists:users,id',
+            'nome' => 'required|string|max:255|unique:clients,nome',
         ];
     }
-
-    public function messages()
-{
-    return [
-        'clientData.nome.required' => 'Inserisci il nome!',
-        'clientData.nome.unique' => 'Profilo con tale nome già esistente!',
-        'clientData.account_id.exists' => 'Profilo non collegato ad un account esistente!',
-    ];
-}
 }

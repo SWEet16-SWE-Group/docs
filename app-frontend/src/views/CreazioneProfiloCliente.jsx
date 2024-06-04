@@ -7,14 +7,11 @@ import ContextProvider, {useStateContext} from "../contexts/ContextProvider";
 import axiosClient from "../axios-client.js";
 
 export default function CreazioneProfiloCliente() {
+    const [errors, setErrors] = useState(null);
+    const navigate= useNavigate();
+    const {user, role, setNotification, setNotificationStatus } = useStateContext();
 
-    const {role, setNotification, setNotificationStatus } = useStateContext();
-
-    const [formData, setFormData] = useState({
-        account_id: localStorage.getItem('USER_ID'),
-        nome: ''
-    });
-
+    const [username, setUsername] = useState('');
     const [allergeni,setAllergeni] = useState([]);
 
 //selectedIds rappresenta gli allergeni selezionati
@@ -42,44 +39,41 @@ export default function CreazioneProfiloCliente() {
         getAllergeni();
     },[]);
 
-    const navigate=useNavigate();
-
-    const [message,setMessage] = useState();
-
-    const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
-    };
-
 
     const handleSubmit = (event) => {
 
         event.preventDefault();
 
-        axiosClient.post('/client',{
-            clientData: formData,
+        const payload = {
+            nome: username,
+            user: user,
             allergie: selectedIds,
             role : role
-        })
+        };
+
+
+        axiosClient.post('/client',payload)
             .then(({data}) => {
 
-                debugger;
+
                 navigate('/selezioneprofilo');
                 setNotificationStatus(data.status);
                 setNotification(data.notification);
             })
                 .catch(error  => {
-                    setMessage(error.notification);
-                    console.log(error);
+                    setErrors(error.response.data.errors);
                 });
     }
 
     return(
         <div>
             <h1>Inserisci i tuoi dati</h1>
-            {message && <div><p>{message}</p></div>}
+            {errors && <div className="alert">
+                {Object.keys(errors).map(key => (
+                    <p key={key}>{errors[key][0]}</p>
+                ))}
+            </div>
+            }
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="nome">Username</label>
@@ -88,8 +82,9 @@ export default function CreazioneProfiloCliente() {
                         className="form-control"
                         id="nome"
                         name="nome"
-                        value={formData.nome}
-                        onChange={handleChange}
+                        value={username}
+                        onChange={ev =>
+                            setUsername(ev.target.value)}
                         required
                     />
                 </div>
