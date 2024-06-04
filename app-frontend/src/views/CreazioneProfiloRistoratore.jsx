@@ -15,7 +15,7 @@ export default function CreazioneProfiloRistoratore() {
         capienza: '',
         orario: ''
     });
-    const [errors, setErrors] = useState([]);
+    const [errors, setErrors] = useState(null);
 
     const handleChange = (e) => {
         setFormData({
@@ -26,7 +26,7 @@ export default function CreazioneProfiloRistoratore() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([]);
+        setErrors(null);
 
         axiosClient.post('/crea-ristoratore', formData)
             .then(({data}) => {
@@ -37,20 +37,19 @@ export default function CreazioneProfiloRistoratore() {
 
         })
             .catch(error => {
-                setErrors(error.notification);
+                setErrors(error.response.data.errors);
             })
     };
 
     return (
         <div className="container mt-5">
             <h3>Crea account ristoratore</h3>
-            {errors.length > 0 && (
-                <div className="alert alert-danger">
-                    <ul>
-                        {errors.map((error, index) => <li data-testId="notifica" key={index}>{error}</li>)}
-                    </ul>
-                </div>
-            )}
+            {errors && <div className="alert">
+                {Object.keys(errors).map(key => (
+                    <p key={key}>{errors[key][0]}</p>
+                ))}
+            </div>
+            }
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="nome">Nome</label>
