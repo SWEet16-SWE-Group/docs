@@ -33,15 +33,6 @@ export default function AuthenticatedLayout() {
                 })
         }
 
-
-        const goToModificaAccountInfo = () => {
-            Navigate("/modificainfoaccount");
-        }
-
-        const goToSelectProfile = () => {
-            Navigate("/selezioneprofilo");
-        }
-
         return (
             <>
                 <div id="defaultLayout">

@@ -18,7 +18,6 @@ const router = createBrowserRouter([
         path: '/',
         element: <AuthenticatedLayout />,
         children: [
-
             {
                 path: '/selezioneprofilo',
                 element: <SelezioneProfilo />
