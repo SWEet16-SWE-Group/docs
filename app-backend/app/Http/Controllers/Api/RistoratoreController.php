@@ -6,6 +6,8 @@ use App\Http\Requests\RistoratoreRequest;
 use App\Models\Ristoratore;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Pietanza;
+use DB;
 
 class RistoratoreController extends Controller
 {
@@ -105,5 +107,16 @@ class RistoratoreController extends Controller
         }
 
         return response()->json($ristoratori);
+    }
+
+    public function menu($id){
+        $menu = Pietanza::select('pietanze.nome as nome', DB::raw('GROUP_CONCAT(ingredienti.nome SEPARATOR ", ") as ingredienti'))
+            ->join('ristoratori','ristoratori.id', '=', 'pietanze.ristoratore')
+            ->join('ricette','pietanze.id','=','ricette.pietanza')
+            ->join('ingredienti','ingredienti.id','=','ricette.ingrediente')
+            ->groupBy('pietanze.nome')
+            ->where('ristoratori.id',$id)
+            ->get();
+        return response()->json($menu,200);
     }
 }
