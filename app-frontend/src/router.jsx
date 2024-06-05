@@ -53,6 +53,14 @@ const router = createBrowserRouter([
         element: <Layout Content={<Ristoranti />} />
     },
     {
+        path: '/ristorante/:id',
+        element: <Layout Content={<Ristorante />} />
+    },
+    {
+        path: '/menu/:id',
+        element: <Layout Content={<Menu />} />
+    },
+    {
         path: '/login',
         element: <Layout Content={<Login />} />,
     },
