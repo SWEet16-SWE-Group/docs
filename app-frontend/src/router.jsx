@@ -64,23 +64,31 @@ const router = createBrowserRouter([
                 element: <Ristoranti />
             },
             */
+             {
+                path: '*',
+                element: <NotFound />
+             },
         ]
     },
     {
         path: '/',
         element: <RestaurantLayout />,
         children: [
-            /*
             // decommentare qui per dashboard
             {
                 path: '/',
                 element: <Navigate to="/dashboardristoratore" />
             },
+            /*
             {
                 path: '/ristoranti',
                 element: <Ristoranti />
             },
             */
+             {
+                path: '/dashboardristoratore',
+                element: <NotFound />
+             },
         ]
     },
     {
