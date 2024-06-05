@@ -40,68 +40,31 @@ export default function SelezioneProfilo() {
 
 
     const onSelectProfile = (profile, role) => {
-        console.log(profile);
-        console.log(localStorage);
         setProfile(profile.id);
         setRole(role);
-        console.log(localStorage);
         navigate('/');
     }
 
 
-    const onModifyProfile = (profile) => {
-
-        console.log("dentro modifica ", profile.id);
-        console.log(profile.tipo);
-
-        if(profile.tipo === 'Cliente')
-        {
-            navigate(`/modificaprofilocliente/${profile.id}`);
-        } else if (profile.tipo === 'Ristoratore')
-        {
-           navigate(`/modificaprofiloristoratore/${profile.id}`);
-        }
+    const onModifyProfile = (profile, url) => {
+        navigate(`/${url}/${profile.id}`);
     }
 
-    const onDeleteProfile =  (profile) => {
-
-        console.log("dentro elimina ", profile.id);
-
+    const onDeleteProfile =  (profile, url) => {
         if(!window.confirm("Sei sicuro di voler eliminare questo profilo?")) {
             return
         }
 
-       if(profile.tipo === 'Cliente') {
-
-           axiosClient.delete(`/client/${profile.id}`)
-               .then(({data}) => {
-
-                   setNotificationStatus(data.status);
-                   setNotification(data.notification);
-                   getProfiles();
-
+        axiosClient.delete(`/${url}/${profile.id}`)
+           .then(({data}) => {
+               setNotificationStatus(data.status);
+               setNotification(data.notification);
+               getProfiles();
            })
-               .catch(data =>  {
-                   setNotificationStatus(data.status);
-                   setNotification(data.notification);
+           .catch(data =>  {
+               setNotificationStatus(data.status);
+               setNotification(data.notification);
            })
-
-       } else if(profile.tipo === 'Ristoratore') {
-
-       }
-           axiosClient.delete(`/elimina-ristoratore/${profile.id}`)
-               .then(({data}) => {
-
-                   setNotificationStatus(data.status);
-                   setNotification(data.notification);
-                   getProfiles();
-
-               })
-               .catch(data =>  {
-
-                   setNotificationStatus(data.status);
-                   setNotification(data.notification);
-               })
     }
 
     return (
@@ -135,9 +98,9 @@ export default function SelezioneProfilo() {
                             <td>{profile.nome}</td>
                             <td>{profile.tipo}</td>
                             <td>
-                                <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile)}>Modifica</button>
+                                <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile,'modificaprofilocliente')}>Modifica</button>
                                 &nbsp;
-                                <button className="btn btn-danger me-2" onClick={() => onDeleteProfile(profile)}>Elimina</button>
+                                <button className="btn btn-danger me-2" onClick={() => onDeleteProfile(profile,'client')}>Elimina</button>
                             </td>
                         </tr>
                     ))}
@@ -149,9 +112,9 @@ export default function SelezioneProfilo() {
                             <td>{profile.nome}</td>
                             <td>{profile.tipo}</td>
                             <td>
-                                <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile)}>Modifica</button>
+                                <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile,'modificaprofiloristoratore')}>Modifica</button>
                                 &nbsp;
-                                <button className="btn btn-danger me-2" onClick={() => onDeleteProfile(profile)}>Elimina</button>
+                                <button className="btn btn-danger me-2" onClick={() => onDeleteProfile(profile,'elimina-ristoratore')}>Elimina</button>
                             </td>
                         </tr>
                     ))}
