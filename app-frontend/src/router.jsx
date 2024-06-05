@@ -41,6 +41,26 @@ function Ristoratore () {
 
 const router = createBrowserRouter([
     {
+      path: '/login',
+      element: <Layout Content={<Login />} />,
+    },
+    {
+        path: '/ristoranti',
+        element: <Layout Content={<Ristoranti />} />
+    },
+    {
+        path: '/login',
+        element: <Login />
+    },
+    {
+        path: '/signup',
+        element: <SignUp />
+    },
+    {
+        path: '*',
+        element: <NotFound />
+    },
+    {
         path: '/',
         element: <Autenticato />,
         children: [
@@ -125,22 +145,6 @@ const router = createBrowserRouter([
         path: '/',
         element: <Layout />,
         children: [
-            {
-                path: '/ristoranti',
-                element: <Ristoranti />
-            },
-            {
-                path: '/login',
-                element: <Login />
-            },
-            {
-                path: '/signup',
-                element: <SignUp />
-            },
-            {
-                path: '*',
-                element: <NotFound />
-            }
         ]
     },
 ])

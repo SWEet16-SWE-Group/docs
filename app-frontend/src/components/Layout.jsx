@@ -62,7 +62,7 @@ function Header(){
 
 }
 
-export default function Layout() {
+export default function Layout({Content}) {
 
     const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
 
@@ -76,7 +76,7 @@ export default function Layout() {
 
                 <main>
                     <div> {role}! </div>
-                    <Outlet/>
+                    {Content}
 
                     {notification &&
                         <div className={`notification ${notificationStatus}`}>
