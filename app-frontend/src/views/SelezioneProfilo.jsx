@@ -77,6 +77,7 @@ export default function SelezioneProfilo() {
             );
     }
 
+
     const onModifyProfile = (profile) => {
 
         console.log("dentro modifica ", profile.id);
