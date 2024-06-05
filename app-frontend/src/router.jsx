@@ -3,10 +3,9 @@ import SignUp from "./views/SignUp.jsx";
 import Login from "./views/Login";
 import Ristoranti from "./views/Ristoranti";
 import NotFound from "./views/NotFound.jsx";
-import AuthenticatedLayout from "./components/AuthenticatedLayout";
-import GuestLayout from "./components/GuestLayout";
-import ClientLayout from "./components/ClientLayout"
-import RestaurantLayout from "./components/RestaurantLayout"
+
+import Layout from "./components/Layout"
+
 import ModificaInfoAccount from "./views/ModificaInfoAccount";
 import SelezioneProfilo from "./views/SelezioneProfilo";
 import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore";
@@ -17,7 +16,7 @@ import CreazioneProfiloCliente from "./views/CreazioneProfiloCliente.jsx";
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <AuthenticatedLayout />,
+        element: <Layout />,
         children: [
             {
                 path: '/selezioneprofilo',
@@ -51,7 +50,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <ClientLayout />,
+        element: <Layout />,
         children: [
 
             // decommentare qui per dashboard
@@ -73,7 +72,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <RestaurantLayout />,
+        element: <Layout />,
         children: [
             // decommentare qui per dashboard
             {
@@ -94,7 +93,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <GuestLayout />,
+        element: <Layout />,
         children: [
             {
                 path: '/ristoranti',
