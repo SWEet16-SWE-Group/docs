@@ -71,7 +71,7 @@ export const ContextProvider = ({children}) => {
         _setRistoratore(ristoratore)
 
         if (ristoratore) {
-            localStorage.setItem('RISTORATORE_ID', ristoratore['id']);
+            localStorage.setItem('RISTORATORE_ID', ristoratore);
         } else {
             localStorage.removeItem('RISTORATORE_ID');
         }
