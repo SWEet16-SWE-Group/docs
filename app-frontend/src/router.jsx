@@ -48,6 +48,7 @@ function Ristoratore ({Content}) {
 }
 
 const router = createBrowserRouter([
+    // ANONIMO
     {
         path: '/ristoranti',
         element: <Layout Content={<Ristoranti />} />
@@ -68,51 +69,41 @@ const router = createBrowserRouter([
         path: '/signup',
         element: <Layout Content={<SignUp />} />,
     },
+
+    // AUTENTICATO
     {
         path: '/selezioneprofilo',
         element: <Autenticato Content={<SelezioneProfilo />} />
     },
     {
-        path: '*',
-        element: <Layout Content={<NotFound />} />,
+        path: '/selezioneprofilo',
+        element: <Autenticato Content={<SelezioneProfilo />} />
     },
     {
-        path: '/',
-        element: <Autenticato />,
-        children: [
-            {
-                path: '/dashboard',
-                element: <Navigate to="/selezioneprofilo" />
-            },
-            {
-                path: '/selezioneprofilo',
-                element: <SelezioneProfilo />
-            },
-            {
-                path: '/creazioneprofilocliente',
-                element: <CreazioneProfiloCliente />
-            },
-            {
-                path: '/creazioneprofiloristoratore',
-                element: <CreazioneProfiloRistoratore />
-            },
-            {
-                path: '/modificaprofilocliente/:id',
-                element: <ModificaProfiloCliente />
-            },
-            {
-                path: '/modificaprofiloristoratore/:id',
-                element: <ModificaProfiloRistoratore/>
-            },
-            {
-                path: '/modificainfoaccount',
-                element: <ModificaInfoAccount />
-            },
-            {
-                path: '*',
-                element: <NotFound />
-            }
-        ]
+        path: '/creazioneprofilocliente',
+        element: <Autenticato Content={<CreazioneProfiloCliente />} />
+    },
+    {
+        path: '/creazioneprofiloristoratore',
+        element: <Autenticato Content={<CreazioneProfiloRistoratore />} />
+    },
+    {
+        path: '/modificaprofilocliente/:id',
+        element: <Autenticato Content={<ModificaProfiloCliente />} />
+    },
+    {
+        path: '/modificaprofiloristoratore/:id',
+        element: <Autenticato Content={<ModificaProfiloRistoratore />} />
+    },
+    {
+        path: '/modificainfoaccount',
+        element: <Autenticato Content={<ModificaInfoAccount />} />
+    },
+
+    // 404
+    {
+        path: '*',
+        element: <Layout Content={<NotFound />} />,
     },
     {
         path: '/',
