@@ -57,10 +57,12 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/update-prenotazioni/{id}', [PrenotazioniController::class,'updateStatus']);
 
     Route::get('/ingredienti/{id}', [IngredienteController::class, 'index']);
+    Route::put('/ingredienti/{id}', [IngredienteController::class,'update']);
     Route::delete('/ingredienti/{id}', [IngredienteController::class, 'destroy']);
     Route::post('/ingredienti', [IngredienteController::class, 'store']);
 
     Route::get('/pietanze/{id}', [PietanzaController::class, 'index']);
+    Route::put('/pietanze/{id}', [PietanzaController::class,'update']);
     Route::delete('/pietanze/{id}', [PietanzaController::class, 'destroy']);
     Route::post('/pietanze', [PietanzaController::class, 'store']);
 

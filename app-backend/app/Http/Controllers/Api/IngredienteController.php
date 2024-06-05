@@ -28,7 +28,7 @@ class IngredienteController extends Controller
         return response()->json($ingrediente, 201);
     }
 
-    public function update(Request $request, $id)
+    public function update(IngredienteRequest $request, $id)
     {
         $ingrediente = Ingrediente::find($id);
 
