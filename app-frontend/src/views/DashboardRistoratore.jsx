@@ -4,10 +4,11 @@ import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
 export default function RistoratoreDashboard() {
-    const { ristoratore, setNotification, setNotificationStatus } = useStateContext();
+    const { profile, setNotification, setNotificationStatus } = useStateContext();
     const [ristoratoreInfo, setRistoratoreInfo] = useState(null);
     const [prenotazioni, setPrenotazioni] = useState([]);
-    
+
+    const ristoratore= profile;
 
     useEffect(() => {
         if (ristoratore) {
