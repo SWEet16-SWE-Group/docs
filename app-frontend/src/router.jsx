@@ -13,11 +13,41 @@ import ModificaProfiloCliente from "./views/ModificaProfiloCliente";
 import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore";
 import CreazioneProfiloCliente from "./views/CreazioneProfiloCliente.jsx";
 
+import {useStateContext} from "./contexts/ContextProvider";
+
+function Autenticato () {
+  const {token} = useStateContext()
+  if(!token){
+    return <Navigate to={"/Login"} />
+  }
+  return <Layout />
+};
+
+function Cliente () {
+  const {role} = useStateContext()
+  if (role !== 'CLIENTE') {
+    return <Navigate to={"/dashboard"} />
+  }
+  return <Autenticato />
+}
+
+function Ristoratore () {
+  const {role} = useStateContext()
+  if (role !== 'RISTORATORE') {
+    return <Navigate to={"/dashboard"} />
+  }
+  return <Autenticato />
+}
+
 const router = createBrowserRouter([
     {
         path: '/',
-        element: <Layout />,
+        element: <Autenticato />,
         children: [
+            {
+                path: '/dashboard',
+                element: <Navigate to="/selezioneprofilo" />
+            },
             {
                 path: '/selezioneprofilo',
                 element: <SelezioneProfilo />
@@ -50,13 +80,13 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <Layout />,
+        element: <Cliente />,
         children: [
 
             // decommentare qui per dashboard
              {
                 path: '/',
-                element: <Navigate to="/dashboardcliente" />
+                element: <NotFound />
              },
             /*
             {
@@ -72,7 +102,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/',
-        element: <Layout />,
+        element: <Ristoratore />,
         children: [
             // decommentare qui per dashboard
             {
