@@ -100,32 +100,18 @@ const router = createBrowserRouter([
         element: <Autenticato Content={<ModificaInfoAccount />} />
     },
 
+    //CLIENTE
+    {
+       path: '/dashboardcliente',
+       element: <Cliente Content={<NotFound />} />
+    },
+
+    //RISTORATORE
+
     // 404
     {
         path: '*',
         element: <Layout Content={<NotFound />} />,
-    },
-    {
-        path: '/',
-        element: <Cliente />,
-        children: [
-
-            // decommentare qui per dashboard
-             {
-                path: '/',
-                element: <NotFound />
-             },
-            /*
-            {
-                path: '/ristoranti',
-                element: <Ristoranti />
-            },
-            */
-             {
-                path: '/dashboardcliente',
-                element: <NotFound />
-             },
-        ]
     },
     {
         path: '/',
@@ -136,12 +122,6 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Navigate to="/dashboardristoratore" />
             },
-            /*
-            {
-                path: '/ristoranti',
-                element: <Ristoranti />
-            },
-            */
             {
                 path: '/dashboardristoratore',
                 element: <RistoratoreDashboard />
