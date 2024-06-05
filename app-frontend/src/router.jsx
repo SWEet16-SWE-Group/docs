@@ -1,7 +1,6 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import SignUp from "./views/SignUp.jsx";
 import Login from "./views/Login";
-import Ristoranti from "./views/Ristoranti";
 import NotFound from "./views/NotFound.jsx";
 
 import Layout from "./components/Layout"
@@ -12,6 +11,15 @@ import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore";
 import ModificaProfiloCliente from "./views/ModificaProfiloCliente";
 import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore";
 import CreazioneProfiloCliente from "./views/CreazioneProfiloCliente.jsx";
+import RistoratoreDashboard from "./views/DashboardRistoratore.jsx";
+import GestioneMenu from "./views/GestioneMenu.jsx";
+import GestioneIngredienti from "./views/GestioneIngredienti.jsx";
+import FormPietanza from "./views/FormPietanza.jsx";
+import FormIngrediente from "./views/FormIngredienti.jsx";
+
+import Ristoranti from "./views/Ristoranti";
+import Ristorante from "./views/Ristorante";
+import Menu from "./views/Menu";
 
 import {useStateContext} from "./contexts/ContextProvider";
 
@@ -131,10 +139,26 @@ const router = createBrowserRouter([
                 element: <Ristoranti />
             },
             */
-             {
+            {
                 path: '/dashboardristoratore',
-                element: <NotFound />
-             },
+                element: <RistoratoreDashboard />
+            },
+            {
+                path: '/gestionemenu/:ristoratoreId',
+                element: <GestioneMenu />
+            },
+            {
+                path: '/creapietanza/:ristoratoreId',
+                element: <FormPietanza />
+            },
+            {
+                path: '/gestioneingredienti/:ristoratoreId',
+                element: <GestioneIngredienti/>
+            },
+            {
+                path: 'creaingrediente/:ristoratoreId',
+                element: <FormIngrediente />
+            },
         ]
     },
 ])

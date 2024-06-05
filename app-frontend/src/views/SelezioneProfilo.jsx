@@ -7,7 +7,7 @@ export default function SelezioneProfilo() {
 
     const navigate = useNavigate();
 
-    const {role, setRole, setProfile, setNotification, setNotificationStatus } = useStateContext()
+    const {role, setRole, setProfile, setRistoratore,setNotification, setNotificationStatus } = useStateContext()
     const [ClientProfiles, setClientProfiles] = useState(null);
     const [RestaurantProfiles, setRestaurantProfiles] = useState(null);
 
