@@ -13,6 +13,7 @@ import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore";
 import ModificaProfiloCliente from "./views/ModificaProfiloCliente";
 import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore";
 import CreazioneProfiloCliente from "./views/CreazioneProfiloCliente.jsx";
+import RistoratoreDashboard from "./views/DashboardRistoratore.jsx";
 
 const router = createBrowserRouter([
     {
@@ -88,7 +89,7 @@ const router = createBrowserRouter([
             */
              {
                 path: '/dashboardristoratore',
-                element: <NotFound />
+                element: <RistoratoreDashboard />
              },
         ]
     },

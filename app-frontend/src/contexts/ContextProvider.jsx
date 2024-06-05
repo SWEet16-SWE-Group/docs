@@ -6,12 +6,14 @@ const StateContext = createContext({
     token: null,
     role : null,
     profile: null,
+    ristoratore: null,
     notification: null,
     notificationStatus: null,
     setUser: () => {},
     setToken: () => {},
     setRole: () => {},
     setProfile: () => {},
+    setRistoratore: () => {},
     setNotification: () => {},
     setNotificationStatus: () => {}
 })
@@ -21,6 +23,7 @@ export const ContextProvider = ({children}) => {
     const [role, _setRole] = useState(localStorage.getItem('ROLE'));
     const [token, _setToken] = useState(localStorage.getItem('ACCESS_TOKEN'));
     const [profile, _setProfile] = useState(localStorage.getItem('PROFILE_ID'));
+    const [ristoratore, _setRistoratore] = useState(localStorage.getItem('RISTORATORE_ID'));
     const [notification, _setNotification] = useState('');
     const [notificationStatus, setNotificationStatus] = useState('failure');
 
@@ -64,6 +67,16 @@ export const ContextProvider = ({children}) => {
         }
     }
 
+    const setRistoratore = (ristoratore) => {
+        _setRistoratore(ristoratore)
+
+        if (ristoratore) {
+            localStorage.setItem('RISTORATORE_ID', ristoratore['id']);
+        } else {
+            localStorage.removeItem('RISTORATORE_ID');
+        }
+    }
+
     const setNotification = (message) => {
         _setNotification(message)
 
@@ -79,12 +92,14 @@ export const ContextProvider = ({children}) => {
             token,
             role,
             profile,
+            ristoratore,
             notification,
             notificationStatus,
             setUser,
             setToken,
             setRole,
             setProfile,
+            setRistoratore,
             setNotification,
             setNotificationStatus
         }}>

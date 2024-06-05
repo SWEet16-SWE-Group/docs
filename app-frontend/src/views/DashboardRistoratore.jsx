@@ -4,22 +4,21 @@ import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
 export default function RistoratoreDashboard() {
-    const { setNotification, setNotificationStatus } = useStateContext();
+    const { ristoratore, setNotification, setNotificationStatus } = useStateContext();
     const [ristoratoreInfo, setRistoratoreInfo] = useState(null);
     const [prenotazioni, setPrenotazioni] = useState([]);
 
-    const { ristoratoreId } = useParams();
 
     useEffect(() => {
-        if (ristoratoreId) {
-            fetchRistoratoreInfo(ristoratoreId);
-            fetchPrenotazioni(ristoratoreId);
+        if (ristoratore) {
+            fetchRistoratoreInfo(ristoratore);
+            fetchPrenotazioni(ristoratore);
         }
-    }, [id]);
+    }, [ristoratore]);
 
-    const fetchRistoratoreInfo = async (ristoratoreId) => {
+    const fetchRistoratoreInfo = async (ristoratore) => {
         try {
-            const response = await axiosClient.get(`/get-ristoratore/${ristoratoreId}`);
+            const response = await axiosClient.get(`/get-ristoratore/${ristoratore}`);
             setRistoratoreInfo(response.data);
         } catch (error) {
             setNotificationStatus('error');
@@ -28,9 +27,9 @@ export default function RistoratoreDashboard() {
         }
     };
 
-    const fetchPrenotazioni = async (ristoratoreId) => {
+    const fetchPrenotazioni = async (ristoratore) => {
         try {
-            const response = await axiosClient.get(`/prenotazioni/${ristoratoreId}`);
+            const response = await axiosClient.get(`/prenotazioni/${ristoratore}`);
             setPrenotazioni(response.data);
         } catch (error) {
             setNotification('error');
@@ -74,7 +73,7 @@ export default function RistoratoreDashboard() {
                     <p>Telefono: {ristoratoreInfo.telefono}</p>
                     <p>Capienza: {ristoratoreInfo.capienza}</p>
                     <p>Orario: {ristoratoreInfo.orario}</p>
-                    <Link to={`/modificaprofiloristoratore/${ristoratoreId}`}>Modifica Informazioni</Link>
+                    <Link to={`/modificaprofiloristoratore/${ristoratore}`}>Modifica Informazioni</Link>
                     <hr class="my-4"></hr>
                     <h2>Prenotazioni</h2>
                     {prenotazioni.length > 0 ? (
@@ -112,9 +111,9 @@ export default function RistoratoreDashboard() {
                     )}
                     <hr class="my-4"></hr>
                     <h4>Menu</h4>
-                    <Link to={`/gestionemenu/${ristoratoreId}`}>Gestisci Menu</Link>
+                    <Link to={`/gestionemenu/${ristoratore}`}>Gestisci Menu</Link>
                     <h4>Ingredienti</h4>
-                    <Link to={`/gestioneingredienti/${ristoratoreId}`}>Gestisci Ingredienti</Link>
+                    <Link to={`/gestioneingredienti/${ristoratore}`}>Gestisci Ingredienti</Link>
                 </div>
             ) : (
                 <p>Caricamento informazioni...</p>
