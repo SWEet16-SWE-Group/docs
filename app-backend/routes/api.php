@@ -42,7 +42,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::put('/userpassword', [UserController::class, 'updateUserPassword'])
         ->middleware('authenticated');
-    
+
     Route::get('/ristoratori/{id}', [RistoratoreController::class, 'listByUser']);
     Route::post('/crea-ristoratore', [RistoratoreController::class, 'store']);
     Route::get('/get-ristoratore/{id}', [RistoratoreController::class, 'show']);
@@ -105,4 +105,4 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/ristoranti',[RistoratoreController::class,'index']);
 Route::get('/ristorante/{id}',[RistoratoreController::class,'show']);
-Route::get('/menu/{id}',[RistoratoreController::class,'menu']);
+Route::get('/menu/{id}', [PietanzaController::class, 'index']);
