@@ -23,28 +23,28 @@ import Menu from "./views/Menu";
 
 import {useStateContext} from "./contexts/ContextProvider";
 
-function Autenticato () {
+function Autenticato ({Content}) {
   const {token} = useStateContext()
   if(!token){
     return <Navigate to={"/Login"} />
   }
-  return <Layout />
+  return <Layout Content={Content} />
 };
 
-function Cliente () {
+function Cliente ({Content}) {
   const {role} = useStateContext()
   if (role !== 'CLIENTE') {
     return <Navigate to={"/Login"} />
   }
-  return <Layout />
+  return <Layout Content={Content} />
 }
 
-function Ristoratore () {
+function Ristoratore ({Content}) {
   const {role} = useStateContext()
   if (role !== 'RISTORATORE') {
     return <Navigate to={"/Login"} />
   }
-  return <Layout />
+  return <Layout Content={Content} />
 }
 
 const router = createBrowserRouter([
@@ -67,6 +67,10 @@ const router = createBrowserRouter([
     {
         path: '/signup',
         element: <Layout Content={<SignUp />} />,
+    },
+    {
+        path: '/selezioneprofilo',
+        element: <Autenticato Content={<SelezioneProfilo />} />
     },
     {
         path: '*',
