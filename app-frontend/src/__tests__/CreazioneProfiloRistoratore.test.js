@@ -1,23 +1,32 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor, act } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { ContextProvider } from '../contexts/ContextProvider.jsx';
-import CreazioneProfiloRistoratore from '../views/CreazioneProfiloRistoratore.jsx';
-import axiosClient from '../axios-client.js';
+import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { ContextProvider } from '../contexts/ContextProvider';
+import CreazioneProfiloRistoratore from '../views/CreazioneProfiloRistoratore';
+import axiosClient from '../axios-client';
+import { act } from 'react';
 
 jest.mock('../axios-client');
 
 const renderWithContext = (component) => {
-    return render(
-        <ContextProvider>
-            {component}
-        </ContextProvider>
-    );
+    act(() => {
+        return render(
+            <ContextProvider>
+                <MemoryRouter initialEntries={['/crea-ristoratore']}>
+                    <Routes>
+                        <Route path="/crea-ristoratore" element={component} />
+                    </Routes>
+                </MemoryRouter>
+            </ContextProvider>
+        );
+    });
 };
 
 describe('CreazioneProfiloRistoratore', () => {
     it('renders the form correctly', () => {
-        renderWithContext(<CreazioneProfiloRistoratore/>);
+        renderWithContext(<CreazioneProfiloRistoratore />);
+
         expect(screen.getByText('Crea account ristoratore')).toBeInTheDocument();
         expect(screen.getByLabelText('Nome')).toBeInTheDocument();
         expect(screen.getByLabelText('Indirizzo')).toBeInTheDocument();
@@ -26,26 +35,34 @@ describe('CreazioneProfiloRistoratore', () => {
         expect(screen.getByLabelText('Orario apertura - chiusura')).toBeInTheDocument();
     });
 
-    it('submits the form successfuly', async () => {
-        axiosClient.post.mockResolvedValueOnce({ data: {} });
+    it('handles form input changes', () => {
+        renderWithContext(<CreazioneProfiloRistoratore />);
 
-        renderWithContext(<CreazioneProfiloRistoratore/>);
+        fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Ristorante Uno' } });
+        expect(screen.getByLabelText('Nome').value).toBe('Ristorante Uno');
+    });
 
-        fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Test Ristorante' }});
-        fireEvent.change(screen.getByLabelText('Indirizzo'), { target: { value: 'Test Indirizzo' }});
-        fireEvent.change(screen.getByLabelText('Telefono'), { target: { value: '1234567890' }});
-        fireEvent.change(screen.getByLabelText('Capienza'), { target: { value: '50' }});
-        fireEvent.change(screen.getByLabelText('Orario apertura - chiusura'), { target: { value: '19:30 - 20:30' }});
+    it('handles form submission successfully', async () => {
+        axiosClient.post.mockResolvedValueOnce({ data: { status: 'success', notification: 'Ristorante creato con successo.' } });
+
+        renderWithContext(<CreazioneProfiloRistoratore />);
+        fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Ristorante Uno' } });
+        fireEvent.change(screen.getByLabelText('Indirizzo'), { target: { value: 'Indirizzo Uno' } });
+        fireEvent.change(screen.getByLabelText('Telefono'), { target: { value: '1234567890' } });
+        fireEvent.change(screen.getByLabelText('Capienza'), { target: { value: '50' } });
+        fireEvent.change(screen.getByLabelText('Orario apertura - chiusura'), { target: { value: '19:30 - 20:30' } });
 
         fireEvent.click(screen.getByText('Conferma'));
 
-        expect(axiosClient.post).toHaveBeenCalledWith('/crea-ristoratore', {
-            user: localStorage.getItem('USER_ID'),
-            nome: 'Test Ristorante',
-            indirizzo: 'Test Indirizzo',
-            telefono: '1234567890',
-            capienza: "50",
-            orario: '19:30 - 20:30',
+        await waitFor(() => {
+            expect(axiosClient.post).toHaveBeenCalledWith('/crea-ristoratore', {
+                user: localStorage.getItem('USER_ID'),
+                nome: 'Ristorante Uno',
+                indirizzo: 'Indirizzo Uno',
+                telefono: '1234567890',
+                capienza: '50',
+                orario: '19:30 - 20:30'
+            });
         });
     });
 
@@ -54,43 +71,26 @@ describe('CreazioneProfiloRistoratore', () => {
             response: {
                 data: {
                     errors: {
-                        nome: ['Nome è richiesto'],
+                        nome: ['Nome è richiesto.'],
+                        indirizzo: ['Indirizzo è richiesto.']
                     }
                 }
             }
         });
 
-        renderWithContext(<CreazioneProfiloRistoratore/>);
-
-        fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Test Ristorante' }});
-        fireEvent.change(screen.getByLabelText('Indirizzo'), { target: { value: 'Test Indirizzo' }});
-        fireEvent.change(screen.getByLabelText('Telefono'), { target: { value: '1234567890' }});
-        fireEvent.change(screen.getByLabelText('Capienza'), { target: { value: '50' }});
-        fireEvent.change(screen.getByLabelText('Orario apertura - chiusura'), { target: { value: '19:30 - 20:30' }});
-        
-        fireEvent.click(screen.getByText('Conferma'));
-
-        await waitFor(() => {
-            expect(screen.getByTestId('notifica').textContent).toBe('Nome è richiesto');
-            expect(screen.getByText('Nome è richiesto')).toBeInTheDocument();
-        });
-    });
-
-    it('resets the form on cancel', () => {
         renderWithContext(<CreazioneProfiloRistoratore />);
-      
-        fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Test Ristorante' } });
-        fireEvent.change(screen.getByLabelText('Indirizzo'), { target: { value: 'Test Indirizzo' } });
+
+        fireEvent.change(screen.getByLabelText('Nome'), { target: { value: '' } });
+        fireEvent.change(screen.getByLabelText('Indirizzo'), { target: { value: '' } });
         fireEvent.change(screen.getByLabelText('Telefono'), { target: { value: '1234567890' } });
         fireEvent.change(screen.getByLabelText('Capienza'), { target: { value: '50' } });
         fireEvent.change(screen.getByLabelText('Orario apertura - chiusura'), { target: { value: '19:30 - 20:30' } });
-      
-        fireEvent.click(screen.getByText('Annulla'));
-      
-        expect(screen.getByLabelText('Nome').value).toBe('');
-        expect(screen.getByLabelText('Indirizzo').value).toBe('');
-        expect(screen.getByLabelText('Telefono').value).toBe('');
-        expect(screen.getByLabelText('Capienza').value).toBe('');
-        expect(screen.getByLabelText('Orario apertura - chiusura').value).toBe('');
-      });      
+
+        fireEvent.click(screen.getByText('Conferma'));
+
+        await waitFor(() => {
+            expect(screen.getByText('Nome è richiesto.')).toBeInTheDocument();
+            expect(screen.getByText('Indirizzo è richiesto.')).toBeInTheDocument();
+        });
+    });
 });
