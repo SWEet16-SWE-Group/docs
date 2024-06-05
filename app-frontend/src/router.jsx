@@ -65,7 +65,7 @@ const router = createBrowserRouter([
             },
             */
              {
-                path: '*',
+                path: '/dashboardcliente',
                 element: <NotFound />
              },
         ]
