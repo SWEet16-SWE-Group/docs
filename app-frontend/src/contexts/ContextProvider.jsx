@@ -58,7 +58,7 @@ export const ContextProvider = ({children}) => {
         _setProfile(profile)
 
         if(profile) {
-            localStorage.setItem('PROFILE_ID',profile['id']);
+            localStorage.setItem('PROFILE_ID',profile);
         } else {
             localStorage.removeItem('PROFILE_ID');
         }
