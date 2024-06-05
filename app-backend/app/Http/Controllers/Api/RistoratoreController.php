@@ -106,4 +106,10 @@ class RistoratoreController extends Controller
 
         return response()->json($ristoratori);
     }
+
+    public function menu($id) {
+        $menu = Ristoratore::where('id', $id)
+            ->join('pietanze', 'pietanze.ristorante', '=', 'ristoratori.id');
+        return response()->json($menu, 200);
+    }
 }
