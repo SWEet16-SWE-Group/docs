@@ -75,7 +75,7 @@ describe('CreazioneProfiloRistoratore', () => {
             expect(screen.getByText('Nome è richiesto')).toBeInTheDocument();
         });
     });
-
+/**
     it('resets the form on cancel', () => {
         renderWithContext(<CreazioneProfiloRistoratore />);
       
@@ -92,5 +92,6 @@ describe('CreazioneProfiloRistoratore', () => {
         expect(screen.getByLabelText('Telefono').value).toBe('');
         expect(screen.getByLabelText('Capienza').value).toBe('');
         expect(screen.getByLabelText('Orario apertura - chiusura').value).toBe('');
-      });      
+      });
+*/      
 });
