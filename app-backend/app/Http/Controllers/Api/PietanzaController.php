@@ -31,10 +31,10 @@ class PietanzaController extends Controller
     public function update(PietanzaRequest $request, $id)
     {
         $request->validated();
-        $pietanza = Pietanza::findOrFail($id);
+        $pietanza = Pietanza::find($id);
         if(!$pietanza) {
             return response()->json([
-                'message' => 'Pientanza non trovata'
+                'message' => 'Pietanza non trovata'
             ], 404);
         }
         $pietanza->update($request->all());
@@ -45,7 +45,7 @@ class PietanzaController extends Controller
     {
         $pietanza = Pietanza::find($id);
         if (!$pietanza) {
-            return response()->json(['message' => 'ingrediente non trovato'], 404);
+            return response()->json(['message' => 'Pietanza non trovata'], 404);
         }
         $pietanza ->delete();
         return response()->json(['message' => 'Pietanza eliminata con successo'], 204);
