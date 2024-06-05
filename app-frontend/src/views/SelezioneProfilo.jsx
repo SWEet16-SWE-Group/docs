@@ -18,30 +18,19 @@ export default function SelezioneProfilo() {
 
     const getProfiles = () => {
 
-        const $payload = {
+        const payload = {
             id: user.id,
             role: role
         };
 
-        axiosClient.post('/profiles',$payload)
+        axiosClient.post('/profiles',payload)
             .then(({data}) => {
-
                 setClientProfiles(data.clienti);
                 setRestaurantProfiles(data.ristoratori);
-
-                if(data.clienti.length === 0)
-                    setClientProfiles(null);
-
-                if(data.ristoratori.length === 0)
-                    setRestaurantProfiles(null);
-
-                console.log(data);
             })
             .catch(err => {
-
                 const response = err.response;
                 console.error(response);
-
             })
     }
 
