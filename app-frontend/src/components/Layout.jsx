@@ -24,7 +24,7 @@ function Header(){
 
   const defaultHeader = (
       <header>
-          <div> Header </div>
+          <div> {role} </div>
           <Link to="/Ristoranti">Esplora</Link>
           <Link to="/Login">Login</Link>
           <Link to="/SignUp">Sign up</Link>
@@ -34,10 +34,12 @@ function Header(){
   return ({
     '': defaultHeader,
     'null': defaultHeader,
+    null: defaultHeader,
+    undefined: defaultHeader,
     'ANONIMO': defaultHeader,
     'AUTENTICATO':(
         <header>
-            <div> Header </div>
+            <div> {role} </div>
             <Link to="/modificainfoaccount" className="btn-info">Profilo</Link>
             <Link to="/selezioneprofilo" className="btn-info">Selezione Profilo</Link>
             <div> {localStorage.USER_ID} </div>
@@ -46,7 +48,7 @@ function Header(){
     ),
     'CLIENTE':(
         <header>
-            <div> Header </div>
+            <div> {role} </div>
             <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
             <div> {user} </div>
             <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
@@ -54,7 +56,7 @@ function Header(){
     ),
     'RISTORATORE':(
         <header>
-            <div> Header </div>
+            <div> {role} </div>
             <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
             <div> {user} </div>
             <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
