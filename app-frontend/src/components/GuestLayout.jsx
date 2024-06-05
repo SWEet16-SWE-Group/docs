@@ -1,4 +1,4 @@
-import {Navigate, Outlet} from "react-router-dom";
+import {Link, Navigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 
 export default function GuestLayout() {
@@ -10,9 +10,25 @@ export default function GuestLayout() {
     }
     return (
         <>
-        <div>
-            <Outlet />
-        </div>
+          <div id="defaultLayout">
+              <aside>
+                  <Link to="/">DashBoard</Link>
+              </aside>
+              <div className="content">
+                  <header>
+                      <div>
+                          Header
+                      </div>
+                      <Link to="/Ristoranti">Esplora</Link>
+                      <Link to="/Login">Login</Link>
+                      <Link to="/SignUp">Sign up</Link>
+                  </header>
+
+                  <main>
+                      <Outlet/>
+                  </main>
+              </div>
+          </div>
         </>
     )
 }

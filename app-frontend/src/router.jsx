@@ -1,6 +1,7 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import SignUp from "./views/SignUp.jsx";
 import Login from "./views/Login";
+import Ristoranti from "./views/Ristoranti";
 import NotFound from "./views/NotFound.jsx";
 import AuthenticatedLayout from "./components/AuthenticatedLayout";
 import GuestLayout from "./components/GuestLayout";
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
         path: '/',
         element: <GuestLayout />,
         children: [
+            {
+                path: '/ristoranti',
+                element: <Ristoranti />
+            },
             {
                 path: '/login',
                 element: <Login />
