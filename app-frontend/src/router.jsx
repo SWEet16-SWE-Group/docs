@@ -107,42 +107,31 @@ const router = createBrowserRouter([
     },
 
     //RISTORATORE
+    {
+        path: '/dashboardristoratore',
+        element: <Ristoratore Content={<RistoratoreDashboard />} />,
+    },
+    {
+        path: '/gestionemenu/:ristoratoreId',
+        element: <Ristoratore Content={<GestioneMenu />} />,
+    },
+    {
+        path: '/creapietanza/:ristoratoreId',
+        element: <Ristoratore Content={<FormPietanza />} />,
+    },
+    {
+        path: '/gestioneingredienti/:ristoratoreId',
+        element: <Ristoratore Content={<GestioneIngredienti />} />,
+    },
+    {
+        path: 'creaingrediente/:ristoratoreId',
+        element: <Ristoratore Content={<FormIngrediente />} />,
+    },
 
     // 404
     {
         path: '*',
         element: <Layout Content={<NotFound />} />,
-    },
-    {
-        path: '/',
-        element: <Ristoratore />,
-        children: [
-            // decommentare qui per dashboard
-            {
-                path: '/',
-                element: <Navigate to="/dashboardristoratore" />
-            },
-            {
-                path: '/dashboardristoratore',
-                element: <RistoratoreDashboard />
-            },
-            {
-                path: '/gestionemenu/:ristoratoreId',
-                element: <GestioneMenu />
-            },
-            {
-                path: '/creapietanza/:ristoratoreId',
-                element: <FormPietanza />
-            },
-            {
-                path: '/gestioneingredienti/:ristoratoreId',
-                element: <GestioneIngredienti/>
-            },
-            {
-                path: 'creaingrediente/:ristoratoreId',
-                element: <FormIngrediente />
-            },
-        ]
     },
 ])
 
