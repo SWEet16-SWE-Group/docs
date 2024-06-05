@@ -11,7 +11,7 @@ export default function RestaurantLayout() {
     }
 
     if (token && role === 'AUTENTICATO') {
-        return <Navigate to={"/selezionaprofilo"}/>
+        return <Navigate to={"/selezioneprofilo"}/>
     }
 
     if (token && role === 'CLIENTE') {
@@ -30,6 +30,11 @@ export default function RestaurantLayout() {
                     setRole('')
                 })
         }
+      
+        const onLogoutProfile = (ev) => {
+          ev.preventDefault()
+          setRole('AUTENTICATO')
+        }
 
         return (
             <>
@@ -41,6 +46,9 @@ export default function RestaurantLayout() {
                         <header>
                             <div>
                                 Header
+                            </div>
+                            <div>
+                                <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
                             </div>
                             <div>
                                 {user.email}
