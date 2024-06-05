@@ -24,9 +24,14 @@ E:
 composer install
 ```
 
-Infine: 
+Ora: 
 ```
 php artisan key:generate
+```
+
+Ed infine:
+```
+php artisan migrate
 ```
 
 Controllare ora se la pagina di laravel (localhost/8000) non dia errori, se così non fosse chiamare sempre da dentro il container docker:
