@@ -17,7 +17,6 @@ export default function RestaurantLayout() {
     if (token && role === 'CLIENTE') {
         return <Navigate to={"/dashboardcliente"}/>
     }
-    debugger;
 
     if (token && role === 'RISTORATORE') {
         const onLogout = (ev) => {
@@ -44,16 +43,10 @@ export default function RestaurantLayout() {
                     </aside>
                     <div className="content">
                         <header>
-                            <div>
-                                Header
-                            </div>
-                            <div>
-                                <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
-                            </div>
-                            <div>
-                                {user.email}
-                                <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
-                            </div>
+                            <div> Header </div>
+                            <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
+                            <div> {user.email} </div>
+                            <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
                         </header>
 
                         <main>

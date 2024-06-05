@@ -41,20 +41,11 @@ export default function AuthenticatedLayout() {
                     </aside>
                     <div className="content">
                         <header>
-                            <div>
-                                Header
-                            </div>
-                            <div>
-                                <Link to="/modificainfoaccount" className="btn-info">Profilo</Link>
-                            </div>
-
-                            <div>
-                                <Link to="/selezioneprofilo" className="btn-info">Selezione Profilo</Link>
-                            </div>
-                            <div>
-                                {localStorage.USER_ID}
-                                <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
-                            </div>
+                            <div> Header </div>
+                            <Link to="/modificainfoaccount" className="btn-info">Profilo</Link>
+                            <Link to="/selezioneprofilo" className="btn-info">Selezione Profilo</Link>
+                            <div> {localStorage.USER_ID} </div>
+                            <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
                         </header>
 
                         <main>
@@ -63,8 +54,8 @@ export default function AuthenticatedLayout() {
 
                             {notification &&
                                 <div className={`notification ${notificationStatus}`}>
-                                {notification}
-                            </div>
+                                    {notification}
+                                </div>
                             }
                         </main>
                     </div>

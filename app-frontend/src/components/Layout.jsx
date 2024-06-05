@@ -64,7 +64,9 @@ function Header(){
 }
 
 export default function Layout() {
-    const {notification, notificationStatus} = useStateContext()
+
+    const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
+
     return (
         <div id="defaultLayout">
             <aside>
@@ -74,7 +76,7 @@ export default function Layout() {
               <Header />
 
                 <main>
-                    <div>Ristoratore!</div>
+                    <div> {role}! </div>
                     <Outlet/>
 
                     {notification &&
