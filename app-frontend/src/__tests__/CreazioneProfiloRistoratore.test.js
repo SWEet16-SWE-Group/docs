@@ -5,19 +5,22 @@ import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { ContextProvider } from '../contexts/ContextProvider';
 import CreazioneProfiloRistoratore from '../views/CreazioneProfiloRistoratore';
 import axiosClient from '../axios-client';
+import { act } from 'react';
 
 jest.mock('../axios-client');
 
 const renderWithContext = (component) => {
-    return render(
-        <ContextProvider>
-            <MemoryRouter initialEntries={['/crea-ristoratore']}>
-                <Routes>
-                    <Route path="/crea-ristoratore" element={component} />
-                </Routes>
-            </MemoryRouter>
-        </ContextProvider>
-    );
+    act(() => {
+        return render(
+            <ContextProvider>
+                <MemoryRouter initialEntries={['/crea-ristoratore']}>
+                    <Routes>
+                        <Route path="/crea-ristoratore" element={component} />
+                    </Routes>
+                </MemoryRouter>
+            </ContextProvider>
+        );
+    });
 };
 
 describe('CreazioneProfiloRistoratore', () => {
@@ -43,7 +46,6 @@ describe('CreazioneProfiloRistoratore', () => {
         axiosClient.post.mockResolvedValueOnce({ data: { status: 'success', notification: 'Ristorante creato con successo.' } });
 
         renderWithContext(<CreazioneProfiloRistoratore />);
-
         fireEvent.change(screen.getByLabelText('Nome'), { target: { value: 'Ristorante Uno' } });
         fireEvent.change(screen.getByLabelText('Indirizzo'), { target: { value: 'Indirizzo Uno' } });
         fireEvent.change(screen.getByLabelText('Telefono'), { target: { value: '1234567890' } });
