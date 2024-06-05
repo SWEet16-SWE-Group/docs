@@ -1,7 +1,6 @@
 import {createBrowserRouter, Navigate} from "react-router-dom";
 import SignUp from "./views/SignUp.jsx";
 import Login from "./views/Login";
-import Ristoranti from "./views/Ristoranti";
 import NotFound from "./views/NotFound.jsx";
 import AuthenticatedLayout from "./components/AuthenticatedLayout";
 import GuestLayout from "./components/GuestLayout";
@@ -13,6 +12,9 @@ import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore";
 import ModificaProfiloCliente from "./views/ModificaProfiloCliente";
 import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore";
 import CreazioneProfiloCliente from "./views/CreazioneProfiloCliente.jsx";
+
+import Ristoranti from "./views/Ristoranti";
+import Ristorante from "./views/Ristorante";
 
 const router = createBrowserRouter([
     {
@@ -99,6 +101,10 @@ const router = createBrowserRouter([
             {
                 path: '/ristoranti',
                 element: <Ristoranti />
+            },
+            {
+                path: '/ristorante/:id',
+                element: <Ristorante />
             },
             {
                 path: '/login',
