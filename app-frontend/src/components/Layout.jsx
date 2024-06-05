@@ -7,14 +7,10 @@ function Header(){
   const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
 
   const onLogout = (ev) => {
-      ev.preventDefault()
-
-      axiosClient.post('/logout')
-          .then(() => {
-              setUser('')
-              setToken(null)
-              setRole('ANONIMO')
-          })
+    ev.preventDefault()
+    setUser('')
+    setToken(null)
+    setRole('ANONIMO')
   }
 
   const onLogoutProfile = (ev) => {
