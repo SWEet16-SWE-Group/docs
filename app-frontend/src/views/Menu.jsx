@@ -6,7 +6,7 @@ import {createRef} from "react";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
 
 function fetch(id,set) {
-  axiosClient.get(`/ristorantemenu/${id}`).then(
+  axiosClient.get(`/menu/${id}`).then(
     data => { set(data.data) }
   )
 }
@@ -18,17 +18,12 @@ function pietanza(a){
       <p> {a.ingredienti} </p>
     </div>
   );
+
 }
 
 export default function Ristorante() {
     const {id} = useParams();
     const [r,sr] = useState(null);
-    //useEffect(() => fetch(id,sr) ,[]);
-    sr([
-      {nome:'a', ingredienti:'a'},
-      {nome:'aa', ingredienti:'aa'},
-      {nome:'aaa', ingredienti:'aaa'},
-      {nome:'aaaa', ingredienti:'aaaa'},
-    ]);
+    useEffect(() => fetch(id,sr) ,[]);
     return (<div>{r && r.map(pietanza)}</div>)
 }
