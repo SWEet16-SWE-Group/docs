@@ -47,7 +47,6 @@ export const ContextProvider = ({children}) => {
     const setUser = (user) => {
         _setUser(user)
 
-        debugger;
         if(user) {
             localStorage.setItem('USER_ID', user);
         } else {
