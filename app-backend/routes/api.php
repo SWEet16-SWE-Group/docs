@@ -6,6 +6,9 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\RistoratoreController;
+use App\Http\Controllers\Api\PrenotazioniController;
+use App\Http\Controllers\Api\IngredienteController;
+use App\Http\Controllers\Api\PietanzaController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
@@ -40,12 +43,29 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/userpassword', [UserController::class, 'updateUserPassword'])
         ->middleware('authenticated');
 
-    // Da fare il middleware
     Route::get('/ristoratori/{id}', [RistoratoreController::class, 'listByUser']);
     Route::post('/crea-ristoratore', [RistoratoreController::class, 'store']);
     Route::get('/get-ristoratore/{id}', [RistoratoreController::class, 'show']);
     Route::put('/modifica-ristoratore/{id}', [RistoratoreController::class, 'update']);
     Route::delete('/elimina-ristoratore/{id}', [RistoratoreController::class, 'destroy']);
+
+    Route::get('/prenotazioni', [PrenotazioniController::class, 'index']);
+    Route::get('/prenotazioni/{id}', [PrenotazioniController::class,'show']);
+    Route::post('/prenotazioni', [PrenotazioniController::class,'store']);
+    Route::put('/prenotazioni/{id}', [PrenotazioniController::class,'update']);
+    Route::delete('/prenotazioni/{id}', [PrenotazioniController::class,'destroy']);
+    Route::put('/update-prenotazioni/{id}', [PrenotazioniController::class,'updateStatus']);
+
+    Route::get('/ingredienti/{id}', [IngredienteController::class, 'index']);
+    Route::put('/ingredienti/{id}', [IngredienteController::class,'update']);
+    Route::delete('/ingredienti/{id}', [IngredienteController::class, 'destroy']);
+    Route::post('/ingredienti', [IngredienteController::class, 'store']);
+
+    Route::get('/pietanze/{id}', [PietanzaController::class, 'index']);
+    Route::put('/pietanze/{id}', [PietanzaController::class,'update']);
+    Route::delete('/pietanze/{id}', [PietanzaController::class, 'destroy']);
+    Route::post('/pietanze', [PietanzaController::class, 'store']);
+
     /*
     Route::middleware(UserIsRestaurant::class) {
         Route::prefix('restaurant')->group(function () {})
@@ -83,3 +103,6 @@ Route::get('/allergeni',[AllergeniController::class,'index']);
 Route::post('/signup', [AuthController::class, 'signup']);
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/ristoranti',[RistoratoreController::class,'index']);
+Route::get('/ristorante/{id}',[RistoratoreController::class,'show']);
+Route::get('/menu/{id}', [RistoratoreController::class, 'menu']);

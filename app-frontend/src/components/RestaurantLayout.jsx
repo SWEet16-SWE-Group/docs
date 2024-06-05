@@ -17,7 +17,6 @@ export default function RestaurantLayout() {
     if (token && role === 'CLIENTE') {
         return <Navigate to={"/dashboardcliente"}/>
     }
-    debugger;
 
     if (token && role === 'RISTORATORE') {
         const onLogout = (ev) => {
