@@ -19,7 +19,7 @@ export default function GuestLayout() {
                       <div>
                           Header
                       </div>
-                      <Link to="/">Esplora</Link>
+                      <Link to="/Ristoranti">Esplora</Link>
                       <Link to="/Login">Login</Link>
                       <Link to="/SignUp">Sign up</Link>
                   </header>
