@@ -7,7 +7,7 @@ export default function SelezioneProfilo() {
 
     const navigate = useNavigate();
 
-    const {role, setRole, setProfile, setNotification, setNotificationStatus } = useStateContext()
+    const {role, setRole, setProfile, setRistoratore,setNotification, setNotificationStatus } = useStateContext()
     const [ClientProfiles, setClientProfiles] = useState(null);
     const [RestaurantProfiles, setRestaurantProfiles] = useState(null);
 
@@ -60,12 +60,22 @@ export default function SelezioneProfilo() {
         }
         axiosClient.post('/selectprofile',payload)
             .then(({data}) => {
-                setProfile(data.profile['id']);
-                setRole(data.role);
+                if (profile.tipo === 'Cliente') {
+                    setProfile(data.profile['id']);
+                    setRole(data.role);
 
-                setNotificationStatus(data.status);
-                setNotification(data.notification);
-                console.log(data.profile);
+                    setNotificationStatus(data.status);
+                    setNotification(data.notification);
+                    console.log(data.profile);
+                } else {
+                    setRistoratore(data.profile['id']);
+                    setRole(data.role);
+
+                    setNotificationStatus(data.status);
+                    setNotification(data.notification);
+                    console.log(data.profile);
+                }
+                
 
             })
             .catch(err => {
