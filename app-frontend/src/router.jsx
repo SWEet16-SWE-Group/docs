@@ -26,17 +26,17 @@ function Autenticato () {
 function Cliente () {
   const {role} = useStateContext()
   if (role !== 'CLIENTE') {
-    return <Navigate to={"/dashboard"} />
+    return <Navigate to={"/Login"} />
   }
-  return <Autenticato />
+  return <Layout />
 }
 
 function Ristoratore () {
   const {role} = useStateContext()
   if (role !== 'RISTORATORE') {
-    return <Navigate to={"/dashboard"} />
+    return <Navigate to={"/Login"} />
   }
-  return <Autenticato />
+  return <Layout />
 }
 
 const router = createBrowserRouter([
