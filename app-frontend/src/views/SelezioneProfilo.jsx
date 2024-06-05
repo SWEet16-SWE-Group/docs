@@ -50,31 +50,13 @@ export default function SelezioneProfilo() {
     }, [])
 
 
-    const onSelectProfile = (profile) => {
-
-        const payload = {
-            userId: user.id,
-            profileId: profile.id,
-            profileType: profile.tipo,
-            role: role
-        }
-        axiosClient.post('/selectprofile',payload)
-            .then(({data}) => {
-                setProfile(data.profile['id']);
-                setRole(data.role);
-
-                setNotificationStatus(data.status);
-                setNotification(data.notification);
-                console.log(data.profile);
-
-            })
-            .catch(err => {
-                    const response = err.response;
-                    if(response && response.status === 422) {
-                        redirect('/');
-                    }
-                }
-            );
+    const onSelectProfile = (profile, role) => {
+        console.log(profile);
+        console.log(localStorage);
+        setProfile(profile.id);
+        setRole(role);
+        console.log(localStorage);
+        navigate('/');
     }
 
 
@@ -159,7 +141,7 @@ export default function SelezioneProfilo() {
                     {ClientProfiles && ClientProfiles.map(profile => (
                         <tr>
                             <td>
-                                <button className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile)}>Seleziona</button>
+                                <button className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile,'CLIENTE')}>Seleziona</button>
                             </td>
                             <td>{profile.nome}</td>
                             <td>{profile.tipo}</td>
@@ -173,7 +155,7 @@ export default function SelezioneProfilo() {
                     {RestaurantProfiles && RestaurantProfiles.map(profile => (
                         <tr>
                         <td>
-                            <button className="btn btn-primary me-2" onClick={() => onSelectProfile(profile)}>Seleziona</button>
+                            <button className="btn btn-primary me-2" onClick={() => onSelectProfile(profile,'RISTORATORE')}>Seleziona</button>
                         </td>
                             <td>{profile.nome}</td>
                             <td>{profile.tipo}</td>
