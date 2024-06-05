@@ -20,6 +20,7 @@ import FormIngrediente from "./views/FormIngredienti.jsx";
 
 import Ristoranti from "./views/Ristoranti";
 import Ristorante from "./views/Ristorante";
+import Menu from "./views/Menu";
 
 const router = createBrowserRouter([
     {
