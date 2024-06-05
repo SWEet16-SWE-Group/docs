@@ -23,7 +23,7 @@ export default function SignUp() {
         console.log(payload);
         axiosClient.post('/signup', payload)
             .then(({data}) => {
-                setUser(data.user)
+                setUser(data.user['id'])
                 setRole(data.role)
                 setToken(data.token)
 

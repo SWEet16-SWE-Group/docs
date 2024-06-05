@@ -47,6 +47,7 @@ export const ContextProvider = ({children}) => {
     const setUser = (user) => {
         _setUser(user)
 
+        debugger;
         if(user) {
             localStorage.setItem('USER_ID', user);
         } else {
@@ -58,7 +59,7 @@ export const ContextProvider = ({children}) => {
         _setProfile(profile)
 
         if(profile) {
-            localStorage.setItem('PROFILE_ID',profile);
+            localStorage.setItem('PROFILE_ID',profile['id']);
         } else {
             localStorage.removeItem('PROFILE_ID');
         }

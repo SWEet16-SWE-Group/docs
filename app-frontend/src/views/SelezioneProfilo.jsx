@@ -1,6 +1,5 @@
 import {useEffect, useRef, useState} from "react";
 import axiosClient from "../axios-client";
-import {get} from "axios";
 import {Link, useNavigate, redirect} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 
@@ -61,7 +60,7 @@ export default function SelezioneProfilo() {
         }
         axiosClient.post('/selectprofile',payload)
             .then(({data}) => {
-                setProfile(data.profile);
+                setProfile(data.profile['id']);
                 setRole(data.role);
 
                 setNotificationStatus(data.status);

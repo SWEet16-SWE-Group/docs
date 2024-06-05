@@ -51,7 +51,7 @@ class ProfileController extends Controller
                 );
 
             return response([
-                'profile' => $client['id'],
+                'profile' => $client,
                 'role' => 'CLIENTE',
                 'notification' => 'Profilo cliente selezionato con successo',
                 'status' => 'success'
@@ -69,7 +69,7 @@ class ProfileController extends Controller
                 );
 
             return response([
-                'profile' => $restaurant['id'],
+                'profile' => $restaurant,
                 'role' => 'RISTORATORE',
                 'notification' => 'Profilo ristoratore selezionato con successo',
                 'status' => 'success'
