@@ -24,7 +24,7 @@ class IngredienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'ristoratore' => 'required|exists:ristoratore,id',
+            'ristoratore' => 'required|exists:ristoratori,id',
             'nome' => 'required|string|max:255',
         ];
     }

@@ -7,7 +7,7 @@ export default function RistoratoreDashboard() {
     const { ristoratore, setNotification, setNotificationStatus } = useStateContext();
     const [ristoratoreInfo, setRistoratoreInfo] = useState(null);
     const [prenotazioni, setPrenotazioni] = useState([]);
-
+    
 
     useEffect(() => {
         if (ristoratore) {
@@ -74,7 +74,7 @@ export default function RistoratoreDashboard() {
                     <p>Capienza: {ristoratoreInfo.capienza}</p>
                     <p>Orario: {ristoratoreInfo.orario}</p>
                     <Link to={`/modificaprofiloristoratore/${ristoratore}`}>Modifica Informazioni</Link>
-                    <hr class="my-4"></hr>
+                    <hr className="my-4"></hr>
                     <h2>Prenotazioni</h2>
                     {prenotazioni.length > 0 ? (
                         <table className="table">
@@ -109,7 +109,7 @@ export default function RistoratoreDashboard() {
                     ) : (
                         <p>Nessuna prenotazione disponibile.</p>
                     )}
-                    <hr class="my-4"></hr>
+                    <hr className="my-4"></hr>
                     <h4>Menu</h4>
                     <Link to={`/gestionemenu/${ristoratore}`}>Gestisci Menu</Link>
                     <h4>Ingredienti</h4>

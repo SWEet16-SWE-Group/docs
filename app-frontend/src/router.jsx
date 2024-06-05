@@ -14,6 +14,10 @@ import ModificaProfiloCliente from "./views/ModificaProfiloCliente";
 import ModificaProfiloRistoratore from "./views/ModificaProfiloRistoratore";
 import CreazioneProfiloCliente from "./views/CreazioneProfiloCliente.jsx";
 import RistoratoreDashboard from "./views/DashboardRistoratore.jsx";
+import GestioneMenu from "./views/GestioneMenu.jsx";
+import GestioneIngredienti from "./views/GestioneIngredienti.jsx";
+import FormPietanza from "./views/FormPietanza.jsx";
+import FormIngrediente from "./views/FormIngredienti.jsx";
 
 const router = createBrowserRouter([
     {
@@ -87,10 +91,26 @@ const router = createBrowserRouter([
                 element: <Ristoranti />
             },
             */
-             {
+            {
                 path: '/dashboardristoratore',
                 element: <RistoratoreDashboard />
-             },
+            },
+            {
+                path: '/gestionemenu/:ristoratoreId',
+                element: <GestioneMenu />
+            },
+            {
+                path: '/creapietanza/:ristoratoreId',
+                element: <FormPietanza />
+            },
+            {
+                path: '/gestioneingredienti/:ristoratoreId',
+                element: <GestioneIngredienti/>
+            },
+            {
+                path: 'creaingrediente/:ristoratoreId',
+                element: <FormIngrediente />
+            },
         ]
     },
     {
