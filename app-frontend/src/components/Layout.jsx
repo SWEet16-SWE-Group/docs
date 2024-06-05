@@ -45,6 +45,7 @@ function Header(){
     'CLIENTE':(
         <header>
             <div> {role} </div>
+            <Link to="/Ristoranti">Prenota</Link>
             <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
             <div> {user} </div>
             <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
