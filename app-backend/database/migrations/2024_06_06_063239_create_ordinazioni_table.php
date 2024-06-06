@@ -15,6 +15,9 @@ class CreateOrdinazioniTable extends Migration
     {
         Schema::create('ordinazioni', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('invito')->constrained('inviti')->onDelete('cascade');
+            $table->foreignId('pietanza')->constrained('pietanze')->onDelete('cascade');
+            $table->enum('pagamento', ['NON PAGATO', 'PAGATO'])->default('NON PAGATO');
             $table->timestamps();
         });
     }
