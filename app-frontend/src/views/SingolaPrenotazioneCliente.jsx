@@ -3,18 +3,45 @@ import { Link, useParams } from 'react-router-dom';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
+function Ordinazioni({data}){
+  return (
+  <div>
+    <h3>{data.nome}</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Pietanza</th>
+          <th>Aggiunte</th>
+          <th>Rimozioni</th>
+        </tr>
+      </thead>
+      <tbody>
+        {data.ordinazioni.map(ordinazione => (
+          <tr key={ordinazione.id}>
+              <td>{ordinazione.pietanza}</td>
+              <td>{ordinazione.aggiunte}</td>
+              <td>{ordinazione.rimozioni}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  );
+}
+
 function Prenotazione(a){
   const url_p = (id) => `/divisionecontopagamento/${id}`;
   const url_o = (id) => `/menu/${id}`;
   return (<div key={a.id}>
-    <div>{a.orario}</div>
-    <div>{a.ristoratore}</div>
-    <div>{a.stato}</div>
-    <div>{a.numero_inviti}</div>
-    <div>{a.divisione_conto}</div>
-    <a href={url_p(a.id)}>Esamina pagamento</a>
-    <a href={url_o(a.ristoratore)}>Ordina</a>
+    <h1>{a.nome}</h1>
+    <h2>Dettagli</h2>
+    <div>Stato: {a.stato}</div>
+    <div>Orario: {a.orario}</div>
+    <div><a href={url_p(a.id)}>Esamina pagamento</a></div>
+    <h2>Ordinazioni</h2>
+    <div><a href={url_o(a.ristoratore)}>Ordina</a></div>
   </div>);
+    //{a.ordinazioni.map(Ordinazioni)}
 }
 
 export default function ClientePrenotazione() {
