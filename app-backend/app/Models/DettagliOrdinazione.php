@@ -10,14 +10,14 @@ class DettagliOrdinazione extends Model
     use HasFactory;
 
     protected $table = 'dettagliordinazione';
-    protected $fillable = ['ordinazione','pietanza'];
+    protected $fillable = ['ordinazione','ingrediente', 'dettaglio'];
 
     public function ordinazione() {
         return $this->belongsTo(Ordinazione::class, 'ordinazione');
     }
 
-    public function pietanza() {
-        return $this->belongsTo(Pietanza::class, 'pietanza');
+    public function ingrediente() {
+        return $this->belongsTo(Ingrediente::class, 'ingrediente');
     }
 
 }

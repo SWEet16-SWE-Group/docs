@@ -13,7 +13,7 @@ class DettagliOrdinazioneRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class DettagliOrdinazioneRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'ordinazione' => 'required|integer|exists:ordinazioni,id',
+            'ingrediente' => 'required|integer|exists:ingredienti,id',
+            'dettaglio' => 'required|in:-,+',
         ];
     }
 }
