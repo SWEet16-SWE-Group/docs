@@ -5,14 +5,13 @@ import { useStateContext } from '../contexts/ContextProvider.jsx';
 
 function Prenotazione(a){
   const url = (id) => `/dettagliprenotazionecliente/${id}`;
-  return (<div key={a.id}>
-    <div>{a.orario}</div>
-    <div>{a.ristoratore}</div>
-    <div>{a.stato}</div>
-    <div>{a.numero_inviti}</div>
-    <div>{a.divisione_conto}</div>
-    <a href={url(a.id)}>Dettagli</a>
-  </div>);
+  return (<tr key={a.id}>
+    <td>{a.orario}</td>
+    <td>{a.ristoratore}</td>
+    <td>{a.numero_inviti}</td>
+    <td>{a.stato}</td>
+    <td><a href={url(a.id)}>Dettagli</a></td>
+  </tr>);
 }
 
 export default function ClienteDashboard() {
@@ -29,8 +28,19 @@ export default function ClienteDashboard() {
     useEffect(fetchPrenotazioni, []);
 
     return (
-        <div className="container mt-5">
-          {prenotazioni && prenotazioni.map(Prenotazione)}
-        </div>
+        <table className="table">
+            <thead>
+                <tr>
+                    <th>Orario</th>
+                    <th>Ristoratore</th>
+                    <th>Numero Inviti</th>
+                    <th>Stato</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {prenotazioni && prenotazioni.map(Prenotazione)}
+            </tbody>
+        </table>
     );
 }
