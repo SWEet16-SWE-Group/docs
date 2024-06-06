@@ -86,4 +86,11 @@ class PrenotazioniController extends Controller
             ->get();
         return response()->json($prenotazioni, 200);
     }
+
+    public function prenotazione_c($id){
+        $prenotazione = Prenotazione::select('*')
+            ->where('id',$id)
+            ->get();
+        return response()->json($prenotazione, 200);
+    }
 }
