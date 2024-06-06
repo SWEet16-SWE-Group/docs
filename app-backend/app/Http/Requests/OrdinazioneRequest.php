@@ -13,7 +13,7 @@ class OrdinazioneRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,8 @@ class OrdinazioneRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'invito' => 'required|integer|exists:inviti,id',
+            'pietanza' => 'required|integer|exists:pietanze,id',
         ];
     }
 }
