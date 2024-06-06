@@ -118,12 +118,10 @@ from inviti as i
 inner join ordinazioni as o on i.id = o.invito
 inner join pietanze as p on o.pietanza = p.id
 inner join clients as c on i.cliente = c.id
-left join dettagliordinazione as ia on o.id = ia.ordinazione
-left join dettagliordinazione as ir on o.id = ir.ordinazione
+left join dettagliordinazione as ia on o.id = ia.ordinazione and (ia.dettaglio = '+' or ia.dettaglio is null)
+left join dettagliordinazione as ir on o.id = ir.ordinazione and (ir.dettaglio = '-' or ir.dettaglio is null)
 left join ingredienti as iai on ia.ingrediente = iai.id
 left join ingredienti as iri on ir.ingrediente = iri.id
-where (ia.dettaglio = '+' or ia.dettaglio is null)
-and (ir.dettaglio = '+' or ia.dettaglio is null)
 group by c.nome, o.id, p.nome
 order by c.nome
 EOF
