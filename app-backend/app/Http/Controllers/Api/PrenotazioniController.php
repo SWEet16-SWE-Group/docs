@@ -110,7 +110,7 @@ class PrenotazioniController extends Controller
             ->get()->first();
         $ordinazioni = DB::select(<<<'EOF'
 select c.nome as c,
-c.nome as id,
+  o.id as id,
   p.nome as pietanza,
   GROUP_CONCAT(iai.nome SEPARATOR ", ") as aggiunte,
   GROUP_CONCAT(iri.nome SEPARATOR ", ") as rimozioni
@@ -124,7 +124,7 @@ left join ingredienti as iai on ia.ingrediente = iai.id
 left join ingredienti as iri on ir.ingrediente = iri.id
 where (ia.dettaglio = '+' or ia.dettaglio is null)
 and (ir.dettaglio = '+' or ia.dettaglio is null)
-group by c.nome, p.nome
+group by c.nome, o.id, p.nome
 order by c.nome
 EOF
             );
@@ -132,7 +132,7 @@ EOF
             fn ($a) => ['nome' => $a, 'ordinazioni' => array_filter($ordinazioni,fn ($o) => $o->c == $a)],
             $cols = array_unique( $c = array_map(fn($a)=> $a->c,$ordinazioni)),
         );
-        $return = ['prenotazione' => $prenotazione, 'ordinazioni' => $ordinazioni2, 'dbg' => ['a' => var_export($ordinazioni,true),'c' => $c, 'o' => $ordinazioni,'cols' =>$cols]];
+        $return = ['prenotazione' => $prenotazione, 'ordinazioni' => $ordinazioni2];
         return response()->json($return, 200);
     }
 }
