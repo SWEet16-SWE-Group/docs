@@ -78,4 +78,12 @@ class PrenotazioniController extends Controller
 
 
     }
+
+    public function dashboard_c($id){
+        $prenotazioni = Prenotazione::select('*')
+            ->join('inviti','prenotazioni.id','=','inviti.prenotazione')
+            ->where('inviti.cliente',$id)
+            ->get();
+        return response()->json($prenotazioni, 200);
+    }
 }

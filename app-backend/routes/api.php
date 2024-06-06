@@ -56,6 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/prenotazioni/{id}', [PrenotazioniController::class,'update']);
     Route::delete('/prenotazioni/{id}', [PrenotazioniController::class,'destroy']);
     Route::put('/update-prenotazioni/{id}', [PrenotazioniController::class,'updateStatus']);
+    Route::get('/dashboard_c/{id}',[PrenotazioniController::class,'dashboard_c']);
 
     Route::get('/ingredienti/{id}', [IngredienteController::class, 'index']);
     Route::put('/ingredienti/{id}', [IngredienteController::class,'update']);
