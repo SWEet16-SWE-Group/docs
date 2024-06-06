@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\InvitoController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
+use App\Models\Ristoratore;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -111,3 +112,4 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/ristoranti',[RistoratoreController::class,'index']);
 Route::get('/ristorante/{id}',[RistoratoreController::class,'show']);
 Route::get('/menu/{id}', [RistoratoreController::class, 'menu']);
+Route::get('/search',[RistoratoreController::class,'search']);

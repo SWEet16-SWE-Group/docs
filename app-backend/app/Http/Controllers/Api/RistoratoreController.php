@@ -119,4 +119,47 @@ class RistoratoreController extends Controller
             ->get();
         return response()->json($menu,200);
     }
+
+    public function search(Request $request) {
+        $ristoranti=Ristoratore::where('indirizzo','LIKE', "%{$request->città}%")->get();
+        if (!$ristoranti->isEmpty()) {
+        
+        $query = $request->ristorante;
+// sortBy permette di ordinare gli elementi della collection secondo una funzione data; 
+//la funzione scelta è levenshtein(), nativamente implementata da php e che calcola
+// la distanza tra due stringhe in termini di somiglianza
+        $sortedRestaurants = $ristoranti->sortBy(function ($ristorante) use($query) {
+            return levenshtein($query, $ristorante->nome);
+        })->values()->take(20);
+/* nelle prove mi sembrava funzionasse male levenshtein(); quindi ho  creato anche un array associativo che mi mandavo al front-end
+ con come chiavi i nomi dei ristoranti e valori le loro distanza di levenshtein(); a quanto pare corrispondono
+        $restaurants= Ristoratore::all('nome')->toArray();
+        $distances = [];
+
+    // Calcola la distanza di Levenshtein per ciascun valore nell'array
+    foreach ($restaurants as $restaurant) {
+        $distance = levenshtein($request->ristorante, $restaurant["nome"]);
+        $distances[$restaurant["nome"]] = [  $distance];
+    }
+
+    // Ordina l'array in base alle distanze calcolate
+   arsort($distances); */
+
+        $ristorantiJson = $sortedRestaurants->map(function ($ristorante) {
+            return [
+                'ristorante' => $ristorante,
+                'cucina' => $ristorante->cucina->Cucina
+            ];
+
+        }); 
+       
+        return response()->json(['listaRistoranti' => $ristorantiJson,
+                                 'notification' => 'Creata lista ristoranti',
+                                 'status' => 'success'],200);
+    }
+ else  {
+    return response()->json(['notification' => 'Nessun ristorante presente nella città da te inserita!',
+                             'status' => 'failure'],404);
+} 
+    }
 }

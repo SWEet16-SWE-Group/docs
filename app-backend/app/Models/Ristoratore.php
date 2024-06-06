@@ -15,4 +15,8 @@ class Ristoratore extends Model
     public function user() {
         return $this->belongsTo(User::class, 'user');
     }
+
+    public function cucina() {
+    return $this->hasOne(CucinaRistorante::class,'Id_Ristoratore');
+}
 }
