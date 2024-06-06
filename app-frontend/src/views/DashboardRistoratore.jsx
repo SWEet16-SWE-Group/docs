@@ -121,8 +121,4 @@ export default function RistoratoreDashboard() {
             )}
         </div>
     );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> mvp-fix-router
