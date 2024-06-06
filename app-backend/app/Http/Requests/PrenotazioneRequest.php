@@ -27,7 +27,7 @@ class PrenotazioneRequest extends FormRequest
             'ristoratore' => 'required|exists:ristoratori,id',
             'orario' => 'required|date_format:Y-m-d',
             'numero_inviti'=> 'required|integer',
-            'divisioni_conto'=> 'in:Equo,Proporzionale',
+            'divisioni_conto'=> 'in:NULL,Equo,Proporzionale',
         ];
     }
 }
