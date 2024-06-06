@@ -11,15 +11,16 @@ class Invito extends Model
 
     protected $table = "inviti";
     protected $fillable = [
-        'prenotazione',
         'cliente',
+        'prenotazione',
     ];
+
+    public function cliente() {
+        return $this->belongsTo(Client::class, 'cliente');
+    }
 
     public function prenotazione() {
         return $this->belongsTo(Prenotazione::class, 'prenotazione');
     }
 
-    public function cliente() {
-        return $this->belongsTo(Client::class, 'cliente');
-    }
 }

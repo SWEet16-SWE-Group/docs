@@ -15,6 +15,8 @@ class CreateInvitiTable extends Migration
     {
         Schema::create('inviti', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("cliente")->constrained('clients')->onDelete('cascade');
+            $table->foreignId("prenotazione")->constrained('prenotazioni')->onDelete('cascade');
             $table->timestamps();
         });
     }
