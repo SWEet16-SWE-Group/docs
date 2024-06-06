@@ -22,14 +22,12 @@ export default function FormPrenotazione() {
                 orario: data,
                 numero_inviti: npersone,
             };
-            console.log(formData);
 
-            axiosClient.post(`/crea-prenotazione`, formData)
-              .then(
-                data => console.log(data)
-              );
+            const {data: prenotazione} = await axiosClient.post(`/crea-prenotazione`, formData);
+            console.log(prenotazione);
 
-            console.log(formData);
+            const {data: invito} = await axiosClient.post(`/crea-invito`, {cliente:profile, prenotazione:prenotazione.id});
+            console.log(invito);
 
             setNotificationStatus('success');
             setNotification('Prenotazione creata con successo.');
