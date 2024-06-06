@@ -15,6 +15,15 @@ function url(id){
   return `/menu/${id}`;
 }
 
+function Bottoneprenota(a){
+  const {role} = useStateContext();
+  if (role === 'CLIENTE') {
+    return (<div>PRENOTA ORA STRONZO</div>);
+  }else{
+    return (<div></div>);
+  }
+}
+
 function ristorante(a){
   return (
     <div key={a.id}>
@@ -23,6 +32,7 @@ function ristorante(a){
       <p> {a.telefono} </p>
       <p> {a.orario} </p>
       <a href={url(a.id)}> Menù </a>
+      {Bottoneprenota(a)}
     </div>
   );
 }
