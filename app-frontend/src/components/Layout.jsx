@@ -63,6 +63,21 @@ function Header(){
 
 }
 
+function LinkDashboard(){
+  const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
+  const defaultLink = (<Link to="/ristoranti">Dashboard</Link>);
+  return ({
+    '': defaultLink,
+    'null': defaultLink,
+    null: defaultLink,
+    undefined: defaultLink,
+    'ANONIMO': defaultLink,
+    'AUTENTICATO':(<Link to="/selezioneprofilo">Dashboard</Link>),
+    'CLIENTE':    (<Link to="/dashboardcliente">Dashboard</Link>),
+    'RISTORATORE':(<Link to="/dashboardristoratore">Dashboard</Link>),
+  })[role];
+}
+
 export default function Layout({Content}) {
 
     const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
@@ -70,7 +85,7 @@ export default function Layout({Content}) {
     return (
         <div id="defaultLayout">
             <aside>
-                <Link to="/dashboard">DashBoard</Link>
+                <LinkDashboard />
             </aside>
             <div className="content">
               <Header />
