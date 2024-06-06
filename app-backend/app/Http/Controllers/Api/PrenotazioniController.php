@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PrenotazioneRequest;
 use App\Models\Client;
+use App\Models\Invito;
+use App\Models\Ordinazione;
 use App\Models\Prenotazione;
 use Illuminate\Http\Request;
+use DB;
 
 class PrenotazioniController extends Controller
 {
@@ -101,11 +104,33 @@ class PrenotazioniController extends Controller
             'ristoratori.id as ristoratore',
             'prenotazioni.numero_inviti',
             'prenotazioni.stato')
-            ->join('inviti','prenotazioni.id','=','inviti.prenotazione')
             ->join('ristoratori','ristoratori.id','=','prenotazioni.ristoratore')
+            ->join('inviti','inviti.prenotazione','=','prenotazioni.id')
             ->where('inviti.cliente',$id)
-            ->get();
-        //$ordinazioni = Invito::select('clients.nome as nome',DB::raw('JSON_ARRAYAGG()'));
-        return response()->json($prenotazione, 200);
+            ->get()->first();
+        $ordinazioni = DB::select(<<<'EOF'
+select c.nome as c,
+  o.id as id,
+  p.nome as pietanza,
+  GROUP_CONCAT(iai.nome SEPARATOR ", ") as aggiunte,
+  GROUP_CONCAT(iri.nome SEPARATOR ", ") as rimozioni
+from inviti as i
+inner join ordinazioni as o on i.id = o.invito
+inner join pietanze as p on o.pietanza = p.id
+inner join clients as c on i.cliente = c.id
+left join dettagliordinazione as ia on o.id = ia.ordinazione and (ia.dettaglio = '+' or ia.dettaglio is null)
+left join dettagliordinazione as ir on o.id = ir.ordinazione and (ir.dettaglio = '-' or ir.dettaglio is null)
+left join ingredienti as iai on ia.ingrediente = iai.id
+left join ingredienti as iri on ir.ingrediente = iri.id
+group by c.nome, o.id, p.nome
+order by c.nome
+EOF
+            );
+        $ordinazioni2 = array_map(
+            fn ($a) => ['nome' => $a, 'ordinazioni' => array_values(array_filter($ordinazioni,fn ($o) => $o->c == $a))],
+            $cols = array_unique( $c = array_map(fn($a)=> $a->c,$ordinazioni)),
+        );
+        $return = ['prenotazione' => $prenotazione, 'ordinazioni' => array_values($ordinazioni2)];
+        return response()->json($return, 200);
     }
 }
