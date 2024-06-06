@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PrenotazioneRequest;
 use App\Models\Client;
+use App\Models\Invito;
+use App\Models\Ordinazione;
 use App\Models\Prenotazione;
 use Illuminate\Http\Request;
+use DB;
 
 class PrenotazioniController extends Controller
 {
@@ -101,11 +104,36 @@ class PrenotazioniController extends Controller
             'ristoratori.id as ristoratore',
             'prenotazioni.numero_inviti',
             'prenotazioni.stato')
-            ->join('inviti','prenotazioni.id','=','inviti.prenotazione')
             ->join('ristoratori','ristoratori.id','=','prenotazioni.ristoratore')
+            ->join('inviti','inviti.prenotazione','=','prenotazioni.id')
             ->where('inviti.cliente',$id)
             ->get();
-        //$ordinazioni = Invito::select('clients.nome as nome',DB::raw('JSON_ARRAYAGG()'));
-        return response()->json($prenotazione, 200);
+        $ordinazioni = array_map(
+            fn ($a) => [
+                'nome' => $a['nome'],
+                'ordinazioni' => Ordinazione::select(
+                    'ordinazioni.id',
+                    'pietanze.nome',
+                    DB::raw('GROUP_CONCAT(iai.nome SEPARATOR ", ") as aggiunte '),
+                    DB::raw('GROUP_CONCAT(iri.nome SEPARATOR ", ") as rimozioni'),
+                )
+                    ->join('pietanze','pietanze.id','=','ordinazioni.pietanza')
+                    ->join('dettagliordinazione as ia','ordinazioni.id','=','ia.ordinazione')
+                    ->join('dettagliordinazione as ir','ordinazioni.id','=','ir.ordinazione')
+                    ->join('ingredienti as iai','iai.id','=','ia.ingrediente')
+                    ->join('ingredienti as iri','iri.id','=','ir.ingrediente')
+                    ->join('inviti','inviti.id','=','ordinazioni.invito')
+                    ->groupBy('ordinazioni.id','pietanze.nome')
+                    ->where('inviti.id',$a['id'])
+                    ->where('ia.dettaglio','AGGIUNTO')
+                    ->where('ir.dettaglio','RIMOSSO')
+                    ->get()->toArray()
+            ],
+        Invito::select('inviti.id', 'clients.nome')
+                ->join('clients','clients.id','=','inviti.cliente')
+                ->where('inviti.prenotazione',$id)->get()->toArray(),
+        );
+        $return = ['prenotazione' => $prenotazione, 'ordinazioni' => $ordinazioni];
+        return response()->json($return, 200);
     }
 }
