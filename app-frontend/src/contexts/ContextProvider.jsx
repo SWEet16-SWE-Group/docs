@@ -61,7 +61,7 @@ export const ContextProvider = ({children}) => {
         _setProfile(profile)
 
         if(profile) {
-            localStorage.setItem('PROFILE_ID',profile['id']);
+            localStorage.setItem('PROFILE_ID',profile);
         } else {
             localStorage.removeItem('PROFILE_ID');
         }
@@ -71,7 +71,7 @@ export const ContextProvider = ({children}) => {
         _setRistoratore(ristoratore)
 
         if (ristoratore) {
-            localStorage.setItem('RISTORATORE_ID', ristoratore['id']);
+            localStorage.setItem('RISTORATORE_ID', ristoratore);
         } else {
             localStorage.removeItem('RISTORATORE_ID');
         }

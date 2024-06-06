@@ -13,22 +13,7 @@ class ProfileController extends Controller
     {
         $clients = Client::where('user',$request->id)->get(['id','nome','user']);
 
-        if($clients) {
-            foreach ($clients as $client) {
-                $client['tipo'] = "Cliente";
-            }
-        }
-
         $restaurants = Ristoratore::where('user',$request->id)->get(['id','nome','user']);
-
-        if($restaurants) {
-            foreach ($restaurants as $restaurant) {
-                $restaurant['tipo'] = "Ristoratore";
-            }
-        }
-
-        if(!$clients && !$restaurants)
-            return response('',204);
 
        return response([
            'clienti' => $clients,

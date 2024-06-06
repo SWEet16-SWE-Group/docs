@@ -2,10 +2,9 @@ import {createBrowserRouter, Navigate} from "react-router-dom";
 import SignUp from "./views/SignUp.jsx";
 import Login from "./views/Login";
 import NotFound from "./views/NotFound.jsx";
-import AuthenticatedLayout from "./components/AuthenticatedLayout";
-import GuestLayout from "./components/GuestLayout";
-import ClientLayout from "./components/ClientLayout"
-import RestaurantLayout from "./components/RestaurantLayout"
+
+import Layout from "./components/Layout"
+
 import ModificaInfoAccount from "./views/ModificaInfoAccount";
 import SelezioneProfilo from "./views/SelezioneProfilo";
 import CreazioneProfiloRistoratore from "./views/CreazioneProfiloRistoratore";
@@ -22,129 +21,117 @@ import Ristoranti from "./views/Ristoranti";
 import Ristorante from "./views/Ristorante";
 import Menu from "./views/Menu";
 
-const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <AuthenticatedLayout />,
-        children: [
-            {
-                path: '/selezioneprofilo',
-                element: <SelezioneProfilo />
-            },
-            {
-                path: '/creazioneprofilocliente',
-                element: <CreazioneProfiloCliente />
-            },
-            {
-                path: '/creazioneprofiloristoratore',
-                element: <CreazioneProfiloRistoratore />
-            },
-            {
-                path: '/modificaprofilocliente/:id',
-                element: <ModificaProfiloCliente />
-            },
-            {
-                path: '/modificaprofiloristoratore/:id',
-                element: <ModificaProfiloRistoratore/>
-            },
-            {
-                path: '/modificainfoaccount',
-                element: <ModificaInfoAccount />
-            },
-            {
-                path: '*',
-                element: <NotFound />
-            }
-        ]
-    },
-    {
-        path: '/',
-        element: <ClientLayout />,
-        children: [
+import {useStateContext} from "./contexts/ContextProvider";
 
-            // decommentare qui per dashboard
-             {
-                path: '/',
-                element: <Navigate to="/dashboardcliente" />
-             },
-            /*
-            {
-                path: '/ristoranti',
-                element: <Ristoranti />
-            },
-            */
-             {
-                path: '/dashboardcliente',
-                element: <NotFound />
-             },
-        ]
+function Autenticato ({Content}) {
+  const {token} = useStateContext()
+  if(!token){
+    return <Navigate to={"/Login"} />
+  }
+  return <Layout Content={Content} />
+};
+
+function Cliente ({Content}) {
+  const {role} = useStateContext()
+  if (role !== 'CLIENTE') {
+    return <Navigate to={"/Login"} />
+  }
+  return <Layout Content={Content} />
+}
+
+function Ristoratore ({Content}) {
+  const {role} = useStateContext()
+  if (role !== 'RISTORATORE') {
+    return <Navigate to={"/Login"} />
+  }
+  return <Layout Content={Content} />
+}
+
+const router = createBrowserRouter([
+    // ANONIMO
+    {
+        path: '/ristoranti',
+        element: <Layout Content={<Ristoranti />} />
     },
     {
-        path: '/',
-        element: <RestaurantLayout />,
-        children: [
-            // decommentare qui per dashboard
-            {
-                path: '/',
-                element: <Navigate to="/dashboardristoratore" />
-            },
-            /*
-            {
-                path: '/ristoranti',
-                element: <Ristoranti />
-            },
-            */
-            {
-                path: '/dashboardristoratore',
-                element: <RistoratoreDashboard />
-            },
-            {
-                path: '/gestionemenu/:ristoratoreId',
-                element: <GestioneMenu />
-            },
-            {
-                path: '/creapietanza/:ristoratoreId',
-                element: <FormPietanza />
-            },
-            {
-                path: '/gestioneingredienti/:ristoratoreId',
-                element: <GestioneIngredienti/>
-            },
-            {
-                path: 'creaingrediente/:ristoratoreId',
-                element: <FormIngrediente />
-            },
-        ]
+        path: '/ristorante/:id',
+        element: <Layout Content={<Ristorante />} />
     },
     {
-        path: '/',
-        element: <GuestLayout />,
-        children: [
-            {
-                path: '/ristoranti',
-                element: <Ristoranti />
-            },
-            {
-                path: '/ristorante/:id',
-                element: <Ristorante />
-            },
-            {
-                path: '/menu/:id',
-                element: <Menu />
-            },
-            {
-                path: '/login',
-                element: <Login />
-            },
-            {
-                path: '/signup',
-                element: <SignUp />
-            },
-            {
-                path: '*',
-                element: <NotFound />
-            }
-        ]
+        path: '/menu/:id',
+        element: <Layout Content={<Menu />} />
+    },
+    {
+        path: '/login',
+        element: <Layout Content={<Login />} />,
+    },
+    {
+        path: '/signup',
+        element: <Layout Content={<SignUp />} />,
+    },
+
+    // AUTENTICATO
+    {
+        path: '/selezioneprofilo',
+        element: <Autenticato Content={<SelezioneProfilo />} />
+    },
+    {
+        path: '/selezioneprofilo',
+        element: <Autenticato Content={<SelezioneProfilo />} />
+    },
+    {
+        path: '/creazioneprofilocliente',
+        element: <Autenticato Content={<CreazioneProfiloCliente />} />
+    },
+    {
+        path: '/creazioneprofiloristoratore',
+        element: <Autenticato Content={<CreazioneProfiloRistoratore />} />
+    },
+    {
+        path: '/modificaprofilocliente/:id',
+        element: <Autenticato Content={<ModificaProfiloCliente />} />
+    },
+    {
+        path: '/modificaprofiloristoratore/:id',
+        element: <Autenticato Content={<ModificaProfiloRistoratore />} />
+    },
+    {
+        path: '/modificainfoaccount',
+        element: <Autenticato Content={<ModificaInfoAccount />} />
+    },
+
+    //CLIENTE
+    {
+       path: '/dashboardcliente',
+       element: <Cliente Content={<NotFound />} />
+    },
+
+    //RISTORATORE
+    {
+        path: '/dashboardristoratore',
+        element: <Ristoratore Content={<RistoratoreDashboard />} />,
+    },
+    {
+        path: '/gestionemenu/:ristoratoreId',
+        element: <Ristoratore Content={<GestioneMenu />} />,
+    },
+    {
+        path: '/creapietanza/:ristoratoreId',
+        element: <Ristoratore Content={<FormPietanza />} />,
+    },
+    {
+        path: '/gestioneingredienti/:ristoratoreId',
+        element: <Ristoratore Content={<GestioneIngredienti />} />,
+    },
+    {
+        path: 'creaingrediente/:ristoratoreId',
+        element: <Ristoratore Content={<FormIngrediente />} />,
+    },
+
+    // 404
+    {
+        path: '*',
+        element: <Layout Content={<NotFound />} />,
     },
 ])
 
