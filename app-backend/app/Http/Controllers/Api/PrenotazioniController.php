@@ -107,7 +107,7 @@ class PrenotazioniController extends Controller
             ->join('ristoratori','ristoratori.id','=','prenotazioni.ristoratore')
             ->join('inviti','inviti.prenotazione','=','prenotazioni.id')
             ->where('inviti.cliente',$id)
-            ->get();
+            ->get()->first();
         $ordinazioni = array_map(
             fn ($a) => [
                 'nome' => $a['nome'],
@@ -118,15 +118,15 @@ class PrenotazioniController extends Controller
                     DB::raw('GROUP_CONCAT(iri.nome SEPARATOR ", ") as rimozioni'),
                 )
                     ->join('pietanze','pietanze.id','=','ordinazioni.pietanza')
-                    ->join('dettagliordinazione as ia','ordinazioni.id','=','ia.ordinazione')
-                    ->join('dettagliordinazione as ir','ordinazioni.id','=','ir.ordinazione')
+                    ->leftjoin('dettagliordinazione as ia','ordinazioni.id','=','ia.ordinazione')
+                    ->leftjoin('dettagliordinazione as ir','ordinazioni.id','=','ir.ordinazione')
                     ->join('ingredienti as iai','iai.id','=','ia.ingrediente')
                     ->join('ingredienti as iri','iri.id','=','ir.ingrediente')
                     ->join('inviti','inviti.id','=','ordinazioni.invito')
                     ->groupBy('ordinazioni.id','pietanze.nome')
                     ->where('inviti.id',$a['id'])
-                    ->where('ia.dettaglio','AGGIUNTO')
-                    ->where('ir.dettaglio','RIMOSSO')
+                    ->where('ia.dettaglio','+')
+                    ->where('ir.dettaglio','-')
                     ->get()->toArray()
             ],
         Invito::select('inviti.id', 'clients.nome')
