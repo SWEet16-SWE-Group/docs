@@ -11,7 +11,6 @@ class Prenotazione extends Model
 
     protected $table = "prenotazioni";
     protected $fillable = [
-        'cliente',
         'ristoratore',
         'orario',
         'numero_inviti',
@@ -22,7 +21,4 @@ class Prenotazione extends Model
         return $this->belongsTo(Ristoratore::class, 'ristoratore');
     }
 
-    public function cliente() {
-        return $this->belongsTo(Client::class,'cliente');
-    }
 }

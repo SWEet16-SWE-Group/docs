@@ -30,11 +30,12 @@ class PrenotazioniController extends Controller
     }
 
     public function store(PrenotazioneRequest $request) {
+        //$cliente = $request->input('cliente');
+        //$request->request->remove('cliente');
         $validatedData = $request->validated();
         $prenotazione = Prenotazione::create($validatedData);
 
         return response()->json(['message' => 'Prenotazione created successfully', 'data' => $prenotazione], 201);
-
     }
 
     public function update(Request $request, $id)
