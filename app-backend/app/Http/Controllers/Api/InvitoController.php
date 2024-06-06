@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
 use App\Http\Requests\InvitoRequest;
 use App\Models\Invito;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 class InvitoController extends Controller {
