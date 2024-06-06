@@ -13,6 +13,7 @@ function Ordinazioni({data}){
           <th>Pietanza</th>
           <th>Aggiunte</th>
           <th>Rimozioni</th>
+          <th>Azioni</th>
         </tr>
       </thead>
       <tbody>
@@ -21,6 +22,7 @@ function Ordinazioni({data}){
               <td>{ordinazione.pietanza}</td>
               <td>{ordinazione.aggiunte}</td>
               <td>{ordinazione.rimozioni}</td>
+              <td><button class="btn btn-block">Cancella</button></td>
           </tr>
         ))}
       </tbody>
