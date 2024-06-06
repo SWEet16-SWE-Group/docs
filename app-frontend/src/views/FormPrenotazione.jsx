@@ -18,12 +18,12 @@ export default function FormPrenotazione() {
 
         try {
             const formData = {
-                ristorante: id,
-                data: data,
-                npersone: npersone,
+                ristoratore: id,
+                orario: data,
+                numero_inviti: npersone,
                 cliente: profile,
             };
-            await axiosClient.post('/ingredienti', formData);
+            await axiosClient.post('/crea-prenotazione', formData);
 
             setNotificationStatus('success');
             setNotification('Prenotazione creata con successo.');
