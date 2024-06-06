@@ -21,7 +21,7 @@ function pietanza(a){
 
 }
 
-export default function Ristorante() {
+export default function Menu() {
     const {id} = useParams();
     const [r,sr] = useState(null);
     useEffect(() => fetch(id,sr) ,[]);
