@@ -127,10 +127,10 @@ order by c.nome
 EOF
             );
         $ordinazioni2 = array_map(
-            fn ($a) => ['nome' => $a, 'ordinazioni' => array_filter($ordinazioni,fn ($o) => $o->c == $a)],
+            fn ($a) => ['nome' => $a, 'ordinazioni' => array_values(array_filter($ordinazioni,fn ($o) => $o->c == $a))],
             $cols = array_unique( $c = array_map(fn($a)=> $a->c,$ordinazioni)),
         );
-        $return = ['prenotazione' => $prenotazione, 'ordinazioni' => $ordinazioni2];
+        $return = ['prenotazione' => $prenotazione, 'ordinazioni' => array_values($ordinazioni2)];
         return response()->json($return, 200);
     }
 }
