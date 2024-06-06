@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\RistoratoreController;
 use App\Http\Controllers\Api\PrenotazioniController;
 use App\Http\Controllers\Api\IngredienteController;
 use App\Http\Controllers\Api\PietanzaController;
+use App\Http\Controllers\Api\InvitoController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
@@ -65,6 +66,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/pietanze/{id}', [PietanzaController::class,'update']);
     Route::delete('/pietanze/{id}', [PietanzaController::class, 'destroy']);
     Route::post('/pietanze', [PietanzaController::class, 'store']);
+
+    Route::post('/crea-invito',  [InvitoController::class, 'store']);
 
     /*
     Route::middleware(UserIsRestaurant::class) {
