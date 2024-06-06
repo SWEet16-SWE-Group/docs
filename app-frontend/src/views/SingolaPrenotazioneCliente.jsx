@@ -5,7 +5,7 @@ import { useStateContext } from '../contexts/ContextProvider.jsx';
 
 function Ordinazioni({data}){
   return (
-  <div>
+  <div key={data.nome}>
     <h3>{data.nome}</h3>
     <table>
       <thead>
@@ -29,9 +29,10 @@ function Ordinazioni({data}){
   );
 }
 
-function Prenotazione(a){
+function Prenotazione(p){
   const url_p = (id) => `/divisionecontopagamento/${id}`;
   const url_o = (id) => `/menu/${id}`;
+  const a = p.prenotazione;
   return (<div key={a.id}>
     <h1>{a.nome}</h1>
     <h2>Dettagli</h2>
@@ -40,8 +41,8 @@ function Prenotazione(a){
     <div><a href={url_p(a.id)}>Esamina pagamento</a></div>
     <h2>Ordinazioni</h2>
     <div><a href={url_o(a.ristoratore)}>Ordina</a></div>
+    {p.ordinazioni.map((data) => <Ordinazioni data={data}/>)}
   </div>);
-    //{a.ordinazioni.map(Ordinazioni)}
 }
 
 export default function ClientePrenotazione() {
@@ -63,7 +64,7 @@ export default function ClientePrenotazione() {
 
     return (
         <div className="container mt-5">
-          {prenotazione && Prenotazione(prenotazione[0])}
+          {prenotazione && Prenotazione(prenotazione)}
         </div>
     );
 }
