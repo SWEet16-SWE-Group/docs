@@ -51,7 +51,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::get('/prenotazioni', [PrenotazioniController::class, 'index']);
     Route::get('/prenotazioni/{id}', [PrenotazioniController::class,'show']);
-    Route::post('/prenotazioni', [PrenotazioniController::class,'store']);
+    Route::post('/crea-prenotazione', [PrenotazioniController::class,'store']);
     Route::put('/prenotazioni/{id}', [PrenotazioniController::class,'update']);
     Route::delete('/prenotazioni/{id}', [PrenotazioniController::class,'destroy']);
     Route::put('/update-prenotazioni/{id}', [PrenotazioniController::class,'updateStatus']);
