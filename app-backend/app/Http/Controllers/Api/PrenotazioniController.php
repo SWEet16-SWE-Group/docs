@@ -108,32 +108,31 @@ class PrenotazioniController extends Controller
             ->join('inviti','inviti.prenotazione','=','prenotazioni.id')
             ->where('inviti.cliente',$id)
             ->get()->first();
-        $ordinazioni = array_map(
-            fn ($a) => [
-                'nome' => $a['nome'],
-                'ordinazioni' => Ordinazione::select(
-                    'ordinazioni.id',
-                    'pietanze.nome',
-                    DB::raw('GROUP_CONCAT(iai.nome SEPARATOR ", ") as aggiunte '),
-                    DB::raw('GROUP_CONCAT(iri.nome SEPARATOR ", ") as rimozioni'),
-                )
-                    ->join('pietanze','pietanze.id','=','ordinazioni.pietanza')
-                    ->leftjoin('dettagliordinazione as ia','ordinazioni.id','=','ia.ordinazione')
-                    ->leftjoin('dettagliordinazione as ir','ordinazioni.id','=','ir.ordinazione')
-                    ->join('ingredienti as iai','iai.id','=','ia.ingrediente')
-                    ->join('ingredienti as iri','iri.id','=','ir.ingrediente')
-                    ->join('inviti','inviti.id','=','ordinazioni.invito')
-                    ->groupBy('ordinazioni.id','pietanze.nome')
-                    ->where('inviti.id',$a['id'])
-                    ->where('ia.dettaglio','+')
-                    ->where('ir.dettaglio','-')
-                    ->get()->toArray()
-            ],
-        Invito::select('inviti.id', 'clients.nome')
-                ->join('clients','clients.id','=','inviti.cliente')
-                ->where('inviti.prenotazione',$id)->get()->toArray(),
+        $ordinazioni = DB::select(<<<'EOF'
+select c.nome as c,
+c.nome as id,
+  p.nome as pietanza,
+  GROUP_CONCAT(iai.nome SEPARATOR ", ") as aggiunte,
+  GROUP_CONCAT(iri.nome SEPARATOR ", ") as rimozioni
+from inviti as i
+inner join ordinazioni as o on i.id = o.invito
+inner join pietanze as p on o.pietanza = p.id
+inner join clients as c on i.cliente = c.id
+left join dettagliordinazione as ia on o.id = ia.ordinazione
+left join dettagliordinazione as ir on o.id = ir.ordinazione
+left join ingredienti as iai on ia.ingrediente = iai.id
+left join ingredienti as iri on ir.ingrediente = iri.id
+where (ia.dettaglio = '+' or ia.dettaglio is null)
+and (ir.dettaglio = '+' or ia.dettaglio is null)
+group by c.nome, p.nome
+order by c.nome
+EOF
+            );
+        $ordinazioni2 = array_map(
+            fn ($a) => ['nome' => $a, 'ordinazioni' => array_filter($ordinazioni,fn ($o) => $o->c == $a)],
+            $cols = array_unique( $c = array_map(fn($a)=> $a->c,$ordinazioni)),
         );
-        $return = ['prenotazione' => $prenotazione, 'ordinazioni' => $ordinazioni];
+        $return = ['prenotazione' => $prenotazione, 'ordinazioni' => $ordinazioni2, 'dbg' => ['a' => var_export($ordinazioni,true),'c' => $c, 'o' => $ordinazioni,'cols' =>$cols]];
         return response()->json($return, 200);
     }
 }
