@@ -24,10 +24,10 @@ class PrenotazioneRequest extends FormRequest
     public function rules()
     {
         return [
-            'ristoratore' => 'required|exists:ristoratore,id',
-            'orario' => 'required|date_format:Y-m-d H:i',
+            'ristoratore' => 'required|exists:ristoratori,id',
+            'orario' => 'required|date_format:Y-m-d',
             'numero_inviti'=> 'required|integer',
-            'divisioni_conto'=> 'required|in:Equo,Proporzionale',
+            'divisioni_conto'=> 'in:Equo,Proporzionale',
         ];
     }
 }
