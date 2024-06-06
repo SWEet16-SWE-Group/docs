@@ -110,11 +110,11 @@ class RistoratoreController extends Controller
     }
 
     public function menu($id){
-        $menu = Pietanza::select('pietanze.nome as nome', DB::raw('GROUP_CONCAT(ingredienti.nome SEPARATOR ", ") as ingredienti'))
+        $menu = Pietanza::select('pietanze.id as id', 'pietanze.nome as nome', DB::raw('GROUP_CONCAT(ingredienti.nome SEPARATOR ", ") as ingredienti'))
             ->join('ristoratori','ristoratori.id', '=', 'pietanze.ristoratore')
             ->join('ricette','pietanze.id','=','ricette.pietanza')
             ->join('ingredienti','ingredienti.id','=','ricette.ingrediente')
-            ->groupBy('pietanze.nome')
+            ->groupBy('pietanze.id','pietanze.nome')
             ->where('ristoratori.id',$id)
             ->get();
         return response()->json($menu,200);
