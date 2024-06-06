@@ -22,6 +22,8 @@ import Ristorante from "./views/Ristorante";
 import Menu from "./views/Menu";
 import FormPrenotazione from "./views/FormPrenotazione.jsx";
 
+import ClienteDashboard from "./views/DashboardCliente.jsx";
+
 import {useStateContext} from "./contexts/ContextProvider";
 
 function Autenticato ({Content}) {
@@ -104,7 +106,7 @@ const router = createBrowserRouter([
     //CLIENTE
     {
        path: '/dashboardcliente',
-       element: <Cliente Content={<NotFound />} />
+       element: <Cliente Content={<ClienteDashboard />} />
     },
     {
     path: '/formprenotazione/:id',
