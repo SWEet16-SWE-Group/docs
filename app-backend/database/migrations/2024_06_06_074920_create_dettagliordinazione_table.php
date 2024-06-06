@@ -16,7 +16,7 @@ class CreateDettagliordinazioneTable extends Migration
         Schema::create('dettagliordinazione', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ingrediente')->constrained('ingredienti')->onDelete('cascade');
-            $table->foreignId('pietanza')->constrained('pietanze')->onDelete('cascade');
+            $table->foreignId('ordinazione')->constrained('ordinazioni')->onDelete('cascade');
             $table->enum('dettaglio', ['-', '+']);
             $table->timestamps();
         });
