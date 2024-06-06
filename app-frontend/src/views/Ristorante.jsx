@@ -11,20 +11,18 @@ function fetch(id,set) {
   )
 }
 
-function url(id){
-  return `/menu/${id}`;
-}
-
 function Bottoneprenota(a){
+  const url = (id) => `/formprenotazione/${id}`;
   const {role} = useStateContext();
   if (role === 'CLIENTE') {
-    return (<div>PRENOTA ORA STRONZO</div>);
+    return (<a href={url(a.id)}>Prenota</a>);
   }else{
     return (<div></div>);
   }
 }
 
 function ristorante(a){
+  const url = (id) => `/menu/${id}`;
   return (
     <div key={a.id}>
       <h1> {a.nome} </h1>
