@@ -20,6 +20,7 @@ import FormIngrediente from "./views/FormIngredienti.jsx";
 import Ristoranti from "./views/Ristoranti";
 import Ristorante from "./views/Ristorante";
 import Menu from "./views/Menu";
+import FormPrenotazione from "./views/FormPrenotazione.jsx";
 
 import {useStateContext} from "./contexts/ContextProvider";
 
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
     {
        path: '/dashboardcliente',
        element: <Cliente Content={<NotFound />} />
+    },
+    {
+    path: '/formprenotazione/:id',
+       element: <Cliente Content={<FormPrenotazione />} />
     },
 
     //RISTORATORE
