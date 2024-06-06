@@ -7,7 +7,7 @@ function Prenotazione(a){
   const url = (id) => `/dettagliprenotazionecliente/${id}`;
   return (<tr key={a.id}>
     <td>{a.orario}</td>
-    <td>{a.ristoratore}</td>
+    <td>{a.nome}</td>
     <td>{a.numero_inviti}</td>
     <td>{a.stato}</td>
     <td><a href={url(a.id)}>Dettagli</a></td>

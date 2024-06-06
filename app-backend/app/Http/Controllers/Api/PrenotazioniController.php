@@ -80,8 +80,14 @@ class PrenotazioniController extends Controller
     }
 
     public function dashboard_c($id){
-        $prenotazioni = Prenotazione::select('*')
+        $prenotazioni = Prenotazione::select(
+            'prenotazioni.id',
+            'prenotazioni.orario',
+            'ristoratori.nome as nome',
+            'prenotazioni.numero_inviti',
+            'prenotazioni.stato')
             ->join('inviti','prenotazioni.id','=','inviti.prenotazione')
+            ->join('ristoratori','ristoratori.id','=','prenotazioni.ristoratore')
             ->where('inviti.cliente',$id)
             ->get();
         return response()->json($prenotazioni, 200);
