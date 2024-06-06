@@ -4,7 +4,7 @@ import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
 function Prenotazione(a){
-  const url_p = (id) => `/dettagliprenotazionecliente/${id}`;
+  const url_p = (id) => `/divisionecontopagamento/${id}`;
   const url_o = (id) => `/menu/${id}`;
   return (<div key={a.id}>
     <div>{a.orario}</div>
