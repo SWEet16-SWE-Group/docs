@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PrenotazioneRequest extends FormRequest
+class InvitoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,8 @@ class PrenotazioneRequest extends FormRequest
     public function rules()
     {
         return [
-            'ristoratore' => 'required|exists:ristoratori,id',
-            'orario' => 'required|date_format:Y-m-d',
-            'numero_inviti'=> 'required|integer|min:1',
-            'divisioni_conto'=> 'in:NULL,Equo,Proporzionale',
+            'cliente' => 'required|integer|exists:clients,id',
+            'prenotazione' => 'required|integer|exists:prenotazioni,id',
         ];
     }
 }

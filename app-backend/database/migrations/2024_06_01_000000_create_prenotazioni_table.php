@@ -10,13 +10,12 @@ class CreatePrenotazioniTable extends Migration
     {
         Schema::create('prenotazioni', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('cliente')->constrained('clients')->onDelete('cascade');
             $table->foreignId('ristoratore')->constrained('ristoratori')->onDelete('cascade');
             $table->dateTime('orario');
             $table->integer('numero_inviti');
-            $table->enum('divisione_conto', ['Equo', 'Proporzionale']);
+            $table->enum('divisione_conto', ['Equo', 'Proporzionale'])->nullable()->default(null);
             $table->enum('stato', ['Accettata', 'Rifiutata', 'In attesa'])->default('In attesa');
-            $table->timestamps(); 
+            $table->timestamps();
         });
     }
 

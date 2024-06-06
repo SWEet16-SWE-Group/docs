@@ -33,8 +33,7 @@ class PrenotazioniController extends Controller
         $validatedData = $request->validated();
         $prenotazione = Prenotazione::create($validatedData);
 
-        return response()->json(['message' => 'Prenotazione created successfully', 'data' => $prenotazione], 201);
-
+        return response()->json($prenotazione, 201);
     }
 
     public function update(Request $request, $id)

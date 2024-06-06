@@ -27,6 +27,7 @@ class CreateAllergeniTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('allergeni_client');
         Schema::dropIfExists('allergeni');
     }
 }
