@@ -1,29 +1,33 @@
-import {Link, Navigate, Outlet} from "react-router-dom";
+import {Link, useNavigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
 
 function Header(){
 
-  const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
-
+  const {user, token, role, notification, notificationStatus, setUser, setProfile, setToken, setRole} = useStateContext()
+  const navigate = useNavigate();
   const onLogout = (ev) => {
     ev.preventDefault()
-    setUser('')
+    setUser(null)
     setToken(null)
+    setProfile(null)
     setRole('ANONIMO')
+    navigate('/login');
   }
 
   const onLogoutProfile = (ev) => {
     ev.preventDefault()
     setRole('AUTENTICATO')
+    setProfile(null)
+    navigate('/selezioneprofilo');
   }
 
   const defaultHeader = (
       <header>
           <div> {role} </div>
-          <Link to="/Ristoranti">Esplora</Link>
-          <Link to="/Login">Login</Link>
-          <Link to="/SignUp">Sign up</Link>
+          <Link to="/ristoranti">Esplora</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/signUp">Sign up</Link>
       </header>
   )
 
@@ -56,15 +60,15 @@ function Header(){
             <div> {role} </div>
             <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
             <div> {user} </div>
-            <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
+            <button onClick={onLogout} className="btn-logout">Logout</button>
         </header>
     ),
   })[role];
 
 }
 
-function LinkDashboard(){
-  const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
+function LinkDashboard() {
+    const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
   const defaultLink = (<Link to="/ristoranti">Dashboard</Link>);
   return ({
     '': defaultLink,
