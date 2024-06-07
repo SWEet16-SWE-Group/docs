@@ -18,11 +18,11 @@ jest.mock('../contexts/ContextProvider', () => {
 
 const renderWithContext = (component) => {
     act(() => {
-        return render(
+        render(
             <ContextProvider>
-                <MemoryRouter initialEntries={['/ristoratore-dashboard']}>
+                <MemoryRouter initialEntries={['/dashboardristoratore']}>
                     <Routes>
-                        <Route path="/ristoratore-dashboard" element={component} />
+                        <Route path="/dashboardristoratore" element={component} />
                     </Routes>
                 </MemoryRouter>
             </ContextProvider>
@@ -40,7 +40,7 @@ describe('RistoratoreDashboard', () => {
         axiosClient.put.mockReset();
 
         mockUseStateContext = {
-            ristoratore: ristoratoreId,
+            profile: ristoratoreId,
             setNotification: jest.fn(),
             setNotificationStatus: jest.fn(),
         };
