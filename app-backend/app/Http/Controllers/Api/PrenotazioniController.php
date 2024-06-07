@@ -19,12 +19,7 @@ class PrenotazioniController extends Controller
     }
 
     public function show ($id) {
-        $currentTime = now();
-
-        $prenotazioni = Prenotazione::where('ristoratore', $id)
-        ->where('orario', '>=', $currentTime)
-        ->orderBy('orario')
-        ->get();
+        $prenotazioni = Prenotazione::where('ristoratore', $id)->get();
         $prenotazioni->each(function ($prenotazione) {
             $prenotazione->nome = Client::where('id', $prenotazione->cliente)->first()->nome;
         });
