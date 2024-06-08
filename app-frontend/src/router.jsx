@@ -21,6 +21,7 @@ import Ristoranti from "./views/Ristoranti";
 import Ristorante from "./views/Ristorante";
 import Menu from "./views/Menu";
 import FormPrenotazione from "./views/FormPrenotazione.jsx";
+import FormOrdinazione from "./views/FormOrdinazione.jsx";
 
 import ClienteDashboard from "./views/DashboardCliente.jsx";
 import ClientePrenotazione from "./views/SingolaPrenotazioneCliente.jsx";
@@ -112,6 +113,10 @@ const router = createBrowserRouter([
     {
        path: '/formprenotazione/:id',
        element: <Cliente Content={<FormPrenotazione />} />
+    },
+    {
+       path: '/formordinazione/:prenotazione/:pietanza',
+       element: <Cliente Content={<FormOrdinazione />} />
     },
     {
        path: '/dettagliprenotazionecliente/:id',

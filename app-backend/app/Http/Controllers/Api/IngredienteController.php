@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Ingrediente;
 use App\Http\Requests\IngredienteRequest;
+use DB;
 
 class IngredienteController extends Controller
 {
@@ -52,4 +53,24 @@ class IngredienteController extends Controller
         $ingrediente->delete();
         return response()->json(['message' => 'Ingrediente eliminato con successo'], 204);
     }
+
+    public function aggiunte($pietanza){
+        $ingredienti = DB::select(<<<'EOF'
+            select i.id as id, i.nome as nome
+            from ingredienti as i
+            left join ricette as r on r.ingrediente = i.id
+            and r.pietanza = ?
+            where r.pietanza is null
+            EOF, [$pietanza]);
+        return response()->json($ingredienti,200);
+    }
+
+    public function rimozioni($pietanza){
+        $ingredienti = Ingrediente::select('ingredienti.id','ingredienti.nome')
+            ->join('ricette as r','r.ingrediente','=','ingredienti.id')
+            ->where('r.pietanza', $pietanza)
+            ->get();
+        return response()->json($ingredienti,200);
+    }
+
 }

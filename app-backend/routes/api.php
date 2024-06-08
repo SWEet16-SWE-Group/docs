@@ -111,3 +111,6 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/ristoranti',[RistoratoreController::class,'index']);
 Route::get('/ristorante/{id}',[RistoratoreController::class,'show']);
 Route::get('/menu/{id}', [RistoratoreController::class, 'menu']);
+
+Route::get('/get-possibili-aggiunte/{pietanza}', [IngredienteController::class, 'aggiunte']);
+Route::get('/get-possibili-rimozioni/{pietanza}', [IngredienteController::class, 'rimozioni']);
