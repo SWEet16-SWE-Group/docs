@@ -27,17 +27,21 @@ export default function FormOrdinazione() {
 
     const [aggiunte, setAggiunte] = useState(null);
     const [rimozioni, setRimozioni] = useState(null);
+    const [invito, setInvito] = useState(null);
 
     useEffect(() => {
-      axiosClient.get(`/get-possibili-aggiunte/${pietanza}`).then(data => setAggiunte(data.data))
-      axiosClient.get(`/get-possibili-rimozioni/${pietanza}`).then(data => setRimozioni(data.data))
+      axiosClient.get(`/get-possibili-aggiunte/${pietanza}`).then(data => setAggiunte(data.data));
+      axiosClient.get(`/get-possibili-rimozioni/${pietanza}`).then(data => setRimozioni(data.data));
+      axiosClient.get(`/get-invito-by-prenotazione-cliente/${prenotazione}/${profile}`).then(data => setInvito(data.data[0].id));
     }, []);
 
-    console.log(aggiunte);
-    console.log(rimozioni);
+    //console.log(invito);
+    //console.log(aggiunte);
+    //console.log(rimozioni);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
         setErrorMessage('');
 
         try {
@@ -51,21 +55,13 @@ export default function FormOrdinazione() {
             console.log(invito);
 
             setNotificationStatus('success');
-            setNotification('Prenotazione creata con successo.');
+            setNotification('Orenotazione creata con successo.');
         } catch (error) {
             setNotificationStatus('error');
-            setNotification('Errore durante il savaltaggio della prenotazione.');
-            setErrorMessage('Errore durante il savaltaggio della prenotazione.');
+            setNotification('Errore durante il savaltaggio dell\'orenotazione.');
+            setErrorMessage('Errore durante il savaltaggio dell\'orenotazione.');
         }
     };
-
-    function rurl(id) {
-      return `rimozione_${id}`;
-    }
-
-    function aurl(id) {
-      return `aggiunta_${id}`;
-    }
 
     return (
         <div className="container mt-5">
@@ -74,11 +70,23 @@ export default function FormOrdinazione() {
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             &nbsp; &nbsp;
             <form onSubmit={handleSubmit}>
-                <Input id={"quantità"} nome={"quantità"} tipo={"number"} />
+                <Input id={"quantita"} nome={"quantita"} text={'quantità'} tipo={"number"} />
                 <h4>Rimozioni</h4>
-                {rimozioni && rimozioni.map(a => <Input id={rurl(a.id)} nome={a.nome} tipo={'checkbox'} />)}
-                <h4>Aggiunte</h4>
-                {aggiunte && aggiunte.map(a => <Input id={aurl(a.id)} nome={a.nome} tipo={'checkbox'} />)}
+                {rimozioni && rimozioni.map(a => <Input
+                  key={`rimozione_${a.id}`}
+                  id={a.id}
+                  nome={'rimozione'}
+                  text={a.nome}
+                  tipo={'checkbox'}
+                />)}
+                <h4>Aggiunte</h4>                                                 
+                {aggiunte && aggiunte.map(a => <Input  
+                  key={`aggiunta_${a.id}`}
+                  id={a.id}
+                  nome={'aggiunta'}
+                  text={a.nome}
+                  tipo={'checkbox'}
+                />)}
                 <button type="submit" className="btn btn-primary">Ordina</button>
                 <button type="button" className="btn btn-secondary ms-2" >Annulla</button>
             </form>
