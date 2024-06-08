@@ -1,29 +1,33 @@
-import {Link, Navigate, Outlet} from "react-router-dom";
+import {Link, useNavigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
 
 function Header(){
 
-  const {user, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
+  const {user, token, role, notification, notificationStatus, setUser, setProfile, setToken, setRole} = useStateContext()
+  const navigate = useNavigate();
 
   const onLogout = (ev) => {
     ev.preventDefault()
-    setUser('')
+    setUser(null)
     setToken(null)
+    setProfile(null)
     setRole('ANONIMO')
+    navigate('/login')
   }
 
   const onLogoutProfile = (ev) => {
     ev.preventDefault()
     setRole('AUTENTICATO')
+    navigate('/selezioneprofilo')
   }
 
   const defaultHeader = (
       <header>
           <div> {role} </div>
-          <Link to="/Ristoranti">Esplora</Link>
-          <Link to="/Login">Login</Link>
-          <Link to="/SignUp">Sign up</Link>
+          <Link to="/ristoranti">Esplora</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Sign up</Link>
       </header>
   )
 
