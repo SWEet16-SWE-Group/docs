@@ -11,7 +11,6 @@ class CreatePrenotazioniTable extends Migration
         Schema::create('prenotazioni', function (Blueprint $table) {
             $table->id();
             $table->foreignId('ristoratore')->constrained('ristoratori')->onDelete('cascade');
-            $table->foreignId('cliente')->constrained('clients')->onDelete('cascade');
             $table->dateTime('orario');
             $table->integer('numero_inviti');
             $table->enum('divisione_conto', ['Equo', 'Proporzionale'])->nullable()->default(null);
