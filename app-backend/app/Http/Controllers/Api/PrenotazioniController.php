@@ -19,10 +19,9 @@ class PrenotazioniController extends Controller
     }
 
     public function show ($id) {
-        $prenotazioni = Prenotazione::where('ristoratore', $id)->get();
-        $prenotazioni->each(function ($prenotazione) {
-            $prenotazione->nome = Client::where('id', $prenotazione->cliente)->first()->nome;
-        });
+        $prenotazioni = Prenotazione::select('prenotazioni.*')
+            ->where('ristoratore', $id)
+            ->get();
 
         return response()->json($prenotazioni);
     }
