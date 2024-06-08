@@ -11,12 +11,13 @@ function fetch(id,set) {
   )
 }
 
-function pietanza(a,ordinabile){
+function pietanza(a, prenotazione){
+  const url = (prenotazione,pietanza) => `/formordinazione/${prenotazione}/${pietanza}`;
   return (
     <div key={a.id}>
       <h1> {a.nome} </h1>
       <p> {a.ingredienti} </p>
-      {ordinabile && <a href="">aaaaa</a>}
+      {prenotazione && <a href={url(prenotazione, a.id)} >aaaaa</a>}
     </div>
   );
 
