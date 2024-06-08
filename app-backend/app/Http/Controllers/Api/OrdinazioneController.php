@@ -10,8 +10,8 @@ use DB;
 class OrdinazioneController extends Controller
 {
     public function store(OrdinazioneRequest $request) {
-        $a = $request->input('rimozioni',[]) ;
-        $r = $request->input('aggiunte',[])  ;
+        $a = $request->input('aggiunte',[])  ;
+        $r = $request->input('rimozioni',[]) ;
         $validatedData = $request->validated();
         $ordinazione = Ordinazione::create($validatedData);
 
