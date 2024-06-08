@@ -42,7 +42,6 @@ export default function SelezioneProfilo() {
     const onSelectProfile = (profile, role) => {
         setProfile(profile.id);
         setRole(role);
-        navigate('/');
     }
 
 
@@ -93,10 +92,10 @@ export default function SelezioneProfilo() {
                     {ClientProfiles && ClientProfiles.map(profile => (
                         <tr>
                             <td>
-                                <button className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile,'CLIENTE')}>Seleziona</button>
+                                <Link to="/dashboardcliente" className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile,'CLIENTE')}>Seleziona</Link>
                             </td>
                             <td>{profile.nome}</td>
-                            <td>{profile.tipo}</td>
+                            <td>Cliente</td>
                             <td>
                                 <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile,'modificaprofilocliente')}>Modifica</button>
                                 &nbsp;
@@ -107,10 +106,10 @@ export default function SelezioneProfilo() {
                     {RestaurantProfiles && RestaurantProfiles.map(profile => (
                         <tr>
                         <td>
-                            <button className="btn btn-primary me-2" onClick={() => onSelectProfile(profile,'RISTORATORE')}>Seleziona</button>
+                            <Link to="/dashboardristoratore" className="btn btn-primary me-2" onClick={() => onSelectProfile(profile,'RISTORATORE')}>Seleziona</Link>
                         </td>
                             <td>{profile.nome}</td>
-                            <td>{profile.tipo}</td>
+                            <td>Ristoratore</td>
                             <td>
                                 <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile,'modificaprofiloristoratore')}>Modifica</button>
                                 &nbsp;
