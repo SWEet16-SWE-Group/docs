@@ -118,8 +118,8 @@ const router = createBrowserRouter([
        element: <Cliente Content={<ClientePrenotazione />} />
     },
     {
-       path: '/menuordinazione/:ristorante/:prenotazione',
-       element: <Cliente Content={<ClientePrenotazione />} />
+       path: '/menu/:ristorante/:prenotazione',
+       element: <Cliente Content={<Menu />} />
     },
 
     //RISTORATORE

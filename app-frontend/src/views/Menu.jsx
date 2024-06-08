@@ -11,19 +11,21 @@ function fetch(id,set) {
   )
 }
 
-function pietanza(a){
+function pietanza(a,ordinabile){
   return (
     <div key={a.id}>
       <h1> {a.nome} </h1>
       <p> {a.ingredienti} </p>
+      {ordinabile && <a href="">aaaaa</a>}
     </div>
   );
 
 }
 
 export default function Menu() {
-    const {ristorante} = useParams();
+    const {prenotazione, ristorante} = useParams();
+    console.log(ristorante, prenotazione);
     const [r,sr] = useState(null);
     useEffect(() => fetch(ristorante,sr) ,[]);
-    return (<div>{r && r.map(pietanza)}</div>)
+    return (<div>{r && r.map(a => pietanza(a, prenotazione))}</div>)
 }

@@ -33,7 +33,7 @@ function Ordinazioni({data}){
 
 function Prenotazione(p){
   const url_p = (id) => `/divisionecontopagamento/${id}`;
-  const url_o = (id) => `/menu/${id}`;
+  const url_o = (r,p) => `/menu/${r}/${p}`;
   const a = p.prenotazione;
   return (<div key={a.id}>
     <h1>{a.nome}</h1>
@@ -42,7 +42,7 @@ function Prenotazione(p){
     <div>Orario: {a.orario}</div>
     <div><a href={url_p(a.id)}>Esamina pagamento</a></div>
     <h2>Ordinazioni</h2>
-    <div><a href={url_o(a.ristoratore)}>Ordina</a></div>
+    <div><a href={url_o(a.ristoratore,a.id)}>Ordina</a></div>
     {p.ordinazioni.map((data) => <Ordinazioni data={data}/>)}
   </div>);
 }
