@@ -35,14 +35,15 @@ function Prenotazione(p){
   const url_p = (id) => `/divisionecontopagamento/${id}`;
   const url_o = (r,p) => `/menu/${r}/${p}`;
   const a = p.prenotazione;
+    console.log(a.id);
   return (<div key={a.id}>
     <h1>{a.nome}</h1>
     <h2>Dettagli</h2>
     <div>Stato: {a.stato}</div>
     <div>Orario: {a.orario}</div>
-    <div><a href={url_p(a.id)}>Esamina pagamento</a></div>
+    <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
     <h2>Ordinazioni</h2>
-    <div><a href={url_o(a.ristoratore,a.id)}>Ordina</a></div>
+    <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
     {p.ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data}/>)}
   </div>);
 }
