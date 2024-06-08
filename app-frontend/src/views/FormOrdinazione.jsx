@@ -45,14 +45,28 @@ export default function FormOrdinazione() {
         setErrorMessage('');
 
         try {
-            const formData = {
-            };
+            const q = e.target.quantita.value;
+            console.log(q);
+            for ( let i = 0; i < q; i+=1) {
+              const formData = {
+                invito: invito,
+                pietanza: pietanza
+              };
 
-            const {data: prenotazione} = await axiosClient.post(`/crea-prenotazione`, formData);
-            console.log(prenotazione);
+              console.log(formData);
 
-            const {data: invito} = await axiosClient.post(`/crea-invito`, {cliente:profile, prenotazione:prenotazione.id});
-            console.log(invito);
+              continue;
+
+              const {data: data} = await axiosClient.post(`/crea-ordinazione`, formData);
+
+              const formify = (a) => ({ingrediente: a.id, ordinazione: data.id});
+
+              const send = (a) => null;
+              const dettagli_a = e.target.aggiunta.map(a => ({ ingrediente: a.id, ordinazione: data.id }));
+              const dettagli_r = e.target.rimozione.map(a => ({ingrediente: a.id, ordinazione: data.id }));
+
+              await axiosClient.post(`/crea-dettagli-ordinazione`, {aggiunte:dettagli_a, rimozioni:dettagli_r});
+            }
 
             setNotificationStatus('success');
             setNotification('Orenotazione creata con successo.');
