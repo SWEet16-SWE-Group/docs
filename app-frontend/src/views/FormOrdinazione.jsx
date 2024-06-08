@@ -62,7 +62,7 @@ export default function FormOrdinazione() {
             }
 
             setNotificationStatus('success');
-            setNotification('Orenotazione creata con successo.');
+            setNotification('Prenotazione creata con successo.');
         } catch (error) {
             console.log(error)
             setNotificationStatus('error');
