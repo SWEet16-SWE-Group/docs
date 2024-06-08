@@ -3,17 +3,16 @@ import axiosClient from "../axios-client";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 
-function Input({id, nome, tipo, onChange}){
+function Input({id, nome, text, tipo, onChange}){
   return (
     <div className="mb-3">
-      <label htmlFor={id} className="form-label">{nome}</label>
+      <label htmlFor={id} className="form-label">{text}</label>
       <input
           type={tipo}
           className="form-control"
           id={id}
           name={nome}
           onChange={onChange}
-          required
           min="1"
       />
     </div>
