@@ -114,3 +114,4 @@ Route::get('/menu/{id}', [RistoratoreController::class, 'menu']);
 
 Route::get('/get-possibili-aggiunte/{pietanza}', [IngredienteController::class, 'aggiunte']);
 Route::get('/get-possibili-rimozioni/{pietanza}', [IngredienteController::class, 'rimozioni']);
+Route::get('/get-invito-by-prenotazione-cliente/{prenotazione}/{profile}',[InvitoController::class, 'get_by_prenotazione_cliente']);
