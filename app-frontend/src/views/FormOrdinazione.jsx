@@ -3,7 +3,7 @@ import axiosClient from "../axios-client";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 
-function Input({id, nome, text, tipo, onChange}){
+function Input({id, nome, text, tipo, value, onChange}){
   return (
     <div className="mb-3">
       <label htmlFor={id} className="form-label">{text}</label>
@@ -13,6 +13,7 @@ function Input({id, nome, text, tipo, onChange}){
           id={id}
           name={nome}
           onChange={onChange}
+          defaultValue={value !== undefined ? value : 1}
           min="1"
       />
     </div>
@@ -46,31 +47,24 @@ export default function FormOrdinazione() {
 
         try {
             const q = e.target.quantita.value;
-            console.log(q);
             for ( let i = 0; i < q; i+=1) {
               const formData = {
                 invito: invito,
-                pietanza: pietanza
+                pietanza: pietanza,
+                aggiunte:  Object.values(e.target.aggiunte ).filter(a => a.checked).map(a => ({ ingrediente: a.id})),
+                rimozioni: Object.values(e.target.rimozioni).filter(a => a.checked).map(a => ({ingrediente: a.id})),
               };
 
               console.log(formData);
-
-              continue;
-
+              //continue;
               const {data: data} = await axiosClient.post(`/crea-ordinazione`, formData);
-
-              const formify = (a) => ({ingrediente: a.id, ordinazione: data.id});
-
-              const send = (a) => null;
-              const dettagli_a = e.target.aggiunta.map(a => ({ ingrediente: a.id, ordinazione: data.id }));
-              const dettagli_r = e.target.rimozione.map(a => ({ingrediente: a.id, ordinazione: data.id }));
-
-              await axiosClient.post(`/crea-dettagli-ordinazione`, {aggiunte:dettagli_a, rimozioni:dettagli_r});
+              console.log(data);
             }
 
             setNotificationStatus('success');
             setNotification('Orenotazione creata con successo.');
         } catch (error) {
+            console.log(error)
             setNotificationStatus('error');
             setNotification('Errore durante il savaltaggio dell\'orenotazione.');
             setErrorMessage('Errore durante il savaltaggio dell\'orenotazione.');
@@ -84,12 +78,12 @@ export default function FormOrdinazione() {
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             &nbsp; &nbsp;
             <form onSubmit={handleSubmit}>
-                <Input id={"quantita"} nome={"quantita"} text={'quantità'} tipo={"number"} />
+                <Input id={"quantita"} nome={"quantita"} text={'quantità'} tipo={"number"} value={1} />
                 <h4>Rimozioni</h4>
                 {rimozioni && rimozioni.map(a => <Input
                   key={`rimozione_${a.id}`}
                   id={a.id}
-                  nome={'rimozione'}
+                  nome={'rimozioni'}
                   text={a.nome}
                   tipo={'checkbox'}
                 />)}
@@ -97,7 +91,7 @@ export default function FormOrdinazione() {
                 {aggiunte && aggiunte.map(a => <Input  
                   key={`aggiunta_${a.id}`}
                   id={a.id}
-                  nome={'aggiunta'}
+                  nome={'aggiunte'}
                   text={a.nome}
                   tipo={'checkbox'}
                 />)}

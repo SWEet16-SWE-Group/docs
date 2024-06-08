@@ -17,7 +17,7 @@ function pietanza(a, prenotazione){
     <div key={a.id}>
       <h1> {a.nome} </h1>
       <p> {a.ingredienti} </p>
-      {prenotazione && <a href={url(prenotazione, a.id)} >aaaaa</a>}
+      {prenotazione && <a href={url(prenotazione, a.id)} >Ordina</a>}
     </div>
   );
 
