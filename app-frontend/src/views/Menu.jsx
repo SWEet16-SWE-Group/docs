@@ -22,8 +22,8 @@ function pietanza(a){
 }
 
 export default function Menu() {
-    const {id} = useParams();
+    const {ristorante} = useParams();
     const [r,sr] = useState(null);
-    useEffect(() => fetch(id,sr) ,[]);
+    useEffect(() => fetch(ristorante,sr) ,[]);
     return (<div>{r && r.map(pietanza)}</div>)
 }

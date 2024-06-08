@@ -62,7 +62,7 @@ const router = createBrowserRouter([
         element: <Layout Content={<Ristorante />} />
     },
     {
-        path: '/menu/:id',
+        path: '/menu/:ristorante',
         element: <Layout Content={<Menu />} />
     },
     {
@@ -115,6 +115,10 @@ const router = createBrowserRouter([
     },
     {
        path: '/dettagliprenotazionecliente/:id',
+       element: <Cliente Content={<ClientePrenotazione />} />
+    },
+    {
+       path: '/menuordinazione/:ristorante/:prenotazione',
        element: <Cliente Content={<ClientePrenotazione />} />
     },
 
