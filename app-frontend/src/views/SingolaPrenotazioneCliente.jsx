@@ -22,7 +22,7 @@ function Ordinazioni({data}){
               <td>{ordinazione.pietanza}</td>
               <td>{ordinazione.aggiunte}</td>
               <td>{ordinazione.rimozioni}</td>
-              <td><button class="btn btn-block">Cancella</button></td>
+              <td><button className="btn btn-block">Cancella</button></td>
           </tr>
         ))}
       </tbody>
@@ -43,7 +43,7 @@ function Prenotazione(p){
     <div><a href={url_p(a.id)}>Esamina pagamento</a></div>
     <h2>Ordinazioni</h2>
     <div><a href={url_o(a.ristoratore,a.id)}>Ordina</a></div>
-    {p.ordinazioni.map((data) => <Ordinazioni data={data}/>)}
+    {p.ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data}/>)}
   </div>);
 }
 
