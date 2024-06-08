@@ -56,10 +56,11 @@ class IngredienteController extends Controller
 
     public function aggiunte($pietanza){
         $ingredienti = DB::select(<<<'EOF'
-            select i.id as id, i.nome as nome
+            select distinct i.id, i.nome
             from ingredienti as i
-            left join ricette as r on r.ingrediente = i.id
-            and r.pietanza = ?
+            inner join pietanze as pz on i.ristoratore = pz.ristoratore
+            left join ricette as r on r.ingrediente = i.id and r.pietanza = ?
+            left join pietanze as p on r.pietanza = p.id
             where r.pietanza is null
             EOF, [$pietanza]);
         return response()->json($ingredienti,200);
