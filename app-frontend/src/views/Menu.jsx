@@ -11,19 +11,22 @@ function fetch(id,set) {
   )
 }
 
-function pietanza(a){
+function pietanza(a, prenotazione){
+  const url = (prenotazione,pietanza) => `/formordinazione/${prenotazione}/${pietanza}`;
   return (
     <div key={a.id}>
       <h1> {a.nome} </h1>
       <p> {a.ingredienti} </p>
+      {prenotazione && <a href={url(prenotazione, a.id)} >Ordina</a>}
     </div>
   );
 
 }
 
 export default function Menu() {
-    const {id} = useParams();
+    const {prenotazione, ristorante} = useParams();
+    console.log(ristorante, prenotazione);
     const [r,sr] = useState(null);
-    useEffect(() => fetch(id,sr) ,[]);
-    return (<div>{r && r.map(pietanza)}</div>)
+    useEffect(() => fetch(ristorante,sr) ,[]);
+    return (<div>{r && r.map(a => pietanza(a, prenotazione))}</div>)
 }
