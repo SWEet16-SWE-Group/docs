@@ -16,7 +16,7 @@ function url(id){
 
 function ristorante(a){
   return (
-    <a href={url(a.id)} key={a.id}> {a.nome} @ {a.indirizzo} # {a.telefono} | {a.orario} </a>
+    <Link to={url(a.id)} key={a.id}> {a.nome} @ {a.indirizzo} # {a.telefono} | {a.orario} </Link>
   );
 }
 

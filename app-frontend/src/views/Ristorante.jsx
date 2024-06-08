@@ -15,7 +15,7 @@ function Bottoneprenota(a){
   const url = (id) => `/formprenotazione/${id}`;
   const {role} = useStateContext();
   if (role === 'CLIENTE') {
-    return (<a href={url(a.id)}>Prenota</a>);
+    return (<Link to={url(a.id)}>Prenota</Link>);
   }else{
     return (<div></div>);
   }
@@ -29,7 +29,7 @@ function ristorante(a){
       <p> {a.indirizzo} </p>
       <p> {a.telefono} </p>
       <p> {a.orario} </p>
-      <a href={url(a.id)}> Menù </a>
+      <Link to={url(a.id)}> Menù </Link>
       {Bottoneprenota(a)}
     </div>
   );
