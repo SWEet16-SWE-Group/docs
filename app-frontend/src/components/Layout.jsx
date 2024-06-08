@@ -19,6 +19,7 @@ function Header(){
   const onLogoutProfile = (ev) => {
     ev.preventDefault()
     setRole('AUTENTICATO')
+    setProfile(null)
     navigate('/selezioneprofilo')
   }
 
