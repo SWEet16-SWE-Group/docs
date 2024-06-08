@@ -1,9 +1,10 @@
 import {useParams, useNavigate, Link} from "react-router-dom";
-import React, {useState , useEffect } from 'react';
+import React, {useState , useEffect }  from 'react';
 import { fetchClientProfile , deleteClientProfile , updateClientProfile } from '../services/ClientService';
 import {useStateContext} from "../contexts/ContextProvider";
 import axios from 'axios';
 import axiosClient from "../axios-client.js";
+import { act } from "react";
 
 export default function ModificaProfiloCliente() {
 
@@ -77,7 +78,7 @@ export default function ModificaProfiloCliente() {
                         <div class="form-group row">
                             <label for="nome" class="col-sm-2 col-form-label">Username</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nome" name="nome" value={username}
+                                <input type="text" class="form-control" id="nome" name="nome" value={username} role="nameChanger"
                                        onChange={ev =>
                                            setUsername(ev.target.value)}
                                 required
