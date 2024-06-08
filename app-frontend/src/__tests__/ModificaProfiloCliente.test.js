@@ -33,12 +33,7 @@ describe('ModificaProfiloCliente', () => {
     const client_id = "1";
 
     beforeEach( () => {
-        axiosClient.get.mockResolvedValueOnce({
-            data : {
-                nome : 'Tullio'
-            }
-        }
-        );
+       
         localStorage.setItem('USER_ID',1);
         mockUseStateContext = {
             role: 'CLIENT',
@@ -49,10 +44,16 @@ describe('ModificaProfiloCliente', () => {
     });
 
     it('Form correctly rendered',async () => {
-
+        axiosClient.get.mockResolvedValueOnce({
+            data : {
+                nome : 'Tullio'
+            }
+        }
+        );
         renderWithContext(<ModificaProfiloCliente/>);
 
         await waitFor(() => {
+            expect(axiosClient.get).toHaveBeenCalledWith('/client/1');
             expect(screen.getByText('Modifica le informazioni relative a questo profilo')).toBeInTheDocument();
             expect(screen.getByLabelText('Username')).toBeInTheDocument();
             expect(screen.getByRole('nameChanger',{'value': 'Tullio'})).toBeInTheDocument();
@@ -60,8 +61,23 @@ describe('ModificaProfiloCliente', () => {
             expect(screen.getByText('Annulla')).toBeInTheDocument();
         });
     });
+        it('Showing fetching client info error',async () => {
+            axiosClient.get.mockRejectedValueOnce({data: ''});
+
+            renderWithContext(<ModificaProfiloCliente/>);
+
+            await waitFor( () => {
+                expect(screen.getByText('Errore durante il recupero dei dati.')).toBeInTheDocument();
+            });
+        });
 
         it('Changed username rendered correctly',async () => {
+            axiosClient.get.mockResolvedValueOnce({
+                data : {
+                    nome : 'Tullio'
+                }
+            }
+            );
             renderWithContext(<ModificaProfiloCliente/>);
 
             await waitFor ( () => {
@@ -76,6 +92,12 @@ describe('ModificaProfiloCliente', () => {
         });
 
         it('Form submission handled successfully',async () => {
+            axiosClient.get.mockResolvedValueOnce({
+                data : {
+                    nome : 'Tullio'
+                }
+            }
+            );
 
             axiosClient.put.mockResolvedValueOnce({ data: { status: 'success', notification: 'Dati aggiornati con successo.' } });
 
@@ -102,6 +124,12 @@ describe('ModificaProfiloCliente', () => {
         });
 
         it('Form submission goes wrong',async () => {
+            axiosClient.get.mockResolvedValueOnce({
+                data : {
+                    nome : 'Tullio'
+                }
+            }
+            );
             axiosClient.put.mockRejectedValueOnce({ response: { data: { errors: { error : [ "Errore nell'aggiornamento del cliente!"]}
          } } } );
     

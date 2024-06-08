@@ -58,7 +58,7 @@ export default function ModificaProfiloCliente() {
        })
         .catch (error =>
         {
-            setErrors('Errore durante il recupero dei dati.');
+            setErrors({error : ['Errore durante il recupero dei dati.']});
             console.error(error);
         })
     }
@@ -68,6 +68,7 @@ export default function ModificaProfiloCliente() {
                 <h1 className="title text-center">Modifica le informazioni relative a questo profilo</h1>
             <div id="editClientForm">
                 {errors && <div className="alert">
+                    console.log(errors);
                     {Object.keys(errors).map(key => (
                         <p key={key}>{errors[key][0]}</p>
                     ))}
