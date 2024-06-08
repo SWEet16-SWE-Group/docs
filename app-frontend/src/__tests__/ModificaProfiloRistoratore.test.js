@@ -88,7 +88,7 @@ describe('ModificaProfiloRistoratore', () => {
     });
 
     it('handles form submission errors', async () => {
-        axiosClient.put.mockRejectedValueOnce({ response: { data: { errors: { nome: ['Nome è richiesto.'] } } } });
+        axiosClient.put.mockRejectedValueOnce({ response: { data: { errors: { nome : ['Nome è richiesto.'] } } } });
 
         renderWithContext(<ModificaProfiloRistoratore />);
 
