@@ -92,7 +92,7 @@ export default function SelezioneProfilo() {
                       </thead>
                     <tbody>
                     {ClientProfiles && ClientProfiles.map(profile => (
-                        <tr>
+                        <tr key={profile.id}>
                             <td>
                                 <Link to="/dashboardcliente" className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile,'CLIENTE')}>Seleziona</Link>
                             </td>
@@ -106,10 +106,10 @@ export default function SelezioneProfilo() {
                         </tr>
                     ))}
                     {RestaurantProfiles && RestaurantProfiles.map(profile => (
-                        <tr>
-                        <td>
-                            <Link to="/dashboardristoratore" className="btn btn-primary me-2" onClick={() => onSelectProfile(profile,'RISTORATORE')}>Seleziona</Link>
-                        </td>
+                        <tr key={profile.id}>
+                          <td>
+                              <Link to="/dashboardristoratore" className="btn btn-primary me-2" onClick={() => onSelectProfile(profile,'RISTORATORE')}>Seleziona</Link>
+                          </td>
                             <td>{profile.nome}</td>
                             <td>Ristoratore</td>
                             <td>
