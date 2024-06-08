@@ -103,23 +103,22 @@ class PrenotazioniController extends Controller
             ->where('inviti.cliente',$id)
             ->get()->first();
         $ordinazioni = DB::select(<<<'EOF'
-select c.nome as c,
-  o.id as id,
-  p.nome as pietanza,
-  GROUP_CONCAT(iai.nome SEPARATOR ", ") as aggiunte,
-  GROUP_CONCAT(iri.nome SEPARATOR ", ") as rimozioni
-from inviti as i
+select o.id, c.nome as c, pz.nome as pietanza,
+    GROUP_CONCAT(iia.nome SEPARATOR ", ") as aggiunte,
+    GROUP_CONCAT(iir.nome SEPARATOR ", ") as rimozioni
+from prenotazioni as p
+inner join inviti as i on p.id = i.prenotazione
+inner join clients as c on c.id = i.cliente
 inner join ordinazioni as o on i.id = o.invito
-inner join pietanze as p on o.pietanza = p.id
-inner join clients as c on i.cliente = c.id
-left join dettagliordinazione as ia on o.id = ia.ordinazione and (ia.dettaglio = '+' or ia.dettaglio is null)
-left join dettagliordinazione as ir on o.id = ir.ordinazione and (ir.dettaglio = '-' or ir.dettaglio is null)
-left join ingredienti as iai on ia.ingrediente = iai.id
-left join ingredienti as iri on ir.ingrediente = iri.id
-group by c.nome, o.id, p.nome
-order by c.nome
-EOF
-            );
+inner join pietanze as pz on pz.id = o.pietanza
+inner join dettagliordinazione as d on o.id = d.ordinazione
+left join dettagliordinazione as ia on ia.id = d.id and ia.dettaglio = '+'
+left join dettagliordinazione as ir on ir.id = d.id and ir.dettaglio = '-'
+left join ingredienti as iia on iia.id = ia.ingrediente
+left join ingredienti as iir on iir.id = ir.ingrediente
+where p.id = ?
+group by o.id;
+EOF, [$id]);
         $ordinazioni2 = array_map(
             fn ($a) => ['nome' => $a, 'ordinazioni' => array_values(array_filter($ordinazioni,fn ($o) => $o->c == $a))],
             $cols = array_unique( $c = array_map(fn($a)=> $a->c,$ordinazioni)),
