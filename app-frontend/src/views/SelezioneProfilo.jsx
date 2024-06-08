@@ -82,12 +82,14 @@ export default function SelezioneProfilo() {
                 }
                 {(ClientProfiles || RestaurantProfiles) &&
                     <table>
-                    <thead>
-                    <th>Entra con questo profilo</th>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Operazioni</th>
-                    </thead>
+                      <thead>
+                          <tr>
+                            <th>Entra con questo profilo</th>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Operazioni</th>
+                          </tr>
+                      </thead>
                     <tbody>
                     {ClientProfiles && ClientProfiles.map(profile => (
                         <tr>
