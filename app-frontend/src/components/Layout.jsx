@@ -39,24 +39,24 @@ function Header(){
             <Link to="/modificainfoaccount" className="btn-info">Profilo</Link>
             <Link to="/selezioneprofilo" className="btn-info">Selezione Profilo</Link>
             <div> {localStorage.USER_ID} </div>
-            <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
+            <Link to="#" onClick={onLogout} className="btn-logout">Logout</Link>
         </header>
     ),
     'CLIENTE':(
         <header>
             <div> {role} </div>
             <Link to="/Ristoranti">Prenota</Link>
-            <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
+            <Link to="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</Link>
             <div> {user} </div>
-            <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
+            <Link to="#" onClick={onLogout} className="btn-logout">Logout</Link>
         </header>
     ),
     'RISTORATORE':(
         <header>
             <div> {role} </div>
-            <a href="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</a>
+            <Link to="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</Link>
             <div> {user} </div>
-            <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
+            <Link to="#" onClick={onLogout} className="btn-logout">Logout</Link>
         </header>
     ),
   })[role];
