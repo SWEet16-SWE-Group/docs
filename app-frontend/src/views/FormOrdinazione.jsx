@@ -60,6 +60,14 @@ export default function FormOrdinazione() {
         }
     };
 
+    function rurl(id) {
+      return `rimozione_${id}`;
+    }
+
+    function aurl(id) {
+      return `aggiunta_${id}`;
+    }
+
     return (
         <div className="container mt-5">
             <h3>Ordina</h3>
@@ -68,6 +76,10 @@ export default function FormOrdinazione() {
             &nbsp; &nbsp;
             <form onSubmit={handleSubmit}>
                 <Input id={"quantità"} nome={"quantità"} tipo={"number"} />
+                <h4>Rimozioni</h4>
+                {rimozioni && rimozioni.map(a => <Input id={rurl(a.id)} nome={a.nome} tipo={'checkbox'} />)}
+                <h4>Aggiunte</h4>
+                {aggiunte && aggiunte.map(a => <Input id={aurl(a.id)} nome={a.nome} tipo={'checkbox'} />)}
                 <button type="submit" className="btn btn-primary">Ordina</button>
                 <button type="button" className="btn btn-secondary ms-2" >Annulla</button>
             </form>
