@@ -10,9 +10,11 @@ use App\Http\Controllers\Api\PrenotazioniController;
 use App\Http\Controllers\Api\IngredienteController;
 use App\Http\Controllers\Api\PietanzaController;
 use App\Http\Controllers\Api\InvitoController;
+use App\Http\Controllers\Api\OrdinazioneController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
+use App\Models\Ordinazione;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +72,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/pietanze', [PietanzaController::class, 'store']);
 
     Route::post('/crea-invito',  [InvitoController::class, 'store']);
+    Route::post('/crea-ordinazione',  [OrdinazioneController::class, 'store']);
 
     /*
     Route::middleware(UserIsRestaurant::class) {
