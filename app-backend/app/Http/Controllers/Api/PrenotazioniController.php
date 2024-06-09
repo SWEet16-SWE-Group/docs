@@ -126,4 +126,28 @@ EOF, [$id]);
         $return = ['prenotazione' => $prenotazione, 'ordinazioni' => array_values($ordinazioni2)];
         return response()->json($return, 200);
     }
+
+    public function prenotazione_conto($id){
+        $return = Prenotazione::select('prenotazioni.*','r.nome')
+            ->where('prenotazioni.id',$id)
+            ->join('ristoratori as r','r.id','=','prenotazioni.ristoratore')
+            ->first();
+        return response()->json($return,200);
+    }
+
+    public function set_divisioneconto(Request $request, $id){
+        $request->validate([
+            'divisione_conto' => 'required|in:Equo,Proporzionale'
+        ]);
+
+        $prenotazione = Prenotazione::findOrFail($id);
+
+        $prenotazione->divisione_conto = $request->input('divisione_conto');
+        $prenotazione->save();
+        $return = Prenotazione::select('prenotazioni.*','r.nome')
+            ->where('prenotazioni.id',$id)
+            ->join('ristoratori as r','r.id','=','prenotazioni.ristoratore')
+            ->first();
+        return response()->json($return,200);
+    }
 }
