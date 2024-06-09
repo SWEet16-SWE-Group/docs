@@ -17,7 +17,11 @@ function DivisioneConto({set}){
   return ({
     'CLIENTE':(
       <table>
-        <thead> <tr> <th colSpan="2">Quale modo di divione del conto preferisci ?</th> </tr> </thead>
+        <thead>
+          <tr>
+            <th colSpan="2">Quale modo di divione del conto preferisci ?</th>
+          </tr>
+        </thead>
         <tbody>
           <tr>
             <td width="50%"><button className="btn btn-block" onClick={equo}>Equo</button></td>
