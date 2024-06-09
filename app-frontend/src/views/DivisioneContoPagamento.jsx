@@ -31,6 +31,7 @@ function DivisioneConto({setEquo, setProp, role}){
 }
 
 function Pagamento({role, tipo}){
+  async function a(){}
   return (
     <h2>Pagamenti</h2>
   )
@@ -42,24 +43,17 @@ export default function DivisioneContoPagamento() {
     const {id} = useParams();
     const [prenotazione, setPrenotazione] = useState(null);
 
-    const fetchPrenotazione = () => {
-      axiosClient.get(`/prenotazione_conto/${id}`).then(
-        data => { 
-          setPrenotazione(data.data);
-          console.log(data.data);
-        }
-      );
+    async function fetchPrenotazione() {
+      const {data:data} = await axiosClient.get(`/prenotazione_conto/${id}`);
+      setPrenotazione(data);
     };
 
-    useEffect(fetchPrenotazione, []);
+    useEffect(() => { fetchPrenotazione(); }, []);
 
     async function setDivisione(modo){
       const {data: data} = await axiosClient.post(`/set_divisioneconto/${id}`,({divisione_conto: modo}))
       setPrenotazione(data);
-      console.log(data);
     }
-
-    console.log(prenotazione);
 
     const divisioneconto = prenotazione && prenotazione.divisione_conto == null;
     const tipodivisione =  prenotazione && prenotazione.divisione_conto;
