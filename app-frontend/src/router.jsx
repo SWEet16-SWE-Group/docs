@@ -134,7 +134,7 @@ const router = createBrowserRouter([
        element: <Cliente Content={<LinkInvito />} />
     },
     {
-       path: '/divisionecontopagamentocliente/:prenotazione',
+       path: '/divisionecontopagamentocliente/:id',
        element: <Cliente Content={<DivisioneContoPagamento />} />
     },
 
@@ -160,7 +160,7 @@ const router = createBrowserRouter([
         element: <Ristoratore Content={<FormIngrediente />} />,
     },
     {
-       path: '/divisionecontopagamentoristoratore/:prenotazione',
+       path: '/divisionecontopagamentoristoratore/:id',
        element: <Ristoratore Content={<DivisioneContoPagamento />} />
     },
 
