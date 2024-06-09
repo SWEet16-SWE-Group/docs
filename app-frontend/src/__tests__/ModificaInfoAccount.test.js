@@ -224,6 +224,7 @@ afterEach(() => {
         await waitFor(() => {
             expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Account eliminato con successo');
+            expect(localStorage.length).toBe(0);
         });       
     });
     
