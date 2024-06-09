@@ -3,12 +3,16 @@ import { Link, useParams } from 'react-router-dom';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
-function setDivisione(modo){
-  console.log(modo)
+async function setDivisione(modo, id){
+  const data = await axiosClient.post(`/set_divisioneconto/${id}`,({divisione_conto: modo}))
+  console.log(data);
 }
 
 function DivisioneConto(){
   const {user, profile, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
+  const {id} = useParams();
+  const equo = () => setDivisione('Equo', id);
+  const proporzionale = () => setDivisione('Proporzionale', id);
   return ({
     'CLIENTE':(
       <table>
@@ -19,8 +23,8 @@ function DivisioneConto(){
         </thead>
         <tbody>
           <tr>
-            <td width="50%"><button className="btn btn-block" onClick={() => setDivisione('EQUA')}>Equa</button></td>
-            <td><button className="btn btn-block" onClick={() => setDivisione('PROPORZIONALE')}>Proporzionale</button></td>
+            <td width="50%"><button className="btn btn-block" onClick={equo}>Equo</button></td>
+            <td><button className="btn btn-block" onClick={proporzionale}>Proporzionale</button></td>
           </tr>
           <tr>
             <td>Il conto viene diviso in modo uguale per tutti.</td>
@@ -35,21 +39,8 @@ function DivisioneConto(){
   })[role];
 }
 
-function Prenotazione(p){
-  const url_p = (id) => `/divisionecontopagamento/${id}`;
-  const url_o = (r,p) => `/menu/${r}/${p}`;
-  const a = p.prenotazione;
-    console.log(a.id);
-  return (<div key={a.id}>
-    <h1>{a.nome}</h1>
-    <h2>Dettagli</h2>
-    <div>Link di invito: <Link>localhost:3001/invito/{a.id}</Link></div>
-    <div>Stato: {a.stato}</div>
-    <div>Orario: {a.orario}</div>
-    <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
-    <h2>Ordinazioni</h2>
-    <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
-  </div>);
+function Pagamento({tipo}){
+  return <div>Pagamento di tipo: {tipo}</div>;
 }
 
 export default function DivisioneContoPagamento() {
@@ -58,8 +49,8 @@ export default function DivisioneContoPagamento() {
     const {id} = useParams();
     const [prenotazione, setPrenotazione] = useState(null);
 
-    const fetchPrenotazioni = () => {
-      axiosClient.get(`/prenotazione_c/${id}`).then(
+    const fetchPrenotazione = () => {
+      axiosClient.get(`/prenotazione_conto/${id}`).then(
         data => { 
           setPrenotazione(data.data);
           console.log(data.data);
@@ -67,12 +58,20 @@ export default function DivisioneContoPagamento() {
       );
     };
 
-    //useEffect(fetchPrenotazioni, []);
+    useEffect(fetchPrenotazione, []);
+
+    console.log(prenotazione);
+
+    const divisioneconto = prenotazione && prenotazione.divisione_conto == null;
+    const tipodivisione =  prenotazione && prenotazione.divisione_conto;
 
     return (
         <div className="container mt-5">
-          &lt;&lt; DETTAGLI PRENOTAZIONE &gt;&gt;
-          <DivisioneConto />
+          <h1>{prenotazione.nome}</h1>
+          <h2>Dettagli</h2>
+          <div>Data: {prenotazione.orario}</div>
+          {divisioneconto ? <DivisioneConto /> : <div>Divisione conto: {tipodivisione}</div>}
+          {!divisioneconto && <Pagamento tipo={tipodivisione} />}
         </div>
     );
 }
