@@ -3,24 +3,21 @@ import { Link, useParams } from 'react-router-dom';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
-async function setDivisione(modo, id){
-  const data = await axiosClient.post(`/set_divisioneconto/${id}`,({divisione_conto: modo}))
+async function setDivisione(modo, id, set){
+  const {data: data} = await axiosClient.post(`/set_divisioneconto/${id}`,({divisione_conto: modo}))
+  set(data);
   console.log(data);
 }
 
-function DivisioneConto(){
+function DivisioneConto({set}){
   const {user, profile, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
   const {id} = useParams();
-  const equo = () => setDivisione('Equo', id);
-  const proporzionale = () => setDivisione('Proporzionale', id);
+  const equo = () => setDivisione('Equo', id, set);
+  const proporzionale = () => setDivisione('Proporzionale', id, set);
   return ({
     'CLIENTE':(
       <table>
-        <thead>
-          <tr>
-            <th colSpan="2">Quale modo di divione del conto preferisci ?</th>
-          </tr>
-        </thead>
+        <thead> <tr> <th colSpan="2">Quale modo di divione del conto preferisci ?</th> </tr> </thead>
         <tbody>
           <tr>
             <td width="50%"><button className="btn btn-block" onClick={equo}>Equo</button></td>
@@ -67,10 +64,10 @@ export default function DivisioneContoPagamento() {
 
     return (
         <div className="container mt-5">
-          <h1>{prenotazione.nome}</h1>
+          <h1>{prenotazione && prenotazione.nome}</h1>
           <h2>Dettagli</h2>
-          <div>Data: {prenotazione.orario}</div>
-          {divisioneconto ? <DivisioneConto /> : <div>Divisione conto: {tipodivisione}</div>}
+          <div>Data: {prenotazione && prenotazione.orario}</div>
+          {divisioneconto ? <DivisioneConto set={setPrenotazione} /> : <div>Divisione conto: {tipodivisione}</div>}
           {!divisioneconto && <Pagamento tipo={tipodivisione} />}
         </div>
     );
