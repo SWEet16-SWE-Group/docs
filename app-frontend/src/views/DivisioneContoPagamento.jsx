@@ -3,17 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
-async function setDivisione(modo, id, set){
-  const {data: data} = await axiosClient.post(`/set_divisioneconto/${id}`,({divisione_conto: modo}))
-  set(data);
-  console.log(data);
-}
-
-function DivisioneConto({set}){
-  const {user, profile, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
-  const {id} = useParams();
-  const equo = () => setDivisione('Equo', id, set);
-  const proporzionale = () => setDivisione('Proporzionale', id, set);
+function DivisioneConto({setEquo, setProp, role}){
   return ({
     'CLIENTE':(
       <table>
@@ -24,8 +14,8 @@ function DivisioneConto({set}){
         </thead>
         <tbody>
           <tr>
-            <td width="50%"><button className="btn btn-block" onClick={equo}>Equo</button></td>
-            <td><button className="btn btn-block" onClick={proporzionale}>Proporzionale</button></td>
+            <td width="50%"><button className="btn btn-block" onClick={setEquo}>Equo</button></td>
+            <td><button className="btn btn-block" onClick={setProp}>Proporzionale</button></td>
           </tr>
           <tr>
             <td>Il conto viene diviso in modo uguale per tutti.</td>
@@ -40,8 +30,10 @@ function DivisioneConto({set}){
   })[role];
 }
 
-function Pagamento({tipo}){
-  return <div>Pagamento di tipo: {tipo}</div>;
+function Pagamento({role, tipo}){
+  return (
+    <h2>Pagamenti</h2>
+  )
 }
 
 export default function DivisioneContoPagamento() {
@@ -61,6 +53,12 @@ export default function DivisioneContoPagamento() {
 
     useEffect(fetchPrenotazione, []);
 
+    async function setDivisione(modo){
+      const {data: data} = await axiosClient.post(`/set_divisioneconto/${id}`,({divisione_conto: modo}))
+      setPrenotazione(data);
+      console.log(data);
+    }
+
     console.log(prenotazione);
 
     const divisioneconto = prenotazione && prenotazione.divisione_conto == null;
@@ -71,8 +69,12 @@ export default function DivisioneContoPagamento() {
           <h1>{prenotazione && prenotazione.nome}</h1>
           <h2>Dettagli</h2>
           <div>Data: {prenotazione && prenotazione.orario}</div>
-          {divisioneconto ? <DivisioneConto set={setPrenotazione} /> : <div>Divisione conto: {tipodivisione}</div>}
-          {!divisioneconto && <Pagamento tipo={tipodivisione} />}
+          {
+            divisioneconto
+            ? <DivisioneConto role={role} setEquo={() => setDivisione('Equo')} setProp={() => setDivisione('Proporzionale')}/>
+            : <div>Divisione conto: {tipodivisione}</div>
+          }
+          {!divisioneconto && <Pagamento role={role} tipo={tipodivisione} />}
         </div>
     );
 }
