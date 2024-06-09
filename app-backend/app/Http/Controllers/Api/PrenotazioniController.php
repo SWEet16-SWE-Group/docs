@@ -111,7 +111,7 @@ inner join inviti as i on p.id = i.prenotazione
 inner join clients as c on c.id = i.cliente
 inner join ordinazioni as o on i.id = o.invito
 inner join pietanze as pz on pz.id = o.pietanza
-inner join dettagliordinazione as d on o.id = d.ordinazione
+left join dettagliordinazione as d on o.id = d.ordinazione
 left join dettagliordinazione as ia on ia.id = d.id and ia.dettaglio = '+'
 left join dettagliordinazione as ir on ir.id = d.id and ir.dettaglio = '-'
 left join ingredienti as iia on iia.id = ia.ingrediente
