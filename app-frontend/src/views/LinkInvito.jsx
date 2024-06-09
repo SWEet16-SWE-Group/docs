@@ -10,7 +10,7 @@ export default function LinkInvito() {
     const [errorMessage, setErrorMessage] = useState(null);
     const navigate = useNavigate();
 
-    const ping = () => {
+    function accetta() {
       axiosClient.post('/crea-invito/',({prenotazione:prenotazione, cliente:profile})).then(
         data => { 
         console.log(data);
@@ -25,6 +25,31 @@ export default function LinkInvito() {
       );
     };
 
-    useEffect(ping, []);
+    function ignora() {
+      navigate('/dashboardcliente/');
+    }
+
+    useEffect(() => {
+    }, []);
     
+    return (
+      <table>
+        <thead>
+          <tr>
+            <th colSpan="2">Sei stato invitato a partecipare a quest'uscita</th>
+          </tr>
+          <tr>
+            <th colSpan="2">
+              <div> &lt;&lt; Dettagli prenotazione &gt;&gt; </div>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><button className="btn btn-block" onClick={accetta}>Accetta</button></td>
+            <td><button className="btn btn-block" onClick={ignora}>Ignora</button></td>
+          </tr>
+        </tbody>
+      </table>
+    );
 }
