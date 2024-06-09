@@ -3,6 +3,38 @@ import { Link, useParams } from 'react-router-dom';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
+function setDivisione(modo){
+  console.log(modo)
+}
+
+function DivisioneConto(){
+  const {user, profile, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
+  return ({
+    'CLIENTE':(
+      <table>
+        <thead>
+          <tr>
+            <th colSpan="2">Quale modo di divione del conto preferisci ?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td width="50%"><button className="btn btn-block" onClick={() => setDivisione('EQUA')}>Equa</button></td>
+            <td><button className="btn btn-block" onClick={() => setDivisione('PROPORZIONALE')}>Proporzionale</button></td>
+          </tr>
+          <tr>
+            <td>Il conto viene diviso in modo uguale per tutti.</td>
+            <td>Ognuno paga il proprio.</td>
+          </tr>
+        </tbody>
+      </table>
+    ),
+    'RISTORATORE':(
+      <div>Non è ancora stata selezionata nessuna divisione del conto per questa prenotazione</div>
+    ),
+  })[role];
+}
+
 function Prenotazione(p){
   const url_p = (id) => `/divisionecontopagamento/${id}`;
   const url_o = (r,p) => `/menu/${r}/${p}`;
@@ -40,6 +72,7 @@ export default function DivisioneContoPagamento() {
     return (
         <div className="container mt-5">
           &lt;&lt; DETTAGLI PRENOTAZIONE &gt;&gt;
+          <DivisioneConto />
         </div>
     );
 }
