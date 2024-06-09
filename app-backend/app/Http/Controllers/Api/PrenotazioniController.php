@@ -151,7 +151,7 @@ class PrenotazioniController extends Controller
         return response()->json($return,200);
     }
 
-    public function get_pagamenti($id){
+    public function pagamenti_ordinazioni($id){
         $return = DB::select(<<<'EOF'
             SELECT c.id as cid, c.nome as cliente, i.pagamento as pagamento_c,
             o.id as oid, pz.nome as pietanza,
@@ -168,6 +168,17 @@ class PrenotazioniController extends Controller
             left join ingredienti as iir on ir.ingrediente = iir.id
             where p.id = ?
             group by o.id;
+            EOF, [$id]);
+        return response()->json($return,200);
+    }
+
+    public function pagamenti_inviti($id){
+        $return = DB::select(<<<'EOF'
+            SELECT c.id as cid, c.nome as cliente, i.pagamento as pagamento_c
+            FROM `prenotazioni` as p
+            inner join inviti as i on i.prenotazione = p.id
+            inner join clients as c on i.cliente = c.id
+            where p.id = ?;
             EOF, [$id]);
         return response()->json($return,200);
     }
