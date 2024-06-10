@@ -8,6 +8,7 @@ function Ordinazioni({data}){
   <div key={data.nome}>
     <table>
       <thead>
+        <tr><th colSpan="4"><h3>{data.nome}</h3></th></tr>
         <tr>
           <th>Pietanza</th>
           <th>Aggiunte</th>
@@ -25,8 +26,7 @@ function Ordinazioni({data}){
           </tr>
         ))}
       </tbody>
-    </table>
-  </div>
+  </>
   );
 }
 
@@ -42,9 +42,11 @@ function Prenotazione(p){
     <div>Stato: {a.stato}</div>
     <div>Orario: {a.orario}</div>
     <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
-    <h2>Ordinazioni</h2>
     <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
-    {p.ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data}/>)}
+    <h2>Ordinazioni</h2>
+    <table>
+      {p.ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data}/>)}
+    </table>
   </div>);
 }
 
