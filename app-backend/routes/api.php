@@ -61,6 +61,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dashboard_c/{id}',[PrenotazioniController::class,'dashboard_c']);
     Route::get('/prenotazione_c/{id}',[PrenotazioniController::class,'prenotazione_c']);
 
+    Route::get('/prenotazione_dettagli/{id}',[PrenotazioniController::class,'prenotazione_dettagli']);
     Route::get('/prenotazione_conto/{id}',[PrenotazioniController::class,'prenotazione_conto']);
     Route::post('/set_divisioneconto/{id}',[PrenotazioniController::class,'set_divisioneconto']);
     Route::get('/pagamenti_ordinazioni/{id}',[PrenotazioniController::class,'pagamenti_ordinazioni']);
