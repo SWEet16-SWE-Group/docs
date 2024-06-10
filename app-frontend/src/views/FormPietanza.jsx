@@ -41,7 +41,9 @@ export default function FormPietanza() {
         try {
             const formData = {
                 ristoratore: ristoratoreId,
-                nome: nome
+                nome: nome ,
+                ingredienti: selectedIngredients,
+
             };
             await axiosClient.post('/pietanze', formData);
 

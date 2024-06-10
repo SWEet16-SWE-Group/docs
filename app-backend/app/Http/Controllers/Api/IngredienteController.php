@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Ingrediente;
 use App\Http\Requests\IngredienteRequest;
-use DB;
+use Illuminate\Support\Facades\DB;
 
 class IngredienteController extends Controller
 {
