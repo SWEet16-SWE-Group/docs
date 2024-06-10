@@ -166,8 +166,7 @@ export default function ModificaInfoAccount() {
                 &nbsp; &nbsp;
                 <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
             </form>
-
-
+            <br />
             <form onSubmit={onDelete}>
                 <button className="btn btn-danger me-2">Elimina account</button>
             </form>
