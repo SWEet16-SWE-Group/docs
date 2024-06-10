@@ -27,13 +27,9 @@ class OrdinazioneController extends Controller
         return response()->json($ordinazione, 201);
     }
 
-    public function paga(Request $request, $id){
-        $request->validate([
-            'pagamento' => 'required|in:NON PAGATO,PAGATO'
-        ]);
-
+    public function paga($id){
         $record = Ordinazione::findOrFail($id);
-        $record->pagamento = $request->input('pagamento');
+        $record->pagamento = 'PAGATO';
         $record->save();
         return response()->json(0,200);
     }

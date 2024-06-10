@@ -33,13 +33,9 @@ class InvitoController extends Controller {
         return response()->json($invito,200);
     }
 
-    public function paga(Request $request, $id){
-        $request->validate([
-            'pagamento' => 'required|in:NON PAGATO,PAGATO'
-        ]);
-
+    public function paga($id){
         $record = Invito::findOrFail($id);
-        $record->pagamento = $request->input('pagamento');
+        $record->pagamento = 'PAGATO';
         $record->save();
         return response()->json(0,200);
     }
