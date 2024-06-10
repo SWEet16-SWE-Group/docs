@@ -6,7 +6,6 @@ import { useStateContext } from '../contexts/ContextProvider.jsx';
 function Ordinazioni({data}){
   return (
   <div key={data.nome}>
-    <h3>{data.nome}</h3>
     <table>
       <thead>
         <tr>
