@@ -67,8 +67,13 @@ export default function ClientePrenotazione() {
     useEffect(fetchPrenotazioni, []);
 
     return (
-        <div className="container mt-5">
-          {prenotazione && Prenotazione(prenotazione)}
-        </div>
+        <>
+            <div className="container mt-5">
+              {prenotazione && Prenotazione(prenotazione)}
+            </div>
+            <div>
+                <Link to='/dashboardcliente' className='btn btn-primary'>Annulla</Link>
+            </div>
+        </>
     );
 }
