@@ -30,7 +30,7 @@ function DivisioneConto({setEquo, setProp, role}){
   })[role];
 }
 
-function Pagamento({role, tipo, pagamenti}){
+function Pagamento({role, tipo, pagamenti, setPagato}){
   async function a(){}
   return (
     <div>
@@ -47,17 +47,20 @@ export default function DivisioneContoPagamento() {
     const [prenotazione, setPrenotazione] = useState(null);
     const [pagamenti, setPagamenti] = useState(null);
 
+    async function fetchPagamenti(tipo){
+      const url = ({
+        'Equo':`/pagamenti_inviti/${id}`,
+        'Proporzionale':`/pagamenti_ordinazioni/${id}`,
+      })[tipo];
+      const {data: pagamenti} = await axiosClient.get(url);
+      setPagamenti(pagamenti);
+    }
+
     async function fetchPrenotazione() {
       const {data:data} = await axiosClient.get(`/prenotazione_conto/${id}`);
       setPrenotazione(data);
       if (data.divisione_conto) {
-        const url = ({
-          'Equo':`/pagamenti_inviti/${id}`,
-          'Proporzionale':`/pagamenti_ordinazioni/${id}`,
-        })[data.divisione_conto];
-        console.log(url);
-        const {data: pagamenti} = await axiosClient.get(url);
-        setPagamenti(pagamenti);
+        fetchPagamenti(data.divisione_conto);
       }
     };
 
@@ -66,7 +69,11 @@ export default function DivisioneContoPagamento() {
     async function setDivisione(modo){
       const {data: data} = await axiosClient.post(`/set_divisioneconto/${id}`,({divisione_conto: modo}))
       setPrenotazione(data);
-    }
+    };
+
+    async function setPagato(id){
+      
+    };
 
     const divisioneconto = prenotazione && prenotazione.divisione_conto == null;
     const tipodivisione =  prenotazione && prenotazione.divisione_conto;
@@ -81,7 +88,7 @@ export default function DivisioneContoPagamento() {
             ? <DivisioneConto role={role} setEquo={() => setDivisione('Equo')} setProp={() => setDivisione('Proporzionale')}/>
             : <div>Divisione conto: {tipodivisione}</div>
           }
-          {!divisioneconto && <Pagamento role={role} tipo={tipodivisione} pagamenti={pagamenti}/>}
+          {!divisioneconto && <Pagamento role={role} tipo={tipodivisione} pagamenti={pagamenti} setPagato={setPagato}/>}
         </div>
     );
 }
