@@ -174,7 +174,7 @@ class PrenotazioniController extends Controller
 
     public function pagamenti_inviti($id){
         $return = DB::select(<<<'EOF'
-            SELECT c.id as cid, c.nome as cliente, i.pagamento as pagamento_c
+            SELECT i.id as id, c.id as cid, c.nome as cliente, i.pagamento as pagamento_c
             FROM `prenotazioni` as p
             inner join inviti as i on i.prenotazione = p.id
             inner join clients as c on i.cliente = c.id
