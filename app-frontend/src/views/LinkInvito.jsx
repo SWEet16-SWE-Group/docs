@@ -29,20 +29,24 @@ export default function LinkInvito() {
       navigate('/dashboardcliente/');
     }
 
-    useEffect(() => {
-    }, []);
+    const [dettagli,setDettagli] = useState(null);
+
+    async function fetchDettagli() {
+      const {data: data} = await axiosClient.get(`/prenotazione_dettagli/${prenotazione}`);
+      setDettagli(data);
+    } 
+    
+    function dsync(f){ return () => {f();}; }
+
+    useEffect(dsync(fetchDettagli), []);
     
     return (
       <table>
         <thead>
-          <tr>
-            <th colSpan="2">Sei stato invitato a partecipare a quest'uscita</th>
-          </tr>
-          <tr>
-            <th colSpan="2">
-              <div> &lt;&lt; Dettagli prenotazione &gt;&gt; </div>
-            </th>
-          </tr>
+          <tr><th colSpan="2">Sei stato invitato a partecipare a quest'uscita</th></tr>
+          <tr><th colSpan="2">Ristorante:   {dettagli && dettagli.nome}</th></tr>
+          <tr><th colSpan="2">Data:         {dettagli && dettagli.orario}</th></tr>
+          <tr><th colSpan="2">Partecipanti: {dettagli && dettagli.partecipanti}</th></tr>
         </thead>
         <tbody>
           <tr>

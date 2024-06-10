@@ -135,6 +135,20 @@ class PrenotazioniController extends Controller
         return response()->json($return,200);
     }
 
+    public function prenotazione_dettagli($id){
+        $return = Prenotazione::select(
+            'prenotazioni.*',
+            'r.nome',
+            DB::raw('group_concat(c.nome separator ", ") as partecipanti'))
+            ->where('prenotazioni.id',$id)
+            ->join('ristoratori as r','r.id','=','prenotazioni.ristoratore')
+            ->join('inviti as i','i.prenotazione','=','prenotazioni.id')
+            ->join('clients as c','i.cliente','=','c.id')
+            ->groupBy('prenotazioni.id')
+            ->first();
+        return response()->json($return,200);
+    }
+
     public function set_divisioneconto(Request $request, $id){
         $request->validate([
             'divisione_conto' => 'required|in:Equo,Proporzionale'
