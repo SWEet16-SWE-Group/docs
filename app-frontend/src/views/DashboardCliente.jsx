@@ -10,7 +10,9 @@ function Prenotazione(a){
     <td>{a.nome}</td>
     <td>{a.numero_inviti}</td>
     <td>{a.stato}</td>
-    <td><Link to={url(a.id)}>Dettagli</Link></td>
+      {a.stato !== 'Rifiutata' &&
+          <td><Link to={url(a.id)}>Dettagli</Link></td>
+      }
   </tr>);
 }
 
