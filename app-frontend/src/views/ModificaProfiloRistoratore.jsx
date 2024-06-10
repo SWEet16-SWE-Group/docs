@@ -142,7 +142,6 @@ export default function ModificaProfiloRistoratore() {
                         {role === 'RISTORATORE' &&
                             <Link to='/dashboardristoratore' className="btn btn-secondary">Annulla</Link>
                         }
-
                     </div>
                 </form>
             </>
