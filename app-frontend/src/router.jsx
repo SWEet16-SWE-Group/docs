@@ -24,6 +24,8 @@ import FormPrenotazione from "./views/FormPrenotazione.jsx";
 import FormOrdinazione from "./views/FormOrdinazione.jsx";
 import LinkInvito from "./views/LinkInvito.jsx";
 
+import DivisioneContoPagamento from "./views/DivisioneContoPagamento.jsx";
+
 import ClienteDashboard from "./views/DashboardCliente.jsx";
 import ClientePrenotazione from "./views/SingolaPrenotazioneCliente.jsx";
 
@@ -131,6 +133,10 @@ const router = createBrowserRouter([
        path: '/invito/:prenotazione',
        element: <Cliente Content={<LinkInvito />} />
     },
+    {
+       path: '/divisionecontopagamentocliente/:id',
+       element: <Cliente Content={<DivisioneContoPagamento />} />
+    },
 
     //RISTORATORE
     {
@@ -152,6 +158,10 @@ const router = createBrowserRouter([
     {
         path: 'creaingrediente/:ristoratoreId',
         element: <Ristoratore Content={<FormIngrediente />} />,
+    },
+    {
+       path: '/divisionecontopagamentoristoratore/:id',
+       element: <Ristoratore Content={<DivisioneContoPagamento />} />
     },
 
     // 404

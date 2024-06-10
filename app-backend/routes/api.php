@@ -61,6 +61,14 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dashboard_c/{id}',[PrenotazioniController::class,'dashboard_c']);
     Route::get('/prenotazione_c/{id}',[PrenotazioniController::class,'prenotazione_c']);
 
+    Route::get('/prenotazione_conto/{id}',[PrenotazioniController::class,'prenotazione_conto']);
+    Route::post('/set_divisioneconto/{id}',[PrenotazioniController::class,'set_divisioneconto']);
+    Route::get('/pagamenti_ordinazioni/{id}',[PrenotazioniController::class,'pagamenti_ordinazioni']);
+    Route::get('/pagamenti_inviti/{id}',[PrenotazioniController::class,'pagamenti_inviti']);
+
+    Route::post('/paga_ordinazione/{id}',[OrdinazioneController::class,'paga']);
+    Route::post('/paga_invito/{id}',[InvitoController::class,'paga']);
+
     Route::get('/ingredienti/{id}', [IngredienteController::class, 'index']);
     Route::put('/ingredienti/{id}', [IngredienteController::class,'update']);
     Route::delete('/ingredienti/{id}', [IngredienteController::class, 'destroy']);

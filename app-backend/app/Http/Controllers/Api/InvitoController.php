@@ -32,4 +32,11 @@ class InvitoController extends Controller {
             ->get();
         return response()->json($invito,200);
     }
+
+    public function paga($id){
+        $record = Invito::findOrFail($id);
+        $record->pagamento = 'PAGATO';
+        $record->save();
+        return response()->json(0,200);
+    }
 }

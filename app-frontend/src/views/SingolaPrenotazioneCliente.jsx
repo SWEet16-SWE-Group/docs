@@ -32,7 +32,7 @@ function Ordinazioni({data}){
 }
 
 function Prenotazione(p){
-  const url_p = (id) => `/divisionecontopagamento/${id}`;
+  const url_p = (id) => `/divisionecontopagamentocliente/${id}`;
   const url_o = (r,p) => `/menu/${r}/${p}`;
   const a = p.prenotazione;
     console.log(a.id);
