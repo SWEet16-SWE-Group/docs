@@ -82,6 +82,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/crea-invito',  [InvitoController::class, 'store']);
     Route::post('/crea-ordinazione',  [OrdinazioneController::class, 'store']);
+    Route::get('/pietanza_dettagli/{id}', [PietanzaController::class, 'dettagli']);
 
     /*
     Route::middleware(UserIsRestaurant::class) {

@@ -15,7 +15,7 @@ class CreateAllergeniingredientiTable extends Migration
     {
         Schema::create('allergeniingredienti', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("ingretiente")->constrained('ingredienti')->onDelete('cascade');
+            $table->foreignId("ingrediente")->constrained('ingredienti')->onDelete('cascade');
             $table->foreignId("allergene")->constrained('allergeni')->onDelete('cascade');
             $table->timestamps();
         });
