@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosClient from "../axios-client";
-import { useNavigate, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 
 function Input({id, nome, text, tipo, value, onChange}){
@@ -96,7 +96,8 @@ export default function FormOrdinazione() {
                   tipo={'checkbox'}
                 />)}
                 <button type="submit" className="btn btn-primary">Ordina</button>
-                <button type="button" className="btn btn-secondary ms-2" >Annulla</button>
+                &nbsp; &nbsp;
+                <Link to={`/menu/${prenotazione}/${profile}`} type="button" className="btn btn-secondary ms-2" >Annulla</Link>
             </form>
         </div>
     );
