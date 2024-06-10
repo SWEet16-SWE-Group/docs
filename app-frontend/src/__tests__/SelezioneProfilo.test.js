@@ -1,11 +1,11 @@
 import React from 'react';
+import act from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { ContextProvider, useStateContext } from '../contexts/ContextProvider';
 import SelezionaProfilo from '../views/SelezioneProfilo';
 import axiosClient from '../axios-client';
-import { act } from 'react';
 
 jest.mock('../axios-client');
 jest.mock('../contexts/ContextProvider', () => {
@@ -18,7 +18,7 @@ jest.mock('../contexts/ContextProvider', () => {
 
 const renderWithContext = (component) => {
     
-     act(() => {   render(
+    return    render(
             <ContextProvider>
                 <MemoryRouter initialEntries={['/selezionaprofilo']}>
                     <Routes>
@@ -27,7 +27,7 @@ const renderWithContext = (component) => {
                 </MemoryRouter>
             </ContextProvider>
         );
-    });
+
     
 };
 
@@ -49,26 +49,23 @@ describe('Testing SelezionePofilo', () => {
         useStateContext.mockReturnValue(mockUseStateContext);
     });
 
-    afterEach(() => {
-    //    jest.clearAllMocks();
-    });
-
     it('Profiles List rendered correctly', async () => {
         axiosClient.post.mockResolvedValueOnce({
             data : {
-                clienti : {
-                    profile : {
+                clienti : [
+                   {
                    id : '1' ,
                    nome : 'Todaro',
-                    }
+                   }
                    
-                },
-                ristoratori : {
-                    profile : {
+                ],
+                ristoratori : [
+
+                    {
                         id : '2',
                         nome : 'Da Luigino'
                     }
-                },
+                ],
             }
         });
 
@@ -92,12 +89,10 @@ describe('Testing SelezionePofilo', () => {
     it('Empty profiles List rendered correctly', async () => {
         axiosClient.post.mockResolvedValueOnce({
             data : {
-                clienti : {
-                    }
+                clienti : null
                    
                 },
-                ristoratori : {
-                },
+                ristoratori : null ,
             
         });
 
@@ -135,17 +130,105 @@ describe('Testing SelezionePofilo', () => {
 
         renderWithContext(<SelezionaProfilo/>);
         
-        await waitFor( () => {
-            act( () => {
-                const selectionLinks=screen.getAllByText('Seleziona');
-                fireEvent.click(selectionLinks[0]);
-            });
-            expect(mockUseStateContext.setRole).toHaveBeenCalledWith('CLIENTE');
-            expect(mockUseStateContext.setProfile).toHaveBeenCalledWith('1');
-        });
+        await waitFor(() => {
+            expect(screen.getByText('Todaro')).toBeInTheDocument();
+        
+        
+            const selectionLinks=screen.getAllByText('Seleziona');
+            fireEvent.click(selectionLinks[0]);
+        
+        expect(mockUseStateContext.setRole).toHaveBeenCalledWith('CLIENTE');
+        expect(mockUseStateContext.setProfile).toHaveBeenCalledWith('1');
     });
-    it('Testing profile modification', async () => {});
-    it('Testing profile deletion', async () => {});
-    it('Profile deletion goes wrong', async () => {});
+});
+    it('Testing profile deletion', async () => {
+        axiosClient.post.mockResolvedValueOnce({
+            data : {
+                clienti : [
+                   {
+                   id : '1' ,
+                   nome : 'Todaro',
+                   }
+                   
+                ],
+                ristoratori : [
+
+                    {
+                        id : '2',
+                        nome : 'Da Luigino'
+                    }
+                ],
+            }
+        });
+        axiosClient.delete.mockResolvedValueOnce({
+            data : {
+                status : "success",
+                notification : "Il profilo selezionato è stato eliminato con successo",
+            }
+        });
+        window.confirm = jest.fn(() => true);
+
+        renderWithContext(<SelezionaProfilo/>);
+        
+        await waitFor(() => {
+            expect(screen.getByText('Todaro')).toBeInTheDocument();
+            expect(screen.getByText('Da Luigino')).toBeInTheDocument();
+        });
+        const deletionButtons=screen.getAllByText('Elimina');
+        fireEvent.click(deletionButtons[1]);
+        expect(window.confirm).toHaveBeenCalledWith("Sei sicuro di voler eliminare questo profilo?");
+        expect(axiosClient.delete).toHaveBeenCalledWith('/elimina-ristoratore/2');
+            
+        await waitFor( () => {
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
+            expect(mockUseStateContext.setNotification).toHaveBeenCalledWith("Il profilo selezionato è stato eliminato con successo");
+        }
+        );
+    });
+    //it('Testing profile modification', async () => {});
+    it('Profile deletion goes wrong', async () => { 
+        axiosClient.post.mockResolvedValueOnce({
+        data : {
+            clienti : [
+               {
+               id : '1' ,
+               nome : 'Todaro',
+               }
+               
+            ],
+            ristoratori : [
+
+                {
+                    id : '2',
+                    nome : 'Da Luigino'
+                }
+            ],
+        }
+    });
+    axiosClient.delete.mockRejectedValueOnce({
+        data : {
+            status : "failure",
+            notification : "Il profilo selezionato non è stato eliminato ",
+        }
+    });
+    window.confirm = jest.fn(() => true);
+
+    renderWithContext(<SelezionaProfilo/>);
+    
+    await waitFor(() => {
+        expect(screen.getByText('Todaro')).toBeInTheDocument();
+        expect(screen.getByText('Da Luigino')).toBeInTheDocument();
+    });
+    const deletionButtons=screen.getAllByText('Elimina');
+    fireEvent.click(deletionButtons[1]);
+    expect(window.confirm).toHaveBeenCalledWith("Sei sicuro di voler eliminare questo profilo?");
+    expect(axiosClient.delete).toHaveBeenCalledWith('/elimina-ristoratore/2');
+        
+    await waitFor( () => {
+        expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith("failure");
+        expect(mockUseStateContext.setNotification).toHaveBeenCalledWith("Il profilo selezionato non è stato eliminato ");
+    }
+    );
+});
 
 })

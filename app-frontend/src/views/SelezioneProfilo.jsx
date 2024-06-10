@@ -65,6 +65,7 @@ export default function SelezioneProfilo() {
                getProfiles();
            })
            .catch(data =>  {
+            console.log(data);
                setNotificationStatus(data.status);
                setNotification(data.notification);
            })
