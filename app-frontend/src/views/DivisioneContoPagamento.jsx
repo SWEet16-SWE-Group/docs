@@ -30,16 +30,6 @@ function DivisioneConto({setEquo, setProp, role}){
   })[role];
 }
 
-function Pagamento({role, tipo, pagamenti, setPagato}){
-  async function a(){}
-  return (
-    <div>
-    <h2>Pagamenti</h2>
-    <p>{JSON.stringify(pagamenti)}</p>
-    </div>
-  );
-}
-
 export default function DivisioneContoPagamento() {
 
     const {user, profile, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
@@ -88,7 +78,13 @@ export default function DivisioneContoPagamento() {
             ? <DivisioneConto role={role} setEquo={() => setDivisione('Equo')} setProp={() => setDivisione('Proporzionale')}/>
             : <div>Divisione conto: {tipodivisione}</div>
           }
-          {!divisioneconto && <Pagamento role={role} tipo={tipodivisione} pagamenti={pagamenti} setPagato={setPagato}/>}
+          {
+            !divisioneconto &&
+            <div>
+              <h2>Pagamenti</h2>
+              <p>{JSON.stringify(pagamenti)}</p>
+            </div>
+          }
         </div>
     );
 }
