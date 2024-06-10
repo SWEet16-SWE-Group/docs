@@ -53,9 +53,9 @@ export default function SignUp() {
                             ))}
                     </div>
                     }
-                    <input ref={emailRef} type="email" placeholder=" Email" />
-                    <input ref={passwordRef} type="password" placeholder=" Password"/>
-                    <input ref={passwordConfirmationRef} type="password" placeholder=" Ripeti password"/>
+                    <input className="form-control" ref={emailRef} type="email" placeholder=" Email" />
+                    <input className="form-control" ref={passwordRef} type="password" placeholder=" Password"/>
+                    <input className="form-control" ref={passwordConfirmationRef} type="password" placeholder=" Ripeti password"/>
                     <button className="btn btn-block">Registrati</button>
                     <p className="message">
                         Sei già registrato?  <Link to="/login"> Vai a login</Link>
