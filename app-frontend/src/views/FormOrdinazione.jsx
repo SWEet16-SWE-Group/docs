@@ -54,7 +54,6 @@ export default function FormOrdinazione() {
               };
 
               console.log(formData);
-              //continue;
               const {data: data} = await axiosClient.post(`/crea-ordinazione`, formData);
               console.log(data);
             }
@@ -74,7 +73,7 @@ export default function FormOrdinazione() {
             <h1>Ordina</h1>
             <h2>{dettagli && dettagli.nome}</h2>
             <p>{dettagli && dettagli.ingredienti}</p>
-            {dettagli && dettagli.allergeni && <p>Può contenere tracce di: {dettagli.allergeni}</p>}
+            {dettagli && dettagli.allergeni && <p>Può contenere tracce di: <strong>{dettagli.allergeni}</strong></p>}
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             &nbsp; &nbsp;
             <form onSubmit={handleSubmit}>
