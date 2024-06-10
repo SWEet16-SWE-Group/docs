@@ -30,11 +30,14 @@ function DivisioneConto({setEquo, setProp, role}){
   })[role];
 }
 
-function Pagamento({role, tipo}){
+function Pagamento({role, tipo, pagamenti}){
   async function a(){}
   return (
+    <div>
     <h2>Pagamenti</h2>
-  )
+    <p>{JSON.stringify(pagamenti)}</p>
+    </div>
+  );
 }
 
 export default function DivisioneContoPagamento() {
@@ -42,10 +45,20 @@ export default function DivisioneContoPagamento() {
     const {user, profile, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
     const {id} = useParams();
     const [prenotazione, setPrenotazione] = useState(null);
+    const [pagamenti, setPagamenti] = useState(null);
 
     async function fetchPrenotazione() {
       const {data:data} = await axiosClient.get(`/prenotazione_conto/${id}`);
       setPrenotazione(data);
+      if (data.divisione_conto) {
+        const url = ({
+          'Equo':`/pagamenti_inviti/${id}`,
+          'Proporzionale':`/pagamenti_ordinazioni/${id}`,
+        })[data.divisione_conto];
+        console.log(url);
+        const {data: pagamenti} = await axiosClient.get(url);
+        setPagamenti(pagamenti);
+      }
     };
 
     useEffect(() => { fetchPrenotazione(); }, []);
@@ -68,7 +81,7 @@ export default function DivisioneContoPagamento() {
             ? <DivisioneConto role={role} setEquo={() => setDivisione('Equo')} setProp={() => setDivisione('Proporzionale')}/>
             : <div>Divisione conto: {tipodivisione}</div>
           }
-          {!divisioneconto && <Pagamento role={role} tipo={tipodivisione} />}
+          {!divisioneconto && <Pagamento role={role} tipo={tipodivisione} pagamenti={pagamenti}/>}
         </div>
     );
 }
