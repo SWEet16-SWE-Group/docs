@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\OrdinazioneRequest;
 use App\Models\Ordinazione;
 use DB;
+use http\Client\Request;
 
 class OrdinazioneController extends Controller
 {
@@ -24,5 +25,16 @@ class OrdinazioneController extends Controller
         }
 
         return response()->json($ordinazione, 201);
+    }
+
+    public function paga(Request $request, $id){
+        $request->validate([
+            'pagamento' => 'required|in:NON PAGATO,PAGATO'
+        ]);
+
+        $record = Ordinazione::findOrFail($id);
+        $record->pagamento = $request->input('pagamento');
+        $record->save();
+        return response()->json(0,200);
     }
 }

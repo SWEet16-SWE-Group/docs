@@ -66,6 +66,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/pagamenti_ordinazioni/{id}',[PrenotazioniController::class,'pagamenti_ordinazioni']);
     Route::get('/pagamenti_inviti/{id}',[PrenotazioniController::class,'pagamenti_inviti']);
 
+    Route::post('/paga_ordinazione/{id}',[OrdinazioneController::class,'paga']);
+    Route::post('/paga_invito/{id}',[InvitoController::class,'paga']);
+
     Route::get('/ingredienti/{id}', [IngredienteController::class, 'index']);
     Route::put('/ingredienti/{id}', [IngredienteController::class,'update']);
     Route::delete('/ingredienti/{id}', [IngredienteController::class, 'destroy']);
