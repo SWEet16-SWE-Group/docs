@@ -61,29 +61,25 @@ export default function DivisioneContoPagamento() {
       setPrenotazione(data);
     };
 
-    const divisioneconto = prenotazione && prenotazione.divisione_conto == null;
-    const tipodivisione =  prenotazione && prenotazione.divisione_conto;
-
     function setPagato(id){
       return async function () {
         const {data: data} = await axiosClient.post();
+        fetchPagamenti();
       };
     };
 
-    function BottonePagamento({pagato, risto, io}) {
+    function BottonePagamento({pagato, risto, io, click}) {
       return (
           pagato
           ? "Pagato"
           : (
-              (
-                risto
-                ? <button className="btn btn-block" onClick={null}>Segna come pagato</button>
-                : (
-                    io
-                    ? <button className="btn btn-block" onClick={null}>Paga</button>
-                    : "Non pagato"
-                  )
-              )
+              risto
+              ? <button className="btn btn-block" onClick={click}>Segna come pagato</button>
+              : (
+                  io
+                  ? <button className="btn btn-block" onClick={click}>Paga</button>
+                  : "Non pagato"
+                )
             )
           );
     }
@@ -91,7 +87,12 @@ export default function DivisioneContoPagamento() {
     function renderPagamentoEquo(p){
       return <tr key={p.cid}>
         <td>{p.cliente}</td>
-        <td><BottonePagamento pagato={p.pagamento_c == 'PAGATO'} risto={role == 'RISTORATORE'} io={profile == p.cid}/></td>
+        <td>
+          <BottonePagamento
+            pagato={p.pagamento_c == 'PAGATO'}
+            risto={role == 'RISTORATORE'}
+            io={profile == p.cid}/>
+        </td>
       </tr> ;
     };
 
@@ -101,9 +102,17 @@ export default function DivisioneContoPagamento() {
         <td>{p.pietanza}</td>
         <td>{p.aggiunte}</td>
         <td>{p.rimozioni}</td>
-        <td><BottonePagamento pagato={p.pagamento_o == 'PAGATO'} risto={role == 'RISTORATORE'} io={profile == p.cid}/></td>
+        <td>
+          <BottonePagamento
+            pagato={p.pagamento_o == 'PAGATO'}
+            risto={role == 'RISTORATORE'}
+            io={profile == p.cid}/>
+        </td>
       </tr>;
     };
+
+    const divisioneconto = prenotazione && (prenotazione.divisione_conto == null);
+    const tipodivisione =  prenotazione && prenotazione.divisione_conto;
 
     return (
         <div className="container mt-5">
