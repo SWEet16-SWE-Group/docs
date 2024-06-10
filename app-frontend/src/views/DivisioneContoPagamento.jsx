@@ -61,12 +61,49 @@ export default function DivisioneContoPagamento() {
       setPrenotazione(data);
     };
 
-    async function setPagato(id){
-      
-    };
-
     const divisioneconto = prenotazione && prenotazione.divisione_conto == null;
     const tipodivisione =  prenotazione && prenotazione.divisione_conto;
+
+    function setPagato(id){
+      return async function () {
+        const {data: data} = await axiosClient.post();
+      };
+    };
+
+    function BottonePagamento({pagato, risto, io}) {
+      return (
+          pagato
+          ? "Pagato"
+          : (
+              (
+                risto
+                ? <button className="btn btn-block" onClick={null}>Segna come pagato</button>
+                : (
+                    io
+                    ? <button className="btn btn-block" onClick={null}>Paga</button>
+                    : "Non pagato"
+                  )
+              )
+            )
+          );
+    }
+
+    function renderPagamentoEquo(p){
+      return <tr key={p.cid}>
+        <td>{p.cliente}</td>
+        <td><BottonePagamento pagato={p.pagamento_c == 'PAGATO'} risto={role == 'RISTORATORE'} io={profile == p.cid}/></td>
+      </tr> ;
+    };
+
+    function renderPagamentoProporzionale(p){
+      return <tr key={p.oid}>
+        <td>{p.cliente}</td>
+        <td>{p.pietanza}</td>
+        <td>{p.aggiunte}</td>
+        <td>{p.rimozioni}</td>
+        <td><BottonePagamento pagato={p.pagamento_o == 'PAGATO'} risto={role == 'RISTORATORE'} io={profile == p.cid}/></td>
+      </tr>;
+    };
 
     return (
         <div className="container mt-5">
@@ -82,7 +119,11 @@ export default function DivisioneContoPagamento() {
             !divisioneconto &&
             <div>
               <h2>Pagamenti</h2>
-              <p>{JSON.stringify(pagamenti)}</p>
+              <table>
+                <tbody>
+                  {pagamenti && pagamenti.map(({'Equo': renderPagamentoEquo, 'Proporzionale':renderPagamentoProporzionale})[tipodivisione])}
+                </tbody>
+              </table>
             </div>
           }
         </div>
