@@ -20,7 +20,20 @@ function pietanza(a, prenotazione){
       {prenotazione && <Link to={url(prenotazione, a.id)} >Ordina</Link>}
     </div>
   );
+}
 
+function pulsante_annulla(p, r) {
+    if(p === undefined) {
+        return (
+            <Link to={`/ristorante/${r}`} className="btn btn-primary ms-2" >Annulla</Link>
+        )
+
+    } else
+    {
+        return (
+            <Link to={`/dettagliprenotazionecliente/${p}`} className="btn btn-primary ms-2" >Annulla</Link>
+        )
+    }
 }
 
 export default function Menu() {
@@ -28,5 +41,15 @@ export default function Menu() {
     console.log(ristorante, prenotazione);
     const [r,sr] = useState(null);
     useEffect(() => fetch(ristorante,sr) ,[]);
-    return (<div>{r && r.map(a => pietanza(a, prenotazione))}</div>)
+    return (
+        <>
+        <div>
+            {r && r.map(a => pietanza(a, prenotazione))}
+        </div>
+            <br />
+            <div>
+                {pulsante_annulla(prenotazione,ristorante)}
+            </div>
+            </>
+    )
 }

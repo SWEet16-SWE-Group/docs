@@ -5,7 +5,8 @@ import { useStateContext } from '../contexts/ContextProvider.jsx';
 
 function Ordinazioni({data}){
   return (
-  <>
+  <div key={data.nome}>
+    <table>
       <thead>
         <tr><th colSpan="4"><h3>{data.nome}</h3></th></tr>
         <tr>
@@ -67,8 +68,13 @@ export default function ClientePrenotazione() {
     useEffect(fetchPrenotazioni, []);
 
     return (
-        <div className="container mt-5">
-          {prenotazione && Prenotazione(prenotazione)}
-        </div>
+        <>
+            <div className="container mt-5">
+              {prenotazione && Prenotazione(prenotazione)}
+            </div>
+            <div>
+                <Link to='/dashboardcliente' className='btn btn-primary'>Annulla</Link>
+            </div>
+        </>
     );
 }

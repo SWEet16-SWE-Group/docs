@@ -143,6 +143,16 @@ export default function DivisioneContoPagamento() {
               </table>
             </div>
           }
+          <br />
+          <div>
+              {role === 'RISTORATORE' &&
+                  <Link to={`/dashboardristoratore`} type="button" className="btn btn-secondary ms-2" >Annulla</Link>
+              }
+
+              {role === 'CLIENTE' &&
+                  <Link to={`/dettagliprenotazionecliente/${id}`} type="button" className="btn btn-secondary ms-2" >Annulla</Link>
+              }
+          </div>
         </div>
     );
 }
