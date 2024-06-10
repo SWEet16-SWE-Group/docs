@@ -89,7 +89,7 @@ export default function CreazioneProfiloCliente() {
                 </div>
                 {allergeni.length === 0 ? (<p>Loading...</p>) : (
                     <div>
-                        <p>Seleziona uno o più allergeni: </p>
+                        <p>Seleziona uno o più allergeni a cui sei allergico: </p>
                         <br />
                         {allergeni.map((allergene) => {
                             return (
