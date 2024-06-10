@@ -26,7 +26,8 @@ function Ordinazioni({data}){
           </tr>
         ))}
       </tbody>
-  </>
+    </table>
+    </div>
   );
 }
 
@@ -44,9 +45,7 @@ function Prenotazione(p){
     <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
     <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
     <h2>Ordinazioni</h2>
-    <table>
       {p.ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data}/>)}
-    </table>
   </div>);
 }
 
