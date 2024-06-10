@@ -17,6 +17,7 @@ class CreateInvitiTable extends Migration
             $table->id();
             $table->foreignId("cliente")->constrained('clients')->onDelete('cascade');
             $table->foreignId("prenotazione")->constrained('prenotazioni')->onDelete('cascade');
+            $table->unique(['cliente', 'prenotazione']);
             $table->enum('pagamento', ['NON PAGATO', 'PAGATO'])->default('NON PAGATO');
             $table->timestamps();
         });
