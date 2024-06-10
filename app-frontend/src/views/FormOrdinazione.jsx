@@ -29,16 +29,14 @@ export default function FormOrdinazione() {
     const [aggiunte, setAggiunte] = useState(null);
     const [rimozioni, setRimozioni] = useState(null);
     const [invito, setInvito] = useState(null);
+    const [dettagli, setDettagli] = useState(null);
 
     useEffect(() => {
       axiosClient.get(`/get-possibili-aggiunte/${pietanza}`).then(data => setAggiunte(data.data));
       axiosClient.get(`/get-possibili-rimozioni/${pietanza}`).then(data => setRimozioni(data.data));
       axiosClient.get(`/get-invito-by-prenotazione-cliente/${prenotazione}/${profile}`).then(data => setInvito(data.data[0].id));
+      axiosClient.get(`/pietanza_dettagli/${pietanza}`).then(data => setDettagli(data.data));
     }, []);
-
-    //console.log(invito);
-    //console.log(aggiunte);
-    //console.log(rimozioni);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,8 +71,10 @@ export default function FormOrdinazione() {
 
     return (
         <div className="container mt-5">
-            <h3>Ordina</h3>
-            <p> &lt;&lt; Dettagli della pietanza &gt;&gt; </p>
+            <h1>Ordina</h1>
+            <h2>{dettagli && dettagli.nome}</h2>
+            <p>{dettagli && dettagli.ingredienti}</p>
+            {dettagli && dettagli.allergeni && <p>Può contenere tracce di: {dettagli.allergeni}</p>}
             {errorMessage && <div className="alert alert-danger" role="alert">{errorMessage}</div>}
             &nbsp; &nbsp;
             <form onSubmit={handleSubmit}>
