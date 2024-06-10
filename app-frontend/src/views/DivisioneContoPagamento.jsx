@@ -61,10 +61,14 @@ export default function DivisioneContoPagamento() {
       setPrenotazione(data);
     };
 
-    function setPagato(id){
+    function setPagato(id,tipo){
       return async function () {
-        const {data: data} = await axiosClient.post();
-        fetchPagamenti();
+          const url = ({
+            'Equo':`/paga_invito/${id}`,
+            'Proporzionale':`/paga_ordinazione/${id}`,
+          })[tipo];
+          const {data: data} = await axiosClient.post(url, ({}));
+          fetchPagamenti(tipo);
       };
     };
 
@@ -85,13 +89,15 @@ export default function DivisioneContoPagamento() {
     }
 
     function renderPagamentoEquo(p){
-      return <tr key={p.cid}>
+      return <tr key={p.id}>
         <td>{p.cliente}</td>
         <td>
           <BottonePagamento
             pagato={p.pagamento_c == 'PAGATO'}
             risto={role == 'RISTORATORE'}
-            io={profile == p.cid}/>
+            io={profile == p.cid}
+            click={setPagato(p.id,'Equo')}
+          />
         </td>
       </tr> ;
     };
@@ -106,7 +112,9 @@ export default function DivisioneContoPagamento() {
           <BottonePagamento
             pagato={p.pagamento_o == 'PAGATO'}
             risto={role == 'RISTORATORE'}
-            io={profile == p.cid}/>
+            io={profile == p.cid}
+            click={setPagato(p.oid,'Proporzionale')}
+          />
         </td>
       </tr>;
     };
