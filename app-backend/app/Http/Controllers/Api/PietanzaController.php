@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pietanza;
 use App\Http\Requests\PietanzaRequest;
+use App\Models\Ingrediente;
 use DB;
 
 class PietanzaController extends Controller
@@ -20,6 +21,13 @@ class PietanzaController extends Controller
     {
         $request->validated();
         $pietanza = Pietanza::create($request->all());
+        if ($request -> ingredienti) {
+            $ingredients = $request->ingredienti;
+            foreach($ingredients as $key => $value) {
+                $ingrediente=Ingrediente::find($value);
+                $pietanza->ingredienti()->attach($ingrediente);
+            }
+        }
         return response()->json($pietanza, 201);
     }
 
