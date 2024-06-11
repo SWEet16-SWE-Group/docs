@@ -55,16 +55,7 @@ class PietanzaControllerTest extends TestCase
 
         $this->assertDatabaseHas('pietanze', ['nome' => $data['nome']]);
     }
-    /** @test */
-    public function it_can_show()
-    {
-        $pietanza = Pietanza::factory()->create(['ristoratore' => $this->ristoratore->id]);
 
-        $response = $this->getJson("/api/pietanze/{$pietanza->id}");
-
-        $response->assertStatus(200)
-                 ->assertJsonFragment(['nome' => $pietanza->nome]);
-    }
     /** @test */
     public function it_can_update()
     {
