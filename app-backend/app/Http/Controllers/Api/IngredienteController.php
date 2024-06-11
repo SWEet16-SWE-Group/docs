@@ -16,12 +16,6 @@ class IngredienteController extends Controller
         return response()->json($ingredienti);
     }
 
-    public function show($id)
-    {
-        $ingrediente = Ingrediente::findOrFail($id);
-        return response()->json($ingrediente);
-    }
-
     public function store(IngredienteRequest $request)
     {
         $request->validated();
