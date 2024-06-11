@@ -7,6 +7,7 @@ use App\Models\Prenotazione;
 use App\Models\Ristoratore;
 use App\Models\User;
 use DatabaseSeeder;
+use DateTime;
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use DB;
@@ -18,6 +19,59 @@ class PrenotazioneControllerTest extends TestCase
 
 
     use RefreshDatabase;
+    /**
+     * Prenotazione store
+     *
+     * @return void
+     */
+    public function test_store()
+    {
+        (new DatabaseSeeder())->run();
+        Sanctum::actingAs(User::where('id', 1)->first());
+
+        $data = [
+            'ristoratore' => 1,
+            'orario' => (new DateTime())->format('Y-m-d'),
+            'numero_inviti' => 8,
+        ];
+        $response = $this->post('/api/crea-prenotazione/',$data);
+
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('prenotazioni',$data);
+    }
+
+    /**
+     * Prenotazione updatestatus
+     *
+     * @return void
+     */
+    public function test_updatestatus()
+    {
+        (new DatabaseSeeder())->run();
+        Sanctum::actingAs(User::where('id', 1)->first());
+
+        $response = $this->put("/api/update-prenotazioni/1", ['stato' => 'Accettata']);
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('prenotazioni',['id' => 1, 'stato' => 'Accettata']);
+    }
+
+    /**
+     * Prenotazione updatestatus
+     *
+     * @return void
+     */
+    public function test_setdivisioneconto()
+    {
+        (new DatabaseSeeder())->run();
+        Sanctum::actingAs(User::where('id', 1)->first());
+
+        $data = ['divisione_conto' => 'Equo'];
+        $response = $this->post("/api/set_divisioneconto/1", $data);
+
+        $response->assertStatus(200);
+        $this->assertDatabaseHas('prenotazioni',['id' => 1, ...$data]);
+    }
 
     /**
      * Prenotazione show
