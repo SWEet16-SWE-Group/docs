@@ -13,10 +13,6 @@ use DB;
 
 class PrenotazioniController extends Controller
 {
-    public function index() {
-        $prenotazioni = Prenotazione::with('ristoratore')->get();
-        return response()->json($prenotazioni);
-    }
 
     public function show ($id) {
         $prenotazioni = Prenotazione::select('prenotazioni.*')
@@ -31,30 +27,6 @@ class PrenotazioniController extends Controller
         $prenotazione = Prenotazione::create($validatedData);
 
         return response()->json($prenotazione, 201);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $prenotazione = Prenotazione::findOrFail($id);
-
-        $validatedData = $request->validate([
-            'ristoratore_id' => 'required|exists:ristoratores,id',
-            'orario' => 'required|date_format:Y-m-d H:i:s',
-            'numero_inviti' => 'required|integer',
-            'divisione_conto' => 'required|in:Equo,Proporzionale',
-            'stato' => 'required|in:Accettata,Rifiutata,In attesa',
-        ]);
-
-        $prenotazione->update($validatedData);
-
-        return response()->json(['message' => 'Prenotazione updated successfully', 'data' => $prenotazione]);
-    }
-
-    public function destroy($id) {
-        $prenotazione = Prenotazione::findOrFail($id);
-        $prenotazione->delete();
-
-        return response()->json(['message'=> 'Prenotazione deleted successfully'], 204);
     }
 
     public function updateStatus(Request $request, $id)
@@ -72,8 +44,6 @@ class PrenotazioniController extends Controller
             'message' => 'Prenotazione updated successfully',
             'prenotazione' => $prenotazione
         ]);
-
-
     }
 
     public function dashboard_c($id){
