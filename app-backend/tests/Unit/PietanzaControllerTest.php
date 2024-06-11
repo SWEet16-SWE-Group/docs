@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Ristoratore;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use DatabaseSeeder;
+
+require_once __DIR__ . '/../../database/seeds/DatabaseSeeder.php' ;
 
 class PietanzaControllerTest extends TestCase
 {
@@ -102,5 +105,18 @@ class PietanzaControllerTest extends TestCase
 
         $response->assertStatus(404)
                  ->assertJson(['message' => 'Pietanza non trovata']);
+    }
+
+    /**
+     * dettagli
+     *
+     * @return void
+     */
+    public function test_dettagli()
+    {
+        //(new DatabaseSeeder())->run();
+        //Sanctum::actingAs(User::where('id', 1)->first());
+        $response = $this->getJson('/api/pietanza_dettagli/1');
+        $response->assertStatus(200);
     }
 }
