@@ -58,6 +58,7 @@ describe('CreazioneProfiloRistoratore', () => {
             expect(axiosClient.post).toHaveBeenCalledWith('/crea-ristoratore', {
                 user: localStorage.getItem('USER_ID'),
                 nome: 'Ristorante Uno',
+                cucina: '',
                 indirizzo: 'Indirizzo Uno',
                 telefono: '1234567890',
                 capienza: '50',
