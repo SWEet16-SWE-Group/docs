@@ -201,15 +201,15 @@ class PrenotazioniController extends Controller
     {
         $ingredienti = DB::select(<<<'EOF'
             SELECT i.nome AS ingrediente, 
-                COALESCE(COUNT(di.ingrediente), 0) AS quantita 
-            FROM ingredienti AS i 
-            LEFT JOIN dettagliordinazione AS di ON i.id = di.ingrediente
-            LEFT JOIN ordinazioni AS o ON di.ordinazione = o.id
-            LEFT JOIN inviti AS iv ON o.invito = iv.id
-            LEFT JOIN prenotazioni AS pr ON iv.prenotazione = pr.id
-            WHERE pr.id = ? 
-            GROUP BY i.id, i.nome
-            ORDER BY ingrediente;
+                COUNT(*) AS quantita
+            FROM prenotazioni pr
+            JOIN inviti iv ON pr.id = iv.prenotazione
+            JOIN ordinazioni o ON iv.id = o.invito
+            JOIN ricette r ON o.pietanza = r.pietanza
+            JOIN ingredienti i ON r.ingrediente = i.id
+            WHERE pr.id = ?
+            GROUP BY i.nome
+            ORDER BY i.nome;
             EOF, [$prenotazioneId]);
 
         return response()->json($ingredienti, 200);

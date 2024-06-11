@@ -100,6 +100,7 @@ export default function RistoratorePrenotazione() {
   const fetchPrenotazione = () => {
     axiosClient.get(`/prenotazione_c/${id}`).then(
       response => {
+        console.log('Prenotazione data fetched:', response.data);
         setPrenotazioneData(response.data);
       }
     ).catch(error => {
@@ -110,6 +111,7 @@ export default function RistoratorePrenotazione() {
   const fetchIngredienti = () => {
     axiosClient.get(`prenotazione_i/${id}`).then(
       response => {
+        console.log('Ingredienti data fetched:', response.data);
         setIngredientiData(response.data);
       }
     ).catch(error => {
