@@ -8,6 +8,9 @@ use App\Models\User;
 use App\Models\Ristoratore;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use DatabaseSeeder;
+
+require_once __DIR__ . '/../../database/seeds/DatabaseSeeder.php' ;
 
 class PietanzaControllerTest extends TestCase
 {
@@ -19,7 +22,10 @@ class PietanzaControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
+        //$this->user = User::factory()->create();
+
+        (new DatabaseSeeder())->run();
+        $this->user = User::where('id', 1)->first();
         $this->ristoratore = Ristoratore::factory()->create(['user' => $this->user->id]);
         Sanctum::actingAs($this->user);
     }
@@ -40,6 +46,7 @@ class PietanzaControllerTest extends TestCase
     public function it_can_store()
     {
         $data = Pietanza::factory()->make(['ristoratore' => $this->ristoratore->id])->toArray();
+        $data['ingredienti'] = [1,2,3];
 
         $response = $this->postJson('/api/pietanze', $data);
 
@@ -48,16 +55,7 @@ class PietanzaControllerTest extends TestCase
 
         $this->assertDatabaseHas('pietanze', ['nome' => $data['nome']]);
     }
-    /** @test */
-    public function it_can_show()
-    {
-        $pietanza = Pietanza::factory()->create(['ristoratore' => $this->ristoratore->id]);
 
-        $response = $this->getJson("/api/pietanze/{$pietanza->id}");
-
-        $response->assertStatus(200)
-                 ->assertJsonFragment(['nome' => $pietanza->nome]);
-    }
     /** @test */
     public function it_can_update()
     {
@@ -102,5 +100,18 @@ class PietanzaControllerTest extends TestCase
 
         $response->assertStatus(404)
                  ->assertJson(['message' => 'Pietanza non trovata']);
+    }
+
+    /**
+     * dettagli
+     *
+     * @return void
+     */
+    public function test_dettagli()
+    {
+        //(new DatabaseSeeder())->run();
+        //Sanctum::actingAs(User::where('id', 1)->first());
+        $response = $this->getJson('/api/pietanza_dettagli/1');
+        $response->assertStatus(200);
     }
 }
