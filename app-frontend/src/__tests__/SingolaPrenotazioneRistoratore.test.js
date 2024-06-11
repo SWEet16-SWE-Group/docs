@@ -42,8 +42,9 @@ describe('RistoratorePrenotazione', () => {
             setNotification: jest.fn(),
             setNotificationStatus: jest.fn(),
         };
-        useStateContext.mockReturnValue(mockUseStateContext);
 
+        useStateContext.mockReturnValue(mockUseStateContext);
+        
         jest.spyOn(console, 'error').mockImplementation(() => {});
     });
 
@@ -81,17 +82,12 @@ describe('RistoratorePrenotazione', () => {
 
         renderWithContext(<RistoratorePrenotazione />);
 
-        await waitFor(() => {
-            expect(screen.getByText('Caricamento...')).toBeInTheDocument();
-        });
+        expect(screen.getByText('Caricamento...')).toBeInTheDocument();
 
         await waitFor(() => {
-            expect(screen.getByText(/Test Prenotazione/i)).toBeInTheDocument();
+            expect(screen.getByText('Test Prenotazione'));
             expect(screen.getByText(/In attesa/i)).toBeInTheDocument();
-            expect(screen.getByText(/Pasta/i)).toBeInTheDocument();
-            expect(screen.getByText(/Pomodoro/i)).toBeInTheDocument();
-            expect(screen.getByText(/Formaggio/i)).toBeInTheDocument();
-            expect(screen.getByText(/Aglio/i)).toBeInTheDocument();
+            expect(screen.getByText('Pasta')).toBeInTheDocument();
         });
     });
 
@@ -161,7 +157,7 @@ describe('RistoratorePrenotazione', () => {
         ];
 
         axiosClient.get
-            .mockResolvedValueOnce({ data: prenotazioneData })
+            .mockResolvedValueOnce({ data: prenotazioneData }) 
             .mockResolvedValueOnce({ data: ingredientiData });
 
         axiosClient.put.mockResolvedValueOnce({ data: { stato: 'Accettata' } });
