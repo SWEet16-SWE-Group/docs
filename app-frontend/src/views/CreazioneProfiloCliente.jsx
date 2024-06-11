@@ -89,11 +89,13 @@ export default function CreazioneProfiloCliente() {
                 </div>
                 {allergeni.length === 0 ? (<p>Loading...</p>) : (
                     <div>
+                        <p>Seleziona uno o più allergeni a cui sei allergico: </p>
+                        <br />
                         {allergeni.map((allergene) => {
                             return (
-                                <div class="form-check">
+                                <div className="form-check flex">
                                     <input
-                                        class="form-check-input"
+                                        className="form-check-input"
                                         type="checkbox"
                                         value={allergene.id}
                                         id={allergene.id}
@@ -101,12 +103,14 @@ export default function CreazioneProfiloCliente() {
                                             handleCheckboxChange(event)
                                         }
                                         }/>
-                                    <label class="form-check-label" for={allergene.id}>
+                                    <label className="form-check-label" for={allergene.id}>
                                         {allergene.nome}
                                     </label>
-                                </div>);
+                                </div>
+                                );
                         })}
                     </div>)}
+                <br />
                 <div>
                     <button type="submit" className="btn btn-primary me-2">Conferma</button>
                     &nbsp; &nbsp;

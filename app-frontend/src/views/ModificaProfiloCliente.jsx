@@ -68,7 +68,6 @@ export default function ModificaProfiloCliente() {
                 <h1 className="title text-center">Modifica le informazioni relative a questo profilo</h1>
             <div id="editClientForm">
                 {errors && <div className="alert">
-                    console.log(errors);
                     {Object.keys(errors).map(key => (
                         <p key={key}>{errors[key][0]}</p>
                     ))}
@@ -76,10 +75,10 @@ export default function ModificaProfiloCliente() {
                 }
                 <div>
                     <form>
-                        <div class="form-group row">
-                            <label for="nome" class="col-sm-2 col-form-label">Username</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nome" name="nome" value={username} role="nameChanger"
+                        <div className="form-group row">
+                            <label for="nome" className="col-sm-2 col-form-label">Username</label>
+                            <div className="col-sm-10">
+                                <input type="text" className="form-control" id="nome" name="nome" value={username} role="nameChanger"
                                        onChange={ev =>
                                            setUsername(ev.target.value)}
                                 required
@@ -87,7 +86,7 @@ export default function ModificaProfiloCliente() {
                             </div>
                         </div>
                         <div>
-                        <button onClick={handleSubmit} class="btn btn-primary mb-2">Conferma modifiche</button>
+                        <button onClick={handleSubmit} className="btn btn-primary me-2">Conferma modifiche</button>
                         &nbsp; &nbsp;
                         <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
                         </div>
