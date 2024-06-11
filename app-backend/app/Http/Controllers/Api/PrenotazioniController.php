@@ -196,4 +196,67 @@ class PrenotazioniController extends Controller
             EOF, [$id]);
         return response()->json($return,200);
     }
+
+    public function prenotazione_r($id) {
+        $prenotazione = Prenotazione::select(
+            'prenotazioni.id',
+            'prenotazioni.orario',
+            'ristoratori.nome as nome',
+            'ristoratori.id as ristoratore',
+            'prenotazioni.numero_inviti',
+            'prenotazioni.stato'
+        )
+        ->join('ristoratori', 'ristoratori.id', '=', 'prenotazioni.ristoratore')
+        ->where('prenotazioni.id', $id)
+        ->first();
+    
+        $ordinazioni = DB::select(<<<'EOF'
+            SELECT 
+                o.id, 
+                c.nome as cliente, 
+                pz.nome as pietanza,
+                GROUP_CONCAT(CASE WHEN d.dettaglio = '+' THEN ia.nome END SEPARATOR ', ') as aggiunte,
+                GROUP_CONCAT(CASE WHEN d.dettaglio = '-' THEN ir.nome END SEPARATOR ', ') as rimozioni
+            FROM 
+                ordinazioni as o
+            INNER JOIN 
+                inviti as i ON i.id = o.invito
+            INNER JOIN 
+                clients as c ON c.id = i.cliente
+            INNER JOIN 
+                pietanze as pz ON pz.id = o.pietanza
+            LEFT JOIN 
+                dettagliordinazione as d ON d.ordinazione = o.id
+            LEFT JOIN 
+                ingredienti as ia ON ia.id = d.ingrediente AND d.dettaglio = '+'
+            LEFT JOIN 
+                ingredienti as ir ON ir.id = d.ingrediente AND d.dettaglio = '-'
+            WHERE 
+                i.prenotazione = ?
+            GROUP BY 
+                o.id, c.nome, pz.nome
+            ORDER BY 
+                c.nome;
+            EOF, [$id]
+        );
+    
+        $ordinazioniGrouped = [];
+        foreach ($ordinazioni as $ordinazione) {
+            $cliente = $ordinazione->cliente;
+            if (!isset($ordinazioniGrouped[$cliente])) {
+                $ordinazioniGrouped[$cliente] = [
+                    'nome' => $cliente,
+                    'ordinazioni' => []
+                ];
+            }
+            $ordinazioniGrouped[$cliente]['ordinazioni'][] = $ordinazione;
+        }
+    
+        $return = [
+            'prenotazione' => $prenotazione,
+            'ordinazioni' => array_values($ordinazioniGrouped)
+        ];
+        return response()->json($return, 200);
+    }
+    
 }
