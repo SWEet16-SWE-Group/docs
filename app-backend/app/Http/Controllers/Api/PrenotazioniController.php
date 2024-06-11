@@ -109,7 +109,7 @@ class PrenotazioniController extends Controller
         $return = Prenotazione::select(
             'prenotazioni.*',
             'r.nome',
-            DB::raw('group_concat(c.nome separator ", ") as partecipanti'))
+            DB::raw('group_concat(c.nome) as partecipanti'))
             ->where('prenotazioni.id',$id)
             ->join('ristoratori as r','r.id','=','prenotazioni.ristoratore')
             ->join('inviti as i','i.prenotazione','=','prenotazioni.id')
@@ -139,8 +139,8 @@ class PrenotazioniController extends Controller
         $return = DB::select(<<<'EOF'
             SELECT c.id as cid, c.nome as cliente, i.pagamento as pagamento_c,
             o.id as oid, pz.nome as pietanza,
-            GROUP_CONCAT(iia.nome separator ", ") as agginte,
-            GROUP_CONCAT(iir.nome SEPARATOR ", ") as rimozioni, o.pagamento as pagamento_o
+            GROUP_CONCAT(iia.nome) as agginte,
+            GROUP_CONCAT(iir.nome) as rimozioni, o.pagamento as pagamento_o
             FROM `prenotazioni` as p
             inner join inviti as i on i.prenotazione = p.id
             inner join clients as c on i.cliente = c.id
