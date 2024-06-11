@@ -59,15 +59,16 @@ export default function SelezioneProfilo() {
         }
 
         axiosClient.delete(`/${url}/${profile.id}`)
-           .then(({data}) => {
-               setNotificationStatus(data.status);
-               setNotification(data.notification);
+           .then((response) => {
+               setNotificationStatus(response.data.status);
+               setNotification(response.data.notification);
+               console.log(response);
                getProfiles();
-           })
-           .catch(data =>  {
-            console.log(data);
-               setNotificationStatus(data.status);
-               setNotification(data.notification);
+           }, null )
+           .catch((error) =>  {
+               setNotificationStatus(error.response.data.status);
+               setNotification(error.response.data.notification);
+
            })
     }
 

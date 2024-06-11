@@ -48,6 +48,9 @@ describe('Testing SelezionePofilo', () => {
         };
         useStateContext.mockReturnValue(mockUseStateContext);
     });
+    afterEach(() => {
+        jest.clearAllMocks();
+    });
 
     it('Profiles List rendered correctly', async () => {
         axiosClient.post.mockResolvedValueOnce({
@@ -142,7 +145,7 @@ describe('Testing SelezionePofilo', () => {
     });
 });
     it('Testing profile deletion', async () => {
-        axiosClient.post.mockResolvedValueOnce({
+        axiosClient.post.mockResolvedValue({
             data : {
                 clienti : [
                    {
@@ -166,6 +169,7 @@ describe('Testing SelezionePofilo', () => {
                 notification : "Il profilo selezionato è stato eliminato con successo",
             }
         });
+        
         window.confirm = jest.fn(() => true);
 
         renderWithContext(<SelezionaProfilo/>);
@@ -185,9 +189,9 @@ describe('Testing SelezionePofilo', () => {
         }
         );
     });
-    //it('Testing profile modification', async () => {});
+
     it('Profile deletion goes wrong', async () => { 
-        axiosClient.post.mockResolvedValueOnce({
+        axiosClient.post.mockResolvedValue({
         data : {
             clienti : [
                {
@@ -205,11 +209,13 @@ describe('Testing SelezionePofilo', () => {
             ],
         }
     });
-    axiosClient.delete.mockRejectedValueOnce({
+    axiosClient.delete.mockRejectedValue({
+        response : {
         data : {
             status : "failure",
             notification : "Il profilo selezionato non è stato eliminato ",
         }
+    }
     });
     window.confirm = jest.fn(() => true);
 
