@@ -16,6 +16,7 @@ import GestioneMenu from "./views/GestioneMenu.jsx";
 import GestioneIngredienti from "./views/GestioneIngredienti.jsx";
 import FormPietanza from "./views/FormPietanza.jsx";
 import FormIngrediente from "./views/FormIngredienti.jsx";
+import RistoratorePrenotazione from "./views/SingolaPrenotazioneRistoratore.jsx";
 
 import Ristoranti from "./views/Ristoranti";
 import Ristorante from "./views/Ristorante";
@@ -158,6 +159,10 @@ const router = createBrowserRouter([
     {
         path: 'creaingrediente/:ristoratoreId',
         element: <Ristoratore Content={<FormIngrediente />} />,
+    },
+    {
+        path: '/dettagliprenotazioneristoratore/:id',
+        element: <Ristoratore Content={<RistoratorePrenotazione />}/>
     },
     {
        path: '/divisionecontopagamentoristoratore/:id',

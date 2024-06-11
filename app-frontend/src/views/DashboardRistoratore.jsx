@@ -32,6 +32,7 @@ export default function RistoratoreDashboard() {
         try {
             const response = await axiosClient.get(`/prenotazioni/${ristoratore}`);
             setPrenotazioni(response.data);
+            console.log(response.data);
         } catch (error) {
             setNotification('error');
             setNotification('Errore durante il recupero delle prenotazioni');
@@ -85,6 +86,7 @@ export default function RistoratoreDashboard() {
                                     <th>Numero Inviti</th>
                                     <th>Stato</th>
                                     <th>Azioni</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -104,6 +106,7 @@ export default function RistoratoreDashboard() {
                                                 <Link to={`/divisionecontopagamentoristoratore/${prenotazione.id}`} className="btn">Pagamenti</Link>
                                             )}
                                         </td>
+                                        <td><Link to={`/dettagliprenotazioneristoratore/${prenotazione.id}`}>Dettagli</Link></td>
                                     </tr>
                                 ))}
                             </tbody>
