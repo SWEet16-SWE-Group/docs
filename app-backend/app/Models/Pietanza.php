@@ -17,4 +17,8 @@ class Pietanza extends Model
     {
         return $this->belongsTo(Ristoratore::class, 'ristoratore');
     }
+
+    public function ingredienti() {
+        return $this->belongsToMany(Ingrediente::class,'ricette','pietanza','ingrediente');
+    }
 }

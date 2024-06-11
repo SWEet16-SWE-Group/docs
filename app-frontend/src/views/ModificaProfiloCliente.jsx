@@ -1,9 +1,10 @@
 import {useParams, useNavigate, Link} from "react-router-dom";
-import React, {useState , useEffect } from 'react';
+import React, {useState , useEffect }  from 'react';
 import { fetchClientProfile , deleteClientProfile , updateClientProfile } from '../services/ClientService';
 import {useStateContext} from "../contexts/ContextProvider";
 import axios from 'axios';
 import axiosClient from "../axios-client.js";
+import { act } from "react";
 
 export default function ModificaProfiloCliente() {
 
@@ -57,7 +58,7 @@ export default function ModificaProfiloCliente() {
        })
         .catch (error =>
         {
-            setErrors('Errore durante il recupero dei dati.');
+            setErrors({error : ['Errore durante il recupero dei dati.']});
             console.error(error);
         })
     }
@@ -74,10 +75,10 @@ export default function ModificaProfiloCliente() {
                 }
                 <div>
                     <form>
-                        <div class="form-group row">
-                            <label for="nome" class="col-sm-2 col-form-label">Username</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="nome" name="nome" value={username}
+                        <div className="form-group row">
+                            <label for="nome" className="col-sm-2 col-form-label">Username</label>
+                            <div className="col-sm-10">
+                                <input type="text" className="form-control" id="nome" name="nome" value={username} role="nameChanger"
                                        onChange={ev =>
                                            setUsername(ev.target.value)}
                                 required
@@ -85,7 +86,7 @@ export default function ModificaProfiloCliente() {
                             </div>
                         </div>
                         <div>
-                        <button onClick={handleSubmit} class="btn btn-primary mb-2">Conferma modifiche</button>
+                        <button onClick={handleSubmit} className="btn btn-primary me-2">Conferma modifiche</button>
                         &nbsp; &nbsp;
                         <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
                         </div>

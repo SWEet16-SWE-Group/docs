@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axiosClient from "../axios-client";
 import { Link, useNavigate } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -43,6 +43,8 @@ export default function GestioneMenu() {
         <div className="container mt-5">
             <div>
                 <button className="btn btn-primary" onClick={() => navigate(`/creapietanza/${ristoratoreId}`)}>Aggiungi Pietanza</button>
+                &nbsp;
+                <Link to='/dashboardristoratore' className="btn btn-secondary">Annulla</Link>
             </div>
             <div>
                 {pietanze.length === 0 ? (

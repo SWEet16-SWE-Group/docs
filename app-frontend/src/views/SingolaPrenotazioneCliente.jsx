@@ -6,9 +6,8 @@ import { useStateContext } from '../contexts/ContextProvider.jsx';
 function Ordinazioni({data}){
   return (
   <div key={data.nome}>
-    <h3>{data.nome}</h3>
-    <table>
       <thead>
+        <tr><th colSpan="4"><h3>{data.nome}</h3></th></tr>
         <tr>
           <th>Pietanza</th>
           <th>Aggiunte</th>
@@ -22,28 +21,31 @@ function Ordinazioni({data}){
               <td>{ordinazione.pietanza}</td>
               <td>{ordinazione.aggiunte}</td>
               <td>{ordinazione.rimozioni}</td>
-              <td><button class="btn btn-block">Cancella</button></td>
+              <td><button className="btn btn-block">Cancella</button></td>
           </tr>
         ))}
       </tbody>
-    </table>
-  </div>
+    </div>
   );
 }
 
 function Prenotazione(p){
-  const url_p = (id) => `/divisionecontopagamento/${id}`;
-  const url_o = (id) => `/menu/${id}`;
+  const url_p = (id) => `/divisionecontopagamentocliente/${id}`;
+  const url_o = (r,p) => `/menu/${r}/${p}`;
   const a = p.prenotazione;
+    console.log(a.id);
   return (<div key={a.id}>
     <h1>{a.nome}</h1>
     <h2>Dettagli</h2>
+    <div>Link di invito: <Link>localhost:3001/invito/{a.id}</Link></div>
     <div>Stato: {a.stato}</div>
     <div>Orario: {a.orario}</div>
-    <div><a href={url_p(a.id)}>Esamina pagamento</a></div>
+    <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
+    <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
     <h2>Ordinazioni</h2>
-    <div><a href={url_o(a.ristoratore)}>Ordina</a></div>
-    {p.ordinazioni.map((data) => <Ordinazioni data={data}/>)}
+      <table className="table">
+      {p.ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data}/>)}
+      </table>
   </div>);
 }
 
@@ -65,8 +67,13 @@ export default function ClientePrenotazione() {
     useEffect(fetchPrenotazioni, []);
 
     return (
-        <div className="container mt-5">
-          {prenotazione && Prenotazione(prenotazione)}
-        </div>
+        <>
+            <div className="container mt-5">
+              {prenotazione && Prenotazione(prenotazione)}
+            </div>
+            <div>
+                <Link to='/dashboardcliente' className='btn btn-primary'>Annulla</Link>
+            </div>
+        </>
     );
 }

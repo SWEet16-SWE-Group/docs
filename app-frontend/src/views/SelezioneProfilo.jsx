@@ -42,7 +42,6 @@ export default function SelezioneProfilo() {
     const onSelectProfile = (profile, role) => {
         setProfile(profile.id);
         setRole(role);
-        navigate('/');
     }
 
 
@@ -83,20 +82,22 @@ export default function SelezioneProfilo() {
                 }
                 {(ClientProfiles || RestaurantProfiles) &&
                     <table>
-                    <thead>
-                    <th>Entra con questo profilo</th>
-                    <th>Nome</th>
-                    <th>Tipo</th>
-                    <th>Operazioni</th>
-                    </thead>
+                      <thead>
+                          <tr>
+                            <th>Entra con questo profilo</th>
+                            <th>Nome</th>
+                            <th>Tipo</th>
+                            <th>Operazioni</th>
+                          </tr>
+                      </thead>
                     <tbody>
                     {ClientProfiles && ClientProfiles.map(profile => (
-                        <tr>
+                        <tr key={profile.id}>
                             <td>
-                                <button className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile,'CLIENTE')}>Seleziona</button>
+                                <Link to="/dashboardcliente" className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile,'CLIENTE')}>Seleziona</Link>
                             </td>
                             <td>{profile.nome}</td>
-                            <td>{profile.tipo}</td>
+                            <td>Cliente</td>
                             <td>
                                 <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile,'modificaprofilocliente')}>Modifica</button>
                                 &nbsp;
@@ -105,12 +106,12 @@ export default function SelezioneProfilo() {
                         </tr>
                     ))}
                     {RestaurantProfiles && RestaurantProfiles.map(profile => (
-                        <tr>
-                        <td>
-                            <button className="btn btn-primary me-2" onClick={() => onSelectProfile(profile,'RISTORATORE')}>Seleziona</button>
-                        </td>
+                        <tr key={profile.id}>
+                          <td>
+                              <Link to="/dashboardristoratore" className="btn btn-primary me-2" onClick={() => onSelectProfile(profile,'RISTORATORE')}>Seleziona</Link>
+                          </td>
                             <td>{profile.nome}</td>
-                            <td>{profile.tipo}</td>
+                            <td>Ristoratore</td>
                             <td>
                                 <button className="btn btn-primary me-2" onClick={() => onModifyProfile(profile,'modificaprofiloristoratore')}>Modifica</button>
                                 &nbsp;

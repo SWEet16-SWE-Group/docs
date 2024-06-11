@@ -82,7 +82,6 @@ export default function RistoratoreDashboard() {
                             <thead>
                                 <tr>
                                     <th>Orario</th>
-                                    <th>Nome</th>
                                     <th>Numero Inviti</th>
                                     <th>Stato</th>
                                     <th>Azioni</th>
@@ -92,7 +91,6 @@ export default function RistoratoreDashboard() {
                                 {prenotazioni.map((prenotazione) => (
                                     <tr key={prenotazione.id}>
                                         <td>{formatOrario(prenotazione.orario)}</td>
-                                        <td>{prenotazione.nome}</td>
                                         <td>{prenotazione.numero_inviti}</td>
                                         <td>{prenotazione.stato}</td>
                                         <td>
@@ -101,6 +99,9 @@ export default function RistoratoreDashboard() {
                                                     <button onClick={() => updatePrenotazioneStatus(prenotazione.id, 'Accettata')} className="btn btn-success">Accetta</button>
                                                     <button onClick={() => updatePrenotazioneStatus(prenotazione.id, 'Rifiutata')} className="btn btn-danger">Rifiuta</button>
                                                 </>
+                                            )}
+                                            {prenotazione.stato === 'Accettata' && (
+                                                <Link to={`/divisionecontopagamentoristoratore/${prenotazione.id}`} className="btn">Pagamenti</Link>
                                             )}
                                         </td>
                                     </tr>
