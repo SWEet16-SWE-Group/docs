@@ -8,9 +8,10 @@ function Ordinazioni({ data }) {
         <div key={data.nome}>
             <table className="table table-bordered">
                 <thead>
-                    <tr><th colSpan="4"><h3>{data.nome}</h3></th></tr>
+                    <tr><th colSpan="5"><h3>{data.nome}</h3></th></tr>
                     <tr>
                         <th>Pietanza</th>
+                        <th>Ingredienti</th>
                         <th>Aggiunte</th>
                         <th>Rimozioni</th>
                         <th>Azioni</th>
@@ -20,6 +21,7 @@ function Ordinazioni({ data }) {
                     {data.ordinazioni.map(ordinazione => (
                         <tr key={ordinazione.id}>
                             <td>{ordinazione.pietanza}</td>
+                            <td>{ordinazione.ingredienti}</td>
                             <td>{ordinazione.aggiunte}</td>
                             <td>{ordinazione.rimozioni}</td>
                             <td><button className="btn btn-danger">Cancella</button></td>

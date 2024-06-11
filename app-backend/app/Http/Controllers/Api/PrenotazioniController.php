@@ -216,13 +216,14 @@ class PrenotazioniController extends Controller
                 c.nome as cliente, 
                 pz.nome as pietanza,
                 GROUP_CONCAT(CASE WHEN d.dettaglio = '+' THEN ia.nome END SEPARATOR ', ') as aggiunte,
-                GROUP_CONCAT(CASE WHEN d.dettaglio = '-' THEN ir.nome END SEPARATOR ', ') as rimozioni
+                GROUP_CONCAT(CASE WHEN d.dettaglio = '-' THEN ir.nome END SEPARATOR ', ') as rimozioni,
+                GROUP_CONCAT(DISTINCT iaggr.nome SEPARATOR ', ') as ingredienti
             FROM 
                 ordinazioni as o
             INNER JOIN 
-                inviti as i ON i.id = o.invito
+                inviti as inv ON inv.id = o.invito
             INNER JOIN 
-                clients as c ON c.id = i.cliente
+                clients as c ON c.id = inv.cliente
             INNER JOIN 
                 pietanze as pz ON pz.id = o.pietanza
             LEFT JOIN 
@@ -231,8 +232,10 @@ class PrenotazioniController extends Controller
                 ingredienti as ia ON ia.id = d.ingrediente AND d.dettaglio = '+'
             LEFT JOIN 
                 ingredienti as ir ON ir.id = d.ingrediente AND d.dettaglio = '-'
+            LEFT JOIN 
+                ingredienti as iaggr ON iaggr.id = d.ingrediente
             WHERE 
-                i.prenotazione = ?
+                inv.prenotazione = ?
             GROUP BY 
                 o.id, c.nome, pz.nome
             ORDER BY 
@@ -258,5 +261,6 @@ class PrenotazioniController extends Controller
         ];
         return response()->json($return, 200);
     }
+    
     
 }
