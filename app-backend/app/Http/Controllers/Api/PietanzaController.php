@@ -31,12 +31,6 @@ class PietanzaController extends Controller
         return response()->json($pietanza, 201);
     }
 
-    public function show($id)
-    {
-        $pietanza = Pietanza::findOrFail($id);
-        return response()->json($pietanza);
-    }
-
     public function update(PietanzaRequest $request, $id)
     {
         $request->validated();
