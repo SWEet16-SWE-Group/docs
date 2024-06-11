@@ -1,6 +1,6 @@
 import { useState } from "react";
 import axiosClient from "../axios-client";
-import { useNavigate, useParams } from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
 
 export default function FormPrenotazione() {
@@ -33,8 +33,8 @@ export default function FormPrenotazione() {
             setNotification('Prenotazione creata con successo.');
         } catch (error) {
             setNotificationStatus('error');
-            setNotification('Errore durante il savaltaggio della prenotazione.');
-            setErrorMessage('Errore durante il savaltaggio della prenotazione.');
+            setNotification('Errore durante il salvataggio della prenotazione.');
+            setErrorMessage('Errore durante il salvataggio della prenotazione.');
         }
     };
 
@@ -67,7 +67,8 @@ export default function FormPrenotazione() {
                     />
                 </div>
                 <button type="submit" className="btn btn-primary">Prenota</button>
-                <button type="button" className="btn btn-secondary ms-2" >Annulla</button>
+                &nbsp; &nbsp;
+                <Link to={`/ristorante/${id}`} className="btn btn-primary ms-2" >Annulla</Link>
             </form>
         </div>
     );

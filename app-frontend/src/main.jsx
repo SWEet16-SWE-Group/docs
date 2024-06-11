@@ -3,8 +3,9 @@ import ReactDOM from "react-dom/client";
 import {RouterProvider} from "react-router-dom";
 import router from "./router";
 import {ContextProvider} from "./contexts/ContextProvider";
+import 'bootstrap/dist/css/bootstrap.css'
 import "./index.css"
-import "./scss/styles.sccs";
+//import "./scss/styles.sccs";
 import * as bootstrap from 'bootstrap'
 
 ReactDOM.createRoot(document.getElementById('root')).render(

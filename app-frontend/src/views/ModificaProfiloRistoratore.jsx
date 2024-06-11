@@ -6,7 +6,7 @@ import {Link, useNavigate, useParams} from 'react-router-dom';
 export default function ModificaProfiloRistoratore() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { setNotificationStatus, setNotification } = useStateContext();
+    const { role, setNotificationStatus, setNotification } = useStateContext();
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),
         nome: '',
@@ -136,7 +136,12 @@ export default function ModificaProfiloRistoratore() {
                     <div>
                         <button type="submit" className="btn btn-primary me-2">Conferma modifiche</button>
                         &nbsp; &nbsp;
-                        <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
+                        {role === 'AUTENTICATO' &&
+                            <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
+                        }
+                        {role === 'RISTORATORE' &&
+                            <Link to='/dashboardristoratore' className="btn btn-secondary">Annulla</Link>
+                        }
                     </div>
                 </form>
             </>

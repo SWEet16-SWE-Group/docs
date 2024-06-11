@@ -100,6 +100,9 @@ export default function RistoratoreDashboard() {
                                                     <button onClick={() => updatePrenotazioneStatus(prenotazione.id, 'Rifiutata')} className="btn btn-danger">Rifiuta</button>
                                                 </>
                                             )}
+                                            {prenotazione.stato === 'Accettata' && (
+                                                <Link to={`/divisionecontopagamentoristoratore/${prenotazione.id}`} className="btn">Pagamenti</Link>
+                                            )}
                                         </td>
                                     </tr>
                                 ))}

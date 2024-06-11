@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Pietanza;
 use App\Http\Requests\PietanzaRequest;
+use App\Models\Ingrediente;
+use DB;
 
 class PietanzaController extends Controller
 {
@@ -19,6 +21,13 @@ class PietanzaController extends Controller
     {
         $request->validated();
         $pietanza = Pietanza::create($request->all());
+        if ($request -> ingredienti) {
+            $ingredients = $request->ingredienti;
+            foreach($ingredients as $key => $value) {
+                $ingrediente=Ingrediente::find($value);
+                $pietanza->ingredienti()->attach($ingrediente);
+            }
+        }
         return response()->json($pietanza, 201);
     }
 
@@ -49,5 +58,22 @@ class PietanzaController extends Controller
         }
         $pietanza ->delete();
         return response()->json(['message' => 'Pietanza eliminata con successo'], 204);
+    }
+
+    public function dettagli($id){
+        $return = Pietanza::select(
+            'pietanze.id',
+            'pietanze.nome',
+            DB::raw('group_concat(i.nome separator ", ") as ingredienti'),
+            DB::raw('group_concat(a.nome separator ", ") as allergeni'),
+        )
+        ->join('ricette as r','r.pietanza','=','pietanze.id')
+        ->join('ingredienti as i','r.ingrediente','=','i.id')
+        ->leftJoin('allergeniingredienti as ia','ia.ingrediente','=','i.id')
+        ->leftJoin('allergeni as a','ia.allergene','=','a.id')
+        ->where('pietanze.id',$id)
+        ->groupBy('pietanze.id')
+        ->first();
+        return response()->json($return,200);
     }
 }

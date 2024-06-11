@@ -103,28 +103,97 @@ class PrenotazioniController extends Controller
             ->where('inviti.cliente',$id)
             ->get()->first();
         $ordinazioni = DB::select(<<<'EOF'
-select c.nome as c,
-  o.id as id,
-  p.nome as pietanza,
-  GROUP_CONCAT(iai.nome SEPARATOR ", ") as aggiunte,
-  GROUP_CONCAT(iri.nome SEPARATOR ", ") as rimozioni
-from inviti as i
-inner join ordinazioni as o on i.id = o.invito
-inner join pietanze as p on o.pietanza = p.id
-inner join clients as c on i.cliente = c.id
-left join dettagliordinazione as ia on o.id = ia.ordinazione and (ia.dettaglio = '+' or ia.dettaglio is null)
-left join dettagliordinazione as ir on o.id = ir.ordinazione and (ir.dettaglio = '-' or ir.dettaglio is null)
-left join ingredienti as iai on ia.ingrediente = iai.id
-left join ingredienti as iri on ir.ingrediente = iri.id
-group by c.nome, o.id, p.nome
-order by c.nome
-EOF
-            );
+            select o.id, c.nome as c, pz.nome as pietanza,
+                GROUP_CONCAT(iia.nome SEPARATOR ", ") as aggiunte,
+                GROUP_CONCAT(iir.nome SEPARATOR ", ") as rimozioni
+            from prenotazioni as p
+            inner join inviti as i on p.id = i.prenotazione
+            inner join clients as c on c.id = i.cliente
+            inner join ordinazioni as o on i.id = o.invito
+            inner join pietanze as pz on pz.id = o.pietanza
+            left join dettagliordinazione as d on o.id = d.ordinazione
+            left join dettagliordinazione as ia on ia.id = d.id and ia.dettaglio = '+'
+            left join dettagliordinazione as ir on ir.id = d.id and ir.dettaglio = '-'
+            left join ingredienti as iia on iia.id = ia.ingrediente
+            left join ingredienti as iir on iir.id = ir.ingrediente
+            where p.id = ?
+            group by o.id;
+            EOF, [$id]);
         $ordinazioni2 = array_map(
             fn ($a) => ['nome' => $a, 'ordinazioni' => array_values(array_filter($ordinazioni,fn ($o) => $o->c == $a))],
             $cols = array_unique( $c = array_map(fn($a)=> $a->c,$ordinazioni)),
         );
         $return = ['prenotazione' => $prenotazione, 'ordinazioni' => array_values($ordinazioni2)];
         return response()->json($return, 200);
+    }
+
+    public function prenotazione_conto($id){
+        $return = Prenotazione::select('prenotazioni.*','r.nome')
+            ->where('prenotazioni.id',$id)
+            ->join('ristoratori as r','r.id','=','prenotazioni.ristoratore')
+            ->first();
+        return response()->json($return,200);
+    }
+
+    public function prenotazione_dettagli($id){
+        $return = Prenotazione::select(
+            'prenotazioni.*',
+            'r.nome',
+            DB::raw('group_concat(c.nome separator ", ") as partecipanti'))
+            ->where('prenotazioni.id',$id)
+            ->join('ristoratori as r','r.id','=','prenotazioni.ristoratore')
+            ->join('inviti as i','i.prenotazione','=','prenotazioni.id')
+            ->join('clients as c','i.cliente','=','c.id')
+            ->groupBy('prenotazioni.id')
+            ->first();
+        return response()->json($return,200);
+    }
+
+    public function set_divisioneconto(Request $request, $id){
+        $request->validate([
+            'divisione_conto' => 'required|in:Equo,Proporzionale'
+        ]);
+
+        $prenotazione = Prenotazione::findOrFail($id);
+
+        $prenotazione->divisione_conto = $request->input('divisione_conto');
+        $prenotazione->save();
+        $return = Prenotazione::select('prenotazioni.*','r.nome')
+            ->where('prenotazioni.id',$id)
+            ->join('ristoratori as r','r.id','=','prenotazioni.ristoratore')
+            ->first();
+        return response()->json($return,200);
+    }
+
+    public function pagamenti_ordinazioni($id){
+        $return = DB::select(<<<'EOF'
+            SELECT c.id as cid, c.nome as cliente, i.pagamento as pagamento_c,
+            o.id as oid, pz.nome as pietanza,
+            GROUP_CONCAT(iia.nome separator ", ") as agginte,
+            GROUP_CONCAT(iir.nome SEPARATOR ", ") as rimozioni, o.pagamento as pagamento_o
+            FROM `prenotazioni` as p
+            inner join inviti as i on i.prenotazione = p.id
+            inner join clients as c on i.cliente = c.id
+            inner join ordinazioni as o on o.invito = i.id
+            inner join pietanze as pz on o.pietanza = pz.id
+            left join dettagliordinazione as ia on ia.ordinazione = o.id and ia.dettaglio = '+'
+            left join dettagliordinazione as ir on ir.ordinazione = o.id and ir.dettaglio = '-'
+            left join ingredienti as iia on ia.ingrediente = iia.id
+            left join ingredienti as iir on ir.ingrediente = iir.id
+            where p.id = ?
+            group by o.id;
+            EOF, [$id]);
+        return response()->json($return,200);
+    }
+
+    public function pagamenti_inviti($id){
+        $return = DB::select(<<<'EOF'
+            SELECT i.id as id, c.id as cid, c.nome as cliente, i.pagamento as pagamento_c
+            FROM `prenotazioni` as p
+            inner join inviti as i on i.prenotazione = p.id
+            inner join clients as c on i.cliente = c.id
+            where p.id = ?;
+            EOF, [$id]);
+        return response()->json($return,200);
     }
 }

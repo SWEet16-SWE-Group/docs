@@ -21,6 +21,10 @@ import Ristoranti from "./views/Ristoranti";
 import Ristorante from "./views/Ristorante";
 import Menu from "./views/Menu";
 import FormPrenotazione from "./views/FormPrenotazione.jsx";
+import FormOrdinazione from "./views/FormOrdinazione.jsx";
+import LinkInvito from "./views/LinkInvito.jsx";
+
+import DivisioneContoPagamento from "./views/DivisioneContoPagamento.jsx";
 
 import ClienteDashboard from "./views/DashboardCliente.jsx";
 import ClientePrenotazione from "./views/SingolaPrenotazioneCliente.jsx";
@@ -62,7 +66,7 @@ const router = createBrowserRouter([
         element: <Layout Content={<Ristorante />} />
     },
     {
-        path: '/menu/:id',
+        path: '/menu/:ristorante',
         element: <Layout Content={<Menu />} />
     },
     {
@@ -114,8 +118,24 @@ const router = createBrowserRouter([
        element: <Cliente Content={<FormPrenotazione />} />
     },
     {
+       path: '/formordinazione/:prenotazione/:pietanza',
+       element: <Cliente Content={<FormOrdinazione />} />
+    },
+    {
        path: '/dettagliprenotazionecliente/:id',
        element: <Cliente Content={<ClientePrenotazione />} />
+    },
+    {
+       path: '/menu/:ristorante/:prenotazione',
+       element: <Cliente Content={<Menu />} />
+    },
+    {
+       path: '/invito/:prenotazione',
+       element: <Cliente Content={<LinkInvito />} />
+    },
+    {
+       path: '/divisionecontopagamentocliente/:id',
+       element: <Cliente Content={<DivisioneContoPagamento />} />
     },
 
     //RISTORATORE
@@ -138,6 +158,10 @@ const router = createBrowserRouter([
     {
         path: 'creaingrediente/:ristoratoreId',
         element: <Ristoratore Content={<FormIngrediente />} />,
+    },
+    {
+       path: '/divisionecontopagamentoristoratore/:id',
+       element: <Ristoratore Content={<DivisioneContoPagamento />} />
     },
 
     // 404

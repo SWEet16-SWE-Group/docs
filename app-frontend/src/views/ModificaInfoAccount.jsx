@@ -142,13 +142,14 @@ export default function ModificaInfoAccount() {
                     ))}
                 </div>
                 }
+                <br />
                 <input className="form-control" onChange={ev => setUser({...user, password: ev.target.value})} type="password"
                     role="passwordChanger"   placeholder=" Nuova Password"/>
                 <input className="form-control" onChange={ev => setUser({...user, password_confirmation: ev.target.value})} type="password"
                     role="passwordConfirmer"   placeholder=" Ripeti nuova password"/>
                 <button className="btn btn-primary me-2">Salva</button>
             </form>
-
+            <br />
             <form onSubmit={onModifyEmail}>
                 <h2>Modifica email:</h2>
                 {errorsEmail && <div className="alert">
@@ -157,14 +158,14 @@ export default function ModificaInfoAccount() {
                     ))}
                 </div>
                 }
-                <input onChange={ev => setUser({...user, email: ev.target.value})} value={user.email} type="email"
-                    role="emailChanger"   required/>
-                <button role="submitNewEmail" className="btn btn-primary me-2">Salva</button>
+                <br />
+                <input className="form-control" onChange={ev => setUser({...user, email: ev.target.value})} value={user.email} type="email"
+                       required/>
+                <button className="btn btn-primary me-2">Salva</button>
                 &nbsp; &nbsp;
                 <Link to='/selezioneprofilo' className="btn btn-secondary">Annulla</Link>
             </form>
-
-
+            <br />
             <form onSubmit={onDelete}>
                 <button className="btn btn-danger me-2">Elimina account</button>
             </form>

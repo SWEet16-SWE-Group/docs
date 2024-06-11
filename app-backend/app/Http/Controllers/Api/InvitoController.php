@@ -25,4 +25,18 @@ class InvitoController extends Controller {
             ], 404);
         }
     }
+
+    public function get_by_prenotazione_cliente($prenotazione, $cliente){
+        $invito = Invito::where('prenotazione', $prenotazione)
+            ->where('cliente', $cliente)
+            ->get();
+        return response()->json($invito,200);
+    }
+
+    public function paga($id){
+        $record = Invito::findOrFail($id);
+        $record->pagamento = 'PAGATO';
+        $record->save();
+        return response()->json(0,200);
+    }
 }

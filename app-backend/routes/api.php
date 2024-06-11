@@ -10,9 +10,12 @@ use App\Http\Controllers\Api\PrenotazioniController;
 use App\Http\Controllers\Api\IngredienteController;
 use App\Http\Controllers\Api\PietanzaController;
 use App\Http\Controllers\Api\InvitoController;
+use App\Http\Controllers\Api\OrdinazioneController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
+use App\Models\Ristoratore;
+use App\Models\Ordinazione;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +62,15 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/dashboard_c/{id}',[PrenotazioniController::class,'dashboard_c']);
     Route::get('/prenotazione_c/{id}',[PrenotazioniController::class,'prenotazione_c']);
 
+    Route::get('/prenotazione_dettagli/{id}',[PrenotazioniController::class,'prenotazione_dettagli']);
+    Route::get('/prenotazione_conto/{id}',[PrenotazioniController::class,'prenotazione_conto']);
+    Route::post('/set_divisioneconto/{id}',[PrenotazioniController::class,'set_divisioneconto']);
+    Route::get('/pagamenti_ordinazioni/{id}',[PrenotazioniController::class,'pagamenti_ordinazioni']);
+    Route::get('/pagamenti_inviti/{id}',[PrenotazioniController::class,'pagamenti_inviti']);
+
+    Route::post('/paga_ordinazione/{id}',[OrdinazioneController::class,'paga']);
+    Route::post('/paga_invito/{id}',[InvitoController::class,'paga']);
+
     Route::get('/ingredienti/{id}', [IngredienteController::class, 'index']);
     Route::put('/ingredienti/{id}', [IngredienteController::class,'update']);
     Route::delete('/ingredienti/{id}', [IngredienteController::class, 'destroy']);
@@ -70,6 +82,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/pietanze', [PietanzaController::class, 'store']);
 
     Route::post('/crea-invito',  [InvitoController::class, 'store']);
+    Route::post('/crea-ordinazione',  [OrdinazioneController::class, 'store']);
+    Route::get('/pietanza_dettagli/{id}', [PietanzaController::class, 'dettagli']);
 
     /*
     Route::middleware(UserIsRestaurant::class) {
@@ -111,3 +125,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/ristoranti',[RistoratoreController::class,'index']);
 Route::get('/ristorante/{id}',[RistoratoreController::class,'show']);
 Route::get('/menu/{id}', [RistoratoreController::class, 'menu']);
+Route::get('/search',[RistoratoreController::class,'search']);
+
+Route::get('/get-possibili-aggiunte/{pietanza}', [IngredienteController::class, 'aggiunte']);
+Route::get('/get-possibili-rimozioni/{pietanza}', [IngredienteController::class, 'rimozioni']);
+Route::get('/get-invito-by-prenotazione-cliente/{prenotazione}/{profile}',[InvitoController::class, 'get_by_prenotazione_cliente']);

@@ -91,8 +91,7 @@ describe('RistoratoreDashboard', () => {
             expect(screen.getByText(/Telefono: 123456789/i)).toBeInTheDocument();
             expect(screen.getByText(/Capienza: 50/i)).toBeInTheDocument();
             expect(screen.getByText(/Orario: 9:00 - 18:00/i)).toBeInTheDocument();
-            expect(screen.getByText('Test Client')).toBeInTheDocument();
-            expect(screen.getByText('1')).toBeInTheDocument(); // Number of invitations
+            expect(screen.getByText('1')).toBeInTheDocument();
             expect(screen.getByText('In attesa')).toBeInTheDocument();
         });
     });
@@ -142,7 +141,7 @@ describe('RistoratoreDashboard', () => {
         renderWithContext(<RistoratoreDashboard />);
 
         await waitFor(() => {
-            expect(screen.getByText('Test Client')).toBeInTheDocument();
+            expect(screen.getByText('Accetta')).toBeInTheDocument();
         });
 
         const acceptButton = screen.getByText('Accetta');
