@@ -14,6 +14,7 @@ use App\Http\Controllers\Api\OrdinazioneController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
+use App\Models\Ristoratore;
 use App\Models\Ordinazione;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -124,6 +125,7 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/ristoranti',[RistoratoreController::class,'index']);
 Route::get('/ristorante/{id}',[RistoratoreController::class,'show']);
 Route::get('/menu/{id}', [RistoratoreController::class, 'menu']);
+Route::get('/search',[RistoratoreController::class,'search']);
 
 Route::get('/get-possibili-aggiunte/{pietanza}', [IngredienteController::class, 'aggiunte']);
 Route::get('/get-possibili-rimozioni/{pietanza}', [IngredienteController::class, 'rimozioni']);
