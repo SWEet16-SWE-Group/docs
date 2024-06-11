@@ -71,6 +71,7 @@ export default function RistoratoreDashboard() {
                 <div>
                     <h3>Informazioni:</h3>
                     <p>Nome: {ristoratoreInfo.nome}</p>
+                    <p>Tipo cucina: {ristoratoreInfo.cucina}</p>
                     <p>Indirizzo: {ristoratoreInfo.indirizzo}</p>
                     <p>Telefono: {ristoratoreInfo.telefono}</p>
                     <p>Capienza: {ristoratoreInfo.capienza}</p>

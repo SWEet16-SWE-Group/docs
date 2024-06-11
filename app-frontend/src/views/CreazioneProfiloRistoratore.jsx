@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
-import {Link, useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function CreazioneProfiloRistoratore() {
     const { setNotificationStatus, setNotification } = useStateContext();
@@ -10,6 +10,7 @@ export default function CreazioneProfiloRistoratore() {
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),
         nome: '',
+        cucina: '',
         indirizzo: '',
         telefono: '',
         capienza: '',
@@ -30,16 +31,16 @@ export default function CreazioneProfiloRistoratore() {
 
         axiosClient.post('/crea-ristoratore', formData)
             .then(({data}) => {
-
-            navigate('/selezioneprofilo');
-            setNotificationStatus(data.status);
-            setNotification(data.notification);
-
-        })
+                navigate('/selezioneprofilo');
+                setNotificationStatus(data.status);
+                setNotification(data.notification);
+            })
             .catch(error => {
                 setErrors(error.response.data.errors);
-            })
+            });
     };
+
+    const cuisineOptions = ['Italiana','Cinese','Giapponese', 'Messicana', 'Indiana', 'Meditteranea'];
 
     return (
         <div className="container mt-5">
@@ -48,8 +49,7 @@ export default function CreazioneProfiloRistoratore() {
                 {Object.keys(errors).map(key => (
                     <p key={key}>{errors[key][0]}</p>
                 ))}
-            </div>
-            }
+            </div>}
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="nome">Nome</label>
@@ -62,6 +62,22 @@ export default function CreazioneProfiloRistoratore() {
                         onChange={handleChange}
                         required
                     />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="cucina">Tipo di cucina</label>
+                    <select
+                        className="form-control"
+                        id="cucina"
+                        name="cucina"
+                        value={formData.cucina}
+                        onChange={handleChange}
+                        required
+                    >
+                        <option value="">Seleziona il tipo di cucina</option>
+                        {cuisineOptions.map((cuisine, index) => (
+                            <option key={index} value={cuisine}>{cuisine}</option>
+                        ))}
+                    </select>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="indirizzo">Indirizzo</label>
