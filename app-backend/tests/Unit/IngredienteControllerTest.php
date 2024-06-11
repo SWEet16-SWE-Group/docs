@@ -92,4 +92,28 @@ class IngredienteControllerTest extends TestCase
         $response->assertStatus(404);
         $response->assertJson(['message' => 'Ingrediente non trovato']);
     }
+
+    /**
+     * rimozioni
+     *
+     * @return void
+     */
+    public function test_rimozioni()
+    {
+        $response = $this->getJson('/api/get-possibili-rimozioni/1');
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * aggiunte
+     *
+     * @return void
+     */
+    public function test_aggiunte()
+    {
+        $response = $this->getJson('/api/get-possibili-aggiunte/1');
+
+        $response->assertStatus(200);
+    }
 }
