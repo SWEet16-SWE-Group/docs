@@ -239,6 +239,5 @@ function gantt_latex($img, $size, $ganttstruct, $scale = '.7') {
   passthru(sprintf("firefox --headless --screenshot --window-size %s 'file://%s'", $size, $htmlfile));
   is_dir($dir = dirname($img)) or mkdir($dir, recursive: true);
   rename('screenshot.png', mediapath() . "/$img");
-  unlink($htmlfile);
   return "\\begin{figure}[h!] \\includegraphics[scale={$scale}]{{$img}} \\end{figure}";
 }
