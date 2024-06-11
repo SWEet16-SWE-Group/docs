@@ -8,9 +8,12 @@ use App\Models\Pietanza;
 use App\Http\Requests\PietanzaRequest;
 use App\Models\Ingrediente;
 use DB;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PietanzaController extends Controller
 {
+    use RefreshDatabase;
+
     public function index($ristoratoreId)
     {
         $pietanze = Pietanza::where('ristoratore', $ristoratoreId)->get();
@@ -58,8 +61,8 @@ class PietanzaController extends Controller
         $return = Pietanza::select(
             'pietanze.id',
             'pietanze.nome',
-            DB::raw('group_concat(i.nome separator ", ") as ingredienti'),
-            DB::raw('group_concat(a.nome separator ", ") as allergeni'),
+            DB::raw('group_concat(i.nome) as ingredienti'),
+            DB::raw('group_concat(a.nome) as allergeni'),
         )
         ->join('ricette as r','r.pietanza','=','pietanze.id')
         ->join('ingredienti as i','r.ingrediente','=','i.id')
