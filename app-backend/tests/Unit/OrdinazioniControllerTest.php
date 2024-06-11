@@ -25,14 +25,22 @@ class OrdinazioniTest extends TestCase
         (new DatabaseSeeder())->run();
         Sanctum::actingAs(User::where('id', 1)->first());
 
-        $data = [
+        $ordinazione = [
             'invito' => 1,
             'pietanza' => 2,
         ];
-        $response = $this->post('/api/crea-ordinazione/',$data);
+        $aggiunte = [
+            ['ingrediente' => 7],
+        ];
+        $rimozioni = [
+            ['ingrediente' => 1],
+        ];
+        $response = $this->post('/api/crea-ordinazione/',[...$ordinazione, 'aggiunte' => $aggiunte, 'rimozioni' => $rimozioni]);
 
         $response->assertStatus(201);
-        $this->assertDatabaseHas('ordinazioni',$data);
+        $this->assertDatabaseHas('ordinazioni',$ordinazione);
+        $this->assertDatabaseHas('dettagliordinazione',[...($aggiunte[0]), 'dettaglio' => '+']);
+        $this->assertDatabaseHas('dettagliordinazione',[...($rimozioni[0]), 'dettaglio' => '-']);
     }
 
     /**
