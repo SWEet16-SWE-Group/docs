@@ -3,14 +3,11 @@
 namespace Tests\Unit;
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use App\Models\Prenotazione;
-use App\Models\Ristoratore;
 use App\Models\User;
 use DatabaseSeeder;
 use DateTime;
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
-use DB;
 
 require_once __DIR__ . '/../../database/seeds/DatabaseSeeder.php' ;
 
