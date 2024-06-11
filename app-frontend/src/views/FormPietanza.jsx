@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState , useEffect } from "react";
 import axiosClient from "../axios-client";
 import { useNavigate, useParams } from "react-router-dom";
 import { useStateContext } from "../contexts/ContextProvider";
@@ -20,6 +20,7 @@ export default function FormPietanza() {
         }else{
             setSelectedIngredients(selectedIngredients.filter(id=>id !== checkedId))
         }
+        console.log(selectedIngredients);
     }
 
     useEffect(() => {
@@ -32,6 +33,7 @@ export default function FormPietanza() {
             }
         };
         fetchIngredienti();
+        console.log(ingredienti);
     }, [ristoratoreId]);
 
     const handleSubmit = async (e) => {
