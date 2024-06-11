@@ -104,8 +104,8 @@ class PrenotazioniController extends Controller
             ->get()->first();
         $ordinazioni = DB::select(<<<'EOF'
             select o.id, c.nome as c, pz.nome as pietanza,
-                GROUP_CONCAT(iia.nome SEPARATOR ", ") as aggiunte,
-                GROUP_CONCAT(iir.nome SEPARATOR ", ") as rimozioni
+                GROUP_CONCAT(iia.nome) as aggiunte,
+                GROUP_CONCAT(iir.nome) as rimozioni
             from prenotazioni as p
             inner join inviti as i on p.id = i.prenotazione
             inner join clients as c on c.id = i.cliente
