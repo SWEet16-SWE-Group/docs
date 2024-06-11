@@ -51,6 +51,23 @@ function Prenotazione({ prenotazione, ordinazioni, handleAccept, handleRefuse })
                 </div>
             )}
             <hr className="my-4"></hr>
+            <h2>Ingredienti</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Ingrediente</th>
+                  <th>Quantità</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Pasta</td><td>2</td></tr>
+                <tr><td>Pomodoro</td><td>2</td></tr>
+                <tr><td>Mozzarella</td><td>2</td></tr>
+                <tr><td>Patatine</td><td>1</td></tr>
+                <tr><td>Funghi</td><td>1</td></tr>
+              </tbody>
+            </table>
+            <hr className="my-4"></hr>
             <h2>Ordinazioni</h2>
             {ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data} />)}
         </div>
