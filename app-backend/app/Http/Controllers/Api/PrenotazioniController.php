@@ -13,10 +13,6 @@ use DB;
 
 class PrenotazioniController extends Controller
 {
-    public function index() {
-        $prenotazioni = Prenotazione::with('ristoratore')->get();
-        return response()->json($prenotazioni);
-    }
 
     public function show ($id) {
         $prenotazioni = Prenotazione::select('prenotazioni.*')
@@ -31,30 +27,6 @@ class PrenotazioniController extends Controller
         $prenotazione = Prenotazione::create($validatedData);
 
         return response()->json($prenotazione, 201);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $prenotazione = Prenotazione::findOrFail($id);
-
-        $validatedData = $request->validate([
-            'ristoratore_id' => 'required|exists:ristoratores,id',
-            'orario' => 'required|date_format:Y-m-d H:i:s',
-            'numero_inviti' => 'required|integer',
-            'divisione_conto' => 'required|in:Equo,Proporzionale',
-            'stato' => 'required|in:Accettata,Rifiutata,In attesa',
-        ]);
-
-        $prenotazione->update($validatedData);
-
-        return response()->json(['message' => 'Prenotazione updated successfully', 'data' => $prenotazione]);
-    }
-
-    public function destroy($id) {
-        $prenotazione = Prenotazione::findOrFail($id);
-        $prenotazione->delete();
-
-        return response()->json(['message'=> 'Prenotazione deleted successfully'], 204);
     }
 
     public function updateStatus(Request $request, $id)
@@ -72,8 +44,6 @@ class PrenotazioniController extends Controller
             'message' => 'Prenotazione updated successfully',
             'prenotazione' => $prenotazione
         ]);
-
-
     }
 
     public function dashboard_c($id){
@@ -104,8 +74,8 @@ class PrenotazioniController extends Controller
             ->get()->first();
         $ordinazioni = DB::select(<<<'EOF'
             select o.id, c.nome as c, pz.nome as pietanza,
-                GROUP_CONCAT(iia.nome SEPARATOR ", ") as aggiunte,
-                GROUP_CONCAT(iir.nome SEPARATOR ", ") as rimozioni
+                GROUP_CONCAT(iia.nome) as aggiunte,
+                GROUP_CONCAT(iir.nome) as rimozioni
             from prenotazioni as p
             inner join inviti as i on p.id = i.prenotazione
             inner join clients as c on c.id = i.cliente
@@ -139,7 +109,7 @@ class PrenotazioniController extends Controller
         $return = Prenotazione::select(
             'prenotazioni.*',
             'r.nome',
-            DB::raw('group_concat(c.nome separator ", ") as partecipanti'))
+            DB::raw('group_concat(c.nome) as partecipanti'))
             ->where('prenotazioni.id',$id)
             ->join('ristoratori as r','r.id','=','prenotazioni.ristoratore')
             ->join('inviti as i','i.prenotazione','=','prenotazioni.id')
@@ -169,8 +139,8 @@ class PrenotazioniController extends Controller
         $return = DB::select(<<<'EOF'
             SELECT c.id as cid, c.nome as cliente, i.pagamento as pagamento_c,
             o.id as oid, pz.nome as pietanza,
-            GROUP_CONCAT(iia.nome separator ", ") as agginte,
-            GROUP_CONCAT(iir.nome SEPARATOR ", ") as rimozioni, o.pagamento as pagamento_o
+            GROUP_CONCAT(iia.nome) as agginte,
+            GROUP_CONCAT(iir.nome) as rimozioni, o.pagamento as pagamento_o
             FROM `prenotazioni` as p
             inner join inviti as i on i.prenotazione = p.id
             inner join clients as c on i.cliente = c.id
