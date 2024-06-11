@@ -40,6 +40,10 @@ function Ordinazioni({ data }) {
 function Prenotazione({ prenotazione, ordinazioni, ingredienti, handleAccept, handleRefuse }) {
   const url_p = (id) => `/divisionecontopagamentoristoratore/${id}`;
 
+  if (!prenotazione) {
+    return null;
+  }
+
   return (
     <div key={prenotazione.id}>
       <h1>{prenotazione.nome}</h1>

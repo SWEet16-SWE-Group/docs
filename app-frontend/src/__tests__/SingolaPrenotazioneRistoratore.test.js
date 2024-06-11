@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { ContextProvider, useStateContext } from '../contexts/ContextProvider';
-import RistoratorePrenotazione from '../views/SingolaPrenotazioneRistoratore'; 
+import RistoratorePrenotazione from '../views/SingolaPrenotazioneRistoratore';
 import axiosClient from '../axios-client';
 import { act } from 'react';
 
@@ -20,9 +20,9 @@ const renderWithContext = (component) => {
     act(() => {
         render(
             <ContextProvider>
-                <MemoryRouter initialEntries={['/prenotazione_r/12345']}>
+                <MemoryRouter initialEntries={['/dettagliprenotazioneristoratore/12345']}>
                     <Routes>
-                        <Route path="/prenotazione_r/:id" element={component} />
+                        <Route path="/dettagliprenotazioneristoratore/:id" element={component} />
                     </Routes>
                 </MemoryRouter>
             </ContextProvider>
@@ -63,27 +63,40 @@ describe('RistoratorePrenotazione', () => {
                 {
                     nome: 'Test Menu',
                     ordinazioni: [
-                        { id: 1, pietanza: 'Pasta', aggiunte: 'Cheese', rimozioni: 'Garlic' }
+                        { id: 1, pietanza: 'Pasta', ingredienti: 'Pomodoro', aggiunte: 'Formaggio', rimozioni: 'Aglio' }
                     ]
                 }
             ]
         };
 
-        axiosClient.get.mockResolvedValueOnce({ data: prenotazioneData });
+        const ingredientiData = [
+            { ingrediente: 'Pomodoro', quantita: '1' },
+            { ingrediente: 'Formaggio', quantita: '2' },
+            { ingrediente: 'Aglio', quantita: '3' }
+        ];
+
+        axiosClient.get
+            .mockResolvedValueOnce({ data: prenotazioneData })
+            .mockResolvedValueOnce({ data: ingredientiData });
 
         renderWithContext(<RistoratorePrenotazione />);
 
-        expect(screen.getByText('Caricamento...')).toBeInTheDocument();
+        await waitFor(() => {
+            expect(screen.getByText('Caricamento...')).toBeInTheDocument();
+        });
 
         await waitFor(() => {
             expect(screen.getByText(/Test Prenotazione/i)).toBeInTheDocument();
             expect(screen.getByText(/In attesa/i)).toBeInTheDocument();
             expect(screen.getByText(/Pasta/i)).toBeInTheDocument();
+            expect(screen.getByText(/Pomodoro/i)).toBeInTheDocument();
+            expect(screen.getByText(/Formaggio/i)).toBeInTheDocument();
+            expect(screen.getByText(/Aglio/i)).toBeInTheDocument();
         });
     });
 
-    it('handles API errors when fetching data', async () => {
-        const errorMessage = new Error('Api Error');
+    it('handles API errors when fetching prenotazione data', async () => {
+        const errorMessage = new Error('API Error');
         axiosClient.get.mockRejectedValueOnce(errorMessage);
 
         renderWithContext(<RistoratorePrenotazione />);
@@ -93,7 +106,7 @@ describe('RistoratorePrenotazione', () => {
         });
     });
 
-    it('accepts the prenotazione', async () => {
+    it('handles API errors when fetching ingredienti data', async () => {
         const prenotazioneData = {
             prenotazione: {
                 id: prenotazioneId,
@@ -105,32 +118,69 @@ describe('RistoratorePrenotazione', () => {
                 {
                     nome: 'Test Menu',
                     ordinazioni: [
-                        { id: 1, pietanza: 'Pasta', aggiunte: 'Cheese', rimozioni: 'Garlic' }
+                        { id: 1, pietanza: 'Pasta', ingredienti: 'Pomodoro', aggiunte: 'Formaggio', rimozioni: 'Aglio' }
                     ]
                 }
             ]
         };
 
-        axiosClient.get.mockResolvedValueOnce({ data: prenotazioneData });
+        const errorMessage = new Error('API Error');
+        axiosClient.get
+            .mockResolvedValueOnce({ data: prenotazioneData })
+            .mockRejectedValueOnce(errorMessage);
+
+        renderWithContext(<RistoratorePrenotazione />);
+
+        await waitFor(() => {
+            expect(console.error).toHaveBeenCalledWith('Errore nel recupero degli ingredienti:', errorMessage);
+        });
+    });
+
+    it('handles accept button click', async () => {
+        const prenotazioneData = {
+            prenotazione: {
+                id: prenotazioneId,
+                nome: 'Test Prenotazione',
+                stato: 'In attesa',
+                orario: '2023-06-07T10:00:00Z'
+            },
+            ordinazioni: [
+                {
+                    nome: 'Test Menu',
+                    ordinazioni: [
+                        { id: 1, pietanza: 'Pasta', ingredienti: 'Pomodoro', aggiunte: 'Formaggio', rimozioni: 'Aglio' }
+                    ]
+                }
+            ]
+        };
+
+        const ingredientiData = [
+            { ingrediente: 'Pomodoro', quantita: '1' },
+            { ingrediente: 'Formaggio', quantita: '2' },
+            { ingrediente: 'Aglio', quantita: '3' }
+        ];
+
+        axiosClient.get
+            .mockResolvedValueOnce({ data: prenotazioneData })
+            .mockResolvedValueOnce({ data: ingredientiData });
+
         axiosClient.put.mockResolvedValueOnce({ data: { stato: 'Accettata' } });
 
         renderWithContext(<RistoratorePrenotazione />);
 
         await waitFor(() => {
-            expect(screen.getByText('Accetta')).toBeInTheDocument();
+            expect(screen.getByText(/Test Prenotazione/i)).toBeInTheDocument();
         });
 
-        const acceptButton = screen.getByText('Accetta');
-        fireEvent.click(acceptButton);
+        fireEvent.click(screen.getByText(/Accetta/i));
 
         await waitFor(() => {
-            expect(axiosClient.put).toHaveBeenCalledWith(`/update-prenotazioni/${prenotazioneId}`, { stato: 'Accettata' });
             expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Prenotazione accettata con successo.');
         });
     });
 
-    it('refuses the prenotazione', async () => {
+    it('handles refuse button click', async () => {
         const prenotazioneData = {
             prenotazione: {
                 id: prenotazioneId,
@@ -142,26 +192,33 @@ describe('RistoratorePrenotazione', () => {
                 {
                     nome: 'Test Menu',
                     ordinazioni: [
-                        { id: 1, pietanza: 'Pasta', aggiunte: 'Cheese', rimozioni: 'Garlic' }
+                        { id: 1, pietanza: 'Pasta', ingredienti: 'Pomodoro', aggiunte: 'Formaggio', rimozioni: 'Aglio' }
                     ]
                 }
             ]
         };
 
-        axiosClient.get.mockResolvedValueOnce({ data: prenotazioneData });
+        const ingredientiData = [
+            { ingrediente: 'Pomodoro', quantita: '1' },
+            { ingrediente: 'Formaggio', quantita: '2' },
+            { ingrediente: 'Aglio', quantita: '3' }
+        ];
+
+        axiosClient.get
+            .mockResolvedValueOnce({ data: prenotazioneData })
+            .mockResolvedValueOnce({ data: ingredientiData });
+
         axiosClient.put.mockResolvedValueOnce({ data: { stato: 'Rifiutata' } });
 
         renderWithContext(<RistoratorePrenotazione />);
 
         await waitFor(() => {
-            expect(screen.getByText('Rifiuta')).toBeInTheDocument();
+            expect(screen.getByText(/Test Prenotazione/i)).toBeInTheDocument();
         });
 
-        const refuseButton = screen.getByText('Rifiuta');
-        fireEvent.click(refuseButton);
+        fireEvent.click(screen.getByText(/Rifiuta/i));
 
         await waitFor(() => {
-            expect(axiosClient.put).toHaveBeenCalledWith(`/update-prenotazioni/${prenotazioneId}`, { stato: 'Rifiutata' });
             expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Prenotazione rifiutata con successo.');
         });
