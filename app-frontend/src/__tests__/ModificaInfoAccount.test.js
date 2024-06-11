@@ -2,7 +2,7 @@ import React from 'react';
 import { act } from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { MemoryRouter, Routes, Route } from 'react-router-dom';
+import { MemoryRouter, Routes, Route , redirect } from 'react-router-dom';
 import { ContextProvider , useStateContext } from '../contexts/ContextProvider';
 import ModificaInfoAccount from '../views/ModificaInfoAccount';
 import axiosClient from '../axios-client';
@@ -26,6 +26,10 @@ const renderWithContext = (component) => {
         <ContextProvider>
             <MemoryRouter initialEntries={['/modificainfoaccount']}>
                 <Routes>
+                    <Route path="/" render={() => (
+        <div>
+          <h1>Home</h1>
+        </div>)} />
                     <Route path="/modificainfoaccount" element={component} />
                 </Routes>
             </MemoryRouter>
@@ -79,6 +83,23 @@ afterEach(() => {
             expect(screen.getByText('Elimina account')).toBeInTheDocument();
             expect(screen.getByRole('emailChanger',{'value': 'tullio@gmail.com'})).toBeInTheDocument();
         });
+    });
+
+    it('Showing user data fetching error', async () => {
+        axiosClient.post.mockReset();
+        axiosClient.post.mockRejectedValueOnce({
+            response : {
+                status : 422,
+            },
+        });
+        renderWithContext(<ModificaInfoAccount/>);
+        expect(axiosClient.post).toHaveBeenCalledWith('/user', {
+            id: "1",
+            role: 'AUTENTICATO',
+        });
+        await waitFor(() => {
+        });
+
     });
 
     it('New email submission goes well', async () => {
