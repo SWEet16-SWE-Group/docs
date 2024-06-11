@@ -197,70 +197,21 @@ class PrenotazioniController extends Controller
         return response()->json($return,200);
     }
 
-    public function prenotazione_r($id) {
-        $prenotazione = Prenotazione::select(
-            'prenotazioni.id',
-            'prenotazioni.orario',
-            'ristoratori.nome as nome',
-            'ristoratori.id as ristoratore',
-            'prenotazioni.numero_inviti',
-            'prenotazioni.stato'
-        )
-        ->join('ristoratori', 'ristoratori.id', '=', 'prenotazioni.ristoratore')
-        ->where('prenotazioni.id', $id)
-        ->first();
-    
-        $ordinazioni = DB::select(<<<'EOF'
-            SELECT 
-                o.id, 
-                c.nome as cliente, 
-                pz.nome as pietanza,
-                GROUP_CONCAT(CASE WHEN d.dettaglio = '+' THEN ia.nome END SEPARATOR ', ') as aggiunte,
-                GROUP_CONCAT(CASE WHEN d.dettaglio = '-' THEN ir.nome END SEPARATOR ', ') as rimozioni,
-                GROUP_CONCAT(DISTINCT iaggr.nome SEPARATOR ', ') as ingredienti
-            FROM 
-                ordinazioni as o
-            INNER JOIN 
-                inviti as inv ON inv.id = o.invito
-            INNER JOIN 
-                clients as c ON c.id = inv.cliente
-            INNER JOIN 
-                pietanze as pz ON pz.id = o.pietanza
-            LEFT JOIN 
-                dettagliordinazione as d ON d.ordinazione = o.id
-            LEFT JOIN 
-                ingredienti as ia ON ia.id = d.ingrediente AND d.dettaglio = '+'
-            LEFT JOIN 
-                ingredienti as ir ON ir.id = d.ingrediente AND d.dettaglio = '-'
-            LEFT JOIN 
-                ingredienti as iaggr ON iaggr.id = d.ingrediente
-            WHERE 
-                inv.prenotazione = ?
-            GROUP BY 
-                o.id, c.nome, pz.nome
-            ORDER BY 
-                c.nome;
-            EOF, [$id]
-        );
-    
-        $ordinazioniGrouped = [];
-        foreach ($ordinazioni as $ordinazione) {
-            $cliente = $ordinazione->cliente;
-            if (!isset($ordinazioniGrouped[$cliente])) {
-                $ordinazioniGrouped[$cliente] = [
-                    'nome' => $cliente,
-                    'ordinazioni' => []
-                ];
-            }
-            $ordinazioniGrouped[$cliente]['ordinazioni'][] = $ordinazione;
-        }
-    
-        $return = [
-            'prenotazione' => $prenotazione,
-            'ordinazioni' => array_values($ordinazioniGrouped)
-        ];
-        return response()->json($return, 200);
+    public function getIngredientsForPrenotazione($prenotazioneId) 
+    {
+        $ingredienti = DB::select(<<<'EOF'
+            SELECT i.nome AS ingrediente, 
+                COALESCE(COUNT(di.ingrediente), 0) AS quantita 
+            FROM ingredienti AS i 
+            LEFT JOIN dettagliordinazione AS di ON i.id = di.ingrediente
+            LEFT JOIN ordinazioni AS o ON di.ordinazione = o.id
+            LEFT JOIN inviti AS iv ON o.invito = iv.id
+            LEFT JOIN prenotazioni AS pr ON iv.prenotazione = pr.id
+            WHERE pr.id = ? 
+            GROUP BY i.id, i.nome
+            ORDER BY ingrediente;
+            EOF, [$prenotazioneId]);
+
+        return response()->json($ingredienti, 200);
     }
-    
-    
 }

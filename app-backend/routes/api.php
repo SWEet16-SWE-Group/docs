@@ -60,7 +60,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/update-prenotazioni/{id}', [PrenotazioniController::class,'updateStatus']);
     Route::get('/dashboard_c/{id}',[PrenotazioniController::class,'dashboard_c']);
     Route::get('/prenotazione_c/{id}',[PrenotazioniController::class,'prenotazione_c']);
-    Route::get('/prenotazione_r/{id}', [PrenotazioniController::class, 'prenotazione_r']);
+    Route::get('/prenotazione_i/{id}', [PrenotazioniController::class,'getIngredientsForPrenotazione']);
 
     Route::get('/prenotazione_dettagli/{id}',[PrenotazioniController::class,'prenotazione_dettagli']);
     Route::get('/prenotazione_conto/{id}',[PrenotazioniController::class,'prenotazione_conto']);
