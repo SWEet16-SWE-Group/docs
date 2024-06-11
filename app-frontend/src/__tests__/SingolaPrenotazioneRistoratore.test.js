@@ -44,7 +44,6 @@ describe('RistoratorePrenotazione', () => {
         };
         useStateContext.mockReturnValue(mockUseStateContext);
 
-        // Mock console.error
         jest.spyOn(console, 'error').mockImplementation(() => {});
     });
 
