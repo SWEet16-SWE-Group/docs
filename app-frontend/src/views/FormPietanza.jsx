@@ -80,11 +80,13 @@ export default function FormPietanza() {
                 </div>
                 {ingredienti.length === 0 ? (<p>In attesa degli ingredienti...</p>) : (
                     <div>
+                      <p>Seleziona uno o più ingredienti:</p>
+                      <br />
                         {ingredienti.map((ingrediente) => {
                             return (
-                                <div class="form-check">
+                                <div className="form-check-flex">
                                     <input
-                                        class="form-check-input"
+                                        className="form-check-input"
                                         type="checkbox"
                                         value={ingrediente.id}
                                         id={ingrediente.id}
@@ -92,7 +94,7 @@ export default function FormPietanza() {
                                             handleCheckboxChange(event)
                                         }
                                         }/>
-                                    <label class="form-check-label" for={ingrediente.id}>
+                                    <label className="form-check-label" for={ingrediente.id}>
                                         {ingrediente.nome}
                                     </label>
                                 </div>);

@@ -17,4 +17,5 @@ class Ingrediente extends Model
     {
         return $this->belongsTo(Ristoratore::class, 'ristoratore');
     }
+
 }
