@@ -13,17 +13,7 @@ class InvitoController extends Controller {
         $validatedData = $request->validated();
         $invito = Invito::create($validatedData);
 
-        if ($invito) {
-            return response([
-                "notification" => "Cliente invitato alla prenotazione.",
-                'status' => "success",
-            ], 201);
-        } else {
-            return response([
-                "notification" => "Errore nell'invito del cliente.",
-                'status' => "failure",
-            ], 404);
-        }
+        return response()->json($invito, 201);
     }
 
     public function get_by_prenotazione_cliente($prenotazione, $cliente){
