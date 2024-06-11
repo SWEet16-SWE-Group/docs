@@ -26,6 +26,7 @@ class RistoratoreRequest extends FormRequest
         return [
             'user' => 'required|exists:users,id',
             'nome' => 'required|string|max:255|unique:ristoratori,nome,',
+            'cucina'=> 'required|in:Italiana,Cinese,Giapponese,Messicana,Indiana,Meditteranea',
             'indirizzo' => 'required|string|max:255|unique:ristoratori,indirizzo,',
             'telefono' => 'required|string|max:10|unique:ristoratori,telefono,',
             'capienza' => 'required|integer|min:1',

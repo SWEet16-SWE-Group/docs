@@ -166,4 +166,22 @@ class PrenotazioniController extends Controller
             EOF, [$id]);
         return response()->json($return,200);
     }
+
+    public function getIngredientsForPrenotazione($prenotazioneId) 
+    {
+        $ingredienti = DB::select(<<<'EOF'
+            SELECT i.nome AS ingrediente, 
+                COUNT(*) AS quantita
+            FROM prenotazioni pr
+            JOIN inviti iv ON pr.id = iv.prenotazione
+            JOIN ordinazioni o ON iv.id = o.invito
+            JOIN ricette r ON o.pietanza = r.pietanza
+            JOIN ingredienti i ON r.ingrediente = i.id
+            WHERE pr.id = ?
+            GROUP BY i.nome
+            ORDER BY i.nome;
+            EOF, [$prenotazioneId]);
+
+        return response()->json($ingredienti, 200);
+    }
 }

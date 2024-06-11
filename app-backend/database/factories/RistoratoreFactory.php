@@ -15,6 +15,7 @@ class RistoratoreFactory extends Factory
         return [
             'user' => User::factory(),
             'nome' => $this->faker->unique()->company,
+            'cucina' => 'Italiana',
             'indirizzo' => $this->faker->unique()->address,
             'telefono' => $this->faker->unique()->numerify('##########'),
             'capienza' => $this->faker->numberBetween(10, 200),

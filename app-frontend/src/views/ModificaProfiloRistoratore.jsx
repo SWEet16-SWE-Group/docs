@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
-import {Link, useNavigate, useParams} from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 
 export default function ModificaProfiloRistoratore() {
     const { id } = useParams();
@@ -10,12 +10,15 @@ export default function ModificaProfiloRistoratore() {
     const [formData, setFormData] = useState({
         user: localStorage.getItem('USER_ID'),
         nome: '',
+        cucina: '',
         indirizzo: '',
         telefono: '',
         capienza: '',
         orario: ''
     });
     const [errorMessage, setErrorMessage] = useState('');
+
+    const cuisineOptions = ['Italiana','Cinese','Giapponese', 'Messicana', 'Indiana', 'Meditteranea'];
 
     useEffect(() => {
         if (id) {
@@ -25,6 +28,7 @@ export default function ModificaProfiloRistoratore() {
                     setFormData({
                         user: localStorage.getItem('USER_ID'),
                         nome: response.data.nome,
+                        cucina: response.data.cucina,
                         indirizzo: response.data.indirizzo,
                         telefono: response.data.telefono,
                         capienza: response.data.capienza,
@@ -51,15 +55,15 @@ export default function ModificaProfiloRistoratore() {
         setErrorMessage('');
 
         axiosClient.put(`/modifica-ristoratore/${id}`, formData)
-            .then(({data}) => {
+            .then(({ data }) => {
                 navigate('/selezioneprofilo');
                 setNotificationStatus(data.status);
                 setNotification(data.notification);
-        })
-            .catch(error =>  {
+            })
+            .catch(error => {
                 setErrorMessage('Errore durante l\'aggiornamento dei dati.');
                 console.error(error);
-        })
+            });
     };
 
     return (
@@ -79,6 +83,22 @@ export default function ModificaProfiloRistoratore() {
                             onChange={handleChange}
                             required
                         />
+                    </div>
+                    <div className="mb-3">
+                        <label htmlFor="cucina">Tipo di cucina</label>
+                        <select
+                            className="form-control"
+                            id="cucina"
+                            name="cucina"
+                            value={formData.cucina}
+                            onChange={handleChange}
+                            required
+                        >
+                            <option value="">Seleziona il tipo di cucina</option>
+                            {cuisineOptions.map((cuisine, index) => (
+                                <option key={index} value={cuisine}>{cuisine}</option>
+                            ))}
+                        </select>
                     </div>
                     <div className="mb-3">
                         <label htmlFor="indirizzo">Indirizzo</label>

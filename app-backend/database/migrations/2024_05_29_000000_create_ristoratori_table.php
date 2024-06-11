@@ -16,6 +16,7 @@ class CreateRistoratoriTable extends Migration
         Schema::create('ristoratori', function (Blueprint $table) {
             $table->id();
             $table->foreignId("user")->constrained('users')->onDelete('cascade');
+            $table->enum('cucina', ['Italiana','Cinese','Giapponese', 'Messicana', 'Indiana', 'Meditteranea']);
             $table->string("nome")->unique();
             $table->string("indirizzo")->unique();
             $table->string("telefono")->unique();
