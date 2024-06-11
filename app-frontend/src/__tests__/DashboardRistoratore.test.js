@@ -3,7 +3,7 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import { ContextProvider, useStateContext } from '../contexts/ContextProvider';
-import RistoratoreDashboard from '../views/DashboardRistoratore.jsx';
+import RistoratoreDashboard from '../views/DashboardRistoratore';
 import axiosClient from '../axios-client';
 import { act } from 'react';
 
@@ -65,7 +65,6 @@ describe('RistoratoreDashboard', () => {
             {
                 id: 1,
                 orario: new Date().toISOString(),
-                nome: 'Test Client',
                 numero_inviti: 1,
                 stato: 'In attesa',
             },
@@ -120,7 +119,6 @@ describe('RistoratoreDashboard', () => {
             {
                 id: 1,
                 orario: new Date().toISOString(),
-                nome: 'Test Client',
                 numero_inviti: 1,
                 stato: 'In attesa',
             },
