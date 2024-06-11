@@ -22,7 +22,10 @@ class PietanzaControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->user = User::factory()->create();
+        //$this->user = User::factory()->create();
+
+        (new DatabaseSeeder())->run();
+        $this->user = User::where('id', 1)->first();
         $this->ristoratore = Ristoratore::factory()->create(['user' => $this->user->id]);
         Sanctum::actingAs($this->user);
     }
@@ -43,6 +46,7 @@ class PietanzaControllerTest extends TestCase
     public function it_can_store()
     {
         $data = Pietanza::factory()->make(['ristoratore' => $this->ristoratore->id])->toArray();
+        $data['ingredienti'] = [1,2,3];
 
         $response = $this->postJson('/api/pietanze', $data);
 
