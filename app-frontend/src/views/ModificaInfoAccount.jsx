@@ -1,7 +1,6 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect,  useState} from "react";
 import axiosClient from "../axios-client";
-import {get} from "axios";
-import {Link, Navigate, redirect} from "react-router-dom";
+import {Link , redirect} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 
 export default function ModificaInfoAccount() {
@@ -72,7 +71,6 @@ export default function ModificaInfoAccount() {
                     setNotificationStatus('failure');
                     setNotification(response.data.errors.password);
 
-                    debugger;
                 }
             })
     }
@@ -103,7 +101,6 @@ export default function ModificaInfoAccount() {
                     setNotificationStatus('failure');
                     setNotification(response.data.errors.email);
 
-                    debugger;
                 }
             })
     }
@@ -147,9 +144,9 @@ export default function ModificaInfoAccount() {
                 }
                 <br />
                 <input className="form-control" onChange={ev => setUser({...user, password: ev.target.value})} type="password"
-                       placeholder=" Nuova Password"/>
+                    role="passwordChanger"   placeholder=" Nuova Password"/>
                 <input className="form-control" onChange={ev => setUser({...user, password_confirmation: ev.target.value})} type="password"
-                       placeholder=" Ripeti nuova password"/>
+                    role="passwordConfirmer"   placeholder=" Ripeti nuova password"/>
                 <button className="btn btn-primary me-2">Salva</button>
             </form>
             <br />
