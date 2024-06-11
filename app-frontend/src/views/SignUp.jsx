@@ -46,7 +46,6 @@ export default function SignUp() {
             <div className="form">
                 <form onSubmit={onSubmit}>
                     <h1 className="title">Registrazione account</h1>
-
                     {errors && <div className="alert">
                         {Object.keys(errors).map(key => (
                             <p key={key}>{errors[key][0]}</p>
