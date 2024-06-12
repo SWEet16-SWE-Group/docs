@@ -31,6 +31,7 @@ export default function FormPrenotazione() {
 
             setNotificationStatus('success');
             setNotification('Prenotazione creata con successo.');
+            navigate('/dashboardcliente');
         } catch (error) {
             setNotificationStatus('error');
             setNotification('Errore durante il salvataggio della prenotazione.');

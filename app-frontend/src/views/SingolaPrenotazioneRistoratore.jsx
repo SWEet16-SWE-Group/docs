@@ -84,7 +84,7 @@ export default function RistoratorePrenotazione() {
       <div key={prenotazione.id}>
         <h1>{prenotazione.nome}</h1>
         <h2>Dettagli</h2>
-        <div>Link di invito: <Link to={`/invito/${prenotazione.id}`}>localhost:3001/invito/{prenotazione.id}</Link></div>
+        <div>Link di invito: <Link to={`/invito/${prenotazione.id}`}>localhost:3000/invito/{prenotazione.id}</Link></div>
         <div>Stato: {prenotazione.stato}</div>
         <div>Orario: {prenotazione.orario}</div>
         <div><Link to={url_p(prenotazione.id)}>Esamina pagamento</Link></div>

@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import React, {useEffect, useRef, useState} from "react";
+import {Link, useNavigate} from 'react-router-dom';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
@@ -20,6 +20,8 @@ export default function ClienteDashboard() {
 
     const {profile} = useStateContext()
     const [prenotazioni, setPrenotazioni] = useState(null);
+    const linkRef = useRef();
+    const navigate = useNavigate();
 
     const fetchPrenotazioni = () => {
       axiosClient.get(`/dashboard_c/${profile}`).then(
@@ -29,20 +31,41 @@ export default function ClienteDashboard() {
 
     useEffect(fetchPrenotazioni, []);
 
+    const LinkInvito = (e) => {
+        e.preventDefault();
+
+        const url = linkRef.current.value.replace("localhost:3000", "")
+        navigate(url);
+    }
+
     return (
-        <table className="table">
-            <thead>
-                <tr>
-                    <th>Orario</th>
-                    <th>Ristoratore</th>
-                    <th>Numero Inviti</th>
-                    <th>Stato</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                {prenotazioni && prenotazioni.map(Prenotazione)}
-            </tbody>
-        </table>
+        <>
+            <form className="row row-cols-lg-auto g-3 align-items-center" onSubmit={LinkInvito}>
+                <div className="col-auto">
+                    <label for="link_invito">Hai un link di invito? Inseriscilo qui!</label>
+                </div>
+                <div className="col-auto">
+                    <input type="url" ref={linkRef} className="form-control" id="link_invito" placeholder="Url"/>
+                </div>
+                <div className="col-auto">
+                    <button type="submit" className="btn btn-primary">Invia</button>
+                </div>
+            </form>
+            <br />
+            <table className="table">
+                <thead>
+                    <tr>
+                        <th>Orario</th>
+                        <th>Ristoratore</th>
+                        <th>Numero Inviti</th>
+                        <th>Stato</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {prenotazioni && prenotazioni.map(Prenotazione)}
+                </tbody>
+            </table>
+        </>
     );
 }
