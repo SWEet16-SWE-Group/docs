@@ -3,9 +3,9 @@
 namespace Tests\Unit;
 
 use App\Http\Middleware\UserIsAuthenticated;
+use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Http\Request;
 use Tests\TestCase;
 use Laravel\Sanctum\Sanctum;
 use DatabaseSeeder;
