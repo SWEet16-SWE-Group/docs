@@ -15,5 +15,9 @@ class Allergeni extends Model
     public function clients() : BelongsToMany {
         return $this->belongsToMany(Client::class);
     }
+
+    public function ingredienti() : BelongsToMany {
+        return $this->belongsToMany(Ingrediente::class);
+    }
     public $incrementing = true;
 }

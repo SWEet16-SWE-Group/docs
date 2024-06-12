@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAllergeniingredientiTable extends Migration
+class CreateAllergeniIngredienteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateAllergeniingredientiTable extends Migration
      */
     public function up()
     {
-        Schema::create('allergeniingredienti', function (Blueprint $table) {
+        Schema::create('allergeni_ingrediente', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("ingrediente")->constrained('ingredienti')->onDelete('cascade');
-            $table->foreignId("allergene")->constrained('allergeni')->onDelete('cascade');
+            $table->foreignId("allergeni_id")->constrained('allergeni')->onDelete('cascade');
+            $table->foreignId("ingrediente_id")->constrained('ingredienti')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateAllergeniingredientiTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('allergeniingredienti');
+        Schema::dropIfExists('allergeni_ingrediente');
     }
 }

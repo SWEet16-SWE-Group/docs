@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Ingrediente extends Model
 {
@@ -13,9 +14,14 @@ class Ingrediente extends Model
 
     protected $fillable = ['ristoratore', 'nome'];
 
-    public function ristoratore() 
+    public function ristoratore()
     {
         return $this->belongsTo(Ristoratore::class, 'ristoratore');
+    }
+
+    public function allergie() : BelongsToMany
+    {
+        return $this->belongsToMany(Allergeni::class);
     }
 
 }
