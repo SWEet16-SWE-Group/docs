@@ -48,12 +48,12 @@ export default function FormPrenotazione() {
                 <div className="mb-3">
                     <label htmlFor="data" className="form-label">Data</label>
                     <input
-                        type="date"
+                        type="datetime-local"
                         className="form-control"
                         id="data"
                         name="data"
                         role="date-input"
-                        onChange={(e) => setdata(e.target.value)}
+                        onChange={(e) => setdata(e.target.value.replace('T', ' '))}
                         required
                     />
                 </div>
