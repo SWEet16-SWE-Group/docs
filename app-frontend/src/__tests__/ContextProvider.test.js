@@ -13,20 +13,20 @@ const TestComponent = () => {
 
     return (
         <div>
-            <div data-testid="user">{user}</div>
-            <div data-testid="token">{token}</div>
-            <div data-testid="role">{role}</div>
-            <div data-testid="profile">{profile}</div>
-            <div data-testid="ristoratore">{ristoratore}</div>
-            <div data-testid="notification">{notification}</div>
-            <div data-testid="notificationStatus">{notificationStatus}</div>
-            <button data-testid="set-user" onClick={() => setUser('newUser')}>Set User</button>
-            <button data-testid="set-token" onClick={() => setToken('newToken')}>Set Token</button>
-            <button data-testid="set-role" onClick={() => setRole('newRole')}>Set Role</button>
-            <button data-testid="set-profile" onClick={() => setProfile('newProfile')}>Set Profile</button>
-            <button data-testid="set-ristoratore" onClick={() => setRistoratore('newRistoratore')}>Set Ristoratore</button>
-            <button data-testid="set-notification" onClick={() => setNotification('newNotification')}>Set Notification</button>
-            <button data-testid="set-notification-status" onClick={() => setNotificationStatus('success')}>Set Notification Status</button>
+            <div id="user">{user}</div>
+            <div id="token">{token}</div>
+            <div id="role">{role}</div>
+            <div id="profile">{profile}</div>
+            <div id="ristoratore">{ristoratore}</div>
+            <div id="notification">{notification}</div>
+            <div id="notificationStatus">{notificationStatus}</div>
+            <button id="set-user" onClick={() => setUser('newUser')}>Set User</button>
+            <button id="set-token" onClick={() => setToken('newToken')}>Set Token</button>
+            <button id="set-role" onClick={() => setRole('newRole')}>Set Role</button>
+            <button id="set-profile" onClick={() => setProfile('newProfile')}>Set Profile</button>
+            <button id="set-ristoratore" onClick={() => setRistoratore('newRistoratore')}>Set Ristoratore</button>
+            <button id="set-notification" onClick={() => setNotification('newNotification')}>Set Notification</button>
+            <button id="set-notification-status" onClick={() => setNotificationStatus('success')}>Set Notification Status</button>
         </div>
     );
 };
@@ -37,18 +37,20 @@ describe('ContextProvider', () => {
         jest.useFakeTimers();
     });
 
-    it('provides initial state values from localStorage', () => {
+    it('provides initial state values from localStorage', async () => {
         localStorage.setItem('USER_ID', 'testUser');
         localStorage.setItem('ROLE', 'testRole');
         localStorage.setItem('ACCESS_TOKEN', 'testToken');
         localStorage.setItem('PROFILE_ID', 'testProfile');
         localStorage.setItem('RISTORATORE_ID', 'testRistoratore');
 
-        render(
-            <ContextProvider>
-                <TestComponent />
-            </ContextProvider>
-        );
+        await act(async () => {
+            render(
+                <ContextProvider>
+                    <TestComponent />
+                </ContextProvider>
+            );
+        });
 
         expect(screen.getByTestId('user').textContent).toBe('testUser');
         expect(screen.getByTestId('role').textContent).toBe('testRole');
@@ -59,12 +61,14 @@ describe('ContextProvider', () => {
         expect(screen.getByTestId('notificationStatus').textContent).toBe('failure');
     });
 
-    it('updates state and localStorage through context functions', () => {
-        render(
-            <ContextProvider>
-                <TestComponent />
-            </ContextProvider>
-        );
+    it('updates state and localStorage through context functions', async () => {
+        await act(async () => {
+            render(
+                <ContextProvider>
+                    <TestComponent />
+                </ContextProvider>
+            );
+        });
 
         fireEvent.click(screen.getByTestId('set-user'));
         fireEvent.click(screen.getByTestId('set-token'));
@@ -89,12 +93,14 @@ describe('ContextProvider', () => {
         expect(localStorage.getItem('RISTORATORE_ID')).toBe('newRistoratore');
     });
 
-    it('clears localStorage when setting null values', () => {
-        render(
-            <ContextProvider>
-                <TestComponent />
-            </ContextProvider>
-        );
+    it('clears localStorage when setting null values', async () => {
+        await act(async () => {
+            render(
+                <ContextProvider>
+                    <TestComponent />
+                </ContextProvider>
+            );
+        });
 
         fireEvent.click(screen.getByTestId('set-user'));
         fireEvent.click(screen.getByTestId('set-token'));
@@ -115,12 +121,14 @@ describe('ContextProvider', () => {
         expect(localStorage.getItem('RISTORATORE_ID')).toBe('newRistoratore');
     });
 
-    it('clears notification after 5 seconds', () => {
-        render(
-            <ContextProvider>
-                <TestComponent />
-            </ContextProvider>
-        );
+    it('clears notification after 5 seconds', async () => {
+        await act(async () => {
+            render(
+                <ContextProvider>
+                    <TestComponent />
+                </ContextProvider>
+            );
+        });
 
         fireEvent.click(screen.getByTestId('set-notification'));
 
