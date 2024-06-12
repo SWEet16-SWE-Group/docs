@@ -42,7 +42,15 @@ class AuthControllerTest extends TestCase
      */
     public function test_login_successo()
     {
-        $this->assertTrue(true);
+        (new DatabaseSeeder())->run();
+        $data = [
+            'email' => 'a@a.com',
+            'password' => 'a',
+        ];
+        $response = $this->post('/api/login',$data);
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['role' => 'AUTENTICATO']);
     }
 
     /**
@@ -52,7 +60,13 @@ class AuthControllerTest extends TestCase
      */
     public function test_login_fallito()
     {
-        $this->assertTrue(true);
+        $data = [
+            'email' => 'a@a.com',
+            'password' => 'a',
+        ];
+        $response = $this->post('/api/login',$data);
+
+        $response->assertStatus(422);
     }
 
     /**
