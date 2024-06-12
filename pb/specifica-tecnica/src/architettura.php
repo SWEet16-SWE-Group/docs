@@ -56,3 +56,24 @@ L'adozione di Laravel per il backend e MySQL per il database, quindi, consente d
 \subsubsection{Schema database}
 
 DA FARE UNA VOLTA TERMINATA LA CODIFICA
+
+\subsubsection{Design Pattern utilizzati}
+
+Nella seguente sezione, vengono descritti i design pattern adottati per il backend.
+Seguendo la descrizione fornita inizialmente possiamo descrivere l'utilizzo di:
+\begin{itemize}
+    \item \textbf{Model-View-Controller (MVC)}: Separa l'applicazione in tre componenti principali:
+    \begin{itemize}
+        \item \textbf{Model}: Gestisce i dati e la logica di business.
+        \item \textbf{View}: Gestisce la presentazione e l'interfaccia utente.
+        \item \textbf{Controller}: Gestisce la logica applicativa e l'interazione tra Model e View.
+    \end{itemize}
+    \item \textbf{Facade}: Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice.
+    \item \textbf{Repository Pattern}: Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database.
+    \item \textbf{Template Method Pattern}: Utilizzato nelle migrazioni del database, dove la classe di base definisce la struttura dell'operazione di migrazione e le sottoclassi implementano i dettagli specifici.
+    \item \textbf{Factory Pattern}: Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database.
+\end{itemize}
+
+\subsubsection{Documentazione API}
+
+DA FARE UNA VOLTA TERMINATA LA CODIFICA
