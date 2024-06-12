@@ -35,17 +35,13 @@ Route::middleware('auth:sanctum')->group(function () {
 
     // inserire qui dentro chiamate api per utente autenticato e solo utente autenticato
 
-    Route::post('/user', [UserController::class, 'showUserInfo'])
-        ->middleware('authenticated');
+    Route::post('/user', [UserController::class, 'showUserInfo']);
 
-    Route::delete('/user', [UserController::class, 'deleteUser'])
-        ->middleware('authenticated');
+    Route::delete('/user', [UserController::class, 'deleteUser']);
 
-    Route::put('/useremail', [UserController::class, 'updateUserEmail'])
-        ->middleware('authenticated');
+    Route::put('/useremail', [UserController::class, 'updateUserEmail']);
 
-    Route::put('/userpassword', [UserController::class, 'updateUserPassword'])
-        ->middleware('authenticated');
+    Route::put('/userpassword', [UserController::class, 'updateUserPassword']);
 
     Route::get('/ristoratori/{id}', [RistoratoreController::class, 'listByUser']);
     Route::post('/crea-ristoratore', [RistoratoreController::class, 'store']);
@@ -100,11 +96,9 @@ Route::middleware('auth:sanctum')->group(function () {
     // inserire qui le chiamate api comuni a tutti e tre i tipi di utenti (ad esempio logout)
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::post('/profiles',[ProfileController::class, 'getAllProfiles'])
-        ->middleware('authenticated');
+    Route::post('/profiles',[ProfileController::class, 'getAllProfiles']);
 
-    Route::post('/selectprofile',[ProfileController::class, 'selectProfile'])
-        ->middleware('authenticated');
+    Route::post('/selectprofile',[ProfileController::class, 'selectProfile']);
 });
 
 Route::get('/account',[ClientController::class,'index']);
