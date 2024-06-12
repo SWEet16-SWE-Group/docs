@@ -51,6 +51,7 @@ export default function FormPrenotazione() {
                         className="form-control"
                         id="data"
                         name="data"
+                        role="date-input"
                         onChange={(e) => setdata(e.target.value)}
                         required
                     />

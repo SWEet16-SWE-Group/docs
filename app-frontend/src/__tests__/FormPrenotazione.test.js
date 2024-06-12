@@ -60,8 +60,8 @@ describe('Testing reservation form', () => {
         expect(screen.getByText('Data')).toBeInTheDocument();
 
         act(() => {
-            fireEvent.change(screen.getByTestId('npersone'),{target:{value : 6}});
-            fireEvent.change(screen.getByTestId('data'),{target:{value:'2024-07-22'}});
+            fireEvent.change(screen.getByRole('spinbutton'),{target:{value : 6}});
+            fireEvent.change(screen.getByRole('date-input'),{target:{value:'2024-07-22'}});
             fireEvent.click(screen.getByRole('button'));
         });
         expect(axiosClient.post).toHaveBeenCalledWith('/crea-prenotazione',
@@ -87,8 +87,8 @@ describe('Testing reservation form', () => {
         renderWithContext(<FormPrenotazione/>);
 
         act(() => {
-            fireEvent.change(screen.getByTestId('npersone'),{target:{value : 6}});
-            fireEvent.change(screen.getByTestId('data'),{target:{value:'2024-07-22'}});
+            fireEvent.change(screen.getByRole('spinbutton'),{target:{value : 6}});
+            fireEvent.change(screen.getByRole('date-input'),{target:{value:'2024-07-22'}});
             fireEvent.click(screen.getByRole('button'));
         });
         expect(axiosClient.post).toHaveBeenCalledWith('/crea-prenotazione',
