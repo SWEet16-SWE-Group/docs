@@ -32,11 +32,10 @@ class UserControllerTest extends TestCase
             'id' => 1,
         ];
 
-        //$response = (new UserIsAuthenticated())->handle(Request::create('/api/user/','POST',$data),fn () => null);
+        $response = (new UserIsAuthenticated())->handle(Request::create('/api/user/','POST',$data),fn () => null);
 
-        //$response->assertStatus(200);
-        //$response->assertJsonFragment($data);
-        $this->assertTrue(true);
+        $response->assertStatus(200);
+        $response->assertJsonFragment($data);
     }
 
     /**
@@ -46,7 +45,7 @@ class UserControllerTest extends TestCase
      */
     public function test_update_password()
     {
-        $this->assertTrue(true);
+        $this->assertTrue(false);
     }
 
     /**
@@ -56,7 +55,7 @@ class UserControllerTest extends TestCase
      */
     public function test_update_mail()
     {
-        $this->assertTrue(true);
+        $this->assertTrue(false);
     }
 
     /**
@@ -66,6 +65,6 @@ class UserControllerTest extends TestCase
      */
     public function test_delete()
     {
-        $this->assertTrue(true);
+        $this->assertTrue(false);
     }
 }
