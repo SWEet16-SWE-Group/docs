@@ -41,7 +41,7 @@ function Prenotazione(p){
     <div>Stato: {a.stato}</div>
     <div>Orario: {a.orario}</div>
     <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
-      {a.stato !== 'In attesa'&&
+      {a && a.stato === 'Accettata'&&
         <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
       }
     <h2>Ordinazioni</h2>
