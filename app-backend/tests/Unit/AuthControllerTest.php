@@ -68,14 +68,4 @@ class AuthControllerTest extends TestCase
 
         $response->assertStatus(422);
     }
-
-    /**
-     * logout
-     *
-     * @return void
-     */
-    public function test_logout()
-    {
-        $this->assertTrue(true);
-    }
 }
