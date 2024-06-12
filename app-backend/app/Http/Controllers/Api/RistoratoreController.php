@@ -23,17 +23,7 @@ class RistoratoreController extends Controller
         $validatedData = $request->validated();
         $ristoratore = Ristoratore::create($validatedData);
 
-        if($ristoratore) {
-            return response([
-                "notification" => "Ristoratore creato con successo",
-                'status' => "success",
-            ], 201);
-        } else {
-            return response([
-                "notification" => "Errore nella creazione di ristoratore!",
-                'status' => "failure",
-            ], 404);
-        }
+        return response()->json($ristoratore, 201);
     }
 
     public function show($id)
@@ -124,9 +114,9 @@ class RistoratoreController extends Controller
     public function search(Request $request) {
         $ristoranti=Ristoratore::where('indirizzo','LIKE', "%{$request->città}%")->get();
         if (!$ristoranti->isEmpty()) {
-        
+
         $query = $request->ristorante;
-// sortBy permette di ordinare gli elementi della collection secondo una funzione data; 
+// sortBy permette di ordinare gli elementi della collection secondo una funzione data;
 //la funzione scelta è levenshtein(), nativamente implementata da php e che calcola
 // la distanza tra due stringhe in termini di somiglianza
         $sortedRestaurants = $ristoranti->sortBy(function ($ristorante) use($query) {
@@ -152,8 +142,8 @@ class RistoratoreController extends Controller
                 'cucina' => $ristorante->cucina->Cucina
             ];
 
-        }); 
-       
+        });
+
         return response()->json(['listaRistoranti' => $ristorantiJson,
                                  'notification' => 'Creata lista ristoranti',
                                  'status' => 'success'],200);
@@ -161,6 +151,6 @@ class RistoratoreController extends Controller
  else  {
     return response()->json(['notification' => 'Nessun ristorante presente nella città da te inserita!',
                              'status' => 'failure'],404);
-} 
+}
     }
 }
