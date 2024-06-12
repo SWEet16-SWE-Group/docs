@@ -47,12 +47,4 @@ class AuthController extends Controller
             'role' => 'AUTENTICATO'
         ]);
     }
-
-    public function logout(Request $request)
-    {
-        /** @var User $user */
-        $user = $request->user();
-        $user->currentAccessToken()->delete();
-        return response('', 204);
-    }
 }

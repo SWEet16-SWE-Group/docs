@@ -7,10 +7,60 @@ use Tests\TestCase;
 use App\Models\User;
 use App\Models\Ristoratore;
 use Laravel\Sanctum\Sanctum;
+use DatabaseSeeder;
+
+require_once __DIR__ . '/../../database/seeds/DatabaseSeeder.php' ;
 
 class RistoratoreControllerTest extends TestCase
 {
     use RefreshDatabase;
+
+    /**
+     * index
+     *
+     * @return void
+     */
+    public function test_index()
+    {
+        (new DatabaseSeeder())->run();
+
+        $response = $this->getJson('/api/ristoranti/');
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * menu
+     *
+     * @return void
+     */
+    public function test_menu()
+    {
+        (new DatabaseSeeder())->run();
+
+        $response = $this->getJson('/api/menu/1');
+
+        $response->assertStatus(200);
+    }
+
+    /**
+     * search
+     *
+     * @return void
+     */
+    public function test_search()
+    {
+        (new DatabaseSeeder())->run();
+
+        $data = [
+            'città' => 'a',
+            'ristorante' => 'a',
+        ];
+        $response = $this->getJson('/api/search', $data);
+
+        $response->assertStatus(200);
+    }
+
     /** @test */
     public function it_can_list_all_ristoratori()
     {

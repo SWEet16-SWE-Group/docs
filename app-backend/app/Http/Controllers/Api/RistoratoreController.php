@@ -23,17 +23,7 @@ class RistoratoreController extends Controller
         $validatedData = $request->validated();
         $ristoratore = Ristoratore::create($validatedData);
 
-        if($ristoratore) {
-            return response([
-                "notification" => "Ristoratore creato con successo",
-                'status' => "success",
-            ], 201);
-        } else {
-            return response([
-                "notification" => "Errore nella creazione di ristoratore!",
-                'status' => "failure",
-            ], 404);
-        }
+        return response()->json($ristoratore, 201);
     }
 
     public function show($id)
@@ -50,27 +40,17 @@ class RistoratoreController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (Ristoratore::where('id', $id) -> exists()) {
-            $ristoratore = Ristoratore::find($request->id);
+        $ristoratore = Ristoratore::find($request->id);
 
-            $ristoratore -> nome = is_null($request -> nome) ? $ristoratore -> nome : $request -> nome;
-            $ristoratore -> cucina = is_null($request -> cucina) ? $ristoratore -> cucina : $request -> cucina;
-            $ristoratore -> indirizzo = is_null($request -> indirizzo) ? $ristoratore -> indirizzo : $request -> indirizzo;
-            $ristoratore -> telefono = is_null($request -> telefono) ? $ristoratore -> telefono : $request -> telefono;
-            $ristoratore -> capienza = is_null($request -> capienza) ? $ristoratore -> capienza : $request -> capienza;
-            $ristoratore -> orario = is_null($request -> orario) ? $ristoratore -> orario : $request -> orario;
-            $ristoratore->save();
+        $ristoratore -> nome = is_null($request -> nome) ? $ristoratore -> nome : $request -> nome;
+        $ristoratore -> cucina = is_null($request -> cucina) ? $ristoratore -> cucina : $request -> cucina;
+        $ristoratore -> indirizzo = is_null($request -> indirizzo) ? $ristoratore -> indirizzo : $request -> indirizzo;
+        $ristoratore -> telefono = is_null($request -> telefono) ? $ristoratore -> telefono : $request -> telefono;
+        $ristoratore -> capienza = is_null($request -> capienza) ? $ristoratore -> capienza : $request -> capienza;
+        $ristoratore -> orario = is_null($request -> orario) ? $ristoratore -> orario : $request -> orario;
+        $ristoratore->save();
 
-            return response([
-                'notification' => "Ristoratore aggiornato con succcesso",
-                'status' => "success",
-            ],202);
-        } else {
-            return response([
-                'notification' => "Ristoratore non trovato!",
-                'status' => "failure",
-            ],404);
-        }
+        return response()->json($ristoratore,202);
     }
 
     /**
@@ -81,7 +61,6 @@ class RistoratoreController extends Controller
      */
     public function destroy($id)
     {
-        try {
             $ristoratore = Ristoratore::where('id', $id)->first();
             $ristoratore->delete();
 
@@ -89,29 +68,15 @@ class RistoratoreController extends Controller
                 "notification" => "Ristoratore eliminato con succcesso",
                 'status' => "success",
             ],200);
-        } catch (\Exception $e) {
-            return response([
-                "notification" => "Errore durante l'eliminazione del ristoratore!",
-                'status' => "failure",
-            ],500);
-        }
     }
 
     public function listByUser($user) {
         $ristoratori = Ristoratore::where('user', $user)->get();
-
-        if ($ristoratori->isEmpty()) {
-            return response([
-                "notification" => "Questo account non ha ristoratori!",
-                'status' => "failure",
-            ],404);
-        }
-
         return response()->json($ristoratori);
     }
 
     public function menu($id){
-        $menu = Pietanza::select('pietanze.id as id', 'pietanze.nome as nome', DB::raw('GROUP_CONCAT(ingredienti.nome SEPARATOR ", ") as ingredienti'))
+        $menu = Pietanza::select('pietanze.id as id', 'pietanze.nome as nome', DB::raw('GROUP_CONCAT(ingredienti.nome) as ingredienti'))
             ->join('ristoratori','ristoratori.id', '=', 'pietanze.ristoratore')
             ->join('ricette','pietanze.id','=','ricette.pietanza')
             ->join('ingredienti','ingredienti.id','=','ricette.ingrediente')
@@ -123,10 +88,9 @@ class RistoratoreController extends Controller
 
     public function search(Request $request) {
         $ristoranti=Ristoratore::where('indirizzo','LIKE', "%{$request->città}%")->get();
-        if (!$ristoranti->isEmpty()) {
-        
+
         $query = $request->ristorante;
-// sortBy permette di ordinare gli elementi della collection secondo una funzione data; 
+// sortBy permette di ordinare gli elementi della collection secondo una funzione data;
 //la funzione scelta è levenshtein(), nativamente implementata da php e che calcola
 // la distanza tra due stringhe in termini di somiglianza
         $sortedRestaurants = $ristoranti->sortBy(function ($ristorante) use($query) {
@@ -149,18 +113,13 @@ class RistoratoreController extends Controller
         $ristorantiJson = $sortedRestaurants->map(function ($ristorante) {
             return [
                 'ristorante' => $ristorante,
-                'cucina' => $ristorante->cucina->Cucina
+                'cucina' => $ristorante->cucina
             ];
 
-        }); 
-       
+        });
+
         return response()->json(['listaRistoranti' => $ristorantiJson,
                                  'notification' => 'Creata lista ristoranti',
                                  'status' => 'success'],200);
-    }
- else  {
-    return response()->json(['notification' => 'Nessun ristorante presente nella città da te inserita!',
-                             'status' => 'failure'],404);
-} 
     }
 }

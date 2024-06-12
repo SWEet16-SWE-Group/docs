@@ -13,31 +13,20 @@ use App\Models\Allergeni;
 
 class ClientController extends Controller
 {
-    public function index() : Response {
+    public function index() {
         $client=Client::get()->all();
-       return response($client);
+       return response()->json($client,200);
     }
 
     public function show($id) {
-
         /** @var Client $client */
         $client = Client::where('id',$id)->first();
-        if (!empty($client))
-            {
-                 return response()->json([
-                     'id' => $client['id'],
-                     'nome' => $client['nome'],
-                     'user' => $client['user'],
-                 ]);
-                                                    }
-            else {
-                return response([
-                    "notification" => "Cliente non trovato!",
-                    'status' => "failure",
-                ],404);
-            }
-
-}
+         return response()->json([
+             'id' => $client['id'],
+             'nome' => $client['nome'],
+             'user' => $client['user'],
+         ]);
+    }
 
     public function store(ClientRequest $request)  {
 
@@ -55,6 +44,7 @@ class ClientController extends Controller
         }
 
         return response([
+            'cliente' => $cliente,
             'notification' => "Profilo cliente creato con successo",
             'status' => "success"
         ],201);
@@ -65,38 +55,18 @@ public function update(UpdateClientRequest $request) {
     $data = $request->validated();
 
     /** @var Client $client */
-    $client = Client::where('id',$data['id'])->first();
+    $client = Client::findOrFail($data['id']);
 
-    if(!$client) return response(['','422']);
-
-    if(isset($data['nome']) && $data['nome'] != $client['nome']){
-        $client->update(['nome'=>$data['nome']]);
-        return response([
-            'notification' => "Profilo cliente aggiornato con successo",
-            'status' => "success"
-        ],202);
-    } else {
-            return response([
-                "notification" => "Errore nell'aggiornamento del cliente!",
-                'status' => "failure",
-        ],404);
-    }
+    $client->update(['nome'=>$data['nome']]);
+    return response([
+        'notification' => "Profilo cliente aggiornato con successo",
+        'status' => "success"
+    ],202);
 }
 
     public function destroy(string $id) {
-        if (Client::where('id',$id)) {
-            $client = Client::find($id);
-            $client -> delete();
-            return response([
-                'notification' => "Profilo cliente eliminato con successo",
-                'status' => "success"
-            ],202);
-        }
-            else {
-                return response([
-                    "notification" => "Errore nell'eliminazione del cliente!",
-                    'status' => "failure",
-                ],404);
-            }
+        $client = Client::findOrFail($id);
+        $client -> delete();
+        return response()->json($client, 200);
     }
 }
