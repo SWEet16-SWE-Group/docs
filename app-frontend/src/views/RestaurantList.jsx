@@ -85,6 +85,7 @@ export default function RestaurantList() {
             type="checkbox"
             name="pastaFilter"
             id='pastaFilter'
+            role="pastaFilter"
             onChange={() =>
               dispatch({ type: "FILTER", payload: 'pasta' })
             }
@@ -92,7 +93,7 @@ export default function RestaurantList() {
           />
          pasta
         </label>
-        <label class="form-check-label" htmlFor='carnFilter'>
+        <label class="form-check-label" htmlFor='carneFilter'>
           <input
           class="form-check-input"
             type="checkbox"
@@ -112,6 +113,7 @@ export default function RestaurantList() {
             type="checkbox"
             name="pesceFilter"
             id='pesceFilter'
+            role='pesceFilter'
             onChange={() =>
               dispatch({ type: "FILTER", payload: 'pesce' })
             }
@@ -125,6 +127,7 @@ export default function RestaurantList() {
             type="checkbox"
             name="allCusine"
             id='allCusine'
+            role="allCusine"
             onChange={() =>
               dispatch({ type: "FILTER", payload: '' })
             }

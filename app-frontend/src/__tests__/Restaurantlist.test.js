@@ -153,9 +153,71 @@ describe('RestaurantList', () => {
             expect(screen.getByText(/Da Todaro/i)).toBeInTheDocument();
         });
 
-        const filterButton = screen.getByRole("carneFilter");
-        fireEvent.click(filterButton);
+        const carneFilterButton = screen.getByRole("carneFilter");
+        act(()=> {fireEvent.click(carneFilterButton);});
         expect(screen.queryByText(/Da Todaro/i)).not.toBeInTheDocument();
+
+    });
+
+    it('filter:"pesce" works correctly',async () => {
+        fetchRestaurants.mockReturnValue({
+            listaRistoranti : [
+            {ristorante : 
+            {
+                nome : 'Da Todaro',
+                orario : '20:00-22:30',
+                indirizzo : 'Milano',
+                cucina : {
+                    Cucina : 'carne'
+                },
+            },
+        },
+        {ristorante : 
+            {
+                nome : 'Da Luigi',
+                orario : '20:00-22:30',
+                indirizzo : 'Milano',
+                cucina : {
+                    Cucina : 'pesce'
+                },
+            },
+        },
+        {ristorante : 
+            {
+                nome : 'Da Graziano',
+                orario : '19:00-22:30',
+                indirizzo : 'Milano',
+                cucina : {
+                    Cucina : 'pasta'
+                },
+            },
+        },
+    ]
+}
+        );
+        renderWithContext(<RestaurantList />);
+
+        await waitFor( () => {
+            expect(screen.getByText(/Da Todaro/i)).toBeInTheDocument();
+            expect(screen.getByText(/Da Luigi/i)).toBeInTheDocument();
+            expect(screen.getByText(/Da Graziano/i)).toBeInTheDocument();
+        });
+
+        const pesceFilterButton = screen.getByRole("pesceFilter");
+        act(()=> {fireEvent.click(pesceFilterButton);});
+        waitFor(() => {
+            expect(screen.queryByText(/Da Todaro/i)).not.toBeInTheDocument();
+            expect(screen.queryByText(/Da Graziano/i)).not.toBeInTheDocument();
+            expect(screen.queryByText(/Da Luigi/i)).toBeInTheDocument();
+        });
+        
+        const pastaFilterButton = screen.getByRole("pastaFilter");
+        act(()=> {fireEvent.click(pastaFilterButton);});
+        waitFor(() => {
+            expect(screen.queryByText(/Da Todaro/i)).not.toBeInTheDocument();
+            expect(screen.queryByText(/Da Graziano/i)).toBeInTheDocument();
+            expect(screen.queryByText(/Da Luigi/i)).not.toBeInTheDocument();
+        });
     });
 
     it('filter:"orario" works correctly',async () => {
@@ -181,7 +243,7 @@ describe('RestaurantList', () => {
 
     const hourButton = screen.getByRole("timeArrivalFilter");
     fireEvent.change(hourButton,{target: {value: '19:00'}});
-    fireEvent.click(screen.getByText("Applica filtro"));
+    fireEvent.click(screen.getByRole('button'));
     expect(screen.queryByText(/Da Todaro/i)).not.toBeInTheDocument();
 
     }); 
