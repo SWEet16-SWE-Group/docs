@@ -1,10 +1,9 @@
-import {useParams , useSearchParams ,useLocation} from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import {useEffect, useState , useReducer } from 'react';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 import  fetchRestaurants  from '../services/RestaurantService';
 import RestaurantCard from '../components/RestaurantCard.jsx';
 import { getFilteredData  } from '../helperFunctions.js/getFilteredData.js';
-import { getSortedData } from '../helperFunctions.js/getSortedData.js';
 import {reducer} from '../helperFunctions.js/reducer.js';
 
 export default function RestaurantList() {
@@ -49,15 +48,12 @@ export default function RestaurantList() {
     },[]);
 
     const [
-        { sortBy , cusineType ,timeArrival },
+        { cusineType ,timeArrival },
         dispatch
       ] = useReducer(reducer, {
-        sortBy : 'none' ,
         cusineType : '',
         timeArrival : '',
       });
-      console.log(sortBy);
-      const sortedData = getSortedData(restaurants , sortBy);
       const filteredData = getFilteredData(
         restaurants,
         cusineType,
@@ -144,22 +140,6 @@ export default function RestaurantList() {
       onChange={handleTimeChange} />
       <button onClick={() => dispatch({type : "TIME" , payload: orarioArrivo })}>Applica filtro</button>
       </fieldset>
-      <fieldset>
-        <legend>Ordina per:</legend>
-        <label htmlFor='sort'>
-          <input
-            type="radio"
-            name="sort"
-            id='sort'
-            onChange={() =>
-              dispatch({ type: "SORT", payload: sortBy === "RATING_HIGH_TO_LOW" ? 'none' : "RATING_HIGH_TO_LOW" })
-            }
-            
-          //  checked={sortBy && sortBy === "RATING_HIGH_TO_LOW"}
-          />
-          Recensione Media
-        </label>
-        </fieldset>
       </form>
         {
         isLoading ? 

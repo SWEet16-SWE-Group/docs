@@ -1,7 +1,5 @@
 export const reducer = (state, action) => {
     switch (action.type) {
-      case "SORT":
-        return { ...state, sortBy: action.payload };
       case "TIME":
         return { ...state,
                  timeArrival : action.payload };
