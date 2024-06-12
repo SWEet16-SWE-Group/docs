@@ -72,14 +72,6 @@ class RistoratoreController extends Controller
 
     public function listByUser($user) {
         $ristoratori = Ristoratore::where('user', $user)->get();
-
-        if ($ristoratori->isEmpty()) {
-            return response([
-                "notification" => "Questo account non ha ristoratori!",
-                'status' => "failure",
-            ],404);
-        }
-
         return response()->json($ristoratori);
     }
 
