@@ -26,46 +26,28 @@ class ProfileController extends Controller
     {
         if($request['profileType'] === 'Cliente') {
             /** @var Client $client */
-            $client = Client::where(['id' => $request->profileId, 'user' => $request->userId])->first();
-
-            if(!$client)
-                return response([
-                        'notification' => 'Errore nella selezione del profilo!',
-                        'status' => 'failure'
-                    ]
-                );
+            $client = Client::where(['id' => $request['id']])->first();
 
             return response([
                 'profile' => $client,
                 'role' => 'CLIENTE',
                 'notification' => 'Profilo cliente selezionato con successo',
-                'status' => 'success'
-            ]);
+            ],200);
 
         } elseif ($request['profileType'] === 'Ristoratore') {
             /** @var Ristoratore $restaurant */
-            $restaurant = Ristoratore::where(['id' => $request->profileId, 'user' => $request->userId])->first();
-
-            if(!$restaurant)
-                return response([
-                    'notification' => 'Errore nella selezione del profilo!',
-                    'status' => 'failure'
-                    ]
-                );
+            $restaurant = Ristoratore::where(['id' => $request['id']])->first();
 
             return response([
                 'profile' => $restaurant,
                 'role' => 'RISTORATORE',
                 'notification' => 'Profilo ristoratore selezionato con successo',
-                'status' => 'success'
-            ]);
+            ],200);
 
         } else {
             return response([
                     'notification' => 'Errore nella selezione del profilo!',
-                    'status' => 'failure'
-                ]
-            );
+                ],422);
         }
     }
 }

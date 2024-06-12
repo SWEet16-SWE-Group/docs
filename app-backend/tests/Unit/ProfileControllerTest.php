@@ -31,12 +31,56 @@ class ProfileControllerTest extends TestCase
     }
 
     /**
-     * select
+     * select cliente
      *
      * @return void
      */
-    public function test_select()
+    public function test_select_cliente()
     {
-        $this->assertTrue(false);
+        (new DatabaseSeeder())->run();
+        Sanctum::actingAs(User::where('id',1)->first());
+
+        $data = [
+            'id' => 1,
+            'profileType' => 'Cliente',
+        ];
+        $response = $this->post('/api/selectprofile',$data);
+        $response->assertStatus(200);
+    }
+
+    /**
+     * select ristoratore
+     *
+     * @return void
+     */
+    public function test_select_ristoratore()
+    {
+        (new DatabaseSeeder())->run();
+        Sanctum::actingAs(User::where('id',1)->first());
+
+        $data = [
+            'id' => 1,
+            'profileType' => 'Ristoratore',
+        ];
+        $response = $this->post('/api/selectprofile',$data);
+        $response->assertStatus(200);
+    }
+
+    /**
+     * select sbagliato
+     *
+     * @return void
+     */
+    public function test_select_sbagliato()
+    {
+        (new DatabaseSeeder())->run();
+        Sanctum::actingAs(User::where('id',1)->first());
+
+        $data = [
+            'id' => 1,
+            'profileType' => 'aaaaaaaa',
+        ];
+        $response = $this->post('/api/selectprofile',$data);
+        $response->assertStatus(422);
     }
 }
