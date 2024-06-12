@@ -23,6 +23,25 @@ class AuthControllerTest extends TestCase
      */
     public function test_signup()
     {
+        $data = [
+            'email' => 'a@a.com',
+            'password' => 'a',
+            'password_confirmation' => 'a',
+        ];
+        $response = $this->post('/api/signup',$data);
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['role' => 'AUTENTICATO']);
+        $this->assertDatabaseHas('users',['email' => $data['email']]);
+    }
+
+    /**
+     * login
+     *
+     * @return void
+     */
+    public function test_login_successo()
+    {
         $this->assertTrue(true);
     }
 
@@ -31,7 +50,7 @@ class AuthControllerTest extends TestCase
      *
      * @return void
      */
-    public function test_login()
+    public function test_login_fallito()
     {
         $this->assertTrue(true);
     }
