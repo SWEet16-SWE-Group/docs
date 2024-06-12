@@ -35,6 +35,7 @@ class RistoratoreControllerTest extends TestCase
             'user' => $user->id,
             'nome' => 'Ristoratore Test',
             'indirizzo' => 'Via Test 123',
+            'cucina' => 'Italiana',
             'telefono' => '1234567890',
             'capienza' => 50,
             'orario' => '19:30 - 20:30'
