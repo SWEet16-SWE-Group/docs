@@ -26,8 +26,8 @@ class ProfileControllerTest extends TestCase
         (new DatabaseSeeder())->run();
         Sanctum::actingAs(User::where('id',1)->first());
 
-        $responce = $this->getJson('/api/profiles');
-        $responce->assertStatus(201);
+        $response = $this->post('/api/profiles',[]);
+        $response->assertStatus(201);
     }
 
     /**
