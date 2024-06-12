@@ -74,7 +74,7 @@ describe('FormIngrediente', () => {
         });
     
         await waitFor(() => {
-            expect(axiosClient.post).toHaveBeenCalledWith('/pietanze', { ristoratore: ristoratoreId, nome: 'Pasta' });
+            expect(axiosClient.post).toHaveBeenCalledWith('/pietanze', { ristoratore: ristoratoreId, nome: 'Pasta', ingredienti : [],  });
             expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Pietanza aggiunta con successo.');
             //expect(navigate).toHaveBeenCalledWith(`/gestioneingredienti/${ristoratoreId}`);
