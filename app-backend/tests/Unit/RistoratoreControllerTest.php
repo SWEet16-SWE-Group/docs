@@ -29,6 +29,20 @@ class RistoratoreControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * menu
+     *
+     * @return void
+     */
+    public function test_menu()
+    {
+        (new DatabaseSeeder())->run();
+
+        $response = $this->getJson('/api/menu/1');
+
+        $response->assertStatus(200);
+    }
+
     /** @test */
     public function it_can_list_all_ristoratori()
     {

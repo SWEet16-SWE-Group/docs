@@ -76,7 +76,7 @@ class RistoratoreController extends Controller
     }
 
     public function menu($id){
-        $menu = Pietanza::select('pietanze.id as id', 'pietanze.nome as nome', DB::raw('GROUP_CONCAT(ingredienti.nome SEPARATOR ", ") as ingredienti'))
+        $menu = Pietanza::select('pietanze.id as id', 'pietanze.nome as nome', DB::raw('GROUP_CONCAT(ingredienti.nome) as ingredienti'))
             ->join('ristoratori','ristoratori.id', '=', 'pietanze.ristoratore')
             ->join('ricette','pietanze.id','=','ricette.pietanza')
             ->join('ingredienti','ingredienti.id','=','ricette.ingrediente')
@@ -88,7 +88,6 @@ class RistoratoreController extends Controller
 
     public function search(Request $request) {
         $ristoranti=Ristoratore::where('indirizzo','LIKE', "%{$request->città}%")->get();
-        if (!$ristoranti->isEmpty()) {
 
         $query = $request->ristorante;
 // sortBy permette di ordinare gli elementi della collection secondo una funzione data;
@@ -122,10 +121,5 @@ class RistoratoreController extends Controller
         return response()->json(['listaRistoranti' => $ristorantiJson,
                                  'notification' => 'Creata lista ristoranti',
                                  'status' => 'success'],200);
-    }
- else  {
-    return response()->json(['notification' => 'Nessun ristorante presente nella città da te inserita!',
-                             'status' => 'failure'],404);
-}
     }
 }
