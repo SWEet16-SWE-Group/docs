@@ -26,7 +26,11 @@ export default function SelezioneProfilo() {
         axiosClient.post('/profiles',payload)
             .then(({data}) => {
                 setClientProfiles(data.clienti);
+                console.log(ClientProfiles);
                 setRestaurantProfiles(data.ristoratori);
+                console.log(data.clienti);
+                console.log(data.ristoratori);
+                console.log(data);
             })
             .catch(err => {
                 const response = err.response;
@@ -55,14 +59,16 @@ export default function SelezioneProfilo() {
         }
 
         axiosClient.delete(`/${url}/${profile.id}`)
-           .then(({data}) => {
-               setNotificationStatus(data.status);
-               setNotification(data.notification);
+           .then((response) => {
+               setNotificationStatus(response.data.status);
+               setNotification(response.data.notification);
+               console.log(response);
                getProfiles();
-           })
-           .catch(data =>  {
-               setNotificationStatus(data.status);
-               setNotification(data.notification);
+           }, null )
+           .catch((error) =>  {
+               setNotificationStatus(error.response.data.status);
+               setNotification(error.response.data.notification);
+
            })
     }
 
@@ -92,6 +98,7 @@ export default function SelezioneProfilo() {
                       </thead>
                     <tbody>
                     {ClientProfiles && ClientProfiles.map(profile => (
+                                        
                         <tr key={profile.id}>
                             <td>
                                 <Link to="/dashboardcliente" className="btn btn-primary me-2" onClick={() =>onSelectProfile(profile,'CLIENTE')}>Seleziona</Link>
@@ -103,8 +110,8 @@ export default function SelezioneProfilo() {
                                 &nbsp;
                                 <button className="btn btn-danger me-2" onClick={() => onDeleteProfile(profile,'client')}>Elimina</button>
                             </td>
-                        </tr>
-                    ))}
+                        </tr>))}
+                    
                     {RestaurantProfiles && RestaurantProfiles.map(profile => (
                         <tr key={profile.id}>
                           <td>
