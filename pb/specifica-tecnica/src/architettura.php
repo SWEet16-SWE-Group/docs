@@ -1,6 +1,8 @@
 \pagebreak
 \section{Architettura}
+
 \subsection{Architettura Front-end}
+
 \subsubsection{Introduzione}
 
 L’architettura del prodotto \textit{Easy Meal} non segue un pattern architetturale specifico, poiché nessuno di essi soddisfa appieno le esigenze di modularità e scalabilità dell’applicazione. 
@@ -29,3 +31,28 @@ Vengono impiegati sia gli hook nativi di React (come useState, useEffect e useCo
 \item \textbf{Compound Components}: consentono di modularizzare le singole componenti attraverso una gerarchia padre-figlio, dove un componente padre contiene uno o più componenti figlio. 
 Questo approccio permette di specializzare la gestione dei dati e personalizzare l’interfaccia utente in modo centralizzato, seguendo una lista di opzioni unica.
 \end{itemize}
+
+\subsection{Architettura Back-end}
+
+\subsubsection{Introduzione}
+
+Per il backend del servizio, è stato scelto di adottare il framework Laravel. 
+Laravel è un framework PHP noto per la sua semplicità e robustezza, che permette di sviluppare applicazioni web in modo rapido ed efficiente. 
+Questa scelta consente di beneficiare delle potenti funzionalità di Laravel, come l'ORM Eloquent, la gestione delle migrazioni, e una struttura modulare che favorisce la manutenibilità e la scalabilità dell'applicazione. \\
+Per il database è stato scelto MySQL, un sistema di gestione di database relazionali molto diffuso e affidabile. 
+MySQL si integra perfettamente con Laravel, permettendo di sfruttare al meglio le funzionalità di entrambe le tecnologie. \\
+
+Le singole componenti del sistema sono strutturate come segue:
+\begin{itemize}
+\item \textbf{Laravel}: Utilizzato per gestire la logica di business, l'autenticazione, la gestione delle rotte e la comunicazione con il database.
+Laravel offre una struttura MVC (Model-View-Controller) che separa chiaramente la logica di business dalla presentazione e dalla gestione dei dati.
+\item \textbf{MySQL}: Utilizzato per la persistenza dei dati, MySQL offre una soluzione robusta e scalabile per gestire le informazioni necessarie all'applicazione. Grazie all'ORM Eloquent di Laravel, è possibile interagire con il database in modo intuitivo e efficiente.
+\item \textbf{API RESTful}: Le API sono implementate seguendo il pattern RESTful, che consente una chiara separazione dei dati tra client e server. 
+Le API RESTful permettono di esporre le risorse dell'applicazione tramite HTTP, rendendo possibile la comunicazione sincrona tra il client e il backend.
+\end{itemize}
+
+L'adozione di Laravel per il backend e MySQL per il database, quindi, consente di creare un'applicazione web potente, scalabile e sicura, con una chiara separazione della logica di business e una gestione efficiente dei dati.
+
+\subsubsection{Schema database}
+
+DA FARE UNA VOLTA TERMINATA LA CODIFICA
