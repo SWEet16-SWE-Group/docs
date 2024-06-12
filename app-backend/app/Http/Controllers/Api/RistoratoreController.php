@@ -40,27 +40,17 @@ class RistoratoreController extends Controller
 
     public function update(Request $request, $id)
     {
-        if (Ristoratore::where('id', $id) -> exists()) {
-            $ristoratore = Ristoratore::find($request->id);
+        $ristoratore = Ristoratore::find($request->id);
 
-            $ristoratore -> nome = is_null($request -> nome) ? $ristoratore -> nome : $request -> nome;
-            $ristoratore -> cucina = is_null($request -> cucina) ? $ristoratore -> cucina : $request -> cucina;
-            $ristoratore -> indirizzo = is_null($request -> indirizzo) ? $ristoratore -> indirizzo : $request -> indirizzo;
-            $ristoratore -> telefono = is_null($request -> telefono) ? $ristoratore -> telefono : $request -> telefono;
-            $ristoratore -> capienza = is_null($request -> capienza) ? $ristoratore -> capienza : $request -> capienza;
-            $ristoratore -> orario = is_null($request -> orario) ? $ristoratore -> orario : $request -> orario;
-            $ristoratore->save();
+        $ristoratore -> nome = is_null($request -> nome) ? $ristoratore -> nome : $request -> nome;
+        $ristoratore -> cucina = is_null($request -> cucina) ? $ristoratore -> cucina : $request -> cucina;
+        $ristoratore -> indirizzo = is_null($request -> indirizzo) ? $ristoratore -> indirizzo : $request -> indirizzo;
+        $ristoratore -> telefono = is_null($request -> telefono) ? $ristoratore -> telefono : $request -> telefono;
+        $ristoratore -> capienza = is_null($request -> capienza) ? $ristoratore -> capienza : $request -> capienza;
+        $ristoratore -> orario = is_null($request -> orario) ? $ristoratore -> orario : $request -> orario;
+        $ristoratore->save();
 
-            return response([
-                'notification' => "Ristoratore aggiornato con succcesso",
-                'status' => "success",
-            ],202);
-        } else {
-            return response([
-                'notification' => "Ristoratore non trovato!",
-                'status' => "failure",
-            ],404);
-        }
+        return response()->json($ristoratore,202);
     }
 
     /**
