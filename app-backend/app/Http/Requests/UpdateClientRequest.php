@@ -25,7 +25,6 @@ class UpdateClientRequest extends FormRequest
     {
         return [
             'id' => 'required|exists:clients,id',
-            'user' => 'required|exists:users,id',
             'nome' => 'required|string|max:255|unique:clients,nome',
         ];
     }

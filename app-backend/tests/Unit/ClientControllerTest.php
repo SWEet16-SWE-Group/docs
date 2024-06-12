@@ -76,7 +76,15 @@ class ClientControllerTest extends TestCase
      */
     public function test_update()
     {
-        $this->assertTrue(true);
+        (new DatabaseSeeder())->run();
+        $data =[
+            'id' => 1,
+            'nome' => 'c',
+        ];
+        $response = $this->put('/api/client',$data);
+
+        $response->assertStatus(202);
+        $this->assertDatabaseHas('clients',$data);
     }
 
     /**
@@ -86,6 +94,10 @@ class ClientControllerTest extends TestCase
      */
     public function test_destroy()
     {
-        $this->assertTrue(true);
+        (new DatabaseSeeder())->run();
+        $response = $this->delete('/api/client/1',[]);
+
+        $response->assertStatus(200);
+        $this->assertDatabaseMissing('clients',[ 'id' => 1, ]);
     }
 }
