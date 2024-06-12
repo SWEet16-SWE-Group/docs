@@ -3,8 +3,8 @@ import {useEffect, useState , useReducer } from 'react';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 import  fetchRestaurants  from '../services/RestaurantService';
 import RestaurantCard from '../components/RestaurantCard.jsx';
-import { getFilteredData  } from '../helperFunctions.js/getFilteredData.js';
-import {reducer} from '../helperFunctions.js/reducer.js';
+import { getFilteredData  } from '../helperFunctions/getFilteredData.js';
+import {reducer} from '../helperFunctions/reducer.js';
 
 export default function RestaurantList() {
 
@@ -85,6 +85,7 @@ export default function RestaurantList() {
             type="checkbox"
             name="pastaFilter"
             id='pastaFilter'
+            role="pastaFilter"
             onChange={() =>
               dispatch({ type: "FILTER", payload: 'pasta' })
             }
@@ -92,12 +93,13 @@ export default function RestaurantList() {
           />
          pasta
         </label>
-        <label class="form-check-label" htmlFor='carnFilter'>
+        <label class="form-check-label" htmlFor='carneFilter'>
           <input
           class="form-check-input"
             type="checkbox"
             name="carneFilter"
             id='carneFilter'
+            role="carneFilter"
             onChange={() =>
               dispatch({ type: "FILTER", payload: 'carne' })
             }
@@ -111,6 +113,7 @@ export default function RestaurantList() {
             type="checkbox"
             name="pesceFilter"
             id='pesceFilter'
+            role='pesceFilter'
             onChange={() =>
               dispatch({ type: "FILTER", payload: 'pesce' })
             }
@@ -124,6 +127,7 @@ export default function RestaurantList() {
             type="checkbox"
             name="allCusine"
             id='allCusine'
+            role="allCusine"
             onChange={() =>
               dispatch({ type: "FILTER", payload: '' })
             }
@@ -136,7 +140,7 @@ export default function RestaurantList() {
       <legend>Orario</legend>
       <fieldset>
       <label htmlFor="orario">Scegli il tuo orario di arrivo:</label>
-      <input type="time" id="orario"  name="orario" min="09:00" max="24:00"
+      <input type="time" id="orario"  name="orario" min="09:00" max="24:00" role="timeArrivalFilter"
       onChange={handleTimeChange} />
       <button onClick={() => dispatch({type : "TIME" , payload: orarioArrivo })}>Applica filtro</button>
       </fieldset>
