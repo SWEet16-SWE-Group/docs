@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
         DB::insert("insert into users(id, email, password) values(1, 'a@a.com','\$2y\$10\$k99Wav18aOivqAy1JJRN9.jJqsbcxdX/.H2DUgnKop71j/Lc26J1W');");
         DB::insert("insert into clients(id, user, nome) values(1,1,'a');");
         DB::insert("insert into clients(id, user, nome) values(2,1,'b');");
-        DB::insert("insert into ristoratori(id, user, nome, indirizzo, telefono, capienza, orario, updated_at, created_at) values(1,1,'apizzaaaaa', 'a', '4444444444', 44, '19:30 - 20:30', CURRENT_TIME, CURRENT_TIME);");
+        DB::insert("insert into ristoratori(id, user, nome, cucina, indirizzo, telefono, capienza, orario, updated_at, created_at) values(1,1,'apizzaaaaa', 'Italiana', 'a', '4444444444', 44, '19:30 - 20:30', CURRENT_TIME, CURRENT_TIME);");
         DB::insert("insert into allergeni(id,nome) values (1,'glutine');");
         DB::insert("insert into ingredienti(id, ristoratore, nome) values (1,1,'pasta');");
         DB::insert("insert into allergeniingredienti(ingrediente,allergene) values(1,1);");
