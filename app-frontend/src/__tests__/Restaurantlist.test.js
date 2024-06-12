@@ -18,13 +18,15 @@ jest.mock('../contexts/ContextProvider', () => {
 });
 
 const renderWithContext = (component) => {
-    return render(
+act(() => {
+     render(
         <ContextProvider>
         <MemoryRouter>
             <RestaurantList/>
         </MemoryRouter>
         </ContextProvider>
     );
+})
 };
 
 describe('RestaurantList', () => {
