@@ -23,7 +23,12 @@ class ClientControllerTest extends TestCase
      */
     public function test_show()
     {
-        $this->assertTrue(true);
+        (new DatabaseSeeder())->run();
+
+        $response = $this->getJson('/api/client/1');
+
+        $response->assertStatus(200);
+        $response->assertJsonFragment(['id' => 1]);
     }
 
     /**

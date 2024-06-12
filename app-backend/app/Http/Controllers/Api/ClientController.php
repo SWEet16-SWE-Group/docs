@@ -19,25 +19,14 @@ class ClientController extends Controller
     }
 
     public function show($id) {
-
         /** @var Client $client */
         $client = Client::where('id',$id)->first();
-        if (!empty($client))
-            {
-                 return response()->json([
-                     'id' => $client['id'],
-                     'nome' => $client['nome'],
-                     'user' => $client['user'],
-                 ]);
-                                                    }
-            else {
-                return response([
-                    "notification" => "Cliente non trovato!",
-                    'status' => "failure",
-                ],404);
-            }
-
-}
+         return response()->json([
+             'id' => $client['id'],
+             'nome' => $client['nome'],
+             'user' => $client['user'],
+         ]);
+    }
 
     public function store(ClientRequest $request)  {
 
