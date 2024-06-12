@@ -41,7 +41,9 @@ function Prenotazione(p){
     <div>Stato: {a.stato}</div>
     <div>Orario: {a.orario}</div>
     <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
-    <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
+      {a && a.stato === 'Accettata'&&
+        <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
+      }
     <h2>Ordinazioni</h2>
       <table className="table">
       {p.ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data}/>)}
