@@ -45,7 +45,20 @@ class UserControllerTest extends TestCase
      */
     public function test_update_password()
     {
-        $this->assertTrue(false);
+        (new DatabaseSeeder())->run();
+        $u = User::where('id', 1)->first();
+        $oldpassword = $u->password;
+        Sanctum::actingAs($u);
+
+        $data = [
+            'id' => 1,
+            'password' => 'b',
+        ];
+        $response = $this->put('/api/userpassword',[...$data, 'password_confirmation' => $data['password']]);
+
+        $response->assertStatus(204);
+        $this->assertDatabaseHas('users',['id' => 1]);
+        $this->assertDatabaseMissing('users',['id' => 1, 'password' => $oldpassword]);
     }
 
     /**
@@ -55,7 +68,18 @@ class UserControllerTest extends TestCase
      */
     public function test_update_mail()
     {
-        $this->assertTrue(false);
+        (new DatabaseSeeder())->run();
+        $u = User::where('id', 1)->first();
+        Sanctum::actingAs($u);
+
+        $data = [
+            'id' => 1,
+            'email' => 'b@b.com',
+        ];
+        $response = $this->put('/api/useremail',$data);
+
+        $response->assertStatus(204);
+        $this->assertDatabaseHas('users',$data);
     }
 
     /**
@@ -65,6 +89,16 @@ class UserControllerTest extends TestCase
      */
     public function test_delete()
     {
-        $this->assertTrue(false);
+        (new DatabaseSeeder())->run();
+        $u = User::where('id', 1)->first();
+        Sanctum::actingAs($u);
+
+        $data = [
+            'id' => 1,
+        ];
+        $response = $this->delete('/api/user',$data);
+
+        $response->assertStatus(204);
+        $this->assertDatabaseMissing('users',$data);
     }
 }
