@@ -23,6 +23,7 @@ function Input({id, nome, text, tipo, value, onChange}){
 export default function FormOrdinazione() {
     const {profile, setNotification, setNotificationStatus} = useStateContext();
     const {prenotazione, pietanza} = useParams();
+    const navigate = useNavigate();
 
     const [errorMessage, setErrorMessage] = useState('');
 
@@ -56,6 +57,7 @@ export default function FormOrdinazione() {
               console.log(formData);
               const {data: data} = await axiosClient.post(`/crea-ordinazione`, formData);
               console.log(data);
+              navigate(`/dettagliprenotazionecliente/${prenotazione}`);
             }
 
             setNotificationStatus('success');
