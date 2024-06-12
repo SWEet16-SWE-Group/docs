@@ -43,7 +43,11 @@ class ClientControllerTest extends TestCase
      */
     public function test_index()
     {
-        $this->assertTrue(true);
+        (new DatabaseSeeder())->run();
+
+        $response = $this->getJson('/api/account/');
+
+        $response->assertStatus(200);
     }
 
     /**

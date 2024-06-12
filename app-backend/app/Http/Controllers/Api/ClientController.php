@@ -13,9 +13,9 @@ use App\Models\Allergeni;
 
 class ClientController extends Controller
 {
-    public function index() : Response {
+    public function index() {
         $client=Client::get()->all();
-       return response($client);
+       return response()->json($client,200);
     }
 
     public function show($id) {
