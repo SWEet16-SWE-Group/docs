@@ -32,7 +32,8 @@ class UserControllerTest extends TestCase
             'id' => 1,
         ];
 
-        $response = (new UserIsAuthenticated())->handle(Request::create('/api/user/','POST',$data),fn () => null);
+        //$response = (new UserIsAuthenticated())->handle(Request::create('/api/user/','POST',$data),fn () => null);
+        $response = $this->post('/api/user/',[...$data, 'role' => 'AUTENTICATO']);
 
         $response->assertStatus(200);
         $response->assertJsonFragment($data);
