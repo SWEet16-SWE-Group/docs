@@ -73,6 +73,27 @@ echo tabelle_tecnologie(
     ['NPM', 'Gestore di pacchetti per il linguaggio JavaScript e l\'ambiente di esecuzione Node.js', '9.6.x'],
     ['Docker', 'Piattaforma di sviluppo e gestione di applicazioni che permette di creare, distribuire e eseguire in software in container virtualizzati', '24.0.7'],
     ['Git', 'Sistema di controllo di versione distribuito utilizzato per la gestione del codice sorgente dal parte del gruppo di progetto', '/'],
-    ['Bootstrap', '', '0'],
+    ['Bootstrap', 'Libreria di strumenti liberi per la creazione di siti e applicazioni per il Web che contiene modelli di progettazione basati su HTML e CSS', '5.3.3'],
+  ]
+);
+
+?>
+
+\subsection{Tecnologie per l'analisi del codice}
+
+<?php
+
+echo tabelle_tecnologie(
+  'Analisi statica',
+  [
+    ['Jest', 'Framework di test basato su JavaScript con funzionalità di creazione di mock e il testing del codice in modo asincrono.', '5.17'],
+  ]
+);
+
+echo  tabelle_tecnologie(
+  'Analisi dinamica',
+  [
+    ['React Testing Library', 'Libreria di test integrata nativamente che consente di testare il comportamento dei componenti React da una prospettiva degli utenti finali.', '13.4.0'],
+    ['GitHub Actions', 'Servizio di CI/CD per automatizzare il processo di build, test e deploy del progetto software', '/'],
   ]
 );
