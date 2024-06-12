@@ -12,7 +12,7 @@ function Input({id, nome, text, tipo, value, onChange}){
           className="form-check-input"
           id={id}
           name={nome}
-          value={id}
+          value={value}
           onChange={onChange}
         />
         <label className="form-check-label" htmlFor={id}>
@@ -101,6 +101,7 @@ export default function FormOrdinazione() {
             key={`rimozione_${a.id}`}
             id={`rimozione_${a.id}`}
             nome="rimozioni"
+            value={a.id}
             text={a.nome}
             tipo="checkbox"
           />
@@ -111,6 +112,7 @@ export default function FormOrdinazione() {
             key={`aggiunta_${a.id}`}
             id={`aggiunta_${a.id}`}
             nome="aggiunte"
+            value={a.id}
             text={a.nome}
             tipo="checkbox"
           />
