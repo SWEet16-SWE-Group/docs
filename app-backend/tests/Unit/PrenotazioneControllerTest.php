@@ -182,4 +182,20 @@ class PrenotazioneControllerTest extends TestCase
 
         $response->assertStatus(200);
     }
+
+    /**
+     * ingredienti quantità
+     *
+     * @return void
+     */
+    public function test_ingredienti_quantita()
+    {
+        (new DatabaseSeeder())->run();
+        Sanctum::actingAs(User::where('id', 1)->first());
+
+        $prenotazione = (object)['id' => 1];
+        $response = $this->getJson('/api/prenotazione_i/' . $prenotazione->id);
+
+        $response->assertStatus(200);
+    }
 }
