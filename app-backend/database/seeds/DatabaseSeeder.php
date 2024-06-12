@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+        return;
 
         DB::insert("insert into users(id, email, password) values(1, 'a@a.com','\$2y\$10\$k99Wav18aOivqAy1JJRN9.jJqsbcxdX/.H2DUgnKop71j/Lc26J1W');");
         DB::insert("insert into clients(id, user, nome) values(1,1,'a');");
