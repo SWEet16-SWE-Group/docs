@@ -26,36 +26,24 @@ class UserController extends Controller
         $data = $request->validated();
 
         /** @var User $user */
-        $user = User::where('id',$data['id'])->first();
+        $user = User::findOrFail($data['id']);
 
-        if(!$user) return response(['','422']);
-
-        if(isset($data['email']) && $data['email'] != $user['email']) {
-            $user->update(['email' => $data['email']]);
-            return response('Email aggiornata con successo', '204');
-        }
-
-        return response(['','422']);
+        $user->update(['email' => $data['email']]);
+        return response('Email aggiornata con successo', '204');
     }
+
     public function updateUserPassword(UpdateUserPasswordRequest $request)
     {
         $data = $request->validated();
 
-        if(isset($data['password'])) {
-            $data['password'] = bcrypt($data['password']);
-        }
+        $data['password'] = bcrypt($data['password']);
 
         /** @var User $user */
-        $user = User::where('id',$data['id'])->first();
+        $user = User::findOrFail($data['id']);
 
-        if(!$user) return response(['','422']);
+        $user->update(['password' => $data['password']]);
+        return response("Password aggiornata con successo",'204');
 
-        if(isset($data['password']) && $data['password'] != $user['password']) {
-            $user->update(['password' => $data['password']]);
-            return response("Password aggiornata con successo",'204');
-        }
-
-        return response(['','422']);
     }
 
     public function deleteUser(Request $request) {
