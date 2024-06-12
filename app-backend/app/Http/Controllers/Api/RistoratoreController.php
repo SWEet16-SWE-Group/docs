@@ -61,7 +61,6 @@ class RistoratoreController extends Controller
      */
     public function destroy($id)
     {
-        try {
             $ristoratore = Ristoratore::where('id', $id)->first();
             $ristoratore->delete();
 
@@ -69,12 +68,6 @@ class RistoratoreController extends Controller
                 "notification" => "Ristoratore eliminato con succcesso",
                 'status' => "success",
             ],200);
-        } catch (\Exception $e) {
-            return response([
-                "notification" => "Errore durante l'eliminazione del ristoratore!",
-                'status' => "failure",
-            ],500);
-        }
     }
 
     public function listByUser($user) {
