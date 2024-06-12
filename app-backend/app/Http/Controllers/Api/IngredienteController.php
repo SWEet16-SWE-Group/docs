@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\Allergeni;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Ingrediente;
@@ -20,6 +21,14 @@ class IngredienteController extends Controller
     {
         $request->validated();
         $ingrediente = Ingrediente::create($request->all());
+
+        if ($request -> allergie) {
+            $allergies = $request->allergie;
+            foreach($allergies as $key => $value) {
+                $allergene=Allergeni::find($value);
+                $ingrediente->allergie()->attach($allergene);
+            }
+        }
         return response()->json($ingrediente, 201);
     }
 
