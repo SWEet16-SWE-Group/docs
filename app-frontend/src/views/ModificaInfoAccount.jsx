@@ -159,7 +159,7 @@ export default function ModificaInfoAccount() {
                 </div>
                 }
                 <br />
-                <input className="form-control" onChange={ev => setUser({...user, email: ev.target.value})} value={user.email} type="email"
+                <input className="form-control" onChange={ev => setUser({...user, email: ev.target.value})} value={user.email} type="email" role="emailChanger"
                        required/>
                 <button className="btn btn-primary me-2">Salva</button>
                 &nbsp; &nbsp;

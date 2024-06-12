@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import axiosClient from '../axios-client.js';
 import { useStateContext } from '../contexts/ContextProvider.jsx';
 
@@ -18,7 +18,7 @@ function Prenotazione(a){
 
 export default function ClienteDashboard() {
 
-    const {user, profile, token, role, notification, notificationStatus, setUser, setToken, setRole} = useStateContext()
+    const {profile} = useStateContext()
     const [prenotazioni, setPrenotazioni] = useState(null);
 
     const fetchPrenotazioni = () => {
