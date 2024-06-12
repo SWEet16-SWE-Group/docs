@@ -93,7 +93,7 @@ export default function CreazioneProfiloCliente() {
                         <br />
                         {allergeni.map((allergene) => {
                             return (
-                                <div className="form-check flex">
+                                <div key={allergene.id} className="form-check flex">
                                     <input
                                         className="form-check-input"
                                         type="checkbox"
@@ -103,7 +103,7 @@ export default function CreazioneProfiloCliente() {
                                             handleCheckboxChange(event)
                                         }
                                         }/>
-                                    <label className="form-check-label" for={allergene.id}>
+                                    <label className="form-check-label" htmlFor={allergene.id}>
                                         {allergene.nome}
                                     </label>
                                 </div>
