@@ -113,7 +113,7 @@ class RistoratoreController extends Controller
         $ristorantiJson = $sortedRestaurants->map(function ($ristorante) {
             return [
                 'ristorante' => $ristorante,
-                'cucina' => $ristorante->cucina->Cucina
+                'cucina' => $ristorante->cucina
             ];
 
         });

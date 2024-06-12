@@ -43,6 +43,24 @@ class RistoratoreControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
+    /**
+     * search
+     *
+     * @return void
+     */
+    public function test_search()
+    {
+        (new DatabaseSeeder())->run();
+
+        $data = [
+            'città' => 'a',
+            'ristorante' => 'a',
+        ];
+        $response = $this->getJson('/api/search', $data);
+
+        $response->assertStatus(200);
+    }
+
     /** @test */
     public function it_can_list_all_ristoratori()
     {
