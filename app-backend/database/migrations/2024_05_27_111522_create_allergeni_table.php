@@ -29,5 +29,6 @@ class CreateAllergeniTable extends Migration
     {
         Schema::dropIfExists('allergeni_client');
         Schema::dropIfExists('allergeni');
+        Schema::dropIfExists('allergeni_ingredienti');
     }
 }
