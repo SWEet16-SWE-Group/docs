@@ -44,6 +44,7 @@ class ClientController extends Controller
         }
 
         return response([
+            'cliente' => $cliente,
             'notification' => "Profilo cliente creato con successo",
             'status' => "success"
         ],201);

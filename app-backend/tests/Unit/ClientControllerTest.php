@@ -38,7 +38,21 @@ class ClientControllerTest extends TestCase
      */
     public function test_store()
     {
-        $this->assertTrue(true);
+        (new DatabaseSeeder())->run();
+        $data =[
+            'user' => 1,
+            'nome' => 'c',
+            'allergie' => [
+                1,
+            ],
+        ];
+        $response = $this->post('/api/client',$data);
+
+        unset($data['allergie']);
+
+        $response->assertStatus(201);
+        $this->assertDatabaseHas('clients',$data);
+        $this->assertDatabaseHas('allergeni_client',['allergeni_id' => 1, 'client_id' => $response['cliente']['id']]);
     }
 
     /**
