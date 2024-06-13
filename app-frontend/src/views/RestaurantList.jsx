@@ -60,6 +60,20 @@ export default function RestaurantList() {
         timeArrival
       );
       console.log(filteredData);
+
+    function InputCucina({id, payload, text}) {
+      return (<div>
+        <label class="form-check-label" htmlFor={id}>
+          <input class="form-check-input"
+            type="radio"
+            name="cucina"
+            id={id}
+            onChange={() => dispatch({ type: "FILTER", payload:payload }) }
+          />
+         {text}
+        </label>
+      </div>);
+    }
     
     return (
         <>
@@ -67,74 +81,11 @@ export default function RestaurantList() {
         <fieldset class="form-group">
         <legend>Cucina:</legend>
         <div class="form-check">
-        <label class="form-check-label" htmlFor='pizzaFilter'>
-          <input class="form-check-input"
-            type="checkbox"
-            name="pizzaFilter"
-            id='pizzFilter'
-            onChange={() =>
-              dispatch({ type: "FILTER", payload:'pizza' })
-            }
-            checked={cusineType === 'pizza'}
-          />
-         Pizza
-        </label>
-        <label class="form-check-label" htmlFor='pastaFilter'>
-          <input
-          class="form-check-input"
-            type="checkbox"
-            name="pastaFilter"
-            id='pastaFilter'
-            role="pastaFilter"
-            onChange={() =>
-              dispatch({ type: "FILTER", payload: 'pasta' })
-            }
-            checked={cusineType === 'pasta'}
-          />
-         pasta
-        </label>
-        <label class="form-check-label" htmlFor='carneFilter'>
-          <input
-          class="form-check-input"
-            type="checkbox"
-            name="carneFilter"
-            id='carneFilter'
-            role="carneFilter"
-            onChange={() =>
-              dispatch({ type: "FILTER", payload: 'carne' })
-            }
-            checked={cusineType === 'carne'}
-          />
-         carne
-        </label>
-        <label class="form-check-label" htmlFor='pesceFilter'>
-          <input
-          class="form-check-input"
-            type="checkbox"
-            name="pesceFilter"
-            id='pesceFilter'
-            role='pesceFilter'
-            onChange={() =>
-              dispatch({ type: "FILTER", payload: 'pesce' })
-            }
-            checked={cusineType === 'pesce' }
-          />
-         pesce
-        </label>
-        <label class="form-check-label" htmlFor='allCusine'>
-          <input
-          class="form-check-label"
-            type="checkbox"
-            name="allCusine"
-            id='allCusine'
-            role="allCusine"
-            onChange={() =>
-              dispatch({ type: "FILTER", payload: '' })
-            }
-            checked={cusineType === '' }
-          />
-         Tutte le cucine
-        </label>
+          <InputCucina id={'pizzaId'} text={'Pizza'} payload={'pizza'} />
+          <InputCucina id={'pastaId'} text={'Pasta'} payload={'pasta'} />
+          <InputCucina id={'carneId'} text={'Carne'} payload={'carne'} />
+          <InputCucina id={'pesceId'} text={'Pesce'} payload={'pesce'} />
+          <InputCucina id={'tutteId'} text={'Tutte le cucine'} payload={''} />
         </div>
       </fieldset>
       <legend>Orario</legend>
