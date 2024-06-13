@@ -2,10 +2,19 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\User;
+use DatabaseSeeder;
+use DateTime;
+use Tests\TestCase;
+use Laravel\Sanctum\Sanctum;
+
+require_once __DIR__ . '/../../database/seeds/DatabaseSeeder.php' ;
 
 class NotificheControllerTest extends TestCase
 {
+    use RefreshDatabase;
+
     /**
      * notifiche cliente
      *
