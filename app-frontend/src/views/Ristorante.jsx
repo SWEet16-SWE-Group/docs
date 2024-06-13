@@ -1,8 +1,7 @@
 import {useParams} from "react-router-dom";
-import {useEffect, useRef, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {useEffect , useState} from "react";
+import {Link} from "react-router-dom";
 import axiosClient from "../axios-client.js";
-import {createRef} from "react";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
 
 function fetch(id,set) {
@@ -17,7 +16,10 @@ function Bottoneprenota(a){
   if (role === 'CLIENTE') {
     return (<Link to={url(a.id)}>Prenota</Link>);
   }else{
-    return (<div></div>);
+    return (
+    <div>
+      Devi loggarti per prenotare!
+    </div>);
   }
 }
 
