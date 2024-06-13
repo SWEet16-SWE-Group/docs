@@ -9,7 +9,7 @@ export default function RestaurantCard({restaurant}) {
         <img class="card-img-top" src="..." alt="Card image cap" />
         <div class="card-body">
           <h5 class="card-title">{restaurant.nome}</h5>
-          <p class="card-text">Cucina : {restaurant.cucina.Cucina}</p>
+          <p class="card-text">Cucina : {restaurant.cucina}</p>
           <p  class="card-text">Orario di apertura : {restaurant.orario}</p>
           <p cass="card-text">Indirizzo : {restaurant.indirizzo}</p>
           <Link to={`/ristorante/${restaurant.nome}`}>
