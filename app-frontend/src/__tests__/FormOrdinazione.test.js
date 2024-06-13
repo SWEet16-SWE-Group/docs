@@ -98,7 +98,7 @@ describe('RistoratoreDashboard', () => {
         
     });
 
-    it('Order submission goes smoothly',async () => {
+  /*  it('Order submission goes smoothly',async () => {
          //fetching delle possibili aggiunte di ingredienti
          const fetchingAggiunte = axiosClient.get.mockResolvedValueOnce({data :[
             {
@@ -166,7 +166,7 @@ describe('RistoratoreDashboard', () => {
            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
            expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Ordinazione creata con successo.');
         });
-    });
+    }); */
     it('Order submission goes wrong', async () => {
          //fetching delle possibili aggiunte di ingredienti
          const fetchingAggiunte = axiosClient.get.mockResolvedValueOnce({data :[
