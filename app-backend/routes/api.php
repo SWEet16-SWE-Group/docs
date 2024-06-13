@@ -78,6 +78,7 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::post('/crea-invito',  [InvitoController::class, 'store']);
     Route::post('/crea-ordinazione',  [OrdinazioneController::class, 'store']);
+    Route::delete('/ordinazione/{id}', [OrdinazioneController::class,'destroy']);
     Route::get('/pietanza_dettagli/{id}', [PietanzaController::class, 'dettagli']);
 
     /*
