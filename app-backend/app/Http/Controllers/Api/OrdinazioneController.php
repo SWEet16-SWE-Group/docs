@@ -16,6 +16,8 @@ class OrdinazioneController extends Controller
         $validatedData = $request->validated();
         $ordinazione = Ordinazione::create($validatedData);
 
+        DB::insert('insert into notifiche(ordinazione,significato) values(?,"ORDINAZIONE CREATA")',[$ordinazione->id]);
+
         $insert = fn (...$a) => DB::insert('insert into dettagliordinazione(ingrediente, ordinazione, dettaglio) values (?,?,?)',$a);
         foreach($a as $a){
             $insert($a['ingrediente'],$ordinazione->id,'+');
@@ -28,9 +30,10 @@ class OrdinazioneController extends Controller
     }
 
     public function paga($id){
-        $record = Ordinazione::findOrFail($id);
-        $record->pagamento = 'PAGATO';
-        $record->save();
+        $ordinazione = Ordinazione::findOrFail($id);
+        $ordinazione->pagamento = 'PAGATO';
+        $ordinazione->save();
+        DB::insert('insert into notifiche(ordinazione,significato) values(?,"ORDINAZIONE PAGATA")',[$ordinazione->id]);
         return response()->json(0,200);
     }
 }

@@ -6,12 +6,15 @@ use App\Http\Requests\InvitoRequest;
 use App\Models\Invito;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use DB;
 
 class InvitoController extends Controller {
 
     public function store(InvitoRequest $request) {
         $validatedData = $request->validated();
         $invito = Invito::create($validatedData);
+
+        DB::insert('insert into notifiche(invito,significato) values(?,"INVITO ACCETTATO")',[$invito->id]);
 
         return response()->json($invito, 201);
     }
@@ -24,9 +27,12 @@ class InvitoController extends Controller {
     }
 
     public function paga($id){
-        $record = Invito::findOrFail($id);
-        $record->pagamento = 'PAGATO';
-        $record->save();
+        $invito = Invito::findOrFail($id);
+        $invito->pagamento = 'PAGATO';
+        $invito->save();
+
+        DB::insert('insert into notifiche(invito,significato) values(?,"INVITO PAGATO")',[$invito->id]);
+
         return response()->json(0,200);
     }
 }
