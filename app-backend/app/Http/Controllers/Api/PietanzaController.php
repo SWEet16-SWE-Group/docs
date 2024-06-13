@@ -66,8 +66,8 @@ class PietanzaController extends Controller
         )
         ->join('ricette as r','r.pietanza','=','pietanze.id')
         ->join('ingredienti as i','r.ingrediente','=','i.id')
-        ->leftJoin('allergeniingredienti as ia','ia.ingrediente','=','i.id')
-        ->leftJoin('allergeni as a','ia.allergene','=','a.id')
+        ->leftJoin('allergeni_ingrediente as ia','ia.ingrediente_id','=','i.id')
+        ->leftJoin('allergeni as a','ia.allergeni_id','=','a.id')
         ->where('pietanze.id',$id)
         ->groupBy('pietanze.id')
         ->first();
