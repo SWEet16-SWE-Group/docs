@@ -18,13 +18,13 @@ class NotificheController extends Controller
     public function notifiche($id,$tipo){
         $return = DB::select($this->q[$tipo],[$id]);
         foreach ($return as $a) {
-            DB::update('update notifiche as n set n.lettura = "LETTO" where n.id = ? ;',[$a]);
+            DB::update('update notifiche as n set n.lettura = "LETTO" where n.id = ? ;',[$a['id']]);
         }
         return response()->json($return, 200);
     }
 
     public function count($id,$tipo){
-        $return = DB::select("select count(*) as c from ({$this->q[$tipo]})",[$id])[0]['c'];
+        $return = DB::select("select count(*) as c from ({$this->q[$tipo]}) as n where n.lettura = 'NON LETTO';",[$id])[0]['c'];
         return response()->json($return, 200);
     }
 }
