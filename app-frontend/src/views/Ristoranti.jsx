@@ -3,13 +3,15 @@ import {Link, useNavigate} from "react-router-dom";
 import axiosClient from "../axios-client.js";
 import {createRef} from "react";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
+import RestaurantCard from "../components/RestaurantCard.jsx";
 
 function ristorante(a){
-  return (
-      <div key={a.id}>
-        <Link to={`/ristorante/${a.id}`} key={a.id}> {a.nome} @ {a.indirizzo} # {a.telefono} | {a.orario} </Link>
-      </div>
-  );
+  return <RestaurantCard restaurant={a} />
+  //return (
+  //    <div key={a.id}>
+  //      <Link to={`/ristorante/${a.id}`} key={a.id}> {a.nome} @ {a.indirizzo} # {a.telefono} | {a.orario} </Link>
+  //    </div>
+  //);
 }
 
 export default function Ristoranti() {
