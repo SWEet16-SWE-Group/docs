@@ -53,7 +53,7 @@ export default function FormOrdinazione() {
     axiosClient.get(`/get-possibili-rimozioni/${pietanza}`).then(data => setRimozioni(data.data));
     axiosClient.get(`/get-invito-by-prenotazione-cliente/${prenotazione}/${profile}`).then(data => setInvito(data.data[0].id));
     axiosClient.get(`/pietanza_dettagli/${pietanza}`).then(data => setDettagli(data.data));
-  }, []);
+  }, [pietanza, prenotazione, profile]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -66,9 +66,10 @@ export default function FormOrdinazione() {
         const formData = {
           invito: invito,
           pietanza: pietanza,
-          aggiunte: Array.from(e.target.aggiunte).filter(a => a.checked).map(a => ({ ingrediente: '1' })),
-          rimozioni: Array.from(e.target.rimozioni).filter(a => a.checked).map(a => ({ ingrediente: '1' })),
+          aggiunte: Array.from(e.target.aggiunte).filter(a => a.checked).map(a => ({ ingrediente: a.value })),
+          rimozioni: Array.from(e.target.rimozioni).filter(a => a.checked).map(a => ({ ingrediente: a.value })),
         };
+
         console.log(formData);
         const { data } = await axiosClient.post(`/crea-ordinazione`, formData);
         console.log(data);
