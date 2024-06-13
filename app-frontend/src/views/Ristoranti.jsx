@@ -13,36 +13,59 @@ function ristorante(a){
 }
 
 export default function Ristoranti() {
-    const [ristorantiTutti,setRistorantiTutti] = useState(null);
     const [ristoranti,setRistoranti] = useState(null);
     const [nome,setNome] = useState(null);
-    const [cucina,setCucina] = useState(null);
-    const [orario,setOrario] = useState(null);
+    const [cucina,setCucina] = useState('');
+
+    function inputSet(set){
+      return function (e) {
+        set(e.target.value);
+      };
+    }
 
     function applicafiltri(){
-      setRistoranti(
-         ristorantiTutti
-          //.filter((r) => r.nome.contains(nome) && (cucina === null || r.cucina === cucina))
-      );
-      debugger;
+      const a = ristoranti
+        .filter(a => nome === null || a.nome.toLowerCase().includes(nome.toLowerCase()))
+        .filter(a => cucina === "" || a.cucina === cucina)
+        .map(ristorante);
+      return a.length > 0 ? a : <p>Nessun risultato corrisponde ai criteri scelti</p>
+    }
+
+    function cucine(){
+      function unique(value, index, array) {
+        return array.indexOf(value) === index;
+      };
+      return ristoranti.map(a => a.cucina).filter(unique);
     }
 
     async function fetch(){
       const {data: data} = await axiosClient.get('/ristoranti');
-      setRistorantiTutti(data);
-      applicafiltri();
+      setRistoranti(data);
     }
 
     useEffect(() => { fetch(); }, []);
 
-    console.log('========================');
-    console.log(ristorantiTutti);
-    console.log(ristoranti);
-    console.log('------------------------');
-
     return (
         <div>
-            {ristoranti ? ristoranti.map(ristorante) : <div>Nessun ristorante corrisponde ai filtri scelti</div>}
+            <div>
+              <label htmlFor="nome">Nome</label>
+              <input type="text" id="nome" onChange={inputSet(setNome)} />
+            </div>
+            <div>
+              <label htmlFor="cucina">Cucina</label><br />
+              {ristoranti
+                ? (
+                    <select id="cucina" onChange={inputSet(setCucina)}>
+                      <option value={""}>Tutte le cucine</option>
+                      {cucine().map(a => <option key={a} value={a}>{a}</option>)}
+                    </select>
+                  )
+                : <p>Nessun tipo di cucina disponibile.</p>}
+            </div>
+            <hr className="my-4" />
+            <div>
+              {ristoranti ? applicafiltri() : <p>Caricamento...</p>}
+            </div>
         </div>
     )
 }
