@@ -25,7 +25,7 @@ class PrenotazioneRequest extends FormRequest
     {
         return [
             'ristoratore' => 'required|exists:ristoratori,id',
-            'orario' => 'required|date_format:Y-m-d',
+            'orario' => 'required|date_format:Y-m-d H:i',
             'numero_inviti'=> 'required|integer|min:1',
             'divisioni_conto'=> 'in:NULL,Equo,Proporzionale',
         ];

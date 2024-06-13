@@ -100,6 +100,7 @@ export default function RistoratoreDashboard() {
                                             {prenotazione.stato === 'In attesa' && (
                                                 <>
                                                     <button onClick={() => updatePrenotazioneStatus(prenotazione.id, 'Accettata')} className="btn btn-success">Accetta</button>
+                                                    &nbsp;
                                                     <button onClick={() => updatePrenotazioneStatus(prenotazione.id, 'Rifiutata')} className="btn btn-danger">Rifiuta</button>
                                                 </>
                                             )}

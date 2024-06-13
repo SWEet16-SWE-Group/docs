@@ -21,6 +21,23 @@ function Input({id, nome, text, tipo, value, onChange}){
       </div>
     );
   }
+  if (tipo === "checkbox") {
+    return (
+      <div className="form-check mb-3">
+        <input
+          type="checkbox"
+          className="form-check-input"
+          id={id}
+          name={nome}
+          value={value}
+          onChange={onChange}
+        />
+        <label className="form-check-label" htmlFor={id}>
+          {text}
+        </label>
+      </div>
+    );
+  }
   return (
     <div className="mb-3">
       <label htmlFor={id} className="form-label">{text}</label>

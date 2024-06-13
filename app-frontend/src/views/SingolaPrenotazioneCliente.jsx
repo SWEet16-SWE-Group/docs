@@ -5,7 +5,7 @@ import { useStateContext } from '../contexts/ContextProvider.jsx';
 
 function Ordinazioni({data}){
   return (
-  <div key={data.nome}>
+    <>
       <thead>
         <tr><th colSpan="4"><h3>{data.nome}</h3></th></tr>
         <tr>
@@ -25,7 +25,7 @@ function Ordinazioni({data}){
           </tr>
         ))}
       </tbody>
-    </div>
+    </>
   );
 }
 
@@ -37,11 +37,13 @@ function Prenotazione(p){
   return (<div key={a.id}>
     <h1>{a.nome}</h1>
     <h2>Dettagli</h2>
-    <div>Link di invito: <Link>localhost:3001/invito/{a.id}</Link></div>
-    <div>Stato: {a.stato}</div>
-    <div>Orario: {a.orario}</div>
+      <div>Codice di invito: <Link>{a.id}</Link></div>
+      <div>Stato: {a.stato}</div>
+      <div>Orario: {a.orario}</div>
     <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
-    <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
+      {a && a.stato === 'Accettata'&&
+        <div><Link to={url_o(a.ristoratore,a.id)}>Ordina</Link></div>
+      }
     <h2>Ordinazioni</h2>
       <table className="table">
       {p.ordinazioni.map((data) => <Ordinazioni key={data.nome} data={data}/>)}
