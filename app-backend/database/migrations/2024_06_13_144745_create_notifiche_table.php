@@ -21,8 +21,7 @@ class CreateNotificheTable extends Migration
             $table->foreignId('inviti')->nullable()->constrained('inviti')->onDelete('cascade');
             $table->enum('significato', [
                 'PRENOTAZIONE CREATA',
-                'PRENOTAZIONE ACCETTATA',
-                'PRENOTAZIONE RIFIUTATA',
+                'PRENOTAZIONE STATO',
                 'PRENOTAZIONE CONTO',
                 'PRENOTAZIONE PAGAMENTO',
                 'INVITO',
