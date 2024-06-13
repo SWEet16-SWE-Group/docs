@@ -37,7 +37,7 @@ class PrenotazioniController extends Controller
             'stato' => 'required|in:Accettata,Rifiutata'
         ]);
 
-        DB::insert('insert into notifiche(prenotazione,significato) values(?,"PRENOTAZIONE STATO")',[$prenotazione->id]);
+        DB::insert('insert into notifiche(prenotazione,significato) values(?,"PRENOTAZIONE STATO")',[$id]);
 
         $prenotazione = Prenotazione::findOrFail($id);
 

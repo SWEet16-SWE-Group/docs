@@ -18,7 +18,7 @@ class CreateNotificheTable extends Migration
             $table->enum('lettura', ['NON LETTO','LETTO'])->default('NON LETTO');
             $table->foreignId('prenotazione')->nullable()->constrained('prenotazioni')->nullOnDelete();
             $table->foreignId('ordinazione')->nullable()->constrained('ordinazioni')->nullOnDelete();
-            $table->foreignId('inviti')->nullable()->constrained('inviti')->nullOnDelete();
+            $table->foreignId('invito')->nullable()->constrained('inviti')->nullOnDelete();
             $table->enum('significato', [
                 'PRENOTAZIONE CREATA',
                 'PRENOTAZIONE STATO',
