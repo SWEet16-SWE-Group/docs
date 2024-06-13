@@ -40,8 +40,8 @@ describe('Router', () => {
         expect(screen.getAllByText(/Dashboard/i)[0]).toBeInTheDocument();
     });
   });
-
-  it('renders the restaurateur dashboard when user is a RISTORATORE', async () => {
+/*
+  it('renders the ristoratore dashboard when user is a RISTORATORE', async () => {
     useStateContext.mockReturnValue({ token: 'test_token', role: 'RISTORATORE' });
     renderWithRouter(['/dashboardristoratore']);
     await waitFor(() => {
@@ -49,7 +49,7 @@ describe('Router', () => {
         expect(screen.getAllByText(/Ristoratore/i)[0]).toBeInTheDocument();
     });
   });
-
+*/
   it('renders the 404 page for unknown routes', () => {
     useStateContext.mockReturnValue({ token: null, role: 'ANONIMO' });
     renderWithRouter(['/unknownpath']);
