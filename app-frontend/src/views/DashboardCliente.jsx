@@ -18,7 +18,7 @@ function Prenotazione(a){
 
 export default function ClienteDashboard() {
 
-    const {profile} = useStateContext()
+    const {profile,setNotification,setNotificationStatus} = useStateContext()
     const [prenotazioni, setPrenotazioni] = useState(null);
     const linkRef = useRef();
     const navigate = useNavigate();
@@ -34,18 +34,29 @@ export default function ClienteDashboard() {
     const LinkInvito = (e) => {
         e.preventDefault();
 
-        const url = linkRef.current.value.replace("localhost:3000", "")
-        navigate(url);
+        const prenotazione = linkRef.current.value;
+
+        axiosClient.get(`/prenotazione_dettagli/${prenotazione}`).then(
+            data => {
+                if(data.data.id === undefined)
+                {
+                    setNotificationStatus('failure');
+                    setNotification('Questo codice di invito non esiste!');
+                }
+                else
+                    navigate('/invito/'+ prenotazione);
+            }
+        );
     }
 
     return (
         <>
             <form className="row row-cols-lg-auto g-3 align-items-center" onSubmit={LinkInvito}>
                 <div className="col-auto">
-                    <label for="link_invito">Hai un link di invito? Inseriscilo qui!</label>
+                    <label for="link_invito">Hai un codice di invito? Inseriscilo qui!</label>
                 </div>
                 <div className="col-auto">
-                    <input type="url" ref={linkRef} className="form-control" id="link_invito" placeholder="Url"/>
+                    <input type="text" ref={linkRef} className="form-control" id="link_invito" placeholder="Codice invito"/>
                 </div>
                 <div className="col-auto">
                     <button type="submit" className="btn btn-primary">Invia</button>

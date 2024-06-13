@@ -37,7 +37,7 @@ function Prenotazione(p){
   return (<div key={a.id}>
     <h1>{a.nome}</h1>
     <h2>Dettagli</h2>
-    <div>Link di invito: <Link>localhost:3001/invito/{a.id}</Link></div>
+    <div>Codice di invito: <Link>{a.id}</Link></div>
     <div>Stato: {a.stato}</div>
     <div>Orario: {a.orario}</div>
     <div><Link to={url_p(a.id)}>Esamina pagamento</Link></div>
