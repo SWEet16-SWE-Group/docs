@@ -16,7 +16,10 @@ function Bottoneprenota(a){
   if (role === 'CLIENTE') {
     return (<Link to={url(a.id)}>Prenota</Link>);
   }else{
-    return (<div></div>);
+    return (
+    <div>
+      Devi loggarti per prenotare!
+    </div>);
   }
 }
 
