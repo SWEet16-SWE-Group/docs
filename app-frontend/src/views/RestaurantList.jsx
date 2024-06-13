@@ -8,7 +8,7 @@ import {reducer} from '../helperFunctions/reducer.js';
 
 export default function RestaurantList() {
 
-  const { setNotificationStatus, setNotification } = useStateContext();
+    const {setNotificationStatus, setNotification} = useStateContext();
     const [restaurants,setRestaurants] = useState([]);
     const [isLoading,setIsLoading]=useState(false);
     const [searchParams,setSearchParams]=new useSearchParams();
