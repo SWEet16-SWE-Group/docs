@@ -18,7 +18,6 @@ import FormPietanza from "./views/FormPietanza.jsx";
 import FormIngrediente from "./views/FormIngredienti.jsx";
 import RistoratorePrenotazione from "./views/SingolaPrenotazioneRistoratore.jsx";
 
-import RestaurantList from "./views/RestaurantList";
 import Ristoranti from "./views/Ristoranti";
 import Ristorante from "./views/Ristorante";
 import Menu from "./views/Menu";
@@ -62,10 +61,6 @@ const router = createBrowserRouter([
     {
         path: '/ristoranti',
         element: <Layout Content={<Ristoranti />} />
-    },
-    {
-        path: '/ristoranti2',
-        element: <Layout Content={<RestaurantList />} />
     },
     {
         path: '/ristorante/:id',
