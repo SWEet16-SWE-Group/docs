@@ -33,4 +33,13 @@ class OrdinazioneController extends Controller
         $record->save();
         return response()->json(0,200);
     }
+
+    public function destroy($id) {
+        $ordinazione = Ordinazione::find($id);
+        if (!$ordinazione) {
+            return response()->json(['message' => 'Ordinazione non trovata'], 404);
+        }
+        $ordinazione ->delete();
+        return response()->json(['message' => 'Ordinazione eliminata con successo'], 204);
+    }
 }
