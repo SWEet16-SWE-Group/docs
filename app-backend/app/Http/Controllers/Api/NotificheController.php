@@ -16,7 +16,7 @@ class NotificheController extends Controller
         EOF,
     ];
     public function notifiche($id,$tipo){
-        $return = DB::select($this->q[$tipo]);
+        $return = DB::select($this->q[$tipo],[$id]);
         foreach ($return as $a) {
             DB::update('update notifiche as n set n.lettura = "LETTO" where n.id = ? ;',[$a]);
         }
