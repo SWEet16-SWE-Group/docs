@@ -70,7 +70,7 @@ class PrenotazioniController extends Controller
             'prenotazioni.stato')
             ->join('ristoratori','ristoratori.id','=','prenotazioni.ristoratore')
             ->join('inviti','inviti.prenotazione','=','prenotazioni.id')
-            ->where('inviti.cliente',$id)
+            ->where('inviti.prenotazione',$id,'')
             ->get()->first();
         $ordinazioni = DB::select(<<<'EOF'
             select o.id, c.nome as c, pz.nome as pietanza,
@@ -167,10 +167,10 @@ class PrenotazioniController extends Controller
         return response()->json($return,200);
     }
 
-    public function getIngredientsForPrenotazione($prenotazioneId) 
+    public function getIngredientsForPrenotazione($prenotazioneId)
     {
         $ingredienti = DB::select(<<<'EOF'
-            SELECT i.nome AS ingrediente, 
+            SELECT i.nome AS ingrediente,
                 COUNT(*) AS quantita
             FROM prenotazioni pr
             JOIN inviti iv ON pr.id = iv.prenotazione
