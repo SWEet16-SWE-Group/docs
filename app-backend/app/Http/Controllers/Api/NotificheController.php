@@ -62,15 +62,15 @@ class NotificheController extends Controller
         EOF,[$id]);
         $appendreturn = function ($a,$k,$v) { $a[$k] = $v; return $a;};
         $return = array_map(fn ($a) => match($a['significato']) {
-            'PRENOTAZIONE CREATA'       => $appendreturn($a,'dettagli',$getbyprenotazione($a['prenotazione'])),
-            'PRENOTAZIONE STATO'        => $appendreturn($a,'dettagli',$getbyprenotazione($a['prenotazione'])),
-            'PRENOTAZIONE CONTO'        => $appendreturn($a,'dettagli',$getbyprenotazione($a['prenotazione'])),
-            'PRENOTAZIONE CANCELLATA'   => $appendreturn($a,'dettagli',$getbyprenotazione($a['prenotazione'])),
-            'INVITO ACCETTATO'          => $appendreturn($a,'dettagli',$getbyinvito($a['invito'])),
-            'INVITO PAGATO'             => $appendreturn($a,'dettagli',$getbyinvito($a['invito'])),
-            'ORDINAZIONE CREATA'        => $appendreturn($a,'dettagli',$getbyordinazione($a['ordinazione'])),
-            'ORDINAZIONE CANCELLATA'    => $appendreturn($a,'dettagli',$getbyordinazione($a['ordinazione'])),
-            'ORDINAZIONE PAGATA'        => $appendreturn($a,'dettagli',$getbyordinazione($a['ordinazione'])),
+            'PRENOTAZIONE CREATA'       => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
+            'PRENOTAZIONE STATO'        => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
+            'PRENOTAZIONE CONTO'        => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
+            'PRENOTAZIONE CANCELLATA'   => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
+            'INVITO ACCETTATO'          => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyinvito($a['invito'])),
+            'INVITO PAGATO'             => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyinvito($a['invito'])),
+            'ORDINAZIONE CREATA'        => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
+            'ORDINAZIONE CANCELLATA'    => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
+            'ORDINAZIONE PAGATA'        => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
         },$return);
         $return = array_filter($return, fn ($a) => $a['dettagli']);
         foreach($return as &$a){
