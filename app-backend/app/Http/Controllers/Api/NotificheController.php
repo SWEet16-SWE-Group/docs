@@ -31,6 +31,19 @@ class NotificheController extends Controller
             ) as imin on i.created_at = imin.c
             limit 1
         EOF,[$id]);
+        $getbyinvitoaccettato = fn ($id, $ic) => DB::select(<<<'EOF'
+            select
+                -1 as r_id,
+                iiv.id as c_id,
+                iv.nome as c_nome,
+                p.id as p_id
+            from inviti as i
+            inner join clients as iv on iv.id = i.cliente
+            inner join prenotazione as p on p.id = i.prenotazione
+            inner join inviti as iiv on iiv.prenotazione = p.id
+            where i.id = ? and iiv.id = ?
+            limit 1
+        EOF,[$id, $ic]);
         $getbyinvito = fn ($id) => DB::select(<<<'EOF'
             select
                 r.id as r_id,
@@ -62,15 +75,15 @@ class NotificheController extends Controller
         EOF,[$id]);
         $appendreturn = function ($a,$k,$v) { $a[$k] = $v; return $a;};
         $return = array_map(fn ($a) => match($a['significato']) {
-            'PRENOTAZIONE CREATA'       => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
-            'PRENOTAZIONE STATO'        => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
-            'PRENOTAZIONE CONTO'        => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
-            'PRENOTAZIONE CANCELLATA'   => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
-            'INVITO ACCETTATO'          => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyinvito($a['invito'])),
-            'INVITO PAGATO'             => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyinvito($a['invito'])),
-            'ORDINAZIONE CREATA'        => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
-            'ORDINAZIONE CANCELLATA'    => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
-            'ORDINAZIONE PAGATA'        => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
+            'PRENOTAZIONE CREATA'    => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
+            'PRENOTAZIONE STATO'     => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
+            'PRENOTAZIONE CONTO'     => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
+            'PRENOTAZIONE CANCELLATA'=> $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyprenotazione($a['prenotazione'])),
+            'INVITO ACCETTATO'       => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyinvitoaccettato($a['invito'], $id)),
+            'INVITO PAGATO'          => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyinvito($a['invito'])),
+            'ORDINAZIONE CREATA'     => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
+            'ORDINAZIONE CANCELLATA' => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
+            'ORDINAZIONE PAGATA'     => $appendreturn($a,'d'/* d diminutivo di dettagli */,$getbyordinazione($a['ordinazione'])),
         },$return);
         $return = array_filter($return, fn ($a) => $a['dettagli']);
         foreach($return as &$a){
