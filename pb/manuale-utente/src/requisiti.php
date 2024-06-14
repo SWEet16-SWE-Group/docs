@@ -60,3 +60,36 @@ Safari & 17.0 \\
 \end{longtblr}
 \end{center}
 
+\section{Installazione}
+
+L'utilizzo dell'applicazione considera i seguenti passi, definiti entrambi come obbligatori e meglio dettagliati nelle successive sottosezioni. Tali passi avvengono in sequenza, come poi spiegato:
+\begin{enumerate}
+    \item Clonazione della repository
+    \item Avvio dell'applicazione
+\end{enumerate}
+
+\subsection{Clonazione della repository}
+
+\begin{enumerate}
+    \item Scaricare il codice direttamente in formato .zip dal seguente link:
+    \begin{itemize}
+        \item \url{https://github.com/SWEet16-SWE-Group/docs/archive/refs/heads/mvp-main.zip}
+    \end{itemize}
+\end{enumerate}
+Alternativamente, è possibile:
+\begin{enumerate}
+    \item Avviare un terminale
+    \item Spostarsi nella cartella dove si vuole clonare la repository con il comando:
+    \begin{itemize}
+        \item \texttt{cd path}
+    \end{itemize}
+    \item Utilizzando Git, che deve essere installato in locale, clonare la repository utilizzando il comando:
+    \begin{itemize}
+        \item \texttt{git clone https://github.com/SWEet16-SWE-Group/docs.git}
+    \end{itemize}
+    \item Spostarsi nella cartella clonata:
+    \begin{itemize}
+        \item \texttt{cd path/docs}
+    \end{itemize}
+\end{enumerate}
+
