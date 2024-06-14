@@ -119,7 +119,7 @@ Alternativamente, è possibile:
     \end{verbatim}
     \item Installare npm:
     \begin{verbatim}
-    composer install
+    npm install
     \end{verbatim}
     \item Controllare se la pagina di Laravel (\url{http://localhost:8000}) non dia errori. Se così non fosse, chiamare sempre da dentro il container Docker:
     \begin{verbatim}
@@ -138,5 +138,25 @@ Alternativamente, è possibile:
 \section{Istruzioni all'uso}
 
 // DA FARE TERMINATA LA CODIFICA
+
+\section{Supporto tecnico}
+
+Per eventuali malfunzionamenti riscontrati durante l’utilizzo dell’applicazione, si prega di contattare il supporto tecnico inviando una mail all’indirizzo:
+
+\begin{center}
+    \textbf{sweet16.unipd@gmail.com}
+\end{center}
+
+È consigliato il seguente formato per la mail:
+\begin{itemize}
+  \item Oggetto: ``nome dell’evento da segnalare'';
+  \item Corpo:
+  \begin{itemize}
+    \item Data in cui si è riscontrato il malfunzionamento;
+    \item Descrizione del malfunzionamento in esame;
+    \item Sistema operativo e browser in cui si è verificato il problema.
+  \end{itemize}
+  \item Allegato (facoltativo): immagini utili per la descrizione del malfunzionamento.
+\end{itemize}
 
 
