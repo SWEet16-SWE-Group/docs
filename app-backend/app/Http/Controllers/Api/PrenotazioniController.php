@@ -74,7 +74,7 @@ class PrenotazioniController extends Controller
             'prenotazioni.stato')
             ->join('ristoratori','ristoratori.id','=','prenotazioni.ristoratore')
             ->join('inviti','inviti.prenotazione','=','prenotazioni.id')
-            ->where('inviti.cliente',$id)
+            ->where('inviti.prenotazione',$id)
             ->get()->first();
         $ordinazioni = DB::select(<<<'EOF'
             select o.id, c.nome as c, pz.nome as pietanza,
