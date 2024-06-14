@@ -190,4 +190,14 @@ class PrenotazioniController extends Controller
 
         return response()->json($ingredienti, 200);
     }
+
+    public function destroy($id)
+    {
+        $prenotazione = Prenotazione::find($id);
+        if (!$prenotazione) {
+            return response()->json(['message' => 'Prenotazione non trovata'], 404);
+        }
+        $prenotazione ->delete();
+        return response()->json(['message' => 'Prenotazione eliminata con successo'], 204);
+    }
 }

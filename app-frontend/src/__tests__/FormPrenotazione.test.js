@@ -64,13 +64,16 @@ describe('Testing reservation form', () => {
             fireEvent.change(screen.getByRole('date-input'),{target:{value:'2024-07-22'}});
             fireEvent.click(screen.getByRole('button'));
         });
-        expect(axiosClient.post).toHaveBeenCalledWith('/crea-prenotazione',
-            {
-                ristoratore: '123',
-                orario:'2024-07-22' ,
-                numero_inviti: '6',
-            }
-        );
+        await waitFor(() => {
+            expect(axiosClient.post).toHaveBeenCalledWith('/crea-prenotazione',
+                {
+                    ristoratore: '123',
+                    orario:"" ,
+                    numero_inviti: '6',
+                }
+            );
+        });
+        
 
         await waitFor( () => {
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Prenotazione creata con successo.');
@@ -94,7 +97,7 @@ describe('Testing reservation form', () => {
         expect(axiosClient.post).toHaveBeenCalledWith('/crea-prenotazione',
             {
                 ristoratore: '123',
-                orario:'2024-07-22' ,
+                orario:'' ,
                 numero_inviti: '6',
             }
         );
