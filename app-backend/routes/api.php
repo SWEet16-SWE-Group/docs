@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\IngredienteController;
 use App\Http\Controllers\Api\PietanzaController;
 use App\Http\Controllers\Api\InvitoController;
 use App\Http\Controllers\Api\OrdinazioneController;
+use App\Http\Controllers\Api\NotificheController;
 use App\Http\Middleware\UserIsClient;
 use App\Http\Middleware\UserIsRestaurant;
 use App\Http\Middleware\UserIsAuthenticated;
@@ -101,6 +102,9 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/profiles',[ProfileController::class, 'getAllProfiles']);
 
     Route::post('/selectprofile',[ProfileController::class, 'selectProfile']);
+
+    Route::get('/notifiche_info/{tipo}/{id}',[NotificheController::class, 'notifiche']);
+    Route::get('/notifiche_count/{tipo}/{id}',[NotificheController::class, 'count']);
 });
 
 Route::get('/account',[ClientController::class,'index']);

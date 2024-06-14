@@ -22,13 +22,12 @@ class IngredienteController extends Controller
         $request->validated();
         $ingrediente = Ingrediente::create($request->all());
 
-        if ($request -> allergie) {
-            $allergies = $request->allergie;
-            foreach($allergies as $key => $value) {
-                $allergene=Allergeni::find($value);
-                $ingrediente->allergie()->attach($allergene);
-            }
+        $a = $request->allergie;
+        foreach(($a ? $a : []) as $value) {
+            $allergene=Allergeni::find($value);
+            $ingrediente->allergie()->attach($allergene);
         }
+
         return response()->json($ingrediente, 201);
     }
 

@@ -8,6 +8,7 @@ use App\Models\Ristoratore;
 use App\Models\Ingrediente;
 use Laravel\Sanctum\Sanctum;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use DB;
 
 class IngredienteControllerTest extends TestCase
 {
@@ -47,11 +48,16 @@ class IngredienteControllerTest extends TestCase
     public function it_can_store()
     {
         $data = Ingrediente::factory()->make(['ristoratore' => $this->ristoratore->id])->toArray();
+        DB::insert('insert into allergeni(id,nome) values(1,"aaba")');
+        $data['allergie'] = [1];
 
         $response = $this->postJson('/api/ingredienti', $data);
 
+        unset($data['allergie']);
+
         $response->assertStatus(201);
         $this->assertDatabaseHas('ingredienti', $data);
+        $this->assertDatabaseHas('allergeni_ingrediente', ['ingrediente_id' => $response->original->id, 'allergeni_id' => 1]);
     }
     /** @test */
     public function it_can_update()

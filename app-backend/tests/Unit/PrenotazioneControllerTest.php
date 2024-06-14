@@ -28,7 +28,7 @@ class PrenotazioneControllerTest extends TestCase
 
         $data = [
             'ristoratore' => 1,
-            'orario' => (new DateTime())->format('Y-m-d'),
+            'orario' => (new DateTime())->format('Y-m-d H:m'),
             'numero_inviti' => 8,
         ];
         $response = $this->post('/api/crea-prenotazione/',$data);

@@ -1,6 +1,18 @@
+import {useEffect, useRef, useState} from "react";
 import {Link, useNavigate, Outlet} from "react-router-dom";
 import {useStateContext} from "../contexts/ContextProvider";
 import axiosClient from "../axios-client";
+
+function Contatore(){
+  const {role, profile} = useStateContext();
+  const [contatore, setContatore] = useState(null);
+  async function fetch() {
+    const {data:data} = await axiosClient.get(`/notifiche_count/${role.toLowerCase()}/${profile}`);
+    setContatore(data);
+  };
+  useEffect(() => {fetch();}, []);
+  return contatore ? `(${contatore.count})` : '';
+}
 
 function Header(){
 
@@ -52,7 +64,7 @@ function Header(){
             <div> {role} </div>
             <Link to="/Ristoranti">Prenota</Link>
             <Link to="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</Link>
-            <div> {user} </div>
+            <Link to="/notifichecliente"><Contatore /> Notifiche</Link>
             <Link to="#" onClick={onLogout} className="btn-logout">Logout</Link>
         </header>
     ),
@@ -60,7 +72,7 @@ function Header(){
         <header>
             <div> {role} </div>
             <Link to="/selezioneprofilo" onClick={onLogoutProfile} className="btn-info">Selezione Profilo</Link>
-            <div> {user} </div>
+            <Link to="/notificheristoratore"><Contatore /> Notifiche</Link>
             <Link to="#" onClick={onLogout} className="btn-logout">Logout</Link>
         </header>
     ),
@@ -96,7 +108,6 @@ export default function Layout({Content}) {
               <Header />
 
                 <main>
-                    <div> {role}! </div>
                     {Content}
 
                     {notification &&

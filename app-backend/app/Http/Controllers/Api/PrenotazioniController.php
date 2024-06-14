@@ -26,6 +26,8 @@ class PrenotazioniController extends Controller
         $validatedData = $request->validated();
         $prenotazione = Prenotazione::create($validatedData);
 
+        DB::insert('insert into notifiche(prenotazione,significato) values(?,"PRENOTAZIONE CREATA")',[$prenotazione->id]);
+
         return response()->json($prenotazione, 201);
     }
 
@@ -34,6 +36,8 @@ class PrenotazioniController extends Controller
         $request->validate([
             'stato' => 'required|in:Accettata,Rifiutata'
         ]);
+
+        DB::insert('insert into notifiche(prenotazione,significato) values(?,"PRENOTAZIONE STATO")',[$id]);
 
         $prenotazione = Prenotazione::findOrFail($id);
 
@@ -70,7 +74,7 @@ class PrenotazioniController extends Controller
             'prenotazioni.stato')
             ->join('ristoratori','ristoratori.id','=','prenotazioni.ristoratore')
             ->join('inviti','inviti.prenotazione','=','prenotazioni.id')
-            ->where('inviti.prenotazione',$id,'')
+            ->where('inviti.prenotazione',$id)
             ->get()->first();
         $ordinazioni = DB::select(<<<'EOF'
             select o.id, c.nome as c, pz.nome as pietanza,
@@ -125,6 +129,8 @@ class PrenotazioniController extends Controller
         ]);
 
         $prenotazione = Prenotazione::findOrFail($id);
+
+        DB::insert('insert into notifiche(prenotazione,significato) values(?,"PRENOTAZIONE CONTO")',[$prenotazione->id]);
 
         $prenotazione->divisione_conto = $request->input('divisione_conto');
         $prenotazione->save();

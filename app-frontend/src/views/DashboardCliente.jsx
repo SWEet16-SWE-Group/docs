@@ -53,7 +53,7 @@ export default function ClienteDashboard() {
         <>
             <form className="row row-cols-lg-auto g-3 align-items-center" onSubmit={LinkInvito}>
                 <div className="col-auto">
-                    <label for="link_invito">Hai un link di invito? Inseriscilo qui!</label>
+                    <label htmlFor="link_invito">Hai un link di invito? Inseriscilo qui!</label>
                 </div>
                 <div className="col-auto">
                     <input type="number" ref={linkRef} className="form-control" id="link_invito" placeholder="Codice invito"/>

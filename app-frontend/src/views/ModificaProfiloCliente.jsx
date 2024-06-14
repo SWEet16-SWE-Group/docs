@@ -76,7 +76,7 @@ export default function ModificaProfiloCliente() {
                 <div>
                     <form>
                         <div className="form-group row">
-                            <label for="nome" className="col-sm-2 col-form-label">Username</label>
+                            <label htmlFor="nome" className="col-sm-2 col-form-label">Username</label>
                             <div className="col-sm-10">
                                 <input type="text" className="form-control" id="nome" name="nome" value={username} role="nameChanger"
                                        onChange={ev =>

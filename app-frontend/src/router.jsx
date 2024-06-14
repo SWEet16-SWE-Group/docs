@@ -3,7 +3,9 @@ import SignUp from "./views/SignUp.jsx";
 import Login from "./views/Login";
 import NotFound from "./views/NotFound.jsx";
 
-import Layout from "./components/Layout"
+import Layout from "./components/Layout.jsx";
+
+import Notifiche from "./views/Notifiche.jsx";
 
 import ModificaInfoAccount from "./views/ModificaInfoAccount";
 import SelezioneProfilo from "./views/SelezioneProfilo";
@@ -138,6 +140,10 @@ const router = createBrowserRouter([
        path: '/divisionecontopagamentocliente/:id',
        element: <Cliente Content={<DivisioneContoPagamento />} />
     },
+    {
+       path: '/notifichecliente/',
+       element: <Cliente Content={<Notifiche />} />
+    },
 
     //RISTORATORE
     {
@@ -167,6 +173,10 @@ const router = createBrowserRouter([
     {
        path: '/divisionecontopagamentoristoratore/:id',
        element: <Ristoratore Content={<DivisioneContoPagamento />} />
+    },
+    {
+       path: '/notificheristoratore/',
+       element: <Ristoratore Content={<Notifiche />} />
     },
 
     // 404
