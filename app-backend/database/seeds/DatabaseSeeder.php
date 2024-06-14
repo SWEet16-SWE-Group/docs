@@ -13,7 +13,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
-        return;
+        //return;
 
         DB::insert("insert into users(id, email, password) values(1, 'a@a.com','\$2y\$10\$k99Wav18aOivqAy1JJRN9.jJqsbcxdX/.H2DUgnKop71j/Lc26J1W');");
         DB::insert("insert into clients(id, user, nome) values(1,1,'a');");
@@ -51,7 +51,10 @@ class DatabaseSeeder extends Seeder
         DB::insert("insert into ricette(pietanza, ingrediente) values (4,5);");
         DB::insert("insert into ricette(pietanza, ingrediente) values (4,6);");
         DB::insert("insert into prenotazioni(id, ristoratore, orario, numero_inviti) values(1, 1, '2024-06-28', 8);");
+        DB::insert("insert into notifiche(prenotazione,significato) values(1,'PRENOTAZIONE CREATA');");
         DB::insert("insert into inviti(id, prenotazione, cliente) values(1, 1, 1);");
+        DB::insert("insert into notifiche(invito,significato) values(1,'INVITO ACCETTATO');");
         DB::insert("insert into ordinazioni(id, invito, pietanza) values(1, 1, 3);");
+        DB::insert("insert into notifiche(ordinazione,significato) values(1,'ORDINAZIONE CREATA');");
     }
 }
