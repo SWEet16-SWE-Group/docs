@@ -20,15 +20,16 @@ class CreateNotificheTable extends Migration
             $table->integer('ordinazione')->nullable();
             $table->integer('invito')->nullable();
             $table->enum('significato', [
+                //risto
                 'PRENOTAZIONE CREATA',
-                'PRENOTAZIONE STATO',
                 'PRENOTAZIONE CONTO',
-                'PRENOTAZIONE CANCELLATA',
-                'INVITO ACCETTATO',
-                'INVITO PAGATO',
                 'ORDINAZIONE CREATA',
-                'ORDINAZIONE CANCELLATA',
                 'ORDINAZIONE PAGATA',
+                'INVITO PAGATO',
+
+                //cli
+                'PRENOTAZIONE STATO',
+                'INVITO ACCETTATO',
             ]);
             $table->timestamps();
         });
