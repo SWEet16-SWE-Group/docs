@@ -35,7 +35,7 @@ function riga(a){
       desc:<p>{a.cliente.nome} ha pagato: <Link to="">{a.pietanza.nome}</Link>.</p>
     }),
   })[a.significato](a);
-  c = ({time: a.created_at, desc: b.desc});
+  const c = ({time: a.created_at, desc: b.desc});
   return (<tr key={c.time}><td>{c.time}</td><td>{c.desc}</td></tr>);
 }
 
