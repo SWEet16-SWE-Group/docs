@@ -28,6 +28,7 @@ class NotificheControllerTest extends TestCase
         $response = $this->getJson('/api/notifiche_info/cliente/1');
 
         $response->assertStatus(200);
+        $this->assertDatabaseHas('notifiche',['lettura' => 'LETTO']);
     }
 
     /**
@@ -43,6 +44,7 @@ class NotificheControllerTest extends TestCase
         $response = $this->getJson('/api/notifiche_info/ristoratore/1');
 
         $response->assertStatus(200);
+        $this->assertDatabaseHas('notifiche',['lettura' => 'LETTO']);
     }
 
     /**
