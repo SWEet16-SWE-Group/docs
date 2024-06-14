@@ -41,3 +41,22 @@ Connessione Internet & Connessione Internet stabile e veloce, in grado di suppor
 \end{longtblr}
 \end{center}
 
+\subsection{Requisiti software}
+
+L’applicazione è stata testata sui browser principali, di cui si riportano le versioni iniziali, dalle quali si è cominciato a sviluppare il progetto, considerando incrementalmente le versioni più recenti dei singoli browser.
+
+\begin{center}
+\begin{longtblr}{
+colspec={|X[m,4.5cm]|X[m,11cm]|},
+row{odd}={bg=white},
+row{even}={bg=lightgray}
+}
+\hline
+\textbf{Browser} & \textbf{Versione} \\ \hline
+Google Chrome & 110.0 \\ 
+Microsoft Edge & 94.0 \\ 
+Mozilla Firefox & 115.0 \\ 
+Safari & 17.0 \\ 
+\end{longtblr}
+\end{center}
+
