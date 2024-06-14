@@ -109,7 +109,7 @@ class NotificheController extends Controller
     }
 
     public function count($tipo,$id){
-        $return = count($this->_notifiche($id,$tipo));
+        $return = count(array_filter($this->_notifiche($id,$tipo), fn ($a) => $a->lettura == 'NON LETTO'));
         return response()->json(['count' => $return], 200);
     }
 }
