@@ -90,11 +90,14 @@ class NotificheController extends Controller
         foreach($return as &$a){
             $a->d = $a->d[0];
         }
-        $return = array_filter($return, fn ($a) => ((array)($a->d))[$tipo == 'cliente' ? 'c_id' : 'r_id'] == $id);
+        $return = array_filter($return, fn ($a) => match($tipo){
+            'cliente'       => $a->d->c_id == $id,
+            'ristoratore'   => $a->d->r_id == $id,
+        });
         return $return;
     }
 
-    public function notifiche($id,$tipo){
+    public function notifiche($tipo,$id){
         $return = $this->_notifiche($id,$tipo);
         foreach ($return as $a) {
             DB::update('update notifiche as n set n.lettura = "LETTO" where n.id = ? ;',[$a->id]);
@@ -102,7 +105,7 @@ class NotificheController extends Controller
         return response()->json($return, 200);
     }
 
-    public function count($id,$tipo){
+    public function count($tipo,$id){
         $return = count($this->_notifiche($id,$tipo));
         return response()->json($return, 200);
     }
