@@ -5,35 +5,31 @@ import {createRef} from "react";
 import {useStateContext} from "../contexts/ContextProvider.jsx";
 import RestaurantCard from "../components/RestaurantCard.jsx";
 
-function Riga(a){
-  const {role} = useStateContext();
+function riga(a, role){
   const b = ({
+    //RISTORATORE
     'PRENOTAZIONE CREATA':    a => ({
-      desc:<p>{a.d.c_nome} ha creato una <Link to="">prenotazione</Link>.</p>
-    }),
-    'PRENOTAZIONE STATO':     a => ({
-      desc:<p>{a.d.r_nome} ha reso tua <Link to="">prenotazione</Link>: {a.prenotazione.stato}.</p>
+      desc:<p>{a.c_nome} ha creato una <Link to={`/dettagliprenotazioneristoratore/${a.p_id}`}>prenotazione</Link>.</p>,
     }),
     'PRENOTAZIONE CONTO':     a => ({
-      desc:<p>{a.d.c_nome} ha scelto una divisione del conto per la <Link to="">prenotazione</Link>.</p>
-    }),
-    'PRENOTAZIONE CANCELLATA':a => ({
-      desc:<p>{a.d.c_nome} ha cancellato la sua prenotazione.</p>
-    }),
-    'INVITO ACCETTATO':       a => ({
-      desc:<p>{a.d.c_nome} ha accettato l'invito alla <Link to="">prenotazione</Link>.</p>
-    }),
-    'INVITO PAGATO':          a => ({
-      desc:<p>{a.d.c_nome} ha pagato la sua <Link to="">quota</Link>.</p>
+      desc:<p>È stata scelto una divisione del conto per la <Link to={`/divisionecontopagamentoristoratore/${a.p_id}`}>prenotazione</Link>.</p>,
     }),
     'ORDINAZIONE CREATA':     a => ({
-      desc:<p>{a.d.c_nome} ha ordinato: <Link to="">{a.d.pz_nome}</Link>.</p>
-    }),
-    'ORDINAZIONE CANCELLATA': a => ({
-      desc:<p>{a.d.c_nome} ha cancellato la sua ordinazione.</p>
+      desc:<p>{a.c_nome} ha ordinato: <Link to={`/dettagliprenotazioneristoratore/${a.p_id}`}>{a.pz_nome}</Link>.</p>,
     }),
     'ORDINAZIONE PAGATA':     a => ({
-      desc:<p>{a.d.c_nome} ha pagato: <Link to={`/divisionecontopagamento${role}/${a.d.p_id}`}>{a.d.pz_nome}</Link>.</p>
+      desc:<p>{a.c_nome} ha pagato: <Link to={`/divisionecontopagamento${role}/${a.p_id}`}>{a.pz_nome}</Link>.</p>,
+    }),
+    'INVITO PAGATO':          a => ({
+      desc:<p>{a.c_nome} ha pagato la sua <Link to={`/divisionecontopagamentoristoratore/${a.p_id}`}>quota</Link>.</p>,
+    }),
+
+    //CLIENTE
+    'PRENOTAZIONE STATO':     a => ({
+      desc:<p>{a.r_nome} ha reso tua <Link to={`/prenotazione_c/${a.p_id}`}>prenotazione</Link>: {a.p_stato}.</p>,
+    }),
+    'INVITO ACCETTATO':       a => ({
+      desc:<p>{a.c_nome} ha accettato l'invito alla <Link to={`/prenotazione_c/${a.p_id}`}>prenotazione</Link>.</p>,
     }),
   })[a.significato](a);
   const c = ({time: a.created_at, desc: b.desc});
@@ -45,11 +41,11 @@ export default function Notifiche() {
     const [notifiche, setNotifiche] = useState(null);
 
     async function fetch(){
-      const {data: data} = await axiosClient.get(`/notifiche_info/${role}/${profile}`);
+      const {data: data} = await axiosClient.get(`/notifiche_info/${role.toLowerCase()}/${profile}`);
       setNotifiche(data);
     }
 
-    //useEffect(() => { fetch(); }, []);
+    useEffect(() => { fetch(); }, []);
 
     return (
         <div>
@@ -61,6 +57,7 @@ export default function Notifiche() {
               </tr>
             </thead>
             <tbody>
+              {notifiche && notifiche.map(a => riga(a, role))}
             </tbody>
           </table>
         </div>
