@@ -8,51 +8,43 @@
 
 ## Usare il progetto:
 
-Assicurarsi di avere installato Docker Desktop e Docker Compose, aprire un terminale e posizionarsi nella cartella del progetto, chiamare il comando:
+Dopo aver clonato la repository, assicurarsi di avere Docker e Docker Compose installati.
+
+Con il Docker Daemon in esecuzione aprire un terminale e posizionarsi nella cartella del progetto, chiamare il seguente 
+comando per creare i container la prima volta:
 
 ```
-docker-compose up --build
+docker-compose up --build -d
 ```
 
-Aprire ora un altro terminale e chiamare: 
+Entrare ora nel container di php con:
 ```
 docker-compose exec php sh
 ```
 
-E: 
-```
-composer install
-```
-
-Ora: 
-```
-php artisan key:generate
-```
-
-Ed infine:
+E generare le tabelle del database necessarie tramite: 
 ```
 php artisan migrate
 ```
 
-Controllare ora se la pagina di laravel (localhost/8000) non dia errori, se così non fosse chiamare sempre da dentro il container docker:
+Controllare ora che la pagina di Laravel (localhost:8000) non dia errori, se così non fosse chiamare sempre da dentro il container php:
 ```
 chmod -R 777 storage
 ```
 
-Per collegarsi a React andare su:
+Per acccedere all'applicazione (React) collegati a:
 
 ```
-localhost/3000
+localhost:3000
 ```
 
-Per collegarsi a Laravel andare su:
+Per visionare il database (PhpmyAdmin) collegati a:
 
 ```
-localhost/8000
+localhost:8443
 ```
 
-Per collegarsi a PhpmyAdmin andare su:
+Utilizzare le seguenti credenziali di accesso per il DB:
 
-```
-localhost/8443
-```
+- **Username**: root
+- **Password**: root
