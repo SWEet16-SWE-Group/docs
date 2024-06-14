@@ -61,10 +61,6 @@ Safari & 17.0 \\
 \end{longtblr}
 \end{center}
 
-\section{Istruzioni all'uso}
-
-// DA FARE TERMINATA LA CODIFICA
-
 \section{Supporto tecnico}
 
 Per eventuali malfunzionamenti riscontrati durante l’utilizzo dell’applicazione, si prega di contattare il supporto tecnico inviando una mail all’indirizzo:
