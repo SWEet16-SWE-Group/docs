@@ -16,13 +16,14 @@ class CreateNotificheTable extends Migration
         Schema::create('notifiche', function (Blueprint $table) {
             $table->id();
             $table->enum('lettura', ['NON LETTO','LETTO'])->default('NON LETTO');
-            $table->foreignId('prenotazione')->nullable()->constrained('prenotazioni')->nullOnDelete();
-            $table->foreignId('ordinazione')->nullable()->constrained('ordinazioni')->nullOnDelete();
-            $table->foreignId('invito')->nullable()->constrained('inviti')->nullOnDelete();
+            $table->integer('prenotazione')->nullable();
+            $table->integer('ordinazione')->nullable();
+            $table->integer('invito')->nullable();
             $table->enum('significato', [
                 'PRENOTAZIONE CREATA',
                 'PRENOTAZIONE STATO',
                 'PRENOTAZIONE CONTO',
+                'PRENOTAZIONE CANCELLATA',
                 'INVITO ACCETTATO',
                 'INVITO PAGATO',
                 'ORDINAZIONE CREATA',
