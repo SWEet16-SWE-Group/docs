@@ -3,22 +3,20 @@
 
 \subsection{Scopo del documento}
 
-Il presente documento ha lo scopo di descrivere e motivare tutte le scelte architetturali che sono state fatte nella fase di progettazione e codifica del prodotto.\\
-Vengono quindi descritte l'architettura logica e di deployment, i design pattern adottati e le tecnologie impiegate nella realizzazione del prodotto per il progetto \textit{Easy Meal}.
+Lo scopo di questo documento è quello di illustrare le istruzioni per l’utilizzo e le funzionalità fornite dall’applicazione. 
+Grazie a ciò l’utente sarà a conoscenza dei requisiti minimi necessari per il corretto funzionamento dell’applicazione, di come installarla in locale e di come farne un utilizzo consapevole.
+
 \subsection{Scopo del prodotto}
 
-Lo scopo dell’applicazione è quello di creare una piattaforma che permetta di gestire e semplificare il processo di \emph{prenotazione}$^{G}$ di tavoli all’interno dei ristoranti. \\
-Sarà inoltre possibile anticipare l’esperienza culinaria visionando prima il menù ed andando ad effettuare la propria \emph{ordinazione}$^{G}$ prima di arrivare al ristorante. \\
-Il prodotto offre inoltre un’esperienza di ordinazione delle \emph{pietanze}$^{G}$ collaborativa e coinvolgente, permettendo di condividerla con amici.
-
-L’idea è una piattaforma \emph{SaaS (Software as a Service)}$^{G}$, in cui i saranno presenti due tipi di utenti:
+L'obiettivo del progetto è creare una piattaforma per la gestione delle prenotazioni e delle ordinazioni nei ristoranti, rivolta sia ai clienti che ai ristoratori, con l'obiettivo di ottimizzare il tempo per entrambe le parti. 
+La piattaforma consente agli utenti di accedere al proprio account attraverso un sistema di accesso e condivisione, permettendo l'interazione con vari ristoranti nei quali si vuole consumare un pasto i quali, a loro volta, potranno accettare o rifiutare prenotazioni e ordinazioni.
+Possiamo quindi distinguere::
 \begin{itemize}
-\item \emph{Cliente}$^{G}$: Utente registrato all’interno dell’applicazione, può cercare ristoranti, effettuare prenotazioni, ordinazioni e inserire feedback e recensioni;
-\item \emph{Ristoratore}$^{G}$: Utente registrato all’interno dell’applicazione, può gestire uno o più ristoranti, controllando le prenotazioni e le ordinazioni dei clienti ed i menù del/i ristorante/i.
+    \item Utenti consumatori (definiti come \textbf{Clienti}) che effettuano prenotazioni e ordinazioni;.
+    \item Utenti amministratori (defiti come \textbf{Ristoratori}) che, oltre a  gestire prenotazioni e ordinazioni, possono creare, modificare e cancellare le pietanze del proprio ristorante.
 \end{itemize}
 
-
-La piattaforma dovrà essere disponibile attraverso una \emph{Webapp}$^{G}$ accessibile da qualsiasi dispositivo, esso sia \emph{Desktop}$^{G}$ o \emph{Mobile}$^{G}$.
+Per garantire la massima compatibilità, la piattaforma sarà accessibile tramite browser e supporterà tecnologie come React, CSS, Laravel, oltre ad altre tecnologie che verranno definite in seguito.
 
 
 \subsection{Glossario}
