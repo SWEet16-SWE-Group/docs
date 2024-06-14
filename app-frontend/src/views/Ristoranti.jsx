@@ -6,7 +6,7 @@ import {useStateContext} from "../contexts/ContextProvider.jsx";
 import RestaurantCard from "../components/RestaurantCard.jsx";
 
 function ristorante(a){
-  return <RestaurantCard restaurant={a} />;
+  return <RestaurantCard key={a.id} restaurant={a} />;
   //return (
   //    <div key={a.id}>
   //      <Link to={`/ristorante/${a.id}`} key={a.id}> {a.nome} @ {a.indirizzo} # {a.telefono} | {a.orario} </Link>

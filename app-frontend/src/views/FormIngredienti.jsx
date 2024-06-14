@@ -95,7 +95,7 @@ export default function FormIngrediente() {
                                             handleCheckboxChange(event)
                                         }
                                         }/>
-                                    <label className="form-check-label" for={allergene.id}>
+                                    <label className="form-check-label" htmlFor={allergene.id}>
                                         {allergene.nome}
                                     </label>
                                 </div>

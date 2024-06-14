@@ -94,7 +94,7 @@ export default function FormPietanza() {
                                             handleCheckboxChange(event)
                                         }
                                         }/>
-                                    <label className="form-check-label" for={ingrediente.id}>
+                                    <label className="form-check-label" htmlFor={ingrediente.id}>
                                         {ingrediente.nome}
                                     </label>
                                 </div>);
