@@ -50,10 +50,16 @@ class DatabaseSeeder extends Seeder
         DB::insert("insert into ricette(pietanza, ingrediente) values (4,3);");
         DB::insert("insert into ricette(pietanza, ingrediente) values (4,5);");
         DB::insert("insert into ricette(pietanza, ingrediente) values (4,6);");
+
         DB::insert("insert into prenotazioni(id, ristoratore, orario, numero_inviti) values(1, 1, '2024-06-28', 8);");
         DB::insert("insert into notifiche(prenotazione,significato) values(1,'PRENOTAZIONE CREATA');");
+
+        DB::insert("update prenotazioni set stato = 'Accettata' where id = 1;");
+        DB::insert("insert into notifiche(prenotazione,significato) values(1,'PRENOTAZIONE STATO');");
+
         DB::insert("insert into inviti(id, prenotazione, cliente) values(1, 1, 1);");
         DB::insert("insert into notifiche(invito,significato) values(1,'INVITO ACCETTATO');");
+
         DB::insert("insert into ordinazioni(id, invito, pietanza) values(1, 1, 3);");
         DB::insert("insert into notifiche(ordinazione,significato) values(1,'ORDINAZIONE CREATA');");
     }

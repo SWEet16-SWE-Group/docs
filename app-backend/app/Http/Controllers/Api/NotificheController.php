@@ -107,6 +107,6 @@ class NotificheController extends Controller
 
     public function count($tipo,$id){
         $return = count($this->_notifiche($id,$tipo));
-        return response()->json($return, 200);
+        return response()->json(['count' => $return], 200);
     }
 }

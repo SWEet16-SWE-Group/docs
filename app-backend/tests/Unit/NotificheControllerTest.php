@@ -60,6 +60,7 @@ class NotificheControllerTest extends TestCase
         $response = $this->getJson('/api/notifiche_count/cliente/1');
 
         $response->assertStatus(200);
+        $response->assertJson(['count' => 2]);
     }
 
     /**
@@ -75,5 +76,6 @@ class NotificheControllerTest extends TestCase
         $response = $this->getJson('/api/notifiche_count/ristoratore/1');
 
         $response->assertStatus(200);
+        $response->assertJson(['count' => 2]);
     }
 }
