@@ -100,7 +100,7 @@ class NotificheController extends Controller
     public function notifiche($tipo,$id){
         $return = $this->_notifiche($id,$tipo);
         foreach ($return as $a) {
-            DB::update('update notifiche as n set n.lettura = "LETTO" where n.id = ? ;',[$a->id]);
+            DB::update('update notifiche as n set lettura = "LETTO" where id = ? ;',[$a->id]);
         }
         return response()->json($return, 200);
     }
