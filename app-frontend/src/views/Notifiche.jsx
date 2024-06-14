@@ -29,7 +29,7 @@ function riga(a, role){
       desc:<p>{a.r_nome} ha reso tua <Link to={`/prenotazione_c/${a.p_id}`}>prenotazione</Link>: {a.p_stato}.</p>,
     }),
     'INVITO ACCETTATO':       a => ({
-      desc:<p>{a.c_nome} ha accettato l'invito alla <Link to={`/prenotazione_c/${a.p_id}`}>prenotazione</Link>.</p>,
+      desc:<p>{a.i_nome} ha accettato l'invito alla <Link to={`/prenotazione_c/${a.p_id}`}>prenotazione</Link>.</p>,
     }),
   })[a.significato](a);
   const c = ({time: a.created_at, desc: b.desc});
