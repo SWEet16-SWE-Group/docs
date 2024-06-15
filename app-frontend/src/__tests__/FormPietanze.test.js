@@ -55,6 +55,19 @@ describe('FormIngrediente', () => {
         expect(screen.getByRole('button', { name: 'Annulla' })).toBeInTheDocument();
     });
 
+    it('I changed my mind!', () => {
+        renderWithContext(<FormPietanza />);
+
+        expect(screen.getByText('Aggiungi Pietanza')).toBeInTheDocument();
+        expect(screen.getByLabelText('Nome Pietanza')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'Aggiungi' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'Annulla' })).toBeInTheDocument();
+
+        act(() => {
+            fireEvent.click(screen.getByText('Annulla'));
+        });
+    });
+
     it('handles input changes', () => {
         renderWithContext(<FormPietanza />);
 
@@ -66,10 +79,74 @@ describe('FormIngrediente', () => {
     it('handles successful form submission', async () => {
         const ristoratoreId = '1';
         axiosClient.post.mockResolvedValueOnce({ data: { status: 'success' } });
+        axiosClient.get.mockResolvedValueOnce({
+            data : [
+                {
+                    id:'farina_id',
+                    nome:'farina',
+            },
+            {
+                id:'mozzarella_id',
+                nome:'mozzarella',
+            },
+            {
+                id:'pomodoro_id',
+                nome:'pomodoro',
+            }
+        ]
+        });
         renderWithContext(<FormPietanza />);
+
+        await waitFor( () => {
+            expect(screen.getByText('farina')).toBeInTheDocument();
+            expect(screen.getByText('pomodoro')).toBeInTheDocument();
+            expect(screen.getByText('mozzarella')).toBeInTheDocument();
+        });
     
         act(() => {
             fireEvent.change(screen.getByLabelText('Nome Pietanza'), { target: { value: 'Pasta' } });
+            fireEvent.click(screen.getByLabelText('farina'));
+            fireEvent.click(screen.getByRole('button', { name: 'Aggiungi' }));
+        });
+    
+        await waitFor(() => {
+            expect(axiosClient.post).toHaveBeenCalledWith('/pietanze', { ristoratore: ristoratoreId, nome: 'Pasta', ingredienti : ['farina_id'],  });
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
+            expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Pietanza aggiunta con successo.');
+            //expect(navigate).toHaveBeenCalledWith(`/gestioneingredienti/${ristoratoreId}`);
+        });
+    });
+    it('Testing ingredients de/selection', async () => {
+        const ristoratoreId = '1';
+        axiosClient.post.mockResolvedValueOnce({ data: { status: 'success' } });
+        axiosClient.get.mockResolvedValueOnce({
+            data : [
+                {
+                    id:'farina_id',
+                    nome:'farina',
+            },
+            {
+                id:'mozzarella_id',
+                nome:'mozzarella',
+            },
+            {
+                id:'pomodoro_id',
+                nome:'pomodoro',
+            }
+        ]
+        });
+        renderWithContext(<FormPietanza />);
+
+        await waitFor( () => {
+            expect(screen.getByText('farina')).toBeInTheDocument();
+            expect(screen.getByText('pomodoro')).toBeInTheDocument();
+            expect(screen.getByText('mozzarella')).toBeInTheDocument();
+        });
+    
+        act(() => {
+            fireEvent.change(screen.getByLabelText('Nome Pietanza'), { target: { value: 'Pasta' } });
+            fireEvent.click(screen.getByLabelText('farina'));
+            fireEvent.click(screen.getByLabelText('farina'));
             fireEvent.click(screen.getByRole('button', { name: 'Aggiungi' }));
         });
     
@@ -77,11 +154,8 @@ describe('FormIngrediente', () => {
             expect(axiosClient.post).toHaveBeenCalledWith('/pietanze', { ristoratore: ristoratoreId, nome: 'Pasta', ingredienti : [],  });
             expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Pietanza aggiunta con successo.');
-            //expect(navigate).toHaveBeenCalledWith(`/gestioneingredienti/${ristoratoreId}`);
         });
     });
-    
-    
 
     it('handles form submission errors', async () => {
         axiosClient.post.mockRejectedValueOnce(new Error('API Error'));
