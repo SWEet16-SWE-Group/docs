@@ -35,6 +35,19 @@ describe('FormIngrediente', () => {
     let mockUseStateContext;
 
     beforeEach(() => {
+        axiosClient.get.mockResolvedValueOnce({
+            data : [
+                {
+                    id:'latticini_id',
+                    nome:'latticini',
+                },
+                {
+                    id:'graminacee_id',
+                    nome:'graminacee',
+                },
+            ]
+        });
+
         mockUseStateContext = {
             setNotification: jest.fn(),
             setNotificationStatus: jest.fn(),
@@ -46,20 +59,47 @@ describe('FormIngrediente', () => {
         jest.clearAllMocks();
     });
 
-    it('renders the form correctly', () => {
+    it('renders the form correctly',async () => {
         renderWithContext(<FormIngrediente />);
 
         expect(screen.getByText('Aggiungi Ingrediente')).toBeInTheDocument();
         expect(screen.getByLabelText('Nome Ingrediente')).toBeInTheDocument();
         expect(screen.getByRole('button', { name: 'Aggiungi' })).toBeInTheDocument();
         expect(screen.getByRole('button', { name: 'Annulla' })).toBeInTheDocument();
+
+        await waitFor(()=> {
+            expect(screen.getByText('graminacee')).toBeInTheDocument();
+            expect(screen.getByText('latticini')).toBeInTheDocument();
+        });
+    });
+
+    it('Testing changing idea', () => {
+        renderWithContext(<FormIngrediente />);
+
+        expect(screen.getByText('Aggiungi Ingrediente')).toBeInTheDocument();
+        expect(screen.getByLabelText('Nome Ingrediente')).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'Aggiungi' })).toBeInTheDocument();
+        expect(screen.getByRole('button', { name: 'Annulla' })).toBeInTheDocument();
+
+        act(() => {
+            fireEvent.click(screen.getByRole('button', { name: 'Annulla' }));
+        });
+    });
+
+    it('Allergeni fetching goes wrong',async () => {
+        jest.clearAllMocks();
+        axiosClient.get.mockRejectedValueOnce({});
+        renderWithContext(<FormIngrediente />);
+
     });
 
     it('handles input changes', () => {
         renderWithContext(<FormIngrediente />);
 
         const input = screen.getByLabelText('Nome Ingrediente');
-        fireEvent.change(input, { target: { value: 'Pomodoro' } });
+        act(() => {
+            fireEvent.change(input, { target: { value: 'Pomodoro' } });
+        });
         expect(input.value).toBe('Pomodoro');
     });
 
@@ -67,14 +107,19 @@ describe('FormIngrediente', () => {
         const ristoratoreId = '1';
         axiosClient.post.mockResolvedValueOnce({ data: { status: 'success' } });
         renderWithContext(<FormIngrediente />);
-    
+        
+        await waitFor(()=> {
+            expect(screen.getByText('latticini')).toBeInTheDocument();
+        });
+
         act(() => {
             fireEvent.change(screen.getByLabelText('Nome Ingrediente'), { target: { value: 'Pomodoro' } });
+            fireEvent.click(screen.getByText('latticini'));
             fireEvent.click(screen.getByRole('button', { name: 'Aggiungi' }));
         });
     
         await waitFor(() => {
-            expect(axiosClient.post).toHaveBeenCalledWith('/ingredienti', { ristoratore: ristoratoreId, allergie: [], nome: 'Pomodoro' });
+            expect(axiosClient.post).toHaveBeenCalledWith('/ingredienti', { ristoratore: ristoratoreId, allergie: ['latticini_id'], nome: 'Pomodoro' });
             expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Ingrediente aggiunto con successo.');
             //expect(navigate).toHaveBeenCalledWith(`/gestioneingredienti/${ristoratoreId}`);
