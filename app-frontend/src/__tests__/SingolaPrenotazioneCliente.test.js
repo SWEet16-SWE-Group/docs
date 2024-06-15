@@ -20,7 +20,7 @@ const renderWithContext = (component) => {
     act(() => {
         render(
             <ContextProvider>
-                <MemoryRouter initialEntries={['/dettagliprenotazionecliente/1']}>
+                <MemoryRouter initialEntries={['/dettagliprenotazionecliente/prenotazione_id']}>
                     <Routes>
                         <Route path="/dettagliprenotazionecliente/:id" element={component} />
                     </Routes>
@@ -47,10 +47,10 @@ describe('Single prenotation testing', () => {
                         {
                             nome : 'Todaro',
                             ordinazioni : [{
-                                id : '1234',
-                                pietanza : '',
-                                aggiunte : '',
-                                rimozioni : '',
+                                id : 'ordinazione_id',
+                                pietanza : 'Pizza margherita',
+                                aggiunte : 'Acciughe',
+                                rimozioni : 'Mozzarella',
                             }],
                         }
                     ],
@@ -73,12 +73,105 @@ describe('Single prenotation testing', () => {
     it('Fetching reservation data goes well',async () => {
         renderWithContext(<ClientePrenotazione/>);
 
-        expect(axiosClient.get).toHaveBeenCalledWith('/prenotazione_c/1');
+        expect(axiosClient.get).toHaveBeenCalledWith('/prenotazione_c/prenotazione_id');
 
         await waitFor ( () => {
             expect(screen.getByText('Da Luigi')).toBeInTheDocument();
-
+            expect(screen.getByText('Pizza margherita')).toBeInTheDocument();
+            expect(screen.getByText('Acciughe')).toBeInTheDocument();
+            expect(screen.getByText('Mozzarella')).toBeInTheDocument();
         });
     });
 
+    it('Reservation deletion goes well',async () => {
+        axiosClient.delete.mockResolvedValueOnce({data:{}});
+        window.confirm = jest.fn().mockImplementation(() => true)
+
+        renderWithContext(<ClientePrenotazione/>);
+
+        expect(axiosClient.get).toHaveBeenCalledWith('/prenotazione_c/prenotazione_id');
+
+        await waitFor ( () => {
+            expect(screen.getByText('Da Luigi')).toBeInTheDocument();
+        });
+
+        act( () => {
+            fireEvent.click(screen.getByText(/Annulla prenotazione/i));
+        });
+
+        await waitFor(() => {       
+            expect(axiosClient.delete).toHaveBeenCalledWith('/prenotazione/prenotazione_id');
+            expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Prenotazione annullata con successo.');
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
+        });
+    });
+
+    it('Reservation deletion goes wrong',async () => {
+        axiosClient.delete.mockRejectedValueOnce({data:{}});
+        window.confirm = jest.fn().mockImplementation(() => true)
+
+        renderWithContext(<ClientePrenotazione/>);
+
+        expect(axiosClient.get).toHaveBeenCalledWith('/prenotazione_c/prenotazione_id');
+
+        await waitFor ( () => {
+            expect(screen.getByText('Da Luigi')).toBeInTheDocument();
+        });
+
+        act( () => {
+            fireEvent.click(screen.getByText(/Annulla prenotazione/i));
+        });
+
+        await waitFor(() => {       
+            expect(axiosClient.delete).toHaveBeenCalledWith('/prenotazione/prenotazione_id');
+            expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Errore durante l\'eliminazione della prenotazione.');
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('error');
+        });
+    });
+
+    it('Order deletion goes well',async () => {
+        axiosClient.delete.mockResolvedValueOnce({data:{}});
+        window.confirm = jest.fn().mockImplementation(() => true)
+
+        renderWithContext(<ClientePrenotazione/>);
+
+        expect(axiosClient.get).toHaveBeenCalledWith('/prenotazione_c/prenotazione_id');
+
+        await waitFor ( () => {
+            expect(screen.getByText('Da Luigi')).toBeInTheDocument();
+        });
+
+        act( () => {
+            fireEvent.click(screen.getByText(/Cancella/i));
+        });
+
+        await waitFor(() => {       
+            expect(axiosClient.delete).toHaveBeenCalledWith('/ordinazione/ordinazione_id');
+            expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Ordinazione eliminata con successo.');
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('success');
+        });
+    });
+
+    it('Order deletion goes wrong',async () => {
+        axiosClient.delete.mockRejectedValueOnce({data:{}});
+        window.confirm = jest.fn().mockImplementation(() => true)
+
+        renderWithContext(<ClientePrenotazione/>);
+
+        expect(axiosClient.get).toHaveBeenCalledWith('/prenotazione_c/prenotazione_id');
+
+        await waitFor ( () => {
+            expect(screen.getByText('Da Luigi')).toBeInTheDocument();
+        });
+
+        act( () => {
+            fireEvent.click(screen.getByText(/Cancella/i));
+        });
+
+        await waitFor(() => {       
+            expect(axiosClient.delete).toHaveBeenCalledWith('/ordinazione/ordinazione_id');
+            expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Errore durante l\'eliminazione dell\'ordinazione.');
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('error');
+        });
+    });
 });
