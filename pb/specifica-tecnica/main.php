@@ -147,9 +147,12 @@ $architettura =
     ],
   ];
 
-echo _stampatex($architettura, 'Architettura', 'section');
+//echo _stampatex($architettura, 'Architettura', 'section');
+
 
 ?>
+
+<?php require_once  __DIR__ . "/src/architettura.php"; ?>
 
 <?php require_once  __DIR__ . "/src/requisiti-soddisfatti.php"; ?>
 
