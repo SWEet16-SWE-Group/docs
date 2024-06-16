@@ -1,6 +1,22 @@
 \pagebreak
 \section{Architettura}
 
+\subsection{Architettura di Deployment}
+
+SWEet16 ha deciso di adottare un'architettura a tre livelli per implementare \textit{Easy Meal}. \\
+
+Questa architettura va a separare la logica di presentazione dalla logica di business e dal database.
+Questi tre livelli comunicano tra di loro attraverso interfacce ben definite.
+
+Nel dettaglio sono:
+\begin{itemize}
+    \item \textbf{Livello di presentazione (frontend):} viene utilizzato React, che riceve i dati dall'utente e mostra le informazioni restituite dal backend;
+    \item \textbf{Livello di logica applicativa (backend):} viene utilizzato Laravel, che gestisce la logica di business elaborando le richieste del frontend interagendo con il database
+            per recuperare o salvare i dati;
+    \item \textbf{Livello di Dati (database):} viene utilizzato MySQL, che si occupa della gestione dei dati.
+
+Questo approccio ha permesso al team di lavorare in modo parallelo sul frontend e sul backend, riducendo i tempi di sviluppo e rendendo più facile l'implementazione dei test.
+
 \subsection{Architettura Front-end}
 
 \subsubsection{Introduzione}
