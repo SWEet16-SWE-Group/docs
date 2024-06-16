@@ -61,8 +61,6 @@ echo  tabelle_tecnologie(
     ['ReactJs', 'Libreria grafica per facilitare lo sviluppo front-end gestendo modularmente le componenti grafiche, permettendo performance buone grazie all\'efficacia della sua renderizzazione', '18.2.x'],
     ['Laravel', 'Framework PHP utilizzato per facilitare la creazione di API Rest', '11'],
     ['Axios', 'Libreria JavaScript che viene utilizzata per effettuare richieste HTTP sia negli ambienti browser che Node.js', '11.x'],
-    ['MaterialUI', 'Framework di componenti React preconfezionati per la creazione di interfacce utente gradevoli, funzionali e personalizzabili', '4.1.x'],
-    ['Shadcn/ui', 'Libreria di componenti React utilizzata per facilitare la codifica del front-end, incorporando nell’interfaccia grafica componenti prefabbricate, personalizzabili e altamente riutilizzabili', '0.8.0'],
   ]
 );
 
