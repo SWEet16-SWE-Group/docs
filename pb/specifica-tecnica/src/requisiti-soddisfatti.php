@@ -54,9 +54,9 @@ Non soddisfatto & RFF04 & Il cliente deve visualizzare un messaggio d'errore se 
 Non soddisfatto & RFF05 & Il cliente deve poter effettuare il pagamento tramite l'app \\ \hline
 Soddisfatto & RFO29 & Il cliente deve visualizzare un messaggio d'errore nel caso il pagamento non sia andato a buon fine \\ \hline
 Non soddisfatto & RFF06 & Il cliente deve poter rilasciare feedback e una recensione relativi alla sua esperienza in un ristorante \\ \hline
-Non soddisfatto & RFO30 & Il cliente deve ricevere una notifica quando una richiesta di prenotazione è accettata o rifiutata \\ \hline
+Soddisfatto & RFO30 & Il cliente deve ricevere una notifica quando una richiesta di prenotazione è accettata o rifiutata \\ \hline
 Non soddisfatto & RFF07 & Il cliente e il ristoratore devono ricevere una notifica in concomitanza della ricezione di un messaggio \\ \hline
-Non soddisfatto & RFO31 & Il cliente deve ricevere una notifica quando un cliente da egli invitato a partecipare ad una prenotazione, accetta l'invito \\ \hline
+Soddisfatto & RFO31 & Il cliente deve ricevere una notifica quando un cliente da egli invitato a partecipare ad una prenotazione, accetta l'invito \\ \hline
 Soddisfatto & RFO32 & Il ristoratore deve poter accettare la richiesta di prenotazione da parte di un cliente \\ \hline
 Soddisfatto & RFO33 & Il ristoratore deve poter rifiutare la richiesta di prenotazione da parte di un cliente \\ \hline
 Soddisfatto & RFO34 & Il ristoratore deve poter visualizzare le prenotazioni presso il suo ristorante \\ \hline
@@ -75,8 +75,8 @@ Soddisfatto & RFO43 & Il ristoratore deve ricevere una notifica quando un client
 Soddisfatto & RFO44 & Il ristoratore deve ricevere una notifica quando un cliente annulla una prenotazione \\ \hline
 Soddisfatto & RFO45 & Il ristoratore deve ricevere una notifica quando è effettuata una nuova richiesta di prenotazione presso il suo ristorante \\ \hline
 Non soddisfatto & RFF11 & Il ristoratore deve ricevere una notifica quando un cliente rilascia una nuova recensione relativa ad un suo ristorante \\ \hline
-Non soddisfatto & RFO46 & Il ristoratore deve ricevere una notifica quando un cliente effettua un pagamento tramite l'app \\ \hline
-Non soddisfatto & RFF12 & Il ristoratore e il cliente devono poter visualizzare la/le loro chat \\ \hline
-Non soddisfatto & RFF13 & Il cliente deve poter aprire un canale di comunicazione tramite chat verso un ristoratore \\ \hline
+Non soddisfatto & RFF12 & Il ristoratore deve ricevere una notifica quando un cliente effettua un pagamento tramite l'app \\ \hline
+Non soddisfatto & RFF13 & Il ristoratore e il cliente devono poter visualizzare la/le loro chat \\ \hline
+Non soddisfatto & RFF14 & Il cliente deve poter aprire un canale di comunicazione tramite chat verso un ristoratore \\ \hline
 \end{longtblr}
 \end{center}
