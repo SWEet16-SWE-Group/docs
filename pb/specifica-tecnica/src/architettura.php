@@ -56,6 +56,8 @@ $a = [
 
   L'esempio migliore di questo pattern si trova di nuovo nel Layout in sinergia con il router, dato un url il router compone la pagina aggregando assieme diversi componenti. Ad esempio la lista di ristoranti viene visualizzata sia da utenti anonimi sia da clienti che stanno effettuando una prenotazione, mentre non può essere visualizzata dal ristoratore.
 
+  \\
+
   \begin{lstlisting}
   // router.jsx
   
@@ -109,10 +111,108 @@ L'adozione di Laravel per il backend e MySQL per il database, quindi, consente d
 
 Nella seguente sezione, vengono descritti i design pattern adottati per il backend.
 Seguendo la descrizione fornita inizialmente possiamo descrivere l'utilizzo di:
-\begin{itemize}
-    \item \textbf{Facade Pattern}: Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database;
-    \item \textbf{Repository Pattern}: Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database.
-    \item \textbf{Template Method Pattern}: Utilizzato nelle migrazioni del database, dove la classe di base definisce la struttura dell'operazione di migrazione e le sottoclassi implementano i dettagli specifici.
-    \item \textbf{Factory Pattern}: Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database.
-\end{itemize}
 
+<?php
+
+$a = [
+
+    'Facade Pattern' => <<<'EOF'
+    Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database;
+    
+    \\
+
+    \begin{lstlisting}
+    // Models/Client.php
+    class Client extends Model
+    {
+        use HasFactory;
+
+        protected $fillable=['id','user','nome'];
+
+        public function allergie() : BelongsToMany
+        {
+            return $this->belongsToMany(Allergeni::class);
+        }
+
+        protected $table='clients';
+
+        public function user() {
+            return $this->belongsTo(User::class, 'user');
+        }
+    }
+    \end{lstlisting}
+
+    EOF,
+
+    'Repository Pattern' => <<<'EOF'
+    Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database.
+
+    \\
+
+    \begin{lstlisting}
+    // Controllers/Api/ClientController.php
+    class ClientController extends Controller
+    {
+        public function index() {
+            $client=Client::get()->all();
+           return response()->json($client,200);
+        }
+
+        public function show($id) {
+            /** @var Client $client */
+            $client = Client::where('id',$id)->first();
+             return response()->json([
+                 'id' => $client['id'],
+                 'nome' => $client['nome'],
+                 'user' => $client['user'],
+             ]);
+          }
+
+        public function store(ClientRequest $request)  {
+            ...
+          }
+
+        public function update(UpdateClientRequest $request) {
+            ...
+          }
+
+        public function destroy(string $id) {
+            ...
+          }
+    }
+    \end{lstlisting}
+
+    EOF,
+
+    'Factory Pattern' => <<<'EOF'
+    Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database.
+
+    \\ 
+
+    \begin{lstlisting}
+    // database/factories/RistoratoreFactory.php
+    class RistoratoreFactory extends Factory
+    {
+        protected $model = Ristoratore::class;
+
+        public function definition()
+        {
+            return [
+                'user' => User::factory(),
+                'nome' => $this->faker->unique()->company,
+                'cucina' => 'Italiana',
+                'indirizzo' => $this->faker->unique()->address,
+                'telefono' => $this->faker->unique()->numerify('##########'),
+                'capienza' => $this->faker->numberBetween(10, 200),
+                'orario' => '19:30 - 22:30'
+            ];
+          }
+    }
+    \end{lstlisting}
+    EOF,
+
+];
+
+echo implode("\n\n\n", array_map(fn ($k,$a) => "\\subsubsubsection{{$k}} $a",array_keys($a),$a));
+
+?>
