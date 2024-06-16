@@ -38,24 +38,45 @@ In particolare, possiamo dettagliare l’utilizzo di:
 <?php
 
 $a = [
-  'React Hook' => <<<EOF
+  'React Hook' => <<<'EOF'
   Utilizzati per gestire lo stato dell’applicazione in modo efficiente e visualizzare dinamicamente le informazioni. Vengono impiegati sia gli hook nativi di React (come useState, useEffect e useContext), sia hook personalizzati creati in base alle esigenze delle singole viste e componenti, come precedentemente descritto.
+
+  \begin{lstlisting}
+  \end{lstlisting}
   EOF,
 
-  'Conditional Rendering' => <<<EOF
+  'Conditional Rendering' => <<<'EOF'
   Permette di mostrare contenuti diversi in base a determinate condizioni. Vengono sviluppati componenti in grado di verificare suddette condizioni e rendere visibili i dati pertinenti in base a queste.
 
   L'esempio migliore di questo pattern si trova nel Layout, dove in base al ruolo dell'attore utilizzante il prodotto, l'header cambia al fine di mostrare le funzionalità disponibili quell'attore.
-
-  SNIPPET CODICE
   EOF,
 
-  'Compound Components' => <<<EOF
+  'Compound Components' => <<<'EOF'
   Consentono di modulare le singole componenti attraverso una gerarchia padre-figlio, dove un componente padre contiene uno o più componenti figlio. Questo approccio permette di specializzare la gestione dei dati e personalizzare l’interfaccia utente in modo centralizzato, seguendo una lista di opzioni unica.
 
   L'esempio migliore di questo pattern si trova di nuovo nel Layout in sinergia con il router, dato un url il router compone la pagina aggregando assieme diversi componenti. Ad esempio la lista di ristoranti viene visualizzata sia da utenti anonimi sia da clienti che stanno effettuando una prenotazione, mentre non può essere visualizzata dal ristoratore.
 
-  SNIPPET CODICE
+  \begin{lstlisting}
+  // router.jsx
+  
+  function Cliente ({Content}) {
+    const {role} = useStateContext()
+    if (role !== 'CLIENTE') {
+      return <Navigate to={"/Login"} />
+    }
+    return <Layout Content={Content} />
+  }
+
+  function Ristoratore ({Content}) {
+    const {role} = useStateContext()
+    if (role !== 'RISTORATORE') {
+      return <Navigate to={"/Login"} />
+    }
+    return <Layout Content={Content} />
+  }
+
+  \end{lstlisting}
+
   EOF,
 ];
 
