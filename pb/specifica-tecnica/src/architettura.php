@@ -21,7 +21,7 @@ Questo approccio ha permesso al team di lavorare in modo parallelo sul frontend 
 
 \subsubsection{Introduzione}
 
-L’architettura del prodotto \textit{Easy Meal} non segue un pattern architetturale specifico, poiché nessuno di essi soddisfa appieno le esigenze di modularità e scalabilità dell’applicazione. 
+L’architettura del prodotto \textit{Easy Meal} non segue un pattern architetturale specifico, poiché nessuno di essi soddisfa appieno le esigenze di modularità e scalabilità dell’applicazione.
 Invece, si è scelto di utilizzare una combinazione di design pattern tipici della libreria ReactJS, selezionati e adattati secondo le specifiche necessità del progetto. 
 Questo approccio permette di garantire la separazione della logica di business tra le varie componenti, semplificando la gestione degli stati dell’applicazione. \\
 Ogni design pattern adottato è descritto dettagliatamente nelle sezioni successive. \\
@@ -52,44 +52,31 @@ Questo approccio permette di specializzare la gestione dei dati e personalizzare
 
 \subsubsection{Introduzione}
 
-Per il backend del servizio, è stato scelto di adottare il framework Laravel. 
-Laravel è un framework PHP noto per la sua semplicità e robustezza, che permette di sviluppare applicazioni web in modo rapido ed efficiente. 
+Per il backend del progetto, è stato scelto di adottare il framework Laravel.
+Laravel è un framework PHP noto per la sua semplicità e robustezza, che ci ha permesso di sviluppare RESTful API in modo rapido ed efficiente.
 Questa scelta consente di beneficiare delle potenti funzionalità di Laravel, come l'ORM Eloquent, la gestione delle migrazioni, e una struttura modulare che favorisce la manutenibilità e la scalabilità dell'applicazione. \\
+\\
 Per il database è stato scelto MySQL, un sistema di gestione di database relazionali molto diffuso e affidabile. 
 MySQL si integra perfettamente con Laravel, permettendo di sfruttare al meglio le funzionalità di entrambe le tecnologie. \\
 
 Le singole componenti del sistema sono strutturate come segue:
 \begin{itemize}
-\item \textbf{Laravel}: Utilizzato per gestire la logica di business, l'autenticazione, la gestione delle rotte e la comunicazione con il database.
-Laravel offre una struttura MVC (Model-View-Controller) che separa chiaramente la logica di business dalla presentazione e dalla gestione dei dati.
-\item \textbf{MySQL}: Utilizzato per la persistenza dei dati, MySQL offre una soluzione robusta e scalabile per gestire le informazioni necessarie all'applicazione. Grazie all'ORM Eloquent di Laravel, è possibile interagire con il database in modo intuitivo e efficiente.
-\item \textbf{API RESTful}: Le API sono implementate seguendo il pattern RESTful, che consente una chiara separazione dei dati tra client e server. 
-Le API RESTful permettono di esporre le risorse dell'applicazione tramite HTTP, rendendo possibile la comunicazione sincrona tra il client e il backend.
+\item \textbf{Laravel}: Utilizzato per gestire la logica di business, l'autenticazione, la gestione delle rotte e la comunicazione con il database;
+\item \textbf{MySQL}: Utilizzato per la persistenza dei dati, MySQL offre una soluzione robusta e scalabile per gestire le informazioni necessarie all'applicazione. Grazie all'ORM Eloquent di Laravel, è possibile interagire con il database in modo intuitivo e efficiente;
+\item \textbf{API RESTful}: Sono state implementate delle API RESTful, che consentono una chiara separazione dei dati tra client e server.
+Le API RESTful permettono di esporre le risorse dell'applicazione tramite chiamate HTTP, rendendo possibile la comunicazione sincrona tra il frontend e il backend.
 \end{itemize}
 
 L'adozione di Laravel per il backend e MySQL per il database, quindi, consente di creare un'applicazione web potente, scalabile e sicura, con una chiara separazione della logica di business e una gestione efficiente dei dati.
-
-\subsubsection{Schema database}
-
-DA FARE UNA VOLTA TERMINATA LA CODIFICA
 
 \subsubsection{Design Pattern utilizzati}
 
 Nella seguente sezione, vengono descritti i design pattern adottati per il backend.
 Seguendo la descrizione fornita inizialmente possiamo descrivere l'utilizzo di:
 \begin{itemize}
-    \item \textbf{Model-View-Controller (MVC)}: Separa l'applicazione in tre componenti principali:
-    \begin{itemize}
-        \item \textbf{Model}: Gestisce i dati e la logica di business.
-        \item \textbf{View}: Gestisce la presentazione e l'interfaccia utente.
-        \item \textbf{Controller}: Gestisce la logica applicativa e l'interazione tra Model e View.
-    \end{itemize}
-    \item \textbf{Facade}: Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice.
+    \item \textbf{Facade Pattern}: Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database;
     \item \textbf{Repository Pattern}: Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database.
     \item \textbf{Template Method Pattern}: Utilizzato nelle migrazioni del database, dove la classe di base definisce la struttura dell'operazione di migrazione e le sottoclassi implementano i dettagli specifici.
     \item \textbf{Factory Pattern}: Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database.
 \end{itemize}
 
-\subsubsection{Documentazione API}
-
-DA FARE UNA VOLTA TERMINATA LA CODIFICA
