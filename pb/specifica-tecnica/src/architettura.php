@@ -14,6 +14,7 @@ Nel dettaglio sono:
     \item \textbf{Livello di logica applicativa (backend):} viene utilizzato Laravel, che gestisce la logica di business elaborando le richieste del frontend interagendo con il database
             per recuperare o salvare i dati;
     \item \textbf{Livello di Dati (database):} viene utilizzato MySQL, che si occupa della gestione dei dati.
+\end{itemize}
 
 Questo approccio ha permesso al team di lavorare in modo parallelo sul frontend e sul backend, riducendo i tempi di sviluppo e rendendo più facile l'implementazione dei test.
 
@@ -24,10 +25,6 @@ Questo approccio ha permesso al team di lavorare in modo parallelo sul frontend 
 Per il frontend del progetto si è scelto di utilizzare una combinazione di design pattern specifici della libreria ReactJS, selezionati e adattati secondo le specifiche necessità del progetto.
 Questo approccio permette di garantire la separazione della logica di business tra le varie componenti, semplificando la gestione degli stati dell’applicazione. \\
 Ogni design pattern adottato è descritto dettagliatamente nelle sezioni successive. \\
-
-\subsection{Architettura Front-end}
-
-\subsubsection{Introduzione}
 
 Ogni pagina dell'applicazione utilizza chiamate alle API per recuperare i dati necessari alla sua visualizzazione. 
 Inoltre, sfrutta gli hooks forniti da React, come useState e useEffect, per gestire lo stato dell'applicazione e aggiornare dinamicamente la UI. 
@@ -49,16 +46,20 @@ $a = [
   Permette di mostrare contenuti diversi in base a determinate condizioni. Vengono sviluppati componenti in grado di verificare suddette condizioni e rendere visibili i dati pertinenti in base a queste.
 
   L'esempio migliore di questo pattern si trova nel Layout, dove in base al ruolo dell'attore utilizzante il prodotto, l'header cambia al fine di mostrare le funzionalità disponibili quell'attore.
+
+  SNIPPET CODICE
   EOF,
 
   'Compound Components' => <<<EOF
   Consentono di modulare le singole componenti attraverso una gerarchia padre-figlio, dove un componente padre contiene uno o più componenti figlio. Questo approccio permette di specializzare la gestione dei dati e personalizzare l’interfaccia utente in modo centralizzato, seguendo una lista di opzioni unica.
 
   L'esempio migliore di questo pattern si trova di nuovo nel Layout in sinergia con il router, dato un url il router compone la pagina aggregando assieme diversi componenti. Ad esempio la lista di ristoranti viene visualizzata sia da utenti anonimi sia da clienti che stanno effettuando una prenotazione, mentre non può essere visualizzata dal ristoratore.
+
+  SNIPPET CODICE
   EOF,
 ];
 
-echo implode("\n\n\n", array_map(fn ($k,$a) => "\\subsubsubsection{$k} $a",array_keys($a),$a));
+echo implode("\n\n\n", array_map(fn ($k,$a) => "\\subsubsubsection{{$k}} $a",array_keys($a),$a));
 
 ?>
 
