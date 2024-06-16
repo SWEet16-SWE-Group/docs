@@ -22,7 +22,7 @@ export default function RistoratoreDashboard() {
             const response = await axiosClient.get(`/get-ristoratore/${ristoratore}`);
             setRistoratoreInfo(response.data);
         } catch (error) {
-            setNotificationStatus('error');
+            setNotificationStatus('failure');
             setNotification('Errore durante il recupero delle informazioni del ristoratore.');
             console.error(error);
         }
@@ -34,7 +34,7 @@ export default function RistoratoreDashboard() {
             setPrenotazioni(response.data);
             console.log(response.data);
         } catch (error) {
-            setNotification('error');
+            setNotification('failure');
             setNotification('Errore durante il recupero delle prenotazioni');
             console.error(error);
         }

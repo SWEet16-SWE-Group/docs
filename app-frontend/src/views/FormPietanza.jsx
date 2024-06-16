@@ -53,7 +53,7 @@ export default function FormPietanza() {
             setNotification('Pietanza aggiunta con successo.');
             navigate(`/gestionemenu/${ristoratoreId}`);
         } catch (error) {
-            setNotificationStatus('error');
+            setNotificationStatus('failure');
             setNotification('Errore durante l\'aggiunta della pietanza.');
             setErrorMessage('Errore durante l\'aggiunta della pietanza. Per favore riprova.');
             console.error('Errore durante l\'aggiunta della pietanza', error);
