@@ -39,14 +39,14 @@ Soddisfatto & RFO17 & L'utente non riconosciuto e il cliente devono poter applic
 Soddisfatto & RFO18 & L'utente non riconosciuto e il cliente devono poter visualizzare le informazioni relative ad un particolare ristorante, il suo menù\\ \hline
 Soddisfatto & RFO19 & Il cliente deve poter effettuare una prenotazione presso un ristorante \\ \hline
 Soddisfatto & RFO20 & Il cliente deve poter consultare la lista delle sue prenotazioni \\ \hline
-Non soddisfatto & RFO21 & Il cliente deve poter annullare una sua prenotazione \\ \hline
+Soddisfatto & RFO21 & Il cliente deve poter annullare una sua prenotazione \\ \hline
 Soddisfatto & RFO22 & Il cliente deve poter visualizzare le informazioni relative ad una sua prenotazione in particolare \\ \hline
 Soddisfatto & RFO23 & Il cliente deve poter invitare altri clienti a partecipare ad una sua prenotazione \\ \hline
 Soddisfatto & RFO24 & Il cliente deve poter accettare l'invito ricevuto, a partecipare ad una prenotazione \\ \hline
 Soddisfatto & RFO25 & Il cliente deve poter effettuare un'ordinazione nel contesto di una sua prenotazione \\ \hline
 Soddisfatto & RFO26 & Nell'effettuare l'ordinazione, il cliente deve poter apportare modifiche alle pietanze del ristorante, modificandone la quantità o rimuovendo ingredienti \\ \hline
 Soddisfatto & RFF01 & Nell'effettuare l'ordinazione, il cliente deve poter aggiungere ingredienti da una pietanza \\ \hline
-Non soddisfatto & RFO27 & Il cliente deve poter annullare un'ordinazione \\ \hline
+Soddisfatto & RFO27 & Il cliente deve poter annullare un'ordinazione \\ \hline
 Soddisfatto & RFO28 & Il cliente deve poter selezionare la modalità secondo la quale dividere il conto con gli altri clienti afferenti alla stessa prenotazione \\ \hline
 Non soddisfatto & RFF02 & Il cliente dopo aver scelto la modalità di divisione "equa" può selezionare altri profili e pagare per loro \\ \hline
 Non soddisfatto & RFF03 & Il cliente dopo aver scelto la modalità di divisione "proporzionale" può selezionare pietanze ordinate da altri profili e pagarle \\ \hline
@@ -71,9 +71,9 @@ Soddisfatto & RFO40 & Il ristoratore deve poter modificare la lista degli ingred
 Soddisfatto & RFO41 & Il ristoratore deve, in fase di aggiunta di un nuovo ingrediente, poter associare specifici allergeni al suddetto ingrediente \\ \hline
 Non soddisfatto & RFF10 & Il ristoratore deve poter visualizzare le recensioni relative al suo ristorante \\ \hline
 Soddisfatto & RFO42 & Il ristorante deve poter gestire manualmente il pagamento del conto relativo ad una prenotazione \\ \hline
-Non soddisfatto & RFO43 & Il ristoratore deve ricevere una notifica quando un cliente conferma un'ordinazione \\ \hline
-Non soddisfatto & RFO44 & Il ristoratore deve ricevere una notifica quando un cliente annulla una prenotazione \\ \hline
-Non soddisfatto & RFO45 & Il ristoratore deve ricevere una notifica quando è effettuata una nuova richiesta di prenotazione presso il suo ristorante \\ \hline
+Soddisfatto & RFO43 & Il ristoratore deve ricevere una notifica quando un cliente conferma un'ordinazione \\ \hline
+Soddisfatto & RFO44 & Il ristoratore deve ricevere una notifica quando un cliente annulla una prenotazione \\ \hline
+Soddisfatto & RFO45 & Il ristoratore deve ricevere una notifica quando è effettuata una nuova richiesta di prenotazione presso il suo ristorante \\ \hline
 Non soddisfatto & RFF11 & Il ristoratore deve ricevere una notifica quando un cliente rilascia una nuova recensione relativa ad un suo ristorante \\ \hline
 Non soddisfatto & RFO46 & Il ristoratore deve ricevere una notifica quando un cliente effettua un pagamento tramite l'app \\ \hline
 Non soddisfatto & RFF12 & Il ristoratore e il cliente devono poter visualizzare la/le loro chat \\ \hline
