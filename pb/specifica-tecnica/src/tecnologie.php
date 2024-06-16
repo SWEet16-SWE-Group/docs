@@ -61,8 +61,6 @@ echo  tabelle_tecnologie(
     ['ReactJs', 'Libreria grafica per facilitare lo sviluppo front-end gestendo modularmente le componenti grafiche, permettendo performance buone grazie all\'efficacia della sua renderizzazione', '18.2.x'],
     ['Laravel', 'Framework PHP utilizzato per facilitare la creazione di API Rest', '11'],
     ['Axios', 'Libreria JavaScript che viene utilizzata per effettuare richieste HTTP sia negli ambienti browser che Node.js', '11.x'],
-    ['MaterialUI', 'Framework di componenti React preconfezionati per la creazione di interfacce utente gradevoli, funzionali e personalizzabili', '4.1.x'],
-    ['Shadcn/ui', 'Libreria di componenti React utilizzata per facilitare la codifica del front-end, incorporando nell’interfaccia grafica componenti prefabbricate, personalizzabili e altamente riutilizzabili', '0.8.0'],
   ]
 );
 
@@ -73,6 +71,27 @@ echo tabelle_tecnologie(
     ['NPM', 'Gestore di pacchetti per il linguaggio JavaScript e l\'ambiente di esecuzione Node.js', '9.6.x'],
     ['Docker', 'Piattaforma di sviluppo e gestione di applicazioni che permette di creare, distribuire e eseguire in software in container virtualizzati', '24.0.7'],
     ['Git', 'Sistema di controllo di versione distribuito utilizzato per la gestione del codice sorgente dal parte del gruppo di progetto', '/'],
-    ['Bootstrap', '', '0'],
+    ['Bootstrap', 'Libreria di strumenti liberi per la creazione di siti e applicazioni per il Web che contiene modelli di progettazione basati su HTML e CSS', '5.3.3'],
+  ]
+);
+
+?>
+
+\subsection{Tecnologie per l'analisi del codice}
+
+<?php
+
+echo tabelle_tecnologie(
+  'Analisi statica',
+  [
+    ['Jest', 'Framework di test basato su JavaScript con funzionalità di creazione di mock e il testing del codice in modo asincrono.', '5.17'],
+  ]
+);
+
+echo  tabelle_tecnologie(
+  'Analisi dinamica',
+  [
+    ['React Testing Library', 'Libreria di test integrata nativamente che consente di testare il comportamento dei componenti React da una prospettiva degli utenti finali.', '13.4.0'],
+    ['GitHub Actions', 'Servizio di CI/CD per automatizzare il processo di build, test e deploy del progetto software', '/'],
   ]
 );
