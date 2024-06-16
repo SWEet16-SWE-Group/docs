@@ -83,7 +83,7 @@ export default function ClientePrenotazione() {
             setNotification('Prenotazione annullata con successo.');
             navigate('/dashboardcliente');
         } catch (error) {
-            setNotificationStatus('error');
+            setNotificationStatus('failure');
             setNotification('Errore durante l\'eliminazione della prenotazione.');
         }
     }
@@ -100,7 +100,7 @@ export default function ClientePrenotazione() {
 
             window.location.reload();
         } catch (error) {
-            setNotificationStatus('error');
+            setNotificationStatus('failure');
             setNotification('Errore durante l\'eliminazione dell\'ordinazione.');
         }
     }

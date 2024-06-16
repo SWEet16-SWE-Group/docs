@@ -97,7 +97,7 @@ export default function FormOrdinazione() {
       setNotification('Ordinazione creata con successo.');
     } catch (error) {
       console.log(error);
-      setNotificationStatus('error');
+      setNotificationStatus('failure');
       setNotification('Errore durante il salvataggio dell\'ordinazione.');
       setErrorMessage('Errore durante il salvataggio dell\'ordinazione.');
     }

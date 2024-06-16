@@ -33,7 +33,7 @@ export default function GestioneMenu() {
             setNotification('Pietanza eliminato con successo.');
             setPietanze(pietanze.filter(pietanza => pietanza.id !== id));
         } catch (error) {
-            setNotificationStatus('error');
+            setNotificationStatus('failure');
             setNotification('Errore durante l\'eliminazione della pietanza.');
             console.error('Errore nell\'eliminazione della pietanza', error);
         }

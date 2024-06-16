@@ -47,7 +47,7 @@ export default function RistoratorePrenotazione() {
       setNotificationStatus('success');
       setNotification('Prenotazione accettata con successo.');
     } catch (error) {
-      setNotificationStatus('error');
+      setNotificationStatus('failure');
       setNotification('Errore durante l\'accettazione della prenotazione.');
       console.error('Errore nell\'accettazione della prenotazione:', error);
     }
@@ -66,7 +66,7 @@ export default function RistoratorePrenotazione() {
       setNotificationStatus('success');
       setNotification('Prenotazione rifiutata con successo.');
     } catch (error) {
-      setNotificationStatus('error');
+      setNotificationStatus('failure');
       setNotification('Errore durante il rifiuto della prenotazione.');
       console.error('Errore nel rifiuto della prenotazione:', error);
     }
