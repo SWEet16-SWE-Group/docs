@@ -54,9 +54,7 @@ $a = [
   'Compound Components' => <<<'EOF'
   Consentono di modulare le singole componenti attraverso una gerarchia padre-figlio, dove un componente padre contiene uno o più componenti figlio. Questo approccio permette di specializzare la gestione dei dati e personalizzare l’interfaccia utente in modo centralizzato, seguendo una lista di opzioni unica.
 
-  L'esempio migliore di questo pattern si trova di nuovo nel Layout in sinergia con il router, dato un url il router compone la pagina aggregando assieme diversi componenti. Ad esempio la lista di ristoranti viene visualizzata sia da utenti anonimi sia da clienti che stanno effettuando una prenotazione, mentre non può essere visualizzata dal ristoratore.
-
-  \\
+  L'esempio migliore di questo pattern si trova di nuovo nel Layout in sinergia con il router, dato un url il router compone la pagina aggregando assieme diversi componenti. Ad esempio la lista di ristoranti viene visualizzata sia da utenti anonimi sia da clienti che stanno effettuando una prenotazione, mentre non può essere visualizzata dal ristoratore. \\
 
   \begin{lstlisting}
   // router.jsx
@@ -117,9 +115,7 @@ Seguendo la descrizione fornita inizialmente possiamo descrivere l'utilizzo di:
 $a = [
 
     'Facade Pattern' => <<<'EOF'
-    Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database;
-    
-    \\
+    Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database; \\
 
     \begin{lstlisting}
     // Models/Client.php
@@ -145,9 +141,7 @@ $a = [
     EOF,
 
     'Repository Pattern' => <<<'EOF'
-    Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database.
-
-    \\
+    Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database. \\
 
     \begin{lstlisting}
     // Controllers/Api/ClientController.php
@@ -185,9 +179,7 @@ $a = [
     EOF,
 
     'Factory Pattern' => <<<'EOF'
-    Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database.
-
-    \\ 
+    Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database. \\ 
 
     \begin{lstlisting}
     // database/factories/RistoratoreFactory.php
