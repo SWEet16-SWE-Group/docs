@@ -132,9 +132,16 @@ table > tbody > tr > td {
   bottom: 1rem;
   z-index: 100;
   padding: 1rem 1.5rem;
-  background-color: #00a762;
   color: white;
   border-radius: 0.5rem;
+}
+
+.success {
+  background-color: #00a762;
+}
+
+.failure {
+  background-color: #880000;
 }
 
 /* Login/Signup forms*/

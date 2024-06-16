@@ -100,7 +100,7 @@ export default function ClientePrenotazione() {
 
             window.location.reload();
         } catch (error) {
-            setNotificationStatus('error');
+            setNotificationStatus('failure');
             setNotification('Errore durante l\'eliminazione dell\'ordinazione.');
         }
     }

@@ -53,7 +53,7 @@ export default function RistoratoreDashboard() {
             setNotificationStatus('success');
             setNotification(`Prenotazione ${status.toLowerCase()} con successo.`);
         } catch (error) {
-            setNotificationStatus('error');
+            setNotificationStatus('failure');
             setNotification('Errore durante l\'aggiornamento della prenotazione.');
             console.error(error);
         }
