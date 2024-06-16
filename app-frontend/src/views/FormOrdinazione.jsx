@@ -83,7 +83,7 @@ export default function FormOrdinazione() {
         const formData = {
           invito: invito,
           pietanza: pietanza,
-          aggiunte: Array.from(e.target.aggiunte).filter(a => a.checked).map(a => ({ ingrediente: a.value })),
+          aggiunte: (e.target.aggiunte === undefined ? [] : Array.from(e.target.aggiunte).filter(a => a.checked).map(a => ({ ingrediente: a.value }))),
           rimozioni: Array.from(e.target.rimozioni).filter(a => a.checked).map(a => ({ ingrediente: a.value })),
         };
 
