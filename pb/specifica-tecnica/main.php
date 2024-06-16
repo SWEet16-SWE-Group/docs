@@ -16,7 +16,12 @@ $registro = (new RegistroModifiche())->logArray([
   [CE, '2024/05/07', alberto_m(), alex_s(), 'Stesura sezione introduzione'],
   [CE, '2024/05/08', alberto_m(), alex_s(), 'Stesura sezione tecnologie'],
   [CE, '2024/06/03', alberto_m(), alex_s(), 'Stesura sezione pattern frontend'],
+  [CE, '2024/06/12', alberto_c(), alberto_m(), 'Stesura sezione pattern backend'],
+  [CE, '2024/06/15', alberto_m(), alex_s(), 'Aggiunta sezioni codice'],
+  [SX, '2024/06/16', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
+
+$nome = "Specifica_Tecnica_v{$registro->versione()}.pdf";
 
 $error_flag = 0;
 ob_start();
