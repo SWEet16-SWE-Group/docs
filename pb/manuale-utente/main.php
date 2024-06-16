@@ -193,7 +193,7 @@ $contenuti = [
   ],
 ];
 
-echo _stampatex($contenuti, 'Manuale utente', 'subsubsection');
+echo _stampatex($contenuti, 'Manuale utente', 'section');
 
 ?>
 
