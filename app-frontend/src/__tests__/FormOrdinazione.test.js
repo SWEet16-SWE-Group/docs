@@ -30,7 +30,7 @@ const renderWithContext = (component) => {
     });
 };
 
-describe('RistoratoreDashboard', () => {
+describe('FormOrdinazione', () => {
     const client_id = 'client_id';
     let mockUseStateContext;
 

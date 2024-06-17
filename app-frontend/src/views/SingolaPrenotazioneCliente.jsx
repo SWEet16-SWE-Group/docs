@@ -98,7 +98,6 @@ export default function ClientePrenotazione() {
             setNotificationStatus('success');
             setNotification('Ordinazione eliminata con successo.');
 
-            window.location.reload();
         } catch (error) {
             setNotificationStatus('failure');
             setNotification('Errore durante l\'eliminazione dell\'ordinazione.');
