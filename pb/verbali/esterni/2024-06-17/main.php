@@ -161,12 +161,17 @@ Ha inoltre partecipato il Sig. Alessandro Staffolani, rappresentante di \textit{
 In questo incontro è stato presentato l'MVP al proponente, Alessandro Staffolani, seguendo la tabella dei requisiti presente nella specifica tecnica.
 Ogni requisito marcato come soddisfatto è stato mostrato in azione nel prodotto.
 
-\subsection{Domande del proponente}
+Successivamente è stato mostrato come eseguire i test di unità.
+I test sono divisi in backend e frontend, le code coverage associate mostravano erano entrambi superanti il target di 80% prefissato dal capitolato.
+
+Il proponente si è dimostrato molto soddisfatto del lavoro svolto.
+
+\subsection{Miglioramenti proposti}
 
 <?php
 $a = [
-  'domanda' => <<<'EOF'
-  risposta
+  'Ingredienti aggiungibili con la pietanza' => <<<'EOF'
+  Durante l'inserimento di una pietanza se non stati inseriti tutti i suoi ingredienti dovrebbero essere possibile aggiungerli direttamente lì con la pietanza.
   EOF,
 ];
 
@@ -176,6 +181,8 @@ echo implode("\n\n", array_map(fn ($domanda, $risposta)  => "\\subsubsection{{$d
 \subsection{Approvazione dell'MVP}
 
 Con il seguente documento il proponente dichiara la sua approvazione per il prodotto presentato.
+
+\pagebreak
 
 \vspace{60pt}
 \begin{flushleft}
