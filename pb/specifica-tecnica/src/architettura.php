@@ -141,44 +141,6 @@ $a = [
 
     EOF,
 
-    'Repository Pattern' => <<<'EOF'
-    Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database. \\
-
-    \begin{lstlisting}
-    // Controllers/Api/ClientController.php
-    class ClientController extends Controller
-    {
-        public function index() {
-            $client=Client::get()->all();
-           return response()->json($client,200);
-        }
-
-        public function show($id) {
-            /** @var Client $client */
-            $client = Client::where('id',$id)->first();
-             return response()->json([
-                 'id' => $client['id'],
-                 'nome' => $client['nome'],
-                 'user' => $client['user'],
-             ]);
-          }
-
-        public function store(ClientRequest $request)  {
-            ...
-          }
-
-        public function update(UpdateClientRequest $request) {
-            ...
-          }
-
-        public function destroy(string $id) {
-            ...
-          }
-    }
-    \end{lstlisting}
-
-    EOF,
-
     'Factory Pattern' => <<<'EOF'
     Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database. \\ 
 
