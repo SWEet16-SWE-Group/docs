@@ -125,7 +125,7 @@ describe('Single prenotation testing', () => {
         await waitFor(() => {       
             expect(axiosClient.delete).toHaveBeenCalledWith('/prenotazione/prenotazione_id');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Errore durante l\'eliminazione della prenotazione.');
-            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('error');
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('failure');
         });
     });
 
@@ -171,7 +171,7 @@ describe('Single prenotation testing', () => {
         await waitFor(() => {       
             expect(axiosClient.delete).toHaveBeenCalledWith('/ordinazione/ordinazione_id');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Errore durante l\'eliminazione dell\'ordinazione.');
-            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('error');
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('failure');
         });
     });
 });

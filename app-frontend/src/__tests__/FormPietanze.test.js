@@ -166,7 +166,7 @@ describe('FormIngrediente', () => {
         });
         
         await waitFor(() => {
-            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('error');
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('failure');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Errore durante l\'aggiunta della pietanza.');
             expect(screen.getByText('Errore durante l\'aggiunta della pietanza. Per favore riprova.')).toBeInTheDocument();
         });
