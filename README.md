@@ -21,8 +21,12 @@ Entrare ora nel container di php con:
 ```
 docker-compose exec php sh
 ```
+Una volta dentro il container di php eseguire il comando:
+```
+composer install
+```
 
-E generare le tabelle del database necessarie tramite: 
+... e generare le tabelle del database necessarie tramite: 
 ```
 php artisan migrate
 ```
