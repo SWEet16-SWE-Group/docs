@@ -231,7 +231,7 @@ describe('RistoratoreDashboard', () => {
             aggiunte: [],
             rimozioni: [],
           }); */
-           expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('error');
+           expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('failure');
            expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Errore durante il salvataggio dell\'ordinazione.');
            expect(screen.getByText('Errore durante il salvataggio dell\'ordinazione.'));
         });
