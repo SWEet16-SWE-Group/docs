@@ -118,6 +118,7 @@ $a = [
     'Facade Pattern' => <<<'EOF'
     Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database; \\
 
+
     \begin{lstlisting}
     // Models/Client.php
     class Client extends Model
