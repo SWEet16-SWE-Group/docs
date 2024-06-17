@@ -101,7 +101,7 @@ describe('RistoratoreDashboard', () => {
         renderWithContext(<RistoratoreDashboard />);
 
         await waitFor(() => {
-            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('error');
+            expect(mockUseStateContext.setNotificationStatus).toHaveBeenCalledWith('failure');
             expect(mockUseStateContext.setNotification).toHaveBeenCalledWith('Errore durante il recupero delle informazioni del ristoratore.');
         });
     });
