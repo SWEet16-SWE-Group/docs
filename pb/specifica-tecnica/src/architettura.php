@@ -118,6 +118,7 @@ $a = [
     'Facade Pattern' => <<<'EOF'
     Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database; \\
 
+
     \begin{lstlisting}
     // Models/Client.php
     class Client extends Model
@@ -136,44 +137,6 @@ $a = [
         public function user() {
             return $this->belongsTo(User::class, 'user');
         }
-    }
-    \end{lstlisting}
-
-    EOF,
-
-    'Repository Pattern' => <<<'EOF'
-    Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database. \\
-
-    \begin{lstlisting}
-    // Controllers/Api/ClientController.php
-    class ClientController extends Controller
-    {
-        public function index() {
-            $client=Client::get()->all();
-           return response()->json($client,200);
-        }
-
-        public function show($id) {
-            /** @var Client $client */
-            $client = Client::where('id',$id)->first();
-             return response()->json([
-                 'id' => $client['id'],
-                 'nome' => $client['nome'],
-                 'user' => $client['user'],
-             ]);
-          }
-
-        public function store(ClientRequest $request)  {
-            ...
-          }
-
-        public function update(UpdateClientRequest $request) {
-            ...
-          }
-
-        public function destroy(string $id) {
-            ...
-          }
     }
     \end{lstlisting}
 
