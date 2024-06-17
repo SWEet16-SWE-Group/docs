@@ -77,7 +77,7 @@ Anno Accademico 2023/2024
 \begin{Huge}
         \textbf{Verbale Esterno} \\
         \vspace{4mm}
-        \textbf{31 Maggio 2024}
+        \textbf{17 giugno 2024}
 
 \end{Huge}
 
@@ -109,13 +109,10 @@ row{odd}={bg=white},
 row{even}={bg=lightgray},
 row{1}={bg=black, fg=white}
 }
-        Versione & Data & Autore & Verificatore & Descrizione \\
-        \hline
-        1.0.0 & 2024/06/03 & Alex S. & & Approvazione per il rilascio \\
-        \hline
-        0.2.0 & 2024/06/03 & Sig. Staffolani & & Apposizione firma \\
-        \hline
-        0.1.0 & 2024/05/31 & Alex S. & Alberto M. & Stesura del documento \\
+        Versione & Data & Autore & Verificatore & Descrizione \\ \hline
+        1.0.0 & 2024/06/17 & Alex S. & & Approvazione per il rilascio \\ \hline
+        0.2.0 & 2024/06/17 & Sig. Staffolani & & Apposizione firma \\ \hline
+        0.1.0 & 2024/06/17 & Alex S. & Alberto M. & Stesura del documento \\
         \hline
 
 \end{tblr}
@@ -162,7 +159,7 @@ In questo incontro è stato presentato l'MVP al proponente, Alessandro Staffolan
 Ogni requisito marcato come soddisfatto è stato mostrato in azione nel prodotto.
 
 Successivamente è stato mostrato come eseguire i test di unità.
-I test sono divisi in backend e frontend, le code coverage associate mostravano erano entrambi superanti il target di 80% prefissato dal capitolato.
+I test sono divisi in backend e frontend, le code coverage associate mostravano entrambe il target di 80% prefissato dal capitolato come superato.
 
 Il proponente si è dimostrato molto soddisfatto del lavoro svolto.
 
@@ -181,8 +178,6 @@ echo implode("\n\n", array_map(fn ($domanda, $risposta)  => "\\subsubsection{{$d
 \subsection{Approvazione dell'MVP}
 
 Con il seguente documento il proponente dichiara la sua approvazione per il prodotto presentato.
-
-\pagebreak
 
 \vspace{60pt}
 \begin{flushleft}
