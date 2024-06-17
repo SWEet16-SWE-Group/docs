@@ -159,6 +159,15 @@ Ha inoltre partecipato il Sig. Alessandro Staffolani, rappresentante di \textit{
 \subsection{Scopo pricipale}
 
 In questo incontro è stato presentato l'MVP al proponente, Alessandro Staffolani.
+<?php
+
+$a = <<<'EOF'
+
+EOF;
+
+echo "\n$a\n";
+
+?>
 
 \subsection{Domande del proponente}
 
