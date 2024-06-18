@@ -153,7 +153,7 @@ Ha inoltre partecipato il Sig. Alessandro Staffolani, rappresentante di \textit{
 
 \section{Sintesi dell'incontro}
 
-\subsection{Scopo pricipale}
+\subsection{Scopo principale}
 
 In questo incontro è stato presentato l'MVP al proponente, Alessandro Staffolani, seguendo la tabella dei requisiti presente nella specifica tecnica.
 Ogni requisito marcato come soddisfatto è stato mostrato in azione nel prodotto.
