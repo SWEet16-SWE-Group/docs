@@ -26,10 +26,6 @@ Per il frontend del progetto si è scelto di utilizzare una combinazione di desi
 Questo approccio permette di garantire la separazione della logica di business tra le varie componenti, semplificando la gestione degli stati dell’applicazione. \\
 Ogni design pattern adottato è descritto dettagliatamente nelle sezioni successive. \\
 
-\subsection{Architettura Front-end}
-
-\subsubsection{Introduzione}
-
 Ogni pagina dell'applicazione utilizza chiamate alle API per recuperare i dati necessari alla sua visualizzazione. 
 Inoltre, sfrutta gli hooks forniti da React, come useState e useEffect, per gestire lo stato dell'applicazione e aggiornare dinamicamente la UI. 
 Grazie a questo approccio, l'applicazione è in grado di fornire un'esperienza utente fluida e reattiva, adattandosi in tempo reale alle esigenze dell'utente. 
@@ -42,26 +38,53 @@ In particolare, possiamo dettagliare l’utilizzo di:
 <?php
 
 $a = [
-  'React Hook' => <<<EOF
+  'React Hook' => <<<'EOF'
   Utilizzati per gestire lo stato dell’applicazione in modo efficiente e visualizzare dinamicamente le informazioni. Vengono impiegati sia gli hook nativi di React (come useState, useEffect e useContext), sia hook personalizzati creati in base alle esigenze delle singole viste e componenti, come precedentemente descritto.
+
+  \begin{lstlisting}
+  \end{lstlisting}
   EOF,
 
-  'Conditional Rendering' => <<<EOF
+  'Conditional Rendering' => <<<'EOF'
   Permette di mostrare contenuti diversi in base a determinate condizioni. Vengono sviluppati componenti in grado di verificare suddette condizioni e rendere visibili i dati pertinenti in base a queste.
 
   L'esempio migliore di questo pattern si trova nel Layout, dove in base al ruolo dell'attore utilizzante il prodotto, l'header cambia al fine di mostrare le funzionalità disponibili quell'attore.
   EOF,
 
-  'Compound Components' => <<<EOF
+  'Compound Components' => <<<'EOF'
   Consentono di modulare le singole componenti attraverso una gerarchia padre-figlio, dove un componente padre contiene uno o più componenti figlio. Questo approccio permette di specializzare la gestione dei dati e personalizzare l’interfaccia utente in modo centralizzato, seguendo una lista di opzioni unica.
 
-  L'esempio migliore di questo pattern si trova di nuovo nel Layout in sinergia con il router, dato un url il router compone la pagina aggregando assieme diversi componenti. Ad esempio la lista di ristoranti viene visualizzata sia da utenti anonimi sia da clienti che stanno effettuando una prenotazione, mentre non può essere visualizzata dal ristoratore.
+  L'esempio migliore di questo pattern si trova di nuovo nel Layout in sinergia con il router, dato un url il router compone la pagina aggregando assieme diversi componenti. Ad esempio la lista di ristoranti viene visualizzata sia da utenti anonimi sia da clienti che stanno effettuando una prenotazione, mentre non può essere visualizzata dal ristoratore. \\
+
+  \begin{lstlisting}
+  // router.jsx
+  
+  function Cliente ({Content}) {
+    const {role} = useStateContext()
+    if (role !== 'CLIENTE') {
+      return <Navigate to={"/Login"} />
+    }
+    return <Layout Content={Content} />
+  }
+
+  function Ristoratore ({Content}) {
+    const {role} = useStateContext()
+    if (role !== 'RISTORATORE') {
+      return <Navigate to={"/Login"} />
+    }
+    return <Layout Content={Content} />
+  }
+
+  \end{lstlisting}
+
   EOF,
 ];
 
-echo implode("\n\n\n", array_map(fn ($k,$a) => "\\subsubsubsection{$k} $a",array_keys($a),$a));
+echo implode("\n\n\n", array_map(fn ($k,$a) => "\\subsubsubsection{{$k}} $a",array_keys($a),$a));
 
 ?>
+
+\pagebreak
 
 \subsection{Architettura Back-end}
 
@@ -88,10 +111,65 @@ L'adozione di Laravel per il backend e MySQL per il database, quindi, consente d
 
 Nella seguente sezione, vengono descritti i design pattern adottati per il backend.
 Seguendo la descrizione fornita inizialmente possiamo descrivere l'utilizzo di:
-\begin{itemize}
-    \item \textbf{Facade Pattern}: Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database;
-    \item \textbf{Repository Pattern}: Separazione della logica di accesso ai dati dal business logic, creando un livello di astrazione per le operazioni CRUD e altre query di database.
-    \item \textbf{Template Method Pattern}: Utilizzato nelle migrazioni del database, dove la classe di base definisce la struttura dell'operazione di migrazione e le sottoclassi implementano i dettagli specifici.
-    \item \textbf{Factory Pattern}: Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database.
-\end{itemize}
 
+<?php
+
+$a = [
+
+    'Facade Pattern' => <<<'EOF'
+    Fornisce un'interfaccia statica a classi che sono disponibili nel contenitore di servizio di Laravel, rendendo l'uso delle classi di servizio più semplice; sono state largamente usate nella comunicazione con il database; \\
+
+
+    \begin{lstlisting}
+    // Models/Client.php
+    class Client extends Model
+    {
+        use HasFactory;
+
+        protected $fillable=['id','user','nome'];
+
+        public function allergie() : BelongsToMany
+        {
+            return $this->belongsToMany(Allergeni::class);
+        }
+
+        protected $table='clients';
+
+        public function user() {
+            return $this->belongsTo(User::class, 'user');
+        }
+    }
+    \end{lstlisting}
+
+    EOF,
+
+    'Factory Pattern' => <<<'EOF'
+    Utilizzato per creare oggetti senza dover specificare la classe esatta dell'oggetto che verrà creato. Utilizzato per generare istanze di modelli in fase di testing o seeding del database. \\ 
+
+    \begin{lstlisting}
+    // database/factories/RistoratoreFactory.php
+    class RistoratoreFactory extends Factory
+    {
+        protected $model = Ristoratore::class;
+
+        public function definition()
+        {
+            return [
+                'user' => User::factory(),
+                'nome' => $this->faker->unique()->company,
+                'cucina' => 'Italiana',
+                'indirizzo' => $this->faker->unique()->address,
+                'telefono' => $this->faker->unique()->numerify('##########'),
+                'capienza' => $this->faker->numberBetween(10, 200),
+                'orario' => '19:30 - 22:30'
+            ];
+          }
+    }
+    \end{lstlisting}
+    EOF,
+
+];
+
+echo implode("\n\n\n", array_map(fn ($k,$a) => "\\subsubsubsection{{$k}} $a",array_keys($a),$a));
+
+?>

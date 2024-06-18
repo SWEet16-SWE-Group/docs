@@ -60,7 +60,13 @@ Tutti i riferimenti (normativi e informativi) a risorse web soggette a variazion
 \begin{itemize}
 <?php
 $riferimenti = [
-  'riferimenti da modificare e ampliare' => 'https://www.math.unipd.it/',
+  'React'       => 'https://www.react.dev',
+  'Axios'       => 'https://www.axios-http.com/',
+  'Bootstrap'   => 'https://www.getbootstrap.com/',
+  'Laravel'     => 'https://www.laravel.com/',
+  'MySQL'       => 'https://www.mysql.com/',
+  'NodeJS'      => 'https://www.nodejs.org/',
+  'Docker'      => 'https://www.docker.com/',
 ];
 echo implode(
   "\n",

@@ -16,7 +16,12 @@ $registro = (new RegistroModifiche())->logArray([
   [CE, '2024/05/07', alberto_m(), alex_s(), 'Stesura sezione introduzione'],
   [CE, '2024/05/08', alberto_m(), alex_s(), 'Stesura sezione tecnologie'],
   [CE, '2024/06/03', alberto_m(), alex_s(), 'Stesura sezione pattern frontend'],
+  [CE, '2024/06/12', alberto_c(), alberto_m(), 'Stesura sezione pattern backend'],
+  [CE, '2024/06/15', alberto_m(), alex_s(), 'Aggiunta sezioni codice'],
+  [SX, '2024/06/16', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
+
+$nome = "Specifica_Tecnica_v{$registro->versione()}.pdf";
 
 $error_flag = 0;
 ob_start();
@@ -43,6 +48,42 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \usepackage{tabularray}
 \usepackage[italian]{babel}
 \usepackage{float}
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstdefinelanguage{JavaScript}{
+  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
+  keywordstyle=\color{blue}\bfseries,
+  ndkeywords={class, export, boolean, throw, implements, import, this},
+  ndkeywordstyle=\color{darkgray}\bfseries,
+  identifierstyle=\color{black},
+  sensitive=false,
+  comment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\color{red}\ttfamily,
+  morestring=[b]',
+  morestring=[b]"
+}
+
+\lstset{
+   language=JavaScript,
+   extendedchars=true,
+   basicstyle=\footnotesize\ttfamily,
+   showstringspaces=false,
+   showspaces=false,
+   numbers=left,
+   numberstyle=\footnotesize,
+   numbersep=9pt,
+   tabsize=2,
+   breaklines=true,
+   showtabs=false,
+   captionpos=b
+}
 
 \geometry{
 a4paper,
