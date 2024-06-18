@@ -14,6 +14,7 @@ Nel dettaglio sono:
     \item \textbf{Livello di logica applicativa (backend):} viene utilizzato Laravel, che gestisce la logica di business elaborando le richieste del frontend interagendo con il database
             per recuperare o salvare i dati;
     \item \textbf{Livello di Dati (database):} viene utilizzato MySQL, che si occupa della gestione dei dati.
+\end{itemize}
 
 Questo approccio ha permesso al team di lavorare in modo parallelo sul frontend e sul backend, riducendo i tempi di sviluppo e rendendo più facile l'implementazione dei test.
 

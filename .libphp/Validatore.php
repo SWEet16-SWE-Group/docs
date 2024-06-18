@@ -24,7 +24,13 @@ function _appiattisci_item($text) {
     }
   }
 
-  $text = array_reduce($stack, function ($text, $a) {
+
+  $text = array_reduce($stack, function ($text, $a) use ($stack) {
+    if(count($a) < 2){
+      print_r($stack);
+      echo "ERRORE NELLA STESURA DI ELENCHI\n";
+      die(4);
+    }
     $o = $a[0][1];
     $l = $a[1][1] - $o;
     return substr_replace($text, str_replace("\n", ' ', substr($text, $o, $l)), $o, $l);
