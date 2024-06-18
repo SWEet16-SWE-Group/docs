@@ -85,6 +85,7 @@ echo implode("\n\n\n", array_map(fn ($k,$a) => "\\subsubsubsection{{$k}} $a",arr
 ?>
 
 \pagebreak
+
 \subsection{Architettura Back-end}
 
 \subsubsection{Introduzione}
