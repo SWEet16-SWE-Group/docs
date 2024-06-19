@@ -234,7 +234,7 @@ function gantt_latex($img, $size, $ganttstruct, $scale = '.7') {
   if (!_compile()) {
     return '';
   }
-  $htmlfile = mediapath() . '/gantt.html';
+  $htmlfile = mediapath() . '/' . $img . '.' . 'gantt.html';
   file_put_contents($htmlfile, gantt_html($ganttstruct));
   passthru(sprintf("firefox --headless --screenshot --window-size %s 'file://%s'", $size, $htmlfile));
   is_dir($dir = dirname($img)) or mkdir($dir, recursive: true);
