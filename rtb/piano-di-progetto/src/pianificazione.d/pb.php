@@ -458,7 +458,7 @@ $periodi_pb = [
   // ===========================================================================================================================
   // PB 4
   [
-    'Questa settimana',
+    'Periodo 4',
     '2025/05/27',
     '2024/06/07',
     [],
@@ -507,7 +507,60 @@ $periodi_pb = [
     '',
     [],
     [],
-  ]
+  ],
+  // ===========================================================================================================================
+  // PB 5
+  [
+    'Periodo 5',
+    '2025/06/08',
+    '2024/06/16',
+    [],
+    [
+      'pbg5.png',
+      '640,530',
+      [
+        Attivita::Macro('MVP 7', '2024/06/08', [
+          Attivita::Micro('Link ingredienti con gli allergeni',  '2024/06/08', []),
+          Attivita::Micro('Link pietanze con gli ingredienti',  '2024/06/09', []),
+        ]),
+        Attivita::Macro('MVP 8', '2024/06/10', [
+          Attivita::Micro('Divisione delle ordinazioni per cliente',  '2024/06/10', []),
+          Attivita::Micro('Nella FormPietanza possibilità di selezionare gli ingredienti',  '2024/06/11', []),
+          Attivita::Micro('Controllo che nel periodo dato il ristorante abbia abbastanza posti',  '2024/06/11', []),
+        ]),
+        Attivita::Macro('MVP 9', '2024/06/12', [
+          Attivita::Micro('Link di invito prenotazione',  '2024/06/12', []),
+          Attivita::Micro('Ricerca ristoranti',  '2024/06/12', []),
+        ]),
+        Attivita::Macro('MVP 10', '2024/06/14', [
+          Attivita::Micro('Test funzionali',  '2024/06/14', []),
+          Attivita::Micro('Correzioni errori post test funzionali',  '2024/06/15', []),
+          Attivita::Micro('Creazione dati DB',  '2024/06/16', []),
+        ]),
+      ]
+    ],
+    preventivo => [
+      'Alberto C.'  => [0, 0, 0, 0, 0, 0],
+      'Bilal El M.' => [0, 0, 0, 0, 0, 0],
+      'Alberto M.'  => [0, 0, 0, 0, 0, 0],
+      'Alex S.'     => [0, 0, 0, 0, 0, 0],
+      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
+      'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
+    ],
+    consuntivo => [
+      'Alberto C.'  => [0, 0, 0, 0, 0, 0],
+      'Bilal El M.' => [0, 0, 0, 0, 0, 0],
+      'Alberto M.'  => [0, 0, 0, 0, 0, 0],
+      'Alex S.'     => [0, 0, 0, 0, 0, 0],
+      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
+      'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
+    ],
+    '', // gestione dei rischi
+    [], // rischi
+    '', // retrospettiva
+    [], // obbiettivi raggiunti
+    [], // obbiettivi mancati
+  ],
   // ===========================================================================================================================
 ];
 
