@@ -376,7 +376,7 @@ $periodi_pb = [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
+      'Alex S.'     => [0, 0, 6, 6, 0, 0],
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
@@ -438,7 +438,7 @@ $periodi_pb = [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
+      'Alex S.'     => [0, 12, 0, 0, 0, 0],
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
@@ -498,7 +498,7 @@ $periodi_pb = [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
+      'Alex S.'     => [0, 10, 0, 0, 26, 0],
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
@@ -517,7 +517,7 @@ $periodi_pb = [
     [],
     [
       'pbg5.png',
-      '640,530',
+      '640,780',
       [
         Attivita::Macro('MVP 7', '2024/06/08', [
           Attivita::Micro('Link ingredienti con gli allergeni',  '2024/06/08', []),
@@ -532,10 +532,11 @@ $periodi_pb = [
           Attivita::Micro('Link di invito prenotazione',  '2024/06/12', []),
           Attivita::Micro('Ricerca ristoranti',  '2024/06/12', []),
         ]),
-        Attivita::Macro('MVP 10', '2024/06/14', [
-          Attivita::Micro('Test funzionali',  '2024/06/14', []),
-          Attivita::Micro('Correzioni errori post test funzionali',  '2024/06/15', []),
-          Attivita::Micro('Creazione dati DB',  '2024/06/16', []),
+        Attivita::Macro('MVP 10', '2024/06/13', [
+          Attivita::Micro('Test funzionali',  '2024/06/13', [
+            Attivita::Micro('Correzioni errori post test funzionali',  '2024/06/15', []),
+            Attivita::Micro('Creazione dati DB',  '2024/06/16', []),
+          ]),
         ]),
       ]
     ],
@@ -551,7 +552,7 @@ $periodi_pb = [
       'Alberto C.'  => [0, 0, 0, 0, 0, 0],
       'Bilal El M.' => [0, 0, 0, 0, 0, 0],
       'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
+      'Alex S.'     => [0, 3, 0, 0, 16, 0],
       'Iulius S.'   => [0, 0, 0, 0, 0, 0],
       'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
     ],
