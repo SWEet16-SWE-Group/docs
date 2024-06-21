@@ -73,3 +73,23 @@ function calcola_somme_to_string($a, $b) {
 
 echo consuntivo_latex('RTB', calcola_somme_to_string($rtb_somma_preventivi, $rtb_somma_consuntivi));
 echo consuntivo_latex( 'PB', calcola_somme_to_string( $pb_somma_preventivi,  $pb_somma_consuntivi));
+
+return;
+
+ob_end_clean();
+
+function ts($a){
+  $a = explode("\n", $a);
+  $a = array_map(fn ($a) => explode(" & ", $a), $a);
+  $a = array_map(fn ($a) => array_map(fn ($a) => sprintf('%10s',$a),$a),$a);
+  foreach($a as &$b){$b[0] = sprintf('%20s',$b[0]);}
+  $a = array_map(fn ($a) => implode(" & ", $a), $a);
+  $a = implode("\n", $a);
+  return $a;
+}
+
+$b = tabella_to_string(formatta_tabella(tabella_ore(somma3d([$rtb_somma_consuntivi, $pb_somma_consuntivi],$membri, range(0, 5)))));
+$b = ts($b);
+
+echo "\n\n\nsomma totale:\n\n$b\n\n";
+die();
