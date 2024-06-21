@@ -36,40 +36,12 @@ Alternativamente, è possibile:
 \subsection{Avvio dell’applicazione}
 
 \begin{enumerate}
-    \item Aprire un terminale e posizionarsi nella cartella del progetto, quindi chiamare il comando:
-    \begin{verbatim}
-    docker-compose up --build
-    \end{verbatim}
-    \item Aprire ora un altro terminale e chiamare:
-    \begin{verbatim}
-    docker-compose exec php sh
-    \end{verbatim}
-    \item Installare composer:
-    \begin{verbatim}
-    composer install
-    \end{verbatim}
-    \item Generare la chiave dell'applicazione:
-    \begin{verbatim}
-    php artisan key:generate
-    \end{verbatim}
-    \item Eseguire le migrazioni del database:
-    \begin{verbatim}
-    php artisan migrate
-    \end{verbatim}
-    \item Installare npm:
-    \begin{verbatim}
-    npm install
-    \end{verbatim}
-    \item Controllare se la pagina di Laravel (\url{http://localhost:8000}) non dia errori. Se così non fosse, chiamare sempre da dentro il container Docker:
-    \begin{verbatim}
-    chmod -R 777 storage
-    \end{verbatim}
+    \item Aprire un terminale e posizionarsi nella cartella del progetto, quindi chiamare il comando: \begin{verbatim} docker-compose up --build \end{verbatim}%
+    \item Aprire ora un altro terminale e chiamare: \begin{verbatim} docker-compose exec php sh \end{verbatim}%
+    \item Installare composer: \begin{verbatim} composer install \end{verbatim}%
+    \item Generare la chiave dell'applicazione: \begin{verbatim} php artisan key:generate \end{verbatim}%
+    \item Eseguire le migrazioni del database: \begin{verbatim} php artisan migrate \end{verbatim}%
+    \item Installare npm: \begin{verbatim} npm install \end{verbatim}%
+    \item Controllare se la pagina di Laravel (\url{http://localhost:8000}) non dia errori. Se così non fosse, chiamare sempre da dentro il container Docker: \begin{verbatim} chmod -R 777 storage \end{verbatim}%
+   \item L’applicazione disponibile sul browser all’indirizzo: \begin{verbatim} http://localhost:3000 \end{verbatim}%
 \end{enumerate}
-    Per collegarsi a React e avviare l'applicazione tramite il comando:
-    \begin{verbatim}
-    npm start
-    \end{verbatim}
-     L’applicazione verrà eseguita automaticamente sul browser predefinito all’indirizzo:
-    \begin{verbatim}
-        http://localhost:3000
-    \end{verbatim}
