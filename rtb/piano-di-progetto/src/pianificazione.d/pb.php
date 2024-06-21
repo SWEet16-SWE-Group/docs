@@ -401,7 +401,10 @@ $periodi_pb = [
     'Periodo 3',
     '2025/05/20',
     '2024/05/24',
-    [],
+    [
+      'Ottimizzazione dei documenti',
+      'Inizio fase di codifica',
+    ],
     [
       'pbg3.png',
       '640,600',
