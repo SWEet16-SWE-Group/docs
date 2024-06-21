@@ -18,8 +18,8 @@ $contenuti = [
     Conclusa l'esplorazione del sito, l'utente può registrarsi tramite l'uso di email e password.
     Oppure può accedere direttamente se già in possesso di un account.
 
-    IMG-REGISTRAZIONE
-    IMG-ACCESSO
+    IMG-SIGNUP
+    IMG-LOGIN
 
     EOF,
 
@@ -114,7 +114,7 @@ $contenuti = [
 
     IMG-DIVISIONECONTO
     IMG-PAGAMENTOEQUO
-    IMG-PAGAPROPORZIONALE
+    IMG-PAGAMENTOPROPORZIONALE
 
     EOF,
   ],
@@ -157,10 +157,10 @@ $contenuti = [
     \item Gli ingredienti, nel caso di aggiunta di una pietanza
     \end{itemize}
 
-    IMG-INGREDIENTI
-    IMG-NUOVO-INGREDIENTE
-    IMG-PIETANZE
-    IMG-NUOVA-PIETANZA
+    IMG-MODIFICA-INGREDIENTI
+    IMG-CREAZIONE-INGREDIENTE
+    IMG-MODIFICA-PIETANZE
+    IMG-CREAZIONE-PIETANZA
 
     EOF,
     'Divisione del conto e pagamenti' => <<<'EOF'
@@ -183,14 +183,60 @@ $contenuti = [
   EOF,
 ];
 
-function _stampaimmaginiistruzioniduso($tex){
+function _stampaimmaginiistruzioniduso($tex) {
+  $img = <<<'EOF'
+  \begin{figure}[h] \includegraphics[scale=1]{IMG} \end{figure}
+  EOF;
+  $imgreplace = fn ($a, $b, $tex) => str_replace_array([$a => str_replace_array(['IMG' => $b], $img)], $tex);
+  $tex = $imgreplace('IMG-RISTORANTI','anonimo_ristoranti.png',$tex);
+  $tex = $imgreplace('IMG-RISTORANTE','anonimo_ristorante.png',$tex);
+  $tex = $imgreplace('IMG-MENU','anonimo_menu.png',$tex);
+  $tex = $imgreplace('IMG-SIGNUP','anonimo_signup.png',$tex);
+  $tex = $imgreplace('IMG-LOGIN','anonimo_login.png',$tex);
+
+  $tex = $imgreplace('IMG-SELEZIONE','autenticato_selezioneprofilo.png',$tex);
+  $tex = $imgreplace('IMG-MODIFICA','autenticato_modificaaccount.png',$tex);
+  $tex = $imgreplace('IMG-MODIFICA-CLIENTE','autenticato_modificacliente.png',$tex);
+  $tex = $imgreplace('IMG-MODIFICA-RISTORATORE','autenticato_modificaristoratore.png',$tex);
+  $tex = $imgreplace('IMG-CREAZIONE-CLIENTE','autenticato_nuovocliente.png',$tex);
+  $tex = $imgreplace('IMG-CREAZIONE-RISTORATORE','autenticato_nuovoristoratore.png',$tex);
+
+  $tex = $imgreplace('IMG-DASHBOARD-C','cliente_dashboard.png',$tex);
+  $tex = $imgreplace('IMG-DASHBOARD-R','ristoratore_dashboard.png',$tex);
+
+  $tex = $imgreplace('IMG-NOTIFICHE-C','cliente_notifiche.png',$tex);
+  $tex = $imgreplace('IMG-NOTIFICHE-R','ristoratore_notifiche.png',$tex);
+  $tex = $imgreplace('IMG-DETTAGLI-C','cliente_dettagli.png',$tex);
+  $tex = $imgreplace('IMG-DETTAGLI-R','ristoratore_dettagli.png',$tex);
+
+  $tex = $imgreplace('IMG-PAGAMENTO-RISTORATORE','ristoratore_pagamenti.png',$tex);
+
+  $tex = $imgreplace('IMG-DIVISIONECONTO','cliente_selezionedivisione.png',$tex);
+  $tex = $imgreplace('IMG-PAGAMENTOEQUO','cliente_pagamento_equo.png',$tex);
+  $tex = $imgreplace('IMG-PAGAMENTOPROPORZIONALE','cliente_pagamento_proporzionale.png',$tex);
+
+
+  $tex = $imgreplace('IMG-PRENOTAZIONE-RISTORANTE','cliente_prenotazione_ristorante.png',$tex);
+  $tex = $imgreplace('IMG-PRENOTAZIONE-FORM','cliente_formprenotazione.png',$tex);
+
+  $tex = $imgreplace('IMG-INVITO','cliente_invito.png',$tex);
+  $tex = $imgreplace('IMG-ORDINAZIONE-MENU','cliente_menu.png',$tex);
+  $tex = $imgreplace('IMG-ORDINAZIONE-FORM','cliente_formordinazione.png',$tex);
+
+  $tex = $imgreplace('IMG-MODIFICA-INGREDIENTI','ristoratore_modificaingredienti.png',$tex);
+  $tex = $imgreplace('IMG-MODIFICA-PIETANZA','ristoratore_modificamenu.png',$tex);
+  $tex = $imgreplace('IMG-CREAZIONE-INGREDIENTE','ristoratore_crea_ingrediente.png',$tex);
+  $tex = $imgreplace('IMG-CREAZIONE-PIETANZA','ristoratore_crea_pietanza.png',$tex);
+  if ($mancati = preg('/IMG-[A-Z\-]*/', $tex)[0]) {
+    echo "Mancata sostituzione delle seguenti immagini\n";
+    echo implode('', array_map(fn ($a) => "\t$a\n", $mancati));
+    die(6);
+  }
   return $tex;
 }
 
 $tex = _stampatex($contenuti, 'Istruzioni d\'uso', 'section');
 
-//$tex = _stampaimmaginiistruzioniduso($tex);
+$tex = _stampaimmaginiistruzioniduso($tex);
 
 echo $tex;
-
-?>
