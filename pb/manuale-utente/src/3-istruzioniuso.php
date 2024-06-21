@@ -119,28 +119,47 @@ $contenuti = [
   ],
   'Ristoratore' =>
   [
-    'Navbar' =>
-    [
-      'Selezione profili' => null,
-      'Impostazioni profilo' => null,
-      'Dashboard' => null,
-      'Impostazioni menù' =>
-      [
-        'Manipolazione pietanze' => null,
-      ],
-      'Notifiche' => null,
-    ],
-    'Dashboard' =>
-    [
-      'Lista di prenotazioni' => null,
-      'Prenotazione' =>
-      [
-        'Ordinazioni collaborative' => null,
-        'Dettagli ordinazioni' => null,
-        'Segna il pagamento di pietanze/clienti come effettuati' => null,
-      ],
-    ],
+    'Dashboard' => <<<'EOF'
+    EOF,
+    'Dettagli' => <<<'EOF'
+    EOF,
+    'Gestione del menù' => <<<'EOF'
+
+    Il menù di un ristorante è gestito in due sezioni differenti.
+    Assumento che gli ingredienti di un ristorante cambino molto poco nel tempo,
+    un ristoratore aggiunge prima tutti i propri ingredienti e poi tutte le pietanze.
+    La prima pagina, per ingredienti o pietanze, è una lista di tutti gli elementi presenti accompagnati da un bottone di eliminazione.
+    Sopra alle liste sono presenti i tasti per aggiungere un nuovo elemento o tornare alla dashboard.
+    Le pagine per l'aggiunta di un nuovo elemento chiedono il nome del nuovo elemento e l'associazione con:
+    \begin{itemize}
+    \item Gli allergeni, nel caso di aggiunta di un ingrediente
+    \item Gli ingredienti, nel caso di aggiunta di una pietanza
+    \end{itemize}
+
+    IMG-INGREDIENTI
+    IMG-NUOVO-INGREDIENTE
+    IMG-PIETANZE
+    IMG-NUOVA-PIETANZA
+
+    EOF,
+    'Divsione del conto e pagamenti' => <<<'EOF'
+
+    Il ristoratore non può scegliere il modo di divisione del conto.
+    Quando questo viene scelto, egli può smarcare le quote del conto che vengono pagate esternamente all'app, per esempio alla cassa.
+
+    IMG-PAGAMENTO-RISTORATORE
+
+    EOF,
   ],
+  'Notifiche' => <<<'EOF'
+
+  Clienti e ristoratori ricevono notifiche riguando le prenotazioni, le ordinazioni e chi vi partecipa.
+  Queste notifiche sono consultabili in qualsiasi momento nelle rispettive pagine, accessibili tramile il link nella navbar in alto.
+
+  IMG-NOTIFICHE-C
+  IMG-NOTIFICHE-R
+
+  EOF,
 ];
 
 function _stampaimmaginiistruzioniduso($tex){
