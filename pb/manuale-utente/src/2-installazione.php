@@ -45,3 +45,11 @@ Alternativamente, è possibile:
     \item Controllare se la pagina di Laravel (\url{http://localhost:8000}) non dia errori. Se così non fosse, chiamare sempre da dentro il container Docker: \begin{verbatim} chmod -R 777 storage \end{verbatim}%
    \item L’applicazione disponibile sul browser all’indirizzo: \begin{verbatim} http://localhost:3000 \end{verbatim}%
 \end{enumerate}
+
+\subsection{Testing}
+
+Per eseguire i test e ottenere le rispettive code coverage per frontend e backend, i comandi sono i seguenti:
+\begin{itemize}
+\item \begin{verbatim} npm test -- --coverage \end{verbatim}%
+\item \begin{verbatim} XDEBUG_MODE=coverage php artisan test --coverage-html coverage/ \end{verbatim}%
+\end{itemize}
