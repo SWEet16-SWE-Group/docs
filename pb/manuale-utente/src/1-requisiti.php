@@ -23,25 +23,6 @@ Docker & \(\ge4.28\) & \url{https://www.docker.com/} \\
 \end{longtblr}
 \end{center}
 
-\subsection{Requisiti hardware}
-
-L’applicazione esegue su browser, come tale non si individuano dei requisiti specifici, fissati da parte del proponente, del capitolato o dal progetto stesso. I seguenti, pertanto, sono individuati come riferimento di massima per l’esecuzione del prodotto creato.
-
-\begin{center}
-\begin{longtblr}{
-colspec={|X[m,4.5cm]|X[m,11cm]|},
-row{odd}={bg=white},
-row{even}={bg=lightgray}
-}
-\hline
-\textbf{Componente} & \textbf{Requisito} \\ \hline
-Processore & Quad-Core 3,2 GHz \\ 
-Memoria & 8GB DDR4 \\ 
-Scheda grafica & Supporto a scheda grafica integrata con supporto OpenGL \\ 
-Connessione Internet & Connessione Internet stabile e veloce, in grado di supportare le esigenze di traffico dell'applicazione \\ 
-\end{longtblr}
-\end{center}
-
 \subsection{Requisiti software}
 
 L’applicazione è stata testata sui browser principali, di cui si riportano le versioni iniziali, dalle quali si è cominciato a sviluppare il progetto, considerando incrementalmente le versioni più recenti dei singoli browser.
