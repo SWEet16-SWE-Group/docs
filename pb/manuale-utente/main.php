@@ -10,8 +10,10 @@ require_once 'Latex.php';
 $error_flag = 0;
 $titolo = 'Manuale utente';
 $registro = (new RegistroModifiche())->logArray([
-  [DX, '2024/06/01', alex_s(), '', 'Stesura scheletro'],
-  //[SX, '2024/06/00', alex_s(), '', 'Approvazione per il rilascio'],
+  [DX, '2024/06/01', alex_s(),    '', 'Stesura scheletro'],
+  [CE, '2024/06/14', alberto_c(), '', 'Stesura Requisiti e installazione'],
+  [CE, '2024/06/21', alex_s(),    '', 'Stesura istruzioni d\'uso'],
+  [SX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
 $nome = "Manuale_utente_v{$registro->versione()}.pdf";
 
