@@ -185,7 +185,7 @@ $contenuti = [
 
 function _stampaimmaginiistruzioniduso($tex) {
   $img = <<<'EOF'
-  \begin{figure}[h] \includegraphics[scale=1]{IMG} \end{figure}
+  \begin{figure}[H] \begin{center} \includegraphics[scale=.3]{IMG} \end{center} \end{figure}
   EOF;
   $imgreplace = fn ($a, $b, $tex) => str_replace_array([$a => str_replace_array(['IMG' => $b], $img)], $tex);
   $tex = $imgreplace('IMG-RISTORANTI','anonimo_ristoranti.png',$tex);
@@ -195,9 +195,9 @@ function _stampaimmaginiistruzioniduso($tex) {
   $tex = $imgreplace('IMG-LOGIN','anonimo_login.png',$tex);
 
   $tex = $imgreplace('IMG-SELEZIONE','autenticato_selezioneprofilo.png',$tex);
-  $tex = $imgreplace('IMG-MODIFICA','autenticato_modificaaccount.png',$tex);
   $tex = $imgreplace('IMG-MODIFICA-CLIENTE','autenticato_modificacliente.png',$tex);
   $tex = $imgreplace('IMG-MODIFICA-RISTORATORE','autenticato_modificaristoratore.png',$tex);
+  $tex = $imgreplace('IMG-MODIFICA-ACCOUNT','autenticato_modificaaccount.png',$tex);
   $tex = $imgreplace('IMG-CREAZIONE-CLIENTE','autenticato_nuovocliente.png',$tex);
   $tex = $imgreplace('IMG-CREAZIONE-RISTORATORE','autenticato_nuovoristoratore.png',$tex);
 
@@ -224,7 +224,7 @@ function _stampaimmaginiistruzioniduso($tex) {
   $tex = $imgreplace('IMG-ORDINAZIONE-FORM','cliente_formordinazione.png',$tex);
 
   $tex = $imgreplace('IMG-MODIFICA-INGREDIENTI','ristoratore_modificaingredienti.png',$tex);
-  $tex = $imgreplace('IMG-MODIFICA-PIETANZA','ristoratore_modificamenu.png',$tex);
+  $tex = $imgreplace('IMG-MODIFICA-PIETANZE','ristoratore_modificamenu.png',$tex);
   $tex = $imgreplace('IMG-CREAZIONE-INGREDIENTE','ristoratore_crea_ingrediente.png',$tex);
   $tex = $imgreplace('IMG-CREAZIONE-PIETANZA','ristoratore_crea_pietanza.png',$tex);
   if ($mancati = preg('/IMG-[A-Z\-]*/', $tex)[0]) {

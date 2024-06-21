@@ -37,6 +37,7 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \usepackage[usenames, dvipsnames]{xcolor}
 \usepackage{colortbl}
 \usepackage{tabularray}
+\usepackage{float}
 \usepackage[italian]{babel}
 
 \geometry{
