@@ -17,6 +17,8 @@ $registro = (new RegistroModifiche())->logArray([
 [CE, "2024/04/08", giovanni_z(), alberto_m(), "Stesura qualità di processo"],
 [DX, "2024/04/10", alberto_c(), alex_s(), "Modifica grafici resoconto attività di verifica"],
 [SX, "2024/04/15", alex_s(), "", "Approvazione per il rilascio"],
+[CE, "2024/06/21", alex_s(), bilal_em(), "Aggiornamento resoconto"],
+[SX, "2024/06/21", alex_s(), "", "Approvazione per il rilascio"],
 ]);
 
 $error_flag = 0;
