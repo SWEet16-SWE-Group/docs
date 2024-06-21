@@ -54,19 +54,3 @@ Non può pertanto essere considerato definitivo nella sua attuale versione.
 
 Tutti i riferimenti (normativi e informativi) a risorse web soggette a variazione sono stati consultati il
 <?php echo (new DateTime())->format('Y/m/d'); ?>.
-
-\begin{itemize}
-<?php
-$riferimenti = [
-  'riferimenti da modificare e ampliare' => 'https://www.math.unipd.it/',
-];
-echo implode(
-  "\n",
-  array_map(
-    fn ($k, $v) => sprintf('\\item %s: \\\\ \\url{%s}', $k, $v),
-    array_keys($riferimenti),
-    $riferimenti
-  )
-);
-?>
-\end{itemize}
