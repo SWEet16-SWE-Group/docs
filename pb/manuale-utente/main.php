@@ -111,6 +111,15 @@ Versione: & <?php echo $registro->versione(); ?> &
 \tableofcontents
 \pagebreak
 
+<?php
+
+require_once __DIR__ . '/src/0-introduzione.php';
+require_once __DIR__ . '/src/1-requisiti.php';
+require_once __DIR__ . '/src/2-installazione.php';
+require_once __DIR__ . '/src/3-istruzioniuso.php';
+require_once __DIR__ . '/src/4-supporto.php';
+
+?>
 
 
 \end{document}
