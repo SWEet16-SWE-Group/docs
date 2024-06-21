@@ -170,15 +170,15 @@ function periodo(
 
     CONSUNTIVO_SOLDI
 
-    \paragraph{Gestione dei ruoli}
+    %\paragraph{Gestione dei ruoli}
 
-    RUOLI
+    %RUOLI
 
-    \paragraph{Gestione dei rischi}
+    %\paragraph{Gestione dei rischi}
 
-    \begin{itemize}
-    RISCHI
-    \end{itemize}
+    %\begin{itemize}
+    %RISCHI
+    %\end{itemize}
 
     RETROSPETTIVA
 
@@ -207,7 +207,7 @@ function periodo(
       'PREVENTIVO_SOLDI'  => tabella_soldi_to_string($preventivo),
       'CONSUNTIVO_ORE'    => tabella_ore_to_string($consuntivo),
       'CONSUNTIVO_SOLDI'  => tabella_soldi_to_string($consuntivo),
-      'RUOLI' => $gestioneruoli,
+      //'RUOLI' => $gestioneruoli,
       'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
       'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
       'RAGGIUNTI' => $raggiunti ? $itemize($raggiunti) : '\\item Nessun obbiettivo raggiunto',
@@ -391,7 +391,8 @@ $periodi_pb = [
       'Ripreso una comunicazione costante con il proponente',
     ],
     [
-      'Baseline MVP'
+      'Baseline MVP',
+      'Consegna finale del progetto',
     ],
   ],
   // ===========================================================================================================================
@@ -453,7 +454,9 @@ $periodi_pb = [
       'Creazione del database per l\'MVP',
       'Aggiunto PHP sopra \\LaTeX per maggiore automazione della stesura dei documenti',
     ],
-    [],
+    [
+      'Consegna finale del progetto',
+    ],
   ],
   // ===========================================================================================================================
   // PB 4
@@ -461,7 +464,12 @@ $periodi_pb = [
     'Periodo 4',
     '2025/05/27',
     '2024/06/07',
-    [],
+    [
+      'Sviluppo fase 3 dell\'MVP',
+      'Sviluppo fase 4 dell\'MVP',
+      'Sviluppo fase 5 dell\'MVP',
+      'Sviluppo fase 6 dell\'MVP',
+    ],
     [
       'pbg4.png',
       '640,530',
@@ -504,20 +512,38 @@ $periodi_pb = [
     ],
     '',
     [],
-    '',
-    [],
-    [],
+    <<<'EOF'
+    Analizzando i progressi rasenti il nulla dei periodi precedenti.
+    5 membri al pieno delle loro capacità messi a lavorare sull'MVP non erano sufficienti.
+    Le decisione prese allora sono state di congelare la documentazione e coinvolgere tutti e 6 i membri.
+    Il risultato di queste scelte è stato un avanzamento considerevole.
+    EOF,
+    [
+      'Costruzione dei test',
+      'Recupero del tempo perso nei periodi precedenti',
+      'Avanzamento non più nullo',
+    ],
+    [
+      'Consegna finale del progetto',
+    ],
   ],
   // ===========================================================================================================================
   // PB 5
   [
     'Periodo 5',
     '2025/06/08',
-    '2024/06/16',
-    [],
+    '2024/06/21',
+    [
+      'Stesura del manuale utente',
+      'Stesura della specifica tecnica',
+      'Sviluppo fase  7 dell\'MVP',
+      'Sviluppo fase  8 dell\'MVP',
+      'Sviluppo fase  9 dell\'MVP',
+      'Sviluppo fase 10 dell\'MVP',
+    ],
     [
       'pbg5.png',
-      '640,780',
+      '640,900',
       [
         Attivita::Macro('MVP 7', '2024/06/08', [
           Attivita::Micro('Link ingredienti con gli allergeni',  '2024/06/08', []),
@@ -537,6 +563,12 @@ $periodi_pb = [
             Attivita::Micro('Correzioni errori post test funzionali',  '2024/06/15', []),
             Attivita::Micro('Creazione dati DB',  '2024/06/16', []),
           ]),
+        ]),
+        Attivita::Macro('Documentazione', '2024/06/08', [
+          Attivita::Micro('Manuale utente',  '2024/06/21', []),
+          Attivita::Micro('Specifica tecnica',  '2024/06/21', []),
+          Attivita::Micro('Piano di Progetto',  '2024/06/21', []),
+          Attivita::Micro('Piano di Qualifica',  '2024/06/21', []),
         ]),
       ]
     ],
@@ -558,9 +590,17 @@ $periodi_pb = [
     ],
     '', // gestione dei rischi
     [], // rischi
-    '', // retrospettiva
-    [], // obbiettivi raggiunti
-    [], // obbiettivi mancati
+    <<<'EOF'
+    Si è concluso lo sviluppo dell'MVP con tanto di approvazione da parte del proponente.
+    La documentazione è stata aggiornata allo stato reale del progetto.
+    EOF, // retrospettiva
+    [
+      'Approvazione del prodotto da parte del proponente',
+      'Semaforo verde per la PB',
+      'Consegna finale del progetto'
+    ], // obbiettivi raggiunti
+    [
+    ], // obbiettivi mancati
   ],
   // ===========================================================================================================================
 ];
