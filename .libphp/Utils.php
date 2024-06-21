@@ -35,6 +35,10 @@ function _compile() {
   return array_key_exists('compile', getopt('', ['compile']));
 }
 
+function _saltaortografia() {
+  return array_key_exists('saltaortografia', getopt('', ['saltaortografia']));
+}
+
 function str_replace_array($a, $s) {
   return str_replace(array_keys($a), $a, $s);
 }
