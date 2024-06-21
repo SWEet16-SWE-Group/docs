@@ -10,9 +10,9 @@ Grazie a ciò l’utente sarà a conoscenza dei requisiti minimi necessari per i
 
 L'obiettivo del progetto è creare una piattaforma per la gestione delle prenotazioni e delle ordinazioni nei ristoranti, rivolta sia ai clienti che ai ristoratori, con l'obiettivo di ottimizzare il tempo per entrambe le parti. 
 La piattaforma consente agli utenti di accedere al proprio account attraverso un sistema di accesso e condivisione, permettendo l'interazione con vari ristoranti nei quali si vuole consumare un pasto i quali, a loro volta, potranno accettare o rifiutare prenotazioni e ordinazioni.
-Possiamo quindi distinguere::
+Possiamo quindi distinguere:
 \begin{itemize}
-    \item Utenti consumatori (definiti come \textbf{Clienti}) che effettuano prenotazioni e ordinazioni;.
+    \item Utenti consumatori (definiti come \textbf{Clienti}) che effettuano prenotazioni e ordinazioni;
     \item Utenti amministratori (definiti come \textbf{Ristoratori}) che, oltre a  gestire prenotazioni e ordinazioni, possono creare, modificare e cancellare le pietanze del proprio ristorante.
 \end{itemize}
 

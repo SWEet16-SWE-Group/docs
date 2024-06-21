@@ -10,9 +10,9 @@ require_once 'Latex.php';
 $error_flag = 0;
 $titolo = 'Manuale utente';
 $registro = (new RegistroModifiche())->logArray([
-  [DX, '2024/06/01', alex_s(),    '', 'Stesura scheletro'],
-  [CE, '2024/06/14', alberto_c(), '', 'Stesura Requisiti e installazione'],
-  [CE, '2024/06/21', alex_s(),    '', 'Stesura istruzioni d\'uso'],
+  [DX, '2024/06/01', alex_s(),    alberto_m(), 'Stesura scheletro'],
+  [CE, '2024/06/14', alberto_c(), alberto_m(), 'Stesura Requisiti e installazione'],
+  [CE, '2024/06/21', alex_s(),    alberto_m(), 'Stesura istruzioni d\'uso'],
   [SX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
 $nome = "Manuale_utente_v{$registro->versione()}.pdf";
@@ -120,7 +120,7 @@ require_once __DIR__ . '/src/0-introduzione.php';
 require_once __DIR__ . '/src/1-requisiti.php';
 require_once __DIR__ . '/src/2-installazione.php';
 require_once __DIR__ . '/src/3-istruzioniuso.php';
-require_once __DIR__ . '/src/4-supporto.php';
+// require_once __DIR__ . '/src/4-supporto.php';
 
 ?>
 

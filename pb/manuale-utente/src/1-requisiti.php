@@ -20,6 +20,7 @@ Node.js & \(\ge18.x.x\) & \url{https://nodejs.org/en/} \\
 Npm & \(\ge9.0.x\) & Integrato con il download di Node.js \\ 
 Composer & \(\ge1.0\) & \url{https://getcomposer.org/} \\ 
 Docker & \(\ge4.28\) & \url{https://www.docker.com/} \\ 
+\hline
 \end{longtblr}
 \end{center}
 
@@ -39,5 +40,6 @@ Google Chrome & 110.0 \\
 Microsoft Edge & 94.0 \\ 
 Mozilla Firefox & 115.0 \\ 
 Safari & 17.0 \\ 
+\hline
 \end{longtblr}
 \end{center}

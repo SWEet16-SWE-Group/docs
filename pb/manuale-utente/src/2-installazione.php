@@ -39,16 +39,14 @@ Alternativamente, è possibile:
     \item Aprire un terminale e posizionarsi nella cartella del progetto, quindi chiamare il comando: \begin{verbatim} docker-compose up --build \end{verbatim}%
     \item Aprire ora un altro terminale e chiamare: \begin{verbatim} docker-compose exec php sh \end{verbatim}%
     \item Installare composer: \begin{verbatim} composer install \end{verbatim}%
-    \item Generare la chiave dell'applicazione: \begin{verbatim} php artisan key:generate \end{verbatim}%
     \item Eseguire le migrazioni del database: \begin{verbatim} php artisan migrate \end{verbatim}%
-    \item Installare npm: \begin{verbatim} npm install \end{verbatim}%
     \item Controllare se la pagina di Laravel (\url{http://localhost:8000}) non dia errori. Se così non fosse, chiamare sempre da dentro il container Docker: \begin{verbatim} chmod -R 777 storage \end{verbatim}%
    \item L’applicazione disponibile sul browser all’indirizzo: \begin{verbatim} http://localhost:3000 \end{verbatim}%
 \end{enumerate}
 
 \subsection{Testing}
 
-Per eseguire i test e ottenere le rispettive code coverage per frontend e backend, i comandi sono i seguenti:
+Per eseguire i test e ottenere le rispettive code coverage per frontend e backend bisogna spostarsi nelle directory app-frontend o app-backend ed eseguire uno dei comandi seguenti:
 \begin{itemize}
 \item \begin{verbatim} npm test -- --coverage \end{verbatim}%
 \item \begin{verbatim} XDEBUG_MODE=coverage php artisan test --coverage-html coverage/ \end{verbatim}%
