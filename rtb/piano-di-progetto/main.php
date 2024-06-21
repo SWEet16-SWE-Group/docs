@@ -23,7 +23,7 @@ $registro = (new RegistroModifiche())->logArray([
   [CE, '2024/06/21', alex_s(), bilal_em()->nome, 'Rimozione sezioni di pianificazione inutilizzabili'],
   [CE, '2024/06/21', alex_s(), bilal_em()->nome, 'Orari consuntivi'],
   [CE, '2024/06/21', alex_s(), bilal_em()->nome, 'Orari preventivi'],
-  [DX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
+  [SX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
   //->approvazione('2024/06/07', alex_s());
 
