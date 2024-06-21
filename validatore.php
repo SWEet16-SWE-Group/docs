@@ -81,7 +81,9 @@ if (
   print_r("\n\nCorreggere le parole evidenziate di seguito\n");
   print_r($errori_ortografici);
   print_r("\n\n");
-  die(14);
+  if(!_saltaortografia()){
+    die(14);
+  }
 }
 
 if (!_compile()) {
