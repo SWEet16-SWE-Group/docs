@@ -13,7 +13,7 @@ La piattaforma consente agli utenti di accedere al proprio account attraverso un
 Possiamo quindi distinguere::
 \begin{itemize}
     \item Utenti consumatori (definiti come \textbf{Clienti}) che effettuano prenotazioni e ordinazioni;.
-    \item Utenti amministratori (defiti come \textbf{Ristoratori}) che, oltre a  gestire prenotazioni e ordinazioni, possono creare, modificare e cancellare le pietanze del proprio ristorante.
+    \item Utenti amministratori (definiti come \textbf{Ristoratori}) che, oltre a  gestire prenotazioni e ordinazioni, possono creare, modificare e cancellare le pietanze del proprio ristorante.
 \end{itemize}
 
 Per garantire la massima compatibilità, la piattaforma sarà accessibile tramite browser e supporterà tecnologie come React, CSS, Laravel, oltre ad altre tecnologie che verranno definite in seguito.
