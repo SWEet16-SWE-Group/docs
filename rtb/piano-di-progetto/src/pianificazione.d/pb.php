@@ -176,9 +176,9 @@ function periodo(
 
     %\paragraph{Gestione dei rischi}
 
-    %\begin{itemize}
     %RISCHI
-    %\end{itemize}
+    % \b %egin{itemize}
+    % \e %nd{itemize}
 
     RETROSPETTIVA
 
@@ -208,7 +208,7 @@ function periodo(
       'CONSUNTIVO_ORE'    => tabella_ore_to_string($consuntivo),
       'CONSUNTIVO_SOLDI'  => tabella_soldi_to_string($consuntivo),
       //'RUOLI' => $gestioneruoli,
-      'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
+      //'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
       'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
       'RAGGIUNTI' => $raggiunti ? $itemize($raggiunti) : '\\item Nessun obbiettivo raggiunto',
       'MANCATI' => $mancati ? $itemize($mancati) : '\\item Nessun obbiettivo mancato',
