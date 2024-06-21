@@ -10,8 +10,10 @@ require_once 'Latex.php';
 $error_flag = 0;
 $titolo = 'Manuale utente';
 $registro = (new RegistroModifiche())->logArray([
-  [DX, '2024/06/01', alex_s(), '', 'Stesura scheletro'],
-  //[SX, '2024/06/00', alex_s(), '', 'Approvazione per il rilascio'],
+  [DX, '2024/06/01', alex_s(),    alberto_m(), 'Stesura scheletro'],
+  [CE, '2024/06/14', alberto_c(), alberto_m(), 'Stesura Requisiti e installazione'],
+  [CE, '2024/06/21', alex_s(),    alberto_m(), 'Stesura istruzioni d\'uso'],
+  [SX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
 $nome = "Manuale_utente_v{$registro->versione()}.pdf";
 
@@ -37,6 +39,7 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
 \usepackage[usenames, dvipsnames]{xcolor}
 \usepackage{colortbl}
 \usepackage{tabularray}
+\usepackage{float}
 \usepackage[italian]{babel}
 
 \geometry{
@@ -111,91 +114,16 @@ Versione: & <?php echo $registro->versione(); ?> &
 \tableofcontents
 \pagebreak
 
-
 <?php
 
-$contenuti = [
-  'Utente anonimo' =>
-  [
-    'Ricerca dei ristoranti' =>
-    [
-      'Elenco dei ristoranti' => null,
-      'Homepage del ristorante' => null,
-      'Menù del ristorante' => null,
-      'Form di prenotazione' => null,
-    ],
-  ],
-  'Utente autenticato' =>
-  [
-    'Navbar' =>
-    [
-      'Impostazioni account' => null,
-      'Nuovo profilo cliente' => null,
-      'Nuovo profilo ristoratore' => null,
-    ],
-    'Selezione profili' => null,
-  ],
-  'Cliente' =>
-  [
-    'Navbar' =>
-    [
-      'Selezione profili' => null,
-      'Impostazioni profilo' => null,
-      'Dashboard' => null,
-      'Ricerca dei ristoranti' =>
-      [
-        'Elenco dei ristoranti' => null,
-        'Homepage del ristorante' => null,
-        'Menù del ristorante' => null,
-        'Form di prenotazione' => null,
-      ],
-      'Notifiche' => null,
-    ],
-    'Dashboard' =>
-    [
-      'Lista di prenotazioni' =>
-      [
-        'Attive' => null,
-        'Scadute' => null,
-      ],
-      'Prenotazione' =>
-      [
-        'Ordinazioni collaborative' => null,
-        'Manipolare un\'ordinazione' => null,
-        'Effettuare pagamenti' => null,
-        // 'Lasciare una recensione' => null,
-      ],
-    ],
-  ],
-  'Ristoratore' =>
-  [
-    'Navbar' =>
-    [
-      'Selezione profili' => null,
-      'Impostazioni profilo' => null,
-      'Dashboard' => null,
-      'Impostazioni menù' =>
-      [
-        'Manipolazione pietanze' => null,
-      ],
-      'Notifiche' => null,
-    ],
-    'Dashboard' =>
-    [
-      'Lista di prenotazioni' => null,
-      'Prenotazione' =>
-      [
-        'Ordinazioni collaborative' => null,
-        'Dettagli ordinazioni' => null,
-        'Segna il pagamento di pietanze/clienti come effettuati' => null,
-      ],
-    ],
-  ],
-];
-
-echo _stampatex($contenuti, 'Manuale utente', 'section');
+require_once __DIR__ . '/src/0-introduzione.php';
+require_once __DIR__ . '/src/1-requisiti.php';
+require_once __DIR__ . '/src/2-installazione.php';
+require_once __DIR__ . '/src/3-istruzioniuso.php';
+// require_once __DIR__ . '/src/4-supporto.php';
 
 ?>
+
 
 \end{document}
 <?php
