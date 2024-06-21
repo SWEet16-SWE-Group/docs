@@ -106,10 +106,10 @@ $contenuti = [
     IMG-ORDINAZIONE-FORM
 
     EOF,
-    'Divsione del conto e pagamenti' => <<<'EOF'
+    'Divisione del conto e pagamenti' => <<<'EOF'
 
     Tornando alla dashboard e selezionando 'Esamina pagamento', se non è già stato selezionato, viene chiesto un modo di dividere il conto.
-    In base alla modalità scelta saranno poi illustrati i clienti partecipanti (modo equo) e ognuo dovrà pagare uguale, oppure saranno illustrate le pietanze con il proprio cliente ordinante (modo proporzionale).
+    In base alla modalità scelta saranno poi illustrati i clienti partecipanti (modo equo) e ognuno dovrà pagare uguale, oppure saranno illustrate le pietanze con il proprio cliente ordinante (modo proporzionale).
     In entrambi i casi ognuno può pagare solo la propria parte di conto.
 
     IMG-DIVISIONECONTO
@@ -147,7 +147,7 @@ $contenuti = [
     'Gestione del menù' => <<<'EOF'
 
     Il menù di un ristorante è gestito in due sezioni differenti.
-    Assumento che gli ingredienti di un ristorante cambino molto poco nel tempo,
+    Assumendo che gli ingredienti di un ristorante cambino molto poco nel tempo,
     un ristoratore aggiunge prima tutti i propri ingredienti e poi tutte le pietanze.
     La prima pagina, per ingredienti o pietanze, è una lista di tutti gli elementi presenti accompagnati da un bottone di eliminazione.
     Sopra alle liste sono presenti i tasti per aggiungere un nuovo elemento o tornare alla dashboard.
@@ -163,7 +163,7 @@ $contenuti = [
     IMG-NUOVA-PIETANZA
 
     EOF,
-    'Divsione del conto e pagamenti' => <<<'EOF'
+    'Divisione del conto e pagamenti' => <<<'EOF'
 
     Il ristoratore non può scegliere il modo di divisione del conto.
     Quando questo viene scelto, egli può smarcare le quote del conto che vengono pagate esternamente all'app, per esempio alla cassa.
@@ -174,8 +174,8 @@ $contenuti = [
   ],
   'Notifiche' => <<<'EOF'
 
-  Clienti e ristoratori ricevono notifiche riguando le prenotazioni, le ordinazioni e chi vi partecipa.
-  Queste notifiche sono consultabili in qualsiasi momento nelle rispettive pagine, accessibili tramile il link nella navbar in alto.
+  Clienti e ristoratori ricevono notifiche riguardo le prenotazioni, le ordinazioni e chi vi partecipa.
+  Queste notifiche sono consultabili in qualsiasi momento nelle rispettive pagine, accessibili tramite il link nella navbar in alto.
 
   IMG-NOTIFICHE-C
   IMG-NOTIFICHE-R
