@@ -26,15 +26,19 @@ function formatta_tabella($a) {
   return array_map(fn ($a) => array_map(fn ($a) => $a ? $a : '-', $a), $a);
 }
 
-function formatta_tabella_soldi($a) {
+function formatta_tabella_soldi_colonne($a,$c){
   return array_map(
     fn ($a) => array_map(
-      fn ($k, $a) => (is_numeric($a) and ($k == 1 or $k == 3)) ? number_format($a, 2, ',', '.') : $a,
+      fn ($k, $a) => (is_numeric($a) and (in_array($k,$c))) ? number_format($a, 2, ',', '.') : $a,
       array_keys($a),
       $a
     ),
     $a
   );
+}
+
+function formatta_tabella_soldi($a) {
+  return formatta_tabella_soldi_colonne($a,[1,3]);
 }
 
 function tabella_ore($a) {
@@ -170,15 +174,15 @@ function periodo(
 
     CONSUNTIVO_SOLDI
 
-    \paragraph{Gestione dei ruoli}
+    %\paragraph{Gestione dei ruoli}
 
-    RUOLI
+    %RUOLI
 
-    \paragraph{Gestione dei rischi}
+    %\paragraph{Gestione dei rischi}
 
-    \begin{itemize}
-    RISCHI
-    \end{itemize}
+    %RISCHI
+    % \b %egin{itemize}
+    % \e %nd{itemize}
 
     RETROSPETTIVA
 
@@ -207,8 +211,8 @@ function periodo(
       'PREVENTIVO_SOLDI'  => tabella_soldi_to_string($preventivo),
       'CONSUNTIVO_ORE'    => tabella_ore_to_string($consuntivo),
       'CONSUNTIVO_SOLDI'  => tabella_soldi_to_string($consuntivo),
-      'RUOLI' => $gestioneruoli,
-      'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
+      //'RUOLI' => $gestioneruoli,
+      //'RISCHI' => $rischi ? $itemize($rischi) : '\\item Nessun rischio incontrato',
       'RETROSPETTIVA' => $retrospettiva ? "  \\paragraph{Retrospettiva}\n\n$retrospettiva\n\n" : '',
       'RAGGIUNTI' => $raggiunti ? $itemize($raggiunti) : '\\item Nessun obbiettivo raggiunto',
       'MANCATI' => $mancati ? $itemize($mancati) : '\\item Nessun obbiettivo mancato',
@@ -365,20 +369,20 @@ $periodi_pb = [
       ],
     ],
     preventivo => [
-      'Alberto C.'  => [0, 0, 0, 0, 0, 0],
-      'Bilal El M.' => [0, 0, 0, 0, 0, 0],
-      'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
-      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
-      'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
+      'Alberto C.'  => [5, 0, 5, 4, 5, 0],
+      'Bilal El M.' => [0, 2, 0, 4, 5, 0],
+      'Alberto M.'  => [0, 0, 0, 4, 5, 0],
+      'Alex S.'     => [2, 2, 0, 4, 0, 0],
+      'Iulius S.'   => [0, 2, 0, 4, 5, 0],
+      'Giovanni Z.' => [0, 2, 5, 4, 5, 0],
     ],
     consuntivo => [
-      'Alberto C.'  => [0, 0, 0, 0, 0, 0],
-      'Bilal El M.' => [0, 0, 0, 0, 0, 0],
-      'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
-      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
-      'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
+      'Alberto C.'  => [6, 2, 0, 3, 1, 3],
+      'Bilal El M.' => [3, 5, 0, 3, 15, 1],
+      'Alberto M.'  => [1, 2, 0, 4, 11, 0],
+      'Alex S.'     => [0, 3, 1, 0, 0, 0],
+      'Iulius S.'   => [2, 2, 0, 16, 4, 0],
+      'Giovanni Z.' => [0, 2, 3, 10, 3, 3],
     ],
     '',
     [],
@@ -391,7 +395,8 @@ $periodi_pb = [
       'Ripreso una comunicazione costante con il proponente',
     ],
     [
-      'Baseline MVP'
+      'Baseline MVP',
+      'Consegna finale del progetto',
     ],
   ],
   // ===========================================================================================================================
@@ -400,7 +405,10 @@ $periodi_pb = [
     'Periodo 3',
     '2025/05/20',
     '2024/05/24',
-    [],
+    [
+      'Ottimizzazione dei documenti',
+      'Inizio fase di codifica',
+    ],
     [
       'pbg3.png',
       '640,600',
@@ -427,20 +435,20 @@ $periodi_pb = [
       ],
     ],
     preventivo => [
-      'Alberto C.'  => [0, 0, 0, 0, 0, 0],
-      'Bilal El M.' => [0, 0, 0, 0, 0, 0],
-      'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
-      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
-      'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
+      'Alberto C.'  => [0, 0, 0, 1, 5, 0],
+      'Bilal El M.' => [0, 1, 0, 1, 10, 0],
+      'Alberto M.'  => [0, 0, 0, 3, 10, 0],
+      'Alex S.'     => [2, 1, 0, 3, 0, 0],
+      'Iulius S.'   => [0, 1, 0, 1, 10, 0],
+      'Giovanni Z.' => [5, 1, 0, 1, 5, 0],
     ],
     consuntivo => [
-      'Alberto C.'  => [0, 0, 0, 0, 0, 0],
-      'Bilal El M.' => [0, 0, 0, 0, 0, 0],
-      'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
-      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
-      'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
+      'Alberto C.'  => [0, 3, 5, 1, 5, 4],
+      'Bilal El M.' => [0, 3, 0, 2, 12, 0],
+      'Alberto M.'  => [1, 3, 0, 2, 12, 0],
+      'Alex S.'     => [0, 1, 0, 1, 21, 0],
+      'Iulius S.'   => [3, 0, 0, 3, 12, 0],
+      'Giovanni Z.' => [0, 0, 5, 0, 7, 10],
     ],
     '',
     [],
@@ -453,18 +461,31 @@ $periodi_pb = [
       'Creazione del database per l\'MVP',
       'Aggiunto PHP sopra \\LaTeX per maggiore automazione della stesura dei documenti',
     ],
-    [],
+    [
+      'Consegna finale del progetto',
+    ],
   ],
   // ===========================================================================================================================
   // PB 4
   [
-    'Questa settimana',
+    'Periodo 4',
     '2025/05/27',
-    '2024/06/07',
-    [],
+    '2024/06/16',
+    [
+      'Sviluppo fase 3 dell\'MVP',
+      'Sviluppo fase 4 dell\'MVP',
+      'Sviluppo fase 5 dell\'MVP',
+      'Sviluppo fase 6 dell\'MVP',
+      'Sviluppo fase 7 dell\'MVP',
+      'Sviluppo fase 8 dell\'MVP',
+      'Sviluppo fase 9 dell\'MVP',
+      'Sviluppo fase 10 dell\'MVP',
+      'Approvazione del prodotto da parte del proponente',
+      'Semaforo verde per la PB',
+    ],
     [
       'pbg4.png',
-      '640,530',
+      '640,1000',
       [
         Attivita::Macro('MVP 3', '2024/05/27', [
           Attivita::Micro('Nuova pietanza',  '2024/05/28', [
@@ -482,32 +503,112 @@ $periodi_pb = [
           Attivita::Micro('Ristoratore: Pagamento',  '2024/06/01', []),
         ]),
         Attivita::Macro('MVP 6', '2024/06/02', [
-          Attivita::Micro('Test di integrazione',  '2024/06/03', []),
+          Attivita::Micro('Test di integrazione',  '2024/06/05', []),
+        ]),
+        Attivita::Macro('MVP 7', '2024/06/06', [
+          Attivita::Micro('Ingredienti-allergeni',  '2024/06/08', []),
+          Attivita::Micro('Pietanze-ingredienti',  '2024/06/09', []),
+        ]),
+        Attivita::Macro('MVP 8', '2024/06/10', [
+          Attivita::Micro('Ordinazioni ordinate',  '2024/06/10', []),
+          Attivita::Micro('FormPietanza',  '2024/06/11', []),
+          Attivita::Micro('Controllo posti',  '2024/06/11', []),
+        ]),
+        Attivita::Macro('MVP 9', '2024/06/12', [
+          Attivita::Micro('Link di invito',  '2024/06/12', []),
+          Attivita::Micro('Ricerca ristoranti',  '2024/06/12', []),
+        ]),
+        Attivita::Macro('MVP 10', '2024/06/13', [
+          Attivita::Micro('Test funzionali',  '2024/06/13', [
+            Attivita::Micro('Correzioni errori',  '2024/06/15', []),
+            Attivita::Micro('Creazione dati DB',  '2024/06/16', []),
+          ]),
         ]),
       ]
     ],
     preventivo => [
-      'Alberto C.'  => [0, 0, 0, 0, 0, 0],
-      'Bilal El M.' => [0, 0, 0, 0, 0, 0],
-      'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
-      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
-      'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
+      'Alberto C.'  => [0, 0, 0, 0, 10, 2],
+      'Bilal El M.' => [0, 1, 0, 0, 5, 13],
+      'Alberto M.'  => [0, 0, 0, 2, 5, 1],
+      'Alex S.'     => [2, 1, 0, 2, 0, 2],
+      'Iulius S.'   => [5, 1, 0, 0, 5, 2],
+      'Giovanni Z.' => [0, 1, 3, 0, 5, 2],
     ],
     consuntivo => [
-      'Alberto C.'  => [0, 0, 0, 0, 0, 0],
-      'Bilal El M.' => [0, 0, 0, 0, 0, 0],
-      'Alberto M.'  => [0, 0, 0, 0, 0, 0],
-      'Alex S.'     => [0, 0, 0, 0, 0, 0],
-      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
-      'Giovanni Z.' => [0, 0, 0, 0, 0, 0],
+      'Alberto C.'  => [0, 5, 0, 2, 0, 2],
+      'Bilal El M.' => [0, 5, 0, 0, 4, 0],
+      'Alberto M.'  => [1, 0, 0, 6, 4, 0],
+      'Alex S.'     => [0, 1, 0, 2, 8, 0],
+      'Iulius S.'   => [1, 0, 0, 2, 0, 2],
+      'Giovanni Z.' => [0, 0, 1, 0, 0, 0],
     ],
     '',
     [],
-    '',
-    [],
-    [],
-  ]
+    <<<'EOF'
+    Analizzando i progressi rasenti il nulla dei periodi precedenti.
+    5 membri al pieno delle loro capacità messi a lavorare sull'MVP non erano sufficienti.
+    Le decisione prese allora sono state di congelare la documentazione e coinvolgere tutti e 6 i membri.
+    Il risultato di queste scelte è stato un avanzamento considerevole.
+    EOF,
+    [
+      'Costruzione dei test',
+      'Recupero del tempo perso nei periodi precedenti',
+      'Avanzamento non più nullo',
+    ],
+    [
+      'Consegna finale del progetto',
+    ],
+  ],
+  // ===========================================================================================================================
+  // PB 5
+  [
+    'Periodo 5',
+    '2025/06/17',
+    '2024/06/21',
+    [
+      'Stesura del manuale utente',
+      'Stesura della specifica tecnica',
+    ],
+    [
+      'pbg5.png',
+      '640,260',
+      [
+        Attivita::Macro('Documentazione', '2024/06/17', [
+          Attivita::Micro('Manuale utente',  '2024/06/21', []),
+          Attivita::Micro('Specifica tecnica',  '2024/06/21', []),
+          Attivita::Micro('Piano di Progetto',  '2024/06/21', []),
+          Attivita::Micro('Piano di Qualifica',  '2024/06/21', []),
+        ]),
+      ]
+    ],
+    preventivo => [
+      'Alberto C.'  => [0, 0, 0, 0, 0, 8],
+      'Bilal El M.' => [0, 1, 0, 0, 5, 8],
+      'Alberto M.'  => [5, 0, 0, 1, 0, 8],
+      'Alex S.'     => [4, 1, 0, 1, 0, 8],
+      'Iulius S.'   => [0, 1, 0, 0, 0, 8],
+      'Giovanni Z.' => [0, 1, 0, 0, 0, 8],
+    ],
+    consuntivo => [
+      'Alberto C.'  => [0, 0, 1, 0, 0, 2],
+      'Bilal El M.' => [0, 0, 0, 0, 0, 4],
+      'Alberto M.'  => [2, 3, 0, 0, 0, 0],
+      'Alex S.'     => [0, 7, 0, 0, 0, 0],
+      'Iulius S.'   => [0, 0, 0, 0, 0, 0],
+      'Giovanni Z.' => [0, 0, 1, 0, 0, 0],
+    ],
+    '', // gestione dei rischi
+    [], // rischi
+    <<<'EOF'
+    Si è concluso lo sviluppo dell'MVP con tanto di approvazione da parte del proponente.
+    La documentazione è stata aggiornata allo stato reale del progetto.
+    EOF, // retrospettiva
+    [
+      'Consegna finale del progetto'
+    ], // obbiettivi raggiunti
+    [
+    ], // obbiettivi mancati
+  ],
   // ===========================================================================================================================
 ];
 

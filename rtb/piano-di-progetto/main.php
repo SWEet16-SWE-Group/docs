@@ -16,10 +16,14 @@ $registro = (new RegistroModifiche())->logArray([
   [CE, '2024/03/19', bilal_em()->nome, alex_s()->nome, 'Stesura modello di sviluppo'],
   [CE, '2024/03/23', alex_s()->nome, alberto_m()->nome, 'Stesura consuntivo'],
   [CE, '2024/03/26', iulius_s()->nome, alex_s()->nome, 'Stesura pianificazione'],
-  [SX, '2024/04/16', alex_s(), '', 'Approvazione per il rilascio'],
-  [CE, '2024/05/28', alex_s(), '', 'Automazione tabelle preventivi e consuntivi'],
-  [CE, '2024/05/29', alex_s(), '', 'Automazione diagrammi di Gantt'],
-  [CE, '2024/05/31', alex_s(), '', 'Stesura delle retrospettive dei periodi di PB'],
+  [SX, '2024/04/16', alex_s(), bilal_em()->nome, 'Approvazione per il rilascio'],
+  [CE, '2024/05/28', alex_s(), bilal_em()->nome, 'Automazione tabelle preventivi e consuntivi'],
+  [CE, '2024/05/29', alex_s(), bilal_em()->nome, 'Automazione diagrammi di Gantt'],
+  [CE, '2024/05/31', alex_s(), bilal_em()->nome, 'Stesura delle retrospettive dei periodi di PB'],
+  [CE, '2024/06/21', alex_s(), bilal_em()->nome, 'Rimozione sezioni di pianificazione inutilizzabili'],
+  [CE, '2024/06/21', alex_s(), bilal_em()->nome, 'Orari consuntivi'],
+  [CE, '2024/06/21', alex_s(), bilal_em()->nome, 'Orari preventivi'],
+  [DX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
   //->approvazione('2024/06/07', alex_s());
 
