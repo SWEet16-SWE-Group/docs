@@ -21,6 +21,7 @@ $registro = (new RegistroModifiche())->logArray([
 [SX, "2024/06/21", alex_s(), "", "Approvazione per il rilascio"],
 ]);
 
+$nome = "Piano_di_qualifica_v{$registro->versione()}.pdf";
 $error_flag = 0;
 ob_start();
 ob_start(function ($tex) use ($titolo, &$error_flag) {
@@ -106,11 +107,11 @@ Anno Accademico 2023/2024
 \begin{large}
 \begin{spacing}{1.4}
 \begin{tabular}{c c c}
-   Redattori: & Alex S., Bilal E., Alberto C., Giovanni S. & \\
-   Verificatori: & Alberto M., Alex S. & \\
-   Amministratore: & Alex S. & \\
-   Destinatari: & T. Vardanega & R. Cardin \\
-   Versione: & 1.0.0 &
+Redattori: & <?php echo $registro->autori(); ?> & \\
+Verificatori: & <?php echo $registro->verificatori(); ?> & \\
+Amministratore: & <?php echo alberto_m(); ?> & \\
+Destinatari: & T. Vardanega & R. Cardin \\
+Versione: & <?php echo $registro->versione(); ?> &
 \end{tabular}
 \end{spacing}
 \end{large}
