@@ -1,8 +1,50 @@
 <?php
 
 require_once __DIR__ . '/../pianificazione.d/pb.php';
+require_once __DIR__ . '/../pianificazione.d/rtb.php';
 
+$rtb_somma_preventivi = somma3d(array_column($periodi_rtb, preventivo), $membri, range(0, 5));
+$rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), $membri, range(0, 5));
 
+$pb_somma_preventivi = somma3d(array_column($periodi_pb, preventivo), $membri, range(0, 5));
+$pb_somma_consuntivi = somma3d(array_column($periodi_pb, consuntivo), $membri, range(0, 5));
+
+function formatta_tabella_differenza_soldi($a) {
+  return formatta_tabella_soldi_colonne($a, [3, 4, 5]);
+}
+
+function differenze_soldi($p, $c) {
+  // AAAA YEEEEEEEES
+  // finisci la funzione per stampare i consuntivi di godimento che poi tutta sta merda va a fanculo
+  $somma_verticale = fn ($a, $i) => array_map(fn ($i) => array_sum(array_column($a, $i)), $i);;
+  $ore_p = $somma_verticale($p, range(0, 5));
+  $ore_c = $somma_verticale($c, range(0, 5));
+  $corpo = array_map(
+    fn ($p, $c, $r) => [$r->nome, $p, $c, $pp = $p * $r->soldi, $cc = $c * $r->soldi, $cc - $pp],
+    $ore_p,
+    $ore_c,
+    [
+      (object)['soldi' => 30, 'nome' => 'Responsabile'],
+      (object)['soldi' => 20, 'nome' => 'Amministratore'],
+      (object)['soldi' => 25, 'nome' => 'Analista'],
+      (object)['soldi' => 25, 'nome' => 'Progettista'],
+      (object)['soldi' => 15, 'nome' => 'Programmatore'],
+      (object)['soldi' => 15, 'nome' => 'Verificatore'],
+    ],
+  );
+  $tabella = [
+    ['Ruolo', 'Ore preventivate', 'Ore effettive', 'Costi preventivati (€)', 'Costi effettivi (€)', 'Differenze'],
+    ...$corpo,
+    ['Totale', ...array_map(fn ($i) => array_sum(array_column($corpo, $i)), range(1, 5))],
+  ];
+  return $tabella;
+}
+
+$rtb = tabella_to_string(formatta_tabella_differenza_soldi(formatta_tabella(differenze_soldi($rtb_somma_preventivi, $rtb_somma_consuntivi))));
+
+//print_r($rtb);
+
+//die();
 
 function multireplace($args, $txt) {
   return str_replace(array_keys($args), $args, $txt);

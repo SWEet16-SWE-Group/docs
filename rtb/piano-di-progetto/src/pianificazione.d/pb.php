@@ -26,15 +26,19 @@ function formatta_tabella($a) {
   return array_map(fn ($a) => array_map(fn ($a) => $a ? $a : '-', $a), $a);
 }
 
-function formatta_tabella_soldi($a) {
+function formatta_tabella_soldi_colonne($a,$c){
   return array_map(
     fn ($a) => array_map(
-      fn ($k, $a) => (is_numeric($a) and ($k == 1 or $k == 3)) ? number_format($a, 2, ',', '.') : $a,
+      fn ($k, $a) => (is_numeric($a) and (in_array($k,$c))) ? number_format($a, 2, ',', '.') : $a,
       array_keys($a),
       $a
     ),
     $a
   );
+}
+
+function formatta_tabella_soldi($a) {
+  return formatta_tabella_soldi_colonne($a,[1,3]);
 }
 
 function tabella_ore($a) {
