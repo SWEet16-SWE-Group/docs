@@ -20,6 +20,8 @@ $registro = (new RegistroModifiche())->logArray([
   [CE, '2024/05/28', alex_s(), '', 'Automazione tabelle preventivi e consuntivi'],
   [CE, '2024/05/29', alex_s(), '', 'Automazione diagrammi di Gantt'],
   [CE, '2024/05/31', alex_s(), '', 'Stesura delle retrospettive dei periodi di PB'],
+  [CE, '2024/06/21', alex_s(), '', 'Rimozione sezioni di pianificazione inutilizzabili'],
+  //[DX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
   //->approvazione('2024/06/07', alex_s());
 
