@@ -470,16 +470,22 @@ $periodi_pb = [
   [
     'Periodo 4',
     '2025/05/27',
-    '2024/06/07',
+    '2024/06/16',
     [
       'Sviluppo fase 3 dell\'MVP',
       'Sviluppo fase 4 dell\'MVP',
       'Sviluppo fase 5 dell\'MVP',
       'Sviluppo fase 6 dell\'MVP',
+      'Sviluppo fase 7 dell\'MVP',
+      'Sviluppo fase 8 dell\'MVP',
+      'Sviluppo fase 9 dell\'MVP',
+      'Sviluppo fase 10 dell\'MVP',
+      'Approvazione del prodotto da parte del proponente',
+      'Semaforo verde per la PB',
     ],
     [
       'pbg4.png',
-      '640,530',
+      '640,1000',
       [
         Attivita::Macro('MVP 3', '2024/05/27', [
           Attivita::Micro('Nuova pietanza',  '2024/05/28', [
@@ -497,7 +503,26 @@ $periodi_pb = [
           Attivita::Micro('Ristoratore: Pagamento',  '2024/06/01', []),
         ]),
         Attivita::Macro('MVP 6', '2024/06/02', [
-          Attivita::Micro('Test di integrazione',  '2024/06/03', []),
+          Attivita::Micro('Test di integrazione',  '2024/06/05', []),
+        ]),
+        Attivita::Macro('MVP 7', '2024/06/06', [
+          Attivita::Micro('Ingredienti-allergeni',  '2024/06/08', []),
+          Attivita::Micro('Pietanze-ingredienti',  '2024/06/09', []),
+        ]),
+        Attivita::Macro('MVP 8', '2024/06/10', [
+          Attivita::Micro('Ordinazioni ordinate',  '2024/06/10', []),
+          Attivita::Micro('FormPietanza',  '2024/06/11', []),
+          Attivita::Micro('Controllo posti',  '2024/06/11', []),
+        ]),
+        Attivita::Macro('MVP 9', '2024/06/12', [
+          Attivita::Micro('Link di invito',  '2024/06/12', []),
+          Attivita::Micro('Ricerca ristoranti',  '2024/06/12', []),
+        ]),
+        Attivita::Macro('MVP 10', '2024/06/13', [
+          Attivita::Micro('Test funzionali',  '2024/06/13', [
+            Attivita::Micro('Correzioni errori',  '2024/06/15', []),
+            Attivita::Micro('Creazione dati DB',  '2024/06/16', []),
+          ]),
         ]),
       ]
     ],
@@ -538,40 +563,17 @@ $periodi_pb = [
   // PB 5
   [
     'Periodo 5',
-    '2025/06/08',
+    '2025/06/17',
     '2024/06/21',
     [
       'Stesura del manuale utente',
       'Stesura della specifica tecnica',
-      'Sviluppo fase  7 dell\'MVP',
-      'Sviluppo fase  8 dell\'MVP',
-      'Sviluppo fase  9 dell\'MVP',
-      'Sviluppo fase 10 dell\'MVP',
     ],
     [
       'pbg5.png',
-      '640,900',
+      '640,260',
       [
-        Attivita::Macro('MVP 7', '2024/06/08', [
-          Attivita::Micro('Link ingredienti con gli allergeni',  '2024/06/08', []),
-          Attivita::Micro('Link pietanze con gli ingredienti',  '2024/06/09', []),
-        ]),
-        Attivita::Macro('MVP 8', '2024/06/10', [
-          Attivita::Micro('Divisione delle ordinazioni per cliente',  '2024/06/10', []),
-          Attivita::Micro('Nella FormPietanza possibilità di selezionare gli ingredienti',  '2024/06/11', []),
-          Attivita::Micro('Controllo che nel periodo dato il ristorante abbia abbastanza posti',  '2024/06/11', []),
-        ]),
-        Attivita::Macro('MVP 9', '2024/06/12', [
-          Attivita::Micro('Link di invito prenotazione',  '2024/06/12', []),
-          Attivita::Micro('Ricerca ristoranti',  '2024/06/12', []),
-        ]),
-        Attivita::Macro('MVP 10', '2024/06/13', [
-          Attivita::Micro('Test funzionali',  '2024/06/13', [
-            Attivita::Micro('Correzioni errori post test funzionali',  '2024/06/15', []),
-            Attivita::Micro('Creazione dati DB',  '2024/06/16', []),
-          ]),
-        ]),
-        Attivita::Macro('Documentazione', '2024/06/08', [
+        Attivita::Macro('Documentazione', '2024/06/17', [
           Attivita::Micro('Manuale utente',  '2024/06/21', []),
           Attivita::Micro('Specifica tecnica',  '2024/06/21', []),
           Attivita::Micro('Piano di Progetto',  '2024/06/21', []),
@@ -602,8 +604,6 @@ $periodi_pb = [
     La documentazione è stata aggiornata allo stato reale del progetto.
     EOF, // retrospettiva
     [
-      'Approvazione del prodotto da parte del proponente',
-      'Semaforo verde per la PB',
       'Consegna finale del progetto'
     ], // obbiettivi raggiunti
     [
