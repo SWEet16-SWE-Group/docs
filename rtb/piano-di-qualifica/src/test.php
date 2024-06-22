@@ -9,7 +9,7 @@ I test dovranno essere resi il più automatici possibile, per evitare che la fas
 produzione.
 
 \begin{center}
-    \includegraphics[width=12cm]{test_v.png}
+\includegraphics[width=12cm]{test_v.png}
 \end{center}
 \begin{center}
 Immagine 1: Modello a V
@@ -52,7 +52,7 @@ Consistono nella ripetizione selettiva di \textit{test di unità, integrazione e
 \subsection{Specifica dei test}
 Al fine di garantire di creare una denominazione uniforme e per facilitare la comprensione, i test sono identificati da un codice come segue:
 \begin{center}
-    \textbf{T[Tipologia][Identificativo]}
+\textbf{T[Tipologia][Identificativo]}
 \end{center}
 Dove:
 
@@ -69,9 +69,7 @@ Dove:
 \end{itemize}
 Ciascuna tipologia di test sarà rappresentata da apposite tabelle, comprensive di identificativo, descrizione e stato. Come riportato precedentemente, al momento sono stati effettuati esclusivamente i \textit{test di unità}.
 
-\begin{comment}
-
-    \subsubsection{Test di unità}
+\subsubsection{Test di unità}
 
 \begin{tblr}{
 colspec={|X[2.5cm, halign=c]|X[9cm, halign=c]|X[3.5cm, halign=c]|},
@@ -79,38 +77,22 @@ row{odd}={bg=white},
 row{even}={bg=white},
 row{1}={bg=black, fg=white},
 }
-        Identificativo & Descrizione & Stato \\
-        \hline
-        TU1 & Si verifica che il componente DashboardClienti venga renderizzato correttamente & Superato \\
-        \hline
-        TU2 & Si verifica che il componente DashboardRistoratori venga renderizzato correttamente & Superato \\
-        \hline
-        TU3 & Si verifica che il componente DettagliPietanza venga renderizzato correttamente & Superato \\
-        \hline
-        TU4 & Si verifica che il componente DettagliPrenotazione venga renderizzato correttamente & Superato \\
-        \hline
-        TU5 & Si verifica che il componente FormPrenotazione venga renderizzato correttamente & Superato \\
-        \hline
-        TU6 & Si verifica che il componente MenuPietanze venga renderizzato correttamente & Superato \\
-        \hline
-        TU7 & Si verifica che il componente Navbar venga renderizzato correttamente & Superato \\
-        \hline
-        TU8 & Si verifica che il componente Login venga renderizzato correttamente & Superato \\
-        \hline
-        TU9 & Si verifica che il componente ListaOrdinazioni venga renderizzato correttamente & Superato \\
-        \hline
-        TU10 & Si verifica che il componente DashboardClienti visualizzi correttamente le prenotazioni del cliente & Superato \\
-        \hline
-        TU11 & Si verifica che il componente DashboardRistoratori visualizzi correttamente le prenotazioni del ristorante e permetta la loro gestione & Superato \\
-        \hline
-        TU12 & Si verifica che il componente DettagliPietanza visualizzi correttamente tutti i dettagli della pietanza e permetta l'ordinazione con l'eventuale rimozione di ingredienti & Superato \\
-        \hline
-        TU13 & Si verifica che il componente DettagliPrenotazione visualizzi correttamente i dettagli di ciascuna prenotazione e ne permetta la gestione & Superato \\
-        \hline
-        TU14 & Si verifica che il componente FormPrenotazione consenta correttamente di effettuare una prenotazione & Superato \\
-        \hline
-        TU15 & Si verifica che il componente MenuPietanze visualizzi correttamente tutto il menù e permette l'ordinazione di ciascuna pietanza & Superato \\
-        \hline
+Identificativo & Descrizione & Stato \\ \hline
+TU1 & Si verifica che il componente DashboardClienti venga renderizzato correttamente & Superato \\ \hline
+TU2 & Si verifica che il componente DashboardRistoratori venga renderizzato correttamente & Superato \\ \hline
+TU3 & Si verifica che il componente DettagliPietanza venga renderizzato correttamente & Superato \\ \hline
+TU4 & Si verifica che il componente DettagliPrenotazione venga renderizzato correttamente & Superato \\ \hline
+TU5 & Si verifica che il componente FormPrenotazione venga renderizzato correttamente & Superato \\ \hline
+TU6 & Si verifica che il componente MenuPietanze venga renderizzato correttamente & Superato \\ \hline
+TU7 & Si verifica che il componente Navbar venga renderizzato correttamente & Superato \\ \hline
+TU8 & Si verifica che il componente Login venga renderizzato correttamente & Superato \\ \hline
+TU9 & Si verifica che il componente ListaOrdinazioni venga renderizzato correttamente & Superato \\ \hline
+TU10 & Si verifica che il componente DashboardClienti visualizzi correttamente le prenotazioni del cliente & Superato \\ \hline
+TU11 & Si verifica che il componente DashboardRistoratori visualizzi correttamente le prenotazioni del ristorante e permetta la loro gestione & Superato \\ \hline
+TU12 & Si verifica che il componente DettagliPietanza visualizzi correttamente tutti i dettagli della pietanza e permetta l'ordinazione con l'eventuale rimozione di ingredienti & Superato \\ \hline
+TU13 & Si verifica che il componente DettagliPrenotazione visualizzi correttamente i dettagli di ciascuna prenotazione e ne permetta la gestione & Superato \\ \hline
+TU14 & Si verifica che il componente FormPrenotazione consenta correttamente di effettuare una prenotazione & Superato \\ \hline
+TU15 & Si verifica che il componente MenuPietanze visualizzi correttamente tutto il menù e permette l'ordinazione di ciascuna pietanza & Superato \\ \hline
 \end{tblr}
 
 \begin{tblr}{
@@ -118,14 +100,10 @@ colspec={|X[2.5cm, halign=c]|X[9cm, halign=c]|X[3.5cm, halign=c]|},
 row{odd}={bg=white},
 row{even}={bg=white},
 }
-        \hline
-        TU16 & Si verifica che il componente Navbar visualizzi correttamente la pagina attuale, le altre pagine e il nome dell'utente o del ristoratore loggato & Superato \\
-        \hline
-        TU17 & Si verifica che il componente Login permetta correttamente di effettuare l'accesso tramite cliente o ristoratore & Superato \\
-        \hline
-        TU18 & Si verifica che il componente ListaOrdinazioni visualizzi correttamente le ordinazioni confermate e l'inventario degli ingredienti & Superato \\
-        \hline
+\hline
+TU16 & Si verifica che il componente Navbar visualizzi correttamente la pagina attuale, le altre pagine e il nome dell'utente o del ristoratore loggato & Superato \\ \hline
+TU17 & Si verifica che il componente Login permetta correttamente di effettuare l'accesso tramite cliente o ristoratore & Superato \\ \hline
+TU18 & Si verifica che il componente ListaOrdinazioni visualizzi correttamente le ordinazioni confermate e l'inventario degli ingredienti & Superato \\ \hline
 
 \end{tblr}
 
-\end{comment}
