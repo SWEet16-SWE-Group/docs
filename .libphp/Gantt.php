@@ -231,7 +231,7 @@ function gantt_test() {
 //gantt_test();
 
 function gantt_latex($img, $size, $ganttstruct, $scale = '.7') {
-  if (!_compile()) {
+  if (!_compile() || getopt('',['nogantt'])) {
     return '';
   }
   $htmlfile = mediapath() . '/' . $img . '.' . 'gantt.html';

@@ -161,7 +161,7 @@ $a = tabella_test_to_string('Test di unità', 'TU', [
   [1, 'Si verifica il corretto funzionamento di InvitiTest'],
   [1, 'Si verifica il corretto funzionamento di NotificheControllerTest'],
   [1, 'Si verifica il corretto funzionamento di OrdinazioniTest'],
-  [1, 'Si verifica il corretto funzionamento di \PietanzaControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di PietanzaControllerTest'],
   [1, 'Si verifica il corretto funzionamento di PrenotazioneControllerTest'],
   [1, 'Si verifica il corretto funzionamento di ProfileControllerTest'],
   [1, 'Si verifica il corretto funzionamento di RistoratoreControllerTest'],
