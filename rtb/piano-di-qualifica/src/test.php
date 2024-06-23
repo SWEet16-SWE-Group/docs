@@ -96,26 +96,26 @@ function tabella_test_to_string($titolo, $sigla, $tabella, $offset = 0) {
 }
 
 $a =  tabella_test_to_string('Test di unità', 'TU', $tu = [
-  [1, 'Si verifica che il componente DashboardClienti venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente DashboardRistoratori venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente DettagliPietanza venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente DettagliPrenotazione venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente FormPrenotazione venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente MenuPietanze venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente Navbar venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente Login venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente ListaOrdinazioni venga renderizzato correttamente'],
-  [1, 'Si verifica che il componente DashboardClienti visualizzi correttamente le prenotazioni del cliente'],
-  [1, 'Si verifica che il componente DashboardRistoratori visualizzi correttamente le prenotazioni del ristorante e permetta la loro gestione'],
-  [1, 'Si verifica che il componente DettagliPietanza visualizzi correttamente tutti i dettagli della pietanza e permetta l\'ordinazione con l\'eventuale rimozione di ingredienti'],
-  [1, 'Si verifica che il componente DettagliPrenotazione visualizzi correttamente i dettagli di ciascuna prenotazione e ne permetta la gestione'],
-  [1, 'Si verifica che il componente FormPrenotazione consenta correttamente di effettuare una prenotazione'],
-  [1, 'Si verifica che il componente Login permetta correttamente di effettuare l\'accesso tramite cliente o ristoratore'],
+  [1, 'DashboardClienti viene renderizzato correttamente'],
+  [1, 'DashboardRistoratori viene renderizzato correttamente'],
+  [1, 'DettagliPietanza viene renderizzato correttamente'],
+  [1, 'DettagliPrenotazione viene renderizzato correttamente'],
+  [1, 'FormPrenotazione viene renderizzato correttamente'],
+  [1, 'MenuPietanze viene renderizzato correttamente'],
+  [1, 'Navbar viene renderizzato correttamente'],
+  [1, 'Login viene renderizzato correttamente'],
+  [1, 'ListaOrdinazioni viene renderizzato correttamente'],
+  [1, 'DashboardClienti visualizza correttamente le prenotazioni del cliente'],
+  [1, 'DashboardRistoratori visualizza correttamente le prenotazioni del ristorante e permetta la loro gestione'],
+  [1, 'DettagliPietanza visualizza correttamente tutti i dettagli della pietanza'],
+  [1, 'DettagliPrenotazione visualizza correttamente i dettagli di ciascuna prenotazione e ne permetta la gestione'],
+  [1, 'FormPrenotazione consente correttamente di effettuare una prenotazione'],
+  [1, 'Login permette correttamente di effettuare l\'accesso tramite cliente o ristoratore'],
 ]);
 
-  //[1, 'Si verifica che il componente MenuPietanze visualizzi correttamente tutto il menù e permette l\'ordinazione di ciascuna pietanza'],
-  //[1, 'Si verifica che il componente Navbar visualizzi correttamente la pagina attuale, le altre pagine e il nome dell\'utente o del ristoratore loggato'],
-  //[1, 'Si verifica che il componente ListaOrdinazioni visualizzi correttamente le ordinazioni confermate e l\'inventario degli ingredienti'],
+  //[1, 'MenuPietanze visualizza correttamente tutto il menù e permette l\'ordinazione di ciascuna pietanza'],
+  //[1, 'Navbar visualizza correttamente la pagina attuale, le altre pagine e il nome dell\'utente o del ristoratore loggato'],
+  //[1, 'ListaOrdinazioni visualizza correttamente le ordinazioni confermate e l\'inventario degli ingredienti'],
 
 echo "$a";
 
