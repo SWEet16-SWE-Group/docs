@@ -110,11 +110,12 @@ $a =  tabella_test_to_string('Test di unità', 'TU', $tu = [
   [1, 'Si verifica che il componente DettagliPietanza visualizzi correttamente tutti i dettagli della pietanza e permetta l\'ordinazione con l\'eventuale rimozione di ingredienti'],
   [1, 'Si verifica che il componente DettagliPrenotazione visualizzi correttamente i dettagli di ciascuna prenotazione e ne permetta la gestione'],
   [1, 'Si verifica che il componente FormPrenotazione consenta correttamente di effettuare una prenotazione'],
-  [1, 'Si verifica che il componente MenuPietanze visualizzi correttamente tutto il menù e permette l\'ordinazione di ciascuna pietanza'],
-  [1, 'Si verifica che il componente Navbar visualizzi correttamente la pagina attuale, le altre pagine e il nome dell\'utente o del ristoratore loggato'],
   [1, 'Si verifica che il componente Login permetta correttamente di effettuare l\'accesso tramite cliente o ristoratore'],
-  [1, 'Si verifica che il componente ListaOrdinazioni visualizzi correttamente le ordinazioni confermate e l\'inventario degli ingredienti'],
 ]);
+
+  //[1, 'Si verifica che il componente MenuPietanze visualizzi correttamente tutto il menù e permette l\'ordinazione di ciascuna pietanza'],
+  //[1, 'Si verifica che il componente Navbar visualizzi correttamente la pagina attuale, le altre pagine e il nome dell\'utente o del ristoratore loggato'],
+  //[1, 'Si verifica che il componente ListaOrdinazioni visualizzi correttamente le ordinazioni confermate e l\'inventario degli ingredienti'],
 
 echo "$a";
 
