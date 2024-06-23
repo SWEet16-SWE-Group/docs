@@ -9,7 +9,7 @@ I test dovranno essere resi il più automatici possibile, per evitare che la fas
 produzione.
 
 \begin{center}
-    \includegraphics[width=12cm]{test_v.png}
+\includegraphics[width=12cm]{test_v.png}
 \end{center}
 \begin{center}
 Immagine 1: Modello a V
@@ -52,7 +52,7 @@ Consistono nella ripetizione selettiva di \textit{test di unità, integrazione e
 \subsection{Specifica dei test}
 Al fine di garantire di creare una denominazione uniforme e per facilitare la comprensione, i test sono identificati da un codice come segue:
 \begin{center}
-    \textbf{T[Tipologia][Identificativo]}
+\textbf{T[Tipologia][Identificativo]}
 \end{center}
 Dove:
 
@@ -69,63 +69,106 @@ Dove:
 \end{itemize}
 Ciascuna tipologia di test sarà rappresentata da apposite tabelle, comprensive di identificativo, descrizione e stato. Come riportato precedentemente, al momento sono stati effettuati esclusivamente i \textit{test di unità}.
 
-\begin{comment}
+<?php
 
-    \subsubsection{Test di unità}
+function tabella_test_to_string($titolo, $sigla, $tabella, $offset = 0) {
+  $a = <<<'EOF'
+  
+  \subsubsection{TITOLO}
 
-\begin{tblr}{
-colspec={|X[2.5cm, halign=c]|X[9cm, halign=c]|X[3.5cm, halign=c]|},
-row{odd}={bg=white},
-row{even}={bg=white},
-row{1}={bg=black, fg=white},
+  \begin{longtblr}{
+  colspec={|X[2.5cm, halign=c]|X[9cm, halign=c]|X[3.5cm, halign=c]|},
+  row{odd}={bg=white},
+  row{even}={bg=white},
+  row{1}={bg=black, fg=white},
+  }
+  Identificativo & Descrizione & Stato \\ \hline
+  TABELLA
+
+  \end{longtblr}
+
+  EOF;
+  $linearizza = fn ($b, $c, $d) => "$c & $d & " . ucfirst(($b ? '' : 'non ') . 'superato' . " \\\\ \\hline \n");
+  return str_replace_array([
+    'TITOLO' => $titolo,
+    'TABELLA' => implode('', array_map(fn ($a, $i) => $linearizza($a[0], $sigla . $i, $a[1]), $tabella, range(1 + $offset, count($tabella) + $offset))),
+  ], $a);
 }
-        Identificativo & Descrizione & Stato \\
-        \hline
-        TU1 & Si verifica che il componente DashboardClienti venga renderizzato correttamente & Superato \\
-        \hline
-        TU2 & Si verifica che il componente DashboardRistoratori venga renderizzato correttamente & Superato \\
-        \hline
-        TU3 & Si verifica che il componente DettagliPietanza venga renderizzato correttamente & Superato \\
-        \hline
-        TU4 & Si verifica che il componente DettagliPrenotazione venga renderizzato correttamente & Superato \\
-        \hline
-        TU5 & Si verifica che il componente FormPrenotazione venga renderizzato correttamente & Superato \\
-        \hline
-        TU6 & Si verifica che il componente MenuPietanze venga renderizzato correttamente & Superato \\
-        \hline
-        TU7 & Si verifica che il componente Navbar venga renderizzato correttamente & Superato \\
-        \hline
-        TU8 & Si verifica che il componente Login venga renderizzato correttamente & Superato \\
-        \hline
-        TU9 & Si verifica che il componente ListaOrdinazioni venga renderizzato correttamente & Superato \\
-        \hline
-        TU10 & Si verifica che il componente DashboardClienti visualizzi correttamente le prenotazioni del cliente & Superato \\
-        \hline
-        TU11 & Si verifica che il componente DashboardRistoratori visualizzi correttamente le prenotazioni del ristorante e permetta la loro gestione & Superato \\
-        \hline
-        TU12 & Si verifica che il componente DettagliPietanza visualizzi correttamente tutti i dettagli della pietanza e permetta l'ordinazione con l'eventuale rimozione di ingredienti & Superato \\
-        \hline
-        TU13 & Si verifica che il componente DettagliPrenotazione visualizzi correttamente i dettagli di ciascuna prenotazione e ne permetta la gestione & Superato \\
-        \hline
-        TU14 & Si verifica che il componente FormPrenotazione consenta correttamente di effettuare una prenotazione & Superato \\
-        \hline
-        TU15 & Si verifica che il componente MenuPietanze visualizzi correttamente tutto il menù e permette l'ordinazione di ciascuna pietanza & Superato \\
-        \hline
-\end{tblr}
 
-\begin{tblr}{
-colspec={|X[2.5cm, halign=c]|X[9cm, halign=c]|X[3.5cm, halign=c]|},
-row{odd}={bg=white},
-row{even}={bg=white},
-}
-        \hline
-        TU16 & Si verifica che il componente Navbar visualizzi correttamente la pagina attuale, le altre pagine e il nome dell'utente o del ristoratore loggato & Superato \\
-        \hline
-        TU17 & Si verifica che il componente Login permetta correttamente di effettuare l'accesso tramite cliente o ristoratore & Superato \\
-        \hline
-        TU18 & Si verifica che il componente ListaOrdinazioni visualizzi correttamente le ordinazioni confermate e l'inventario degli ingredienti & Superato \\
-        \hline
+$a =  tabella_test_to_string('Test di unità', 'TU', $tu = [
+  [1, 'DashboardClienti viene renderizzato correttamente'],
+  [1, 'DashboardRistoratori viene renderizzato correttamente'],
+  [1, 'DettagliPietanza viene renderizzato correttamente'],
+  [1, 'DettagliPrenotazione viene renderizzato correttamente'],
+  [1, 'FormPrenotazione viene renderizzato correttamente'],
+  [1, 'MenuPietanze viene renderizzato correttamente'],
+  [1, 'Navbar viene renderizzato correttamente'],
+  [1, 'Login viene renderizzato correttamente'],
+  [1, 'ListaOrdinazioni viene renderizzato correttamente'],
+  [1, 'DashboardClienti visualizza correttamente le prenotazioni del cliente'],
+  [1, 'DashboardRistoratori visualizza correttamente le prenotazioni del ristorante e permetta la loro gestione'],
+  [1, 'DettagliPietanza visualizza correttamente tutti i dettagli della pietanza'],
+  [1, 'DettagliPrenotazione visualizza correttamente i dettagli di ciascuna prenotazione e ne permetta la gestione'],
+  [1, 'FormPrenotazione consente correttamente di effettuare una prenotazione'],
+  [1, 'Login permette correttamente di effettuare l\'accesso tramite cliente o ristoratore'],
+]);
 
-\end{tblr}
+//[1, 'MenuPietanze visualizza correttamente tutto il menù e permette l\'ordinazione di ciascuna pietanza'],
+//[1, 'Navbar visualizza correttamente la pagina attuale, le altre pagine e il nome dell\'utente o del ristoratore loggato'],
+//[1, 'ListaOrdinazioni visualizza correttamente le ordinazioni confermate e l\'inventario degli ingredienti'],
 
-\end{comment}
+$a = tabella_test_to_string('Test di unità', 'TU', [
+  // frontend
+  [1, 'Si verifica il corretto funzionamento di axios-client'],
+  [1, 'Si verifica il corretto funzionamento di ClientService'],
+  [1, 'Si verifica il corretto funzionamento di ContextProvider'],
+  [1, 'Si verifica il corretto funzionamento di CreazioneProfiloCliente'],
+  [1, 'Si verifica il corretto funzionamento di CreazioneProfiloRistoratore'],
+  [1, 'Si verifica il corretto funzionamento di DashBoardCliente'],
+  [1, 'Si verifica il corretto funzionamento di DashboardRistoratore'],
+  [1, 'Si verifica il corretto funzionamento di DivisioneContoPagamento'],
+  [1, 'Si verifica il corretto funzionamento di FormIngredienti'],
+  [1, 'Si verifica il corretto funzionamento di FormOrdinazione'],
+  [1, 'Si verifica il corretto funzionamento di FormPietanze'],
+  [1, 'Si verifica il corretto funzionamento di FormPrenotazione'],
+  [1, 'Si verifica il corretto funzionamento di GestioneIngredienti'],
+  [1, 'Si verifica il corretto funzionamento di GestioneMenu'],
+  [1, 'Si verifica il corretto funzionamento di IntolleranzeService'],
+  [1, 'Si verifica il corretto funzionamento di Layout'],
+  [1, 'Si verifica il corretto funzionamento di LinkInvito'],
+  [1, 'Si verifica il corretto funzionamento di Login'],
+  [1, 'Si verifica il corretto funzionamento di Menu'],
+  [1, 'Si verifica il corretto funzionamento di ModificaInfoAccount'],
+  [1, 'Si verifica il corretto funzionamento di ModificaProfiloCliente'],
+  [1, 'Si verifica il corretto funzionamento di ModificaProfiloRistoratore'],
+  [1, 'Si verifica il corretto funzionamento di NotFound'],
+  [1, 'Si verifica il corretto funzionamento di Notifiche'],
+  [1, 'Si verifica il corretto funzionamento di ResturantCard'],
+  [1, 'Si verifica il corretto funzionamento di Ristorante'],
+  [1, 'Si verifica il corretto funzionamento di Ristoranti'],
+  [1, 'Si verifica il corretto funzionamento di router'],
+  [1, 'Si verifica il corretto funzionamento di SearchBar'],
+  [1, 'Si verifica il corretto funzionamento di SelezioneProfilo'],
+  [1, 'Si verifica il corretto funzionamento di SignUp'],
+  [1, 'Si verifica il corretto funzionamento di SingolaPrenotazioneCliente'],
+  [1, 'Si verifica il corretto funzionamento di SingolaPrenotazioneRistoratore'],
+  // backend
+  [1, 'Si verifica il corretto funzionamento di AllergeniControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di AuthControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di ClientControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di ExampleTest'],
+  [1, 'Si verifica il corretto funzionamento di IngredienteControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di InvitiTest'],
+  [1, 'Si verifica il corretto funzionamento di NotificheControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di OrdinazioniTest'],
+  [1, 'Si verifica il corretto funzionamento di PietanzaControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di PrenotazioneControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di ProfileControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di RistoratoreControllerTest'],
+  [1, 'Si verifica il corretto funzionamento di RistoratoreTest'],
+  [1, 'Si verifica il corretto funzionamento di UserControllerTest'],
+]);
+
+echo "$a";
+
+?>
