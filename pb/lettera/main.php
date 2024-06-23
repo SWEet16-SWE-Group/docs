@@ -7,7 +7,7 @@ require_once 'Validatore.php';
 require_once 'Membri.php';
 
 $error_flag = 0;
-$titolo = 'Lettera di presentazione';
+$titolo = 'Candidatura PB';
 $registro = (new RegistroModifiche())->logArray([
   [DX, '2024/06/23', alex_s(), alberto_m(), 'Stesura'],
   [SX, '2024/06/23', alex_s(), '', 'Approvazione per il rilascio'],
