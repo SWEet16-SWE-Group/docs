@@ -21,7 +21,8 @@ $registro = (new RegistroModifiche())->logArray([
 [CE, '2024/06/21', alberto_c(), alex_s(), 'Correzione grafici'],
 [DX, '2024/04/10', alberto_m(), alex_s(), 'Stesura dei test'],
 [SX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
-[CE, '2024/06/23', alex_s(), '', 'Stesura test di unità'],
+[CE, '2024/06/23', alex_s(), bilal_em(), 'Stesura test di unità'],
+[SX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
 ]);
 
 $nome = "Piano_di_qualifica_v{$registro->versione()}.pdf";
