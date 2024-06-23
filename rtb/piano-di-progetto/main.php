@@ -24,6 +24,8 @@ $registro = (new RegistroModifiche())->logArray([
   [CE, '2024/06/21', alex_s(), bilal_em()->nome, 'Orari consuntivi'],
   [CE, '2024/06/21', alex_s(), bilal_em()->nome, 'Orari preventivi'],
   [SX, '2024/06/21', alex_s(), '', 'Approvazione per il rilascio'],
+  [DX, '2024/06/22', alex_s(), '', 'Aggiunta tabelle somme di tutti i periodi'],
+  [DX, '2024/06/22', alex_s(), '', 'Rimozione retrospettiva finale meme'],
 ]);
   //->approvazione('2024/06/07', alex_s());
 

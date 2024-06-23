@@ -18,30 +18,47 @@ require_once __DIR__ . '/pianificazione.d/pb.php';
 
 echo periodi_tostring($periodi_pb);
 
+$rtb_somma_preventivi = somma3d(array_column($periodi_rtb, preventivo), $membri, range(0, 5));
+$rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), $membri, range(0, 5));
+
 $pb_somma_preventivi = somma3d(array_column($periodi_pb, preventivo), $membri, range(0, 5));
 $pb_somma_consuntivi = somma3d(array_column($periodi_pb, consuntivo), $membri, range(0, 5));
 
-?>
+$progetto_somma_preventivi = somma3d([$rtb_somma_preventivi, $pb_somma_preventivi], $membri, range(0, 5));
+$progetto_somma_consuntivi = somma3d([$rtb_somma_consuntivi, $pb_somma_consuntivi], $membri, range(0, 5));
 
-% =================================================================================================
+function sezionetabelle($indentazione, $tabella_p, $tabella_c) {
+  $a = <<<'EOF'
 
-\subsubsection{Riepilogo finale}
 
-\subsubsubsection{Preventivo economico totale}
+  \INDENTAZIONE{Preventivo economico totale}
 
-<?php echo str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($pb_somma_preventivi))],  tabella_soldi); ?>
+  PREVENTIVO-SOLDI
 
-\subsubsubsection{Consuntivo economico finale}
+  \INDENTAZIONE{Consuntivo economico finale}
 
-<?php echo str_replace_array(['SOLDI' => tabella_to_string(tabella_soldi($pb_somma_consuntivi))],  tabella_soldi); ?>
+  CONSUNTIVO-SOLDI
 
-\subsubsubsection{Preventivo orario totale}
+  \INDENTAZIONE{Preventivo orario totale}
 
-<?php echo str_replace_array(['ORE'   => tabella_to_string(tabella_ore($pb_somma_preventivi))],    tabella_ore); ?>
+  PREVENTIVO-ORE
 
-\subsubsubsection{Consuntivo orario finale}
+  \INDENTAZIONE{Consuntivo orario finale}
 
-<?php echo str_replace_array(['ORE'   => tabella_to_string(tabella_ore($pb_somma_consuntivi))],    tabella_ore); ?>
+  CONSUNTIVO-ORE
 
-\paragraph{Retrospettiva finale}
-È andata come così. Non ci si può fare più niente ormai.
+  EOF;
+  return str_replace_array([
+    'INDENTAZIONE' => $indentazione,
+    'PREVENTIVO-SOLDI'  => tabella_soldi_to_string($tabella_p),
+    'CONSUNTIVO-SOLDI'  => tabella_soldi_to_string($tabella_c),
+    'PREVENTIVO-ORE'    => tabella_ore_to_string($tabella_p),
+    'CONSUNTIVO-ORE'    => tabella_ore_to_string($tabella_c),
+  ], $a);
+}
+
+echo '\\subsubsection{Riepilogo finale}';
+echo sezionetabelle('subsubsubsection',$pb_somma_preventivi,$pb_somma_consuntivi);
+
+echo '\\subsection{Riepilogo finale di tutti i periodi}';
+echo sezionetabelle('subsubsection',$progetto_somma_preventivi, $progetto_somma_consuntivi);
