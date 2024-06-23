@@ -352,21 +352,8 @@ un nuovo lavoro di studio e ricerca per capire se includere nuovi framework o li
 
 require_once __DIR__ . '/pb.php';
 
-function somma3d($a, $rows, $cols) {
-  return array_combine($rows, array_map(fn ($r) => array_map(fn ($c) => array_sum(array_column(array_column($a, $r), $c)), $cols), $rows));
-}
-
-$membri = [
-  (string)alberto_c(),
-  (string)bilal_em(),
-  (string)alberto_m(),
-  (string)alex_s(),
-  (string)iulius_s(),
-  (string)giovanni_z(),
-];
-
-$rtb_somma_preventivi = somma3d(array_column($periodi_rtb, preventivo), $membri, range(0, 5));
-$rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), $membri, range(0, 5));
+$rtb_somma_preventivi = somma3d(array_column($periodi_rtb, preventivo), membri(), range(0, 5));
+$rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), membri(), range(0, 5));
 
 
 ?>

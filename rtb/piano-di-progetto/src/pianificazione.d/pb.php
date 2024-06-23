@@ -645,3 +645,8 @@ function tabelle_ore_soldi_tostring($tabella, $periodo, $colonna) {
     . "\n\n{$titolo[$colonna][1]}\n\n"
     . tabella_soldi_to_string($tabella[$periodo][$colonna]);
 }
+
+function somma3d($a, $rows, $cols) {
+  return array_combine($rows, array_map(fn ($r) => array_map(fn ($c) => array_sum(array_column(array_column($a, $r), $c)), $cols), $rows));
+}
+

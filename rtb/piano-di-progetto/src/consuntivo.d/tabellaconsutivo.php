@@ -3,11 +3,11 @@
 require_once __DIR__ . '/../pianificazione.d/pb.php';
 require_once __DIR__ . '/../pianificazione.d/rtb.php';
 
-$rtb_somma_preventivi = somma3d(array_column($periodi_rtb, preventivo), $membri, range(0, 5));
-$rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), $membri, range(0, 5));
+$rtb_somma_preventivi = somma3d(array_column($periodi_rtb, preventivo), membri(), range(0, 5));
+$rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), membri(), range(0, 5));
 
-$pb_somma_preventivi = somma3d(array_column($periodi_pb, preventivo), $membri, range(0, 5));
-$pb_somma_consuntivi = somma3d(array_column($periodi_pb, consuntivo), $membri, range(0, 5));
+$pb_somma_preventivi = somma3d(array_column($periodi_pb, preventivo), membri(), range(0, 5));
+$pb_somma_consuntivi = somma3d(array_column($periodi_pb, consuntivo), membri(), range(0, 5));
 
 function differenze_soldi($p, $c) {
   $somma_verticale = fn ($a, $i) => array_map(fn ($i) => array_sum(array_column($a, $i)), $i);;
@@ -88,7 +88,7 @@ function ts($a){
   return $a;
 }
 
-$b = tabella_to_string(formatta_tabella(tabella_ore(somma3d([$rtb_somma_consuntivi, $pb_somma_consuntivi],$membri, range(0, 5)))));
+$b = tabella_to_string(formatta_tabella(tabella_ore(somma3d([$rtb_somma_consuntivi, $pb_somma_consuntivi],membri(), range(0, 5)))));
 $b = ts($b);
 
 echo "\n\n\nsomma totale:\n\n$b\n\n";
