@@ -18,14 +18,17 @@ require_once __DIR__ . '/pianificazione.d/pb.php';
 
 echo periodi_tostring($periodi_pb);
 
-$rtb_somma_preventivi = somma3d(array_column($periodi_rtb, preventivo), $membri, range(0, 5));
-$rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), $membri, range(0, 5));
+$rtb_somma_preventivi = somma3d(array_column($periodi_rtb, preventivo), membri(), range(0, 5));
+$rtb_somma_consuntivi = somma3d(array_column($periodi_rtb, consuntivo), membri(), range(0, 5));
 
-$pb_somma_preventivi = somma3d(array_column($periodi_pb, preventivo), $membri, range(0, 5));
-$pb_somma_consuntivi = somma3d(array_column($periodi_pb, consuntivo), $membri, range(0, 5));
+$pb_somma_preventivi = somma3d(array_column($periodi_pb, preventivo), membri(), range(0, 5));
+$pb_somma_consuntivi = somma3d(array_column($periodi_pb, consuntivo), membri(), range(0, 5));
 
-$progetto_somma_preventivi = somma3d([$rtb_somma_preventivi, $pb_somma_preventivi], $membri, range(0, 5));
-$progetto_somma_consuntivi = somma3d([$rtb_somma_consuntivi, $pb_somma_consuntivi], $membri, range(0, 5));
+$progetto_somma_preventivi = somma3d([$rtb_somma_preventivi, $pb_somma_preventivi], membri(), range(0, 5));
+$progetto_somma_consuntivi = somma3d([$rtb_somma_consuntivi, $pb_somma_consuntivi], membri(), range(0, 5));
+
+function somma_consuntivi(){
+}
 
 function sezionetabelle($indentazione, $tabella_p, $tabella_c) {
   $a = <<<'EOF'

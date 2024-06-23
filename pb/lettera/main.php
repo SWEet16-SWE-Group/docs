@@ -124,9 +124,31 @@ SWEet16 ritiene il progetto completato con il superamento della fase PB e non pr
 
 \section{Costi}
 
+Il costo totale del progetto è stato 10.625,00€.
+Qui di seguito sono mostrate le ore produttive per ogni componente:
+
 <?php
 
+$ore = array_combine(membri(),[85, 86, 93, 95, 87, 85]);
+$ore = array_map(fn ($n,$o) => "$n & $o \\\\ \\hline\n" ,array_keys($ore),$ore);
+$ore = implode('', $ore);
+
 ?>
+
+\begin{center}
+\begin{longtblr}{
+colspec={|X[2.5cm, halign=c]|X[5cm, halign=c]|},
+row{odd}={bg=white},
+row{even}={bg=white},
+row{1}={bg=black, fg=white},
+}
+Nome & Ore \\ \hline
+<?php echo "$ore\n"; ?>
+\end{longtblr}
+\end{center}
+
+Buona giornata.\\
+SWEet16
 
 \end{document}
 <?php
