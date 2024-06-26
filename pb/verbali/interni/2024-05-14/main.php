@@ -147,10 +147,13 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
     Dopo una discussione generale tra i membri del gruppo sulla scelta di modificare la tecnologia per il back-end, passando dal framework Laravel a PHP,
     è stato confermato, tramite votazione a maggioranza, il framework Laravel. \\
 
+    A seguito di questa decisione entro il prossimo incontro utile sarà necessario avere pronto il container Docker per l'MVP contenente React, Laravel e MySql. \\
+
     È stato inoltre discusso tra i membri del gruppo, a seguito del suggerimento da parte del proponente, di tenere dei SAL settimanali il venerdì pomeriggio,
     per aggiornare il proponente e spronare il gruppo a lavorare in modo costante. \\
 
     È stato quindi deciso di riferire la nostra positività all'idea nel prossimo incontro con la proponente fissato per il  17 Maggio 2024. \\
+
 
     È stato infine fissato il prossimo incontro interno per il 21 di Maggio.
 
