@@ -146,7 +146,7 @@ ob_start(function ($tex) use ($titolo, &$error_flag) {
     Durante questo incontro è stata creata la mappa del sito, utilizzata come linea guida per capire quali pagine dovessimo implementare.\\
     È stata quindi stilata una lista delle issues contenente ogni pagina ed opzionalmente le varie funzionalità di una pagina, in caso di pagina molto complesse.\\
 
-    È stato creato un sistema di priorità per permettere la paralelizzazione delle attività, una issue con priorità '0' ha priorità massima, una issue con priorità '10', è possibile effettuare issue con la stessa priorità contemporaneamente. \\
+    È stato creato un sistema di priorità per permettere la parallelizzazione delle attività, una issue con priorità '0' ha priorità massima, una issue con priorità '10', è possibile effettuare issue con la stessa priorità contemporaneamente. \\
 
     Si è deciso di segnare come termine ultimo per la consegna dell'MVP l'11 di Giugno. \\
 
